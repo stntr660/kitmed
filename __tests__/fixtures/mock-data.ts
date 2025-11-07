@@ -1,0 +1,355 @@
+import type { Product, Category, Manufacturer, User, RFPRequest, Discipline } from '@/types';
+
+export const mockDisciplines: Discipline[] = [
+  {
+    id: 'disc-1',
+    name: { en: 'Cardiology', fr: 'Cardiologie' },
+    description: { en: 'Heart and cardiovascular equipment', fr: 'Équipement cardiaque et cardiovasculaire' },
+    slug: 'cardiology',
+    color: '#FF6B6B',
+    icon: 'heart',
+    order: 1,
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'disc-2',
+    name: { en: 'Diagnostic Imaging', fr: 'Imagerie Diagnostique' },
+    description: { en: 'Medical imaging and diagnostic equipment', fr: 'Équipement d\'imagerie médicale et de diagnostic' },
+    slug: 'diagnostic-imaging',
+    color: '#4ECDC4',
+    icon: 'scan',
+    order: 2,
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+];
+
+export const mockCategories: Category[] = [
+  {
+    id: 'cat-1',
+    name: { en: 'Monitors', fr: 'Moniteurs' },
+    description: { en: 'Patient monitoring systems', fr: 'Systèmes de surveillance des patients' },
+    slug: 'monitors',
+    order: 1,
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'cat-2',
+    name: { en: 'Defibrillators', fr: 'Défibrillateurs' },
+    description: { en: 'Emergency defibrillation equipment', fr: 'Équipement de défibrillation d\'urgence' },
+    slug: 'defibrillators',
+    order: 2,
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'cat-3',
+    name: { en: 'Ventilators', fr: 'Ventilateurs' },
+    description: { en: 'Respiratory support systems', fr: 'Systèmes de support respiratoire' },
+    slug: 'ventilators',
+    order: 3,
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+];
+
+export const mockManufacturers: Manufacturer[] = [
+  {
+    id: 'mfg-1',
+    name: 'Philips Healthcare',
+    description: { en: 'Leading medical technology company', fr: 'Entreprise leader en technologie médicale' },
+    logo: '/images/manufacturers/philips-logo.png',
+    website: 'https://www.philips.com/healthcare',
+    country: 'Netherlands',
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'mfg-2',
+    name: 'Medtronic',
+    description: { en: 'Medical device technology company', fr: 'Entreprise de technologie de dispositifs médicaux' },
+    logo: '/images/manufacturers/medtronic-logo.png',
+    website: 'https://www.medtronic.com',
+    country: 'United States',
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+];
+
+export const mockProducts: Product[] = [
+  {
+    id: 'prod-1',
+    name: { en: 'IntelliVue MP70 Patient Monitor', fr: 'Moniteur Patient IntelliVue MP70' },
+    description: {
+      en: 'Advanced patient monitoring system with comprehensive vital signs tracking.',
+      fr: 'Système de surveillance avancé des patients avec suivi complet des signes vitaux.',
+    },
+    shortDescription: {
+      en: 'Advanced patient monitoring with comprehensive vital signs',
+      fr: 'Surveillance avancée des patients avec signes vitaux complets',
+    },
+    slug: 'intellivue-mp70-patient-monitor',
+    sku: 'PHI-MP70-001',
+    images: [
+      {
+        id: 'img-1',
+        url: '/images/products/mp70-monitor.jpg',
+        alt: { en: 'IntelliVue MP70 Patient Monitor', fr: 'Moniteur Patient IntelliVue MP70' },
+        width: 800,
+        height: 600,
+        isPrimary: true,
+        order: 1,
+      },
+    ],
+    specifications: [
+      {
+        id: 'spec-1',
+        name: { en: 'Display Size', fr: 'Taille d\'écran' },
+        value: { en: '19 inches', fr: '19 pouces' },
+        unit: 'inch',
+        category: 'Display',
+        order: 1,
+      },
+      {
+        id: 'spec-2',
+        name: { en: 'Resolution', fr: 'Résolution' },
+        value: { en: '1280x1024', fr: '1280x1024' },
+        category: 'Display',
+        order: 2,
+      },
+    ],
+    documents: [
+      {
+        id: 'doc-1',
+        name: { en: 'User Manual', fr: 'Manuel d\'utilisateur' },
+        description: { en: 'Complete user manual', fr: 'Manuel d\'utilisateur complet' },
+        url: '/documents/mp70-manual.pdf',
+        type: 'manual',
+        size: 2048000,
+        mimeType: 'application/pdf',
+      },
+    ],
+    category: mockCategories[0],
+    manufacturer: mockManufacturers[0],
+    discipline: mockDisciplines[0],
+    tags: ['monitoring', 'icu', 'emergency'],
+    status: 'active',
+    featured: true,
+    price: {
+      currency: 'USD',
+      amount: 25000,
+      type: 'quote',
+    },
+    seo: {
+      title: { en: 'IntelliVue MP70 Patient Monitor | KITMED', fr: 'Moniteur Patient IntelliVue MP70 | KITMED' },
+      description: {
+        en: 'Advanced patient monitoring system with comprehensive vital signs tracking',
+        fr: 'Système de surveillance avancé des patients avec suivi complet des signes vitaux',
+      },
+      keywords: ['patient monitor', 'medical equipment', 'intensive care'],
+    },
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+  {
+    id: 'prod-2',
+    name: { en: 'HeartStart MRx Defibrillator', fr: 'Défibrillateur HeartStart MRx' },
+    description: {
+      en: 'Professional defibrillator for emergency medical services and hospitals.',
+      fr: 'Défibrillateur professionnel pour les services médicaux d\'urgence et les hôpitaux.',
+    },
+    shortDescription: {
+      en: 'Professional defibrillator for emergency medical services',
+      fr: 'Défibrillateur professionnel pour services médicaux d\'urgence',
+    },
+    slug: 'heartstart-mrx-defibrillator',
+    sku: 'PHI-MRX-001',
+    images: [
+      {
+        id: 'img-2',
+        url: '/images/products/heartstart-mrx.jpg',
+        alt: { en: 'HeartStart MRx Defibrillator', fr: 'Défibrillateur HeartStart MRx' },
+        width: 800,
+        height: 600,
+        isPrimary: true,
+        order: 1,
+      },
+    ],
+    specifications: [
+      {
+        id: 'spec-3',
+        name: { en: 'Energy Range', fr: 'Plage d\'énergie' },
+        value: { en: '1-200 Joules', fr: '1-200 Joules' },
+        unit: 'J',
+        category: 'Performance',
+        order: 1,
+      },
+    ],
+    documents: [
+      {
+        id: 'doc-2',
+        name: { en: 'Service Manual', fr: 'Manuel de service' },
+        url: '/documents/mrx-service.pdf',
+        type: 'manual',
+        size: 1536000,
+        mimeType: 'application/pdf',
+      },
+    ],
+    category: mockCategories[1],
+    manufacturer: mockManufacturers[0],
+    discipline: mockDisciplines[0],
+    tags: ['defibrillator', 'emergency', 'aed'],
+    status: 'active',
+    featured: false,
+    price: {
+      currency: 'USD',
+      amount: 15000,
+      type: 'quote',
+    },
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+];
+
+export const mockUsers: User[] = [
+  {
+    id: 'user-1',
+    email: 'admin@kitmed.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    role: 'admin',
+    isActive: true,
+    lastLoginAt: new Date('2024-11-06'),
+    preferences: {
+      language: 'en',
+      timezone: 'UTC',
+      notifications: {
+        email: true,
+        browser: true,
+      },
+    },
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-11-06'),
+  },
+  {
+    id: 'user-2',
+    email: 'editor@kitmed.com',
+    firstName: 'Jane',
+    lastName: 'Smith',
+    role: 'editor',
+    isActive: true,
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01'),
+  },
+];
+
+export const mockRFPRequests: RFPRequest[] = [
+  {
+    id: 'rfp-1',
+    requestNumber: 'RFP-2024-001',
+    company: {
+      name: 'General Hospital',
+      type: 'hospital',
+      address: {
+        street: '123 Medical Drive',
+        city: 'Healthcare City',
+        state: 'HC',
+        postalCode: '12345',
+        country: 'United States',
+      },
+      phone: '+1-555-0123',
+      website: 'https://generalhospital.com',
+    },
+    contact: {
+      firstName: 'Dr. Alice',
+      lastName: 'Johnson',
+      email: 'alice.johnson@generalhospital.com',
+      phone: '+1-555-0124',
+      position: 'Chief Medical Officer',
+      department: 'Administration',
+    },
+    items: [
+      {
+        productId: 'prod-1',
+        product: mockProducts[0],
+        quantity: 2,
+        notes: 'Needed for ICU upgrade',
+        addedAt: new Date('2024-11-01'),
+      },
+      {
+        productId: 'prod-2',
+        product: mockProducts[1],
+        quantity: 1,
+        notes: 'Emergency department requirement',
+        addedAt: new Date('2024-11-01'),
+      },
+    ],
+    message: 'We are looking to upgrade our critical care equipment.',
+    urgency: 'high',
+    budget: {
+      min: 50000,
+      max: 100000,
+      currency: 'USD',
+    },
+    deliveryRequirements: 'Installation and training required within 30 days',
+    status: 'submitted',
+    submittedAt: new Date('2024-11-01'),
+    createdAt: new Date('2024-11-01'),
+    updatedAt: new Date('2024-11-01'),
+  },
+];
+
+export const createMockProduct = (overrides: Partial<Product> = {}): Product => ({
+  id: `prod-mock-${Date.now()}`,
+  name: { en: 'Mock Product', fr: 'Produit Mock' },
+  description: { en: 'Mock product description', fr: 'Description du produit mock' },
+  slug: 'mock-product',
+  sku: 'MOCK-001',
+  images: [],
+  specifications: [],
+  documents: [],
+  category: mockCategories[0],
+  manufacturer: mockManufacturers[0],
+  discipline: mockDisciplines[0],
+  tags: [],
+  status: 'active',
+  featured: false,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  ...overrides,
+});
+
+export const createMockRFPRequest = (overrides: Partial<RFPRequest> = {}): RFPRequest => ({
+  id: `rfp-mock-${Date.now()}`,
+  requestNumber: `RFP-MOCK-${Date.now()}`,
+  company: {
+    name: 'Mock Hospital',
+    type: 'hospital',
+    address: {
+      street: '123 Mock Street',
+      city: 'Mock City',
+      postalCode: '12345',
+      country: 'Mock Country',
+    },
+  },
+  contact: {
+    firstName: 'Mock',
+    lastName: 'User',
+    email: 'mock@example.com',
+  },
+  items: [],
+  urgency: 'medium',
+  status: 'draft',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  ...overrides,
+});
