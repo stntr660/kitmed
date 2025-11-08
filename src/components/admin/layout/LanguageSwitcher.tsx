@@ -21,11 +21,11 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'en' as Locale, name: 'English', flag: '🇺🇸' },
-    { code: 'fr' as Locale, name: 'Français', flag: '🇫🇷' }
+    { code: 'fr' as Locale, name: 'Français', flag: '🇫🇷' },
+    { code: 'en' as Locale, name: 'English', flag: '🇺🇸' }
   ];
 
-  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[1];
+  const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0];
 
   const switchLocale = (newLocale: Locale) => {
     const currentPath = pathname.replace(/^\/[a-z]{2}/, '');
