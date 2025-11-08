@@ -452,8 +452,14 @@
       "featuredProduct": "Featured Product",
       "displayAsFeatured": "Display as featured product",
       "media": "Media",
-      "mediaDescription": "Product images and documentation will be managed here",
-      "uploadMedia": "Upload Media"
+      "mediaDescription": "Drag and drop images here or click to select",
+      "mediaManagementDescription": "Manage product images and files",
+      "uploadMedia": "Upload Media",
+      "uploading": "Uploading...",
+      "uploadHint": "JPEG, PNG, WebP up to 5MB - First image will be primary",
+      "primaryImage": "Primary Image",
+      "noImages": "No images uploaded",
+      "saveProductFirst": "Please save the product first to upload images"
     }
   },
   "dashboard": {

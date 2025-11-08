@@ -16,6 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { MediaUpload } from './MediaUpload';
 import { Product } from '@/types';
 
 interface ProductDrawerProps {
@@ -491,17 +492,13 @@ export function ProductDrawer({
           <Card>
             <CardHeader>
               <CardTitle className="text-lg font-medium text-gray-900">{t('admin.products.media')}</CardTitle>
+              <p className="text-sm text-gray-600">{t('admin.products.mediaManagementDescription')}</p>
             </CardHeader>
             <CardContent>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <PhotoIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-sm text-gray-600 mb-2">
-                  {t('admin.products.mediaDescription')}
-                </p>
-                <Button variant="outline" disabled={isReadOnly}>
-                  {t('admin.products.uploadMedia')}
-                </Button>
-              </div>
+              <MediaUpload 
+                productId={product?.id || null}
+                disabled={isReadOnly}
+              />
             </CardContent>
           </Card>
         </div>

@@ -508,8 +508,14 @@
       "featuredProduct": "Produit en vedette",
       "displayAsFeatured": "Afficher comme produit vedette",
       "media": "Médias",
-      "mediaDescription": "Les images et documentation du produit seront gérées ici",
-      "uploadMedia": "Télécharger les médias"
+      "mediaDescription": "Glissez-déposez des images ici ou cliquez pour sélectionner",
+      "mediaManagementDescription": "Gérez les images et fichiers du produit",
+      "uploadMedia": "Télécharger les médias",
+      "uploading": "Téléchargement...",
+      "uploadHint": "JPEG, PNG, WebP jusqu'à 5MB - Première image sera l'image principale",
+      "primaryImage": "Image principale",
+      "noImages": "Aucune image téléchargée",
+      "saveProductFirst": "Veuillez d'abord enregistrer le produit pour télécharger des images"
     }
   },
   "dashboard": {
