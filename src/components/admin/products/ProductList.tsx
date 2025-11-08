@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { ArrowDownTrayIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,6 +28,7 @@ interface ProductListProps {
 }
 
 export function ProductList({ initialFilters = {} }: ProductListProps) {
+  const t = useTranslations('common');
   const router = useRouter();
   const [products, setProducts] = useState<AdminSearchResult<ProductWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
@@ -325,15 +327,18 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                     </th>
                     <th 
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                      onClick={() => handleSort('name')}
+                      onClick={() => handleSort('nom')}
                     >
-                      Product
+                      Produit
                     </th>
                     <th 
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                      onClick={() => handleSort('sku')}
+                      onClick={() => handleSort('referenceFournisseur')}
                     >
-                      SKU
+                      Ref. Fournisseur
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Constructeur
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Category
@@ -373,23 +378,26 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                         <div className="flex items-center">
                           <div className="h-10 w-10 bg-gray-200 rounded-lg mr-3 flex items-center justify-center">
                             <span className="text-xs font-medium text-gray-600">
-                              {product.name.charAt(0)}
+                              {product.nom?.fr?.charAt(0) || product.nom?.en?.charAt(0) || 'P'}
                             </span>
                           </div>
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {truncate(product.name, 40)}
+                              {truncate(product.nom?.fr || product.nom?.en || t('productWithoutName'), 40)}
                             </div>
-                            {product.shortDescription && (
+                            {product.description && (
                               <div className="text-sm text-gray-500">
-                                {truncate(product.shortDescription, 60)}
+                                {truncate(product.description?.fr || product.description?.en || '', 60)}
                               </div>
                             )}
                           </div>
                         </div>
                       </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 font-mono">
+                        {product.referenceFournisseur}
+                      </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {product.sku}
+                        {product.constructeur}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
                         {product.category?.name}
@@ -424,7 +432,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="text-red-600 hover:text-red-700"
+                            className="text-gray-600 hover:text-gray-700"
                           >
                             <TrashIcon className="h-4 w-4" />
                           </Button>

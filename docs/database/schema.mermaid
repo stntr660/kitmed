@@ -1,0 +1,249 @@
+erDiagram
+
+    Category {
+        String id PK
+        String name
+        String slug UK
+        String description "nullable"
+        String parentId "nullable"
+        Int sortOrder
+        Boolean isActive
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+        String imageUrl "nullable"
+        DateTime createdAt
+        DateTime updatedAt
+        Product products
+        CategoryTranslation translations
+    }
+
+    CategoryTranslation {
+        String id PK
+        String categoryId
+        String languageCode
+        String name
+        String description "nullable"
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+    }
+
+    Product {
+        String id PK
+        String sku UK
+        String categoryId
+        String name
+        String slug UK
+        String shortDescription "nullable"
+        String longDescription "nullable"
+        Json specifications "nullable"
+        String status
+        Boolean isFeatured
+        Int sortOrder
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+        DateTime createdAt
+        DateTime updatedAt
+        ProductTranslation translations
+        ProductMedia media
+        ProductAttribute attributes
+        RFPItem rfpItems
+    }
+
+    ProductTranslation {
+        String id PK
+        String productId
+        String languageCode
+        String name
+        String shortDescription "nullable"
+        String longDescription "nullable"
+        Json specifications "nullable"
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+    }
+
+    ProductMedia {
+        String id PK
+        String productId
+        String type
+        String url
+        String altText "nullable"
+        String title "nullable"
+        Int sortOrder
+        Boolean isPrimary
+        DateTime createdAt
+    }
+
+    ProductAttribute {
+        String id PK
+        String productId
+        String name
+        String value
+        String type
+        Int sortOrder
+    }
+
+    RFPRequest {
+        String id PK
+        String referenceNumber UK
+        String status
+        String customerName
+        String customerEmail
+        String customerPhone "nullable"
+        String companyName "nullable"
+        String companyAddress "nullable"
+        String contactPerson "nullable"
+        String message "nullable"
+        String urgencyLevel
+        String preferredContactMethod
+        String assignedTo "nullable"
+        String notes "nullable"
+        Decimal quoteAmount "nullable"
+        DateTime quoteValidUntil "nullable"
+        DateTime createdAt
+        DateTime updatedAt
+        RFPItem items
+    }
+
+    RFPItem {
+        String id PK
+        String rfpId
+        String productId
+        Int quantity
+        String specialRequirements "nullable"
+        Decimal quotedPrice "nullable"
+        DateTime createdAt
+    }
+
+    Partner {
+        String id PK
+        String name
+        String slug UK
+        String description "nullable"
+        String websiteUrl "nullable"
+        String logoUrl "nullable"
+        Boolean isFeatured
+        Int sortOrder
+        String status
+        DateTime createdAt
+        DateTime updatedAt
+        PartnerTranslation translations
+    }
+
+    PartnerTranslation {
+        String id PK
+        String partnerId
+        String languageCode
+        String name
+        String description "nullable"
+    }
+
+    Page {
+        String id PK
+        String slug UK
+        String title
+        String content "nullable"
+        String status
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+        Boolean isHomepage
+        Int sortOrder
+        DateTime createdAt
+        DateTime updatedAt
+        PageTranslation translations
+    }
+
+    PageTranslation {
+        String id PK
+        String pageId
+        String languageCode
+        String title
+        String content "nullable"
+        String metaTitle "nullable"
+        String metaDescription "nullable"
+    }
+
+    Banner {
+        String id PK
+        String title
+        String subtitle "nullable"
+        String imageUrl "nullable"
+        String ctaText "nullable"
+        String ctaUrl "nullable"
+        String position
+        Int sortOrder
+        Boolean isActive
+        DateTime startDate "nullable"
+        DateTime endDate "nullable"
+        DateTime createdAt
+        DateTime updatedAt
+        BannerTranslation translations
+    }
+
+    BannerTranslation {
+        String id PK
+        String bannerId
+        String languageCode
+        String title
+        String subtitle "nullable"
+        String ctaText "nullable"
+    }
+
+    User {
+        String id PK
+        String email UK
+        String passwordHash
+        String firstName
+        String lastName
+        String role
+        Boolean isActive
+        DateTime lastLogin "nullable"
+        DateTime createdAt
+        DateTime updatedAt
+        UserSession sessions
+        ActivityLog activityLogs
+    }
+
+    UserSession {
+        String id PK
+        String userId
+        String token UK
+        DateTime expiresAt
+        DateTime createdAt
+    }
+
+    ActivityLog {
+        String id PK
+        String userId "nullable"
+        String action
+        String resourceType
+        String resourceId "nullable"
+        Json details "nullable"
+        String ipAddress "nullable"
+        String userAgent "nullable"
+        DateTime createdAt
+    }
+
+    PageView {
+        String id PK
+        String pagePath
+        String referrer "nullable"
+        String userAgent "nullable"
+        String ipAddress "nullable"
+        String sessionId "nullable"
+        DateTime createdAt
+    }
+
+    %% Relationships
+    Category ||--o{ Product : "categorizes"
+    Category ||--o{ Category : "parent-child"
+    Product ||--o{ ProductTranslation : "translates"
+    Product ||--o{ ProductMedia : "has media"
+    Product ||--o{ ProductAttribute : "has attributes"
+    Product ||--o{ RFPItem : "requested in"
+    RFPRequest ||--o{ RFPItem : "contains"
+    Partner ||--o{ PartnerTranslation : "translates"
+    Page ||--o{ PageTranslation : "translates"
+    Banner ||--o{ BannerTranslation : "translates"
+    User ||--o{ UserSession : "has sessions"
+    User ||--o{ ActivityLog : "logs activity"
+    Category ||--o{ CategoryTranslation : "translates"

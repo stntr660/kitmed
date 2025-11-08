@@ -13,11 +13,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = await requestLocale;
   
   // Validate that the incoming `locale` parameter is valid
-  if (!locale || !locales.includes(locale as any)) notFound();
+  // If no locale or invalid locale, fallback to default 'fr'
+  const validLocale = locale && locales.includes(locale as any) ? locale : 'fr';
 
   return {
-    locale,
-    messages: (await import(`./messages/${locale}.json`)).default,
+    locale: validLocale,
+    messages: (await import(`./messages/${validLocale}.json`)).default,
     timeZone: 'Europe/Paris',
     now: new Date(),
     formats: {
@@ -48,6 +49,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
       },
     },
     // RTL support configuration for Arabic
-    direction: locale === 'ar' ? 'rtl' : 'ltr',
+    direction: validLocale === 'ar' ? 'rtl' : 'ltr',
   };
 });

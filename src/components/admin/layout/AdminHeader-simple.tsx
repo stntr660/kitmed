@@ -57,11 +57,8 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
   ];
 
   const handleLogout = () => {
-    // Clear auth data
     localStorage.removeItem('admin-token');
     document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-
-    // Redirect to login
     router.push('/en/admin/login');
   };
 
@@ -102,6 +99,7 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
         <div className="flex items-center gap-x-4 lg:gap-x-6">
           {/* Language Switcher */}
           <LanguageSwitcher currentLocale={currentLocale} />
+          
           {/* Notifications */}
           <div className="relative">
             <button

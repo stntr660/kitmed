@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -16,48 +17,45 @@ interface ProductFormProps {
 }
 
 export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
+  const t = useTranslations();
   const [loading, setLoading] = useState(false);
   
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ProductFormData>({
     defaultValues: product ? {
-      name: product.name,
-      description: product.description,
-      shortDescription: product.shortDescription,
-      sku: product.sku,
+      referenceFournisseur: product.referenceFournisseur,
+      constructeur: product.constructeur,
       categoryId: product.categoryId,
-      manufacturerId: product.manufacturerId,
-      disciplineId: product.disciplineId,
-      tags: product.tags || [],
+      nom: product.nom,
+      description: product.description || { en: '', fr: '' },
+      ficheTechnique: product.ficheTechnique || { en: '', fr: '' },
+      pdfBrochureUrl: product.pdfBrochureUrl || '',
       status: product.status,
       featured: product.featured || false,
-      specifications: product.specifications || [],
     } : {
-      name: { en: '', ar: '' },
-      description: { en: '', ar: '' },
-      shortDescription: { en: '', ar: '' },
-      sku: '',
+      referenceFournisseur: '',
+      constructeur: '',
       categoryId: '',
-      tags: [],
+      nom: { en: '', fr: '' },
+      description: { en: '', fr: '' },
+      ficheTechnique: { en: '', fr: '' },
+      pdfBrochureUrl: '',
       status: 'active',
       featured: false,
-      specifications: [],
     }
   });
 
   useEffect(() => {
     if (product) {
       reset({
-        name: product.name,
-        description: product.description,
-        shortDescription: product.shortDescription,
-        sku: product.sku,
+        referenceFournisseur: product.referenceFournisseur,
+        constructeur: product.constructeur,
         categoryId: product.categoryId,
-        manufacturerId: product.manufacturerId,
-        disciplineId: product.disciplineId,
-        tags: product.tags || [],
+        nom: product.nom,
+        description: product.description || { en: '', fr: '' },
+        ficheTechnique: product.ficheTechnique || { en: '', fr: '' },
+        pdfBrochureUrl: product.pdfBrochureUrl || '',
         status: product.status,
         featured: product.featured || false,
-        specifications: product.specifications || [],
       });
     }
   }, [product, reset]);
@@ -99,76 +97,111 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
       {/* Basic Information */}
       <Card>
         <CardHeader>
-          <CardTitle>Basic Information</CardTitle>
+          <CardTitle>{t('product.form.basicInfo')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Name (English) *
+                {t('product.form.nomProduitFr')} *
               </label>
               <Input
-                {...register('name.en', { required: 'English name is required' })}
-                placeholder="Product name in English"
+                {...register('nom.fr', { required: t('product.form.validation.nomFrRequired') })}
+                placeholder={t('product.form.placeholders.nomProduitFr')}
               />
-              {errors.name?.en && (
-                <p className="text-sm text-red-600 mt-1">{errors.name.en.message}</p>
+              {errors.nom?.fr && (
+                <p className="text-sm text-red-600 mt-1">{errors.nom.fr.message}</p>
               )}
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Name (Arabic) *
+                {t('product.form.nomProduitEn')} *
               </label>
               <Input
-                {...register('name.ar', { required: 'Arabic name is required' })}
-                placeholder="Product name in Arabic"
-                dir="rtl"
+                {...register('nom.en', { required: t('product.form.validation.nomEnRequired') })}
+                placeholder={t('product.form.placeholders.nomProduitEn')}
               />
-              {errors.name?.ar && (
-                <p className="text-sm text-red-600 mt-1">{errors.name.ar.message}</p>
+              {errors.nom?.en && (
+                <p className="text-sm text-red-600 mt-1">{errors.nom.en.message}</p>
               )}
             </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              SKU *
-            </label>
-            <Input
-              {...register('sku', { required: 'SKU is required' })}
-              placeholder="Product SKU"
-            />
-            {errors.sku && (
-              <p className="text-sm text-red-600 mt-1">{errors.sku.message}</p>
-            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Status *
+                {t('product.form.referenceFournisseur')} *
               </label>
-              <select
-                {...register('status', { required: 'Status is required' })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-                <option value="discontinued">Discontinued</option>
-              </select>
+              <Input
+                {...register('referenceFournisseur', { required: t('product.form.validation.referenceFournisseurRequired') })}
+                placeholder={t('product.form.placeholders.referenceFournisseur')}
+              />
+              {errors.referenceFournisseur && (
+                <p className="text-sm text-red-600 mt-1">{errors.referenceFournisseur.message}</p>
+              )}
             </div>
 
-            <div className="flex items-center space-x-2 pt-6">
-              <input
-                type="checkbox"
-                {...register('featured')}
-                className="rounded border-gray-300"
-              />
-              <label className="text-sm font-medium text-gray-700">
-                Featured Product
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('product.form.constructeur')} *
               </label>
+              <Input
+                {...register('constructeur', { required: t('product.form.validation.constructeurRequired') })}
+                placeholder={t('product.form.placeholders.constructeur')}
+              />
+              {errors.constructeur && (
+                <p className="text-sm text-red-600 mt-1">{errors.constructeur.message}</p>
+              )}
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('product.form.categorieDiscipline')} *
+              </label>
+              <select
+                {...register('categoryId', { required: t('product.form.validation.categorieRequired') })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">{t('product.form.placeholders.selectCategory')}</option>
+                <option value="cardiology">{t('product.form.categories.cardiology')}</option>
+                <option value="radiology">{t('product.form.categories.radiology')}</option>
+                <option value="surgery">{t('product.form.categories.surgery')}</option>
+                <option value="laboratory">{t('product.form.categories.laboratory')}</option>
+                <option value="emergency">{t('product.form.categories.emergency')}</option>
+                <option value="icu">{t('product.form.categories.icu')}</option>
+              </select>
+              {errors.categoryId && (
+                <p className="text-sm text-red-600 mt-1">{errors.categoryId.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('product.form.status')} *
+              </label>
+              <select
+                {...register('status', { required: t('product.form.validation.statusRequired') })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="active">{t('product.form.statuses.active')}</option>
+                <option value="inactive">{t('product.form.statuses.inactive')}</option>
+                <option value="discontinued">{t('product.form.statuses.discontinued')}</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              {...register('featured')}
+              className="rounded border-gray-300"
+            />
+            <label className="text-sm font-medium text-gray-700">
+              {t('product.form.featured')}
+            </label>
           </div>
         </CardContent>
       </Card>
@@ -176,31 +209,30 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
       {/* Descriptions */}
       <Card>
         <CardHeader>
-          <CardTitle>Description</CardTitle>
+          <CardTitle>{t('product.form.descriptions')}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Short Description (English)
+                {t('product.form.descriptionFr')}
               </label>
               <textarea
-                {...register('shortDescription.en')}
-                rows={3}
-                placeholder="Brief product description in English"
+                {...register('description.fr')}
+                rows={4}
+                placeholder={t('product.form.placeholders.descriptionFr')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Short Description (Arabic)
+                {t('product.form.descriptionEn')}
               </label>
               <textarea
-                {...register('shortDescription.ar')}
-                rows={3}
-                placeholder="Brief product description in Arabic"
-                dir="rtl"
+                {...register('description.en')}
+                rows={4}
+                placeholder={t('product.form.placeholders.descriptionEn')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -209,28 +241,38 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Description (English)
+                {t('product.form.ficheTechniqueFr')}
               </label>
               <textarea
-                {...register('description.en')}
+                {...register('ficheTechnique.fr')}
                 rows={5}
-                placeholder="Detailed product description in English"
+                placeholder={t('product.form.placeholders.ficheTechniqueFr')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Description (Arabic)
+                {t('product.form.ficheTechniqueEn')}
               </label>
               <textarea
-                {...register('description.ar')}
+                {...register('ficheTechnique.en')}
                 rows={5}
-                placeholder="Detailed product description in Arabic"
-                dir="rtl"
+                placeholder={t('product.form.placeholders.ficheTechniqueEn')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('product.form.pdfBrochure')}
+            </label>
+            <Input
+              {...register('pdfBrochureUrl')}
+              placeholder={t('product.form.placeholders.pdfBrochure')}
+              type="url"
+            />
           </div>
         </CardContent>
       </Card>
@@ -238,10 +280,10 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
       {/* Form Actions */}
       <div className="flex justify-end space-x-2 pt-6 border-t">
         <Button type="button" variant="outline" onClick={onCancel}>
-          Cancel
+          {t('product.form.actions.cancel')}
         </Button>
         <Button type="submit" disabled={loading}>
-          {loading ? 'Saving...' : product ? 'Update Product' : 'Create Product'}
+          {loading ? t('product.form.actions.saving') : product ? t('product.form.actions.update') : t('product.form.actions.create')}
         </Button>
       </div>
     </form>

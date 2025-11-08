@@ -1,0 +1,185 @@
+{
+  "config": {
+    "configFile": "/Users/mac/Documents/Zonemation/KITMEDAPP/playwright.config.ts",
+    "rootDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/global-setup.ts",
+    "globalTeardown": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "playwright-report/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Microsoft Edge",
+        "name": "Microsoft Edge",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Google Chrome",
+        "name": "Google Chrome",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "accessibility",
+        "name": "accessibility",
+        "testDir": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 4,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "TimeoutError: page.waitForSelector: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"home-page\"]') to be visible\u001b[22m\n",
+      "stack": "TimeoutError: page.waitForSelector: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-testid=\"home-page\"]') to be visible\u001b[22m\n\n    at globalSetup (/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/global-setup.ts:21:16)",
+      "location": {
+        "file": "/Users/mac/Documents/Zonemation/KITMEDAPP/e2e/global-setup.ts",
+        "column": 16,
+        "line": 21
+      },
+      "snippet": "\u001b[90m   at \u001b[39mglobal-setup.ts:21\n\n  19 |     // Check home page\n  20 |     await page.goto('http://localhost:3000');\n> 21 |     await page.waitForSelector('[data-testid=\"home-page\"]', { timeout: 30000 });\n     |                ^\n  22 |     \n  23 |     // Check products page\n  24 |     await page.goto('http://localhost:3000/products');"
+    }
+  ],
+  "stats": {
+    "startTime": "2025-11-07T22:46:34.975Z",
+    "duration": 32396.419,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

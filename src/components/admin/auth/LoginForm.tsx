@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,6 +27,7 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { login, loading, error } = useAdminAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   const {
     register,
@@ -42,7 +43,9 @@ export function LoginForm() {
       const success = await login(data.email, data.password);
       
       if (success) {
-        router.push('/admin');
+        // Preserve current locale when redirecting after successful login
+        const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
+        router.push(`/${currentLocale}/admin`);
       } else {
         setError('root', {
           type: 'manual',
@@ -157,7 +160,10 @@ export function LoginForm() {
                   <button
                     type="button"
                     className="font-medium text-blue-600 hover:text-blue-500"
-                    onClick={() => router.push('/admin/forgot-password')}
+                    onClick={() => {
+                      const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
+                      router.push(`/${currentLocale}/admin/forgot-password`);
+                    }}
                   >
                     {t('admin.auth.forgotPassword')}
                   </button>

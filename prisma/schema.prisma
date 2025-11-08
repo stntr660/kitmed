@@ -1,0 +1,358 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ===================================
+// CATEGORY HIERARCHY SYSTEM
+// ===================================
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  parentId    String?  @map("parent_id")
+  sortOrder   Int      @default(0) @map("sort_order")
+  isActive    Boolean  @default(true) @map("is_active")
+  metaTitle   String?  @map("meta_title")
+  metaDescription String? @map("meta_description")
+  imageUrl    String?  @map("image_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  parent      Category? @relation("CategoryParent", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryParent")
+  products    Product[]
+  translations CategoryTranslation[]
+
+  @@map("categories")
+}
+
+model CategoryTranslation {
+  id               String  @id @default(uuid())
+  categoryId       String  @map("category_id")
+  languageCode     String  @map("language_code")
+  name             String
+  description      String?
+  metaTitle        String? @map("meta_title")
+  metaDescription  String? @map("meta_description")
+
+  // Relations
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, languageCode])
+  @@map("category_translations")
+}
+
+// ===================================
+// PRODUCT CATALOG SYSTEM
+// ===================================
+
+model Product {
+  id                String   @id @default(uuid())
+  referenceFournisseur String   @unique @map("reference_fournisseur") // Référence fournisseur (Ref frs)
+  categoryId        String   @map("category_id")
+  constructeur      String   // Constructeur (Nom du fabricant ou de la marque)
+  slug              String   @unique
+  status            String   @default("active")
+  isFeatured        Boolean  @default(false) @map("is_featured")
+  sortOrder         Int      @default(0) @map("sort_order")
+  metaTitle         String?  @map("meta_title")
+  metaDescription   String?  @map("meta_description")
+  pdfBrochureUrl    String?  @map("pdf_brochure_url") // PDF brochure téléchargeable
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  category      Category @relation(fields: [categoryId], references: [id])
+  translations  ProductTranslation[]
+  media         ProductMedia[]
+  attributes    ProductAttribute[]
+  rfpItems      RFPItem[]
+
+  @@map("products")
+}
+
+model ProductTranslation {
+  id               String  @id @default(uuid())
+  productId        String  @map("product_id")
+  languageCode     String  @map("language_code")
+  nom              String  // Nom du produit (FR / EN)
+  description      String? // Description (FR / EN)
+  ficheTechnique   String? @map("fiche_technique") // Fiche technique (FR / EN)
+  metaTitle        String? @map("meta_title")
+  metaDescription  String? @map("meta_description")
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, languageCode])
+  @@map("product_translations")
+}
+
+model ProductMedia {
+  id         String   @id @default(uuid())
+  productId  String   @map("product_id")
+  type       String   // image, document, video
+  url        String
+  altText    String?  @map("alt_text")
+  title      String?
+  sortOrder  Int      @default(0) @map("sort_order")
+  isPrimary  Boolean  @default(false) @map("is_primary")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_media")
+}
+
+model ProductAttribute {
+  id        String @id @default(uuid())
+  productId String @map("product_id")
+  name      String
+  value     String
+  type      String @default("text") // text, number, boolean, date
+  sortOrder Int    @default(0) @map("sort_order")
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_attributes")
+}
+
+// ===================================
+// RFP (REQUEST FOR PROPOSAL) SYSTEM
+// ===================================
+
+model RFPRequest {
+  id                      String    @id @default(uuid())
+  referenceNumber         String    @unique @map("reference_number")
+  status                  String    @default("pending")
+  customerName            String    @map("customer_name")
+  customerEmail           String    @map("customer_email")
+  customerPhone           String?   @map("customer_phone")
+  companyName             String?   @map("company_name")
+  companyAddress          String?   @map("company_address")
+  contactPerson           String?   @map("contact_person")
+  message                 String?
+  urgencyLevel            String    @default("normal") @map("urgency_level")
+  preferredContactMethod  String    @default("email") @map("preferred_contact_method")
+  assignedTo              String?   @map("assigned_to")
+  notes                   String?
+  quoteAmount             Float?  @map("quote_amount")
+  quoteValidUntil         DateTime? @map("quote_valid_until")
+  createdAt               DateTime  @default(now()) @map("created_at")
+  updatedAt               DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  items RFPItem[]
+
+  @@map("rfp_requests")
+}
+
+model RFPItem {
+  id                   String   @id @default(uuid())
+  rfpId                String   @map("rfp_id")
+  productId            String   @map("product_id")
+  quantity             Int      @default(1)
+  specialRequirements  String?  @map("special_requirements")
+  quotedPrice          Float? @map("quoted_price")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  // Relations
+  rfp     RFPRequest @relation(fields: [rfpId], references: [id], onDelete: Cascade)
+  product Product    @relation(fields: [productId], references: [id])
+
+  @@map("rfp_items")
+}
+
+// ===================================
+// PARTNER MANAGEMENT SYSTEM
+// ===================================
+
+model Partner {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  websiteUrl  String?  @map("website_url")
+  logoUrl     String?  @map("logo_url")
+  isFeatured  Boolean  @default(false) @map("is_featured")
+  sortOrder   Int      @default(0) @map("sort_order")
+  status      String   @default("active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  translations PartnerTranslation[]
+
+  @@map("partners")
+}
+
+model PartnerTranslation {
+  id           String  @id @default(uuid())
+  partnerId    String  @map("partner_id")
+  languageCode String  @map("language_code")
+  name         String
+  description  String?
+
+  // Relations
+  partner Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+  @@unique([partnerId, languageCode])
+  @@map("partner_translations")
+}
+
+// ===================================
+// CONTENT MANAGEMENT SYSTEM
+// ===================================
+
+model Page {
+  id              String   @id @default(uuid())
+  slug            String   @unique
+  title           String
+  content         String?
+  status          String   @default("published")
+  metaTitle       String?  @map("meta_title")
+  metaDescription String?  @map("meta_description")
+  isHomepage      Boolean  @default(false) @map("is_homepage")
+  sortOrder       Int      @default(0) @map("sort_order")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  translations PageTranslation[]
+
+  @@map("pages")
+}
+
+model PageTranslation {
+  id              String  @id @default(uuid())
+  pageId          String  @map("page_id")
+  languageCode    String  @map("language_code")
+  title           String
+  content         String?
+  metaTitle       String? @map("meta_title")
+  metaDescription String? @map("meta_description")
+
+  // Relations
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@unique([pageId, languageCode])
+  @@map("page_translations")
+}
+
+model Banner {
+  id         String    @id @default(uuid())
+  title      String
+  subtitle   String?
+  imageUrl   String?   @map("image_url")
+  ctaText    String?   @map("cta_text")
+  ctaUrl     String?   @map("cta_url")
+  position   String    @default("homepage")
+  sortOrder  Int       @default(0) @map("sort_order")
+  isActive   Boolean   @default(true) @map("is_active")
+  startDate  DateTime? @map("start_date")
+  endDate    DateTime? @map("end_date")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  translations BannerTranslation[]
+
+  @@map("banners")
+}
+
+model BannerTranslation {
+  id           String  @id @default(uuid())
+  bannerId     String  @map("banner_id")
+  languageCode String  @map("language_code")
+  title        String
+  subtitle     String?
+  ctaText      String? @map("cta_text")
+
+  // Relations
+  banner Banner @relation(fields: [bannerId], references: [id], onDelete: Cascade)
+
+  @@unique([bannerId, languageCode])
+  @@map("banner_translations")
+}
+
+// ===================================
+// USER MANAGEMENT & AUTHENTICATION
+// ===================================
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  role         String    @default("editor")
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLogin    DateTime? @map("last_login")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  sessions     UserSession[]
+  activityLogs ActivityLog[]
+
+  @@map("users")
+}
+
+model UserSession {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+}
+
+// ===================================
+// AUDIT & ANALYTICS
+// ===================================
+
+model ActivityLog {
+  id           String   @id @default(uuid())
+  userId       String?  @map("user_id")
+  action       String
+  resourceType String   @map("resource_type")
+  resourceId   String?  @map("resource_id")
+  details      Json?
+  ipAddress    String?  @map("ip_address")
+  userAgent    String?  @map("user_agent")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id])
+
+  @@map("activity_logs")
+}
+
+model PageView {
+  id        String   @id @default(uuid())
+  pagePath  String   @map("page_path")
+  referrer  String?
+  userAgent String?  @map("user_agent")
+  ipAddress String?  @map("ip_address")
+  sessionId String?  @map("session_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("page_views")
+}

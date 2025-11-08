@@ -1,0 +1,81 @@
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║                              KITMED DATABASE SCHEMA                                  ║
+║                           Entity Relationship Diagram                               ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+📋 CORE ENTITIES:
+
+┌─ CATEGORY ──────────────────────────────────────────┐
+│ 🔑 id (String)
+│ ● name (String)
+│ 🔸 slug (String)
+│ ◦ description (String)
+│ ● sortOrder (Int)
+└────────────────────────────────────────────────────┘
+
+┌─ PRODUCT ───────────────────────────────────────────┐
+│ 🔑 id (String)
+│ 🔸 sku (String)
+│ ● name (String)
+│ 🔸 slug (String)
+│ ◦ shortDescription (String)
+└────────────────────────────────────────────────────┘
+
+┌─ RFPREQUEST ────────────────────────────────────────┐
+│ 🔑 id (String)
+│ 🔸 referenceNumber (String)
+│ ● status (String)
+│ ● customerName (String)
+│ ● customerEmail (String)
+└────────────────────────────────────────────────────┘
+
+┌─ PARTNER ───────────────────────────────────────────┐
+│ 🔑 id (String)
+│ ● name (String)
+│ 🔸 slug (String)
+│ ◦ description (String)
+│ ◦ websiteUrl (String)
+└────────────────────────────────────────────────────┘
+
+┌─ USER ──────────────────────────────────────────────┐
+│ 🔑 id (String)
+│ 🔸 email (String)
+│ ● passwordHash (String)
+│ ● firstName (String)
+│ ● lastName (String)
+└────────────────────────────────────────────────────┘
+
+📋 TRANSLATION & SUPPORT ENTITIES:
+
+• CategoryTranslation: 7 fields (Multi-language support)
+• ProductTranslation: 9 fields (Multi-language support)
+• ProductMedia: 9 fields
+• ProductAttribute: 6 fields
+• RFPItem: 7 fields
+• PartnerTranslation: 5 fields (Multi-language support)
+• Page: 12 fields
+• PageTranslation: 7 fields (Multi-language support)
+• Banner: 14 fields
+• BannerTranslation: 6 fields (Multi-language support)
+• UserSession: 5 fields
+• ActivityLog: 9 fields
+• PageView: 7 fields
+
+🔗 KEY RELATIONSHIPS:
+• Category → Product (One-to-Many)
+• Product → RFPItem (One-to-Many) 
+• RFPRequest → RFPItem (One-to-Many)
+• Product → ProductTranslation (One-to-Many)
+• Category → CategoryTranslation (One-to-Many)
+• Partner → PartnerTranslation (One-to-Many)
+• User → UserSession (One-to-Many)
+
+💡 FEATURES:
+• Multi-language support for all content
+• Hierarchical category system
+• RFP (Request for Proposal) workflow
+• Complete audit trail
+• Partner management system
+• Content management (Pages, Banners)
+• User authentication & sessions

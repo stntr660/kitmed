@@ -23,6 +23,11 @@
     "confirm": "Confirmer",
     "required": "Requis",
     "optional": "Optionnel",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "notSpecified": "Non spécifié",
+    "uncategorized": "Non catégorisé",
+    "productWithoutName": "Produit sans nom",
     "yes": "Oui",
     "no": "Non",
     "goToHomepage": "Aller à l'accueil",
@@ -39,7 +44,12 @@
     "adminPanel": "Panneau d'Administration",
     "subscribing": "Abonnement...",
     "subscribe": "S'abonner",
-    "export": "Exporter"
+    "export": "Exporter",
+    "notifications": "Notifications",
+    "viewAllNotifications": "Voir toutes les notifications",
+    "yourProfile": "Votre Profil",
+    "settings": "Paramètres",
+    "signOut": "Déconnexion"
   },
   "navigation": {
     "products": "Produits",
@@ -70,6 +80,111 @@
     "price": {
       "quote": "Devis requis",
       "contact": "Nous contacter"
+    },
+    "form": {
+      "basicInfo": "Informations de base",
+      "descriptions": "Descriptions",
+      "nomProduitFr": "Nom du produit (Français)",
+      "nomProduitEn": "Nom du produit (English)",
+      "referenceFournisseur": "Référence fournisseur (Ref frs)",
+      "constructeur": "Constructeur",
+      "categorieDiscipline": "Catégorie / Discipline",
+      "descriptionFr": "Description (Français)",
+      "descriptionEn": "Description (English)",
+      "ficheTechniqueFr": "Fiche technique (Français)",
+      "ficheTechniqueEn": "Fiche technique (English)",
+      "pdfBrochure": "PDF brochure téléchargeable",
+      "status": "Statut",
+      "featured": "Produit en vedette",
+      "placeholders": {
+        "nomProduitFr": "Nom du produit en français",
+        "nomProduitEn": "Product name in English",
+        "referenceFournisseur": "Code de référence interne ou du fournisseur",
+        "constructeur": "Nom du fabricant ou de la marque",
+        "selectCategory": "Sélectionner une catégorie",
+        "descriptionFr": "Description courte et détaillée du produit en français",
+        "descriptionEn": "Short and detailed product description in English",
+        "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
+        "ficheTechniqueEn": "Technical specifications and functional details in English",
+        "pdfBrochure": "URL vers la fiche technique ou documentation téléchargeable"
+      },
+      "validation": {
+        "nomFrRequired": "Le nom en français est requis",
+        "nomEnRequired": "English name is required",
+        "referenceFournisseurRequired": "La référence fournisseur est requise",
+        "constructeurRequired": "Le constructeur est requis",
+        "categorieRequired": "La catégorie est requise",
+        "statusRequired": "Le statut est requis"
+      },
+      "categories": {
+        "cardiology": "Cardiologie",
+        "radiology": "Radiologie",
+        "surgery": "Chirurgie",
+        "laboratory": "Laboratoire",
+        "emergency": "Urgences",
+        "icu": "Soins intensifs"
+      },
+      "statuses": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "discontinued": "Discontinué"
+      },
+      "actions": {
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "create": "Créer le produit",
+        "update": "Mettre à jour",
+        "saving": "Enregistrement..."
+      },
+      "bulkImport": {
+        "title": "Import CSV en lot",
+        "description": "Importez plusieurs produits à la fois à partir d'un fichier CSV",
+        "selectFile": "Sélectionner un fichier CSV",
+        "uploadFile": "Télécharger le fichier",
+        "importing": "Importation en cours...",
+        "processing": "Traitement en cours...",
+        "success": "Import réussi",
+        "error": "Erreur d'import",
+        "fileFormat": "Format du fichier",
+        "downloadTemplate": "Télécharger le modèle",
+        "requirements": {
+          "title": "Exigences du fichier:",
+          "format": "Format CSV avec virgules comme séparateurs",
+          "size": "Taille maximale: 5MB",
+          "rows": "Maximum 1000 lignes",
+          "encoding": "Encodage UTF-8 recommandé"
+        },
+        "columns": {
+          "title": "Colonnes requises:",
+          "referenceFournisseur": "referenceFournisseur - Référence unique du produit",
+          "constructeur": "constructeur - Nom du fabricant",
+          "categoryId": "categoryId - ID de catégorie (cardiology, radiology, etc.)",
+          "nom_fr": "nom_fr - Nom du produit en français",
+          "nom_en": "nom_en - Nom du produit en anglais",
+          "description_fr": "description_fr - Description en français (optionnel)",
+          "description_en": "description_en - Description en anglais (optionnel)",
+          "ficheTechnique_fr": "ficheTechnique_fr - Fiche technique en français (optionnel)",
+          "ficheTechnique_en": "ficheTechnique_en - Fiche technique en anglais (optionnel)",
+          "pdfBrochureUrl": "pdfBrochureUrl - URL de la brochure PDF (optionnel)",
+          "status": "status - Statut (active, inactive, discontinued)",
+          "featured": "featured - Produit vedette (true/false)"
+        },
+        "validation": {
+          "fileRequired": "Veuillez sélectionner un fichier CSV",
+          "invalidFormat": "Format de fichier invalide. Seuls les fichiers CSV sont acceptés",
+          "fileTooLarge": "Le fichier est trop volumineux. Taille maximale: 5MB",
+          "tooManyRows": "Trop de lignes. Maximum: 1000 lignes"
+        },
+        "results": {
+          "importedCount": "Produits importés avec succès:",
+          "errorsCount": "Erreurs:",
+          "viewErrors": "Voir les erreurs",
+          "hideErrors": "Masquer les erreurs",
+          "rowError": "Ligne {row}:",
+          "fieldError": "Champ {field}:",
+          "retry": "Réessayer l'import"
+        }
+      }
     }
   },
   "footer": {
@@ -294,6 +409,107 @@
       "adminDashboard": "Tableau de Bord Admin",
       "signOut": "Se déconnecter",
       "pending": "en attente"
+    },
+    "products": {
+      "addDescription": "Ajoutez un nouvel équipement médical à votre catalogue",
+      "editDescription": "Mettre à jour les informations et spécifications du produit",
+      "viewDescription": "Voir les informations détaillées du produit",
+      
+      "essentialInfo": "Informations essentielles",
+      "essentialInfoDescription": "Les détails de base nécessaires pour identifier le produit",
+      
+      "productName": "Nom du produit",
+      "productNamePlaceholder": "Ex: Moniteur cardiaque portable X200",
+      "productNameHint": "Utilisez le nom commercial exact du produit",
+      
+      "brand": "Marque",
+      "brandPlaceholder": "Ex: Philips, Siemens, GE Healthcare",
+      "brandHint": "Nom du fabricant ou de la marque",
+      
+      "referenceCode": "Code de référence",
+      "referenceCodePlaceholder": "Ex: PHI-X200-2024 ou REF12345",
+      "referenceCodeHint": "Code interne ou référence fournisseur",
+      
+      "medicalDiscipline": "Discipline médicale",
+      "selectDiscipline": "Choisir la spécialité médicale",
+      "disciplineHint": "Domaine médical principal d'utilisation",
+      
+      "shortDescription": "Description courte",
+      "shortDescriptionPlaceholder": "Décrivez brièvement le produit et ses principales fonctionnalités",
+      "shortDescriptionHint": "Une présentation simple pour les commerciaux",
+      
+      "internationalVersion": "Version internationale",
+      "internationalDescription": "",
+      
+      "technicalDetails": "Détails techniques",
+      "technicalDetailsDescription": "Informations avancées pour les spécialistes",
+      
+      "specifications": "Caractéristiques techniques",
+      "specificationsPlaceholder": "Détaillez les spécifications techniques, dimensions, performances, normes, etc.",
+      "specificationsHint": "Pour les appels d'offres et documentation technique",
+      "specificationsEnglish": "Technical specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications, dimensions, performance, standards, etc.",
+      
+      "brochureDocument": "Document commercial",
+      "brochureDocumentPlaceholder": "https://exemple.com/brochure-produit.pdf",
+      "brochureDocumentHint": "Lien vers la brochure ou fiche technique PDF",
+      
+      "visibility": "Visibilité du produit",
+      "visibilityDescription": "Contrôlez quand et comment le produit apparaît",
+      
+      "makeVisible": "Rendre visible",
+      "makeVisibleDescription": "Le produit sera visible par vos clients",
+      
+      "keepHidden": "Garder masqué",
+      "keepHiddenDescription": "Le produit restera en brouillon",
+      
+      "highlightProduct": "Mettre en avant ce produit",
+      "highlightProductDescription": "apparaîtra dans les produits vedettes",
+      
+      "basicInformation": "Informations de base",
+      "productNameFrench": "Nom du produit (Français)",
+      "productNameFrenchPlaceholder": "Nom du produit en français",
+      "productNameEnglish": "Nom du produit (English)",
+      "productNameEnglishPlaceholder": "Product name in English",
+      "supplierReference": "Référence fournisseur (Ref frs)",
+      "supplierReferencePlaceholder": "Code de référence interne ou du fournisseur",
+      "manufacturer": "Constructeur",
+      "manufacturerPlaceholder": "Nom du fabricant ou de la marque",
+      "category": "Catégorie / Discipline",
+      "selectCategory": "Sélectionner une catégorie",
+      "categories": {
+        "cardiology": "Cardiologie",
+        "radiology": "Radiologie",
+        "surgery": "Chirurgie",
+        "laboratory": "Laboratoire",
+        "emergency": "Urgences",
+        "icu": "Soins intensifs"
+      },
+      "descriptions": "Descriptions",
+      "descriptionFrench": "Description (Français)",
+      "descriptionFrenchPlaceholder": "Description courte et détaillée du produit en français",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Short and detailed product description in English",
+      "technicalSheetFrench": "Fiche technique (Français)",
+      "technicalSheetFrenchPlaceholder": "Spécifications techniques et détails fonctionnels en français",
+      "technicalSheetEnglish": "Fiche technique (English)",
+      "technicalSheetEnglishPlaceholder": "Technical specifications and functional details in English",
+      "pdfBrochure": "PDF brochure téléchargeable",
+      "pdfBrochurePlaceholder": "URL vers la fiche technique ou documentation téléchargeable",
+      "statusVisibility": "Statut et Visibilité",
+      "status": "Statut",
+      "statusOptions": {
+        "active": "Actif",
+        "inactive": "Inactif", 
+        "discontinued": "Discontinué",
+        "visible": "Visible",
+        "draft": "Brouillon"
+      },
+      "featuredProduct": "Produit en vedette",
+      "displayAsFeatured": "Afficher comme produit vedette",
+      "media": "Médias",
+      "mediaDescription": "Les images et documentation du produit seront gérées ici",
+      "uploadMedia": "Télécharger les médias"
     }
   },
   "dashboard": {

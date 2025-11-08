@@ -1,11 +1,11 @@
 'use client';
 
-import { Fragment } from 'react';
+import React from 'react';
 import { usePathname, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { useTranslations } from 'next-intl';
-import { 
+import {
   XMarkIcon,
   HomeIcon,
   CubeIcon,
@@ -22,9 +22,19 @@ import { AdminUser } from '@/types/admin';
 import { Badge } from '@/components/ui/badge';
 import { Logo } from '@/components/ui/logo';
 
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  exact?: boolean;
+  description?: string;
+  badge?: string;
+  permission?: string;
+}
+
 /**
  * Unified Admin Sidebar Component
- * 
+ *
  * Features:
  * - Simplified navigation without nested submenus
  * - Full i18n support with next-intl
@@ -33,7 +43,7 @@ import { Logo } from '@/components/ui/logo';
  * - RTL support for Arabic
  * - Unified design following KITMED branding
  * - Permission-based navigation items
- * 
+ *
  * UX Strategy:
  * - Each section is a complete workspace with in-context actions
  * - No fragmented workflows across multiple pages
@@ -46,7 +56,7 @@ interface AdminSidebarProps {
 }
 
 // Unified navigation without nested children
-function getNavigation(locale: string, t: any) {
+function getNavigation(locale: string, t: ReturnType<typeof useTranslations>): NavigationItem[] {
   return [
     {
       name: t('admin.sidebar.dashboard'),
@@ -99,25 +109,25 @@ function getNavigation(locale: string, t: any) {
 function hasPermission(user: AdminUser, permission?: string): boolean {
   if (!permission) return true;
   if (user.role === 'admin') return true;
-  
+
   // Check specific permissions
   return user.permissions?.some(p => p.resource === permission && p.actions.includes('read')) || false;
 }
 
 // Simplified NavItem without children/submenu logic
-function NavItem({ 
-  item, 
-  pathname, 
+function NavItem({
+  item,
+  pathname,
   user
-}: { 
-  item: any; 
-  pathname: string; 
+}: {
+  item: NavigationItem;
+  pathname: string;
   user: AdminUser;
 }) {
-  const isActive = item.exact 
-    ? pathname === item.href 
+  const isActive = item.exact
+    ? pathname === item.href
     : pathname.startsWith(item.href);
-  
+
   // Check permissions
   if (item.permission && !hasPermission(user, item.permission)) {
     return null;
@@ -137,11 +147,11 @@ function NavItem({
         <div className={baseClasses}>
           <div className="flex items-center flex-1">
             {item.icon && (
-              <item.icon 
+              <item.icon
                 className={cn(
                   'mr-4 h-7 w-7 flex-shrink-0 transition-all duration-300',
-                  isActive 
-                    ? 'text-primary-600' 
+                  isActive
+                    ? 'text-primary-600'
                     : 'text-white/80 group-hover:text-white group-hover:scale-110'
                 )}
               />
@@ -151,8 +161,8 @@ function NavItem({
               {item.description && (
                 <span className={cn(
                   'text-xs mt-1 block font-medium transition-colors duration-300',
-                  isActive 
-                    ? 'text-primary-500' 
+                  isActive
+                    ? 'text-primary-500'
                     : 'text-white/70 group-hover:text-white/90'
                 )}>
                   {item.description}
@@ -191,7 +201,7 @@ function SidebarContent({ user }: { user: AdminUser }) {
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full transform translate-x-32 -translate-y-32" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full transform -translate-x-24 translate-y-24" />
       <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-400/10 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
-      
+
       {/* Logo Section */}
       <div className="relative z-10 flex h-28 items-center justify-center px-6 border-b border-white/15 animate-in slide-in-from-top duration-500">
         <Link href={`/${locale}/admin`} className="group flex items-center space-x-4 transition-all duration-300 w-full">
@@ -218,9 +228,9 @@ function SidebarContent({ user }: { user: AdminUser }) {
               className="animate-in slide-in-from-left duration-300"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <NavItem 
-                item={item} 
-                pathname={pathname} 
+              <NavItem
+                item={item}
+                pathname={pathname}
                 user={user}
               />
             </div>
@@ -245,7 +255,7 @@ function SidebarContent({ user }: { user: AdminUser }) {
             </p>
           </div>
         </div>
-        
+
         <button
           onClick={handleLogout}
           className="w-full flex items-center justify-center space-x-3 px-6 py-4 rounded-2xl text-white/90 hover:text-white hover:bg-white/15 transition-all duration-300 group hover:scale-[1.02] min-h-[60px] font-bold touch-manipulation"
@@ -262,10 +272,10 @@ export function AdminSidebar({ open, onClose, user }: AdminSidebarProps) {
   return (
     <>
       {/* Mobile sidebar */}
-      <Transition.Root show={open} as={Fragment}>
+      <Transition show={open} as={React.Fragment}>
         <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
           <Transition.Child
-            as={Fragment}
+            as={React.Fragment}
             enter="transition-opacity ease-linear duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -278,7 +288,7 @@ export function AdminSidebar({ open, onClose, user }: AdminSidebarProps) {
 
           <div className="fixed inset-0 flex">
             <Transition.Child
-              as={Fragment}
+              as={React.Fragment}
               enter="transition ease-in-out duration-300 transform"
               enterFrom="-translate-x-full"
               enterTo="translate-x-0"
@@ -288,7 +298,7 @@ export function AdminSidebar({ open, onClose, user }: AdminSidebarProps) {
             >
               <Dialog.Panel className="relative mr-16 flex w-full max-w-80 flex-1">
                 <Transition.Child
-                  as={Fragment}
+                  as={React.Fragment}
                   enter="ease-in-out duration-300"
                   enterFrom="opacity-0"
                   enterTo="opacity-100"
@@ -307,7 +317,7 @@ export function AdminSidebar({ open, onClose, user }: AdminSidebarProps) {
                     </button>
                   </div>
                 </Transition.Child>
-                
+
                 <div className="flex grow flex-col overflow-hidden rounded-r-2xl shadow-2xl">
                   <SidebarContent user={user} />
                 </div>
@@ -315,7 +325,7 @@ export function AdminSidebar({ open, onClose, user }: AdminSidebarProps) {
             </Transition.Child>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition>
 
       {/* Desktop sidebar */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-80 lg:flex-col animate-in slide-in-from-left duration-500">

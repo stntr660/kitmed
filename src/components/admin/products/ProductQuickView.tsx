@@ -159,7 +159,7 @@ export function ProductQuickView({
                 <div>
                   <span className="font-semibold text-gray-700">Category:</span>
                   <p className="text-gray-600 mt-1">
-                    {product.category?.name || 'Uncategorized'}
+                    {product.category?.name || t('uncategorized')}
                   </p>
                 </div>
                 

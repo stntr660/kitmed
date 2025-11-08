@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Product } from '@/types';
@@ -10,6 +11,7 @@ interface ProductDetailsProps {
 }
 
 export function ProductDetails({ product }: ProductDetailsProps) {
+  const t = useTranslations('common');
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active':
@@ -50,11 +52,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">Name (English)</label>
-              <p className="mt-1 text-sm text-gray-900">{product.name || 'Not specified'}</p>
+              <p className="mt-1 text-sm text-gray-900">{product.name || t('notSpecified')}</p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Name (Arabic)</label>
-              <p className="mt-1 text-sm text-gray-900" dir="rtl">{product.name || 'Not specified'}</p>
+              <p className="mt-1 text-sm text-gray-900" dir="rtl">{product.name || t('notSpecified')}</p>
             </div>
           </div>
           
@@ -105,11 +107,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Short Description (English)</label>
-                <p className="mt-1 text-sm text-gray-900">{product.shortDescription || 'Not specified'}</p>
+                <p className="mt-1 text-sm text-gray-900">{product.shortDescription || t('notSpecified')}</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Short Description (Arabic)</label>
-                <p className="mt-1 text-sm text-gray-900" dir="rtl">{product.shortDescription || 'Not specified'}</p>
+                <p className="mt-1 text-sm text-gray-900" dir="rtl">{product.shortDescription || t('notSpecified')}</p>
               </div>
             </div>
           )}
@@ -119,13 +121,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               <div>
                 <label className="block text-sm font-medium text-gray-700">Full Description (English)</label>
                 <div className="mt-1 text-sm text-gray-900 whitespace-pre-wrap">
-                  {product.description || 'Not specified'}
+                  {product.description || t('notSpecified')}
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Full Description (Arabic)</label>
                 <div className="mt-1 text-sm text-gray-900 whitespace-pre-wrap" dir="rtl">
-                  {product.description || 'Not specified'}
+                  {product.description || t('notSpecified')}
                 </div>
               </div>
             </div>

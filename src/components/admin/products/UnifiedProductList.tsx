@@ -19,6 +19,8 @@ import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ProductDrawer } from './ProductDrawer';
 import { ProductQuickView } from './ProductQuickView';
+import { CSVUpload } from './CSVUpload';
+import type { ImportResult } from './CSVUpload';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { Product } from '@/types';
 import { formatDate, truncate } from '@/lib/utils';
@@ -53,6 +55,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
   const [drawerMode, setDrawerMode] = useState<'add' | 'edit' | 'view'>('add');
   const [selectedProduct, setSelectedProduct] = useState<ProductWithDetails | null>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [showCSVUpload, setShowCSVUpload] = useState(false);
   
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
@@ -95,7 +98,6 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         throw new Error('Failed to load products');
       }
     } catch (err) {
-      console.error('Failed to load products:', err);
       setError(t('errors.serverError'));
     } finally {
       setLoading(false);
@@ -142,7 +144,6 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         throw new Error('Failed to save product');
       }
     } catch (error) {
-      console.error('Save failed:', error);
       throw error;
     }
   };
@@ -159,7 +160,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         await loadProducts();
       }
     } catch (error) {
-      console.error('Delete failed:', error);
+      // Handle error silently
     }
   };
 
@@ -232,7 +233,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         setSelectedProducts([]);
       }
     } catch (err) {
-      console.error('Bulk action failed:', err);
+      // Handle bulk action error silently
     }
   };
 
@@ -256,7 +257,14 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         document.body.removeChild(a);
       }
     } catch (err) {
-      console.error('Export failed:', err);
+      // Handle export error silently
+    }
+  };
+
+  const handleImportComplete = (result: ImportResult) => {
+    if (result.success) {
+      loadProducts(); // Refresh the product list
+      setShowCSVUpload(false); // Close the upload section
     }
   };
 
@@ -304,6 +312,14 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
             <span>{t('common.export')}</span>
           </Button>
           <Button
+            variant="outline"
+            onClick={() => setShowCSVUpload(!showCSVUpload)}
+            className="flex items-center space-x-2"
+          >
+            <ArrowUpTrayIcon className="h-5 w-5" />
+            <span>{t('product.form.bulkImport.title')}</span>
+          </Button>
+          <Button
             onClick={handleAddProduct}
             className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700"
           >
@@ -312,6 +328,11 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
           </Button>
         </div>
       </div>
+
+      {/* CSV Upload Section */}
+      {showCSVUpload && (
+        <CSVUpload onImportComplete={handleImportComplete} />
+      )}
 
       {/* Filters & Search */}
       <Card className="border border-gray-200/60">
@@ -518,7 +539,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                             size="sm"
                             variant="ghost"
                             onClick={() => handleDeleteProduct(product.id)}
-                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="text-gray-600 hover:text-gray-700"
                           >
                             <TrashIcon className="h-4 w-4" />
                           </Button>

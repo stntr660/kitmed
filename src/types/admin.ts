@@ -61,17 +61,15 @@ export interface AdminDashboardStats {
 
 // Product Management Types
 export interface ProductFormData {
-  name: Record<Locale, string>;
-  description: Record<Locale, string>;
-  shortDescription?: Record<Locale, string>;
-  sku: string;
-  categoryId: string;
-  manufacturerId?: string;
-  disciplineId?: string;
-  tags: string[];
+  referenceFournisseur: string; // Référence fournisseur (Ref frs)
+  constructeur: string; // Constructeur (Nom du fabricant ou de la marque)
+  categoryId: string; // Catégorie / Discipline
+  nom: Record<Locale, string>; // Nom du produit (FR / EN)
+  description?: Record<Locale, string>; // Description (FR / EN)
+  ficheTechnique?: Record<Locale, string>; // Fiche technique (FR / EN)
+  pdfBrochureUrl?: string; // PDF brochure téléchargeable
   status: 'active' | 'inactive' | 'discontinued';
   featured: boolean;
-  specifications: ProductSpecificationInput[];
   seo?: SEOFormData;
 }
 

@@ -3,17 +3,16 @@ import { NextRequest } from 'next/server';
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
-  // Note: 'ar' (Arabic) prepared for future expansion
   locales: ['en', 'fr'],
   
-  // Used when no locale matches
+  // Used when no locale matches - French is now primary
   defaultLocale: 'fr',
   
-  // Locale detection options
-  localeDetection: true,
+  // Locale detection options  
+  localeDetection: false,
   
-  // Redirect to default locale when no locale is provided
-  localePrefix: 'as-needed'
+  // Always use locale prefix to avoid conflicts
+  localePrefix: 'always'
 });
 
 export default function middleware(request: NextRequest) {
@@ -26,13 +25,15 @@ export default function middleware(request: NextRequest) {
     return;
   }
 
-  // Redirect old admin routes to locale-aware routes
-  if (request.nextUrl.pathname.startsWith('/admin')) {
+  // Only redirect /admin routes that don't have locale prefixes
+  // This allows /en/admin and /fr/admin to work properly - now defaults to French
+  if (request.nextUrl.pathname === '/admin' || request.nextUrl.pathname.startsWith('/admin/')) {
     const url = request.nextUrl.clone();
-    url.pathname = `/en${url.pathname}`;
+    url.pathname = `/fr${url.pathname}`;
     return Response.redirect(url);
   }
 
+  // Let next-intl middleware handle locale routing
   return intlMiddleware(request);
 }
 

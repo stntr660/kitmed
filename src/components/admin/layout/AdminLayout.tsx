@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { AdminSidebar } from './AdminSidebar';
 import { AdminHeader } from './AdminHeader';
@@ -21,12 +21,13 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Redirect to login if not authenticated
+  // Redirect to login if not authenticated (preserve current locale)
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/en/admin/login');
+      const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
+      router.push(`/${currentLocale}/admin/login`);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, pathname]);
 
   // Show loading state
   if (loading) {
@@ -48,7 +49,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           </h2>
           <p className="text-gray-600 mb-4">{error}</p>
           <button
-            onClick={() => router.push('/en/admin/login')}
+            onClick={() => {
+              const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
+              router.push(`/${currentLocale}/admin/login`);
+            }}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
             Go to Login

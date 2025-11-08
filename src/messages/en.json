@@ -23,6 +23,9 @@
     "confirm": "Confirm",
     "required": "Required",
     "optional": "Optional",
+    "notSpecified": "Not specified",
+    "uncategorized": "Uncategorized",
+    "productWithoutName": "Product without name",
     "yes": "Yes",
     "no": "No",
     "export": "Export",
@@ -39,7 +42,12 @@
     "rfpHistory": "RFP History",
     "adminPanel": "Admin Panel",
     "subscribing": "Subscribing...",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "notifications": "Notifications",
+    "viewAllNotifications": "View all notifications",
+    "yourProfile": "Your Profile",
+    "settings": "Settings",
+    "signOut": "Sign Out"
   },
   "navigation": {
     "products": "Products",
@@ -70,6 +78,111 @@
     "price": {
       "quote": "Quote required",
       "contact": "Contact us"
+    },
+    "form": {
+      "basicInfo": "Basic Information",
+      "descriptions": "Descriptions",
+      "nomProduitFr": "Product Name (French)",
+      "nomProduitEn": "Product Name (English)",
+      "referenceFournisseur": "Supplier Reference (Ref)",
+      "constructeur": "Manufacturer",
+      "categorieDiscipline": "Category / Discipline",
+      "descriptionFr": "Description (French)",
+      "descriptionEn": "Description (English)",
+      "ficheTechniqueFr": "Technical Specifications (French)",
+      "ficheTechniqueEn": "Technical Specifications (English)",
+      "pdfBrochure": "Downloadable PDF Brochure",
+      "status": "Status",
+      "featured": "Featured Product",
+      "placeholders": {
+        "nomProduitFr": "Nom du produit en français",
+        "nomProduitEn": "Product name in English",
+        "referenceFournisseur": "Internal or supplier reference code",
+        "constructeur": "Manufacturer or brand name",
+        "selectCategory": "Select a category",
+        "descriptionFr": "Description courte et détaillée du produit en français",
+        "descriptionEn": "Short and detailed product description in English",
+        "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
+        "ficheTechniqueEn": "Technical specifications and functional details in English",
+        "pdfBrochure": "URL to technical documentation or downloadable brochure"
+      },
+      "validation": {
+        "nomFrRequired": "French name is required",
+        "nomEnRequired": "English name is required",
+        "referenceFournisseurRequired": "Supplier reference is required",
+        "constructeurRequired": "Manufacturer is required",
+        "categorieRequired": "Category is required",
+        "statusRequired": "Status is required"
+      },
+      "categories": {
+        "cardiology": "Cardiology",
+        "radiology": "Radiology",
+        "surgery": "Surgery",
+        "laboratory": "Laboratory",
+        "emergency": "Emergency",
+        "icu": "Intensive Care"
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued"
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "create": "Create Product",
+        "update": "Update",
+        "saving": "Saving..."
+      },
+      "bulkImport": {
+        "title": "CSV Bulk Import",
+        "description": "Import multiple products at once from a CSV file",
+        "selectFile": "Select CSV File",
+        "uploadFile": "Upload File",
+        "importing": "Importing...",
+        "processing": "Processing...",
+        "success": "Import Successful",
+        "error": "Import Error",
+        "fileFormat": "File Format",
+        "downloadTemplate": "Download Template",
+        "requirements": {
+          "title": "File Requirements:",
+          "format": "CSV format with comma separators",
+          "size": "Maximum size: 5MB",
+          "rows": "Maximum 1000 rows",
+          "encoding": "UTF-8 encoding recommended"
+        },
+        "columns": {
+          "title": "Required Columns:",
+          "referenceFournisseur": "referenceFournisseur - Unique product reference",
+          "constructeur": "constructeur - Manufacturer name",
+          "categoryId": "categoryId - Category ID (cardiology, radiology, etc.)",
+          "nom_fr": "nom_fr - Product name in French",
+          "nom_en": "nom_en - Product name in English",
+          "description_fr": "description_fr - Description in French (optional)",
+          "description_en": "description_en - Description in English (optional)",
+          "ficheTechnique_fr": "ficheTechnique_fr - Technical specifications in French (optional)",
+          "ficheTechnique_en": "ficheTechnique_en - Technical specifications in English (optional)",
+          "pdfBrochureUrl": "pdfBrochureUrl - PDF brochure URL (optional)",
+          "status": "status - Status (active, inactive, discontinued)",
+          "featured": "featured - Featured product (true/false)"
+        },
+        "validation": {
+          "fileRequired": "Please select a CSV file",
+          "invalidFormat": "Invalid file format. Only CSV files are accepted",
+          "fileTooLarge": "File is too large. Maximum size: 5MB",
+          "tooManyRows": "Too many rows. Maximum: 1000 rows"
+        },
+        "results": {
+          "importedCount": "Products imported successfully:",
+          "errorsCount": "Errors:",
+          "viewErrors": "View Errors",
+          "hideErrors": "Hide Errors",
+          "rowError": "Row {row}:",
+          "fieldError": "Field {field}:",
+          "retry": "Retry Import"
+        }
+      }
     }
   },
   "footer": {
@@ -294,6 +407,53 @@
       "adminDashboard": "Admin Dashboard",
       "signOut": "Sign out",
       "pending": "pending"
+    },
+    "products": {
+      "addDescription": "Add new medical equipment to your catalog",
+      "editDescription": "Update product information and specifications",
+      "viewDescription": "View detailed product information",
+      "basicInformation": "Basic Information",
+      "productNameFrench": "Product Name (French)",
+      "productNameFrenchPlaceholder": "Product name in French",
+      "productNameEnglish": "Product Name (English)",
+      "productNameEnglishPlaceholder": "Product name in English",
+      "supplierReference": "Supplier Reference (Ref)",
+      "supplierReferencePlaceholder": "Internal or supplier reference code",
+      "manufacturer": "Manufacturer",
+      "manufacturerPlaceholder": "Manufacturer or brand name",
+      "category": "Category / Discipline",
+      "selectCategory": "Select a category",
+      "categories": {
+        "cardiology": "Cardiology",
+        "radiology": "Radiology",
+        "surgery": "Surgery",
+        "laboratory": "Laboratory",
+        "emergency": "Emergency",
+        "icu": "Intensive Care"
+      },
+      "descriptions": "Descriptions",
+      "descriptionFrench": "Description (French)",
+      "descriptionFrenchPlaceholder": "Short and detailed product description in French",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Short and detailed product description in English",
+      "technicalSheetFrench": "Technical Sheet (French)",
+      "technicalSheetFrenchPlaceholder": "Technical specifications and functional details in French",
+      "technicalSheetEnglish": "Technical Sheet (English)",
+      "technicalSheetEnglishPlaceholder": "Technical specifications and functional details in English",
+      "pdfBrochure": "Downloadable PDF Brochure",
+      "pdfBrochurePlaceholder": "URL to technical documentation or downloadable brochure",
+      "statusVisibility": "Status & Visibility",
+      "status": "Status",
+      "statusOptions": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued"
+      },
+      "featuredProduct": "Featured Product",
+      "displayAsFeatured": "Display as featured product",
+      "media": "Media",
+      "mediaDescription": "Product images and documentation will be managed here",
+      "uploadMedia": "Upload Media"
     }
   },
   "dashboard": {

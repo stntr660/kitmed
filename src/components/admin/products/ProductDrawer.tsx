@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { XMarkIcon, PhotoIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import { Product } from '@/types';
 
 interface ProductDrawerProps {
@@ -36,30 +36,43 @@ export function ProductDrawer({
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<Partial<Product>>({
-    name: '',
-    sku: '',
-    shortDescription: '',
-    description: '',
+    referenceFournisseur: '',
+    constructeur: '',
+    categoryId: '',
+    nom: { en: '', fr: '' },
+    description: { en: '', fr: '' },
+    ficheTechnique: { en: '', fr: '' },
+    pdfBrochureUrl: '',
     status: 'active',
     featured: false,
   });
+  
+  // Progressive disclosure state
+  const [showInternationalFields, setShowInternationalFields] = useState(false);
+  const [showAdvancedFields, setShowAdvancedFields] = useState(false);
 
   useEffect(() => {
     if (product && open) {
       setFormData({
-        name: product.name || '',
-        sku: product.sku || '',
-        shortDescription: product.shortDescription || '',
-        description: product.description || '',
+        referenceFournisseur: product.referenceFournisseur || '',
+        constructeur: product.constructeur || '',
+        categoryId: product.categoryId || '',
+        nom: product.nom || { en: '', fr: '' },
+        description: product.description || { en: '', fr: '' },
+        ficheTechnique: product.ficheTechnique || { en: '', fr: '' },
+        pdfBrochureUrl: product.pdfBrochureUrl || '',
         status: product.status || 'active',
         featured: product.featured || false,
       });
     } else if (mode === 'add') {
       setFormData({
-        name: '',
-        sku: '',
-        shortDescription: '',
-        description: '',
+        referenceFournisseur: '',
+        constructeur: '',
+        categoryId: '',
+        nom: { en: '', fr: '' },
+        description: { en: '', fr: '' },
+        ficheTechnique: { en: '', fr: '' },
+        pdfBrochureUrl: '',
         status: 'active',
         featured: false,
       });
@@ -85,6 +98,17 @@ export function ProductDrawer({
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleNestedInputChange = (field: 'nom' | 'description' | 'ficheTechnique', lang: 'en' | 'fr', value: string) => {
+    if (mode === 'view') return;
+    setFormData(prev => ({
+      ...prev,
+      [field]: {
+        ...prev[field],
+        [lang]: value
+      }
+    }));
+  };
+
   const getTitle = () => {
     switch (mode) {
       case 'add':
@@ -101,11 +125,11 @@ export function ProductDrawer({
   const getDescription = () => {
     switch (mode) {
       case 'add':
-        return 'Add new medical equipment to your catalog';
+        return t('admin.products.addDescription');
       case 'edit':
-        return 'Update product information and specifications';
+        return t('admin.products.editDescription');
       case 'view':
-        return 'View detailed product information';
+        return t('admin.products.viewDescription');
       default:
         return '';
     }
@@ -137,114 +161,327 @@ export function ProductDrawer({
           </div>
         </SheetHeader>
 
-        <div className="space-y-8">
-          {/* Basic Information */}
+        <div className="space-y-6">
+          {/* Primary Information - French First */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-medium text-gray-900">Basic Information</CardTitle>
+              <CardTitle className="text-lg font-semibold text-gray-900">{t('admin.products.essentialInfo')}</CardTitle>
+              <p className="text-sm text-gray-600">{t('admin.products.essentialInfoDescription')}</p>
             </CardHeader>
             <CardContent className="space-y-6">
+              {/* Product Name - French Primary */}
+              <div className="space-y-2">
+                <label htmlFor="nom-fr" className="text-sm font-semibold text-gray-900">
+                  {t('admin.products.productName')} *
+                </label>
+                <Input
+                  id="nom-fr"
+                  value={formData.nom?.fr || ''}
+                  onChange={(e) => handleNestedInputChange('nom', 'fr', e.target.value)}
+                  placeholder={t('admin.products.productNamePlaceholder')}
+                  disabled={isReadOnly}
+                  className="text-lg font-medium border-2 focus:border-blue-500"
+                />
+                <p className="text-xs text-gray-500">{t('admin.products.productNameHint')}</p>
+              </div>
+
+              {/* Basic Details Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                 <div className="space-y-2">
-                  <label htmlFor="product-name" className="text-sm font-semibold text-gray-700">
-                    Product Name *
+                  <label htmlFor="constructeur" className="text-sm font-semibold text-gray-700">
+                    {t('admin.products.brand')} *
                   </label>
                   <Input
-                    id="product-name"
-                    value={formData.name || ''}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    placeholder="Enter product name"
+                    id="constructeur"
+                    value={formData.constructeur || ''}
+                    onChange={(e) => handleInputChange('constructeur', e.target.value)}
+                    placeholder={t('admin.products.brandPlaceholder')}
+                    disabled={isReadOnly}
+                    className="font-medium"
+                  />
+                  <p className="text-xs text-gray-500">{t('admin.products.brandHint')}</p>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="reference-fournisseur" className="text-sm font-semibold text-gray-700">
+                    {t('admin.products.referenceCode')} *
+                  </label>
+                  <Input
+                    id="reference-fournisseur"
+                    value={formData.referenceFournisseur || ''}
+                    onChange={(e) => handleInputChange('referenceFournisseur', e.target.value)}
+                    placeholder={t('admin.products.referenceCodePlaceholder')}
+                    disabled={isReadOnly}
+                    className="font-mono"
+                  />
+                  <p className="text-xs text-gray-500">{t('admin.products.referenceCodeHint')}</p>
+                </div>
+              </div>
+
+              {/* Category Selection */}
+              <div className="space-y-2">
+                <label htmlFor="categoryId" className="text-sm font-semibold text-gray-700">
+                  {t('admin.products.medicalDiscipline')} *
+                </label>
+                <select
+                  id="categoryId"
+                  value={formData.categoryId || ''}
+                  onChange={(e) => handleInputChange('categoryId', e.target.value)}
+                  disabled={isReadOnly}
+                  className="flex h-12 w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">{t('admin.products.selectDiscipline')}</option>
+                  <option value="cardiology">{t('admin.products.categories.cardiology')}</option>
+                  <option value="radiology">{t('admin.products.categories.radiology')}</option>
+                  <option value="surgery">{t('admin.products.categories.surgery')}</option>
+                  <option value="laboratory">{t('admin.products.categories.laboratory')}</option>
+                  <option value="emergency">{t('admin.products.categories.emergency')}</option>
+                  <option value="icu">{t('admin.products.categories.icu')}</option>
+                </select>
+                <p className="text-xs text-gray-500">{t('admin.products.disciplineHint')}</p>
+              </div>
+
+              {/* Simple Description */}
+              <div className="space-y-2">
+                <label htmlFor="description-fr" className="text-sm font-semibold text-gray-700">
+                  {t('admin.products.shortDescription')}
+                </label>
+                <Textarea
+                  id="description-fr"
+                  value={formData.description?.fr || ''}
+                  onChange={(e) => handleNestedInputChange('description', 'fr', e.target.value)}
+                  placeholder={t('admin.products.shortDescriptionPlaceholder')}
+                  disabled={isReadOnly}
+                  rows={2}
+                  className="resize-none"
+                />
+                <p className="text-xs text-gray-500">{t('admin.products.shortDescriptionHint')}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* International Fields - Collapsible */}
+          <Card className="border-blue-100">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <GlobeAltIcon className="h-5 w-5 text-blue-600" />
+                  <CardTitle className="text-lg font-medium text-gray-900">
+                    {t('admin.products.internationalVersion')}
+                  </CardTitle>
+                  <Badge variant="secondary" className="text-xs">
+                    {t('common.optional')}
+                  </Badge>
+                </div>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowInternationalFields(!showInternationalFields)}
+                  disabled={isReadOnly}
+                  className="text-blue-600 hover:text-blue-700"
+                >
+                  {showInternationalFields ? (
+                    <ChevronUpIcon className="h-4 w-4" />
+                  ) : (
+                    <ChevronDownIcon className="h-4 w-4" />
+                  )}
+                  <span className="ml-1 text-sm">
+                    {showInternationalFields ? t('common.hide') : t('common.show')}
+                  </span>
+                </Button>
+              </div>
+              <p className="text-sm text-blue-600">{t('admin.products.internationalDescription')}</p>
+            </CardHeader>
+            
+            {showInternationalFields && (
+              <CardContent className="space-y-4 border-t border-blue-100 pt-4">
+                <div className="space-y-2">
+                  <label htmlFor="nom-en" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.productNameEnglish')}
+                  </label>
+                  <Input
+                    id="nom-en"
+                    value={formData.nom?.en || ''}
+                    onChange={(e) => handleNestedInputChange('nom', 'en', e.target.value)}
+                    placeholder={t('admin.products.productNameEnglishPlaceholder')}
                     disabled={isReadOnly}
                     className="font-medium"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="product-sku" className="text-sm font-semibold text-gray-700">
-                    SKU *
+                  <label htmlFor="description-en" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.descriptionEnglish')}
                   </label>
-                  <Input
-                    id="product-sku"
-                    value={formData.sku || ''}
-                    onChange={(e) => handleInputChange('sku', e.target.value)}
-                    placeholder="Enter product SKU"
+                  <Textarea
+                    id="description-en"
+                    value={formData.description?.en || ''}
+                    onChange={(e) => handleNestedInputChange('description', 'en', e.target.value)}
+                    placeholder={t('admin.products.descriptionEnglishPlaceholder')}
                     disabled={isReadOnly}
-                    className="font-mono"
+                    rows={2}
+                    className="resize-none"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="short-description" className="text-sm font-semibold text-gray-700">
-                  Short Description
-                </label>
-                <Textarea
-                  id="short-description"
-                  value={formData.shortDescription || ''}
-                  onChange={(e) => handleInputChange('shortDescription', e.target.value)}
-                  placeholder="Brief product description (1-2 lines)"
-                  disabled={isReadOnly}
-                  rows={2}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="description" className="text-sm font-semibold text-gray-700">
-                  Full Description
-                </label>
-                <Textarea
-                  id="description"
-                  value={formData.description || ''}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder="Detailed product description"
-                  disabled={isReadOnly}
-                  rows={4}
-                />
-              </div>
-            </CardContent>
+              </CardContent>
+            )}
           </Card>
 
-          {/* Status & Settings */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg font-medium text-gray-900">Status & Visibility</CardTitle>
+          {/* Advanced Details - Collapsible */}
+          <Card className="border-amber-100">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <CardTitle className="text-lg font-medium text-gray-900">
+                    {t('admin.products.technicalDetails')}
+                  </CardTitle>
+                  <Badge variant="secondary" className="text-xs">
+                    {t('common.optional')}
+                  </Badge>
+                </div>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAdvancedFields(!showAdvancedFields)}
+                  disabled={isReadOnly}
+                  className="text-amber-600 hover:text-amber-700"
+                >
+                  {showAdvancedFields ? (
+                    <ChevronUpIcon className="h-4 w-4" />
+                  ) : (
+                    <ChevronDownIcon className="h-4 w-4" />
+                  )}
+                  <span className="ml-1 text-sm">
+                    {showAdvancedFields ? t('common.hide') : t('common.show')}
+                  </span>
+                </Button>
+              </div>
+              <p className="text-sm text-amber-600">{t('admin.products.technicalDetailsDescription')}</p>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {showAdvancedFields && (
+              <CardContent className="space-y-4 border-t border-amber-100 pt-4">
                 <div className="space-y-2">
-                  <label htmlFor="status" className="text-sm font-semibold text-gray-700">
-                    Status
+                  <label htmlFor="fiche-technique-fr" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.specifications')}
                   </label>
-                  <select
-                    id="status"
-                    value={formData.status || 'active'}
-                    onChange={(e) => handleInputChange('status', e.target.value)}
+                  <Textarea
+                    id="fiche-technique-fr"
+                    value={formData.ficheTechnique?.fr || ''}
+                    onChange={(e) => handleNestedInputChange('ficheTechnique', 'fr', e.target.value)}
+                    placeholder={t('admin.products.specificationsPlaceholder')}
                     disabled={isReadOnly}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="discontinued">Discontinued</option>
-                  </select>
+                    rows={4}
+                  />
+                  <p className="text-xs text-gray-500">{t('admin.products.specificationsHint')}</p>
                 </div>
 
+                {showInternationalFields && (
+                  <div className="space-y-2">
+                    <label htmlFor="fiche-technique-en" className="text-sm font-medium text-gray-700">
+                      {t('admin.products.specificationsEnglish')}
+                    </label>
+                    <Textarea
+                      id="fiche-technique-en"
+                      value={formData.ficheTechnique?.en || ''}
+                      onChange={(e) => handleNestedInputChange('ficheTechnique', 'en', e.target.value)}
+                      placeholder={t('admin.products.specificationsEnglishPlaceholder')}
+                      disabled={isReadOnly}
+                      rows={4}
+                    />
+                  </div>
+                )}
+
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700">
-                    Featured Product
+                  <label htmlFor="pdf-brochure" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.brochureDocument')}
                   </label>
+                  <Input
+                    id="pdf-brochure"
+                    value={formData.pdfBrochureUrl || ''}
+                    onChange={(e) => handleInputChange('pdfBrochureUrl', e.target.value)}
+                    placeholder={t('admin.products.brochureDocumentPlaceholder')}
+                    disabled={isReadOnly}
+                    type="url"
+                  />
+                  <p className="text-xs text-gray-500">{t('admin.products.brochureDocumentHint')}</p>
+                </div>
+              </CardContent>
+            )}
+          </Card>
+
+          {/* Status & Settings - Simplified */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg font-medium text-gray-900">{t('admin.products.visibility')}</CardTitle>
+              <p className="text-sm text-gray-600">{t('admin.products.visibilityDescription')}</p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div>
+                    <label className="text-sm font-semibold text-gray-900">
+                      {t('admin.products.makeVisible')}
+                    </label>
+                    <p className="text-xs text-gray-600">{t('admin.products.makeVisibleDescription')}</p>
+                  </div>
                   <div className="flex items-center space-x-2">
                     <input
-                      type="checkbox"
-                      id="featured"
-                      checked={formData.featured || false}
-                      onChange={(e) => handleInputChange('featured', e.target.checked)}
+                      type="radio"
+                      id="status-active"
+                      name="status"
+                      value="active"
+                      checked={(formData.status || 'active') === 'active'}
+                      onChange={(e) => handleInputChange('status', e.target.value)}
                       disabled={isReadOnly}
-                      className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300"
                     />
-                    <label htmlFor="featured" className="text-sm text-gray-700">
-                      Display as featured product
+                    <label htmlFor="status-active" className="text-sm text-gray-700">
+                      {t('admin.products.statusOptions.visible')}
                     </label>
                   </div>
+                </div>
+
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div>
+                    <label className="text-sm font-semibold text-gray-900">
+                      {t('admin.products.keepHidden')}
+                    </label>
+                    <p className="text-xs text-gray-600">{t('admin.products.keepHiddenDescription')}</p>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      id="status-inactive"
+                      name="status"
+                      value="inactive"
+                      checked={(formData.status || 'active') === 'inactive'}
+                      onChange={(e) => handleInputChange('status', e.target.value)}
+                      disabled={isReadOnly}
+                      className="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300"
+                    />
+                    <label htmlFor="status-inactive" className="text-sm text-gray-700">
+                      {t('admin.products.statusOptions.draft')}
+                    </label>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3 pt-2">
+                  <input
+                    type="checkbox"
+                    id="featured"
+                    checked={formData.featured || false}
+                    onChange={(e) => handleInputChange('featured', e.target.checked)}
+                    disabled={isReadOnly}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="featured" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.highlightProduct')}
+                  </label>
+                  <p className="text-xs text-gray-500">({t('admin.products.highlightProductDescription')})</p>
                 </div>
               </div>
             </CardContent>
@@ -253,16 +490,16 @@ export function ProductDrawer({
           {/* Media Section */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-medium text-gray-900">Media</CardTitle>
+              <CardTitle className="text-lg font-medium text-gray-900">{t('admin.products.media')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                 <PhotoIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-sm text-gray-600 mb-2">
-                  Product images and documentation will be managed here
+                  {t('admin.products.mediaDescription')}
                 </p>
                 <Button variant="outline" disabled={isReadOnly}>
-                  Upload Media
+                  {t('admin.products.uploadMedia')}
                 </Button>
               </div>
             </CardContent>
@@ -282,7 +519,7 @@ export function ProductDrawer({
           {mode !== 'view' && (
             <Button
               onClick={handleSave}
-              disabled={loading || !formData.name || !formData.sku}
+              disabled={loading || !formData.nom?.fr || !formData.referenceFournisseur || !formData.constructeur || !formData.categoryId}
               className="flex-1"
             >
               {loading && <LoadingSpinner size="sm" className="mr-2" />}

@@ -9,26 +9,39 @@ export interface BaseEntity {
 
 // Product Types
 export interface Product extends BaseEntity {
-  name: Record<Locale, string>;
-  description: Record<Locale, string>;
-  shortDescription?: Record<Locale, string>;
+  referenceFournisseur: string; // Référence fournisseur (Ref frs)
+  constructeur: string; // Constructeur (Nom du fabricant ou de la marque)
   slug: string;
-  sku: string;
-  images: ProductImage[];
-  specifications: ProductSpecification[];
-  documents: ProductDocument[];
-  category: Category;
-  manufacturer: Manufacturer;
-  discipline: Discipline;
-  tags: string[];
+  categoryId: string;
   status: 'active' | 'inactive' | 'discontinued';
   featured: boolean;
-  price?: {
-    currency: string;
-    amount: number;
-    type: 'fixed' | 'quote' | 'contact';
-  };
+  pdfBrochureUrl?: string; // PDF brochure téléchargeable
+  
+  // Multilingual fields via translations
+  nom: Record<Locale, string>; // Nom du produit (FR / EN)
+  description?: Record<Locale, string>; // Description (FR / EN)
+  ficheTechnique?: Record<Locale, string>; // Fiche technique (FR / EN)
+  
+  // Relations
+  category: Category;
+  images: ProductImage[];
+  documents: ProductDocument[];
+  translations: ProductTranslation[];
+  media: ProductMedia[];
+  attributes: ProductAttribute[];
+  
   seo?: SEOData;
+}
+
+export interface ProductTranslation {
+  id: string;
+  productId: string;
+  languageCode: string;
+  nom: string; // Nom du produit (FR / EN)
+  description?: string; // Description (FR / EN)
+  ficheTechnique?: string; // Fiche technique (FR / EN)
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface ProductImage {
