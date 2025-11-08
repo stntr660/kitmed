@@ -1,83 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
-import { AdminSearchFilters } from '@/types/admin';
 import { z } from 'zod';
 
-// GET /api/admin/products - List products with filters
-async function getProducts(request: NextRequest) {
+// GET /api/admin/products/[id] - Get single product
+async function getProduct(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const { searchParams } = new URL(request.url);
-    
-    const filters = {
-      query: searchParams.get('query') || undefined,
-      status: searchParams.getAll('status'),
-      category: searchParams.getAll('category'),
-      page: parseInt(searchParams.get('page') || '1'),
-      pageSize: parseInt(searchParams.get('pageSize') || '10'),
-      sortBy: searchParams.get('sortBy') || 'createdAt',
-      sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || 'desc',
-    };
-
-    const skip = (filters.page - 1) * filters.pageSize;
-    const take = filters.pageSize;
-
-    // Build where clause
-    const where: any = {};
-
-    // Text search in product translations
-    if (filters.query) {
-      where.OR = [
-        { referenceFournisseur: { contains: filters.query, mode: 'insensitive' } },
-        { constructeur: { contains: filters.query, mode: 'insensitive' } },
-        { 
-          translations: {
-            some: {
-              nom: { contains: filters.query, mode: 'insensitive' }
-            }
-          }
-        },
-        {
-          translations: {
-            some: {
-              description: { contains: filters.query, mode: 'insensitive' }
-            }
+    const product = await prisma.product.findUnique({
+      where: { id: params.id },
+      include: {
+        translations: true,
+        _count: {
+          select: {
+            media: true
           }
         }
-      ];
-    }
+      },
+    });
 
-    // Status filter
-    if (filters.status && filters.status.length > 0) {
-      where.status = { in: filters.status };
-    }
-
-    // Category filter
-    if (filters.category && filters.category.length > 0) {
-      where.categoryId = { in: filters.category };
-    }
-
-    // Execute queries
-    const [items, total] = await Promise.all([
-      prisma.product.findMany({
-        where,
-        include: {
-          translations: true,
-          _count: {
-            select: {
-              media: true
-            }
-          }
+    if (!product) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Product not found',
+          },
         },
-        orderBy: { [filters.sortBy]: filters.sortOrder },
-        skip,
-        take,
-      }),
-      prisma.product.count({ where }),
-    ]);
+        { status: 404 }
+      );
+    }
 
-    // Transform the data to match expected format
-    const transformedItems = items.map(product => ({
+    // Transform the response to match expected format
+    const transformedProduct = {
       id: product.id,
       referenceFournisseur: product.referenceFournisseur,
       constructeur: product.constructeur,
@@ -87,11 +42,6 @@ async function getProducts(request: NextRequest) {
       pdfBrochureUrl: product.pdfBrochureUrl,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
-      // Create a name field from French translation for compatibility
-      name: product.translations.find(t => t.languageCode === 'fr')?.nom || 
-            product.translations[0]?.nom || 
-            'Unnamed Product',
-      // Create nom object for new structure
       nom: {
         fr: product.translations.find(t => t.languageCode === 'fr')?.nom || '',
         en: product.translations.find(t => t.languageCode === 'en')?.nom || '',
@@ -106,34 +56,25 @@ async function getProducts(request: NextRequest) {
       },
       _count: product._count,
       translations: product.translations,
-    }));
-
-    const result = {
-      items: transformedItems,
-      total,
-      page: filters.page,
-      pageSize: filters.pageSize,
-      totalPages: Math.ceil(total / filters.pageSize),
-      filters,
     };
 
     return NextResponse.json({
       success: true,
-      data: result,
+      data: transformedProduct,
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
       },
     });
   } catch (error) {
-    console.error('Products list error:', error);
+    console.error('Product fetch error:', error);
     
     return NextResponse.json(
       {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',
-          message: 'Failed to retrieve products',
+          message: 'Failed to fetch product',
           details: error.message,
         },
       },
@@ -142,8 +83,8 @@ async function getProducts(request: NextRequest) {
   }
 }
 
-// POST /api/admin/products - Create new product
-const createProductSchema = z.object({
+// PUT /api/admin/products/[id] - Update product
+const updateProductSchema = z.object({
   referenceFournisseur: z.string().min(1, 'Référence fournisseur est requise'),
   constructeur: z.string().min(1, 'Constructeur est requis'),
   categoryId: z.string().min(1, 'Catégorie est requise'),
@@ -162,22 +103,14 @@ const createProductSchema = z.object({
   pdfBrochureUrl: z.string().url().optional().or(z.literal('')),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
-  seo: z.object({
-    title: z.record(z.string(), z.string()).optional(),
-    description: z.record(z.string(), z.string()).optional(),
-    keywords: z.array(z.string()).optional(),
-    canonical: z.string().url().optional(),
-    noIndex: z.boolean().optional(),
-  }).optional(),
 });
 
-async function createProduct(request: NextRequest) {
+async function updateProduct(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const user = (request as any).user;
     const body = await request.json();
     
     // Validate request body
-    const validation = createProductSchema.safeParse(body);
+    const validation = updateProductSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         {
@@ -194,18 +127,48 @@ async function createProduct(request: NextRequest) {
 
     const productData = validation.data;
 
-    // Generate unique slug from French name (primary language)
+    // Check if product exists
+    const existingProduct = await prisma.product.findUnique({
+      where: { id: params.id },
+      include: { translations: true },
+    });
+
+    if (!existingProduct) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Product not found',
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    // Generate new slug if French name changed
     const baseSlug = productData.nom.fr
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
     
-    // Add timestamp to ensure uniqueness
-    const timestamp = Date.now().toString().slice(-6);
-    const slug = `${baseSlug}-${timestamp}`;
+    // Only add timestamp if the slug would conflict
+    let slug = baseSlug;
+    const existingWithSlug = await prisma.product.findFirst({
+      where: { 
+        slug: baseSlug,
+        id: { not: params.id }
+      }
+    });
+    
+    if (existingWithSlug) {
+      const timestamp = Date.now().toString().slice(-6);
+      slug = `${baseSlug}-${timestamp}`;
+    }
 
-    // Create product in database
-    const product = await prisma.product.create({
+    // Update product in database
+    const product = await prisma.product.update({
+      where: { id: params.id },
       data: {
         referenceFournisseur: productData.referenceFournisseur,
         constructeur: productData.constructeur,
@@ -215,6 +178,7 @@ async function createProduct(request: NextRequest) {
         isFeatured: productData.featured,
         pdfBrochureUrl: productData.pdfBrochureUrl || null,
         translations: {
+          deleteMany: {}, // Delete existing translations
           create: [
             {
               languageCode: 'fr',
@@ -277,14 +241,14 @@ async function createProduct(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Product creation error:', error);
+    console.error('Product update error:', error);
     
     return NextResponse.json(
       {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',
-          message: 'Failed to create product',
+          message: 'Failed to update product',
           details: error.message,
         },
       },
@@ -293,6 +257,58 @@ async function createProduct(request: NextRequest) {
   }
 }
 
-// Export handlers (authentication temporarily disabled for testing)
-export const GET = getProducts;
-export const POST = createProduct;
+// DELETE /api/admin/products/[id] - Delete product
+async function deleteProduct(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    // Check if product exists
+    const existingProduct = await prisma.product.findUnique({
+      where: { id: params.id },
+    });
+
+    if (!existingProduct) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Product not found',
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    // Delete product (cascading deletes will handle translations)
+    await prisma.product.delete({
+      where: { id: params.id },
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: 'Product deleted successfully',
+      meta: {
+        timestamp: new Date().toISOString(),
+        version: '1.0',
+      },
+    });
+  } catch (error) {
+    console.error('Product deletion error:', error);
+    
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to delete product',
+          details: error.message,
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// Export handlers
+export const GET = getProduct;
+export const PUT = updateProduct;
+export const DELETE = deleteProduct;
