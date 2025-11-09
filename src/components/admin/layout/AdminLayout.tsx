@@ -10,6 +10,8 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Card } from '@/components/ui/card';
 import { AlertTriangle } from 'lucide-react';
 import ErrorBoundary from '@/components/ui/error-boundary';
+import { NotificationProvider } from '@/contexts/NotificationContext';
+import { SimplePageLoader } from '@/components/ui/simple-loading';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -75,49 +77,52 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-medical-bg to-gray-50/50">
-      {/* Sidebar */}
-      <ErrorBoundary>
-        <AdminSidebar 
-          open={sidebarOpen} 
-          onClose={() => setSidebarOpen(false)}
-          user={user}
-        />
-      </ErrorBoundary>
-
-      {/* Main content area */}
-      <div className="lg:pl-80">
-        {/* Header */}
+    <NotificationProvider userId={user?.id}>
+      <SimplePageLoader />
+      <div className="min-h-screen bg-gradient-to-br from-medical-bg to-gray-50/50">
+        {/* Sidebar */}
         <ErrorBoundary>
-          <AdminHeader 
-            onMenuClick={() => setSidebarOpen(true)}
+          <AdminSidebar 
+            open={sidebarOpen} 
+            onClose={() => setSidebarOpen(false)}
             user={user}
           />
         </ErrorBoundary>
 
-        {/* Breadcrumb */}
-        <ErrorBoundary>
-          <AdminBreadcrumb />
-        </ErrorBoundary>
+        {/* Main content area */}
+        <div className="lg:pl-80">
+          {/* Header */}
+          <ErrorBoundary>
+            <AdminHeader 
+              onMenuClick={() => setSidebarOpen(true)}
+              user={user}
+            />
+          </ErrorBoundary>
 
-        {/* Page content */}
-        <main className="p-6 sm:p-8 lg:p-10 min-h-[calc(100vh-8rem)]">
-          <div className="max-w-7xl mx-auto">
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
-          </div>
-        </main>
+          {/* Breadcrumb */}
+          <ErrorBoundary>
+            <AdminBreadcrumb />
+          </ErrorBoundary>
+
+          {/* Page content */}
+            <main className="p-6 sm:p-8 lg:p-10 min-h-[calc(100vh-8rem)]">
+            <div className="max-w-7xl mx-auto">
+              <ErrorBoundary>
+                {children}
+              </ErrorBoundary>
+            </div>
+            </main>
+        </div>
+
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
       </div>
-
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-    </div>
+    </NotificationProvider>
   );
 }
 

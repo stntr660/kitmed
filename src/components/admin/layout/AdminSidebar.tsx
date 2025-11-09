@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { usePathname, useParams } from 'next/navigation';
+import React, { useState } from 'react';
+import { usePathname, useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import { useTranslations } from 'next-intl';
@@ -16,6 +16,7 @@ import {
   MegaphoneIcon,
   BuildingOfficeIcon,
   PowerIcon,
+  RectangleGroupIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { AdminUser } from '@/types/admin';
@@ -82,6 +83,12 @@ function getNavigation(locale: string, t: ReturnType<typeof useTranslations>): N
       icon: BuildingOfficeIcon,
     },
     {
+      name: t('admin.sidebar.categories'),
+      href: `/${locale}/admin/categories`,
+      icon: RectangleGroupIcon,
+      description: t('admin.categories.manageDescription'),
+    },
+    {
       name: t('admin.sidebar.content'),
       href: `/${locale}/admin/content`,
       icon: MegaphoneIcon,
@@ -110,72 +117,84 @@ function hasPermission(user: AdminUser, permission?: string): boolean {
   if (!permission) return true;
   if (user.role === 'admin') return true;
 
+  // Special case: always allow settings access for admin role
+  if (permission === 'settings' && user.role === 'admin') return true;
+
   // Check specific permissions
   return user.permissions?.some(p => p.resource === permission && p.actions.includes('read')) || false;
 }
 
-// Simplified NavItem without children/submenu logic
-function NavItem({
-  item,
-  pathname,
-  user
-}: {
-  item: NavigationItem;
-  pathname: string;
-  user: AdminUser;
-}) {
-  const isActive = item.exact
-    ? pathname === item.href
-    : pathname.startsWith(item.href);
+function NavItem({ item, pathname, user }: { item: NavigationItem; pathname: string; user: AdminUser }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const isActive = item.exact ? pathname === item.href : pathname.startsWith(item.href);
 
-  // Check permissions
   if (item.permission && !hasPermission(user, item.permission)) {
     return null;
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isActive) return; // Don't show loading for current page
+    
+    setIsLoading(true);
+    
+    // Reset loading state after navigation (in case it doesn't complete)
+    setTimeout(() => setIsLoading(false), 3000);
+  };
+
   const baseClasses = cn(
-    'group flex items-center justify-between px-6 py-4 text-base font-semibold rounded-2xl transition-all duration-300 mb-2 relative overflow-hidden min-h-[60px] touch-manipulation',
-    'mx-4',
+    'group flex items-center justify-between px-6 py-4 text-base font-semibold rounded-2xl transition-all duration-200 mb-2 relative overflow-hidden min-h-[60px] touch-manipulation mx-4',
     isActive
       ? 'bg-white text-primary-600 shadow-lg transform translate-x-1'
+      : isLoading
+      ? 'bg-white/20 text-white scale-[0.98] shadow-md'
       : 'text-white/90 hover:text-white hover:bg-white/15 hover:scale-[1.02] hover:translate-x-1 hover:shadow-md'
   );
 
   return (
     <div className="animate-in slide-in-from-left duration-300">
-      <Link href={item.href}>
-        <div className={baseClasses}>
-          <div className="flex items-center flex-1">
-            {item.icon && (
-              <item.icon
-                className={cn(
-                  'mr-4 h-7 w-7 flex-shrink-0 transition-all duration-300',
-                  isActive
-                    ? 'text-primary-600'
-                    : 'text-white/80 group-hover:text-white group-hover:scale-110'
-                )}
-              />
-            )}
-            <div className="flex-1">
-              <span className="font-semibold tracking-wide text-left block">{item.name}</span>
-              {item.description && (
-                <span className={cn(
-                  'text-xs mt-1 block font-medium transition-colors duration-300',
-                  isActive
-                    ? 'text-primary-500'
-                    : 'text-white/70 group-hover:text-white/90'
-                )}>
-                  {item.description}
-                </span>
+      <Link href={item.href} className={baseClasses} onClick={handleClick}>
+        <div className="flex items-center flex-1">
+          {item.icon && (
+            <item.icon
+              className={cn(
+                'mr-4 h-7 w-7 flex-shrink-0 transition-all duration-300',
+                isActive 
+                  ? 'text-primary-600' 
+                  : isLoading
+                  ? 'text-white animate-spin'
+                  : 'text-white/80 group-hover:text-white group-hover:scale-110'
               )}
-            </div>
-          </div>
-          {item.badge && (
-            <Badge className="ml-3 text-xs bg-accent-500 hover:bg-accent-600 border-none text-white px-3 py-1 font-semibold animate-pulse">
-              {item.badge}
-            </Badge>
+            />
           )}
+          <div className="flex-1">
+            <span className="font-semibold tracking-wide text-left block">
+              {isLoading ? 'Chargement...' : item.name}
+            </span>
+            {item.description && !isLoading && (
+              <span
+                className={cn(
+                  'text-xs mt-1 block font-medium transition-colors duration-300',
+                  isActive ? 'text-primary-500' : 'text-white/70 group-hover:text-white/90'
+                )}
+              >
+                {item.description}
+              </span>
+            )}
+            {isLoading && (
+              <span className="text-xs mt-1 block font-medium text-white/90">
+                Préparation de la page...
+              </span>
+            )}
+          </div>
         </div>
+        {item.badge && !isLoading && (
+          <Badge className="ml-3 text-xs bg-accent-500 hover:bg-accent-600 border-none text-white px-3 py-1 font-semibold animate-pulse">
+            {item.badge}
+          </Badge>
+        )}
+        {isLoading && (
+          <div className="ml-3 w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        )}
       </Link>
     </div>
   );
@@ -203,15 +222,12 @@ function SidebarContent({ user }: { user: AdminUser }) {
       <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-400/10 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
 
       {/* Logo Section */}
-      <div className="relative z-10 flex h-28 items-center justify-center px-6 border-b border-white/15 animate-in slide-in-from-top duration-500">
-        <Link href={`/${locale}/admin`} className="group flex items-center space-x-4 transition-all duration-300 w-full">
-          <div className="flex-shrink-0 hover:scale-105 hover:rotate-2 transition-transform duration-300">
+      <div className="relative z-10 flex h-32 items-center justify-center px-6 py-4 border-b border-white/15 animate-in slide-in-from-top duration-500">
+        <Link href={`/${locale}/admin`} className="group flex flex-col items-center justify-center transition-all duration-300 w-full h-full">
+          <div className="w-full flex justify-center hover:scale-105 transition-transform duration-300 mb-3">
             <Logo variant="white" size="lg" />
           </div>
-          <div className="hidden lg:block flex-1">
-            <h1 className="text-2xl font-bold text-white font-poppins tracking-wide">
-              KITMED
-            </h1>
+          <div className="text-center">
             <p className="text-sm text-white/90 font-medium">
               {t('admin.sidebar.adminDashboard')}
             </p>

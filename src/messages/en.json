@@ -311,6 +311,95 @@
     "manufacturers": "Manufacturers",
     "disciplines": "Disciplines",
     "rfps": "RFPs",
+    "rfpRequests": {
+      "title": "RFP Requests",
+      "subtitle": "Manage customer requests for proposals with unified actions",
+      "noRequestsTitle": "No RFP requests found",
+      "noRequestsDescription": "RFP requests will appear here when customers submit them.",
+      "table": {
+        "requestNumber": "Request #",
+        "customer": "Customer",
+        "status": "Status",
+        "priority": "Priority",
+        "items": "Items",
+        "estimatedValue": "Est. Value",
+        "created": "Created",
+        "actions": "Actions"
+      },
+      "export": "Export",
+      "statuses": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "responded": "Responded",
+        "closed": "Closed"
+      },
+      "urgency": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "items": {
+        "item": "item",
+        "items": "items",
+        "totalQty": "total qty"
+      },
+      "pagination": {
+        "showing": "Showing",
+        "to": "to",
+        "of": "of",
+        "results": "results"
+      },
+      "drawer": {
+        "titles": {
+          "respond": "Respond to RFP Request",
+          "manage": "Manage RFP Request",
+          "view": "RFP Request Details",
+          "default": "RFP Request"
+        },
+        "subtitles": {
+          "respond": "Prepare and send response to customer request",
+          "manage": "Update request status and manage workflow",
+          "view": "View comprehensive request details",
+          "default": "Manage RFP request"
+        },
+        "tabs": {
+          "overview": "Overview",
+          "company": "Company",
+          "contact": "Contact"
+        },
+        "fields": {
+          "requestSummary": "Request Summary",
+          "requestNumber": "Request Number",
+          "customer": "Customer",
+          "createdDate": "Created Date",
+          "lastUpdated": "Last Updated",
+          "requestedItems": "Requested Items",
+          "companyInformation": "Company Information",
+          "organizationName": "Organization Name",
+          "organizationType": "Organization Type",
+          "address": "Address",
+          "contactPerson": "Contact Person",
+          "fullName": "Full Name",
+          "position": "Position",
+          "emailAddress": "Email Address",
+          "phoneNumber": "Phone Number"
+        },
+        "actions": {
+          "saveDraft": "Save Draft",
+          "sendResponse": "Send Response",
+          "markProcessing": "Processing",
+          "markResponded": "Responded",
+          "markClosed": "Close",
+          "close": "Close",
+          "cancel": "Cancel",
+          "viewItems": "View Items"
+        },
+        "messages": {
+          "itemsPlaceholder": "Request items will be loaded and managed here",
+          "priority": "priority"
+        }
+      }
+    },
     "users": "Users",
     "settings": "Settings",
     "addNew": "Add New",
@@ -400,6 +489,7 @@
       "products": "Products",
       "rfpRequests": "RFP Requests",
       "partners": "Partners",
+      "categories": "Categories",
       "content": "Content",
       "users": "Users",
       "analytics": "Analytics",
@@ -460,6 +550,706 @@
       "primaryImage": "Primary Image",
       "noImages": "No images uploaded",
       "saveProductFirst": "Please save the product first to upload images"
+    },
+    "partners": {
+      "manageDescription": "Manage your medical partner and supplier network",
+      "searchPlaceholder": "Search partners...",
+      "partnerSelected": "partner selected",
+      "partnersSelected": "partners selected",
+      "getStarted": "Start by adding your first partner to the network.",
+      "addFirst": "Add Your First Partner",
+      "feature": "Feature",
+      
+      "addDescription": "Add a new partner to your medical network",
+      "editDescription": "Update partner information",
+      "viewDescription": "View detailed partner information",
+      "viewPartner": "View partner",
+      
+      "partner": "Partner",
+      "website": "Website",
+      
+      "essentialInfo": "Essential information",
+      "essentialInfoDescription": "Basic details needed to identify the partner",
+      
+      "partnerName": "Partner name",
+      "partnerNamePlaceholder": "Ex: Central Hospital Paris, Saint-Antoine Clinic",
+      "partnerNameHint": "Use the full official partner name",
+      
+      "websiteUrl": "Website",
+      "websiteUrlPlaceholder": "https://example.com",
+      "websiteUrlHint": "Official partner website",
+      
+      "logoUrl": "Logo",
+      "logoUrlPlaceholder": "https://example.com/logo.png",
+      "logoUrlHint": "URL to partner logo",
+      
+      "shortDescription": "Short description",
+      "shortDescriptionPlaceholder": "Briefly describe the partner and their services",
+      "shortDescriptionHint": "Simple presentation for the sales team",
+      
+      "internationalVersion": "International version",
+      "internationalDescription": "Information in English for international partners",
+      
+      "partnerNameEnglish": "Partner name (English)",
+      "partnerNameEnglishPlaceholder": "Partner name in English",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Brief description in English",
+      
+      "visibility": "Partner visibility",
+      "visibilityDescription": "Control when and how the partner appears",
+      
+      "makeVisible": "Make visible",
+      "makeVisibleDescription": "Partner will be visible in your network",
+      
+      "keepHidden": "Keep hidden",
+      "keepHiddenDescription": "Partner will remain as draft",
+      
+      "highlightPartner": "Highlight this partner",
+      "highlightPartnerDescription": "will appear in featured partners",
+      
+      "statusOptions": {
+        "visible": "Visible",
+        "draft": "Draft"
+      },
+      
+      "contactInfo": "Contact information",
+      "statusInfo": "Status information",
+      "noWebsite": "No website provided",
+      "lastUpdated": "Last updated",
+      
+      "validation": {
+        "nameRequired": "Partner name in French is required",
+        "websiteInvalid": "Website URL is not valid",
+        "logoInvalid": "Logo URL is not valid"
+      },
+      
+      "bulkImport": {
+        "title": "CSV Bulk Import",
+        "description": "Import multiple partners at once from a CSV file",
+        "selectFile": "Select CSV File",
+        "uploadFile": "Upload File",
+        "downloading": "Downloading...",
+        "importing": "Importing...",
+        "processing": "Processing...",
+        "success": "Import Successful",
+        "error": "Import Error",
+        "fileFormat": "File Format",
+        "downloadTemplate": "Download Template",
+        "requirements": {
+          "title": "File Requirements:",
+          "format": "CSV format with comma separators",
+          "size": "Maximum size: 5MB",
+          "rows": "Maximum 1000 rows",
+          "encoding": "UTF-8 encoding recommended"
+        },
+        "columns": {
+          "title": "Required Columns:",
+          "nom_fr": "nom_fr - Partner name in French (required)",
+          "nom_en": "nom_en - Partner name in English (optional)",
+          "description_fr": "description_fr - Description in French (optional)",
+          "description_en": "description_en - Description in English (optional)",
+          "websiteUrl": "websiteUrl - Website URL (optional)",
+          "logoUrl": "logoUrl - Logo URL (optional)",
+          "status": "status - Status (active, inactive)",
+          "featured": "featured - Featured partner (true/false)"
+        },
+        "validation": {
+          "fileRequired": "Please select a CSV file",
+          "invalidFormat": "Invalid file format. Only CSV files are accepted",
+          "fileTooLarge": "File is too large. Maximum size: 5MB",
+          "tooManyRows": "Too many rows. Maximum: 1000 rows"
+        },
+        "results": {
+          "importedCount": "Partners imported successfully:",
+          "errorsCount": "Errors:",
+          "viewErrors": "View Errors",
+          "hideErrors": "Hide Errors",
+          "rowError": "Row {row}:",
+          "fieldError": "Field {field}:",
+          "retry": "Retry Import"
+        }
+      }
+    },
+    "content": {
+      "manageDescription": "Manage website content, news and announcements",
+      "searchPlaceholder": "Search content...",
+      "contentSelected": "content selected",
+      "contentsSelected": "contents selected",
+      "getStarted": "Get started by creating your first content.",
+      "addFirst": "Create your first content",
+      "addContent": "Add content",
+      "editContent": "Edit content",
+      "viewContent": "View content",
+      "types": {
+        "article": "Article",
+        "news": "News",
+        "announcement": "Announcement",
+        "page": "Page"
+      },
+      "status": {
+        "draft": "Draft",
+        "review": "Under Review",
+        "published": "Published",
+        "archived": "Archived"
+      },
+      "fields": {
+        "title": "Title",
+        "content": "Content",
+        "excerpt": "Excerpt",
+        "author": "Author",
+        "category": "Category",
+        "tags": "Tags",
+        "publishDate": "Publish Date",
+        "lastModified": "Last Modified"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "subtitle": "Manage user accounts, roles, and permissions for the KITMED platform",
+      "manageDescription": "Manage user accounts, permissions and roles",
+      "searchPlaceholder": "Search users by name, email, or department...",
+      "userSelected": "user selected",
+      "usersSelected": "users selected",
+      "getStarted": "Get started by adding your first user to the system.",
+      "addFirst": "Add Your First User",
+      "addUser": "Add User",
+      "editUser": "Edit User",
+      "viewUser": "View User Details",
+      "deleteUser": "Delete User",
+      "deleteConfirm": "Are you sure you want to delete this user? This action cannot be undone.",
+      "noUsers": "No users found",
+      "neverLoggedIn": "Never logged in",
+      "attempts": "attempts",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "reset2FA": "Reset 2FA",
+      "permissions": "Permissions",
+      "roleFilter": "Filter by role",
+      "roles": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "editor": "Editor",
+        "viewer": "Viewer"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "pending": "Pending",
+        "suspended": "Suspended"
+      },
+      "permissions": {
+        "products": "Products",
+        "rfps": "RFPs",
+        "partners": "Partners",
+        "categories": "Categories",
+        "users": "Users",
+        "content": "Content",
+        "analytics": "Analytics",
+        "settings": "Settings"
+      },
+      "table": {
+        "user": "User",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "security": "Security",
+        "lastLogin": "Last Login",
+        "actions": "Actions"
+      },
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "department": "Department",
+        "role": "Role",
+        "status": "Status",
+        "lastLogin": "Last Login",
+        "dateCreated": "Date Created",
+        "twoFactorEnabled": "Two-Factor Authentication",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "form": {
+        "basicInfo": "Basic Information",
+        "securitySettings": "Security Settings",
+        "accountStatus": "Account Status",
+        "rolePermissions": "Role & Permissions",
+        "personalDetails": "Personal Details",
+        "contactInfo": "Contact Information",
+        "enableTwoFactor": "Enable Two-Factor Authentication",
+        "requirePasswordChange": "Require password change on next login",
+        "sendWelcomeEmail": "Send welcome email to user",
+        "placeholders": {
+          "firstName": "Enter first name",
+          "lastName": "Enter last name",
+          "email": "user@example.com",
+          "phone": "+1 (555) 123-4567",
+          "department": "e.g., IT, Sales, Marketing"
+        },
+        "validation": {
+          "firstNameRequired": "First name is required",
+          "lastNameRequired": "Last name is required",
+          "emailRequired": "Email address is required",
+          "emailInvalid": "Please enter a valid email address",
+          "roleRequired": "Role selection is required",
+          "phoneInvalid": "Please enter a valid phone number"
+        },
+        "actions": {
+          "save": "Save User",
+          "create": "Create User",
+          "update": "Update User",
+          "cancel": "Cancel",
+          "saving": "Saving..."
+        }
+      },
+      "permissionMatrix": {
+        "title": "Permission Matrix",
+        "subtitle": "Configure role-based permissions for system resources",
+        "role": "Role",
+        "resource": "Resource",
+        "create": "Create",
+        "read": "Read",
+        "update": "Update",
+        "delete": "Delete",
+        "export": "Export",
+        "import": "Import",
+        "saveChanges": "Save Changes",
+        "resetToDefaults": "Reset to Defaults",
+        "customPermissions": "Custom Permissions",
+        "inheritFromRole": "Inherit from role",
+        "overridePermissions": "Override specific permissions"
+      },
+      "activity": {
+        "title": "User Activity",
+        "loginHistory": "Login History",
+        "sessionDuration": "Session Duration",
+        "lastActivity": "Last Activity",
+        "ipAddress": "IP Address",
+        "userAgent": "User Agent",
+        "loginTime": "Login Time",
+        "logoutTime": "Logout Time",
+        "failedAttempts": "Failed Login Attempts",
+        "accountLocked": "Account locked due to multiple failed attempts",
+        "unlockAccount": "Unlock Account"
+      },
+      "bulkActions": {
+        "selectAll": "Select all users",
+        "activateSelected": "Activate selected users",
+        "deactivateSelected": "Deactivate selected users",
+        "deleteSelected": "Delete selected users",
+        "exportSelected": "Export selected users",
+        "resetPassword": "Reset password for selected users",
+        "sendNotification": "Send notification to selected users"
+      },
+      "security": {
+        "twoFactorEnabled": "2FA Enabled",
+        "twoFactorDisabled": "2FA Disabled",
+        "accountLocked": "Account Locked",
+        "passwordExpired": "Password Expired",
+        "securityRisk": "Security Risk",
+        "lastPasswordChange": "Last password change",
+        "forcePasswordReset": "Force password reset",
+        "unlockAccount": "Unlock account",
+        "viewLoginHistory": "View login history"
+      }
+    },
+    "content": {
+      "title": "Content Management",
+      "description": "Manage articles, news, announcements, and pages for your platform",
+      "addContent": "Add Content",
+      "editContent": "Edit Content",
+      "viewContent": "View Content",
+      "addDescription": "Create a new article, news item, or page for your platform",
+      "editDescription": "Modify the information and content of this item",
+      "viewDescription": "View the details of this content",
+      "noContent": "No content found",
+      "getStarted": "Get started by adding your first content to the platform.",
+      "addFirstContent": "Add Your First Content",
+      "searchPlaceholder": "Search content...",
+      "confirmDelete": "Are you sure you want to delete this content?",
+      "itemSelected": "item selected",
+      "itemsSelected": "items selected",
+      "publish": "Publish",
+      "archive": "Archive",
+      "featured": "Featured",
+      "saving": "Saving...",
+      
+      "basicInfo": "Basic Information",
+      "additionalOptions": "Additional Options",
+      "content": "Content",
+      "title": "Title",
+      "excerpt": "Excerpt",
+      "type": "Type",
+      "status": "Status",
+      "author": "Author",
+      "publishDate": "Publish Date",
+      "updated": "Updated",
+      "tags": "Tags",
+      "slug": "Slug",
+      "slugHelp": "URL-friendly version of the title (e.g., my-blog-article)",
+      "imageUrl": "Image URL",
+      
+      "types": {
+        "article": "Article",
+        "news": "News",
+        "announcement": "Announcement",
+        "page": "Page"
+      },
+      
+      "status": {
+        "draft": "Draft",
+        "review": "Under Review",
+        "published": "Published",
+        "archived": "Archived"
+      },
+      
+      "validation": {
+        "titleFrRequired": "French title is required",
+        "titleEnRequired": "English title is required",
+        "contentFrRequired": "French content is required",
+        "contentEnRequired": "English content is required",
+        "excerptFrRequired": "French excerpt is required",
+        "excerptEnRequired": "English excerpt is required",
+        "slugRequired": "Slug is required",
+        "typeRequired": "Type is required",
+        "statusRequired": "Status is required"
+      },
+      
+      "errors": {
+        "loadFailed": "Failed to load content",
+        "saveFailed": "Failed to save content",
+        "deleteFailed": "Failed to delete content"
+      }
+    },
+    "analytics": {
+      "title": "Analytics and Reports",
+      "subtitle": "Track performance and trends of your platform",
+      "overview": "Overview",
+      "products": "Products",
+      "rfps": "RFPs",
+      "users": "Users",
+      "traffic": "Traffic",
+      "realtime": "Real-time",
+      "geographic": "Geographic",
+      "categories": "Categories",
+      "export": "Export",
+      "refresh": "Refresh",
+      "liveActivity": "Live Activity",
+      "recentActivity": "Recent Activity",
+      "topProductsPerformance": "Top Products Performance",
+      "geographicDistribution": "Geographic Distribution",
+      "categoryPerformance": "Medical Category Performance",
+      "trafficTrends": "Traffic & Conversion Trends",
+      "conversionFunnel": "RFP Conversion Funnel",
+      "optimizationInsights": "Optimization Insights",
+      "industryBenchmark": "Industry Benchmark",
+      "performanceScore": "Performance Score",
+      "growth": "Growth",
+      "totalRevenue": "Total Revenue",
+      "activeUsers": "Active Users",
+      "activeRfps": "Active RFPs",
+      "pageViewsToday": "Page Views (Today)",
+      "kpis": {
+        "totalViews": "Total Views",
+        "uniqueVisitors": "Unique Visitors",
+        "conversionRate": "Conversion Rate",
+        "avgSessionTime": "Avg Session Time",
+        "topProducts": "Top Products",
+        "rfpSuccess": "RFP Success Rate",
+        "revenue": "Revenue",
+        "activeRfps": "Active RFPs"
+      },
+      "periods": {
+        "today": "Today",
+        "week": "This Week",
+        "month": "This Month",
+        "quarter": "This Quarter",
+        "year": "This Year"
+      },
+      "filters": {
+        "dateRange": "Date Range",
+        "categories": "Categories",
+        "regions": "Regions",
+        "customerType": "Customer Type",
+        "all": "All",
+        "hospital": "Hospital",
+        "clinic": "Clinic",
+        "laboratory": "Laboratory"
+      },
+      "metrics": {
+        "views": "Views",
+        "visitors": "Visitors",
+        "rfps": "RFPs",
+        "conversions": "Conversions",
+        "revenue": "Revenue",
+        "sessions": "Sessions",
+        "bounceRate": "Bounce Rate",
+        "avgDuration": "Avg Duration"
+      },
+      "actions": {
+        "viewProduct": "Product viewed",
+        "submitRfp": "RFP submitted",
+        "downloadSpec": "Spec downloaded",
+        "contactRequest": "Contact requested"
+      },
+      "funnel": {
+        "productViews": "Product Views",
+        "productDetails": "Product Details",
+        "rfpInitiated": "RFP Initiated",
+        "rfpSubmitted": "RFP Submitted",
+        "rfpConverted": "RFP Converted"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Configure essential settings for your platform",
+      "siteConfig": "Site Configuration",
+      "emailNotifications": "Email Notifications",
+      "security": "Security",
+      "maintenance": "Maintenance",
+      "siteName": "Site Name",
+      "defaultLanguage": "Default Language",
+      "timezone": "Timezone",
+      "logoUrl": "Logo URL",
+      "fromEmail": "From Email",
+      "fromName": "From Name",
+      "enableNotifications": "Enable Notifications",
+      "testEmail": "Test Email",
+      "twoFactorAuth": "Two-Factor Authentication",
+      "sessionTimeout": "Session Timeout",
+      "maxLoginAttempts": "Max Login Attempts",
+      "maintenanceMode": "Maintenance Mode",
+      "autoUpdates": "Auto Updates",
+      "backupFrequency": "Backup Frequency",
+      "timeouts": {
+        "30min": "30 minutes",
+        "1hr": "1 hour",
+        "2hr": "2 hours",
+        "4hr": "4 hours"
+      },
+      "frequencies": {
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly"
+      },
+      "saving": "Saving...",
+      "testingSent": "Test email sent!",
+      "testingFailed": "Send failed",
+      "twoFactorDesc": "Require two-factor authentication for enhanced security",
+      "sessionTimeoutDesc": "Automatic logout after inactivity",
+      "minPasswordLength": "Minimum Password Length",
+      "requireUppercase": "Require Uppercase Letters",
+      "requireNumbers": "Require Numbers",
+      "requireSymbols": "Require Special Characters",
+      "enableTLS": "Enable TLS/SSL Encryption",
+      "tlsDesc": "Encrypt email communications using TLS",
+      "testEmail": "Test Email Configuration",
+      "testEmailDesc": "Send a test email to verify SMTP settings",
+      "testing": "Testing...",
+      "sendTest": "Send Test Email",
+      "emailTestSuccess": "Test email sent successfully! Check your inbox.",
+      "emailTestFailed": "Failed to send test email. Please check your SMTP configuration.",
+      "enableBackup": "Enable Automated Backups",
+      "backupDesc": "Automatically backup your data at scheduled intervals",
+      "backupFrequency": "Backup Frequency",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "retentionDays": "Data Retention",
+      "retentionDesc": "Number of days to keep backup files",
+      "manualBackup": "Manual Backup",
+      "manualBackupDesc": "Create and restore backups manually",
+      "createBackup": "Create Backup",
+      "restoreBackup": "Restore Backup",
+      "maintenanceMode": "Maintenance Mode",
+      "maintenanceModeDesc": "Enable to show maintenance message to users",
+      "maintenanceMessage": "Maintenance Message",
+      "maintenanceMessageDesc": "Message displayed when maintenance mode is active",
+      "autoUpdates": "Automatic Updates",
+      "autoUpdatesDesc": "Automatically install system updates",
+      "enableCache": "Enable Caching",
+      "cacheDesc": "Improve performance by caching frequently accessed data",
+      "debugMode": "Debug Mode",
+      "debugModeDesc": "Enable detailed logging for troubleshooting",
+      "medicalRegulatory": "Medical Regulatory Compliance",
+      "medicalRegulatoryDesc": "Enable medical equipment regulatory features",
+      "certificationRequired": "Certification Required",
+      "certificationDesc": "Require certifications for medical equipment",
+      "equipmentCategories": "Equipment Categories",
+      "complianceStandards": "Compliance Standards",
+      "dataRetention": "Medical Data Retention",
+      "dataRetentionDesc": "Years to retain medical equipment data",
+      "auditLogs": "Audit Logs",
+      "auditLogsDesc": "Maintain detailed logs of all system activities"
+    },
+    "categories": {
+      "manageDescription": "Manage your medical category hierarchy and disciplines",
+      "searchPlaceholder": "Search categories...",
+      "showInactive": "Show inactive categories",
+      "expandAll": "Expand all",
+      "collapseAll": "Collapse all",
+      "selectAll": "Select all",
+      "noCategories": "No categories found",
+      "getStarted": "Get started by adding your first category to the system.",
+      "addFirstCategory": "Add Your First Category",
+      "addCategory": "Add Category",
+      "addSubcategory": "Add Subcategory",
+      "editCategory": "Edit Category",
+      "categorySelected": "category selected",
+      "categoriesSelected": "categories selected",
+      "subcategories": "subcategories",
+      "more": "more",
+      
+      "addDescription": "Add a new category to the system",
+      "addSubcategoryDescription": "Add a subcategory",
+      "editDescription": "Modify category information",
+      "viewDescription": "View category details",
+      
+      "essentialInfo": "Essential information",
+      "essentialInfoDescription": "Basic details needed to identify the category",
+      "basicInformation": "Basic Information",
+      "translations": "Translations",
+      "systemInformation": "System Information",
+      "seoInformation": "SEO Information",
+      "seoOptimization": "SEO Optimization",
+      "seoDescription": "Improve search engine optimization for this category",
+      
+      "categoryName": "Category name",
+      "categoryNamePlaceholder": "Ex: Cardiology, Radiology, Surgery",
+      "categoryNameEnglish": "Category name (English)",
+      "categoryNameEnglishPlaceholder": "Category name in English",
+      "description": "Description",
+      "shortDescription": "Short description",
+      "shortDescriptionPlaceholder": "Briefly describe this medical category",
+      "shortDescriptionHint": "Simple presentation for the sales team",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Brief description in English",
+      "sortOrder": "Sort order",
+      "sortOrderHint": "Controls display order (0 = first)",
+      "imageUrl": "Category image",
+      "imageUrlPlaceholder": "https://example.com/image.jpg",
+      "imageUrlHint": "URL of the image representing this category",
+      "slug": "Slug",
+      "categoryId": "Category ID",
+      "lastUpdated": "Last updated",
+      "parentCategory": "Parent category",
+      
+      "internationalVersion": "International version",
+      "internationalDescription": "Information in English for international use",
+      
+      "visibility": "Category visibility",
+      "visibilityDescription": "Control when and how the category appears",
+      "makeVisible": "Make visible",
+      "makeVisibleDescription": "Category will be visible in your system",
+      "keepHidden": "Keep hidden",
+      "keepHiddenDescription": "Category will remain as draft",
+      
+      "metaTitle": "Meta Title",
+      "metaTitlePlaceholder": "SEO optimized title for search engines",
+      "metaTitlePlaceholderEn": "SEO optimized title",
+      "metaDescription": "Meta Description",
+      "metaDescriptionPlaceholder": "SEO optimized description for search engines",
+      "metaDescriptionPlaceholderEn": "SEO optimized description",
+      
+      "saving": "Saving...",
+      "createCategory": "Create Category",
+      "updateCategory": "Update",
+      
+      "confirmDelete": "Are you sure you want to delete the category \"{name}\"?",
+      "confirmBulkActivate": "Activate {count} selected categories?",
+      "confirmBulkDeactivate": "Deactivate {count} selected categories?",
+      "confirmBulkDelete": "Delete {count} selected categories?",
+      
+      "validation": {
+        "nameRequired": "Category name in French is required"
+      },
+      
+      "wizard": {
+        "step1": {
+          "title": "Category Type",
+          "description": "Select the type of category to create"
+        },
+        "step2": {
+          "title": "Basic Information",
+          "description": "Define the name and description of the category"
+        },
+        "step3": {
+          "title": "Details & SEO",
+          "description": "Add additional details and optimize SEO"
+        },
+        "selectCategoryType": "What type of category would you like to create?",
+        "selectCategoryTypeDescription": "Choose the type that best fits your needs",
+        "disciplineCategory": "Medical Discipline",
+        "disciplineCategoryDescription": "Medical specialty grouping different equipment",
+        "equipmentCategory": "Medical Equipment",
+        "equipmentCategoryDescription": "Specific equipment or product category",
+        "parentCategoryInfo": "Parent Category",
+        "parentCategoryIs": "This category will be created under",
+        "basicInformation": "Basic Information",
+        "basicInformationDescription": "Define the main name and description",
+        "additionalDetails": "Additional Details",
+        "additionalDetailsDescription": "Image, translations and SEO optimization",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      
+      "help": {
+        "guide": "Guide",
+        "getHelp": "Get Help",
+        "hierarchyExplanation": "Hierarchy allows organizing categories in a tree structure. Disciplines (cardiology, radiology) contain specific equipment.",
+        "categoryTypes": "There are two main types: medical disciplines and equipment. Disciplines group multiple equipment items.",
+        "navigationTips": "Use arrows to expand/collapse subcategories. Multiple selection enables bulk actions.",
+        "seoOptimized": "This category is SEO optimized"
+      },
+      
+      "quickStart": {
+        "title": "Quick Start Guide",
+        "description": "Learn to efficiently manage your medical categories",
+        "step1": {
+          "title": "Create Main Disciplines",
+          "description": "Start by creating the main medical disciplines of your facility",
+          "tip1": "Create main disciplines first (Cardiology, Radiology, etc.)",
+          "tip2": "Use short and clear names for easy navigation",
+          "tip3": "Display order can be adjusted with the 'Sort Order' field"
+        },
+        "step2": {
+          "title": "Organize Subcategories",
+          "description": "Structure your equipment into logical subcategories",
+          "tip1": "Create subcategories for each type of equipment",
+          "tip2": "Use a maximum of 3 levels of hierarchy to stay readable"
+        },
+        "step3": {
+          "title": "Optimize and Maintain",
+          "description": "Optimize SEO and maintain your structure",
+          "tip1": "Add SEO descriptions to improve visibility",
+          "tip2": "Regularly review organization based on needs"
+        },
+        "tips": "Useful Tips",
+        "previous": "Previous",
+        "next": "Next",
+        "getStarted": "Get Started"
+      },
+      
+      "accessibility": {
+        "expandCategory": "Expand category {name}",
+        "collapseCategory": "Collapse category {name}",
+        "selectCategory": "Select category {name}",
+        "categoryLevel": "Level {level}",
+        "subcategoriesCount": "{count} subcategories",
+        "productsCount": "{count} products",
+        "categoryActions": "Actions for {name}",
+        "hierarchyNavigation": "Hierarchy navigation",
+        "keyboardShortcuts": "Keyboard shortcuts: Arrows to navigate, Enter to select, Space to expand/collapse"
+      },
+      
+      "mobileActions": {
+        "showActions": "Show actions",
+        "hideActions": "Hide actions",
+        "swipeToSelect": "Swipe to select",
+        "tapToExpand": "Tap to expand",
+        "longPressForActions": "Long press for actions"
+      }
     }
   },
   "dashboard": {
@@ -526,6 +1316,9 @@
     "forbidden": "Forbidden",
     "goBack": "Go back",
     "tryAgain": "Try again",
-    "contactSupport": "Contact support"
+    "contactSupport": "Contact support",
+    "loadFailed": "Failed to load settings",
+    "saveFailed": "Failed to save settings",
+    "retry": "Retry"
   }
 }

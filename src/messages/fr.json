@@ -34,13 +34,13 @@
     "searchPlaceholder": "Rechercher des produits...",
     "searchProducts": "Rechercher des produits",
     "wishlist": "Liste de souhaits",
-    "rfpCart": "Panier RFP",
+    "rfpCart": "Panier de devis",
     "items": "articles",
     "changeLanguage": "Changer de langue",
     "userMenu": "Menu utilisateur",
     "openMenu": "Ouvrir le menu",
     "myAccount": "Mon Compte",
-    "rfpHistory": "Historique RFP",
+    "rfpHistory": "Historique des devis",
     "adminPanel": "Panneau d'Administration",
     "subscribing": "Abonnement...",
     "subscribe": "S'abonner",
@@ -49,7 +49,10 @@
     "viewAllNotifications": "Voir toutes les notifications",
     "yourProfile": "Votre Profil",
     "settings": "Paramètres",
-    "signOut": "Déconnexion"
+    "signOut": "Déconnexion",
+    "saveSettings": "Enregistrer les paramètres",
+    "saving": "Enregistrement...",
+    "retry": "Réessayer"
   },
   "navigation": {
     "products": "Produits",
@@ -74,8 +77,8 @@
     "discontinued": "Arrêté",
     "quickView": "Aperçu Rapide",
     "addToWishlist": "Ajouter aux Favoris",
-    "addToRFP": "Ajouter au RFP",
-    "inRFP": "Dans RFP",
+    "addToRFP": "Ajouter au devis",
+    "inRFP": "Dans le devis",
     "documents": "documents",
     "price": {
       "quote": "Devis requis",
@@ -251,8 +254,8 @@
   },
   "rfp": {
     "title": "Demande de Proposition",
-    "cart": "Panier RFP",
-    "emptyCart": "Votre panier RFP est vide",
+    "cart": "Panier de devis",
+    "emptyCart": "Votre panier de devis est vide",
     "addProducts": "Ajoutez des produits pour commencer à construire votre demande",
     "browseProducts": "Parcourir les Produits",
     "item": "article",
@@ -268,9 +271,9 @@
     "budget": "Budget",
     "deliveryRequirements": "Exigences de Livraison",
     "message": "Message Supplémentaire",
-    "submit": "Soumettre RFP",
+    "submit": "Soumettre la demande",
     "submitting": "Soumission...",
-    "success": "RFP soumis avec succès",
+    "success": "Demande de devis soumise avec succès",
     "requestNumber": "Numéro de Demande"
   },
   "form": {
@@ -312,7 +315,96 @@
     "categories": "Catégories",
     "manufacturers": "Fabricants",
     "disciplines": "Disciplines",
-    "rfps": "RFPs",
+    "rfps": "Devis",
+    "rfpRequests": {
+      "title": "Demandes de devis",
+      "subtitle": "Gérez les demandes de devis clients avec des actions unifiées",
+      "noRequestsTitle": "Aucune demande de devis trouvée",
+      "noRequestsDescription": "Les demandes de devis apparaîtront ici lorsque les clients les soumettront.",
+      "table": {
+        "requestNumber": "Demande #",
+        "customer": "Client",
+        "status": "Statut",
+        "priority": "Priorité",
+        "items": "Articles",
+        "estimatedValue": "Valeur est.",
+        "created": "Créé",
+        "actions": "Actions"
+      },
+      "export": "Exporter",
+      "statuses": {
+        "pending": "En attente",
+        "processing": "En traitement",
+        "responded": "Répondu",
+        "closed": "Fermé"
+      },
+      "urgency": {
+        "high": "Élevée",
+        "medium": "Moyenne",
+        "low": "Faible"
+      },
+      "items": {
+        "item": "article",
+        "items": "articles",
+        "totalQty": "qté totale"
+      },
+      "pagination": {
+        "showing": "Affichage de",
+        "to": "à",
+        "of": "sur",
+        "results": "résultats"
+      },
+      "drawer": {
+        "titles": {
+          "respond": "Répondre à la demande de devis",
+          "manage": "Gérer la demande de devis",
+          "view": "Détails de la demande de devis",
+          "default": "Demande de devis"
+        },
+        "subtitles": {
+          "respond": "Préparer et envoyer une réponse à la demande client",
+          "manage": "Mettre à jour le statut de la demande et gérer le workflow",
+          "view": "Voir les détails complets de la demande",
+          "default": "Gérer la demande de devis"
+        },
+        "tabs": {
+          "overview": "Aperçu",
+          "company": "Entreprise",
+          "contact": "Contact"
+        },
+        "fields": {
+          "requestSummary": "Résumé de la demande",
+          "requestNumber": "Numéro de demande",
+          "customer": "Client",
+          "createdDate": "Date de création",
+          "lastUpdated": "Dernière mise à jour",
+          "requestedItems": "Articles demandés",
+          "companyInformation": "Informations sur l'entreprise",
+          "organizationName": "Nom de l'organisation",
+          "organizationType": "Type d'organisation",
+          "address": "Adresse",
+          "contactPerson": "Personne de contact",
+          "fullName": "Nom complet",
+          "position": "Poste",
+          "emailAddress": "Adresse email",
+          "phoneNumber": "Numéro de téléphone"
+        },
+        "actions": {
+          "saveDraft": "Sauvegarder le brouillon",
+          "sendResponse": "Envoyer la réponse",
+          "markProcessing": "En traitement",
+          "markResponded": "Répondu",
+          "markClosed": "Fermer",
+          "close": "Fermer",
+          "cancel": "Annuler",
+          "viewItems": "Voir les articles"
+        },
+        "messages": {
+          "itemsPlaceholder": "Les articles de la demande seront chargés et gérés ici",
+          "priority": "priorité"
+        }
+      }
+    },
     "users": "Utilisateurs",
     "settings": "Paramètres",
     "addNew": "Ajouter Nouveau",
@@ -343,7 +435,7 @@
       "openSidebar": "Ouvrir la barre latérale",
       "closeSidebar": "Fermer la barre latérale",
       "viewNotifications": "Voir les notifications",
-      "newRfpAlert": "Nouvelle Demande RFP",
+      "newRfpAlert": "Nouvelle demande de devis",
       "stockAlert": "Alerte de Stock Faible",
       "productAddedAlert": "Nouveau Produit Ajouté",
       "rfpAlertMessage": "Centre Médical ABC a demandé un devis pour des moniteurs cardiaques",
@@ -372,7 +464,7 @@
     "errors": {
       "failedToLoad": "Échec du chargement",
       "failedToLoadProducts": "Échec du chargement des produits",
-      "failedToLoadRfps": "Échec du chargement des demandes RFP",
+      "failedToLoadRfps": "Échec du chargement des demandes de devis",
       "failedToSave": "Échec de la sauvegarde",
       "failedToSaveProduct": "Échec de la sauvegarde du produit",
       "uploadFailed": "Échec du téléchargement",
@@ -400,8 +492,9 @@
     "sidebar": {
       "dashboard": "Tableau de Bord",
       "products": "Produits",
-      "rfpRequests": "Demandes RFP",
+      "rfpRequests": "Demandes de devis",
       "partners": "Partenaires",
+      "categories": "Catégories",
       "content": "Contenu",
       "users": "Utilisateurs",
       "analytics": "Analyses",
@@ -516,17 +609,733 @@
       "primaryImage": "Image principale",
       "noImages": "Aucune image téléchargée",
       "saveProductFirst": "Veuillez d'abord enregistrer le produit pour télécharger des images"
+    },
+    "partners": {
+      "manageDescription": "Gérez votre réseau de partenaires et fournisseurs médicaux",
+      "searchPlaceholder": "Rechercher des partenaires...",
+      "partnerSelected": "partenaire sélectionné",
+      "partnersSelected": "partenaires sélectionnés",
+      "getStarted": "Commencez par ajouter votre premier partenaire au réseau.",
+      "addFirst": "Ajoutez Votre Premier Partenaire",
+      "feature": "Mettre en avant",
+      
+      "addDescription": "Ajoutez un nouveau partenaire à votre réseau médical",
+      "editDescription": "Mettre à jour les informations du partenaire",
+      "viewDescription": "Voir les informations détaillées du partenaire",
+      "viewPartner": "Voir le partenaire",
+      
+      "partner": "Partenaire",
+      "website": "Site web",
+      
+      "essentialInfo": "Informations essentielles",
+      "essentialInfoDescription": "Les détails de base nécessaires pour identifier le partenaire",
+      
+      "partnerName": "Nom du partenaire",
+      "partnerNamePlaceholder": "Ex: Hôpital Central de Paris, Clinique Saint-Antoine",
+      "partnerNameHint": "Utilisez le nom officiel complet du partenaire",
+      
+      "websiteUrl": "Site web",
+      "websiteUrlPlaceholder": "https://exemple.com",
+      "websiteUrlHint": "Site web officiel du partenaire",
+      
+      "logoUrl": "Logo",
+      "logoUrlPlaceholder": "https://exemple.com/logo.png",
+      "logoUrlHint": "URL vers le logo du partenaire",
+      
+      "shortDescription": "Description courte",
+      "shortDescriptionPlaceholder": "Décrivez brièvement le partenaire et ses services",
+      "shortDescriptionHint": "Une présentation simple pour l'équipe commerciale",
+      
+      "internationalVersion": "Version internationale",
+      "internationalDescription": "Informations en anglais pour les partenaires internationaux",
+      
+      "partnerNameEnglish": "Nom du partenaire (English)",
+      "partnerNameEnglishPlaceholder": "Partner name in English",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Brief description in English",
+      
+      "visibility": "Visibilité du partenaire",
+      "visibilityDescription": "Contrôlez quand et comment le partenaire apparaît",
+      
+      "makeVisible": "Rendre visible",
+      "makeVisibleDescription": "Le partenaire sera visible dans votre réseau",
+      
+      "keepHidden": "Garder masqué",
+      "keepHiddenDescription": "Le partenaire restera en brouillon",
+      
+      "highlightPartner": "Mettre en avant ce partenaire",
+      "highlightPartnerDescription": "apparaîtra dans les partenaires vedettes",
+      
+      "statusOptions": {
+        "visible": "Visible",
+        "draft": "Brouillon"
+      },
+      
+      "contactInfo": "Informations de contact",
+      "statusInfo": "Informations de statut",
+      "noWebsite": "Aucun site web renseigné",
+      "lastUpdated": "Dernière mise à jour",
+      
+      "validation": {
+        "nameRequired": "Le nom du partenaire en français est requis",
+        "websiteInvalid": "L'URL du site web n'est pas valide",
+        "logoInvalid": "L'URL du logo n'est pas valide"
+      },
+      
+      "bulkImport": {
+        "title": "Import CSV en lot",
+        "description": "Importez plusieurs partenaires à la fois à partir d'un fichier CSV",
+        "selectFile": "Sélectionner un fichier CSV",
+        "uploadFile": "Télécharger le fichier",
+        "downloading": "Téléchargement...",
+        "importing": "Importation en cours...",
+        "processing": "Traitement en cours...",
+        "success": "Import réussi",
+        "error": "Erreur d'import",
+        "fileFormat": "Format du fichier",
+        "downloadTemplate": "Télécharger le modèle",
+        "requirements": {
+          "title": "Exigences du fichier:",
+          "format": "Format CSV avec virgules comme séparateurs",
+          "size": "Taille maximale: 5MB",
+          "rows": "Maximum 1000 lignes",
+          "encoding": "Encodage UTF-8 recommandé"
+        },
+        "columns": {
+          "title": "Colonnes requises:",
+          "nom_fr": "nom_fr - Nom du partenaire en français (requis)",
+          "nom_en": "nom_en - Nom du partenaire en anglais (optionnel)",
+          "description_fr": "description_fr - Description en français (optionnel)",
+          "description_en": "description_en - Description en anglais (optionnel)",
+          "websiteUrl": "websiteUrl - URL du site web (optionnel)",
+          "logoUrl": "logoUrl - URL du logo (optionnel)",
+          "status": "status - Statut (active, inactive)",
+          "featured": "featured - Partenaire vedette (true/false)"
+        },
+        "validation": {
+          "fileRequired": "Veuillez sélectionner un fichier CSV",
+          "invalidFormat": "Format de fichier invalide. Seuls les fichiers CSV sont acceptés",
+          "fileTooLarge": "Le fichier est trop volumineux. Taille maximale: 5MB",
+          "tooManyRows": "Trop de lignes. Maximum: 1000 lignes"
+        },
+        "results": {
+          "importedCount": "Partenaires importés avec succès:",
+          "errorsCount": "Erreurs:",
+          "viewErrors": "Voir les erreurs",
+          "hideErrors": "Masquer les erreurs",
+          "rowError": "Ligne {row}:",
+          "fieldError": "Champ {field}:",
+          "retry": "Réessayer l'import"
+        }
+      }
+    },
+    "content": {
+      "manageDescription": "Gérez le contenu du site web, actualités et annonces",
+      "searchPlaceholder": "Rechercher du contenu...",
+      "contentSelected": "contenu sélectionné",
+      "contentsSelected": "contenus sélectionnés",
+      "getStarted": "Commencez par créer votre premier contenu.",
+      "addFirst": "Créer votre premier contenu",
+      "addContent": "Ajouter du contenu",
+      "editContent": "Modifier le contenu",
+      "viewContent": "Voir le contenu",
+      "types": {
+        "article": "Article",
+        "news": "Actualité",
+        "announcement": "Annonce",
+        "page": "Page"
+      },
+      "status": {
+        "draft": "Brouillon",
+        "review": "En révision",
+        "published": "Publié",
+        "archived": "Archivé"
+      },
+      "fields": {
+        "title": "Titre",
+        "content": "Contenu",
+        "excerpt": "Extrait",
+        "author": "Auteur",
+        "category": "Catégorie",
+        "tags": "Étiquettes",
+        "publishDate": "Date de publication",
+        "lastModified": "Dernière modification"
+      }
+    },
+    "users": {
+      "title": "Gestion des Utilisateurs",
+      "subtitle": "Gérez les comptes utilisateurs, rôles et permissions pour la plateforme KITMED",
+      "manageDescription": "Gérez les comptes utilisateurs, permissions et rôles",
+      "searchPlaceholder": "Rechercher par nom, email ou département...",
+      "userSelected": "utilisateur sélectionné",
+      "usersSelected": "utilisateurs sélectionnés",
+      "getStarted": "Commencez par ajouter votre premier utilisateur au système.",
+      "addFirst": "Ajouter Votre Premier Utilisateur",
+      "addUser": "Ajouter un Utilisateur",
+      "editUser": "Modifier l'Utilisateur",
+      "viewUser": "Voir les Détails de l'Utilisateur",
+      "deleteUser": "Supprimer l'Utilisateur",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action ne peut pas être annulée.",
+      "noUsers": "Aucun utilisateur trouvé",
+      "neverLoggedIn": "Jamais connecté",
+      "attempts": "tentatives",
+      "activate": "Activer",
+      "deactivate": "Désactiver",
+      "reset2FA": "Réinitialiser 2FA",
+      "permissions": "Permissions",
+      "roleFilter": "Filtrer par rôle",
+      "roles": {
+        "admin": "Administrateur",
+        "manager": "Gestionnaire",
+        "editor": "Éditeur",
+        "viewer": "Visualiseur"
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "pending": "En attente",
+        "suspended": "Suspendu"
+      },
+      "permissions": {
+        "products": "Produits",
+        "rfps": "Devis",
+        "partners": "Partenaires",
+        "categories": "Catégories",
+        "users": "Utilisateurs",
+        "content": "Contenu",
+        "analytics": "Analyses",
+        "settings": "Paramètres"
+      },
+      "table": {
+        "user": "Utilisateur",
+        "email": "Email",
+        "role": "Rôle",
+        "status": "Statut",
+        "security": "Sécurité",
+        "lastLogin": "Dernière connexion",
+        "actions": "Actions"
+      },
+      "fields": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "Email",
+        "phone": "Téléphone",
+        "department": "Département",
+        "role": "Rôle",
+        "status": "Statut",
+        "lastLogin": "Dernière connexion",
+        "dateCreated": "Date de création",
+        "twoFactorEnabled": "Authentification à deux facteurs",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe"
+      },
+      "form": {
+        "basicInfo": "Informations de base",
+        "securitySettings": "Paramètres de sécurité",
+        "accountStatus": "Statut du compte",
+        "rolePermissions": "Rôle et permissions",
+        "personalDetails": "Détails personnels",
+        "contactInfo": "Informations de contact",
+        "enableTwoFactor": "Activer l'authentification à deux facteurs",
+        "requirePasswordChange": "Exiger un changement de mot de passe à la prochaine connexion",
+        "sendWelcomeEmail": "Envoyer un email de bienvenue à l'utilisateur",
+        "placeholders": {
+          "firstName": "Entrer le prénom",
+          "lastName": "Entrer le nom",
+          "email": "utilisateur@exemple.com",
+          "phone": "+33 1 23 45 67 89",
+          "department": "ex. IT, Ventes, Marketing"
+        },
+        "validation": {
+          "firstNameRequired": "Le prénom est requis",
+          "lastNameRequired": "Le nom est requis",
+          "emailRequired": "L'adresse email est requise",
+          "emailInvalid": "Veuillez entrer une adresse email valide",
+          "roleRequired": "La sélection d'un rôle est requise",
+          "phoneInvalid": "Veuillez entrer un numéro de téléphone valide"
+        },
+        "actions": {
+          "save": "Enregistrer l'Utilisateur",
+          "create": "Créer l'Utilisateur",
+          "update": "Mettre à jour l'Utilisateur",
+          "cancel": "Annuler",
+          "saving": "Enregistrement..."
+        }
+      },
+      "permissionMatrix": {
+        "title": "Matrice de Permissions",
+        "subtitle": "Configurez les permissions basées sur les rôles pour les ressources système",
+        "role": "Rôle",
+        "resource": "Ressource",
+        "create": "Créer",
+        "read": "Lire",
+        "update": "Modifier",
+        "delete": "Supprimer",
+        "export": "Exporter",
+        "import": "Importer",
+        "saveChanges": "Enregistrer les Modifications",
+        "resetToDefaults": "Réinitialiser aux Valeurs par Défaut",
+        "customPermissions": "Permissions Personnalisées",
+        "inheritFromRole": "Hériter du rôle",
+        "overridePermissions": "Remplacer les permissions spécifiques"
+      },
+      "activity": {
+        "title": "Activité Utilisateur",
+        "loginHistory": "Historique de connexion",
+        "sessionDuration": "Durée de session",
+        "lastActivity": "Dernière activité",
+        "ipAddress": "Adresse IP",
+        "userAgent": "Agent utilisateur",
+        "loginTime": "Heure de connexion",
+        "logoutTime": "Heure de déconnexion",
+        "failedAttempts": "Tentatives de connexion échouées",
+        "accountLocked": "Compte verrouillé à cause de multiples tentatives échouées",
+        "unlockAccount": "Déverrouiller le Compte"
+      },
+      "bulkActions": {
+        "selectAll": "Sélectionner tous les utilisateurs",
+        "activateSelected": "Activer les utilisateurs sélectionnés",
+        "deactivateSelected": "Désactiver les utilisateurs sélectionnés",
+        "deleteSelected": "Supprimer les utilisateurs sélectionnés",
+        "exportSelected": "Exporter les utilisateurs sélectionnés",
+        "resetPassword": "Réinitialiser le mot de passe pour les utilisateurs sélectionnés",
+        "sendNotification": "Envoyer une notification aux utilisateurs sélectionnés"
+      },
+      "security": {
+        "twoFactorEnabled": "2FA Activé",
+        "twoFactorDisabled": "2FA Désactivé",
+        "accountLocked": "Compte Verrouillé",
+        "passwordExpired": "Mot de passe Expiré",
+        "securityRisk": "Risque de Sécurité",
+        "lastPasswordChange": "Dernière modification du mot de passe",
+        "forcePasswordReset": "Forcer la réinitialisation du mot de passe",
+        "unlockAccount": "Déverrouiller le compte",
+        "viewLoginHistory": "Voir l'historique de connexion"
+      }
+    },
+    "content": {
+      "title": "Gestion de contenu",
+      "description": "Gérez les articles, actualités, annonces et pages de votre plateforme",
+      "addContent": "Ajouter du contenu",
+      "editContent": "Modifier le contenu",
+      "viewContent": "Voir le contenu",
+      "addDescription": "Créez un nouvel article, actualité ou page pour votre plateforme",
+      "editDescription": "Modifiez les informations et le contenu de cet élément",
+      "viewDescription": "Consultez les détails de ce contenu",
+      "noContent": "Aucun contenu trouvé",
+      "getStarted": "Commencez par ajouter votre premier contenu à la plateforme.",
+      "addFirstContent": "Ajouter votre premier contenu",
+      "searchPlaceholder": "Rechercher du contenu...",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce contenu ?",
+      "itemSelected": "élément sélectionné",
+      "itemsSelected": "éléments sélectionnés",
+      "publish": "Publier",
+      "archive": "Archiver",
+      "featured": "En vedette",
+      "saving": "Enregistrement...",
+      
+      "basicInfo": "Informations de base",
+      "additionalOptions": "Options supplémentaires",
+      "content": "Contenu",
+      "title": "Titre",
+      "excerpt": "Extrait",
+      "type": "Type",
+      "status": "Statut",
+      "author": "Auteur",
+      "publishDate": "Date de publication",
+      "updated": "Modifié",
+      "tags": "Étiquettes",
+      "slug": "Slug",
+      "slugHelp": "URL-friendly version du titre (ex: mon-article-blog)",
+      "imageUrl": "URL de l'image",
+      
+      "types": {
+        "article": "Article",
+        "news": "Actualité",
+        "announcement": "Annonce",
+        "page": "Page"
+      },
+      
+      "status": {
+        "draft": "Brouillon",
+        "review": "En révision",
+        "published": "Publié",
+        "archived": "Archivé"
+      },
+      
+      "validation": {
+        "titleFrRequired": "Le titre en français est requis",
+        "titleEnRequired": "Le titre en anglais est requis",
+        "contentFrRequired": "Le contenu en français est requis",
+        "contentEnRequired": "Le contenu en anglais est requis",
+        "excerptFrRequired": "L'extrait en français est requis",
+        "excerptEnRequired": "L'extrait en anglais est requis",
+        "slugRequired": "Le slug est requis",
+        "typeRequired": "Le type est requis",
+        "statusRequired": "Le statut est requis"
+      },
+      
+      "errors": {
+        "loadFailed": "Échec du chargement du contenu",
+        "saveFailed": "Échec de l'enregistrement du contenu",
+        "deleteFailed": "Échec de la suppression du contenu"
+      }
+    },
+    "analytics": {
+      "title": "Analyses et rapports",
+      "subtitle": "Suivez les performances et les tendances de votre plateforme",
+      "overview": "Vue d'ensemble",
+      "products": "Produits",
+      "rfps": "Devis",
+      "users": "Utilisateurs",
+      "traffic": "Trafic",
+      "realtime": "Temps réel",
+      "geographic": "Géographique",
+      "categories": "Catégories",
+      "export": "Exporter",
+      "refresh": "Actualiser",
+      "liveActivity": "Activité en direct",
+      "recentActivity": "Activité récente",
+      "topProductsPerformance": "Performance des produits vedettes",
+      "geographicDistribution": "Répartition géographique",
+      "categoryPerformance": "Performance des catégories médicales",
+      "trafficTrends": "Tendances du trafic et conversions",
+      "conversionFunnel": "Entonnoir de conversion RFP",
+      "optimizationInsights": "Insights d'optimisation",
+      "industryBenchmark": "Référence de l'industrie",
+      "performanceScore": "Score de performance",
+      "growth": "Croissance",
+      "totalRevenue": "Chiffre d'affaires total",
+      "activeUsers": "Utilisateurs actifs",
+      "activeRfps": "RFP actives",
+      "pageViewsToday": "Pages vues (Aujourd'hui)",
+      "kpis": {
+        "totalViews": "Vues totales",
+        "uniqueVisitors": "Visiteurs uniques",
+        "conversionRate": "Taux de conversion",
+        "avgSessionTime": "Temps de session moyen",
+        "topProducts": "Produits populaires",
+        "rfpSuccess": "Taux de succès RFP",
+        "revenue": "Chiffre d'affaires",
+        "activeRfps": "RFP actives"
+      },
+      "periods": {
+        "today": "Aujourd'hui",
+        "week": "Cette semaine",
+        "month": "Ce mois",
+        "quarter": "Ce trimestre",
+        "year": "Cette année"
+      },
+      "filters": {
+        "dateRange": "Période",
+        "categories": "Catégories",
+        "regions": "Régions",
+        "customerType": "Type de client",
+        "all": "Tous",
+        "hospital": "Hôpital",
+        "clinic": "Clinique",
+        "laboratory": "Laboratoire"
+      },
+      "metrics": {
+        "views": "Vues",
+        "visitors": "Visiteurs",
+        "rfps": "RFP",
+        "conversions": "Conversions",
+        "revenue": "Chiffre d'affaires",
+        "sessions": "Sessions",
+        "bounceRate": "Taux de rebond",
+        "avgDuration": "Durée moyenne"
+      },
+      "actions": {
+        "viewProduct": "Produit consulté",
+        "submitRfp": "RFP soumise",
+        "downloadSpec": "Spécifications téléchargées",
+        "contactRequest": "Demande de contact"
+      },
+      "funnel": {
+        "productViews": "Vues produit",
+        "productDetails": "Détails produit",
+        "rfpInitiated": "RFP initiée",
+        "rfpSubmitted": "RFP soumise",
+        "rfpConverted": "RFP convertie"
+      }
+    },
+    "settings": {
+      "title": "Paramètres",
+      "subtitle": "Configurez les paramètres essentiels de votre plateforme",
+      "siteConfig": "Configuration du site",
+      "emailNotifications": "Notifications email",
+      "security": "Sécurité",
+      "maintenance": "Maintenance",
+      "siteName": "Nom du site",
+      "defaultLanguage": "Langue par défaut",
+      "timezone": "Fuseau horaire",
+      "logoUrl": "URL du logo",
+      "fromEmail": "Email expéditeur",
+      "fromName": "Nom expéditeur",
+      "enableNotifications": "Activer les notifications",
+      "testEmail": "Tester l'email",
+      "twoFactorAuth": "Authentification à deux facteurs",
+      "sessionTimeout": "Délai de session",
+      "maxLoginAttempts": "Tentatives de connexion max",
+      "maintenanceMode": "Mode maintenance",
+      "autoUpdates": "Mises à jour automatiques",
+      "backupFrequency": "Fréquence de sauvegarde",
+      "timeouts": {
+        "30min": "30 minutes",
+        "1hr": "1 heure",
+        "2hr": "2 heures",
+        "4hr": "4 heures"
+      },
+      "frequencies": {
+        "daily": "Quotidienne",
+        "weekly": "Hebdomadaire",
+        "monthly": "Mensuelle"
+      },
+      "saving": "Enregistrement...",
+      "testingSent": "Email de test envoyé !",
+      "testingFailed": "Échec de l'envoi",
+      "twoFactorDesc": "Exiger l'authentification à deux facteurs pour une sécurité renforcée",
+      "sessionTimeoutDesc": "Déconnexion automatique après inactivité",
+      "minPasswordLength": "Longueur Minimale du Mot de Passe",
+      "requireUppercase": "Exiger des Lettres Majuscules",
+      "requireNumbers": "Exiger des Chiffres",
+      "requireSymbols": "Exiger des Caractères Spéciaux",
+      "enableTLS": "Activer le Chiffrement TLS/SSL",
+      "tlsDesc": "Chiffrer les communications email avec TLS",
+      "testEmail": "Tester la Configuration Email",
+      "testEmailDesc": "Envoyer un email de test pour vérifier les paramètres SMTP",
+      "testing": "Test en cours...",
+      "sendTest": "Envoyer un Email de Test",
+      "emailTestSuccess": "Email de test envoyé avec succès ! Vérifiez votre boîte de réception.",
+      "emailTestFailed": "Échec de l'envoi de l'email de test. Veuillez vérifier votre configuration SMTP.",
+      "enableBackup": "Activer les Sauvegardes Automatisées",
+      "backupDesc": "Sauvegarder automatiquement vos données à intervalles programmés",
+      "siteConfiguration": "Configuration du Site",
+      "enableEmailNotifications": "Activer les notifications email",
+      "emailNotificationsDesc": "Recevoir des notifications par email pour les événements importants",
+      "testEmailConfiguration": "Tester la Configuration Email",
+      "sendTestEmailDesc": "Envoyer un email de test pour vérifier les paramètres",
+      "securityBasics": "Paramètres de Sécurité",
+      "twoFactorAuthentication": "Authentification à deux facteurs",
+      "systemMaintenance": "Maintenance Système",
+      "maintenanceModeDesc": "Activer le mode maintenance pour les mises à jour système",
+      "automaticUpdates": "Mises à jour automatiques",
+      "autoUpdatesDesc": "Installer automatiquement les mises à jour de sécurité",
+      "dataBackupFrequency": "Fréquence de sauvegarde des données",
+      "minutes30": "30 minutes",
+      "hour1": "1 heure", 
+      "hours2": "2 heures",
+      "hours4": "4 heures",
+      "attempts": "tentatives",
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "retentionDays": "Rétention des Données",
+      "retentionDesc": "Nombre de jours pour conserver les fichiers de sauvegarde",
+      "manualBackup": "Sauvegarde Manuelle",
+      "manualBackupDesc": "Créer et restaurer des sauvegardes manuellement",
+      "createBackup": "Créer une Sauvegarde",
+      "restoreBackup": "Restaurer une Sauvegarde",
+      "maintenanceMode": "Mode Maintenance",
+      "maintenanceModeDesc": "Activer pour afficher un message de maintenance aux utilisateurs",
+      "maintenanceMessage": "Message de Maintenance",
+      "maintenanceMessageDesc": "Message affiché quand le mode maintenance est actif",
+      "autoUpdates": "Mises à Jour Automatiques",
+      "autoUpdatesDesc": "Installer automatiquement les mises à jour système",
+      "enableCache": "Activer le Cache",
+      "cacheDesc": "Améliorer les performances en mettant en cache les données fréquemment accédées",
+      "debugMode": "Mode Débogage",
+      "debugModeDesc": "Activer la journalisation détaillée pour le dépannage",
+      "medicalRegulatory": "Conformité Réglementaire Médicale",
+      "medicalRegulatoryDesc": "Activer les fonctionnalités réglementaires équipement médical",
+      "certificationRequired": "Certification Requise",
+      "certificationDesc": "Exiger des certifications pour les équipements médicaux",
+      "equipmentCategories": "Catégories d'Équipements",
+      "complianceStandards": "Normes de Conformité",
+      "dataRetention": "Rétention des Données Médicales",
+      "dataRetentionDesc": "Années de rétention des données équipement médical",
+      "auditLogs": "Journaux d'Audit",
+      "auditLogsDesc": "Maintenir des journaux détaillés de toutes les activités système"
+    },
+    "categories": {
+      "manageDescription": "Gérez votre hiérarchie de catégories et disciplines médicales",
+      "searchPlaceholder": "Rechercher des catégories...",
+      "showInactive": "Afficher les catégories inactives",
+      "expandAll": "Tout développer",
+      "collapseAll": "Tout réduire",
+      "selectAll": "Tout sélectionner",
+      "noCategories": "Aucune catégorie trouvée",
+      "getStarted": "Commencez par ajouter votre première catégorie au système.",
+      "addFirstCategory": "Ajouter votre première catégorie",
+      "addCategory": "Ajouter une catégorie",
+      "addSubcategory": "Ajouter une sous-catégorie",
+      "editCategory": "Modifier la catégorie",
+      "categorySelected": "catégorie sélectionnée",
+      "categoriesSelected": "catégories sélectionnées",
+      "subcategories": "sous-catégories",
+      "more": "de plus",
+      
+      "addDescription": "Ajouter une nouvelle catégorie au système",
+      "addSubcategoryDescription": "Ajouter une sous-catégorie",
+      "editDescription": "Modifier les informations de la catégorie",
+      "viewDescription": "Voir les détails de la catégorie",
+      
+      "essentialInfo": "Informations essentielles",
+      "essentialInfoDescription": "Détails de base nécessaires pour identifier la catégorie",
+      "basicInformation": "Informations de base",
+      "translations": "Traductions",
+      "systemInformation": "Informations système",
+      "seoInformation": "Informations SEO",
+      "seoOptimization": "Optimisation SEO",
+      "seoDescription": "Améliorer le référencement de cette catégorie",
+      
+      "categoryName": "Nom de la catégorie",
+      "categoryNamePlaceholder": "Ex: Cardiologie, Radiologie, Chirurgie",
+      "categoryNameEnglish": "Nom de la catégorie (Anglais)",
+      "categoryNameEnglishPlaceholder": "Nom de la catégorie en anglais",
+      "description": "Description",
+      "shortDescription": "Description courte",
+      "shortDescriptionPlaceholder": "Décrivez brièvement cette catégorie médicale",
+      "shortDescriptionHint": "Présentation simple pour l'équipe commerciale",
+      "descriptionEnglish": "Description (Anglais)",
+      "descriptionEnglishPlaceholder": "Brève description en anglais",
+      "sortOrder": "Ordre de tri",
+      "sortOrderHint": "Contrôle l'ordre d'affichage (0 = premier)",
+      "imageUrl": "Image de la catégorie",
+      "imageUrlPlaceholder": "https://exemple.com/image.jpg",
+      "imageUrlHint": "URL de l'image représentant cette catégorie",
+      "slug": "Slug",
+      "categoryId": "ID de la catégorie",
+      "lastUpdated": "Dernière mise à jour",
+      "parentCategory": "Catégorie parente",
+      
+      "internationalVersion": "Version internationale",
+      "internationalDescription": "Informations en anglais pour l'international",
+      
+      "visibility": "Visibilité de la catégorie",
+      "visibilityDescription": "Contrôler quand et comment la catégorie apparaît",
+      "makeVisible": "Rendre visible",
+      "makeVisibleDescription": "La catégorie sera visible dans votre système",
+      "keepHidden": "Garder masquée",
+      "keepHiddenDescription": "La catégorie restera en tant que brouillon",
+      
+      "metaTitle": "Meta Title",
+      "metaTitlePlaceholder": "Titre optimisé pour les moteurs de recherche",
+      "metaTitlePlaceholderEn": "SEO optimized title",
+      "metaDescription": "Meta Description",
+      "metaDescriptionPlaceholder": "Description optimisée pour les moteurs de recherche",
+      "metaDescriptionPlaceholderEn": "SEO optimized description",
+      
+      "saving": "Enregistrement...",
+      "createCategory": "Créer la catégorie",
+      "updateCategory": "Mettre à jour",
+      
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer la catégorie \"{name}\" ?",
+      "confirmBulkActivate": "Activer {count} catégories sélectionnées ?",
+      "confirmBulkDeactivate": "Désactiver {count} catégories sélectionnées ?",
+      "confirmBulkDelete": "Supprimer {count} catégories sélectionnées ?",
+      
+      "validation": {
+        "nameRequired": "Le nom de la catégorie en français est requis"
+      },
+      
+      "wizard": {
+        "step1": {
+          "title": "Type de catégorie",
+          "description": "Sélectionnez le type de catégorie à créer"
+        },
+        "step2": {
+          "title": "Informations de base",
+          "description": "Définissez le nom et la description de la catégorie"
+        },
+        "step3": {
+          "title": "Détails et SEO",
+          "description": "Ajoutez des détails supplémentaires et optimisez le SEO"
+        },
+        "selectCategoryType": "Quel type de catégorie souhaitez-vous créer ?",
+        "selectCategoryTypeDescription": "Choisissez le type qui correspond le mieux à votre besoin",
+        "disciplineCategory": "Discipline médicale",
+        "disciplineCategoryDescription": "Spécialité médicale regroupant différents équipements",
+        "equipmentCategory": "Équipement médical",
+        "equipmentCategoryDescription": "Catégorie d'équipement ou de produit spécifique",
+        "parentCategoryInfo": "Catégorie parente",
+        "parentCategoryIs": "Cette catégorie sera créée sous",
+        "basicInformation": "Informations de base",
+        "basicInformationDescription": "Définissez le nom et la description principale",
+        "additionalDetails": "Détails supplémentaires",
+        "additionalDetailsDescription": "Image, traductions et optimisation SEO",
+        "previous": "Précédent",
+        "next": "Suivant"
+      },
+      
+      "help": {
+        "guide": "Guide",
+        "getHelp": "Obtenir de l'aide",
+        "hierarchyExplanation": "La hiérarchie permet d'organiser les catégories en arbre. Les disciplines (cardiologie, radiologie) contiennent des équipements spécifiques.",
+        "categoryTypes": "Il existe deux types principaux : les disciplines médicales et les équipements. Les disciplines regroupent plusieurs équipements.",
+        "navigationTips": "Utilisez les flèches pour développer/réduire les sous-catégories. La sélection multiple permet les actions groupées.",
+        "seoOptimized": "Cette catégorie est optimisée pour le SEO"
+      },
+      
+      "quickStart": {
+        "title": "Guide de démarrage rapide",
+        "description": "Apprenez à gérer efficacement vos catégories médicales",
+        "step1": {
+          "title": "Créer des disciplines principales",
+          "description": "Commencez par créer les grandes disciplines médicales de votre établissement",
+          "tip1": "Créez d'abord les disciplines principales (Cardiologie, Radiologie, etc.)",
+          "tip2": "Utilisez des noms courts et clairs pour une navigation facile",
+          "tip3": "L'ordre d'affichage peut être ajusté avec le champ 'Ordre de tri'"
+        },
+        "step2": {
+          "title": "Organiser les sous-catégories",
+          "description": "Structurez vos équipements en sous-catégories logiques",
+          "tip1": "Créez des sous-catégories pour chaque type d'équipement",
+          "tip2": "Utilisez une hiérarchie de 3 niveaux maximum pour rester lisible"
+        },
+        "step3": {
+          "title": "Optimiser et maintenir",
+          "description": "Optimisez le référencement et maintenez votre structure",
+          "tip1": "Ajoutez des descriptions SEO pour améliorer la visibilité",
+          "tip2": "Révisez régulièrement l'organisation selon les besoins"
+        },
+        "tips": "Conseils utiles",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "getStarted": "Commencer"
+      },
+      
+      "accessibility": {
+        "expandCategory": "Développer la catégorie {name}",
+        "collapseCategory": "Réduire la catégorie {name}",
+        "selectCategory": "Sélectionner la catégorie {name}",
+        "categoryLevel": "Niveau {level}",
+        "subcategoriesCount": "{count} sous-catégories",
+        "productsCount": "{count} produits",
+        "categoryActions": "Actions pour {name}",
+        "hierarchyNavigation": "Navigation hiérarchique",
+        "keyboardShortcuts": "Raccourcis clavier : Flèches pour naviguer, Entrée pour sélectionner, Espace pour développer/réduire"
+      },
+      
+      "mobileActions": {
+        "showActions": "Afficher les actions",
+        "hideActions": "Masquer les actions",
+        "swipeToSelect": "Glisser pour sélectionner",
+        "tapToExpand": "Toucher pour développer",
+        "longPressForActions": "Appui long pour les actions"
+      }
     }
   },
   "dashboard": {
     "title": "Tableau de Bord",
     "welcomeBack": "Bienvenue! Voici ce qui se passe dans votre boutique.",
     "welcomeBackKitmed": "Bienvenue sur KITMED",
-    "welcomeSubtitle": "Gérez votre catalogue d'équipements médicaux facilement. Suivez les produits, demandes RFP et relations partenaires en un seul endroit.",
+    "welcomeSubtitle": "Gérez votre catalogue d'équipements médicaux facilement. Suivez les produits, demandes de devis et relations partenaires en un seul endroit.",
     "loading": "Chargement du tableau de bord...",
     "retry": "Réessayer",
     "totalProducts": "Total Produits",
-    "pendingRfps": "RFPs En Attente",
+    "pendingRfps": "Devis en attente",
     "activePartners": "Partenaires Actifs",
     "featuredProducts": "Produits Vedettes",
     "recentActivity": "Activité Récente",
@@ -544,16 +1353,16 @@
     "manageUsers": "Gérer Utilisateurs",
     "manageUsersDesc": "Permissions et rôles utilisateurs",
     "activeProducts": "Produits Actifs",
-    "processingRfps": "RFPs En Traitement",
+    "processingRfps": "Devis en traitement",
     "featuredPartners": "Partenaires Vedettes",
     "categoriesWithProducts": "Catégories avec Produits",
     "fromLastMonth": "du mois dernier",
     "fromLastWeek": "de la semaine dernière", 
-    "newRfpRequest": "Nouvelle Demande RFP",
+    "newRfpRequest": "Nouvelle demande de devis",
     "productUpdated": "Produit Mis à Jour",
     "newPartnerAdded": "Nouveau Partenaire Ajouté",
     "userLogin": "Connexion Utilisateur",
-    "searchPlaceholder": "Rechercher produits, RFPs, partenaires...",
+    "searchPlaceholder": "Rechercher produits, devis, partenaires...",
     "notifications": "Notifications",
     "viewAllNotifications": "Voir toutes les notifications",
     "yourProfile": "Votre Profil",
@@ -572,7 +1381,7 @@
     "viewAllDisciplines": "Voir Toutes les Disciplines",
     "readyToUpgrade": "Prêt à Améliorer Votre Équipement Médical?",
     "readyToUpgradeSubtitle": "Commencez à construire votre demande de proposition aujourd'hui et obtenez des recommandations personnalisées de nos experts.",
-    "startRFP": "Commencer une Demande RFP",
+    "startRFP": "Commencer une demande de devis",
     "viewPartners": "Voir Nos Partenaires"
   },
   "errors": {
@@ -582,6 +1391,9 @@
     "forbidden": "Interdit",
     "goBack": "Retourner",
     "tryAgain": "Réessayer",
-    "contactSupport": "Contacter le support"
+    "contactSupport": "Contacter le support",
+    "loadFailed": "Échec du chargement des paramètres",
+    "saveFailed": "Échec de l'enregistrement des paramètres",
+    "retry": "Réessayer"
   }
 }

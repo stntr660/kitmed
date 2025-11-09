@@ -5,12 +5,12 @@ import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import {
   Bars3Icon,
-  BellIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { AdminUser } from '@/types/admin';
 import { cn } from '@/lib/utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { NotificationCenter } from './NotificationCenter';
 import type { Locale } from '@/types';
 
 interface AdminHeaderProps {
@@ -24,37 +24,9 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
   const params = useParams();
   const currentLocale = (params.locale as Locale) || 'en';
   const [searchTerm, setSearchTerm] = useState('');
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [navigating, setNavigating] = useState(false);
   const router = useRouter();
-
-  // Mock notifications for demo
-  const notifications = [
-    {
-      id: 1,
-      title: t('admin.header.newRfpAlert'),
-      message: t('admin.header.rfpAlertMessage'),
-      time: t('admin.header.timeAgo.fiveMinAgo'),
-      unread: true,
-      type: 'rfp'
-    },
-    {
-      id: 2,
-      title: t('admin.header.stockAlert'),
-      message: t('admin.header.stockAlertMessage'),
-      time: t('admin.header.timeAgo.oneHourAgo'),
-      unread: true,
-      type: 'inventory'
-    },
-    {
-      id: 3,
-      title: t('admin.header.productAddedAlert'),
-      message: t('admin.header.productAlertMessage'),
-      time: t('admin.header.timeAgo.twoHoursAgo'),
-      unread: false,
-      type: 'product'
-    }
-  ];
 
   const handleLogout = () => {
     // Clear auth data
@@ -64,8 +36,6 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
     // Redirect to login
     router.push('/en/admin/login');
   };
-
-  const unreadCount = notifications.filter(n => n.unread).length;
 
   return (
     <div className="sticky top-0 z-40 flex h-20 shrink-0 items-center gap-x-6 border-b border-gray-200/60 bg-white/80 backdrop-blur-xl px-6 shadow-lg shadow-gray-100/50 lg:px-8">
@@ -103,58 +73,7 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
           {/* Language Switcher */}
           <LanguageSwitcher currentLocale={currentLocale} />
           {/* Notifications */}
-          <div className="relative">
-            <button
-              className="relative flex items-center justify-center w-10 h-10 rounded-xl text-gray-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200"
-              onClick={() => setNotificationsOpen(!notificationsOpen)}
-            >
-              <span className="sr-only">{t('admin.header.viewNotifications')}</span>
-              <BellIcon className="h-6 w-6" aria-hidden="true" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white font-medium">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
-
-            {notificationsOpen && (
-              <div className="absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-xl bg-white py-2 shadow-xl ring-1 ring-gray-900/5">
-                <div className="px-4 py-3 border-b border-gray-100">
-                  <h3 className="text-sm font-semibold text-gray-900">{t('dashboard.notifications')}</h3>
-                </div>
-                <div className="max-h-96 overflow-y-auto">
-                  {notifications.map((notification) => (
-                    <div 
-                      key={notification.id}
-                      className={cn(
-                        'flex items-start px-4 py-3 transition-colors hover:bg-gray-50',
-                        notification.unread ? 'bg-blue-50/50' : ''
-                      )}
-                    >
-                      <div className="flex-shrink-0">
-                        <div className={cn(
-                          'w-2 h-2 rounded-full mt-2',
-                          notification.type === 'rfp' ? 'bg-green-400' :
-                          notification.type === 'inventory' ? 'bg-yellow-400' :
-                          'bg-blue-400'
-                        )} />
-                      </div>
-                      <div className="ml-3 flex-1">
-                        <p className="text-sm font-medium text-gray-900">{notification.title}</p>
-                        <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-                        <p className="text-xs text-gray-500 mt-1">{notification.time}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="px-4 py-3 border-t border-gray-100">
-                  <button className="text-sm text-primary-600 hover:text-primary-700 font-medium">
-                    {t('dashboard.viewAllNotifications')}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          <NotificationCenter locale={currentLocale} />
 
           {/* Profile dropdown */}
           <div className="relative">
@@ -184,15 +103,37 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
                 </div>
 
                 <button
+                  onClick={() => {
+                    setProfileOpen(false);
+                    router.push(`/${currentLocale}/admin/profile`);
+                  }}
                   className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   {t('dashboard.yourProfile')}
                 </button>
 
                 <button
-                  className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    setNavigating(true);
+                    router.push(`/${currentLocale}/admin/settings`);
+                    // Reset after a delay
+                    setTimeout(() => setNavigating(false), 2000);
+                  }}
+                  disabled={navigating}
+                  className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t('dashboard.settings')}
+                  {navigating ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Chargement...
+                    </>
+                  ) : (
+                    t('dashboard.settings')
+                  )}
                 </button>
 
                 <button

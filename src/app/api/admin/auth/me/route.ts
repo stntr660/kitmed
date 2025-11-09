@@ -6,7 +6,7 @@ const MOCK_ADMIN = {
   email: 'admin@kitmed.ma',
   firstName: 'Admin',
   lastName: 'User',
-  role: 'ADMIN',
+  role: 'admin',
   status: 'ACTIVE',
 };
 
@@ -39,12 +39,22 @@ export async function GET(request: NextRequest) {
         email: MOCK_ADMIN.email,
         firstName: MOCK_ADMIN.firstName,
         lastName: MOCK_ADMIN.lastName,
-        role: MOCK_ADMIN.role,
+        role: 'admin',
         status: MOCK_ADMIN.status,
         lastLoginAt: new Date().toISOString(),
         createdAt: '2024-01-01T00:00:00.000Z',
         updatedAt: new Date().toISOString(),
-        permissions: ['admin:read', 'admin:write', 'products:manage', 'rfp:manage'],
+        permissions: [
+          { resource: 'admin', actions: ['read', 'write'] },
+          { resource: 'products', actions: ['create', 'read', 'update', 'delete'] },
+          { resource: 'rfp_requests', actions: ['create', 'read', 'update', 'delete'] },
+          { resource: 'settings', actions: ['read', 'update'] },
+          { resource: 'users', actions: ['create', 'read', 'update', 'delete'] },
+          { resource: 'analytics', actions: ['read'] },
+          { resource: 'categories', actions: ['create', 'read', 'update', 'delete'] },
+          { resource: 'partners', actions: ['create', 'read', 'update', 'delete'] },
+          { resource: 'content', actions: ['create', 'read', 'update', 'delete'] }
+        ],
       },
       meta: {
         timestamp: new Date().toISOString(),
