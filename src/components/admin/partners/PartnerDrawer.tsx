@@ -17,6 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ChevronDownIcon, ChevronUpIcon, GlobeAltIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import { Partner } from '@/types';
+import { ImageUploadBox } from '@/components/ui/image-upload-box';
 
 interface PartnerDrawerProps {
   open: boolean;
@@ -222,20 +223,18 @@ export function PartnerDrawer({
                 <p className="text-xs text-gray-500">{t('admin.partners.websiteUrlHint')}</p>
               </div>
 
-              {/* Logo URL */}
-              <div className="space-y-2">
-                <label htmlFor="logo-url" className="text-sm font-semibold text-gray-700">
-                  {t('admin.partners.logoUrl')}
-                </label>
-                <Input
-                  id="logo-url"
+              {/* Partner Logo */}
+              <div>
+                <ImageUploadBox
+                  label={t('admin.partners.logo')}
                   value={formData.logoUrl || ''}
-                  onChange={(e) => handleInputChange('logoUrl', e.target.value)}
-                  placeholder={t('admin.partners.logoUrlPlaceholder')}
+                  onChange={(url) => handleInputChange('logoUrl', url)}
+                  preset="partnerLogo"
+                  placeholder="Télécharger le logo du partenaire"
+                  maxSize={2}
+                  aspectRatio="square"
                   disabled={isReadOnly}
-                  type="url"
                 />
-                <p className="text-xs text-gray-500">{t('admin.partners.logoUrlHint')}</p>
               </div>
 
               {/* Simple Description */}

@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
+import { ImageUploadBox } from '@/components/ui/image-upload-box';
 
 interface CategoryTranslation {
   id: string;
@@ -334,37 +335,17 @@ export function CategoryDrawer({
                 </p>
               </div>
 
-              {/* Image URL */}
+              {/* Category Image */}
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
-                  {t('admin.categories.imageUrl')}
-                </label>
-                <div className="flex space-x-3">
-                  <div className="flex-1">
-                    <Input
-                      type="url"
-                      value={formData.imageUrl}
-                      onChange={(e) => handleInputChange('imageUrl', e.target.value)}
-                      placeholder={t('admin.categories.imageUrlPlaceholder')}
-                      className="h-12 text-base"
-                    />
-                  </div>
-                  {formData.imageUrl && (
-                    <div className="h-12 w-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <img
-                        src={formData.imageUrl}
-                        alt="Category"
-                        className="h-10 w-10 rounded object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-                <p className="text-xs text-gray-500 mt-1">
-                  {t('admin.categories.imageUrlHint')}
-                </p>
+                <ImageUploadBox
+                  label={t('admin.categories.categoryImage')}
+                  value={formData.imageUrl}
+                  onChange={(url) => handleInputChange('imageUrl', url)}
+                  preset="productImage"
+                  placeholder="Télécharger une image pour la catégorie"
+                  maxSize={2}
+                  aspectRatio="square"
+                />
               </div>
             </div>
 

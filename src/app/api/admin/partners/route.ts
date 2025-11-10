@@ -11,6 +11,7 @@ async function getPartners(request: NextRequest) {
     
     const filters = {
       query: searchParams.get('query') || undefined,
+      type: searchParams.get('type') || undefined,
       status: searchParams.getAll('status'),
       page: parseInt(searchParams.get('page') || '1'),
       pageSize: parseInt(searchParams.get('pageSize') || '10'),
@@ -48,6 +49,29 @@ async function getPartners(request: NextRequest) {
     // Status filter
     if (filters.status && filters.status.length > 0) {
       where.status = { in: filters.status };
+    }
+
+    // Type filter - temporary solution using name pattern matching
+    if (filters.type === 'manufacturer') {
+      where.AND = where.AND || [];
+      where.AND.push({
+        OR: [
+          { 
+            translations: {
+              some: {
+                OR: [
+                  { name: { contains: 'Manufacturer', mode: 'insensitive' } },
+                  { name: { contains: 'Fabricant', mode: 'insensitive' } },
+                  { description: { contains: 'Manufacturer', mode: 'insensitive' } },
+                  { description: { contains: 'Fabricant', mode: 'insensitive' } },
+                ]
+              }
+            }
+          },
+          { name: { contains: 'Manufacturer', mode: 'insensitive' } },
+          { name: { contains: 'Fabricant', mode: 'insensitive' } },
+        ]
+      });
     }
 
     // Execute queries

@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ImageUploadBox } from '@/components/ui/image-upload-box';
 import { ProductFormData } from '@/types/admin';
-import { Product } from '@/types';
+import { Product, Partner } from '@/types';
 
 interface ProductFormProps {
   product?: Product | null;
@@ -19,6 +20,9 @@ interface ProductFormProps {
 export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
+  const [manufacturers, setManufacturers] = useState<Partner[]>([]);
+  const [loadingManufacturers, setLoadingManufacturers] = useState(false);
+  const [brochureUrl, setBrochureUrl] = useState(product?.pdfBrochureUrl || '');
   
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ProductFormData>({
     defaultValues: product ? {
@@ -57,12 +61,39 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
         status: product.status,
         featured: product.featured || false,
       });
+      setBrochureUrl(product.pdfBrochureUrl || '');
     }
   }, [product, reset]);
+
+  // Fetch manufacturers from partners
+  useEffect(() => {
+    const fetchManufacturers = async () => {
+      setLoadingManufacturers(true);
+      try {
+        const response = await fetch('/api/admin/partners?type=manufacturer');
+        if (response.ok) {
+          const result = await response.json();
+          setManufacturers(result.data || []);
+        }
+      } catch (error) {
+        console.error('Error fetching manufacturers:', error);
+      } finally {
+        setLoadingManufacturers(false);
+      }
+    };
+
+    fetchManufacturers();
+  }, []);
 
   const onSubmit = async (data: ProductFormData) => {
     try {
       setLoading(true);
+      
+      // Include brochure URL in form data
+      const formData = {
+        ...data,
+        pdfBrochureUrl: brochureUrl,
+      };
       
       const url = product 
         ? `/api/admin/products/${product.id}`
@@ -75,7 +106,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -144,12 +175,22 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('product.form.constructeur')} *
+                {t('product.form.manufacturer')} *
               </label>
-              <Input
-                {...register('constructeur', { required: t('product.form.validation.constructeurRequired') })}
-                placeholder={t('product.form.placeholders.constructeur')}
-              />
+              <select
+                {...register('constructeur', { required: t('product.form.validation.manufacturerRequired') })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled={loadingManufacturers}
+              >
+                <option value="">
+                  {loadingManufacturers ? 'Chargement...' : t('product.form.placeholders.selectManufacturer')}
+                </option>
+                {manufacturers.map((manufacturer) => (
+                  <option key={manufacturer.id} value={manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}>
+                    {manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}
+                  </option>
+                ))}
+              </select>
               {errors.constructeur && (
                 <p className="text-sm text-red-600 mt-1">{errors.constructeur.message}</p>
               )}
@@ -264,14 +305,21 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
             </div>
           </div>
 
+          {/* PDF Brochure Upload - Moved here from bottom */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {t('product.form.pdfBrochure')}
             </label>
-            <Input
-              {...register('pdfBrochureUrl')}
-              placeholder={t('product.form.placeholders.pdfBrochure')}
-              type="url"
+            <ImageUploadBox
+              value={brochureUrl}
+              onChange={setBrochureUrl}
+              preset="productDocument"
+              placeholder="Télécharger la brochure PDF"
+              maxSize={10}
+              accept="application/pdf,.pdf"
+              showPreview={false}
+              requiresSave={!product}
+              saveMessage="Veuillez d'abord enregistrer le produit pour télécharger des documents"
             />
           </div>
         </CardContent>

@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { MaintenanceButton } from '@/components/admin/MaintenanceButton';
+import { ImageUploadBox } from '@/components/ui/image-upload-box';
 
 // Simplified settings interface
 interface SystemSettings {
@@ -260,13 +261,17 @@ export function SettingsManagement() {
                 placeholder="Europe/Paris"
                 className="min-h-[48px]"
               />
-              <Input
-                label={t('admin.settings.logoUrl')}
-                value={settings.logoUrl}
-                onChange={(e) => handleSettingChange('logoUrl', e.target.value)}
-                placeholder="https://example.com/logo.png"
-                className="min-h-[48px]"
-              />
+              <div>
+                <ImageUploadBox
+                  label={t('admin.settings.siteLogo')}
+                  value={settings.logoUrl}
+                  onChange={(url) => handleSettingChange('logoUrl', url)}
+                  preset="avatar"
+                  placeholder="Télécharger le logo du site"
+                  maxSize={1}
+                  aspectRatio="square"
+                />
+              </div>
             </div>
           </CardContent>
         </Card>
