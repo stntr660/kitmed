@@ -47,7 +47,7 @@ async function uploadFiles(request: NextRequest) {
         success: false,
         error: {
           code: 'UPLOAD_ERROR',
-          message: error.message || 'File upload failed',
+          message: error instanceof Error ? error.message : 'Unknown error' || 'File upload failed',
         },
       },
       { status: 500 }

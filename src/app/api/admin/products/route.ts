@@ -134,7 +134,7 @@ async function getProducts(request: NextRequest) {
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to retrieve products',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -185,7 +185,7 @@ async function createProduct(request: NextRequest) {
           error: {
             code: 'VALIDATION_ERROR',
             message: 'Invalid product data',
-            details: validation.error.errors,
+            details: validation.error.issues,
           },
         },
         { status: 400 }
@@ -285,7 +285,7 @@ async function createProduct(request: NextRequest) {
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to create product',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }

@@ -47,26 +47,26 @@ export function RFPDrawer({
   const getTitle = () => {
     switch (mode) {
       case 'respond':
-        return 'Respond to RFP Request';
+        return t('admin.rfpRequests.drawer.titles.respond');
       case 'manage':
-        return 'Manage RFP Request';
+        return t('admin.rfpRequests.drawer.titles.manage');
       case 'view':
-        return 'RFP Request Details';
+        return t('admin.rfpRequests.drawer.titles.view');
       default:
-        return 'RFP Request';
+        return t('admin.rfpRequests.drawer.titles.default');
     }
   };
 
   const getDescription = () => {
     switch (mode) {
       case 'respond':
-        return 'Prepare and send response to customer request';
+        return t('admin.rfpRequests.drawer.subtitles.respond');
       case 'manage':
-        return 'Update request status and manage workflow';
+        return t('admin.rfpRequests.drawer.subtitles.manage');
       case 'view':
-        return 'View comprehensive request details';
+        return t('admin.rfpRequests.drawer.subtitles.view');
       default:
-        return '';
+        return t('admin.rfpRequests.drawer.subtitles.default');
     }
   };
 
@@ -137,9 +137,9 @@ export function RFPDrawer({
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: DocumentTextIcon },
-    { id: 'company', label: 'Company', icon: BuildingOfficeIcon },
-    { id: 'contact', label: 'Contact', icon: UserIcon },
+    { id: 'overview', label: t('admin.rfpRequests.drawer.tabs.overview'), icon: DocumentTextIcon },
+    { id: 'company', label: t('admin.rfpRequests.drawer.tabs.company'), icon: BuildingOfficeIcon },
+    { id: 'contact', label: t('admin.rfpRequests.drawer.tabs.contact'), icon: UserIcon },
   ];
 
   if (!rfp) return null;
@@ -161,10 +161,10 @@ export function RFPDrawer({
               <div className="flex items-center space-x-3 pt-2">
                 <Badge className={getStatusColor(rfp.status)}>
                   <StatusIcon className="h-3 w-3 mr-1" />
-                  {rfp.status}
+                  {t(`admin.rfpRequests.statuses.${rfp.status}`)}
                 </Badge>
                 <Badge className={getUrgencyColor(rfp.urgency)}>
-                  {rfp.urgency} priority
+                  {t(`admin.rfpRequests.urgency.${rfp.urgency}`)} {t('admin.rfpRequests.drawer.messages.priority')}
                 </Badge>
               </div>
             </div>
@@ -198,27 +198,27 @@ export function RFPDrawer({
             <>
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium text-gray-900">Request Summary</CardTitle>
+                  <CardTitle className="text-lg font-medium text-gray-900">{t('admin.rfpRequests.drawer.fields.requestSummary')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Request Number</label>
+                      <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.requestNumber')}</label>
                       <p className="text-gray-900 font-mono">{rfp.requestNumber}</p>
                     </div>
                     
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Customer</label>
+                      <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.customer')}</label>
                       <p className="text-gray-900">{rfp.company.name}</p>
                     </div>
                     
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Created Date</label>
+                      <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.createdDate')}</label>
                       <p className="text-gray-900">{formatDate(rfp.createdAt)}</p>
                     </div>
                     
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Last Updated</label>
+                      <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.lastUpdated')}</label>
                       <p className="text-gray-900">{formatDate(rfp.updatedAt)}</p>
                     </div>
                   </div>
@@ -228,16 +228,16 @@ export function RFPDrawer({
               {/* Request Items */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium text-gray-900">Requested Items</CardTitle>
+                  <CardTitle className="text-lg font-medium text-gray-900">{t('admin.rfpRequests.drawer.fields.requestedItems')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-center py-8">
                     <DocumentTextIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-sm text-gray-500">
-                      Request items will be loaded and managed here
+                      {t('admin.rfpRequests.drawer.messages.itemsPlaceholder')}
                     </p>
                     <Button variant="outline" className="mt-4" disabled>
-                      View Items
+                      {t('admin.rfpRequests.drawer.actions.viewItems')}
                     </Button>
                   </div>
                 </CardContent>
@@ -249,23 +249,23 @@ export function RFPDrawer({
           {activeTab === 'company' && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg font-medium text-gray-900">Company Information</CardTitle>
+                <CardTitle className="text-lg font-medium text-gray-900">{t('admin.rfpRequests.drawer.fields.companyInformation')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Organization Name</label>
+                  <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.organizationName')}</label>
                   <p className="text-gray-900 text-lg font-medium">{rfp.company.name}</p>
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Organization Type</label>
+                  <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.organizationType')}</label>
                   <Badge variant="outline" className="capitalize">
                     {rfp.company.type}
                   </Badge>
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Address</label>
+                  <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.address')}</label>
                   <div className="text-gray-900 space-y-1">
                     <p>{rfp.company.address.street}</p>
                     <p>{rfp.company.address.city}, {rfp.company.address.postalCode}</p>
@@ -280,29 +280,29 @@ export function RFPDrawer({
           {activeTab === 'contact' && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg font-medium text-gray-900">Contact Person</CardTitle>
+                <CardTitle className="text-lg font-medium text-gray-900">{t('admin.rfpRequests.drawer.fields.contactPerson')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Full Name</label>
+                  <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.fullName')}</label>
                   <p className="text-gray-900 text-lg font-medium">
                     {rfp.contact.firstName} {rfp.contact.lastName}
                   </p>
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-gray-700">Position</label>
+                  <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.position')}</label>
                   <p className="text-gray-900">{rfp.contact.position}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="text-sm font-semibold text-gray-700">Email Address</label>
+                    <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.emailAddress')}</label>
                     <p className="text-gray-900">{rfp.contact.email}</p>
                   </div>
 
                   <div>
-                    <label className="text-sm font-semibold text-gray-700">Phone Number</label>
+                    <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.phoneNumber')}</label>
                     <p className="text-gray-900">{rfp.contact.phone}</p>
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export function RFPDrawer({
                 className="flex items-center justify-center space-x-2"
               >
                 {loading && <LoadingSpinner size="sm" />}
-                <span>Save Draft</span>
+                <span>{t('admin.rfpRequests.drawer.actions.saveDraft')}</span>
               </Button>
               
               <Button
@@ -331,7 +331,7 @@ export function RFPDrawer({
                 className="flex items-center justify-center space-x-2 bg-primary-600 hover:bg-primary-700"
               >
                 {loading && <LoadingSpinner size="sm" />}
-                <span>Send Response</span>
+                <span>{t('admin.rfpRequests.drawer.actions.sendResponse')}</span>
               </Button>
             </div>
           )}
@@ -344,7 +344,7 @@ export function RFPDrawer({
                 disabled={loading || rfp.status === 'processing'}
                 size="sm"
               >
-                Processing
+                {t('admin.rfpRequests.drawer.actions.markProcessing')}
               </Button>
               <Button
                 variant="outline"
@@ -352,7 +352,7 @@ export function RFPDrawer({
                 disabled={loading || rfp.status === 'responded'}
                 size="sm"
               >
-                Responded
+                {t('admin.rfpRequests.drawer.actions.markResponded')}
               </Button>
               <Button
                 variant="outline"
@@ -360,7 +360,7 @@ export function RFPDrawer({
                 disabled={loading || rfp.status === 'closed'}
                 size="sm"
               >
-                Close
+                {t('admin.rfpRequests.drawer.actions.markClosed')}
               </Button>
             </div>
           )}
@@ -370,7 +370,7 @@ export function RFPDrawer({
             onClick={() => onOpenChange(false)}
             className="w-full"
           >
-            {mode === 'view' ? 'Close' : 'Cancel'}
+            {mode === 'view' ? t('admin.rfpRequests.drawer.actions.close') : t('admin.rfpRequests.drawer.actions.cancel')}
           </Button>
         </div>
       </SheetContent>

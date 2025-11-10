@@ -72,12 +72,6 @@
     @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 
-  /* Skip link for screen readers */
-  .skip-link {
-    @apply absolute -top-40 left-6 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md;
-    @apply focus:top-6 transition-all duration-300;
-  }
-
   /* Medical UI specific styles */
   .medical-card {
     @apply bg-medical-surface border border-medical-border rounded-lg shadow-medical;

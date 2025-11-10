@@ -22,7 +22,7 @@ async function bulkOperations(request: NextRequest) {
           error: {
             code: 'VALIDATION_ERROR',
             message: 'Invalid bulk operation data',
-            details: validation.error.errors,
+            details: validation.error.issues,
           },
         },
         { status: 400 }
@@ -121,7 +121,7 @@ async function bulkOperations(request: NextRequest) {
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to perform bulk operation',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }

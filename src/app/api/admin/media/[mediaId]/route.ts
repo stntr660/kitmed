@@ -55,7 +55,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: { mediaId
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to delete media',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -126,7 +126,7 @@ async function updateMedia(request: NextRequest, { params }: { params: { mediaId
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to update media',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }

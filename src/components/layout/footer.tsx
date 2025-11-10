@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { FooterLogo } from '@/components/ui/logo';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/types';
 
@@ -92,11 +93,8 @@ export function Footer({ locale, className }: FooterProps) {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-6">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-primary text-white font-bold">
-                K
-              </div>
-              <span className="text-xl font-bold text-primary">KITMED</span>
+            <div className="mb-4">
+              <FooterLogo />
             </div>
             
             <p className="text-sm text-medical-text-secondary mb-6">

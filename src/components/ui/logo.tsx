@@ -34,7 +34,7 @@ export function Logo({
   const src = logoFiles[variant];
 
   return (
-    <div className={cn('flex items-center', className)}>
+    <div className={cn('flex items-center p-2', className)}>
       <Image
         src={src}
         alt="KITMED - Medical Equipment Platform"

@@ -62,14 +62,6 @@ export default async function LocaleLayout({
     <html lang={locale} className="h-full">
       <body className={`${poppins.className} min-h-full bg-medical-bg`}>
         <NextIntlClientProvider messages={messages}>
-          {/* Skip link for accessibility */}
-          <a 
-            href="#main-content" 
-            className="skip-link"
-          >
-            Skip to main content
-          </a>
-          
           {children}
 
           {/* Global Components */}

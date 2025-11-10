@@ -33,7 +33,7 @@ async function getProductMedia(request: NextRequest, { params }: { params: { id:
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to fetch product media',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -143,7 +143,7 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to upload media',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -177,7 +177,7 @@ async function deleteProductMedia(request: NextRequest, { params }: { params: { 
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to delete media',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }

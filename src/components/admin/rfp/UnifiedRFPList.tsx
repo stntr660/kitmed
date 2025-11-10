@@ -312,9 +312,9 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-medium text-gray-900 font-poppins">RFP Requests</h1>
+          <h1 className="text-2xl font-medium text-gray-900 font-poppins">{t('admin.rfpRequests.title')}</h1>
           <p className="mt-2 text-gray-600">
-            Manage customer requests for proposals with unified actions
+            {t('admin.rfpRequests.subtitle')}
           </p>
         </div>
         <div className="flex space-x-3">
@@ -324,7 +324,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             className="flex items-center space-x-2"
           >
             <ArrowDownTrayIcon className="h-5 w-5" />
-            <span>Export</span>
+            <span>{t('admin.rfpRequests.export')}</span>
           </Button>
         </div>
       </div>
@@ -338,7 +338,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 <ClockIcon className="h-6 w-6 text-yellow-600" />
               </div>
               <div className="ml-4">
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Pending</p>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">{t('admin.rfpRequests.statuses.pending')}</p>
                 <p className="text-3xl font-semibold text-gray-900">23</p>
               </div>
             </div>
@@ -352,7 +352,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 <ExclamationCircleIcon className="h-6 w-6 text-blue-600" />
               </div>
               <div className="ml-4">
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Processing</p>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">{t('admin.rfpRequests.statuses.processing')}</p>
                 <p className="text-3xl font-semibold text-gray-900">15</p>
               </div>
             </div>
@@ -366,7 +366,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 <CheckCircleIcon className="h-6 w-6 text-green-600" />
               </div>
               <div className="ml-4">
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Responded</p>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">{t('admin.rfpRequests.statuses.responded')}</p>
                 <p className="text-3xl font-semibold text-gray-900">42</p>
               </div>
             </div>
@@ -380,7 +380,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 <CheckCircleIcon className="h-6 w-6 text-gray-600" />
               </div>
               <div className="ml-4">
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Closed</p>
+                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">{t('admin.rfpRequests.statuses.closed')}</p>
                 <p className="text-3xl font-semibold text-gray-900">128</p>
               </div>
             </div>
@@ -412,7 +412,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                   onClick={() => handleStatusFilter(status)}
                   className="capitalize h-12 px-6"
                 >
-                  {status}
+                  {t(`admin.rfpRequests.statuses.${status}`)}
                 </Button>
               ))}
             </div>
@@ -439,34 +439,34 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('requestNumber')}
                     >
-                      Request #
+                      {t('admin.rfpRequests.table.requestNumber')}
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Customer
+                      {t('admin.rfpRequests.table.customer')}
                     </th>
                     <th 
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
-                      Status
+                      {t('admin.rfpRequests.table.status')}
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Priority
+                      {t('admin.rfpRequests.table.priority')}
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Items
+                      {t('admin.rfpRequests.table.items')}
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Est. Value
+                      {t('admin.rfpRequests.table.estimatedValue')}
                     </th>
                     <th 
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('createdAt')}
                     >
-                      Created
+                      {t('admin.rfpRequests.table.created')}
                     </th>
                     <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {t('admin.rfpRequests.table.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -502,20 +502,20 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                         </td>
                         <td className="px-6 py-4">
                           <Badge variant={getStatusColor(rfp.status)}>
-                            {rfp.status}
+                            {t(`admin.rfpRequests.statuses.${rfp.status}`)}
                           </Badge>
                         </td>
                         <td className="px-6 py-4">
                           <Badge variant={getUrgencyColor(rfp.urgency)}>
-                            {rfp.urgency}
+                            {t(`admin.rfpRequests.urgency.${rfp.urgency}`)}
                           </Badge>
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-900">
                           <div>
-                            <span className="font-medium">{rfp.itemCount}</span> items
+                            <span className="font-medium">{rfp.itemCount}</span> {t(`admin.rfpRequests.items.${rfp.itemCount === 1 ? 'item' : 'items'}`)}
                           </div>
                           <div className="text-xs text-gray-500">
-                            {rfp.totalQuantity} total qty
+                            {rfp.totalQuantity} {t('admin.rfpRequests.items.totalQty')}
                           </div>
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-900">
@@ -563,8 +563,8 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
               <div className="h-16 w-16 bg-gray-100 rounded-xl mx-auto mb-6 flex items-center justify-center">
                 <DocumentTextIcon className="h-8 w-8 text-gray-400" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No RFP requests found</h3>
-              <p className="text-gray-600 mb-6">RFP requests will appear here when customers submit them.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('admin.rfpRequests.noRequestsTitle')}</h3>
+              <p className="text-gray-600 mb-6">{t('admin.rfpRequests.noRequestsDescription')}</p>
             </div>
           )}
         </CardContent>
@@ -574,9 +574,9 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       {rfpRequests && rfpRequests.totalPages > 1 && (
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-700 font-medium">
-            Showing {((rfpRequests.page - 1) * rfpRequests.pageSize) + 1} to{' '}
-            {Math.min(rfpRequests.page * rfpRequests.pageSize, rfpRequests.total)} of{' '}
-            {rfpRequests.total} results
+            {t('admin.rfpRequests.pagination.showing')} {((rfpRequests.page - 1) * rfpRequests.pageSize) + 1} {t('admin.rfpRequests.pagination.to')}{' '}
+            {Math.min(rfpRequests.page * rfpRequests.pageSize, rfpRequests.total)} {t('admin.rfpRequests.pagination.of')}{' '}
+            {rfpRequests.total} {t('admin.rfpRequests.pagination.results')}
           </p>
           
           <div className="flex space-x-2">

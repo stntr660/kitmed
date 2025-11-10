@@ -148,6 +148,36 @@ export interface RFPResponse {
   createdBy: string;
 }
 
+// Partner Management
+export interface Partner {
+  id: string;
+  slug: string;
+  nom: {
+    fr: string;
+    en?: string;
+  };
+  description?: {
+    fr?: string;
+    en?: string;
+  };
+  websiteUrl?: string;
+  logoUrl?: string;
+  status: 'active' | 'inactive';
+  featured: boolean;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+  translations?: PartnerTranslation[];
+}
+
+export interface PartnerTranslation {
+  id: string;
+  partnerId: string;
+  languageCode: 'fr' | 'en';
+  name: string;
+  description?: string;
+}
+
 export interface RFPDocument {
   id: string;
   name: string;
@@ -227,10 +257,64 @@ export interface User extends BaseEntity {
   email: string;
   firstName: string;
   lastName: string;
-  role: 'admin' | 'editor' | 'viewer';
+  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  status: 'active' | 'inactive' | 'pending' | 'suspended';
   isActive: boolean;
   lastLoginAt?: Date;
+  
+  // Contact information
+  phone?: string;
+  department?: string;
+  avatarUrl?: string;
+  
+  // Security features
+  twoFactorEnabled: boolean;
+  loginAttempts: number;
+  lastLoginIP?: string;
+  accountLockedUntil?: Date;
+  passwordLastChanged?: Date;
+  mustChangePassword?: boolean;
+  
+  // Activity tracking
+  sessionCount?: number;
+  totalLoginTime?: number; // in minutes
+  lastActiveAt?: Date;
+  
+  // Permissions
+  permissions?: UserPermission[];
+  customPermissions?: UserPermission[];
+  
+  // Preferences
   preferences?: UserPreferences;
+}
+
+export interface UserPermission {
+  resource: string;
+  actions: ('create' | 'read' | 'update' | 'delete' | 'export' | 'import')[];
+  conditions?: Record<string, any>; // For conditional permissions
+}
+
+export interface UserActivity extends BaseEntity {
+  userId: string;
+  action: string;
+  resource?: string;
+  resourceId?: string;
+  details?: Record<string, any>;
+  ipAddress?: string;
+  userAgent?: string;
+  sessionId?: string;
+}
+
+export interface UserSession extends BaseEntity {
+  userId: string;
+  sessionToken: string;
+  ipAddress: string;
+  userAgent: string;
+  loginAt: Date;
+  lastActiveAt: Date;
+  logoutAt?: Date;
+  isActive: boolean;
+  duration?: number; // in minutes
 }
 
 export interface UserPreferences {

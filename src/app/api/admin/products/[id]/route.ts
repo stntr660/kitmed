@@ -75,7 +75,7 @@ async function getProduct(request: NextRequest, { params }: { params: { id: stri
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to fetch product',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -118,7 +118,7 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
           error: {
             code: 'VALIDATION_ERROR',
             message: 'Invalid product data',
-            details: validation.error.errors,
+            details: validation.error.issues,
           },
         },
         { status: 400 }
@@ -249,7 +249,7 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to update product',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
@@ -300,7 +300,7 @@ async function deleteProduct(request: NextRequest, { params }: { params: { id: s
         error: {
           code: 'INTERNAL_ERROR',
           message: 'Failed to delete product',
-          details: error.message,
+          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }

@@ -15,7 +15,7 @@ const csvProductSchema = z.object({
   ficheTechnique_en: z.string().optional().default(''),
   pdfBrochureUrl: z.string().url().optional().or(z.literal('')),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
-  featured: z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1').default('false'),
+  featured: z.preprocess((val) => String(val || 'false'), z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')),
 });
 
 interface ImportResult {
@@ -140,7 +140,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         });
       } catch (error) {
         if (error instanceof z.ZodError) {
-          error.errors.forEach((err) => {
+          error.issues.forEach((err) => {
             result.errors.push({
               row: rowNumber,
               field: err.path.join('.'),
