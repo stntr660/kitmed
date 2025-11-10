@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createIntlMiddleware } from 'next-intl/middleware';
+import createMiddleware from 'next-intl/middleware';
 
 // Import maintenance middleware
 import { maintenanceMiddleware } from './src/middleware/maintenance';
@@ -9,7 +9,7 @@ const locales = ['en', 'fr'];
 const defaultLocale = 'fr';
 
 // Create internationalization middleware
-const intlMiddleware = createIntlMiddleware({
+const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
   localePrefix: 'as-needed'

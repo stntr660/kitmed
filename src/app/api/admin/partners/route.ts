@@ -51,7 +51,7 @@ async function getPartners(request: NextRequest) {
       where.status = { in: filters.status };
     }
 
-    // Type filter - temporary solution using name pattern matching
+    // Type filter - SQLite compatible pattern matching
     if (filters.type === 'manufacturer') {
       where.AND = where.AND || [];
       where.AND.push({
@@ -60,16 +60,22 @@ async function getPartners(request: NextRequest) {
             translations: {
               some: {
                 OR: [
-                  { name: { contains: 'Manufacturer', mode: 'insensitive' } },
-                  { name: { contains: 'Fabricant', mode: 'insensitive' } },
-                  { description: { contains: 'Manufacturer', mode: 'insensitive' } },
-                  { description: { contains: 'Fabricant', mode: 'insensitive' } },
+                  { name: { contains: 'Manufacturer' } },
+                  { name: { contains: 'manufacturer' } },
+                  { name: { contains: 'Fabricant' } },
+                  { name: { contains: 'fabricant' } },
+                  { description: { contains: 'Manufacturer' } },
+                  { description: { contains: 'manufacturer' } },
+                  { description: { contains: 'Fabricant' } },
+                  { description: { contains: 'fabricant' } },
                 ]
               }
             }
           },
-          { name: { contains: 'Manufacturer', mode: 'insensitive' } },
-          { name: { contains: 'Fabricant', mode: 'insensitive' } },
+          { name: { contains: 'Manufacturer' } },
+          { name: { contains: 'manufacturer' } },
+          { name: { contains: 'Fabricant' } },
+          { name: { contains: 'fabricant' } },
         ]
       });
     }

@@ -4,6 +4,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Add required environment variable for next-intl
+  env: {
+    _next_intl_trailing_slash: 'false'
+  },
   experimental: {
     webpackBuildWorker: true,
   },

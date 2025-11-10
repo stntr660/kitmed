@@ -1,0 +1,49 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]: K
+      - heading "KITMED Admin" [level=2] [ref=e9]
+      - paragraph [ref=e10]: Sign in to your admin account
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - img "KITMED - Medical Equipment Platform" [ref=e15]
+        - heading "Panneau d'Administration" [level=2] [ref=e16]
+        - paragraph [ref=e17]: Se connecter
+      - generic [ref=e18]:
+        - heading "Se connecter" [level=3] [ref=e20]
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - generic [ref=e24]: Adresse email
+            - textbox "Adresse email" [ref=e25]
+          - generic [ref=e26]:
+            - generic [ref=e27]: Mot de passe
+            - generic [ref=e28]:
+              - textbox "Mot de passe" [ref=e29]
+              - button [ref=e30] [cursor=pointer]:
+                - img [ref=e31]
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - checkbox "Se souvenir de moi" [ref=e36]
+              - generic [ref=e37]: Se souvenir de moi
+            - button "Mot de passe oublié ?" [ref=e39] [cursor=pointer]
+          - button "Se connecter" [ref=e40] [cursor=pointer]
+      - generic [ref=e42]:
+        - heading "Mode de Développement" [level=3] [ref=e43]
+        - generic [ref=e44]:
+          - paragraph [ref=e45]:
+            - strong [ref=e46]: "Admin:"
+            - text: admin@kitmed.ma / admin123
+          - paragraph [ref=e47]:
+            - strong [ref=e48]: "Editor:"
+            - text: editor@kitmed.ma / editor123
+          - paragraph [ref=e49]:
+            - strong [ref=e50]: "Viewer:"
+            - text: viewer@kitmed.ma / viewer123
+      - paragraph [ref=e52]: © 2024 KITMED. All rights reserved.
+  - region "Notifications (F8)":
+    - list
+  - alert [ref=e53]
+```
