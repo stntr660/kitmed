@@ -1,0 +1,98 @@
+# Dependency directories
+node_modules
+npm-debug.log*
+
+# Build outputs
+.next
+out
+build
+
+# Environment files
+.env*
+!.env.example
+
+# Database files (we'll use volume mounts)
+prisma/dev.db*
+prisma/prisma/
+
+# Test files
+__tests__
+*.test.*
+*.spec.*
+test-results
+coverage
+playwright-report
+e2e/test-results
+
+# Development files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories
+jspm_packages
+
+# Temporary folders
+tmp
+temp
+
+# IDE files
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+docs/
+ADMIN_SETUP.md
+ARCHITECTURE.md
+BRANDING_INTEGRATION.md
+BULK_UPLOAD_STRATEGY.md
+LOGIN_CREDENTIALS.md
+MAINTENANCE_MODE.md
+README.md
+SUMMARY.md
+TESTING_GUIDE.md
+
+# Docker files (avoid recursion)
+Dockerfile*
+docker-compose*
+
+# Scripts and test files
+scripts/
+add-test-manufacturers.js
+comprehensive-test-manual.js
+
+# Performance and analysis files
+lighthouserc.js
+performance-optimization.md
+risk-assessment-mitigation.md
+security-framework.md
+
+# Uploads (will be volume mounted)
+public/uploads
+
+# Test configurations and cookies
+cookies.txt
+jest.setup.js

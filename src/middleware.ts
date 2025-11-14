@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
@@ -16,12 +16,44 @@ const intlMiddleware = createMiddleware({
 });
 
 export default function middleware(request: NextRequest) {
-  // Skip middleware for API routes and static files
+  // Skip middleware for static files and assets first
   if (
-    request.nextUrl.pathname.startsWith('/api') ||
     request.nextUrl.pathname.startsWith('/_next') ||
-    request.nextUrl.pathname.includes('/.')
+    request.nextUrl.pathname.includes('.')
   ) {
+    return;
+  }
+
+  // Check maintenance mode - block everything except health check
+  if (process.env.MAINTENANCE_MODE === 'true') {
+    // Allow health check API for monitoring
+    if (request.nextUrl.pathname === '/api/health') {
+      return;
+    }
+    
+    // Block all other API routes during maintenance
+    if (request.nextUrl.pathname.startsWith('/api')) {
+      return new Response('Service temporarily unavailable', { 
+        status: 503,
+        headers: {
+          'Retry-After': '3600' // 1 hour
+        }
+      });
+    }
+    
+    // Allow access to the maintenance page itself and its assets
+    if (request.nextUrl.pathname === '/fr/maintenance') {
+      return;
+    }
+    
+    // For all other routes, rewrite to maintenance page (keeps original URL)
+    const url = request.nextUrl.clone();
+    url.pathname = '/fr/maintenance';
+    return NextResponse.rewrite(url);
+  }
+
+  // Skip other API routes from normal middleware processing
+  if (request.nextUrl.pathname.startsWith('/api')) {
     return;
   }
 

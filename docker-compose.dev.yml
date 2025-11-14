@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # KITMED Development App
+  kitmed-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: kitmed-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Database
+      - DATABASE_URL=file:/app/data/dev.db
+      
+      # Next.js
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=dev-secret-key
+      
+      # Application
+      - NODE_ENV=development
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - MAINTENANCE_MODE=false
+      
+      # File uploads
+      - UPLOAD_DIR=/app/public/uploads
+      - MAX_FILE_SIZE=20971520  # 20MB
+    
+    volumes:
+      # Mount source code for hot reload
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+      
+      # Persistent data
+      - ./docker/data:/app/data
+      - ./public/uploads:/app/public/uploads
+      
+    networks:
+      - kitmed-dev-network
+      
+    command: npm run dev
+
+  # Database viewer (optional)
+  kitmed-prisma-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: kitmed-prisma-studio
+    ports:
+      - "5555:5555"
+    environment:
+      - DATABASE_URL=file:/app/data/dev.db
+    volumes:
+      - .:/app
+      - ./docker/data:/app/data
+    networks:
+      - kitmed-dev-network
+    command: npx prisma studio --hostname 0.0.0.0 --port 5555
+    depends_on:
+      - kitmed-dev
+    profiles:
+      - tools  # Start only when tools profile is active
+
+# Custom network
+networks:
+  kitmed-dev-network:
+    driver: bridge
