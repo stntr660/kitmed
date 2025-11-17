@@ -69,7 +69,7 @@ async function getProducts(request: NextRequest) {
               slug: true,
               translations: {
                 select: {
-                  nom: true,
+                  name: true,
                   languageCode: true
                 }
               }
@@ -136,8 +136,8 @@ async function getProducts(request: NextRequest) {
       },
       category: product.category ? {
         id: product.category.id,
-        name: product.category.translations.find(t => t.languageCode === 'fr')?.nom || 
-              product.category.translations[0]?.nom || 
+        name: product.category.translations.find(t => t.languageCode === 'fr')?.name || 
+              product.category.translations[0]?.name || 
               'Uncategorized',
         slug: product.category.slug
       } : null,

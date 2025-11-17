@@ -12,16 +12,23 @@ const nextConfig = {
     webpackBuildWorker: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com', 'localhost'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
       },
       {
         protocol: 'http',
         hostname: 'localhost',
         port: '3001',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
       },
     ],
     formats: ['image/webp', 'image/avif'],
