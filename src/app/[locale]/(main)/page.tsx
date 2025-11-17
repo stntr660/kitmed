@@ -22,11 +22,6 @@ export default function HomePage() {
         
         <div className="relative container mx-auto px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-5xl mx-auto">
-            <div className="flex justify-center mb-8">
-              <Badge className="px-6 py-3 text-sm font-semibold bg-primary-500 text-white border-0 shadow-xl">
-                🏥 Plateforme Médicale Premium KITMED
-              </Badge>
-            </div>
             
             <h1 className="text-center mb-8">
               <span className="block text-5xl lg:text-7xl font-extrabold text-white leading-tight">
@@ -43,7 +38,7 @@ export default function HomePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-              <Button size="lg" className="min-w-[240px] h-14 text-lg font-semibold bg-primary-600 hover:bg-primary-700 shadow-2xl transition-all duration-300" asChild>
+              <Button size="lg" className="min-w-[240px] h-14 text-lg font-semibold bg-primary text-white hover:bg-gray-600 shadow-2xl transition-all duration-300" asChild>
                 <Link href="/products" className="flex items-center">
                   Explorer le Catalogue
                   <ArrowRight className="ml-3 h-6 w-6" />
@@ -59,7 +54,7 @@ export default function HomePage() {
                 { number: '24/7', label: 'Support Technique' }
               ].map((stat, index) => (
                 <div key={index} className="group">
-                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2 group-hover:text-primary-300 transition-colors">
+                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2 group-hover:text-gray-100 transition-colors">
                     {stat.number}
                   </div>
                   <div className="text-slate-400 font-medium text-sm lg:text-base">
@@ -76,7 +71,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-32 bg-slate-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 bg-primary-100 text-primary-800 border-primary-200">
+            <Badge className="mb-6 px-4 py-2 bg-blue-50 text-blue-800 border-blue-200">
               Excellence & Innovation
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
@@ -95,35 +90,35 @@ export default function HomePage() {
                 icon: Shield,
                 title: 'Qualité Médicale Premium',
                 description: 'Équipements certifiés aux plus hauts standards médicaux internationaux',
-                color: 'text-primary-600',
-                bgColor: 'bg-primary-50'
+                color: 'text-primary',
+                bgColor: 'bg-gray-50'
               },
               {
                 icon: Award,
                 title: 'Excellence Reconnue',
                 description: 'Partenaires certifiés et équipements primés par les professionnels',
-                color: 'text-amber-600',
-                bgColor: 'bg-amber-50'
+                color: 'text-primary',
+                bgColor: 'bg-gray-50'
               },
               {
                 icon: Users,
                 title: 'Support Expert 24/7',
                 description: 'Assistance technique spécialisée par des experts médicaux',
-                color: 'text-emerald-600',
-                bgColor: 'bg-emerald-50'
+                color: 'text-primary',
+                bgColor: 'bg-gray-50'
               },
               {
                 icon: Globe,
                 title: 'Réseau Mondial',
                 description: 'Accès aux meilleures technologies médicales du monde entier',
-                color: 'text-violet-600',
-                bgColor: 'bg-violet-50'
+                color: 'text-primary',
+                bgColor: 'bg-gray-50'
               }
             ].map((feature, index) => (
               <div key={index} className="group relative">
                 <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/80 backdrop-blur-sm">
                   <CardHeader className="text-center pb-4">
-                    <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${feature.bgColor} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${feature.bgColor} group-hover:scale-110 transition-transform duration-300`}>
                       <feature.icon className={`h-8 w-8 ${feature.color}`} />
                     </div>
                     <CardTitle className="text-xl font-bold text-slate-900 mb-3">
@@ -220,7 +215,7 @@ export default function HomePage() {
                   </div>
                   
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
+                    <CardTitle className="text-xl font-bold text-white group-hover:text-gray-100 transition-colors">
                       {category.name}
                     </CardTitle>
                     <CardDescription className="text-slate-300 leading-relaxed">
@@ -232,7 +227,7 @@ export default function HomePage() {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="w-full text-primary-300 hover:text-white hover:bg-primary-600/20 border border-primary-400/30 hover:border-primary-400 transition-all"
+                      className="w-full text-gray-300 hover:text-white hover:bg-gray-600/20 border border-gray-400/30 hover:border-gray-400 transition-all"
                       asChild
                     >
                       <Link href={`/products/category/${category.name.toLowerCase()}`} className="flex items-center justify-center">
@@ -247,7 +242,7 @@ export default function HomePage() {
           </div>
           
           <div className="mt-16 text-center">
-            <Button size="lg" variant="outline" className="min-w-[200px] h-12 border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300" asChild>
+            <Button size="lg" variant="outline" className="min-w-[200px] h-12 border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300" asChild>
               <Link href="/products/categories" className="flex items-center">
                 Voir Toutes les Catégories
                 <ArrowRight className="ml-3 h-5 w-5" />
@@ -261,7 +256,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 bg-primary-100 text-primary-800 border-primary-200">
+            <Badge className="mb-6 px-4 py-2 bg-blue-50 text-blue-800 border-blue-200">
               Confiance & Excellence
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
@@ -322,7 +317,7 @@ export default function HomePage() {
               { number: "24/7", label: "Support Technique" }
             ].map((stat, index) => (
               <div key={index} className="group">
-                <div className="text-4xl lg:text-5xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">{stat.number}</div>
+                <div className="text-4xl lg:text-5xl font-bold text-slate-900 mb-3 group-hover:text-gray-600 transition-colors">{stat.number}</div>
                 <div className="text-slate-600 font-semibold">{stat.label}</div>
               </div>
             ))}
@@ -349,14 +344,14 @@ export default function HomePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button size="lg" variant="secondary" className="min-w-[240px] h-14 text-lg font-semibold bg-white text-primary-600 hover:bg-primary-50 shadow-2xl transition-all duration-300 transform hover:scale-105" asChild>
+              <Button size="lg" variant="secondary" className="min-w-[240px] h-14 text-lg font-semibold bg-white text-gray-600 hover:bg-gray-50 shadow-2xl transition-all duration-300 transform hover:scale-105" asChild>
                 <Link href="/rfp/new" className="flex items-center">
-                  Démarrer une Demande RFP
+                  Demande de Devis
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Link>
               </Button>
               
-              <Button size="lg" variant="outline" className="min-w-[240px] h-14 text-lg font-semibold border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300" asChild>
+              <Button size="lg" variant="outline" className="min-w-[240px] h-14 text-lg font-semibold border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300" asChild>
                 <Link href="/partners" className="flex items-center">
                   Nos Partenaires Premium
                   <Users className="ml-3 h-6 w-6" />

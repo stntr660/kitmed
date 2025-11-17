@@ -11,11 +11,14 @@ import {
   Twitter, 
   Linkedin, 
   Youtube,
-  ExternalLink
+  ExternalLink,
+  Building2,
+  Shield,
+  CheckCircle,
+  Printer
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { FooterLogo } from '@/components/ui/logo';
 import { cn } from '@/lib/utils';
@@ -64,75 +67,23 @@ export function Footer({ locale, className }: FooterProps) {
   const t = useTranslations('footer');
   const tCommon = useTranslations('common');
   
-  const [email, setEmail] = React.useState('');
-  const [isSubscribing, setIsSubscribing] = React.useState(false);
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsSubscribing(true);
-    
-    try {
-      // Newsletter subscription logic would go here
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-      setEmail('');
-      // Show success message
-    } catch (error) {
-      // Handle error
-      console.error('Newsletter subscription failed:', error);
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
 
   return (
     <footer className={cn('bg-gray-50 border-t', className)}>
       {/* Main Footer Content */}
       <div className="container py-12 lg:py-16">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-6">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
+          {/* Company Logo */}
+          <div className="lg:col-span-1">
             <div className="mb-4">
               <FooterLogo />
             </div>
-            
             <p className="text-sm text-medical-text-secondary mb-6">
-              {t('description')}
+              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique.
             </p>
 
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-sm">
-                <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0" />
-                <span className="text-medical-text-secondary">
-                  {t('address')}
-                </span>
-              </div>
-              
-              <div className="flex items-center space-x-3 text-sm">
-                <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0" />
-                <a 
-                  href="tel:+33123456789" 
-                  className="text-medical-text-secondary hover:text-primary transition-colors"
-                >
-                  +33 1 23 45 67 89
-                </a>
-              </div>
-              
-              <div className="flex items-center space-x-3 text-sm">
-                <Mail className="h-4 w-4 text-medical-text-muted flex-shrink-0" />
-                <a 
-                  href="mailto:contact@kitmed.com" 
-                  className="text-medical-text-secondary hover:text-primary transition-colors"
-                >
-                  contact@kitmed.com
-                </a>
-              </div>
-            </div>
-
             {/* Social Links */}
-            <div className="flex items-center space-x-3 mt-6">
+            <div className="flex items-center space-x-3">
               {socialLinks.map((social) => (
                 <Button
                   key={social.name}
@@ -154,10 +105,94 @@ export function Footer({ locale, className }: FooterProps) {
             </div>
           </div>
 
+          {/* Direction */}
+          <div className="lg:col-span-1">
+            <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
+              <Building2 className="h-4 w-4 mr-2" />
+              Direction
+            </h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  20, rue Lalande, Quartier des Hôpitaux<br />
+                  Casablanca - Maroc
+                </span>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="tel:+212522860366" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 03 66
+                  </a>
+                  <a href="tel:+212522860431" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 04 31
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  +212 522 86 04 16
+                </span>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Mail className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="mailto:INFO@KITMED.MA" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    INFO@KITMED.MA
+                  </a>
+                  <a href="mailto:EXPORT@KITMED.MA" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    EXPORT@KITMED.MA
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ShowRoom */}
+          <div className="lg:col-span-1">
+            <h3 className="text-sm font-semibold text-medical-heading mb-4">
+              ShowRoom
+            </h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  33, rue Lahcen El Aarjounen<br />
+                  Quartier des Hôpitaux<br />
+                  Casablanca - Maroc
+                </span>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="tel:+212522863427" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 34 27
+                  </a>
+                  <a href="tel:+212522860856" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 08 56
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  +212 522 86 04 16
+                </span>
+              </div>
+            </div>
+          </div>
+
           {/* Footer Links */}
-          <div className="lg:col-span-3">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {Object.entries(footerLinks).map(([section, links]) => (
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-8">
+              {Object.entries(footerLinks).slice(0, 2).map(([section, links]) => (
                 <div key={section}>
                   <h3 className="text-sm font-semibold text-medical-heading mb-3">
                     {t(`sections.${section}`)}
@@ -167,7 +202,7 @@ export function Footer({ locale, className }: FooterProps) {
                       <li key={link.name}>
                         <Link
                           href={link.href}
-                          className="text-sm text-medical-text-secondary hover:text-primary transition-colors"
+                          className="text-sm text-medical-text-secondary hover:text-gray-600 transition-colors"
                         >
                           {t(`links.${link.name}`)}
                         </Link>
@@ -179,78 +214,42 @@ export function Footer({ locale, className }: FooterProps) {
             </div>
           </div>
 
-          {/* Newsletter */}
-          <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-medical-heading mb-3">
-              {t('newsletter.title')}
-            </h3>
-            <p className="text-sm text-medical-text-secondary mb-4">
-              {t('newsletter.description')}
-            </p>
-            
-            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-              <Input
-                type="email"
-                placeholder={t('newsletter.placeholder')}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                aria-label={t('newsletter.placeholder')}
-              />
-              <Button
-                type="submit"
-                variant="medical"
-                size="sm"
-                className="w-full"
-                loading={isSubscribing}
-                loadingText={tCommon('subscribing')}
-              >
-                {tCommon('subscribe')}
-              </Button>
-            </form>
-
-            <p className="text-xs text-medical-text-muted mt-2">
-              {t('newsletter.privacy')}
-            </p>
-          </div>
         </div>
 
         <Separator className="my-8" />
 
         {/* Certifications & Standards */}
         <div className="mb-8">
-          <h3 className="text-sm font-semibold text-medical-heading mb-4">
-            {t('certifications.title')}
+          <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
+            <Shield className="h-4 w-4 mr-2" />
+            Certifications et Normes
           </h3>
-          <div className="flex flex-wrap items-center gap-6">
-            {/* ISO Certification */}
+          <div className="flex flex-wrap items-center gap-4">
+            {/* Ministry Authorization */}
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded bg-gray-200 flex items-center justify-center">
-                <span className="text-xs font-bold">ISO</span>
+              <CheckCircle className="h-4 w-4 text-primary" />
+              <div>
+                <div className="text-xs font-semibold text-gray-900">Autorisé Ministère Santé</div>
+                <div className="text-xs text-gray-600">Maroc</div>
               </div>
-              <span className="text-xs text-medical-text-secondary">
-                ISO 13485:2016
-              </span>
             </div>
 
-            {/* CE Marking */}
+            {/* Import License */}
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded bg-gray-200 flex items-center justify-center">
-                <span className="text-xs font-bold">CE</span>
+              <Shield className="h-4 w-4 text-gray-600" />
+              <div>
+                <div className="text-xs font-semibold text-gray-900">Licence Import</div>
+                <div className="text-xs text-gray-600">Équipements Médicaux</div>
               </div>
-              <span className="text-xs text-medical-text-secondary">
-                CE Marking
-              </span>
             </div>
 
-            {/* FDA */}
+            {/* Quality Service */}
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded bg-gray-200 flex items-center justify-center">
-                <span className="text-xs font-bold">FDA</span>
+              <CheckCircle className="h-4 w-4 text-primary" />
+              <div>
+                <div className="text-xs font-semibold text-gray-900">Service Qualité</div>
+                <div className="text-xs text-gray-600">Maintenance & SAV</div>
               </div>
-              <span className="text-xs text-medical-text-secondary">
-                FDA Registered
-              </span>
             </div>
           </div>
         </div>
@@ -267,37 +266,25 @@ export function Footer({ locale, className }: FooterProps) {
             <div className="flex items-center space-x-4">
               <Link
                 href="/legal/privacy"
-                className="text-xs text-medical-text-muted hover:text-primary transition-colors"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
               >
                 {t('links.privacy')}
               </Link>
               <Link
                 href="/legal/terms"
-                className="text-xs text-medical-text-muted hover:text-primary transition-colors"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
               >
                 {t('links.terms')}
               </Link>
               <Link
                 href="/legal/cookies"
-                className="text-xs text-medical-text-muted hover:text-primary transition-colors"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
               >
                 {t('links.cookies')}
               </Link>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs text-medical-text-muted">
-            <span>{t('poweredBy')}</span>
-            <Link
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-1 hover:text-primary transition-colors"
-            >
-              <span>Next.js</span>
-              <ExternalLink className="h-3 w-3" />
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

@@ -19,18 +19,18 @@ module.exports = {
       colors: {
         // KITMED Brand Colors
         primary: {
-          DEFAULT: "#1C75BC", // KITMED Blue
+          DEFAULT: "#1969A3", // KITMED Blue - rgb(25, 105, 163)
           50: "#EBF5FF",
           100: "#D6EBFE",
           200: "#B5DDFE",
           300: "#83C8FD",
           400: "#48ADFA",
-          500: "#1C75BC", // Main brand blue
-          600: "#1969A3",
-          700: "#175584",
-          800: "#18466D",
-          900: "#1A3B5A",
-          950: "#0F1C2E",
+          500: "#1969A3", // Main brand blue - rgb(25, 105, 163)
+          600: "#155A8A",
+          700: "#124B73",
+          800: "#0F3D5E",
+          900: "#0D314C",
+          950: "#07192A",
         },
         accent: {
           DEFAULT: "#ED1C24", // KITMED Red

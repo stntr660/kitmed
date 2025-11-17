@@ -10,8 +10,8 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 200 98% 39%; /* KITMED Blue #1C75BC */
-    --primary-foreground: 210 40% 98%;
+    --primary: 203 75% 39%; /* KITMED Blue #1969A3 - rgb(25, 105, 163) */
+    --primary-foreground: 0 0% 100%; /* Pure white for better contrast */
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96%;
@@ -33,7 +33,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 200 98% 39%;
+    --primary: 203 75% 39%; /* KITMED Blue #1969A3 - rgb(25, 105, 163) */
     --primary-foreground: 222.2 84% 4.9%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -73,7 +73,7 @@
   }
   
   .bg-medical-blue {
-    background-color: #1C75BC;
+    background-color: #1969A3; /* rgb(25, 105, 163) */
   }
   
   .bg-medical-red {
@@ -81,7 +81,7 @@
   }
   
   .text-medical-blue {
-    color: #1C75BC;
+    color: #1969A3; /* rgb(25, 105, 163) */
   }
   
   .text-medical-red {

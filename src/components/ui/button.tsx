@@ -9,19 +9,19 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-white hover:bg-gray-600",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-white hover:bg-gray-600",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background hover:bg-gray-100 hover:text-gray-900",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary text-gray-900 hover:bg-gray-200",
+        ghost: "hover:bg-gray-100 hover:text-gray-900",
+        link: "text-primary underline-offset-4 hover:underline hover:text-gray-600",
         // Medical-specific variants
-        medical: "medical-button-primary",
-        "medical-secondary": "medical-button-secondary",
-        accent: "bg-accent text-white hover:bg-accent/90 focus:ring-accent",
+        medical: "bg-primary text-white hover:bg-gray-600",
+        "medical-secondary": "bg-gray-100 text-gray-900 hover:bg-gray-200",
+        accent: "bg-accent text-white hover:bg-gray-600 focus:ring-gray-300",
       },
       size: {
         default: "h-10 px-4 py-2",
