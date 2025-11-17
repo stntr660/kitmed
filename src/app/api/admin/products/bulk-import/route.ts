@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
+import { writeFile, mkdir } from 'fs/promises';
+import { join } from 'path';
+import { existsSync } from 'fs';
 
 const csvProductSchema = z.object({
   referenceFournisseur: z.string().min(1, 'Référence fournisseur is required'),
@@ -13,7 +16,8 @@ const csvProductSchema = z.object({
   description_en: z.string().optional().default(''),
   ficheTechnique_fr: z.string().optional().default(''),
   ficheTechnique_en: z.string().optional().default(''),
-  pdfBrochureUrl: z.string().url().optional().or(z.literal('')),
+  pdfBrochureUrl: z.string().optional().default(''),
+  imageUrls: z.string().optional().default(''), // Comma-separated URLs
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.preprocess((val) => String(val || 'false'), z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')),
 });
@@ -26,7 +30,45 @@ interface ImportResult {
     field?: string;
     message: string;
   }>;
+  filesDownloaded?: number;
   data?: any[];
+}
+
+// File download utility
+async function downloadAndSaveFile(url: string, fileName: string, subDir: string): Promise<string | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const buffer = await response.arrayBuffer();
+    const uint8Array = new Uint8Array(buffer);
+    
+    // Create uploads directory structure
+    const uploadsDir = join(process.cwd(), 'public', 'uploads', subDir);
+    if (!existsSync(uploadsDir)) {
+      await mkdir(uploadsDir, { recursive: true });
+    }
+    
+    const filePath = join(uploadsDir, fileName);
+    await writeFile(filePath, uint8Array);
+    
+    return `/uploads/${subDir}/${fileName}`;
+  } catch (error) {
+    console.error(`Failed to download ${url}:`, error);
+    return null;
+  }
+}
+
+// Generate unique filename
+function generateFileName(originalUrl: string, productRef: string, index: number = 0): string {
+  const urlParts = originalUrl.split('/');
+  const originalName = urlParts[urlParts.length - 1];
+  const extension = originalName.includes('.') ? originalName.split('.').pop() : 'jpg';
+  const timestamp = Date.now();
+  const suffix = index > 0 ? `-${index}` : '';
+  return `${productRef}-${timestamp}${suffix}.${extension}`;
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
@@ -95,6 +137,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       success: false,
       imported: 0,
       errors: [],
+      filesDownloaded: 0,
     };
 
     const validProducts = [];
@@ -166,13 +209,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
 
+        // Download PDF brochure if URL provided
+        let localPdfUrl = null;
+        if (productData.pdfBrochureUrl && productData.pdfBrochureUrl.startsWith('http')) {
+          const pdfFileName = generateFileName(productData.pdfBrochureUrl, productData.referenceFournisseur);
+          localPdfUrl = await downloadAndSaveFile(productData.pdfBrochureUrl, pdfFileName, 'brochures');
+          if (localPdfUrl) {
+            result.filesDownloaded!++;
+          } else {
+            result.errors.push({
+              row: productData.rowNumber,
+              field: 'pdfBrochureUrl',
+              message: `Failed to download PDF: ${productData.pdfBrochureUrl}`,
+            });
+          }
+        }
+
+        // Create product first
         const product = await prisma.product.create({
           data: {
             referenceFournisseur: productData.referenceFournisseur,
             constructeur: productData.constructeur,
             categoryId: productData.categoryId,
             slug,
-            pdfBrochureUrl: productData.pdfBrochureUrl || null,
+            pdfBrochureUrl: localPdfUrl || productData.pdfBrochureUrl || null,
             status: productData.status,
             isFeatured: productData.featured,
             translations: {
@@ -197,6 +257,50 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           },
         });
 
+        // Download and attach images if URLs provided
+        if (productData.imageUrls && productData.imageUrls.trim()) {
+          const imageUrlList = productData.imageUrls.split(',').map(url => url.trim()).filter(Boolean);
+          const mediaItems = [];
+          
+          for (let i = 0; i < imageUrlList.length; i++) {
+            const imageUrl = imageUrlList[i];
+            if (imageUrl.startsWith('http')) {
+              const imageFileName = generateFileName(imageUrl, productData.referenceFournisseur, i);
+              const localImageUrl = await downloadAndSaveFile(imageUrl, imageFileName, 'products');
+              
+              if (localImageUrl) {
+                try {
+                  const mediaItem = await prisma.media.create({
+                    data: {
+                      productId: product.id,
+                      type: 'image',
+                      url: localImageUrl,
+                      sortOrder: i,
+                      isPrimary: i === 0, // First image is primary
+                      altText: `${productData.nom.fr} - Image ${i + 1}`,
+                      title: productData.nom.fr,
+                    },
+                  });
+                  mediaItems.push(mediaItem);
+                  result.filesDownloaded!++;
+                } catch (mediaError) {
+                  result.errors.push({
+                    row: productData.rowNumber,
+                    field: 'imageUrls',
+                    message: `Failed to save image metadata for: ${imageUrl}`,
+                  });
+                }
+              } else {
+                result.errors.push({
+                  row: productData.rowNumber,
+                  field: 'imageUrls',
+                  message: `Failed to download image: ${imageUrl}`,
+                });
+              }
+            }
+          }
+        }
+
         createdProducts.push(product);
         result.imported++;
       } catch (error) {
@@ -212,7 +316,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     result.data = createdProducts;
 
     return NextResponse.json({
-      message: `Successfully imported ${result.imported} products${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}`,
+      message: `Successfully imported ${result.imported} products and downloaded ${result.filesDownloaded} files${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}`,
       data: result,
     });
 

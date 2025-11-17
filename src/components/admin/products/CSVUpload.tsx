@@ -19,6 +19,7 @@ export interface ImportResult {
   success: boolean;
   imported: number;
   errors: ImportError[];
+  filesDownloaded?: number;
   data?: any[];
 }
 
@@ -120,6 +121,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
       'ficheTechnique_fr',
       'ficheTechnique_en',
       'pdfBrochureUrl',
+      'imageUrls',
       'status',
       'featured'
     ];
@@ -135,6 +137,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
       'Écran 15 pouces, résolution 1920x1080, connectivité Wi-Fi',
       '15-inch display, 1920x1080 resolution, Wi-Fi connectivity',
       'https://example.com/brochure.pdf',
+      'https://example.com/image1.jpg,https://example.com/image2.jpg',
       'active',
       'true'
     ];
@@ -219,6 +222,11 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                 <li>{t('product.form.bulkImport.columns.nom_en')}</li>
                 <li>{t('product.form.bulkImport.columns.status')}</li>
               </ul>
+              <p className="text-xs text-blue-600 font-medium mt-2">📁 File Downloads:</p>
+              <ul className="list-disc list-inside text-xs space-y-1">
+                <li><strong>pdfBrochureUrl:</strong> PDF brochure URL (will be downloaded to server)</li>
+                <li><strong>imageUrls:</strong> Comma-separated image URLs (will be downloaded to server)</li>
+              </ul>
             </div>
           </AlertDescription>
         </Alert>
@@ -291,6 +299,9 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                   <div className="space-y-2">
                     <p className="font-medium">{t('product.form.bulkImport.success')}</p>
                     <p>{t('product.form.bulkImport.results.importedCount')} {result.imported}</p>
+                    {result.filesDownloaded !== undefined && result.filesDownloaded > 0 && (
+                      <p className="text-sm">📁 Files downloaded and stored locally: {result.filesDownloaded}</p>
+                    )}
                   </div>
                 </AlertDescription>
               </Alert>

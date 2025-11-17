@@ -63,6 +63,30 @@ async function getProducts(request: NextRequest) {
         where,
         include: {
           translations: true,
+          category: {
+            select: {
+              id: true,
+              slug: true,
+              translations: {
+                select: {
+                  nom: true,
+                  languageCode: true
+                }
+              }
+            }
+          },
+          media: {
+            orderBy: {
+              isPrimary: 'desc'
+            },
+            take: 5, // Limit to first 5 media files
+            select: {
+              id: true,
+              url: true,
+              type: true,
+              isPrimary: true
+            }
+          },
           _count: {
             select: {
               media: true
@@ -91,6 +115,12 @@ async function getProducts(request: NextRequest) {
       name: product.translations.find(t => t.languageCode === 'fr')?.nom || 
             product.translations[0]?.nom || 
             'Unnamed Product',
+      // Add shortDescription for compatibility
+      shortDescription: product.translations.find(t => t.languageCode === 'fr')?.description?.substring(0, 150) || 
+                       product.translations[0]?.description?.substring(0, 150) || 
+                       '',
+      // Add sku field for compatibility  
+      sku: product.referenceFournisseur,
       // Create nom object for new structure
       nom: {
         fr: product.translations.find(t => t.languageCode === 'fr')?.nom || '',
@@ -104,7 +134,15 @@ async function getProducts(request: NextRequest) {
         fr: product.translations.find(t => t.languageCode === 'fr')?.ficheTechnique || '',
         en: product.translations.find(t => t.languageCode === 'en')?.ficheTechnique || '',
       },
+      category: product.category ? {
+        id: product.category.id,
+        name: product.category.translations.find(t => t.languageCode === 'fr')?.nom || 
+              product.category.translations[0]?.nom || 
+              'Uncategorized',
+        slug: product.category.slug
+      } : null,
       _count: product._count,
+      media: product.media,
       translations: product.translations,
     }));
 

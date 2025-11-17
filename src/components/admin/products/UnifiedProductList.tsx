@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import {
   PlusIcon,
   MagnifyingGlassIcon,
@@ -11,6 +12,7 @@ import {
   TrashIcon,
   EyeIcon,
   SparklesIcon,
+  PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -35,6 +37,12 @@ interface ProductWithDetails extends Product {
     media: number;
     rfpItems: number;
   };
+  media?: Array<{
+    id: string;
+    url: string;
+    type: string;
+    isPrimary: boolean;
+  }>;
 }
 
 interface UnifiedProductListProps {
@@ -475,10 +483,29 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-4">
-                          <div className="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center">
-                            <span className="text-sm font-medium text-primary-600">
-                              {product.name.charAt(0)}
-                            </span>
+                          <div className="h-12 w-12 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                            {product.media && product.media.length > 0 ? (
+                              <Image
+                                src={product.media.find(m => m.isPrimary)?.url || product.media[0]?.url}
+                                alt={product.name}
+                                width={48}
+                                height={48}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.style.display = 'none';
+                                  target.parentElement!.innerHTML = `
+                                    <div class="w-full h-full bg-primary-100 flex items-center justify-center">
+                                      <span class="text-sm font-medium text-primary-600">${product.name.charAt(0)}</span>
+                                    </div>
+                                  `;
+                                }}
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                                <PhotoIcon className="h-6 w-6 text-gray-400" />
+                              </div>
+                            )}
                           </div>
                           <div className="min-w-0">
                             <div className="text-sm font-medium text-gray-900">
