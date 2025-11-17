@@ -1,11 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Simple maintenance mode check
-// In production, this could check an environment variable, file, or external service
+// Only activate in production on main branch
 function isMaintenanceModeEnabled(): boolean {
-  // Check environment variable for maintenance mode
+  // Only enable maintenance mode in production environment
+  const isProduction = process.env.NODE_ENV === 'production';
   const maintenanceMode = process.env.MAINTENANCE_MODE;
-  return maintenanceMode === 'true' || maintenanceMode === '1';
+  
+  // For production: check if maintenance mode is enabled
+  // For development: only if explicitly set via env variable
+  if (isProduction) {
+    // In production, default to maintenance mode for main branch
+    return maintenanceMode !== 'false';
+  } else {
+    // In development, only enable if explicitly set
+    return maintenanceMode === 'true' || maintenanceMode === '1';
+  }
 }
 
 export async function maintenanceMiddleware(request: NextRequest) {
