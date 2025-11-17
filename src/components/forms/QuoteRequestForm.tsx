@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   Dialog,
@@ -24,7 +24,10 @@ import {
   Mail,
   Phone,
   User,
-  Clock
+  Clock,
+  Plus,
+  X,
+  Search
 } from 'lucide-react';
 
 interface Product {
@@ -51,10 +54,16 @@ interface QuoteFormData {
   companyAddress: string;
   contactPerson: string;
   message: string;
-  urgencyLevel: 'low' | 'normal' | 'high' | 'urgent';
   preferredContactMethod: 'email' | 'phone' | 'whatsapp';
-  quantity: number;
   specialRequirements: string;
+}
+
+interface QuoteItem {
+  productId: string;
+  productName: string;
+  productRef: string;
+  quantity: number;
+  specialRequirements?: string;
 }
 
 export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFormProps) {
@@ -72,11 +81,88 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     companyAddress: '',
     contactPerson: '',
     message: '',
-    urgencyLevel: 'normal',
     preferredContactMethod: 'email',
-    quantity: 1,
     specialRequirements: '',
   });
+
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
+  const [availableProducts, setAvailableProducts] = useState<Product[]>([]);
+  const [productSearchQuery, setProductSearchQuery] = useState('');
+  const [showProductSearch, setShowProductSearch] = useState(false);
+
+  // Initialize with the provided product
+  useEffect(() => {
+    if (product && quoteItems.length === 0) {
+      const initialItem: QuoteItem = {
+        productId: product.id,
+        productName: getProductName(product),
+        productRef: product.referenceFournisseur,
+        quantity: 1,
+        specialRequirements: ''
+      };
+      setQuoteItems([initialItem]);
+    }
+  }, [product]);
+
+  // Fetch available products for search
+  const searchProducts = async (query: string) => {
+    if (query.length < 2) {
+      setAvailableProducts([]);
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/products?query=${encodeURIComponent(query)}&pageSize=20`);
+      if (response.ok) {
+        const data = await response.json();
+        setAvailableProducts(data.data.items || []);
+      }
+    } catch (error) {
+      console.error('Failed to search products:', error);
+    }
+  };
+
+  const addProductToQuote = (selectedProduct: Product) => {
+    const existingItem = quoteItems.find(item => item.productId === selectedProduct.id);
+    if (existingItem) {
+      // Increase quantity if product already exists
+      setQuoteItems(items => 
+        items.map(item => 
+          item.productId === selectedProduct.id 
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // Add new product
+      const newItem: QuoteItem = {
+        productId: selectedProduct.id,
+        productName: getProductName(selectedProduct),
+        productRef: selectedProduct.referenceFournisseur,
+        quantity: 1,
+        specialRequirements: ''
+      };
+      setQuoteItems(items => [...items, newItem]);
+    }
+    setProductSearchQuery('');
+    setShowProductSearch(false);
+    setAvailableProducts([]);
+  };
+
+  const removeProductFromQuote = (productId: string) => {
+    setQuoteItems(items => items.filter(item => item.productId !== productId));
+  };
+
+  const updateItemQuantity = (productId: string, quantity: number) => {
+    if (quantity < 1) return;
+    setQuoteItems(items => 
+      items.map(item => 
+        item.productId === productId 
+          ? { ...item, quantity }
+          : item
+      )
+    );
+  };
 
   const handleInputChange = (field: keyof QuoteFormData, value: string | number) => {
     setFormData(prev => ({
@@ -110,13 +196,12 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
         companyAddress: formData.companyAddress || null,
         contactPerson: formData.contactPerson || null,
         message: formData.message || null,
-        urgencyLevel: formData.urgencyLevel,
         preferredContactMethod: formData.preferredContactMethod,
-        items: product ? [{
-          productId: product.id,
-          quantity: formData.quantity,
-          specialRequirements: formData.specialRequirements || null
-        }] : []
+        items: quoteItems.map(item => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          specialRequirements: item.specialRequirements || null
+        }))
       };
 
       const response = await fetch('/api/rfp-requests', {
@@ -147,11 +232,16 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
           companyAddress: '',
           contactPerson: '',
           message: '',
-          urgencyLevel: 'normal',
           preferredContactMethod: 'email',
-          quantity: 1,
           specialRequirements: '',
         });
+        setQuoteItems(product ? [{
+          productId: product.id,
+          productName: getProductName(product),
+          productRef: product.referenceFournisseur,
+          quantity: 1,
+          specialRequirements: ''
+        }] : []);
         onSuccess?.();
       }, 2000);
 
@@ -162,12 +252,6 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     }
   };
 
-  const urgencyOptions = [
-    { value: 'low', label: 'Faible', color: 'bg-gray-100 text-gray-800' },
-    { value: 'normal', label: 'Normal', color: 'bg-blue-100 text-blue-800' },
-    { value: 'high', label: 'Élevé', color: 'bg-amber-100 text-amber-800' },
-    { value: 'urgent', label: 'Urgent', color: 'bg-red-100 text-red-800' },
-  ];
 
   const contactOptions = [
     { value: 'email', label: 'Email', icon: Mail },
@@ -210,39 +294,112 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
               </DialogDescription>
             </DialogHeader>
 
-            {/* Product Summary */}
-            {product && (
-              <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                <h4 className="font-semibold text-gray-900 mb-1">{getProductName(product)}</h4>
-                <p className="text-sm text-gray-600 mb-3">{product.constructeur} - Réf: {product.referenceFournisseur}</p>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-sm text-gray-700 mb-1 block">Quantité</label>
+            {/* Products in Quote */}
+            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-gray-900">Produits ({quoteItems.length})</h4>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setShowProductSearch(true)}
+                  className="flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Ajouter un produit
+                </Button>
+              </div>
+
+              {/* Product Search */}
+              {showProductSearch && (
+                <div className="mb-4 p-3 bg-white rounded-lg border">
+                  <div className="relative">
+                    <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <Input
-                      type="number"
-                      min="1"
-                      value={formData.quantity}
-                      onChange={(e) => handleInputChange('quantity', parseInt(e.target.value) || 1)}
-                      className="h-9"
+                      placeholder="Rechercher un produit..."
+                      value={productSearchQuery}
+                      onChange={(e) => {
+                        setProductSearchQuery(e.target.value);
+                        searchProducts(e.target.value);
+                      }}
+                      className="pl-10"
                     />
                   </div>
-                  <div>
-                    <label className="text-sm text-gray-700 mb-1 block">Urgence</label>
-                    <select
-                      value={formData.urgencyLevel}
-                      onChange={(e) => handleInputChange('urgencyLevel', e.target.value)}
-                      className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                    >
-                      {urgencyOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
+                  
+                  {availableProducts.length > 0 && (
+                    <div className="mt-2 max-h-40 overflow-y-auto border rounded-md">
+                      {availableProducts.map((prod) => (
+                        <button
+                          key={prod.id}
+                          type="button"
+                          onClick={() => addProductToQuote(prod)}
+                          className="w-full text-left p-2 hover:bg-gray-50 border-b last:border-b-0"
+                        >
+                          <div className="text-sm font-medium">{getProductName(prod)}</div>
+                          <div className="text-xs text-gray-500">Réf: {prod.referenceFournisseur}</div>
+                        </button>
                       ))}
-                    </select>
+                    </div>
+                  )}
+                  
+                  <div className="mt-2 flex justify-end">
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => {
+                        setShowProductSearch(false);
+                        setProductSearchQuery('');
+                        setAvailableProducts([]);
+                      }}
+                    >
+                      Annuler
+                    </Button>
                   </div>
                 </div>
+              )}
+
+              {/* Quote Items List */}
+              <div className="space-y-3">
+                {quoteItems.map((item) => (
+                  <div key={item.productId} className="bg-white p-3 rounded-lg border">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <h5 className="font-medium text-sm">{item.productName}</h5>
+                        <p className="text-xs text-gray-500">Réf: {item.productRef}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
+                          <label className="text-xs text-gray-600">Qté:</label>
+                          <Input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) => updateItemQuantity(item.productId, parseInt(e.target.value) || 1)}
+                            className="h-8 w-16 text-xs"
+                          />
+                        </div>
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => removeProductFromQuote(item.productId)}
+                          className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                
+                {quoteItems.length === 0 && (
+                  <div className="text-center py-4 text-gray-500 text-sm">
+                    Aucun produit sélectionné. Cliquez sur "Ajouter un produit" pour commencer.
+                  </div>
+                )}
               </div>
-            )}
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
