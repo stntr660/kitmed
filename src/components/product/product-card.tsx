@@ -92,9 +92,9 @@ export function ProductCard({
         variant="medical"
       >
         <Link 
-          href={`/products/${product.slug}`}
+          href={`/${locale}/products/${product.slug}`}
           className="block"
-          aria-label={`${t('viewProduct')} ${product.name[locale]}`}
+          aria-label={`${t('viewProduct')} ${product.nom ? product.nom[locale] : 'Product'}`}
         >
           {/* Image Section */}
           <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -123,7 +123,7 @@ export function ProductCard({
               >
                 <Image
                   src={primaryImage.url}
-                  alt={primaryImage.alt[locale] || product.name[locale]}
+                  alt={primaryImage.alt ? primaryImage.alt[locale] : (product.nom ? product.nom[locale] : 'Product image')}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -168,20 +168,20 @@ export function ProductCard({
           <CardContent className="p-4">
             {/* Category & Manufacturer */}
             <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-medical-text-muted">
-              <span>{product.category.name[locale]}</span>
+              <span>{product.category?.name ? product.category.name[locale] : 'Category'}</span>
               <span>•</span>
-              <span>{product.manufacturer.name}</span>
+              <span>{product.manufacturer?.name || product.constructeur || 'Manufacturer'}</span>
             </div>
 
             {/* Product Name */}
             <h3 className="mb-2 line-clamp-2 text-base font-semibold text-medical-heading">
-              {product.name[locale]}
+              {product.nom ? product.nom[locale] : 'Product name'}
             </h3>
 
             {/* Short Description */}
             {product.shortDescription && (
               <p className="mb-3 line-clamp-2 text-sm text-medical-body">
-                {product.shortDescription[locale]}
+                {product.shortDescription ? product.shortDescription[locale] : ''}
               </p>
             )}
 
@@ -189,14 +189,23 @@ export function ProductCard({
             <Badge 
               variant="medical" 
               size="sm"
-              className="mb-3"
+              className="mb-3 flex items-center gap-2"
               style={{ 
                 backgroundColor: `${product.discipline.color}20`,
                 color: product.discipline.color,
                 borderColor: `${product.discipline.color}40`
               }}
             >
-              {product.discipline.name[locale]}
+              {product.discipline?.imageUrl && (
+                <Image
+                  src={product.discipline.imageUrl}
+                  alt={product.discipline?.name ? product.discipline.name[locale] : 'Discipline'}
+                  width={16}
+                  height={16}
+                  className="rounded-full object-cover"
+                />
+              )}
+              {product.discipline?.name ? product.discipline.name[locale] : 'Discipline'}
             </Badge>
 
             {/* Price */}

@@ -11,7 +11,6 @@ import {
   Search, 
   Filter, 
   ArrowRight, 
-  Star, 
   Heart,
   Download,
   Eye,
@@ -33,17 +32,23 @@ interface Product {
   status: string;
   isFeatured: boolean;
   createdAt: string;
+  name: string;
+  description: string;
+  shortDescription: string;
   category?: {
     id: string;
     name: string;
     slug: string;
+    imageUrl: string | null;
   };
-  translations: Array<{
-    languageCode: string;
-    nom: string;
-    description: string | null;
-    ficheTechnique: string | null;
-  }>;
+  manufacturer: {
+    name: string;
+  };
+  discipline: {
+    name: string;
+    color: string;
+    imageUrl: string | null;
+  };
   media: Array<{
     id: string;
     type: string;
@@ -64,13 +69,27 @@ interface ProductsResponse {
 export default function ProductsPage() {
   const t = useTranslations('common');
   const [products, setProducts] = useState<ProductsResponse | null>(null);
+  const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     loadProducts();
+    loadCategories();
   }, [searchQuery, selectedCategory]);
+
+  const loadCategories = async () => {
+    try {
+      const response = await fetch('/api/categories?includeProductCount=true&locale=fr');
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data.data || []);
+      }
+    } catch (error) {
+      console.error('Failed to load categories:', error);
+    }
+  };
 
   const loadProducts = async () => {
     try {
@@ -82,7 +101,7 @@ export default function ProductsPage() {
       if (searchQuery) params.append('query', searchQuery);
       if (selectedCategory) params.append('category', selectedCategory);
 
-      const response = await fetch(`/api/admin/products?${params}`);
+      const response = await fetch(`/api/products?${params}&locale=fr`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data.data);
@@ -94,28 +113,18 @@ export default function ProductsPage() {
     }
   };
 
-  const getProductName = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
-    return translation?.nom || product.referenceFournisseur;
+  const getProductName = (product: Product) => {
+    return product.name || product.referenceFournisseur;
   };
 
-  const getProductDescription = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
-    return translation?.description;
+  const getProductDescription = (product: Product) => {
+    return product.description || product.shortDescription;
   };
 
   const getPrimaryImage = (product: Product) => {
     return product.media?.find(m => m.isPrimary && m.type === 'image');
   };
 
-  const categories = [
-    { id: 'cardiology', name: 'Cardiologie', color: '#1C75BC' },
-    { id: 'radiology', name: 'Radiologie', color: '#ED1C24' },
-    { id: 'surgery', name: 'Chirurgie', color: '#2563EB' },
-    { id: 'laboratory', name: 'Laboratoire', color: '#059669' },
-    { id: 'emergency', name: 'Urgences', color: '#DC2626' },
-    { id: 'icu', name: 'Soins Intensifs', color: '#7C3AED' },
-  ];
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -223,7 +232,7 @@ export default function ProductsPage() {
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.items.map((product) => {
                   const primaryImage = getPrimaryImage(product);
-                  const categoryInfo = categories.find(c => c.id === product.category?.slug);
+                  const categoryInfo = product.category;
                   
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -265,9 +274,9 @@ export default function ProductsPage() {
                             <Badge 
                               variant="secondary" 
                               className="text-xs border-0"
-                              style={{ backgroundColor: categoryInfo.color + '20', color: categoryInfo.color }}
+                              style={{ backgroundColor: '#3B82F6' + '20', color: '#3B82F6' }}
                             >
-                              {categoryInfo.name}
+                              {categoryInfo.name || 'Category'}
                             </Badge>
                           )}
                         </div>
@@ -277,7 +286,7 @@ export default function ProductsPage() {
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
                             <div className="text-sm text-slate-500 font-medium mb-1">
-                              {product.constructeur}
+                              {product.manufacturer.name}
                             </div>
                             <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
                               {getProductName(product)}
@@ -298,12 +307,6 @@ export default function ProductsPage() {
                           <div className="text-xs text-slate-500 font-mono">
                             Réf: {product.referenceFournisseur}
                           </div>
-                          <div className="flex items-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3 h-3 fill-amber-300 text-amber-300" />
-                            ))}
-                            <span className="text-xs text-slate-500 ml-1">(4.8)</span>
-                          </div>
                         </div>
                         
                         <div className="space-y-2">
@@ -322,8 +325,13 @@ export default function ProductsPage() {
                               product={{
                                 id: product.id,
                                 referenceFournisseur: product.referenceFournisseur,
-                                constructeur: product.constructeur,
-                                translations: product.translations
+                                constructeur: product.manufacturer.name,
+                                translations: [{
+                                  languageCode: 'fr',
+                                  nom: product.name,
+                                  description: product.description,
+                                  ficheTechnique: null
+                                }]
                               }}
                               trigger={
                                 <Button 
@@ -417,13 +425,27 @@ export default function ProductsPage() {
                 variant="ghost"
                 size="lg"
                 onClick={() => setSelectedCategory(category.id)}
-                className="h-20 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white hover:text-white transition-all duration-300 group"
+                className="h-48 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white hover:text-white transition-all duration-300 group"
               >
                 <div className="flex items-center space-x-4 w-full">
-                  <div 
-                    className="w-4 h-4 rounded-full group-hover:scale-125 transition-transform duration-300"
-                    style={{ backgroundColor: category.color }}
-                  />
+                  {category.imageUrl ? (
+                    <div className="w-40 h-40 rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20">
+                      <Image
+                        src={category.imageUrl}
+                        alt={category.name}
+                        width={160}
+                        height={160}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div 
+                      className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center"
+                      style={{ backgroundColor: '#3B82F6' }}
+                    >
+                      <div className="w-5 h-5 bg-white/30 rounded-full"></div>
+                    </div>
+                  )}
                   <span className="text-lg font-semibold">{category.name}</span>
                   <ArrowRight className="h-5 w-5 ml-auto group-hover:translate-x-1 transition-transform duration-300" />
                 </div>

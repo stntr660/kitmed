@@ -47,7 +47,12 @@
     "viewAllNotifications": "View all notifications",
     "yourProfile": "Your Profile",
     "settings": "Settings",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "reference": "Reference",
+    "manufacturer": "Manufacturer",
+    "quantity": "Quantity",
+    "productImage": "Product image",
+    "name": "Name"
   },
   "navigation": {
     "products": "Products",
@@ -330,13 +335,18 @@
       "statuses": {
         "pending": "Pending",
         "processing": "Processing",
+        "reviewing": "Reviewing",
+        "quoted": "Quoted",
+        "completed": "Completed",
         "responded": "Responded",
         "closed": "Closed"
       },
       "urgency": {
-        "high": "High",
+        "low": "Low",
+        "normal": "Normal",
         "medium": "Medium",
-        "low": "Low"
+        "high": "High",
+        "urgent": "Urgent"
       },
       "items": {
         "item": "item",
@@ -382,7 +392,9 @@
           "fullName": "Full Name",
           "position": "Position",
           "emailAddress": "Email Address",
-          "phoneNumber": "Phone Number"
+          "phoneNumber": "Phone Number",
+          "quantity": "Quantity",
+          "specialRequirements": "Special Requirements"
         },
         "actions": {
           "saveDraft": "Save Draft",
@@ -392,11 +404,15 @@
           "markClosed": "Close",
           "close": "Close",
           "cancel": "Cancel",
-          "viewItems": "View Items"
+          "viewItems": "View Items",
+          "markAsSent": "Mark as Sent",
+          "complete": "Complete"
         },
         "messages": {
           "itemsPlaceholder": "Request items will be loaded and managed here",
-          "priority": "priority"
+          "priority": "priority",
+          "noProducts": "No products requested",
+          "noProductsInRequest": "No products requested in this request"
         }
       }
     },
@@ -490,9 +506,7 @@
       "rfpRequests": "RFP Requests",
       "partners": "Partners",
       "categories": "Categories",
-      "content": "Content",
       "users": "Users",
-      "analytics": "Analytics",
       "settings": "Settings",
       "adminDashboard": "Admin Dashboard",
       "signOut": "Sign out",
@@ -1298,6 +1312,26 @@
     "title": "Professional Medical Equipment Solutions",
     "subtitle": "Discover cutting-edge medical equipment from trusted manufacturers. Request proposals, compare solutions, and get expert support for your healthcare facility.",
     "browseProducts": "Browse Products",
+    "banner": {
+      "tagline": "OUR HIGH-END TREATMENT EQUIPMENT",
+      "watchDemo": "Watch Demo",
+      "stats": {
+        "installations": "500+",
+        "installationsLabel": "Installations",
+        "products": "2000+",
+        "productsLabel": "Products",
+        "support": "24/7",
+        "supportLabel": "Support"
+      },
+      "certification": {
+        "ce": "CE Certified",
+        "iso": "ISO 13485 Standard"
+      },
+      "specs": {
+        "premium": "Premium Series",
+        "technology": "Advanced Technology"
+      }
+    },
     "getConsultation": "Get Expert Consultation",
     "whyChooseUs": "Why Choose KITMED?",
     "whyChooseUsSubtitle": "We provide comprehensive medical equipment solutions with unmatched quality and support",
@@ -1307,7 +1341,90 @@
     "readyToUpgrade": "Ready to Upgrade Your Medical Equipment?",
     "readyToUpgradeSubtitle": "Start building your request for proposal today and get personalized recommendations from our experts.",
     "startRFP": "Start RFP Request",
-    "viewPartners": "View Our Partners"
+    "viewPartners": "View Our Partners",
+    "staticBanner": {
+      "tagline": "OUR HIGH-END TREATMENT EQUIPMENT",
+      "premiumLine": "premiumLine",
+      "description": "Unique training features and ergonomic functionalities for ophthalmic surgery",
+      "discoverProducts": "Discover Products",
+      "watchDemo": "Watch Demo",
+      "altText": "KitMed Premium Medical Equipment"
+    },
+    "sections": {
+      "concepts": "CONCEPTS",
+      "innovation": "Innovation & Precision",
+      "innovationDescription": "Unique training features and ergonomic functionalities to optimize your medical interventions",
+      "specifications": "SPECIFICATIONS",
+      "performance": "Performance & Reliability",
+      "performanceDescription": "Equipment designed to meet the strictest requirements of professional medical environments",
+      "products": "PRODUCTS",
+      "productsTitle": "Complete Range",
+      "productsDescription": "Medical solutions adapted to each specialty, designed to optimize your clinical performance",
+      "references": "REFERENCES",
+      "referencesTitle": "Professional Trust",
+      "referencesDescription": "Over 500 healthcare facilities trust us for their medical equipment",
+      "service": "SERVICE",
+      "consultation": "Request a Consultation",
+      "consultationDescription": "Our team of experts accompanies you in choosing and implementing your medical equipment"
+    },
+    "features": {
+      "0": {
+        "title": "Advanced Technology",
+        "description": "Integration of cutting-edge digital systems for optimal performance"
+      },
+      "1": {
+        "title": "Professional Ergonomics",
+        "description": "User-centered design to reduce fatigue and improve precision"
+      },
+      "2": {
+        "title": "Certified Quality",
+        "description": "Strict compliance with CE and FDA standards for maximum safety"
+      }
+    },
+    "specifications": {
+      "certification": "Certification",
+      "certificationValue": "CE • FDA • ISO",
+      "warranty": "Warranty",
+      "warrantyValue": "3 years manufacturer",
+      "training": "Training",
+      "trainingValue": "Included",
+      "demoVideo": "Demo video"
+    },
+    "references": {
+      "stats": {
+        "0": {
+          "number": "500+",
+          "label": "Equipped facilities"
+        },
+        "1": {
+          "number": "98%",
+          "label": "Customer satisfaction"
+        },
+        "2": {
+          "number": "50+",
+          "label": "Partner manufacturers"
+        },
+        "3": {
+          "number": "24/7",
+          "label": "Technical support"
+        }
+      },
+      "testimonial": {
+        "quote": "KitMed provided us with exceptional equipment that transformed our cardiology department. The quality and support are incomparable.",
+        "author": "Dr. Amina Zogagh",
+        "position": "Chief of Cardiology Department",
+        "organization": "Mohammed VI University Hospital"
+      }
+    },
+    "cta": {
+      "contact": "Get in Touch",
+      "requestQuote": "Request Quote"
+    },
+    "categories": {
+      "exploreProducts": "Explore products",
+      "viewAllProducts": "View All Products",
+      "fallbackDescription": "Medical solutions for"
+    }
   },
   "errors": {
     "notFound": "Page not found",

@@ -253,19 +253,25 @@ model PageTranslation {
 }
 
 model Banner {
-  id         String    @id @default(uuid())
-  title      String
-  subtitle   String?
-  imageUrl   String?   @map("image_url")
-  ctaText    String?   @map("cta_text")
-  ctaUrl     String?   @map("cta_url")
-  position   String    @default("homepage")
-  sortOrder  Int       @default(0) @map("sort_order")
-  isActive   Boolean   @default(true) @map("is_active")
-  startDate  DateTime? @map("start_date")
-  endDate    DateTime? @map("end_date")
-  createdAt  DateTime  @default(now()) @map("created_at")
-  updatedAt  DateTime  @updatedAt @map("updated_at")
+  id              String    @id @default(uuid())
+  title           String
+  subtitle        String?
+  description     String?
+  imageUrl        String?   @map("image_url")
+  backgroundUrl   String?   @map("background_url")
+  ctaText         String?   @map("cta_text")
+  ctaUrl          String?   @map("cta_url")
+  ctaStyle        String    @default("primary") @map("cta_style") // primary, secondary, outline
+  position        String    @default("homepage")
+  layout          String    @default("split") // split, centered, full-width
+  textAlign       String    @default("left") @map("text_align") // left, center, right
+  overlayOpacity  Float     @default(0.9) @map("overlay_opacity")
+  sortOrder       Int       @default(0) @map("sort_order")
+  isActive        Boolean   @default(true) @map("is_active")
+  startDate       DateTime? @map("start_date")
+  endDate         DateTime? @map("end_date")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
 
   // Relations
   translations BannerTranslation[]
@@ -279,6 +285,7 @@ model BannerTranslation {
   languageCode String  @map("language_code")
   title        String
   subtitle     String?
+  description  String?
   ctaText      String? @map("cta_text")
 
   // Relations

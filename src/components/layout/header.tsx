@@ -43,45 +43,45 @@ interface HeaderProps {
   className?: string;
 }
 
-const navigation = [
+const getNavigation = (locale: string) => [
   {
     name: 'products',
-    href: '/products',
+    href: `/${locale}/products`,
     hasSubmenu: true,
     submenu: [
-      { name: 'allProducts', href: '/products' },
-      { name: 'byDiscipline', href: '/products/disciplines' },
-      { name: 'byManufacturer', href: '/products/manufacturers' },
-      { name: 'featured', href: '/products/featured' },
+      { name: 'allProducts', href: `/${locale}/products` },
+      { name: 'byDiscipline', href: `/${locale}/products/disciplines` },
+      { name: 'byManufacturer', href: `/${locale}/products/manufacturers` },
+      { name: 'featured', href: `/${locale}/products/featured` },
     ],
   },
   {
     name: 'solutions',
-    href: '/solutions',
+    href: `/${locale}/solutions`,
     hasSubmenu: true,
     submenu: [
-      { name: 'hospitalSolutions', href: '/solutions/hospital' },
-      { name: 'clinicSolutions', href: '/solutions/clinic' },
-      { name: 'labSolutions', href: '/solutions/laboratory' },
+      { name: 'hospitalSolutions', href: `/${locale}/solutions/hospital` },
+      { name: 'clinicSolutions', href: `/${locale}/solutions/clinic` },
+      { name: 'labSolutions', href: `/${locale}/solutions/laboratory` },
     ],
   },
   {
     name: 'partners',
-    href: '/partners',
+    href: `/${locale}/partners`,
   },
   {
     name: 'about',
-    href: '/about',
+    href: `/${locale}/about`,
     hasSubmenu: true,
     submenu: [
-      { name: 'company', href: '/about' },
-      { name: 'team', href: '/about/team' },
-      { name: 'news', href: '/about/news' },
+      { name: 'company', href: `/${locale}/about` },
+      { name: 'team', href: `/${locale}/about/team` },
+      { name: 'news', href: `/${locale}/about/news` },
     ],
   },
   {
     name: 'contact',
-    href: '/contact',
+    href: `/${locale}/contact`,
   },
 ];
 
@@ -90,6 +90,8 @@ export function Header({ locale, className }: HeaderProps) {
   const tCommon = useTranslations('common');
   const pathname = usePathname();
   const router = useRouter();
+  
+  const navigation = getNavigation(locale);
   
   const { itemCount, toggleCart } = useRFPStore();
   const { query, setQuery } = useSearchStore();
@@ -101,10 +103,10 @@ export function Header({ locale, className }: HeaderProps) {
   const debouncedSearch = React.useMemo(
     () => debounce((searchQuery: string) => {
       if (searchQuery.trim()) {
-        router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+        router.push(`/${locale}/search?q=${encodeURIComponent(searchQuery)}`);
       }
     }, 300),
-    [router]
+    [router, locale]
   );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,7 +118,7 @@ export function Header({ locale, className }: HeaderProps) {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query)}`);
+      router.push(`/${locale}/search?q=${encodeURIComponent(query)}`);
     }
   };
 
@@ -128,8 +130,8 @@ export function Header({ locale, className }: HeaderProps) {
   const cartItemCount = itemCount();
 
   return (
-    <header className={cn('sticky top-0 z-50 w-full border-b border-gray-100 bg-white/98 backdrop-blur supports-[backdrop-filter]:bg-white/95', className)}>
-      <div className="container flex h-14 items-center justify-between">
+    <header className={cn('sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 shadow-sm', className)}>
+      <div className="container flex h-16 items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <div className="flex items-center">
           <Link 
@@ -150,8 +152,8 @@ export function Header({ locale, className }: HeaderProps) {
                   <>
                     <NavigationMenuTrigger
                       className={cn(
-                        'h-auto px-3 py-2 text-sm font-medium bg-transparent border-0 text-gray-700 hover:text-gray-900 data-[state=open]:text-gray-900',
-                        pathname.startsWith(item.href) && 'text-primary'
+                        'h-auto px-4 py-2 text-sm font-medium bg-transparent border-0 text-gray-600 hover:text-gray-900 data-[state=open]:text-gray-900 transition-colors duration-200 uppercase tracking-wide',
+                        pathname.startsWith(item.href) && 'text-primary font-semibold'
                       )}
                     >
                       {t(item.name)}
@@ -182,8 +184,8 @@ export function Header({ locale, className }: HeaderProps) {
                   <Link 
                     href={item.href}
                     className={cn(
-                      'inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors',
-                      pathname === item.href && 'text-primary'
+                      'inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 uppercase tracking-wide',
+                      pathname === item.href && 'text-primary font-semibold'
                     )}
                   >
                     {t(item.name)}
@@ -195,7 +197,7 @@ export function Header({ locale, className }: HeaderProps) {
         </NavigationMenu>
 
         {/* Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-md mx-8">
+        <div className="hidden lg:flex flex-1 max-w-sm mx-8">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
@@ -206,8 +208,8 @@ export function Header({ locale, className }: HeaderProps) {
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
               className={cn(
-                'w-full h-9 pl-10 pr-4 text-sm bg-gray-50 border-0 rounded-full transition-all duration-200 focus:outline-none focus:bg-white focus:shadow-sm',
-                searchFocused && 'ring-1 ring-gray-300'
+                'w-full h-10 pl-10 pr-4 text-sm bg-gray-50/80 border border-gray-200/50 rounded-md transition-all duration-200 focus:outline-none focus:bg-white focus:border-gray-300 focus:shadow-sm',
+                searchFocused && 'ring-1 ring-primary/20'
               )}
               aria-label={tCommon('searchProducts')}
             />
@@ -215,33 +217,24 @@ export function Header({ locale, className }: HeaderProps) {
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           {/* Search Button (Mobile) */}
           <button
-            className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="lg:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
             aria-label={tCommon('search')}
           >
             <Search className="h-5 w-5" />
           </button>
 
-          {/* Wishlist */}
-          <Link 
-            href="/wishlist"
-            className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-            aria-label={tCommon('wishlist')}
-          >
-            <Heart className="h-5 w-5" />
-          </Link>
-
           {/* RFP Cart */}
           <button
             onClick={toggleCart}
-            className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="relative p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
             aria-label={`${tCommon('rfpCart')}${cartItemCount > 0 ? ` (${cartItemCount} ${tCommon('items')})` : ''}`}
           >
             <ShoppingCart className="h-5 w-5" />
             {cartItemCount > 0 && (
-              <span className="absolute -right-1 -top-1 h-5 w-5 bg-primary text-white text-xs rounded-full flex items-center justify-center">
+              <span className="absolute -right-0.5 -top-0.5 h-5 w-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium">
                 {cartItemCount > 99 ? '99+' : cartItemCount}
               </span>
             )}
@@ -251,18 +244,20 @@ export function Header({ locale, className }: HeaderProps) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button 
-                className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                className="hidden md:flex p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
                 aria-label={tCommon('changeLanguage')}
               >
-                <Globe className="h-5 w-5" />
+                <span className="text-sm font-medium uppercase">
+                  {locale}
+                </span>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="border-gray-200">
+            <DropdownMenuContent align="end" className="border-gray-200/50 shadow-lg">
               <DropdownMenuItem 
                 onClick={() => switchLocale('en')}
                 className={cn(
-                  'text-sm cursor-pointer',
-                  locale === 'en' && 'bg-gray-100'
+                  'text-sm cursor-pointer hover:bg-gray-50',
+                  locale === 'en' && 'bg-gray-100 font-medium'
                 )}
               >
                 English
@@ -270,8 +265,8 @@ export function Header({ locale, className }: HeaderProps) {
               <DropdownMenuItem 
                 onClick={() => switchLocale('fr')}
                 className={cn(
-                  'text-sm cursor-pointer',
-                  locale === 'fr' && 'bg-gray-100'
+                  'text-sm cursor-pointer hover:bg-gray-50',
+                  locale === 'fr' && 'bg-gray-100 font-medium'
                 )}
               >
                 Français
@@ -283,22 +278,22 @@ export function Header({ locale, className }: HeaderProps) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button 
-                className="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
                 aria-label={tCommon('userMenu')}
               >
                 <User className="h-5 w-5" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="border-gray-200">
+            <DropdownMenuContent align="end" className="border-gray-200/50 shadow-lg w-48">
               <DropdownMenuItem asChild>
-                <Link href="/account" className="text-sm cursor-pointer">{tCommon('myAccount')}</Link>
+                <Link href="/account" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('myAccount')}</Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/rfp/history" className="text-sm cursor-pointer">{tCommon('rfpHistory')}</Link>
+                <Link href="/rfp/history" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('rfpHistory')}</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/admin" className="text-sm cursor-pointer">{tCommon('adminPanel')}</Link>
+                <Link href="/admin" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('adminPanel')}</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

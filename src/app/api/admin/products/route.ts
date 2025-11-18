@@ -11,6 +11,7 @@ async function getProducts(request: NextRequest) {
     
     const filters = {
       query: searchParams.get('query') || undefined,
+      slug: searchParams.get('slug') || undefined,
       status: searchParams.getAll('status'),
       category: searchParams.getAll('category'),
       page: parseInt(searchParams.get('page') || '1'),
@@ -25,22 +26,27 @@ async function getProducts(request: NextRequest) {
     // Build where clause
     const where: any = {};
 
+    // Slug filter (exact match)
+    if (filters.slug) {
+      where.slug = filters.slug;
+    }
+
     // Text search in product translations
     if (filters.query) {
       where.OR = [
-        { referenceFournisseur: { contains: filters.query, mode: 'insensitive' } },
-        { constructeur: { contains: filters.query, mode: 'insensitive' } },
+        { referenceFournisseur: { contains: filters.query } },
+        { constructeur: { contains: filters.query } },
         { 
           translations: {
             some: {
-              nom: { contains: filters.query, mode: 'insensitive' }
+              nom: { contains: filters.query }
             }
           }
         },
         {
           translations: {
             some: {
-              description: { contains: filters.query, mode: 'insensitive' }
+              description: { contains: filters.query }
             }
           }
         }
@@ -67,6 +73,7 @@ async function getProducts(request: NextRequest) {
             select: {
               id: true,
               slug: true,
+              imageUrl: true,
               translations: {
                 select: {
                   name: true,
@@ -105,6 +112,7 @@ async function getProducts(request: NextRequest) {
       id: product.id,
       referenceFournisseur: product.referenceFournisseur,
       constructeur: product.constructeur,
+      slug: product.slug,
       categoryId: product.categoryId,
       status: product.status,
       featured: product.isFeatured,
@@ -116,9 +124,10 @@ async function getProducts(request: NextRequest) {
             product.translations[0]?.nom || 
             'Unnamed Product',
       // Add shortDescription for compatibility
-      shortDescription: product.translations.find(t => t.languageCode === 'fr')?.description?.substring(0, 150) || 
-                       product.translations[0]?.description?.substring(0, 150) || 
-                       '',
+      shortDescription: {
+        fr: product.translations.find(t => t.languageCode === 'fr')?.description?.substring(0, 150) || '',
+        en: product.translations.find(t => t.languageCode === 'en')?.description?.substring(0, 150) || '',
+      },
       // Add sku field for compatibility  
       sku: product.referenceFournisseur,
       // Create nom object for new structure
@@ -136,11 +145,44 @@ async function getProducts(request: NextRequest) {
       },
       category: product.category ? {
         id: product.category.id,
-        name: product.category.translations.find(t => t.languageCode === 'fr')?.name || 
-              product.category.translations[0]?.name || 
-              'Uncategorized',
-        slug: product.category.slug
+        name: {
+          fr: product.category.translations.find(t => t.languageCode === 'fr')?.name || 'Non catégorisé',
+          en: product.category.translations.find(t => t.languageCode === 'en')?.name || 'Uncategorized',
+        },
+        slug: product.category.slug,
+        imageUrl: product.category.imageUrl
       } : null,
+      // Add manufacturer object for compatibility
+      manufacturer: {
+        name: product.constructeur || 'Unknown Manufacturer'
+      },
+      // Add discipline object based on category for compatibility 
+      discipline: product.category ? {
+        name: {
+          fr: product.category.translations.find(t => t.languageCode === 'fr')?.name || 'Discipline',
+          en: product.category.translations.find(t => t.languageCode === 'en')?.name || 'Discipline',
+        },
+        color: '#3B82F6', // Default blue color
+        imageUrl: product.category.imageUrl
+      } : {
+        name: { fr: 'Non spécifiée', en: 'Unspecified' },
+        color: '#6B7280',
+        imageUrl: null
+      },
+      // Transform media to images format
+      images: product.media.map(media => ({
+        id: media.id,
+        url: media.url,
+        alt: {
+          fr: `Image de ${product.translations.find(t => t.languageCode === 'fr')?.nom || 'produit'}`,
+          en: `Image of ${product.translations.find(t => t.languageCode === 'en')?.nom || 'product'}`,
+        },
+        isPrimary: media.isPrimary
+      })),
+      // Add documents array for compatibility (empty for now)
+      documents: [],
+      // Add price field for compatibility
+      price: null,
       _count: product._count,
       media: product.media,
       translations: product.translations,

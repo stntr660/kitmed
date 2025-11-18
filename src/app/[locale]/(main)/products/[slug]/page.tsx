@@ -76,12 +76,13 @@ export default function ProductDetailPage() {
     try {
       setLoading(true);
       
-      // Try to fetch real product data first
-      const response = await fetch(`/api/admin/products?query=${slug}&pageSize=1`);
+      // Try to fetch real product data by slug
+      const response = await fetch(`/api/admin/products?slug=${slug}&pageSize=1`);
       if (response.ok) {
         const data = await response.json();
         if (data.data && data.data.items && data.data.items.length > 0) {
-          const productData = data.data.items[0];
+          // Find the product with matching slug
+          const productData = data.data.items.find(p => p.slug === slug) || data.data.items[0];
           
           // Transform the API data to match our interface
           const transformedProduct: Product = {
@@ -211,7 +212,7 @@ export default function ProductDetailPage() {
             {product.category && (
               <>
                 <Link href={`/products?category=${product.category.slug}`} className="hover:text-gray-600 transition-colors">
-                  {product.category.name}
+                  {product.category.name?.fr || product.category.name?.en || 'Category'}
                 </Link>
                 <span className="mx-2">/</span>
               </>

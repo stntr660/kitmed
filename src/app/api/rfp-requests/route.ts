@@ -6,17 +6,17 @@ import { z } from 'zod';
 const createRFPSchema = z.object({
   customerName: z.string().min(1, 'Customer name is required'),
   customerEmail: z.string().email('Valid email is required'),
-  customerPhone: z.string().optional(),
-  companyName: z.string().optional(),
-  companyAddress: z.string().optional(),
-  contactPerson: z.string().optional(),
-  message: z.string().optional(),
+  customerPhone: z.string().nullable().optional(),
+  companyName: z.string().nullable().optional(),
+  companyAddress: z.string().nullable().optional(),
+  contactPerson: z.string().nullable().optional(),
+  message: z.string().nullable().optional(),
   urgencyLevel: z.enum(['low', 'normal', 'high', 'urgent']).default('normal'),
   preferredContactMethod: z.enum(['email', 'phone', 'whatsapp']).default('email'),
   items: z.array(z.object({
     productId: z.string(),
     quantity: z.number().min(1).default(1),
-    specialRequirements: z.string().optional(),
+    specialRequirements: z.string().nullable().optional(),
   })).optional().default([]),
 });
 
@@ -71,10 +71,10 @@ export async function GET(request: NextRequest) {
 
     if (query.search) {
       where.OR = [
-        { customerName: { contains: query.search, mode: 'insensitive' } },
-        { customerEmail: { contains: query.search, mode: 'insensitive' } },
-        { companyName: { contains: query.search, mode: 'insensitive' } },
-        { referenceNumber: { contains: query.search, mode: 'insensitive' } },
+        { customerName: { contains: query.search } },
+        { customerEmail: { contains: query.search } },
+        { companyName: { contains: query.search } },
+        { referenceNumber: { contains: query.search } },
       ];
     }
 
@@ -95,6 +95,12 @@ export async function GET(request: NextRequest) {
             product: {
               include: {
                 translations: true,
+                media: {
+                  where: {
+                    isPrimary: true,
+                  },
+                  take: 1,
+                },
               },
             },
           },

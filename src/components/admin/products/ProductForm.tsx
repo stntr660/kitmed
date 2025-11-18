@@ -183,7 +183,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 disabled={loadingManufacturers}
               >
                 <option value="">
-                  {loadingManufacturers ? 'Chargement...' : t('product.form.placeholders.selectManufacturer')}
+                  {loadingManufacturers ? t('common.loading') : t('product.form.placeholders.selectManufacturer')}
                 </option>
                 {manufacturers.map((manufacturer) => (
                   <option key={manufacturer.id} value={manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}>

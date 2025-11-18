@@ -52,7 +52,12 @@
     "signOut": "Déconnexion",
     "saveSettings": "Enregistrer les paramètres",
     "saving": "Enregistrement...",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "reference": "Référence",
+    "manufacturer": "Constructeur",
+    "quantity": "Quantité",
+    "productImage": "Image du produit",
+    "name": "Nom"
   },
   "navigation": {
     "products": "Produits",
@@ -335,13 +340,18 @@
       "statuses": {
         "pending": "En attente",
         "processing": "En traitement",
+        "reviewing": "Examen",
+        "quoted": "Devisé",
+        "completed": "Terminé",
         "responded": "Répondu",
         "closed": "Fermé"
       },
       "urgency": {
-        "high": "Élevée",
+        "low": "Faible",
+        "normal": "Normal",
         "medium": "Moyenne",
-        "low": "Faible"
+        "high": "Élevé",
+        "urgent": "Urgent"
       },
       "items": {
         "item": "article",
@@ -387,7 +397,9 @@
           "fullName": "Nom complet",
           "position": "Poste",
           "emailAddress": "Adresse email",
-          "phoneNumber": "Numéro de téléphone"
+          "phoneNumber": "Numéro de téléphone",
+          "quantity": "Quantité",
+          "specialRequirements": "Exigences spéciales"
         },
         "actions": {
           "saveDraft": "Sauvegarder le brouillon",
@@ -397,11 +409,15 @@
           "markClosed": "Fermer",
           "close": "Fermer",
           "cancel": "Annuler",
-          "viewItems": "Voir les articles"
+          "viewItems": "Voir les articles",
+          "markAsSent": "Marquer comme envoyé",
+          "complete": "Terminer"
         },
         "messages": {
           "itemsPlaceholder": "Les articles de la demande seront chargés et gérés ici",
-          "priority": "priorité"
+          "priority": "priorité",
+          "noProducts": "Aucun produit demandé",
+          "noProductsInRequest": "Aucun produit demandé dans cette demande"
         }
       }
     },
@@ -495,9 +511,7 @@
       "rfpRequests": "Demandes de devis",
       "partners": "Partenaires",
       "categories": "Catégories",
-      "content": "Contenu",
       "users": "Utilisateurs",
-      "analytics": "Analyses",
       "settings": "Paramètres",
       "adminDashboard": "Tableau de Bord Admin",
       "signOut": "Se déconnecter",
@@ -1325,6 +1339,23 @@
         "tapToExpand": "Toucher pour développer",
         "longPressForActions": "Appui long pour les actions"
       }
+    },
+    "banners": {
+      "title": "Gestion des Bannières",
+      "subtitle": "Créer et gérer les bannières de la page d'accueil",
+      "createBanner": "Créer une Bannière",
+      "noBanners": "Aucune bannière encore",
+      "noBannersDescription": "Créez votre première bannière pour commencer",
+      "readOnlyMode": "⚠️ Mode lecture seule: Veuillez vous connecter pour toutes les fonctionnalités de gestion",
+      "loading": "Chargement des bannières...",
+      "position": "Position",
+      "layout": "Mise en page",
+      "sortOrder": "Ordre de tri",
+      "preview": "Aperçu",
+      "active": "Active",
+      "inactive": "Inactif",
+      "scheduled": "Programmée",
+      "expired": "Expirée"
     }
   },
   "dashboard": {
@@ -1373,6 +1404,26 @@
     "title": "Solutions d'Équipement Médical Professionnel",
     "subtitle": "Découvrez des équipements médicaux de pointe de fabricants de confiance. Demandez des propositions, comparez les solutions et obtenez le support d'experts pour votre établissement de santé.",
     "browseProducts": "Parcourir les Produits",
+    "banner": {
+      "tagline": "NOTRE ÉQUIPEMENT DE TRAITEMENT HAUT DE GAMME",
+      "watchDemo": "Voir la Démo",
+      "stats": {
+        "installations": "500+",
+        "installationsLabel": "Installations",
+        "products": "2000+",
+        "productsLabel": "Produits",
+        "support": "24/7",
+        "supportLabel": "Support"
+      },
+      "certification": {
+        "ce": "Certifié CE",
+        "iso": "Norme ISO 13485"
+      },
+      "specs": {
+        "premium": "Série Premium",
+        "technology": "Technologie Avancée"
+      }
+    },
     "getConsultation": "Obtenir une Consultation d'Expert",
     "whyChooseUs": "Pourquoi Choisir KITMED?",
     "whyChooseUsSubtitle": "Nous fournissons des solutions d'équipement médical complètes avec une qualité et un support inégalés",
@@ -1382,7 +1433,90 @@
     "readyToUpgrade": "Prêt à Améliorer Votre Équipement Médical?",
     "readyToUpgradeSubtitle": "Commencez à construire votre demande de proposition aujourd'hui et obtenez des recommandations personnalisées de nos experts.",
     "startRFP": "Commencer une demande de devis",
-    "viewPartners": "Voir Nos Partenaires"
+    "viewPartners": "Voir Nos Partenaires",
+    "staticBanner": {
+      "tagline": "NOTRE ÉQUIPEMENT DE TRAITEMENT HAUT DE GAMME",
+      "premiumLine": "premiumLine",
+      "description": "Caractéristiques d'entraînement uniques et fonctionnalités ergonomiques pour la chirurgie ophtalmique",
+      "discoverProducts": "Découvrir les Produits",
+      "watchDemo": "Voir la Démo",
+      "altText": "KitMed Premium Medical Equipment"
+    },
+    "sections": {
+      "concepts": "CONCEPTS",
+      "innovation": "Innovation & Précision",
+      "innovationDescription": "Des caractéristiques d'entraînement uniques et des fonctionnalités ergonomiques pour optimiser vos interventions médicales",
+      "specifications": "SPÉCIFICATIONS",
+      "performance": "Performance & Fiabilité",
+      "performanceDescription": "Équipements conçus pour répondre aux exigences les plus strictes des environnements médicaux professionnels",
+      "products": "PRODUCTS",
+      "productsTitle": "Gamme Complète",
+      "productsDescription": "Solutions médicales adaptées à chaque spécialité, conçues pour optimiser vos performances cliniques",
+      "references": "REFERENCES",
+      "referencesTitle": "Confiance Professionnelle",
+      "referencesDescription": "Plus de 500 établissements de santé nous font confiance pour leur équipement médical",
+      "service": "SERVICE",
+      "consultation": "Demander une Consultation",
+      "consultationDescription": "Notre équipe d'experts vous accompagne dans le choix et la mise en place de vos équipements médicaux"
+    },
+    "features": {
+      "0": {
+        "title": "Technologie Avancée",
+        "description": "Intégration de systèmes numériques de pointe pour des performances optimales"
+      },
+      "1": {
+        "title": "Ergonomie Professionnelle",
+        "description": "Conception centrée utilisateur pour réduire la fatigue et améliorer la précision"
+      },
+      "2": {
+        "title": "Qualité Certifiée",
+        "description": "Respect strict des normes CE et FDA pour une sécurité maximale"
+      }
+    },
+    "specifications": {
+      "certification": "Certification",
+      "certificationValue": "CE • FDA • ISO",
+      "warranty": "Garantie",
+      "warrantyValue": "3 ans fabricant",
+      "training": "Formation",
+      "trainingValue": "Incluse",
+      "demoVideo": "Vidéo de démonstration"
+    },
+    "references": {
+      "stats": {
+        "0": {
+          "number": "500+",
+          "label": "Établissements équipés"
+        },
+        "1": {
+          "number": "98%",
+          "label": "Satisfaction client"
+        },
+        "2": {
+          "number": "50+",
+          "label": "Fabricants partenaires"
+        },
+        "3": {
+          "number": "24/7",
+          "label": "Support technique"
+        }
+      },
+      "testimonial": {
+        "quote": "KitMed nous a fourni des équipements exceptionnels qui ont transformé notre service de cardiologie. La qualité et le support sont incomparables.",
+        "author": "Dr. Amina Zogagh",
+        "position": "Chef du Service Cardiologie",
+        "organization": "Hôpital Universitaire Mohammed VI"
+      }
+    },
+    "cta": {
+      "contact": "Prendre Contact",
+      "requestQuote": "Demande de Devis"
+    },
+    "categories": {
+      "exploreProducts": "Explorer les produits",
+      "viewAllProducts": "Voir Tous les Produits",
+      "fallbackDescription": "Solutions médicales pour"
+    }
   },
   "errors": {
     "notFound": "Page non trouvée",

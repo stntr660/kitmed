@@ -4,357 +4,358 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Shield, Award, Users, Globe, Star } from 'lucide-react';
+import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown } from 'lucide-react';
+import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  imageUrl: string | null;
+  productCount: number;
+  count: string;
+}
 
 export default function HomePage() {
   const t = useTranslations('home');
   const tCommon = useTranslations('common');
+  const [isVisible, setIsVisible] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const params = useParams();
+  const locale = (params?.locale as string) || 'fr';
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  // Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setCategoriesLoading(true);
+        const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          setCategories(result.data);
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setCategoriesLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, [locale]);
+
 
   return (
     <div className="flex flex-col">
-      {/* Luxury Hero Section */}
-      <section className="relative min-h-[90vh] bg-slate-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="relative container mx-auto px-6 lg:px-8 py-20 lg:py-32">
-          <div className="max-w-5xl mx-auto">
-            
-            <h1 className="text-center mb-8">
-              <span className="block text-5xl lg:text-7xl font-extrabold text-white leading-tight">
-                Équipements Médicaux
-              </span>
-              <span className="block text-4xl lg:text-6xl font-bold text-primary-300 mt-2">
-                d&apos;Exception
-              </span>
-            </h1>
-            
-            <p className="text-center text-xl lg:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Découvrez une sélection exclusive d&apos;équipements médicaux de pointe. 
-              Technologies avancées, qualité premium et support expert pour transformer votre pratique médicale.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-              <Button size="lg" className="min-w-[240px] h-14 text-lg font-semibold bg-primary text-white hover:bg-gray-600 shadow-2xl transition-all duration-300" asChild>
-                <Link href="/products" className="flex items-center">
-                  Explorer le Catalogue
-                  <ArrowRight className="ml-3 h-6 w-6" />
-                </Link>
-              </Button>
-            </div>
-            
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              {[
-                { number: '500+', label: 'Établissements Équipés' },
-                { number: '2000+', label: 'Produits Premium' },
-                { number: '50+', label: 'Marques Partenaires' },
-                { number: '24/7', label: 'Support Technique' }
-              ].map((stat, index) => (
-                <div key={index} className="group">
-                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2 group-hover:text-gray-100 transition-colors">
-                    {stat.number}
-                  </div>
-                  <div className="text-slate-400 font-medium text-sm lg:text-base">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Dynamic Banner with Static Fallback */}
+      <DynamicBanner position="homepage" />
 
       {/* Features Section */}
-      <section className="py-20 lg:py-32 bg-slate-50">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-20 lg:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 bg-blue-50 text-blue-800 border-blue-200">
-              Excellence & Innovation
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              Pourquoi Choisir
-              <span className="text-primary-600"> KITMED</span>?
+            <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+              {t('sections.concepts')}
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
+              {t('sections.innovation')}
             </h2>
-            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              Nous redéfinissons l&apos;excellence en équipements médicaux avec des solutions innovantes, 
-              une qualité incomparable et un support technique de classe mondiale.
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              {t('sections.innovationDescription')}
             </p>
           </div>
           
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: Shield,
-                title: 'Qualité Médicale Premium',
-                description: 'Équipements certifiés aux plus hauts standards médicaux internationaux',
-                color: 'text-primary',
-                bgColor: 'bg-gray-50'
+                number: "01",
+                title: t('features.0.title'),
+                description: t('features.0.description')
               },
               {
-                icon: Award,
-                title: 'Excellence Reconnue',
-                description: 'Partenaires certifiés et équipements primés par les professionnels',
-                color: 'text-primary',
-                bgColor: 'bg-gray-50'
+                number: "02", 
+                title: t('features.1.title'),
+                description: t('features.1.description')
               },
               {
-                icon: Users,
-                title: 'Support Expert 24/7',
-                description: 'Assistance technique spécialisée par des experts médicaux',
-                color: 'text-primary',
-                bgColor: 'bg-gray-50'
-              },
-              {
-                icon: Globe,
-                title: 'Réseau Mondial',
-                description: 'Accès aux meilleures technologies médicales du monde entier',
-                color: 'text-primary',
-                bgColor: 'bg-gray-50'
+                number: "03",
+                title: t('features.2.title'), 
+                description: t('features.2.description')
               }
             ].map((feature, index) => (
-              <div key={index} className="group relative">
-                <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white/80 backdrop-blur-sm">
-                  <CardHeader className="text-center pb-4">
-                    <div className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${feature.bgColor} group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className={`h-8 w-8 ${feature.color}`} />
-                    </div>
-                    <CardTitle className="text-xl font-bold text-slate-900 mb-3">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <CardDescription className="text-slate-600 leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+              <div key={index} className="group text-center">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 mx-auto border border-gray-300 rounded-full flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+                    <span className="text-2xl font-light text-gray-400 group-hover:text-primary transition-colors duration-300">
+                      {feature.number}
+                    </span>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl font-light text-gray-900 mb-4">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
+                  {feature.description}
+                </p>
               </div>
             ))}
+          </div>
+
+          {/* Technical Specifications Preview */}
+          <div className="mt-20 max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="p-8 lg:p-12">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6">
+                    <div>
+                      <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-2">
+                        SPÉCIFICATIONS
+                      </p>
+                      <h3 className="text-3xl font-light text-gray-900 mb-4">
+                        Performance &amp; Fiabilité
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        Équipements conçus pour répondre aux exigences les plus strictes 
+                        des environnements médicaux professionnels
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Certification</span>
+                        <span className="font-medium text-gray-900">CE • FDA • ISO</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Garantie</span>
+                        <span className="font-medium text-gray-900">3 ans fabricant</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span className="text-gray-600">Formation</span>
+                        <span className="font-medium text-gray-900">Incluse</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center">
+                      <span className="text-gray-400">Vidéo de démonstration</span>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform duration-200">
+                        <Play className="h-8 w-8 text-gray-600 ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-20 lg:py-32 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-slate-800/20"></div>
-        
-        <div className="relative container mx-auto px-6 lg:px-8">
+      {/* Medical Disciplines Section */}
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 bg-white/10 text-white border-white/20 backdrop-blur-sm">
+            <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
               Spécialités Médicales
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              Catégories
-              <span className="text-primary-300"> Premium</span>
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
+              Nos Domaines d'Expertise
             </h2>
-            <p className="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
-              Équipements spécialisés pour chaque domaine médical, sélectionnés pour leur innovation et leur fiabilité exceptionnelles.
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              Découvrez nos solutions spécialisées pour chaque discipline médicale, 
+              avec des équipements adaptés aux besoins spécifiques de votre pratique.
             </p>
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                name: 'Cardiologie',
-                count: '150+ produits',
-                color: '#1C75BC',
-                description: 'Équipements cardiovasculaires de pointe',
-                featured: true
-              },
-              {
-                name: 'Radiologie',
-                count: '200+ produits',
-                color: '#ED1C24',
-                description: 'Imagerie médicale haute définition'
-              },
-              {
-                name: 'Chirurgie',
-                count: '300+ produits',
-                color: '#2563EB',
-                description: 'Instruments chirurgicaux précis',
-                featured: true
-              },
-              {
-                name: 'Laboratoire',
-                count: '180+ produits',
-                color: '#059669',
-                description: 'Analyses et diagnostics avancés'
-              },
-              {
-                name: 'Urgences',
-                count: '120+ produits',
-                color: '#DC2626',
-                description: 'Solutions d\'urgence et réanimation'
-              },
-              {
-                name: 'Soins Intensifs',
-                count: '90+ produits',
-                color: '#7C3AED',
-                description: 'Technologies de soins critiques'
-              }
-            ].map((category, index) => (
-              <div key={index} className="group relative">
-                <Card className="h-full border-0 bg-white/5 backdrop-blur-lg hover:bg-white/10 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 shadow-2xl overflow-hidden">
-                  <div className="relative h-48 bg-slate-700 overflow-hidden">
-                    <div className="absolute inset-0 bg-black/30"></div>
-                    <div 
-                      className="absolute top-4 right-4 w-3 h-3 rounded-full shadow-lg"
-                      style={{ backgroundColor: category.color }}
-                    ></div>
-                    {category.featured && (
-                      <Badge className="absolute top-4 left-4 px-3 py-1 bg-accent-500 text-white border-0 text-xs font-semibold">
-                        Vedette
-                      </Badge>
-                    )}
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="text-xs text-slate-300 mb-1">{category.count}</div>
-                    </div>
-                  </div>
-                  
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-xl font-bold text-white group-hover:text-gray-100 transition-colors">
-                      {category.name}
-                    </CardTitle>
-                    <CardDescription className="text-slate-300 leading-relaxed">
-                      {category.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="w-full text-gray-300 hover:text-white hover:bg-gray-600/20 border border-gray-400/30 hover:border-gray-400 transition-all"
-                      asChild
-                    >
-                      <Link href={`/products/category/${category.name.toLowerCase()}`} className="flex items-center justify-center">
-                        Explorer
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+            {categoriesLoading ? (
+              // Loading skeleton
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="animate-pulse">
+                  <Card className="h-full border border-gray-200">
+                    <div className="relative aspect-video bg-gray-200"></div>
+                    <CardContent className="p-6">
+                      <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))
+            ) : (
+              categories.map((category) => (
+                <div key={category.id} className="group cursor-pointer">
+                  <Link href={`/${locale}/products?category=${category.slug}`}>
+                    <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-blue-300">
+                      <div className="relative aspect-square bg-gradient-to-br from-blue-50 to-white overflow-hidden">
+                        {category.imageUrl ? (
+                          <img 
+                            src={category.imageUrl} 
+                            alt={category.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span className="text-blue-600 font-bold text-xl">{category.name.charAt(0)}</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                          {category.count} produits
+                        </div>
+                      </div>
+                      
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                          {category.name}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4 min-h-[3rem]">
+                          {category.description || `Solutions professionnelles pour ${category.name.toLowerCase()}`}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">
+                            Découvrir la gamme
+                          </span>
+                          <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
           
           <div className="mt-16 text-center">
-            <Button size="lg" variant="outline" className="min-w-[200px] h-12 border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300" asChild>
-              <Link href="/products/categories" className="flex items-center">
-                Voir Toutes les Catégories
-                <ArrowRight className="ml-3 h-5 w-5" />
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg font-medium transition-all duration-300"
+              asChild
+            >
+              <Link href={`/${locale}/products`} className="flex items-center">
+                Voir Tous les Équipements
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 lg:py-32 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+      {/* References Section */}
+      <section className="py-20 lg:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <Badge className="mb-6 px-4 py-2 bg-blue-50 text-blue-800 border-blue-200">
-              Confiance & Excellence
-            </Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              La Confiance des
-              <span className="text-primary-600"> Professionnels</span>
+            <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+              {t('sections.references')}
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
+              {t('sections.referencesTitle')}
             </h2>
-            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              Des milliers de professionnels de santé nous font confiance pour équiper leurs établissements avec les meilleures technologies médicales.
+            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              {t('sections.referencesDescription')}
             </p>
           </div>
-          
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
+
+          {/* Statistics */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {[
               {
-                quote: "KITMED nous a fourni des équipements exceptionnels qui ont transformé notre service de cardiologie. La qualité et le support sont incomparables.",
-                author: "Dr. Amina Benali",
-                title: "Chef du Service Cardiologie",
-                hospital: "Hôpital Universitaire Mohammed VI"
+                number: t('references.stats.0.number'),
+                label: t('references.stats.0.label')
               },
               {
-                quote: "L’expertise technique et l’accompagnement personnalisé de KITMED font la différence. Nos patients bénéficient directement de ces technologies avancées.",
-                author: "Prof. Hassan El Malki",
-                title: "Directeur Médical",
-                hospital: "Clinique Atlas Médical"
+                number: t('references.stats.1.number'),
+                label: t('references.stats.1.label')
               },
               {
-                quote: "Une collaboration exceptionnelle depuis 5 ans. KITMED comprend parfaitement les besoins spécifiques de notre laboratoire d’analyses.",
-                author: "Dr. Fatima Zahra",
-                title: "Responsable Laboratoire",
-                hospital: "Centre de Diagnostic Avancé"
+                number: t('references.stats.2.number'),
+                label: t('references.stats.2.label')
+              },
+              {
+                number: t('references.stats.3.number'),
+                label: t('references.stats.3.label')
               }
-            ].map((testimonial, index) => (
-              <Card key={index} className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                <CardContent className="p-8">
-                  <div className="mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400 inline mr-1" />
-                    ))}
-                  </div>
-                  <blockquote className="text-slate-700 mb-6 leading-relaxed text-lg italic">
-                    “{testimonial.quote}”
-                  </blockquote>
-                  <div className="border-t border-slate-100 pt-6">
-                    <div className="font-bold text-slate-900 text-lg">{testimonial.author}</div>
-                    <div className="text-sm text-slate-600 font-medium">{testimonial.title}</div>
-                    <div className="text-sm text-primary-600 font-semibold">{testimonial.hospital}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center border-t border-slate-200 pt-16">
-            {[
-              { number: "500+", label: "Installations Réussies" },
-              { number: "98%", label: "Satisfaction Client" },
-              { number: "50+", label: "Partenaires Certifiés" },
-              { number: "24/7", label: "Support Technique" }
             ].map((stat, index) => (
-              <div key={index} className="group">
-                <div className="text-4xl lg:text-5xl font-bold text-slate-900 mb-3 group-hover:text-gray-600 transition-colors">{stat.number}</div>
-                <div className="text-slate-600 font-semibold">{stat.label}</div>
+              <div key={index} className="text-center">
+                <div className="text-4xl font-light text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-gray-600 text-sm">{stat.label}</div>
               </div>
             ))}
+          </div>
+
+          {/* Testimonial */}
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-0 shadow-lg bg-white">
+              <CardContent className="p-8 lg:p-12">
+                <div className="text-center">
+                  <blockquote className="text-2xl font-light text-gray-800 leading-relaxed mb-8 italic">
+                    "{t('references.testimonial.quote')}"
+                  </blockquote>
+                  <div className="space-y-1">
+                    <div className="font-medium text-gray-900">{t('references.testimonial.author')}</div>
+                    <div className="text-gray-600 text-sm">{t('references.testimonial.position')}</div>
+                    <div className="text-primary text-sm font-medium">{t('references.testimonial.organization')}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-primary-600 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-x-48 -translate-y-48"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-x-48 translate-y-48"></div>
-        </div>
-        
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="py-20 lg:py-24 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              Prêt à Transformer Votre
-              <span className="text-primary-200"> Pratique Médicale</span>?
+            <p className="text-gray-400 uppercase tracking-wider text-sm font-medium mb-4">
+              {t('sections.service')}
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
+              {t('sections.consultation')}
             </h2>
-            <p className="text-xl text-primary-100 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Démarrez votre demande de proposition personnalisée dès aujourd&apos;hui et recevez 
-              des recommandations expertes adaptées à vos besoins spécifiques.
+            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
+              {t('sections.consultationDescription')}
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button size="lg" variant="secondary" className="min-w-[240px] h-14 text-lg font-semibold bg-white text-gray-600 hover:bg-gray-50 shadow-2xl transition-all duration-300 transform hover:scale-105" asChild>
-                <Link href="/rfp/new" className="flex items-center">
-                  Demande de Devis
-                  <ArrowRight className="ml-3 h-6 w-6" />
+              <Button 
+                size="lg" 
+                className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
+                asChild
+              >
+                <Link href="/contact" className="flex items-center">
+                  {t('cta.contact')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               
-              <Button size="lg" variant="outline" className="min-w-[240px] h-14 text-lg font-semibold border-2 border-gray-300 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300" asChild>
-                <Link href="/partners" className="flex items-center">
-                  Nos Partenaires Premium
-                  <Users className="ml-3 h-6 w-6" />
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
+                asChild
+              >
+                <Link href="/rfp/new" className="flex items-center">
+                  {t('cta.requestQuote')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>

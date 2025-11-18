@@ -307,7 +307,7 @@ function TreeView({
                     e.stopPropagation();
                     onDelete(category);
                   }}
-                  className="hover:bg-red-50 hover:text-red-700 h-12 w-12"
+                  className="hover:bg-gray-50 hover:text-gray-700 h-12 w-12"
                   disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
                   aria-label={`${t('common.delete')} ${category.nom?.fr || category.name}`}
                 >

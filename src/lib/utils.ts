@@ -19,8 +19,13 @@ export function formatCurrency(amount: number, currency = 'USD'): string {
   }).format(amount);
 }
 
-export function formatDate(date: Date | string, format: 'short' | 'long' | 'time' = 'short'): string {
+export function formatDate(date: Date | string | null | undefined, format: 'short' | 'long' | 'time' = 'short'): string {
+  if (!date) return '-';
+  
   const d = typeof date === 'string' ? new Date(date) : date;
+  
+  // Check if the date is valid
+  if (isNaN(d.getTime())) return 'Invalid Date';
   
   switch (format) {
     case 'long':

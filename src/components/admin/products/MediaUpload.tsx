@@ -275,7 +275,7 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-8 w-8 p-0 bg-white hover:bg-red-50 text-red-600"
+                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
                     onClick={() => handleDeleteMedia(item.id)}
                     disabled={disabled}
                   >

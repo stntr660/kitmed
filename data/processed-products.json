@@ -1,0 +1,124 @@
+[
+  {
+    "id": "99d1be69-749f-4bab-8a56-a05b85cbb6b7",
+    "referenceFournisseur": "8606011740809",
+    "constructeur": "ESENSA",
+    "slug": "aqua-ice-complex-gel-100ml",
+    "categoryId": "laboratory",
+    "status": "active",
+    "isFeatured": false,
+    "pdfBrochureUrl": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-brochure.pdf",
+    "translations": [
+      {
+        "languageCode": "fr",
+        "nom": "AQUA ICE COMPLEX GEL 100ML",
+        "description": "Helps alleviate problems caused by crushing, sprains, and sports injuries. Provides cooling, anti-inflammatory, and relief for muscle/joint stiffness and tension.",
+        "ficheTechnique": "Test test"
+      },
+      {
+        "languageCode": "en",
+        "nom": "AQUA ICE COMPLEX GEL 100ML",
+        "description": "Helps alleviate problems caused by crushing, sprains, and sports injuries. Provides cooling, anti-inflammatory, and relief for muscle/joint stiffness and tension.",
+        "ficheTechnique": "Test test"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "url": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-primary.jpg",
+        "isPrimary": true,
+        "sortOrder": 0,
+        "altText": "AQUA ICE COMPLEX GEL 100ML"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-secondary-1.jpg",
+        "isPrimary": false,
+        "sortOrder": 1,
+        "altText": "AQUA ICE COMPLEX GEL 100ML - Image 1"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-secondary-2.jpg",
+        "isPrimary": false,
+        "sortOrder": 2,
+        "altText": "AQUA ICE COMPLEX GEL 100ML - Image 2"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-secondary-3.png",
+        "isPrimary": false,
+        "sortOrder": 3,
+        "altText": "AQUA ICE COMPLEX GEL 100ML - Image 3"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/99d1be69-749f-4bab-8a56-a05b85cbb6b7-secondary-4.jpg",
+        "isPrimary": false,
+        "sortOrder": 4,
+        "altText": "AQUA ICE COMPLEX GEL 100ML - Image 4"
+      }
+    ]
+  },
+  {
+    "id": "3a71aabe-f089-4c9a-8f76-5e031aa7a129",
+    "referenceFournisseur": "19037",
+    "constructeur": "ESENSA",
+    "slug": "melatosan-melatonin-oral-drops",
+    "categoryId": "laboratory",
+    "status": "active",
+    "isFeatured": false,
+    "pdfBrochureUrl": null,
+    "translations": [
+      {
+        "languageCode": "fr",
+        "nom": "Melatosan melatonin oral drops",
+        "description": "Contains 1 mg of melatonin in the daily dose (2 drops). Reduces time to sleep onset, reduces awakenings, and improves overall sleep quality. Fast-acting.",
+        "ficheTechnique": "test 1"
+      },
+      {
+        "languageCode": "en",
+        "nom": "Melatosan melatonin oral drops",
+        "description": "Contains 1 mg of melatonin in the daily dose (2 drops). Reduces time to sleep onset, reduces awakenings, and improves overall sleep quality. Fast-acting.",
+        "ficheTechnique": "test 1"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "url": "/uploads/products/3a71aabe-f089-4c9a-8f76-5e031aa7a129-primary.jpg",
+        "isPrimary": true,
+        "sortOrder": 0,
+        "altText": "Melatosan melatonin oral drops"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/3a71aabe-f089-4c9a-8f76-5e031aa7a129-secondary-1.jpg",
+        "isPrimary": false,
+        "sortOrder": 1,
+        "altText": "Melatosan melatonin oral drops - Image 1"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/3a71aabe-f089-4c9a-8f76-5e031aa7a129-secondary-2.jpg",
+        "isPrimary": false,
+        "sortOrder": 2,
+        "altText": "Melatosan melatonin oral drops - Image 2"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/3a71aabe-f089-4c9a-8f76-5e031aa7a129-secondary-3.png",
+        "isPrimary": false,
+        "sortOrder": 3,
+        "altText": "Melatosan melatonin oral drops - Image 3"
+      },
+      {
+        "type": "image",
+        "url": "/uploads/products/3a71aabe-f089-4c9a-8f76-5e031aa7a129-secondary-4.jpg",
+        "isPrimary": false,
+        "sortOrder": 4,
+        "altText": "Melatosan melatonin oral drops - Image 4"
+      }
+    ]
+  }
+]

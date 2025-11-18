@@ -86,9 +86,10 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
   });
 
   const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
-  const [availableProducts, setAvailableProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [productSearchQuery, setProductSearchQuery] = useState('');
-  const [showProductSearch, setShowProductSearch] = useState(false);
+  const [showProductSelector, setShowProductSelector] = useState(false);
+  const [loadingProducts, setLoadingProducts] = useState(false);
 
   // Initialize with the provided product
   useEffect(() => {
@@ -104,23 +105,37 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     }
   }, [product]);
 
-  // Fetch available products for search
-  const searchProducts = async (query: string) => {
-    if (query.length < 2) {
-      setAvailableProducts([]);
-      return;
-    }
+  // Helper function to get product name
+  const getProductName = (product: Product, locale: string = 'fr') => {
+    const translation = product.translations?.find(t => t.languageCode === locale);
+    return translation?.nom || product.referenceFournisseur;
+  };
 
+  // Load all products for selection
+  const loadAllProducts = async () => {
+    if (allProducts.length > 0) return; // Don't reload if already loaded
+    
+    setLoadingProducts(true);
     try {
-      const response = await fetch(`/api/admin/products?query=${encodeURIComponent(query)}&pageSize=20`);
+      const response = await fetch(`/api/admin/products?pageSize=100&status=active`);
       if (response.ok) {
         const data = await response.json();
-        setAvailableProducts(data.data.items || []);
+        setAllProducts(data.data.items || []);
       }
     } catch (error) {
-      console.error('Failed to search products:', error);
+      console.error('Failed to load products:', error);
+    } finally {
+      setLoadingProducts(false);
     }
   };
+
+  // Filter products based on search query
+  const filteredProducts = allProducts.filter(prod => {
+    const productName = getProductName(prod).toLowerCase();
+    const productRef = prod.referenceFournisseur.toLowerCase();
+    const query = productSearchQuery.toLowerCase();
+    return productName.includes(query) || productRef.includes(query);
+  });
 
   const addProductToQuote = (selectedProduct: Product) => {
     const existingItem = quoteItems.find(item => item.productId === selectedProduct.id);
@@ -145,8 +160,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
       setQuoteItems(items => [...items, newItem]);
     }
     setProductSearchQuery('');
-    setShowProductSearch(false);
-    setAvailableProducts([]);
+    setShowProductSelector(false);
   };
 
   const removeProductFromQuote = (productId: string) => {
@@ -169,11 +183,6 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
       ...prev,
       [field]: value
     }));
-  };
-
-  const getProductName = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
-    return translation?.nom || product.referenceFournisseur;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -302,7 +311,10 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                   type="button"
                   size="sm"
                   variant="outline"
-                  onClick={() => setShowProductSearch(true)}
+                  onClick={() => {
+                    setShowProductSelector(true);
+                    loadAllProducts();
+                  }}
                   className="flex items-center gap-2"
                 >
                   <Plus className="h-4 w-4" />
@@ -310,52 +322,68 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                 </Button>
               </div>
 
-              {/* Product Search */}
-              {showProductSearch && (
-                <div className="mb-4 p-3 bg-white rounded-lg border">
-                  <div className="relative">
-                    <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <Input
-                      placeholder="Rechercher un produit..."
-                      value={productSearchQuery}
-                      onChange={(e) => {
-                        setProductSearchQuery(e.target.value);
-                        searchProducts(e.target.value);
-                      }}
-                      className="pl-10"
-                    />
-                  </div>
-                  
-                  {availableProducts.length > 0 && (
-                    <div className="mt-2 max-h-40 overflow-y-auto border rounded-md">
-                      {availableProducts.map((prod) => (
-                        <button
-                          key={prod.id}
-                          type="button"
-                          onClick={() => addProductToQuote(prod)}
-                          className="w-full text-left p-2 hover:bg-gray-50 border-b last:border-b-0"
-                        >
-                          <div className="text-sm font-medium">{getProductName(prod)}</div>
-                          <div className="text-xs text-gray-500">Réf: {prod.referenceFournisseur}</div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                  
-                  <div className="mt-2 flex justify-end">
+              {/* Product Selector */}
+              {showProductSelector && (
+                <div className="mb-4 p-4 bg-white rounded-lg border">
+                  <div className="flex items-center justify-between mb-3">
+                    <h5 className="font-medium text-gray-900">Sélectionner un produit</h5>
                     <Button
                       type="button"
                       size="sm"
                       variant="ghost"
                       onClick={() => {
-                        setShowProductSearch(false);
+                        setShowProductSelector(false);
                         setProductSearchQuery('');
-                        setAvailableProducts([]);
                       }}
+                      className="h-8 w-8 p-0"
                     >
-                      Annuler
+                      <X className="h-4 w-4" />
                     </Button>
                   </div>
+                  
+                  <div className="relative mb-3">
+                    <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <Input
+                      placeholder="Rechercher dans la liste..."
+                      value={productSearchQuery}
+                      onChange={(e) => setProductSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                  
+                  {loadingProducts ? (
+                    <div className="flex items-center justify-center py-8">
+                      <div className="text-sm text-gray-500">Chargement des produits...</div>
+                    </div>
+                  ) : (
+                    <div className="max-h-64 overflow-y-auto border rounded-md">
+                      {filteredProducts.length > 0 ? (
+                        filteredProducts.map((prod) => (
+                          <button
+                            key={prod.id}
+                            type="button"
+                            onClick={() => addProductToQuote(prod)}
+                            className="w-full text-left p-3 hover:bg-gray-50 border-b last:border-b-0 transition-colors"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="text-sm font-medium text-gray-900">{getProductName(prod)}</div>
+                                <div className="text-xs text-gray-500 mt-1">Réf: {prod.referenceFournisseur}</div>
+                                <div className="text-xs text-gray-400 mt-1">Constructeur: {prod.constructeur}</div>
+                              </div>
+                              <div className="text-right">
+                                <Plus className="h-4 w-4 text-gray-400" />
+                              </div>
+                            </div>
+                          </button>
+                        ))
+                      ) : (
+                        <div className="p-4 text-center text-sm text-gray-500">
+                          {productSearchQuery ? 'Aucun produit trouvé' : 'Aucun produit disponible'}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -384,7 +412,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                           size="sm"
                           variant="ghost"
                           onClick={() => removeProductFromQuote(item.productId)}
-                          className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                          className="h-8 w-8 p-0 text-gray-600 hover:text-gray-700 hover:bg-gray-50"
                         >
                           <X className="h-4 w-4" />
                         </Button>

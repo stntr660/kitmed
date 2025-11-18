@@ -353,7 +353,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
                             </button>
                           )}
                           <button
-                            className="flex w-full items-center px-3 py-2 text-sm text-red-700 hover:bg-red-50"
+                            className="flex w-full items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
                             onClick={(e) => handleDeleteNotification(notification.id, e)}
                           >
                             <XMarkIcon className="h-4 w-4 mr-2" />

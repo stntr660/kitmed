@@ -38,15 +38,13 @@ interface RFPQuickViewProps {
   onOpenChange: (open: boolean) => void;
   rfp: RFPWithDetails | null;
   onEdit?: () => void;
-  onRespond?: () => void;
 }
 
 export function RFPQuickView({ 
   open, 
   onOpenChange, 
   rfp, 
-  onEdit,
-  onRespond 
+  onEdit
 }: RFPQuickViewProps) {
   const t = useTranslations();
 
@@ -116,9 +114,9 @@ export function RFPQuickView({
                 </div>
                 <div>
                   <SheetTitle className="text-xl font-semibold text-gray-900 font-poppins">
-                    {rfp.requestNumber}
+                    {rfp.referenceNumber}
                   </SheetTitle>
-                  <p className="text-sm text-gray-500">{rfp.company.name}</p>
+                  <p className="text-sm text-gray-500">{rfp.companyName || rfp.customerName}</p>
                 </div>
               </div>
               
@@ -126,8 +124,8 @@ export function RFPQuickView({
                 <Badge className={getStatusColor(rfp.status)}>
                   {rfp.status}
                 </Badge>
-                <Badge className={getUrgencyColor(rfp.urgency)}>
-                  {rfp.urgency} priority
+                <Badge className={getUrgencyColor(rfp.urgencyLevel)}>
+                  {rfp.urgencyLevel} {t('admin.rfpRequests.drawer.messages.priority')}
                 </Badge>
               </div>
             </div>
@@ -135,61 +133,33 @@ export function RFPQuickView({
         </SheetHeader>
 
         <div className="space-y-6">
-          {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-4">
-            <Card className="bg-primary-50 border-primary-200">
-              <CardContent className="p-4 text-center">
-                <div className="text-3xl font-semibold text-primary-600">
-                  {rfp.itemCount || 0}
-                </div>
-                <p className="text-xs text-primary-700 font-medium">Items</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-green-50 border-green-200">
-              <CardContent className="p-4 text-center">
-                <div className="text-3xl font-semibold text-green-600">
-                  {rfp.totalQuantity || 0}
-                </div>
-                <p className="text-xs text-green-700 font-medium">Total Qty</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-amber-50 border-amber-200">
-              <CardContent className="p-4 text-center">
-                <div className="text-xl font-semibold text-amber-600">
-                  {rfp.estimatedValue ? formatCurrency(rfp.estimatedValue) : '-'}
-                </div>
-                <p className="text-xs text-amber-700 font-medium">Est. Value</p>
-              </CardContent>
-            </Card>
-          </div>
 
           {/* Company Information */}
           <Card>
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center">
                 <BuildingOfficeIcon className="h-5 w-5 mr-2" />
-                Company Information
+                {t('admin.rfpRequests.drawer.fields.companyInformation')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-sm font-semibold text-gray-700 mb-2">Organization</h4>
-                <p className="text-gray-900 font-medium">{rfp.company.name}</p>
-                <p className="text-sm text-gray-600 capitalize">{rfp.company.type}</p>
+                <h4 className="text-sm font-semibold text-gray-700 mb-2">{t('admin.rfpRequests.drawer.fields.organizationName')}</h4>
+                <p className="text-gray-900 font-medium">{rfp.companyName || 'N/A'}</p>
+                <p className="text-sm text-gray-600">{t('form.company')}</p>
               </div>
 
-              <Separator />
-
-              <div>
-                <h4 className="text-sm font-semibold text-gray-700 mb-2">Address</h4>
-                <div className="text-sm text-gray-600 space-y-1">
-                  <p>{rfp.company.address.street}</p>
-                  <p>{rfp.company.address.city}, {rfp.company.address.postalCode}</p>
-                  <p>{rfp.company.address.country}</p>
-                </div>
-              </div>
+              {rfp.companyAddress && (
+                <>
+                  <Separator />
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2">{t('admin.rfpRequests.drawer.fields.address')}</h4>
+                    <div className="text-sm text-gray-600">
+                      <p>{rfp.companyAddress}</p>
+                    </div>
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
 
@@ -198,27 +168,108 @@ export function RFPQuickView({
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center">
                 <UserIcon className="h-5 w-5 mr-2" />
-                Contact Person
+                {t('admin.rfpRequests.drawer.fields.contactPerson')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
                 <p className="text-gray-900 font-medium">
-                  {rfp.contact.firstName} {rfp.contact.lastName}
+                  {rfp.customerName}
                 </p>
-                <p className="text-sm text-gray-600">{rfp.contact.position}</p>
+                {rfp.contactPerson && (
+                  <p className="text-sm text-gray-600">{rfp.contactPerson}</p>
+                )}
               </div>
 
               <div className="grid grid-cols-1 gap-3 text-sm">
                 <div>
-                  <span className="font-semibold text-gray-700">Email:</span>
-                  <p className="text-gray-600">{rfp.contact.email}</p>
+                  <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.emailAddress')}:</span>
+                  <p className="text-gray-600">{rfp.customerEmail}</p>
                 </div>
                 
-                <div>
-                  <span className="font-semibold text-gray-700">Phone:</span>
-                  <p className="text-gray-600">{rfp.contact.phone}</p>
-                </div>
+                {rfp.customerPhone && (
+                  <div>
+                    <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.phoneNumber')}:</span>
+                    <p className="text-gray-600">{rfp.customerPhone}</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Requested Items */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base font-semibold flex items-center">
+                <div className="h-5 w-5 mr-2">📦</div>
+                {t('admin.rfpRequests.drawer.fields.requestedItems')} ({rfp.items?.length || 0})
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {rfp.items && rfp.items.length > 0 ? (
+                  rfp.items.map((item) => (
+                    <div key={item.id} className="border border-gray-200 rounded-lg p-3">
+                      <div className="flex items-start space-x-3">
+                        {/* Product Image */}
+                        <div className="flex-shrink-0">
+                          {item.product?.media?.[0]?.url ? (
+                            <img 
+                              src={item.product.media[0].url} 
+                              alt={item.product?.translations?.find(t => t.languageCode === 'fr')?.nom || t('common.productWithoutName')}
+                              className="w-16 h-16 rounded-lg object-cover border border-gray-200"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling.style.display = 'flex';
+                              }}
+                            />
+                          ) : null}
+                          <div 
+                            className={`w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
+                          >
+                            <span className="text-gray-400 text-xs">📦</span>
+                          </div>
+                        </div>
+                        
+                        {/* Product Details */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-gray-900">
+                            {item.product?.translations?.find(t => t.languageCode === 'fr')?.nom || 
+                             item.product?.translations?.[0]?.nom || 
+                             t('common.productWithoutName')}
+                          </h4>
+                          <p className="text-sm text-gray-600 mt-1">
+                            {t('common.reference')}: {item.product?.referenceFournisseur || 'N/A'}
+                          </p>
+                          {item.product?.constructeur && (
+                            <p className="text-sm text-gray-500">
+                              {t('common.manufacturer')}: {item.product.constructeur}
+                            </p>
+                          )}
+                          {item.specialRequirements && (
+                            <p className="text-sm text-gray-600 mt-2">
+                              <strong>{t('admin.rfpRequests.drawer.fields.specialRequirements')}:</strong> {item.specialRequirements}
+                            </p>
+                          )}
+                        </div>
+                        
+                        {/* Quantity and Price */}
+                        <div className="flex-shrink-0 text-right">
+                          <span className="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-medium">
+                            {t('admin.rfpRequests.drawer.fields.quantity')}: {item.quantity}
+                          </span>
+                          {item.quotedPrice && (
+                            <p className="text-sm text-green-600 font-medium mt-1">
+                              {formatCurrency(item.quotedPrice)}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm">{t('admin.rfpRequests.drawer.messages.noProducts')}</p>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -228,25 +279,25 @@ export function RFPQuickView({
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center">
                 <DocumentTextIcon className="h-5 w-5 mr-2" />
-                Request Details
+                {t('admin.rfpRequests.drawer.fields.requestSummary')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="font-semibold text-gray-700">Request Number:</span>
-                  <p className="text-gray-600 font-mono">{rfp.requestNumber}</p>
+                  <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.requestNumber')}:</span>
+                  <p className="text-gray-600 font-mono">{rfp.referenceNumber}</p>
                 </div>
                 
                 <div>
-                  <span className="font-semibold text-gray-700">Priority:</span>
-                  <Badge className={getUrgencyColor(rfp.urgency)} variant="outline">
-                    {rfp.urgency}
+                  <span className="font-semibold text-gray-700">{t('admin.rfpRequests.table.priority')}:</span>
+                  <Badge className={getUrgencyColor(rfp.urgencyLevel)} variant="outline">
+                    {rfp.urgencyLevel}
                   </Badge>
                 </div>
                 
                 <div>
-                  <span className="font-semibold text-gray-700">Created:</span>
+                  <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.createdDate')}:</span>
                   <p className="text-gray-600 flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {formatDate(rfp.createdAt)}
@@ -254,7 +305,7 @@ export function RFPQuickView({
                 </div>
 
                 <div>
-                  <span className="font-semibold text-gray-700">Last Updated:</span>
+                  <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.lastUpdated')}:</span>
                   <p className="text-gray-600 flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {formatDate(rfp.updatedAt)}
@@ -267,13 +318,13 @@ export function RFPQuickView({
           {/* Recent Activity */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base font-semibold">Recent Activity</CardTitle>
+              <CardTitle className="text-base font-semibold">{t('dashboard.recentActivity')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600">RFP request submitted</span>
+                  <span className="text-gray-600">{t('rfp.success')}</span>
                   <span className="text-gray-400 ml-auto">
                     {formatDate(rfp.createdAt)}
                   </span>
@@ -282,7 +333,7 @@ export function RFPQuickView({
                 {rfp.updatedAt && rfp.updatedAt !== rfp.createdAt && (
                   <div className="flex items-center space-x-3 text-sm">
                     <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-gray-600">Status updated</span>
+                    <span className="text-gray-600">{t('admin.rfpRequests.drawer.fields.lastUpdated')}</span>
                     <span className="text-gray-400 ml-auto">
                       {formatDate(rfp.updatedAt)}
                     </span>
@@ -295,31 +346,20 @@ export function RFPQuickView({
 
         {/* Footer Actions */}
         <div className="sticky bottom-0 bg-white border-t mt-8 pt-6 pb-6 space-y-3">
-          <div className="grid grid-cols-2 gap-3">
-            <Button
-              variant="outline"
-              onClick={onEdit}
-              className="flex items-center justify-center space-x-2"
-            >
-              <PencilIcon className="h-4 w-4" />
-              <span>Manage RFP</span>
-            </Button>
-            
-            <Button
-              onClick={onRespond}
-              className="flex items-center justify-center space-x-2 bg-primary-600 hover:bg-primary-700"
-            >
-              <DocumentTextIcon className="h-4 w-4" />
-              <span>Respond</span>
-            </Button>
-          </div>
+          <Button
+            onClick={onEdit}
+            className="w-full flex items-center justify-center space-x-2 bg-primary-600 hover:bg-primary-700"
+          >
+            <PencilIcon className="h-4 w-4" />
+            <span>{t('admin.rfpRequests.drawer.titles.manage')}</span>
+          </Button>
           
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
             className="w-full"
           >
-            Close
+            {t('common.close')}
           </Button>
         </div>
       </SheetContent>

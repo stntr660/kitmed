@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { X, Plus, Minus, ShoppingCart, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,6 +26,8 @@ import Link from 'next/link';
 export function RFPCart() {
   const t = useTranslations('rfp');
   const tCommon = useTranslations('common');
+  const params = useParams();
+  const locale = (params?.locale as string) || 'fr';
   
   const {
     cart,
@@ -89,7 +92,7 @@ export function RFPCart() {
                   {t('addProducts')}
                 </p>
                 <Button asChild onClick={closeCart}>
-                  <Link href="/products">
+                  <Link href={`/${locale}/products`}>
                     {t('browseProducts')}
                   </Link>
                 </Button>
@@ -241,7 +244,7 @@ export function RFPCart() {
                   asChild
                   onClick={closeCart}
                 >
-                  <Link href="/products">
+                  <Link href={`/${locale}/products`}>
                     {t('browseProducts')}
                   </Link>
                 </Button>

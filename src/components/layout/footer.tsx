@@ -29,32 +29,31 @@ interface FooterProps {
   className?: string;
 }
 
-const footerLinks = {
+const getFooterLinks = (locale: string) => ({
   products: [
-    { name: 'allProducts', href: '/products' },
-    { name: 'byDiscipline', href: '/products/disciplines' },
-    { name: 'byManufacturer', href: '/products/manufacturers' },
-    { name: 'featured', href: '/products/featured' },
+    { name: 'allProducts', href: `/${locale}/products` },
+    { name: 'byDiscipline', href: `/${locale}/products/disciplines` },
+    { name: 'byManufacturer', href: `/${locale}/products/manufacturers` },
+    { name: 'featured', href: `/${locale}/products/featured` },
   ],
   company: [
-    { name: 'about', href: '/about' },
-    { name: 'team', href: '/about/team' },
-    { name: 'careers', href: '/careers' },
-    { name: 'news', href: '/about/news' },
+    { name: 'about', href: `/${locale}/about` },
+    { name: 'team', href: `/${locale}/about/team` },
+    { name: 'careers', href: `/${locale}/careers` },
   ],
   support: [
-    { name: 'contact', href: '/contact' },
-    { name: 'documentation', href: '/support/documentation' },
-    { name: 'training', href: '/support/training' },
-    { name: 'maintenance', href: '/support/maintenance' },
+    { name: 'contact', href: `/${locale}/contact` },
+    { name: 'documentation', href: `/${locale}/support/documentation` },
+    { name: 'training', href: `/${locale}/support/training` },
+    { name: 'maintenance', href: `/${locale}/support/maintenance` },
   ],
   legal: [
-    { name: 'privacy', href: '/legal/privacy' },
-    { name: 'terms', href: '/legal/terms' },
-    { name: 'cookies', href: '/legal/cookies' },
-    { name: 'compliance', href: '/legal/compliance' },
+    { name: 'privacy', href: `/${locale}/legal/privacy` },
+    { name: 'terms', href: `/${locale}/legal/terms` },
+    { name: 'cookies', href: `/${locale}/legal/cookies` },
+    { name: 'compliance', href: `/${locale}/legal/compliance` },
   ],
-};
+});
 
 const socialLinks = [
   { name: 'facebook', href: '#', icon: Facebook },
@@ -66,7 +65,7 @@ const socialLinks = [
 export function Footer({ locale, className }: FooterProps) {
   const t = useTranslations('footer');
   const tCommon = useTranslations('common');
-  
+  const footerLinks = getFooterLinks(locale);
 
   return (
     <footer className={cn('bg-gray-50 border-t', className)}>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname, useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
@@ -11,12 +11,11 @@ import {
   CubeIcon,
   UsersIcon,
   DocumentTextIcon,
-  ChartBarIcon,
   CogIcon,
-  MegaphoneIcon,
   BuildingOfficeIcon,
   PowerIcon,
   RectangleGroupIcon,
+  PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { AdminUser } from '@/types/admin';
@@ -89,20 +88,16 @@ function getNavigation(locale: string, t: ReturnType<typeof useTranslations>): N
       description: t('admin.categories.manageDescription'),
     },
     {
-      name: t('admin.sidebar.content'),
-      href: `/${locale}/admin/content`,
-      icon: MegaphoneIcon,
+      name: 'Banners',
+      href: `/${locale}/admin/banners`,
+      icon: PhotoIcon,
+      description: 'Gérer les bannières de la page d\'accueil',
     },
     {
       name: t('admin.sidebar.users'),
       href: `/${locale}/admin/users`,
       icon: UsersIcon,
       permission: 'users',
-    },
-    {
-      name: t('admin.sidebar.analytics'),
-      href: `/${locale}/admin/analytics`,
-      icon: ChartBarIcon,
     },
     {
       name: t('admin.sidebar.settings'),
@@ -126,19 +121,33 @@ function hasPermission(user: AdminUser, permission?: string): boolean {
 
 function NavItem({ item, pathname, user }: { item: NavigationItem; pathname: string; user: AdminUser }) {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const isActive = item.exact ? pathname === item.href : pathname.startsWith(item.href);
 
   if (item.permission && !hasPermission(user, item.permission)) {
     return null;
   }
 
+  // Reset loading state when pathname changes (navigation completed)
+  useEffect(() => {
+    setIsLoading(false);
+  }, [pathname]);
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isActive) return; // Don't show loading for current page
+    // Prevent click if already loading or if it's the current page
+    if (isLoading || isActive) {
+      e.preventDefault();
+      return;
+    }
     
     setIsLoading(true);
     
-    // Reset loading state after navigation (in case it doesn't complete)
-    setTimeout(() => setIsLoading(false), 3000);
+    // Navigate programmatically to have better control
+    e.preventDefault();
+    router.push(item.href);
+    
+    // Fallback: Reset loading state after 5 seconds if navigation doesn't complete
+    setTimeout(() => setIsLoading(false), 5000);
   };
 
   const baseClasses = cn(
@@ -146,8 +155,8 @@ function NavItem({ item, pathname, user }: { item: NavigationItem; pathname: str
     isActive
       ? 'bg-white text-primary-600 shadow-lg transform translate-x-1'
       : isLoading
-      ? 'bg-white/20 text-white scale-[0.98] shadow-md'
-      : 'text-white/90 hover:text-white hover:bg-white/15 hover:scale-[1.02] hover:translate-x-1 hover:shadow-md'
+      ? 'bg-white/20 text-white scale-[0.98] shadow-md cursor-not-allowed pointer-events-none'
+      : 'text-white/90 hover:text-white hover:bg-white/15 hover:scale-[1.02] hover:translate-x-1 hover:shadow-md cursor-pointer'
   );
 
   return (

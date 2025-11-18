@@ -387,7 +387,7 @@ export function AdminCRUDView<T extends CRUDItem>({
                               size="sm"
                               variant="ghost"
                               onClick={action.onClick}
-                              className={action.variant === 'destructive' ? 'text-red-600 hover:text-red-700' : ''}
+                              className={action.variant === 'destructive' ? 'text-gray-600 hover:text-gray-700' : ''}
                               title={action.label}
                             >
                               {action.icon}
