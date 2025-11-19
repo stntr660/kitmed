@@ -7,6 +7,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const locale = searchParams.get('locale') || 'fr';
     const query = searchParams.get('query');
     const category = searchParams.get('category');
+    const manufacturer = searchParams.get('manufacturer');
+    const featured = searchParams.get('featured');
     const page = parseInt(searchParams.get('page') || '1');
     const pageSize = parseInt(searchParams.get('pageSize') || '12');
     const status = searchParams.getAll('status');
@@ -44,6 +46,16 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Category filter
     if (category) {
       where.categoryId = category;
+    }
+
+    // Manufacturer filter
+    if (manufacturer) {
+      where.constructeur = { contains: manufacturer };
+    }
+
+    // Featured products filter
+    if (featured === 'true') {
+      where.isFeatured = true;
     }
 
     // Status filter (for potential future use)

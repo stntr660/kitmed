@@ -80,10 +80,9 @@ export function ProductCard({
     >
       <Card 
         className={cn(
-          'group relative overflow-hidden transition-shadow duration-200',
+          'group relative overflow-hidden transition-shadow duration-200 h-full flex flex-col',
           'hover:shadow-medical-lg',
           {
-            'h-full': variant === 'default',
             'max-w-sm': variant === 'compact',
             'border-2 border-accent/20': variant === 'featured',
           },
@@ -93,7 +92,7 @@ export function ProductCard({
       >
         <Link 
           href={`/${locale}/products/${product.slug}`}
-          className="block"
+          className="flex-1 flex flex-col"
           aria-label={`${t('viewProduct')} ${product.nom ? product.nom[locale] : 'Product'}`}
         >
           {/* Image Section */}
@@ -165,7 +164,7 @@ export function ProductCard({
             </div>
           </div>
 
-          <CardContent className="p-4">
+          <CardContent className="p-4 flex-1 flex flex-col">
             {/* Category & Manufacturer */}
             <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-medical-text-muted">
               <span>{product.category?.name ? product.category.name[locale] : 'Category'}</span>
@@ -207,6 +206,9 @@ export function ProductCard({
               )}
               {product.discipline?.name ? product.discipline.name[locale] : 'Discipline'}
             </Badge>
+
+            {/* Spacer to push price to bottom */}
+            <div className="flex-1"></div>
 
             {/* Price */}
             {product.price && (

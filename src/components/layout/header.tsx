@@ -75,7 +75,6 @@ const getNavigation = (locale: string) => [
     hasSubmenu: true,
     submenu: [
       { name: 'company', href: `/${locale}/about` },
-      { name: 'team', href: `/${locale}/about/team` },
       { name: 'news', href: `/${locale}/about/news` },
     ],
   },

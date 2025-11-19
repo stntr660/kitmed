@@ -205,8 +205,6 @@
       "byManufacturer": "By Manufacturer",
       "featured": "Featured Products",
       "about": "About Us",
-      "team": "Our Team",
-      "careers": "Careers",
       "news": "News",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -1424,6 +1422,261 @@
       "exploreProducts": "Explore products",
       "viewAllProducts": "View All Products",
       "fallbackDescription": "Medical solutions for"
+    },
+    "partners": {
+      "title": "Our Trusted Partners",
+      "subtitle": "Global Leading Brands",
+      "description": "We collaborate with the most respected manufacturers in the medical industry",
+      "viewAll": "View All Our Partners"
+    },
+    "featuredProducts": {
+      "title": "Premium Selection",
+      "subtitle": "Featured Products",
+      "description": "Discover our selection of exceptional equipment chosen for their innovation",
+      "badge": "⭐ Featured",
+      "viewDetails": "View Details",
+      "viewAll": "View All Featured Products",
+      "noDescription": "Description available on request",
+      "noProducts": "No featured products at the moment"
+    },
+    "disciplines": {
+      "title": "Medical Specialties",
+      "subtitle": "Our Areas of Expertise",
+      "description": "Discover our specialized solutions for each medical discipline",
+      "viewRange": "Discover the range",
+      "viewAll": "View All Specialties",
+      "productsCount": "products",
+      "fallbackDescription": "Professional solutions for {name}"
+    },
+    "partnerDescriptions": {
+      "philips": "Advanced medical imaging solutions",
+      "ge": "Diagnostic and care equipment",
+      "siemens": "Innovative medical technologies",
+      "medtronic": "Therapeutic medical devices",
+      "abbott": "Diagnostic and monitoring solutions",
+      "jj": "Surgical devices and implants"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About KITMED",
+      "title": "Leading Medical Equipment Provider in Morocco",
+      "description": "Since our establishment, KITMED has been dedicated to importing, distributing, installing and maintaining high-performance medical equipment and consumables, meeting the needs of both public and private sector clients.",
+      "cta": {
+        "contact": "Contact Us",
+        "products": "Our Products"
+      }
+    },
+    "overview": {
+      "title": "Our Story",
+      "description1": "KITMED is a Moroccan company specialized in the import, distribution, installation, and maintenance of medical equipment and consumables for both public and private sectors.",
+      "description2": "Located at 20, rue Lalande, in Casablanca's hospital district, our company has established itself as a trusted partner for healthcare facilities throughout the kingdom and is expanding towards North African markets.",
+      "established": {
+        "title": "Established in Morocco",
+        "description": "Based in Casablanca's hospital district since our founding"
+      },
+      "expertise": {
+        "title": "Complete Medical Solutions",
+        "description": "Import, distribution, installation, and professional maintenance"
+      },
+      "reach": {
+        "title": "North African Expansion",
+        "description": "Serving Morocco and expanding strategically into North Africa"
+      }
+    },
+    "mission": {
+      "sectionTitle": "Our Mission & Vision",
+      "sectionDescription": "Supporting the development of the medical sector with high-performance equipment",
+      "title": "Our Mission",
+      "description": "To support the development of the medical sector by providing high-performance medical equipment and consumables, adapted to the needs of each client in both public and private sectors.",
+      "points": [
+        "Import, distribute and install cutting-edge medical equipment",
+        "Ensure professional maintenance and after-sales service",
+        "Guarantee professional and quality materials through our global partnerships",
+        "Accompany our clients throughout the process for continuous satisfaction"
+      ]
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "Maintain our strong position as a major player in the local market and continue our growth process by expanding towards the North African region.",
+      "points": [
+        "Consolidate our leadership in the Moroccan market",
+        "Strategic expansion towards North Africa",
+        "Develop partnerships with renowned global brands",
+        "Stay alert to new technological developments in medical equipment"
+      ]
+    },
+    "values": {
+      "title": "Our Values",
+      "description": "The fundamental principles that guide all our actions",
+      "items": {
+        "excellence": {
+          "title": "Performance Excellence",
+          "description": "We provide high-performance equipment that meets the strictest professional standards"
+        },
+        "integrity": {
+          "title": "Professional Integrity",
+          "description": "We maintain transparency and professionalism in all our partnerships and services"
+        },
+        "partnership": {
+          "title": "Global Partnership",
+          "description": "We develop strategic partnerships with renowned international brands"
+        },
+        "quality": {
+          "title": "Quality Assurance",
+          "description": "We guarantee professional and quality materials through rigorous selection"
+        },
+        "innovation": {
+          "title": "Technological Innovation",
+          "description": "We stay alert to new technological developments in the medical field"
+        },
+        "commitment": {
+          "title": "Client Commitment",
+          "description": "We accompany our clients throughout the process for continuous satisfaction"
+        }
+      }
+    },
+    "contact": {
+      "title": "Our Contact Information",
+      "description": "Contact us for all your medical equipment needs",
+      "cta": "Get in Touch"
+    }
+  },
+  "partners": {
+    "hero": {
+      "badge": "Our Partners",
+      "title": "Trusted Partners and Global Manufacturers",
+      "description": "KITMED collaborates with the most respected manufacturers in the medical industry to provide you with the highest quality equipment.",
+      "cta": {
+        "contact": "Contact Us",
+        "products": "Our Products"
+      }
+    },
+    "featured": {
+      "title": "Featured Partners",
+      "description": "Our strategic collaborations with global leaders in medical equipment",
+      "badge": "Featured Partner"
+    },
+    "all": {
+      "title": "All Our Partners",
+      "description": "A global network of renowned manufacturers and suppliers to meet all your medical needs"
+    },
+    "benefits": {
+      "title": "Benefits of Our Partnerships",
+      "description": "Why our partners make a difference in your medical practice",
+      "quality": {
+        "title": "Guaranteed Quality",
+        "description": "Equipment certified to the strictest international standards"
+      },
+      "trust": {
+        "title": "Established Trust",
+        "description": "Decades of experience and collaboration with the best manufacturers"
+      },
+      "innovation": {
+        "title": "Continuous Innovation",
+        "description": "Access to the latest medical technologies and innovations"
+      }
+    },
+    "cta": {
+      "title": "Interested in a Partnership?",
+      "description": "Join our trusted partner network and let's develop medical excellence together.",
+      "contact": "Contact Us",
+      "call": "Call Us"
+    },
+    "noPartners": {
+      "title": "No Partners Found",
+      "description": "We are constantly working to expand our partner network."
+    },
+    "visitWebsite": "Visit Website"
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contact Us",
+      "title": "Get in Touch",
+      "description": "Our team of experts is at your disposal to support you in all your medical equipment projects."
+    },
+    "info": {
+      "title": "Our Contact Information",
+      "description": "Contact us by the method that suits you best. We are here to answer all your questions."
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "placeholders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "your.email@example.com",
+        "phone": "+212 6XX XXX XXX",
+        "company": "Your company name",
+        "subject": "Subject of your inquiry",
+        "message": "Describe your request in detail..."
+      }
+    },
+    "success": {
+      "title": "Message Sent Successfully!",
+      "message": "Thank you for your message. Our team will contact you shortly.",
+      "sendAnother": "Send Another Message"
+    }
+  },
+  "rfp": {
+    "hero": {
+      "badge": "Request for Quote",
+      "title": "Request Your Personalized Quote",
+      "description": "Get a quote quickly adapted to your specific needs for medical equipment. Our team of experts supports you to find the perfect solution.",
+      "cta": {
+        "browseProducts": "Browse Products",
+        "getHelp": "Get Help"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "A simple 3-step process to get your personalized quote",
+      "step1": {
+        "title": "1. Describe Your Needs",
+        "description": "Fill out our form with the details of your medical equipment needs"
+      },
+      "step2": {
+        "title": "2. Analysis and Study",
+        "description": "Our experts analyze your request and prepare a suitable proposal"
+      },
+      "step3": {
+        "title": "3. Receive Your Quote",
+        "description": "You receive a detailed quote with our personalized recommendations"
+      }
+    },
+    "form": {
+      "title": "Request Form",
+      "description": "Fill out the form below to receive your personalized quote"
+    },
+    "whyKitmed": {
+      "title": "Why Choose KITMED",
+      "description": "Decades of experience serving medical excellence",
+      "expertise": {
+        "title": "Technical Expertise",
+        "description": "Our experts advise you to choose equipment suited to your needs"
+      },
+      "support": {
+        "title": "Complete Support",
+        "description": "From installation to maintenance, we support you throughout"
+      },
+      "experience": {
+        "title": "Recognized Experience",
+        "description": "Over 500 facilities trust us for their equipment"
+      }
     }
   },
   "errors": {

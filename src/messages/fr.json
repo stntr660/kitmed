@@ -210,8 +210,6 @@
       "byManufacturer": "Par Fabricant",
       "featured": "Produits en Vedette",
       "about": "À Propos",
-      "team": "Notre Équipe",
-      "careers": "Carrières",
       "news": "Actualités",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -1516,6 +1514,299 @@
       "exploreProducts": "Explorer les produits",
       "viewAllProducts": "Voir Tous les Produits",
       "fallbackDescription": "Solutions médicales pour"
+    },
+    "partners": {
+      "title": "Nos Partenaires de Confiance",
+      "subtitle": "Marques Leaders Mondiales",
+      "description": "Nous collaborons avec les fabricants les plus respectés de l'industrie médicale",
+      "viewAll": "Voir Tous nos Partenaires"
+    },
+    "featuredProducts": {
+      "title": "Sélection Premium",
+      "subtitle": "Produits en Vedette",
+      "description": "Découvrez notre sélection d'équipements d'exception choisis pour leur innovation",
+      "badge": "⭐ Vedette",
+      "viewDetails": "Voir Détails",
+      "viewAll": "Voir Tous les Produits en Vedette",
+      "noDescription": "Description disponible sur demande",
+      "noProducts": "Aucun produit en vedette pour le moment"
+    },
+    "disciplines": {
+      "title": "Spécialités Médicales",
+      "subtitle": "Nos Domaines d'Expertise",
+      "description": "Découvrez nos solutions spécialisées pour chaque discipline médicale",
+      "viewRange": "Découvrir la gamme",
+      "viewAll": "Voir Toutes les Spécialités",
+      "productsCount": "produits",
+      "fallbackDescription": "Solutions professionnelles pour {name}"
+    },
+    "partnerDescriptions": {
+      "philips": "Solutions d'imagerie médicale avancée",
+      "ge": "Équipements de diagnostic et de soins",
+      "siemens": "Technologies médicales innovantes",
+      "medtronic": "Dispositifs médicaux thérapeutiques",
+      "abbott": "Solutions de diagnostic et surveillance",
+      "jj": "Dispositifs chirurgicaux et implants"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "À Propos de KITMED",
+      "title": "Leader en Équipements Médicaux au Maroc",
+      "description": "Dédiée à l'importation, la distribution, l'installation et la maintenance des équipements médicaux et consommables, KITMED accompagne le développement du secteur médical grâce à une stratégie bien étudiée et des partenariats mondiaux de référence.",
+      "cta": {
+        "contact": "Nous Contacter",
+        "products": "Nos Produits"
+      }
+    },
+    "overview": {
+      "title": "Notre Histoire",
+      "description1": "Dédiée à l'importation, la distribution, l'installation et la maintenance des équipements médicaux et consommables dans les secteurs public et privé, KITMED continue sa croissance grâce à des partenariats mondiaux, une vision claire et une stratégie bien étudiée.",
+      "description2": "Au-delà de la fourniture de matériels médicaux qui répondent à l'évolution des technologies médicales et aux besoins de chaque client, notre équipe dynamique s'engage à accompagner ses clients tout au long du processus pour assurer une satisfaction continue.",
+      "established": {
+        "title": "Établie au Maroc",
+        "description": "Basée à Casablanca, au cœur du quartier médical marocain"
+      },
+      "expertise": {
+        "title": "Expertise Médicale",
+        "description": "Spécialisés dans l'importation et distribution d'équipements médicaux de pointe"
+      },
+      "reach": {
+        "title": "Portée Régionale",
+        "description": "Desservant le Maroc et s'étendant vers les marchés africains"
+      }
+    },
+    "mission": {
+      "sectionTitle": "Notre Mission & Vision",
+      "sectionDescription": "Guidés par notre engagement envers l'excellence en soins de santé",
+      "title": "Notre Mission",
+      "description": "Accompagner le développement du secteur médical en fournissant des équipements et consommables médicaux de haute performance, adaptés aux besoins de chaque client des secteurs public et privé.",
+      "points": [
+        "Importer, distribuer et installer des équipements médicaux de pointe",
+        "Assurer la maintenance et le service après-vente professionnel",
+        "Garantir des matériaux professionnels et de qualité via nos partenariats mondiaux",
+        "Accompagner nos clients tout au long du processus pour une satisfaction continue"
+      ]
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Maintenir notre position forte d'acteur majeur sur le marché local et poursuivre notre processus de croissance en nous étendant vers la région d'Afrique du Nord.",
+      "points": [
+        "Consolider notre leadership sur le marché marocain",
+        "Expansion stratégique vers l'Afrique du Nord",
+        "Développer des partenariats avec des marques mondiales renommées",
+        "Rester en veille des nouvelles évolutions technologiques médicales"
+      ]
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "description": "Les principes qui guident notre action quotidienne",
+      "items": {
+        "performance": {
+          "title": "Performance",
+          "description": "Nous fournissons des matériaux haute performance et maniables"
+        },
+        "partnership": {
+          "title": "Partenariat",
+          "description": "Partenariats stratégiques avec des marques mondiales renommées"
+        },
+        "adaptation": {
+          "title": "Adaptation",
+          "description": "Services logistiques adaptés aux exigences d'expédition"
+        },
+        "quality": {
+          "title": "Qualité",
+          "description": "Garantie de matériaux professionnels et de qualité"
+        },
+        "vigilance": {
+          "title": "Veille Technologique",
+          "description": "Vigilance constante sur les nouvelles évolutions"
+        },
+        "satisfaction": {
+          "title": "Satisfaction Client",
+          "description": "Accompagnement continu pour la satisfaction de nos clients"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Recherche constante de l'excellence dans tous nos services et produits"
+        },
+        "integrity": {
+          "title": "Intégrité",
+          "description": "Transparence et honnêteté dans toutes nos relations d'affaires"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Adoption des technologies médicales les plus avancées"
+        },
+        "commitment": {
+          "title": "Engagement",
+          "description": "Dévouement total envers la santé et le bien-être de nos clients"
+        }
+      }
+    },
+    "contact": {
+      "title": "Nos Coordonnées",
+      "description": "Contactez-nous pour tous vos besoins en équipements médicaux",
+      "cta": "Prendre Contact"
+    }
+  },
+  "partners": {
+    "hero": {
+      "badge": "Nos Partenaires",
+      "title": "Partenaires de Confiance et Fabricants Mondiaux",
+      "description": "KITMED collabore avec les fabricants les plus respectés de l'industrie médicale pour vous offrir des équipements de la plus haute qualité.",
+      "cta": {
+        "contact": "Nous Contacter",
+        "products": "Nos Produits"
+      }
+    },
+    "featured": {
+      "title": "Partenaires Privilégiés",
+      "description": "Nos collaborations stratégiques avec les leaders mondiaux de l'équipement médical",
+      "badge": "Partenaire Privilégié"
+    },
+    "all": {
+      "title": "Tous Nos Partenaires",
+      "description": "Un réseau mondial de fabricants et fournisseurs de renom pour répondre à tous vos besoins médicaux"
+    },
+    "benefits": {
+      "title": "Avantages de Nos Partenariats",
+      "description": "Pourquoi nos partenaires font la différence dans votre pratique médicale",
+      "quality": {
+        "title": "Qualité Garantie",
+        "description": "Équipements certifiés aux normes internationales les plus strictes"
+      },
+      "trust": {
+        "title": "Confiance Établie",
+        "description": "Des décennies d'expérience et de collaboration avec les meilleurs fabricants"
+      },
+      "innovation": {
+        "title": "Innovation Continue",
+        "description": "Accès aux dernières technologies et innovations médicales"
+      }
+    },
+    "cta": {
+      "title": "Intéressé par un Partenariat ?",
+      "description": "Rejoignez notre réseau de partenaires de confiance et développons ensemble l'excellence médicale.",
+      "contact": "Nous Contacter",
+      "call": "Nous Appeler"
+    },
+    "noPartners": {
+      "title": "Aucun Partenaire Trouvé",
+      "description": "Nous travaillons constamment à élargir notre réseau de partenaires."
+    },
+    "visitWebsite": "Visiter le Site Web"
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contactez-nous",
+      "title": "Entrons en Contact",
+      "description": "Notre équipe d'experts est à votre disposition pour vous accompagner dans tous vos projets d'équipements médicaux."
+    },
+    "info": {
+      "title": "Nos Coordonnées",
+      "description": "Contactez-nous par le moyen qui vous convient le mieux. Nous sommes là pour répondre à toutes vos questions."
+    },
+    "hours": {
+      "title": "Horaires d'Ouverture",
+      "weekdays": "Lundi - Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche",
+      "closed": "Fermé"
+    },
+    "form": {
+      "title": "Envoyez-nous un Message",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "company": "Société",
+      "subject": "Objet",
+      "message": "Message",
+      "submit": "Envoyer le Message",
+      "placeholders": {
+        "firstName": "Votre prénom",
+        "lastName": "Votre nom",
+        "email": "votre.email@exemple.com",
+        "phone": "+212 6XX XXX XXX",
+        "company": "Nom de votre société",
+        "subject": "Objet de votre demande",
+        "message": "Décrivez votre demande en détail..."
+      }
+    },
+    "success": {
+      "title": "Message Envoyé avec Succès !",
+      "message": "Merci pour votre message. Notre équipe vous contactera dans les plus brefs délais.",
+      "sendAnother": "Envoyer un Autre Message"
+    }
+  },
+  "rfp": {
+    "title": "Demande de Proposition",
+    "cart": "Panier de devis",
+    "emptyCart": "Votre panier de devis est vide",
+    "addProducts": "Ajoutez des produits pour commencer à construire votre demande",
+    "browseProducts": "Parcourir les Produits",
+    "item": "article",
+    "items": "articles",
+    "quantity": "Quantité",
+    "notes": "Notes",
+    "removeItem": "Retirer l'article",
+    "continueRequest": "Continuer la Demande",
+    "companyInfo": "Informations de l'Entreprise",
+    "contactInfo": "Informations de Contact",
+    "requirements": "Exigences",
+    "urgency": "Urgence",
+    "budget": "Budget",
+    "deliveryRequirements": "Exigences de Livraison",
+    "message": "Message Supplémentaire",
+    "submit": "Soumettre la demande",
+    "submitting": "Soumission...",
+    "success": "Demande de devis soumise avec succès",
+    "requestNumber": "Numéro de Demande",
+    "hero": {
+      "badge": "Demande de Devis",
+      "title": "Demandez Votre Devis Personnalisé",
+      "description": "Obtenez rapidement un devis adapté à vos besoins spécifiques en équipements médicaux. Notre équipe d'experts vous accompagne pour trouver la solution parfaite.",
+      "cta": {
+        "browseProducts": "Parcourir les Produits",
+        "getHelp": "Obtenir de l'Aide"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça Marche",
+      "description": "Un processus simple en 3 étapes pour obtenir votre devis personnalisé",
+      "step1": {
+        "title": "1. Décrivez vos Besoins",
+        "description": "Remplissez notre formulaire avec les détails de vos besoins en équipements médicaux"
+      },
+      "step2": {
+        "title": "2. Analyse et Étude",
+        "description": "Nos experts analysent votre demande et préparent une proposition adaptée"
+      },
+      "step3": {
+        "title": "3. Recevez votre Devis",
+        "description": "Vous recevez un devis détaillé avec nos recommandations personnalisées"
+      }
+    },
+    "form": {
+      "title": "Formulaire de Demande",
+      "description": "Remplissez le formulaire ci-dessous pour recevoir votre devis personnalisé"
+    },
+    "whyKitmed": {
+      "title": "Pourquoi Choisir KITMED",
+      "description": "Des décennies d'expérience au service de l'excellence médicale",
+      "expertise": {
+        "title": "Expertise Technique",
+        "description": "Nos experts vous conseillent pour choisir les équipements adaptés à vos besoins"
+      },
+      "support": {
+        "title": "Accompagnement Complet",
+        "description": "De l'installation à la maintenance, nous vous accompagnons tout au long"
+      },
+      "experience": {
+        "title": "Expérience Reconnue",
+        "description": "Plus de 500 établissements nous font confiance pour leurs équipements"
+      }
     }
   },
   "errors": {

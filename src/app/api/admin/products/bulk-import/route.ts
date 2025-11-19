@@ -270,7 +270,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
               
               if (localImageUrl) {
                 try {
-                  const mediaItem = await prisma.media.create({
+                  const mediaItem = await prisma.productMedia.create({
                     data: {
                       productId: product.id,
                       type: 'image',

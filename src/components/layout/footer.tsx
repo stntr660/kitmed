@@ -21,6 +21,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { FooterLogo } from '@/components/ui/logo';
+import { ComplianceBadges } from '@/components/ui/compliance-badges';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/types';
 
@@ -38,8 +39,6 @@ const getFooterLinks = (locale: string) => ({
   ],
   company: [
     { name: 'about', href: `/${locale}/about` },
-    { name: 'team', href: `/${locale}/about/team` },
-    { name: 'careers', href: `/${locale}/careers` },
   ],
   support: [
     { name: 'contact', href: `/${locale}/contact` },
@@ -78,7 +77,7 @@ export function Footer({ locale, className }: FooterProps) {
               <FooterLogo />
             </div>
             <p className="text-sm text-medical-text-secondary mb-6">
-              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique.
+              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique depuis 1997.
             </p>
 
             {/* Social Links */}
@@ -223,31 +222,22 @@ export function Footer({ locale, className }: FooterProps) {
             <Shield className="h-4 w-4 mr-2" />
             Certifications et Normes
           </h3>
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Ministry Authorization */}
-            <div className="flex items-center space-x-2">
-              <CheckCircle className="h-4 w-4 text-primary" />
-              <div>
-                <div className="text-xs font-semibold text-gray-900">Autorisé Ministère Santé</div>
-                <div className="text-xs text-gray-600">Maroc</div>
-              </div>
-            </div>
+          
+          {/* Professional Certifications */}
+          <ComplianceBadges variant="grid" className="mb-6" />
 
-            {/* Import License */}
-            <div className="flex items-center space-x-2">
-              <Shield className="h-4 w-4 text-gray-600" />
-              <div>
-                <div className="text-xs font-semibold text-gray-900">Licence Import</div>
-                <div className="text-xs text-gray-600">Équipements Médicaux</div>
-              </div>
-            </div>
-
-            {/* Quality Service */}
-            <div className="flex items-center space-x-2">
-              <CheckCircle className="h-4 w-4 text-primary" />
-              <div>
-                <div className="text-xs font-semibold text-gray-900">Service Qualité</div>
-                <div className="text-xs text-gray-600">Maintenance & SAV</div>
+          {/* Additional Compliance Information */}
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="flex items-start space-x-3">
+              <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-900">
+                  Conformité Réglementaire Complète
+                </p>
+                <p className="text-sm text-gray-600">
+                  Autorisations officielles ONSSA et certifications ISO pour garantir la qualité 
+                  et la sécurité de nos équipements médicaux au Maroc.
+                </p>
               </div>
             </div>
           </div>

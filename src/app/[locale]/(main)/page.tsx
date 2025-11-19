@@ -20,12 +20,44 @@ interface Category {
   count: string;
 }
 
+interface Partner {
+  id: string;
+  name: string;
+  logo: string;
+  description: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  shortDescription: string;
+  manufacturer: {
+    name: string;
+  };
+  category?: {
+    name: string;
+  };
+  media: Array<{
+    id: string;
+    type: string;
+    url: string;
+    isPrimary: boolean;
+    altText: string | null;
+  }>;
+}
+
 export default function HomePage() {
   const t = useTranslations('home');
   const tCommon = useTranslations('common');
   const [isVisible, setIsVisible] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [partnersLoading, setPartnersLoading] = useState(true);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [productsLoading, setProductsLoading] = useState(true);
   const params = useParams();
   const locale = (params?.locale as string) || 'fr';
 
@@ -33,7 +65,7 @@ export default function HomePage() {
     setIsVisible(true);
   }, []);
 
-  // Fetch categories from API
+  // Fetch data from APIs
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -42,7 +74,7 @@ export default function HomePage() {
         const result = await response.json();
         
         if (result.success && result.data) {
-          setCategories(result.data);
+          setCategories(result.data.slice(0, 6)); // Limit to 6 categories
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -51,7 +83,45 @@ export default function HomePage() {
       }
     };
 
+    const fetchPartners = async () => {
+      try {
+        setPartnersLoading(true);
+        // Mock partners data for now - you can create a real API endpoint later
+        const mockPartners = [
+          { id: '1', name: 'Philips Healthcare', logo: '/uploads/partners/philips.png', description: t('partnerDescriptions.philips') },
+          { id: '2', name: 'GE Healthcare', logo: '/uploads/partners/ge.png', description: t('partnerDescriptions.ge') },
+          { id: '3', name: 'Siemens Healthineers', logo: '/uploads/partners/siemens.png', description: t('partnerDescriptions.siemens') },
+          { id: '4', name: 'Medtronic', logo: '/uploads/partners/medtronic.png', description: t('partnerDescriptions.medtronic') },
+          { id: '5', name: 'Abbott', logo: '/uploads/partners/abbott.png', description: t('partnerDescriptions.abbott') },
+          { id: '6', name: 'Johnson & Johnson', logo: '/uploads/partners/jj.png', description: t('partnerDescriptions.jj') }
+        ];
+        setPartners(mockPartners);
+      } catch (error) {
+        console.error('Error fetching partners:', error);
+      } finally {
+        setPartnersLoading(false);
+      }
+    };
+
+    const fetchFeaturedProducts = async () => {
+      try {
+        setProductsLoading(true);
+        const response = await fetch(`/api/products?status=active&featured=true&pageSize=6&locale=${locale}`);
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          setFeaturedProducts(result.data.items || []);
+        }
+      } catch (error) {
+        console.error('Error fetching featured products:', error);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
     fetchCategories();
+    fetchPartners();
+    fetchFeaturedProducts();
   }, [locale]);
 
 
@@ -59,6 +129,62 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Dynamic Banner with Static Fallback */}
       <DynamicBanner position="homepage" />
+
+      {/* Partners Section */}
+      <section className="py-12 lg:py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+              {t('partners.title')}
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+              {t('partners.subtitle')}
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              {t('partners.description')}
+            </p>
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {partnersLoading ? (
+              // Loading skeleton
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="animate-pulse">
+                  <div className="bg-gray-100 h-32 rounded-lg"></div>
+                </div>
+              ))
+            ) : (
+              partners.map((partner) => (
+                <div key={partner.id} className="group">
+                  <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
+                    <div className="h-16 flex items-center justify-center mb-4">
+                      <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center">
+                        <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
+                      </div>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
+                    <p className="text-sm text-gray-600">{partner.description}</p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50"
+              asChild
+            >
+              <Link href={`/${locale}/partners`}>
+                {t('partners.viewAll')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Features Section */}
       <section className="py-20 lg:py-24 bg-gray-50">
@@ -113,71 +239,21 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Technical Specifications Preview */}
-          <div className="mt-20 max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="p-8 lg:p-12">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="space-y-6">
-                    <div>
-                      <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-2">
-                        SPÉCIFICATIONS
-                      </p>
-                      <h3 className="text-3xl font-light text-gray-900 mb-4">
-                        Performance &amp; Fiabilité
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        Équipements conçus pour répondre aux exigences les plus strictes 
-                        des environnements médicaux professionnels
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Certification</span>
-                        <span className="font-medium text-gray-900">CE • FDA • ISO</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Garantie</span>
-                        <span className="font-medium text-gray-900">3 ans fabricant</span>
-                      </div>
-                      <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                        <span className="text-gray-600">Formation</span>
-                        <span className="font-medium text-gray-900">Incluse</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="relative">
-                    <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center">
-                      <span className="text-gray-400">Vidéo de démonstration</span>
-                    </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform duration-200">
-                        <Play className="h-8 w-8 text-gray-600 ml-1" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Medical Disciplines Section */}
-      <section className="py-20 lg:py-24 bg-white">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="max-w-4xl mx-auto text-center mb-12">
             <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-              Spécialités Médicales
+              {t('disciplines.title')}
             </p>
-            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-              Nos Domaines d'Expertise
+            <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+              {t('disciplines.subtitle')}
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              Découvrez nos solutions spécialisées pour chaque discipline médicale, 
-              avec des équipements adaptés aux besoins spécifiques de votre pratique.
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              {t('disciplines.description')}
             </p>
           </div>
           
@@ -218,7 +294,7 @@ export default function HomePage() {
                           </div>
                         )}
                         <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                          {category.count} produits
+                          {category.count} {t('disciplines.productsCount')}
                         </div>
                       </div>
                       
@@ -227,11 +303,11 @@ export default function HomePage() {
                           {category.name}
                         </h3>
                         <p className="text-gray-600 text-sm leading-relaxed mb-4 min-h-[3rem]">
-                          {category.description || `Solutions professionnelles pour ${category.name.toLowerCase()}`}
+                          {category.description || t('disciplines.fallbackDescription', { name: category.name.toLowerCase() })}
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">
-                            Découvrir la gamme
+                            {t('disciplines.viewRange')}
                           </span>
                           <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                         </div>
@@ -243,15 +319,123 @@ export default function HomePage() {
             )}
           </div>
           
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg font-medium transition-all duration-300"
+              className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50"
               asChild
             >
-              <Link href={`/${locale}/products`} className="flex items-center">
-                Voir Tous les Équipements
+              <Link href={`/${locale}/products/disciplines`}>
+                {t('disciplines.viewAll')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+              {t('featuredProducts.title')}
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+              {t('featuredProducts.subtitle')}
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              {t('featuredProducts.description')}
+            </p>
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {productsLoading ? (
+              // Loading skeleton
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="animate-pulse">
+                  <Card className="h-full">
+                    <div className="h-48 bg-gray-200 rounded-t-lg"></div>
+                    <CardContent className="p-4">
+                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map((product) => {
+                const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
+                
+                return (
+                  <Card key={product.id} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
+                    <div className="relative h-48 bg-slate-100 overflow-hidden">
+                      {primaryImage ? (
+                        <img
+                          src={primaryImage.url}
+                          alt={primaryImage.altText || product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                          <div className="w-12 h-12 bg-slate-300 rounded-full flex items-center justify-center">
+                            <span className="text-slate-500 text-xs">IMG</span>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="absolute top-3 left-3">
+                        <Badge className="bg-accent-500 text-white border-0 text-xs">
+                          {t('featuredProducts.badge')}
+                        </Badge>
+                      </div>
+                    </div>
+                    
+                    <CardContent className="p-4">
+                      <div className="mb-2">
+                        <p className="text-xs text-gray-500 font-medium">{product.manufacturer.name}</p>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                        {product.shortDescription || t('featuredProducts.noDescription')}
+                      </p>
+                      {product.category && (
+                        <p className="text-xs text-blue-600 font-medium mb-3">
+                          {product.category.name}
+                        </p>
+                      )}
+                      <Button 
+                        size="sm" 
+                        className="w-full bg-accent-500 text-white hover:bg-accent-600"
+                        asChild
+                      >
+                        <Link href={`/${locale}/products/${product.slug}`}>
+                          {t('featuredProducts.viewDetails')}
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">{t('featuredProducts.noProducts')}</p>
+              </div>
+            )}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
+              asChild
+            >
+              <Link href={`/${locale}/products/featured`}>
+                {t('featuredProducts.viewAll')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -350,7 +534,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
+                className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
                 asChild
               >
                 <Link href="/rfp/new" className="flex items-center">
