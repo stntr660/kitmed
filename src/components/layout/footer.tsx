@@ -78,7 +78,7 @@ export function Footer({ locale, className }: FooterProps) {
               <FooterLogo />
             </div>
             <p className="text-sm text-medical-text-secondary mb-6">
-              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique.
+              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique depuis 1997.
             </p>
 
             {/* Social Links */}
