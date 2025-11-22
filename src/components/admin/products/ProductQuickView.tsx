@@ -78,7 +78,7 @@ export function ProductQuickView({
                 </div>
                 <div>
                   <SheetTitle className="text-xl font-bold text-gray-900 font-poppins line-clamp-2">
-                    {product.name}
+                    {product.nom?.fr || product.nom?.en || product.name || t('common.productWithoutName')}
                   </SheetTitle>
                   <p className="text-sm text-gray-500 font-mono">{product.sku}</p>
                 </div>
@@ -86,11 +86,11 @@ export function ProductQuickView({
               
               <div className="flex items-center space-x-3">
                 <Badge className={getStatusColor(product.status)}>
-                  {product.status}
+                  {t(`admin.products.status.${product.status}`, { defaultValue: product.status })}
                 </Badge>
                 {product.featured && (
                   <Badge variant="outline" className="text-amber-600 border-amber-200 bg-amber-50">
-                    Featured
+                    {t('product.featured')}
                   </Badge>
                 )}
               </div>
@@ -106,7 +106,7 @@ export function ProductQuickView({
                 <div className="text-2xl font-bold text-primary-600">
                   {product._count?.media || 0}
                 </div>
-                <p className="text-xs text-primary-700 font-medium">Media Files</p>
+                <p className="text-xs text-primary-700 font-medium">{t('product.mediaFiles')}</p>
               </CardContent>
             </Card>
             
@@ -115,7 +115,7 @@ export function ProductQuickView({
                 <div className="text-2xl font-bold text-green-600">
                   {product._count?.rfpItems || 0}
                 </div>
-                <p className="text-xs text-green-700 font-medium">RFP Requests</p>
+                <p className="text-xs text-green-700 font-medium">{t('product.rfpRequests')}</p>
               </CardContent>
             </Card>
             
@@ -124,7 +124,7 @@ export function ProductQuickView({
                 <div className="text-2xl font-bold text-amber-600">
                   <TagIcon className="h-6 w-6 mx-auto" />
                 </div>
-                <p className="text-xs text-amber-700 font-medium">Category</p>
+                <p className="text-xs text-amber-700 font-medium">{t('product.category')}</p>
               </CardContent>
             </Card>
           </div>
@@ -132,23 +132,23 @@ export function ProductQuickView({
           {/* Product Information */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base font-semibold">Product Information</CardTitle>
+              <CardTitle className="text-base font-semibold">{t('product.productInformation')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {product.shortDescription && (
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Short Description</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">{t('product.shortDescriptionLabel')}</h4>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    {product.shortDescription}
+                    {product.shortDescription?.fr || product.shortDescription?.en || ''}
                   </p>
                 </div>
               )}
 
-              {product.description && (
+              {(product.description?.fr || product.description?.en) && (
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Full Description</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">{t('product.fullDescription')}</h4>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    {product.description}
+                    {product.description?.fr || product.description?.en || ''}
                   </p>
                 </div>
               )}
@@ -157,14 +157,14 @@ export function ProductQuickView({
 
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="font-semibold text-gray-700">Category:</span>
+                  <span className="font-semibold text-gray-700">{t('product.category')}:</span>
                   <p className="text-gray-600 mt-1">
-                    {product.category?.name || t('uncategorized')}
+                    {product.category?.name?.fr || product.category?.name?.en || product.category?.name || t('admin.uncategorized')}
                   </p>
                 </div>
                 
                 <div>
-                  <span className="font-semibold text-gray-700">Created:</span>
+                  <span className="font-semibold text-gray-700">{t('product.createdAt')}:</span>
                   <p className="text-gray-600 mt-1 flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {formatDate(product.createdAt)}
@@ -174,7 +174,7 @@ export function ProductQuickView({
 
               {product.updatedAt && product.updatedAt !== product.createdAt && (
                 <div className="text-sm">
-                  <span className="font-semibold text-gray-700">Last Updated:</span>
+                  <span className="font-semibold text-gray-700">{t('product.lastUpdated')}:</span>
                   <p className="text-gray-600 mt-1 flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {formatDate(product.updatedAt)}
@@ -187,7 +187,7 @@ export function ProductQuickView({
           {/* Media Preview */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base font-semibold">Media & Documentation</CardTitle>
+              <CardTitle className="text-base font-semibold">{t('admin.media')} & {t('admin.documentation')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
@@ -195,10 +195,10 @@ export function ProductQuickView({
                   <CubeIcon className="h-8 w-8 text-gray-400" />
                 </div>
                 <p className="text-sm text-gray-500 mb-2">
-                  {product._count?.media || 0} media files
+                  {product._count?.media || 0} {t('product.mediaFiles')}
                 </p>
                 <Button variant="outline" size="sm">
-                  View All Media
+                  {t('product.viewAllMedia')}
                 </Button>
               </div>
             </CardContent>
@@ -207,13 +207,13 @@ export function ProductQuickView({
           {/* Recent Activity */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base font-semibold">Recent Activity</CardTitle>
+              <CardTitle className="text-base font-semibold">{t('product.recentActivity')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                  <span className="text-gray-600">Product created</span>
+                  <span className="text-gray-600">{t('product.productCreated')}</span>
                   <span className="text-gray-400 ml-auto">
                     {formatDate(product.createdAt)}
                   </span>
@@ -222,7 +222,7 @@ export function ProductQuickView({
                 {product.updatedAt && product.updatedAt !== product.createdAt && (
                   <div className="flex items-center space-x-3 text-sm">
                     <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-gray-600">Product updated</span>
+                    <span className="text-gray-600">{t('product.productUpdated')}</span>
                     <span className="text-gray-400 ml-auto">
                       {formatDate(product.updatedAt)}
                     </span>
@@ -242,7 +242,7 @@ export function ProductQuickView({
               className="flex items-center justify-center space-x-2"
             >
               <PencilIcon className="h-4 w-4" />
-              <span>Edit Product</span>
+              <span>{t('product.editProduct')}</span>
             </Button>
             
             <Button
@@ -251,7 +251,7 @@ export function ProductQuickView({
               className="flex items-center justify-center space-x-2"
             >
               <EyeIcon className="h-4 w-4" />
-              <span>Full Details</span>
+              <span>{t('product.fullDetails')}</span>
             </Button>
           </div>
           
@@ -260,7 +260,7 @@ export function ProductQuickView({
             onClick={() => onOpenChange(false)}
             className="w-full"
           >
-            Close
+            {t('common.close')}
           </Button>
         </div>
       </SheetContent>

@@ -373,6 +373,9 @@ async function createProduct(request: NextRequest) {
   }
 }
 
-// Export handlers (authentication temporarily disabled for testing)
-export const GET = getProducts;
-export const POST = createProduct;
+// Export handlers with authentication
+export const GET = withAuth(getProducts);
+export const POST = withAuth(createProduct, {
+  resource: 'products',
+  action: 'create',
+});

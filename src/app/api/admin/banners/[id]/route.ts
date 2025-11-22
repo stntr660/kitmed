@@ -56,10 +56,10 @@ const updateBannerSchema = z.object({
   title: z.string().min(1, 'Title is required').optional(),
   subtitle: z.string().optional(),
   description: z.string().optional(),
-  imageUrl: z.string().url().optional().or(z.literal('')),
-  backgroundUrl: z.string().url().optional().or(z.literal('')),
+  imageUrl: z.string().optional().or(z.literal('')),
+  backgroundUrl: z.string().optional().or(z.literal('')),
   ctaText: z.string().optional(),
-  ctaUrl: z.string().url().optional().or(z.literal('')),
+  ctaUrl: z.string().optional().or(z.literal('')),
   ctaStyle: z.enum(['primary', 'secondary', 'outline']).optional(),
   position: z.string().optional(),
   layout: z.enum(['split', 'centered', 'full-width']).optional(),
@@ -92,6 +92,11 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     // Validate request body
     const validation = updateBannerSchema.safeParse(body);
     if (!validation.success) {
+      console.error('Banner update validation error:', {
+        bannerId: params.id,
+        body,
+        errors: validation.error.issues
+      });
       return NextResponse.json(
         {
           success: false,

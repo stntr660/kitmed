@@ -51,33 +51,9 @@ async function getPartners(request: NextRequest) {
       where.status = { in: filters.status };
     }
 
-    // Type filter - SQLite compatible pattern matching
-    if (filters.type === 'manufacturer') {
-      where.AND = where.AND || [];
-      where.AND.push({
-        OR: [
-          { 
-            translations: {
-              some: {
-                OR: [
-                  { name: { contains: 'Manufacturer' } },
-                  { name: { contains: 'manufacturer' } },
-                  { name: { contains: 'Fabricant' } },
-                  { name: { contains: 'fabricant' } },
-                  { description: { contains: 'Manufacturer' } },
-                  { description: { contains: 'manufacturer' } },
-                  { description: { contains: 'Fabricant' } },
-                  { description: { contains: 'fabricant' } },
-                ]
-              }
-            }
-          },
-          { name: { contains: 'Manufacturer' } },
-          { name: { contains: 'manufacturer' } },
-          { name: { contains: 'Fabricant' } },
-          { name: { contains: 'fabricant' } },
-        ]
-      });
+    // Type filter using the new type field
+    if (filters.type) {
+      where.type = filters.type;
     }
 
     // Execute queries
@@ -100,6 +76,7 @@ async function getPartners(request: NextRequest) {
       slug: partner.slug,
       websiteUrl: partner.websiteUrl,
       logoUrl: partner.logoUrl,
+      type: partner.type,
       status: partner.status,
       featured: partner.isFeatured,
       sortOrder: partner.sortOrder,
@@ -165,8 +142,9 @@ const createPartnerSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  websiteUrl: z.string().url().optional().or(z.literal('')),
-  logoUrl: z.string().url().optional().or(z.literal('')),
+  websiteUrl: z.string().optional(),
+  logoUrl: z.string().optional(),
+  type: z.enum(['manufacturer', 'distributor', 'service', 'technology']).default('manufacturer'),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.boolean().default(false),
 });
@@ -210,6 +188,7 @@ async function createPartner(request: NextRequest) {
         slug,
         websiteUrl: partnerData.websiteUrl || null,
         logoUrl: partnerData.logoUrl || null,
+        type: partnerData.type,
         status: partnerData.status,
         isFeatured: partnerData.featured,
         translations: {
@@ -238,6 +217,7 @@ async function createPartner(request: NextRequest) {
       slug: partner.slug,
       websiteUrl: partner.websiteUrl,
       logoUrl: partner.logoUrl,
+      type: partner.type,
       status: partner.status,
       featured: partner.isFeatured,
       sortOrder: partner.sortOrder,
@@ -280,5 +260,5 @@ async function createPartner(request: NextRequest) {
 }
 
 // Export handlers
-export const GET = getPartners;
-export const POST = createPartner;
+export const GET = withAuth(getPartners);
+export const POST = withAuth(createPartner);

@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { RFPCart } from '@/components/rfp/rfp-cart';
 import { Toaster } from '@/components/ui/toaster';
+import { HydrationDebugger } from '@/components/debug/HydrationDebugger';
 import { locales } from '@/i18n';
 import type { Locale } from '@/types';
 
@@ -66,6 +67,7 @@ export default async function LocaleLayout({
 
           {/* Global Components */}
           <Toaster />
+          <HydrationDebugger />
         </NextIntlClientProvider>
       </body>
     </html>

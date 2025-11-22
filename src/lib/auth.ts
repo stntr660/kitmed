@@ -80,8 +80,8 @@ export const hasPermission = (
   resource: AdminResource,
   action: AdminAction
 ): boolean => {
-  // Admin role has all permissions
-  if (user.role === 'admin') {
+  // Admin role has all permissions (case-insensitive check)
+  if (user.role?.toLowerCase() === 'admin') {
     return true;
   }
 
@@ -117,8 +117,8 @@ export const withAuth = (
       );
     }
 
-    // Check role if specified
-    if (options.roles && !options.roles.includes(user.role)) {
+    // Check role if specified (case-insensitive)
+    if (options.roles && !options.roles.map(r => r.toLowerCase()).includes(user.role?.toLowerCase())) {
       return Response.json(
         { success: false, error: { code: 'FORBIDDEN', message: 'Insufficient permissions' } },
         { status: 403 }
@@ -164,16 +164,6 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
         { resource: 'partners', actions: ['create', 'read', 'update'] },
         { resource: 'rfp_requests', actions: ['read', 'update', 'export'] },
         { resource: 'content', actions: ['create', 'read', 'update'] },
-        { resource: 'analytics', actions: ['read'] },
-      ];
-    
-    case 'viewer':
-      return [
-        { resource: 'products', actions: ['read', 'export'] },
-        { resource: 'categories', actions: ['read'] },
-        { resource: 'partners', actions: ['read'] },
-        { resource: 'rfp_requests', actions: ['read', 'export'] },
-        { resource: 'content', actions: ['read'] },
         { resource: 'analytics', actions: ['read'] },
       ];
     

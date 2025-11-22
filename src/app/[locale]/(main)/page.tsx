@@ -51,7 +51,6 @@ interface Product {
 export default function HomePage() {
   const t = useTranslations('home');
   const tCommon = useTranslations('common');
-  const [isVisible, setIsVisible] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -60,10 +59,6 @@ export default function HomePage() {
   const [productsLoading, setProductsLoading] = useState(true);
   const params = useParams();
   const locale = (params?.locale as string) || 'fr';
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   // Fetch data from APIs
   useEffect(() => {
@@ -86,18 +81,23 @@ export default function HomePage() {
     const fetchPartners = async () => {
       try {
         setPartnersLoading(true);
-        // Mock partners data for now - you can create a real API endpoint later
-        const mockPartners = [
-          { id: '1', name: 'Philips Healthcare', logo: '/uploads/partners/philips.png', description: t('partnerDescriptions.philips') },
-          { id: '2', name: 'GE Healthcare', logo: '/uploads/partners/ge.png', description: t('partnerDescriptions.ge') },
-          { id: '3', name: 'Siemens Healthineers', logo: '/uploads/partners/siemens.png', description: t('partnerDescriptions.siemens') },
-          { id: '4', name: 'Medtronic', logo: '/uploads/partners/medtronic.png', description: t('partnerDescriptions.medtronic') },
-          { id: '5', name: 'Abbott', logo: '/uploads/partners/abbott.png', description: t('partnerDescriptions.abbott') },
-          { id: '6', name: 'Johnson & Johnson', logo: '/uploads/partners/jj.png', description: t('partnerDescriptions.jj') }
-        ];
-        setPartners(mockPartners);
+        const response = await fetch(`/api/partners?featured=true&status=active&pageSize=6`);
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          // Transform partner data to match expected interface
+          const transformedPartners = result.data.map((partner: any) => ({
+            id: partner.id,
+            name: partner.name?.[locale] || partner.name?.fr || partner.name?.en || 'Partner',
+            logo: partner.logoUrl || '/uploads/partners/default.png',
+            description: partner.description?.[locale] || partner.description?.fr || partner.description?.en || ''
+          }));
+          setPartners(transformedPartners);
+        }
       } catch (error) {
         console.error('Error fetching partners:', error);
+        // Fallback to empty array on error
+        setPartners([]);
       } finally {
         setPartnersLoading(false);
       }
@@ -155,17 +155,25 @@ export default function HomePage() {
               ))
             ) : (
               partners.map((partner) => (
-                <div key={partner.id} className="group">
-                  <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
-                    <div className="h-16 flex items-center justify-center mb-4">
+              <div key={partner.id} className="group">
+                <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
+                  <div className="h-16 flex items-center justify-center mb-4">
+                    {partner.logo ? (
+                      <img 
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-12 max-w-20 object-contain"
+                      />
+                    ) : (
                       <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center">
                         <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
                       </div>
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
-                    <p className="text-sm text-gray-600">{partner.description}</p>
+                    )}
                   </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
+                  <p className="text-sm text-gray-600">{partner.description}</p>
                 </div>
+              </div>
               ))
             )}
           </div>

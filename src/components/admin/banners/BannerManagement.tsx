@@ -81,18 +81,19 @@ export function BannerManagement() {
     try {
       setLoading(true);
       
-      // Use the no-auth route temporarily for development
-      const response = await fetch('/api/admin/banners/no-auth', {
+      // Use proper authenticated route
+      const response = await fetch('/api/admin/banners', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
         },
       });
       
       console.log('Banner API response status:', response.status);
       
       if (response.ok) {
-        console.log('Banner API succeeded - no auth access for development');
+        console.log('Banner API succeeded with authentication');
         setIsUsingFallback(false);
         const result = await response.json();
         setBanners(result.data.items || []);
@@ -122,10 +123,11 @@ export function BannerManagement() {
     if (!confirm('Are you sure you want to delete this banner?')) return;
 
     try {
-      const response = await fetch(`/api/admin/banners/no-auth/${bannerId}`, {
+      const response = await fetch(`/api/admin/banners/${bannerId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
         },
       });
 
@@ -173,10 +175,11 @@ export function BannerManagement() {
         endDate: banner.endDate || undefined,
       };
 
-      const response = await fetch(`/api/admin/banners/no-auth/${banner.id}`, {
+      const response = await fetch(`/api/admin/banners/${banner.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
         },
         body: JSON.stringify(updatePayload),
       });

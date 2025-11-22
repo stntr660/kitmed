@@ -49,5 +49,5 @@ async function getDashboardStats(request: NextRequest) {
 }
 
 export const GET = withAuth(getDashboardStats, {
-  roles: ['admin', 'editor', 'viewer'],
+  roles: ['ADMIN', 'admin', 'editor', 'viewer', 'user'],
 });

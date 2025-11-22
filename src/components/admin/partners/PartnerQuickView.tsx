@@ -71,7 +71,7 @@ export function PartnerQuickView({
                 </Badge>
               )}
               <Badge variant={getStatusColor(partner.status)}>
-                {t(`admin.${partner.status}`)}
+                {t(`admin.partners.status.${partner.status}`, { defaultValue: partner.status })}
               </Badge>
             </div>
           </div>
@@ -157,7 +157,7 @@ export function PartnerQuickView({
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-700">{t('admin.status')}</span>
                     <Badge variant={getStatusColor(partner.status)}>
-                      {t(`admin.${partner.status}`)}
+                      {t(`admin.partners.status.${partner.status}`, { defaultValue: partner.status })}
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">

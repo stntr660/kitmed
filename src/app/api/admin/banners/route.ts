@@ -84,10 +84,10 @@ const createBannerSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   subtitle: z.string().optional(),
   description: z.string().optional(),
-  imageUrl: z.string().url().optional().or(z.literal('')),
-  backgroundUrl: z.string().url().optional().or(z.literal('')),
+  imageUrl: z.string().optional().or(z.literal('')),
+  backgroundUrl: z.string().optional().or(z.literal('')),
   ctaText: z.string().optional(),
-  ctaUrl: z.string().url().optional().or(z.literal('')),
+  ctaUrl: z.string().optional().or(z.literal('')),
   ctaStyle: z.enum(['primary', 'secondary', 'outline']).default('primary'),
   position: z.string().default('homepage'),
   layout: z.enum(['split', 'centered', 'full-width']).default('split'),
@@ -120,6 +120,10 @@ async function createBanner(request: NextRequest) {
     // Validate request body
     const validation = createBannerSchema.safeParse(body);
     if (!validation.success) {
+      console.error('Banner validation error:', {
+        body,
+        errors: validation.error.issues
+      });
       return NextResponse.json(
         {
           success: false,

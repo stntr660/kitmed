@@ -1,13 +1,15 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ArrowDownTrayIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { ArrowDownTrayIcon, ArrowUpTrayIcon, MagnifyingGlassIcon, PlusIcon, EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { AdminCRUDView, CRUDConfig, TableColumn } from '@/components/admin/shared/AdminCRUDView';
-import { ProductForm } from './ProductForm';
-import { ProductDetails } from './ProductDetails';
-import { AdminSearchFilters } from '@/types/admin';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { AdminSearchResult } from '@/types/admin';
 import { Product } from '@/types';
 import { formatDate, truncate } from '@/lib/utils';
 
@@ -27,8 +29,18 @@ interface ProductListProps {
   initialFilters?: Partial<AdminSearchFilters>;
 }
 
+interface AdminSearchFilters {
+  query?: string;
+  status?: string[];
+  category?: string[];
+  page: number;
+  pageSize: number;
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
+}
+
 export function ProductList({ initialFilters = {} }: ProductListProps) {
-  const t = useTranslations('common');
+  const t = useTranslations();
   const router = useRouter();
   const [products, setProducts] = useState<AdminSearchResult<ProductWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
@@ -194,9 +206,9 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
     return (
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold text-gray-900">Products</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('navigation.products')}</h1>
         </div>
-        <LoadingSpinner size="lg" text="Loading products..." />
+        <LoadingSpinner size="lg" text={t('admin.errors.failedToLoadProducts', {defaultValue: 'Loading products...'})} />
       </div>
     );
   }
@@ -206,9 +218,9 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Products</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('navigation.products')}</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Manage your medical equipment catalog
+            {t('admin.manageProducts')}
           </p>
         </div>
         <div className="flex space-x-2">
@@ -217,18 +229,18 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
             onClick={() => router.push('/admin/products/import')}
           >
             <ArrowUpTrayIcon className="h-4 w-4 mr-2" />
-            Import
+            {t('product.form.bulkImport.title')}
           </Button>
           <Button
             variant="outline"
             onClick={handleExport}
           >
             <ArrowDownTrayIcon className="h-4 w-4 mr-2" />
-            Export
+            {t('common.export')}
           </Button>
           <Button onClick={() => router.push('/admin/products/new')}>
             <PlusIcon className="h-4 w-4 mr-2" />
-            Add Product
+            {t('common.add')} {t('navigation.products')}
           </Button>
         </div>
       </div>
@@ -241,7 +253,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
               <div className="relative">
                 <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
-                  placeholder="Search products..."
+                  placeholder={t('common.searchPlaceholder')}
                   value={filters.query || ''}
                   onChange={(e) => handleSearch(e.target.value)}
                   className="pl-10"
@@ -258,7 +270,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                   onClick={() => handleStatusFilter(status)}
                   className="capitalize"
                 >
-                  {status}
+                  {t(`admin.products.status.${status}`, { defaultValue: status })}
                 </Button>
               ))}
             </div>
@@ -269,7 +281,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
             <div className="mt-4 p-3 bg-blue-50 rounded-lg">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-blue-700">
-                  {selectedProducts.length} product(s) selected
+                  {selectedProducts.length} {selectedProducts.length === 1 ? t('admin.productSelected') : t('admin.productsSelected')}
                 </span>
                 <div className="flex gap-2">
                   <Button
@@ -277,21 +289,21 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                     variant="outline"
                     onClick={() => handleBulkAction('activate')}
                   >
-                    Activate
+                    {t('admin.activate')}
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
                     onClick={() => handleBulkAction('deactivate')}
                   >
-                    Deactivate
+                    {t('admin.deactivate')}
                   </Button>
                   <Button
                     size="sm"
                     variant="destructive"
                     onClick={() => handleBulkAction('delete')}
                   >
-                    Delete
+                    {t('common.delete')}
                   </Button>
                 </div>
               </div>
@@ -307,7 +319,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
             <div className="p-6 text-center">
               <p className="text-red-600">{error}</p>
               <Button onClick={loadProducts} className="mt-4" variant="outline">
-                Retry
+                {t('errors.retry')}
               </Button>
             </div>
           ) : products?.items && products.items.length > 0 ? (
@@ -329,37 +341,37 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('nom')}
                     >
-                      Produit
+                      {t('navigation.products')}
                     </th>
                     <th 
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('referenceFournisseur')}
                     >
-                      Ref. Fournisseur
+                      {t('common.reference')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Constructeur
+                      {t('common.manufacturer')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Category
+                      {t('admin.category')}
                     </th>
                     <th 
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('status')}
                     >
-                      Status
+                      {t('admin.status')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Media
+                      {t('admin.media')}
                     </th>
                     <th 
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('createdAt')}
                     >
-                      Created
+                      {t('admin.created')}
                     </th>
                     <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {t('admin.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -383,7 +395,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                           </div>
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {truncate(product.nom?.fr || product.nom?.en || t('productWithoutName'), 40)}
+                              {truncate(product.nom?.fr || product.nom?.en || t('common.productWithoutName'), 40)}
                             </div>
                             {product.description && (
                               <div className="text-sm text-gray-500">
@@ -400,15 +412,15 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                         {product.constructeur}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        {product.category?.name}
+                        {product.category?.name?.fr || product.category?.name?.en || product.category?.name || t('admin.uncategorized')}
                       </td>
                       <td className="px-6 py-4">
                         <Badge variant={getStatusColor(product.status) as any}>
-                          {product.status}
+                          {t(`admin.products.status.${product.status}`, { defaultValue: product.status })}
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-500">
-                        {product._count?.media || 0} files
+                        {product._count?.media || 0} {t('admin.files')}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-500">
                         {formatDate(product.createdAt)}
@@ -445,12 +457,12 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
             </div>
           ) : (
             <div className="p-6 text-center">
-              <p className="text-gray-500">No products found</p>
+              <p className="text-gray-500">{t('search.noResults')}</p>
               <Button 
                 onClick={() => router.push('/admin/products/new')}
                 className="mt-4"
               >
-                Add Your First Product
+                {t('admin.addFirstProduct')}
               </Button>
             </div>
           )}
@@ -461,9 +473,11 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
       {products && products.totalPages > 1 && (
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-700">
-            Showing {((products.page - 1) * products.pageSize) + 1} to{' '}
-            {Math.min(products.page * products.pageSize, products.total)} of{' '}
-            {products.total} results
+            {t('search.showingResults', {
+              start: ((products.page - 1) * products.pageSize) + 1,
+              end: Math.min(products.page * products.pageSize, products.total),
+              total: products.total
+            })}
           </p>
           
           <div className="flex space-x-2">
@@ -473,7 +487,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
               disabled={products.page === 1}
               onClick={() => handlePageChange(products.page - 1)}
             >
-              Previous
+              {t('common.previous')}
             </Button>
             
             {[...Array(Math.min(5, products.totalPages))].map((_, i) => {
@@ -498,7 +512,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
               disabled={products.page === products.totalPages}
               onClick={() => handlePageChange(products.page + 1)}
             >
-              Next
+              {t('common.next')}
             </Button>
           </div>
         </div>

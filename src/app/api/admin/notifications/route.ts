@@ -16,8 +16,8 @@ const notificationSchema = z.object({
   expiresAt: z.string().optional(),
 });
 
-// Mock notifications storage with realistic KITMED data
-let notifications: any[] = [
+// Mock notifications storage for development
+let notifications = [
   {
     id: 'notif-001',
     type: 'rfp',
@@ -34,7 +34,7 @@ let notifications: any[] = [
     actionRequired: true,
     actionUrl: '/admin/rfp/rfp-2024-089',
     createdAt: '2024-11-09T10:30:00Z',
-    expiresAt: '2024-11-10T15:00:00Z'
+    expiresAt: '2024-12-10T15:00:00Z'
   },
   {
     id: 'notif-002',
@@ -58,105 +58,16 @@ let notifications: any[] = [
     type: 'product',
     priority: 'low',
     title: 'Nouveau produit ajouté',
-    message: 'Échographe GE Voluson E10 ajouté au catalogue par Dr. Amina Benali',
+    message: 'Échographe GE Voluson E10 ajouté au catalogue',
     data: {
       productId: 'prod-echo-ge-010',
       productName: 'Échographe GE Voluson E10',
-      addedBy: 'Dr. Amina Benali',
       category: 'Imagerie Médicale'
     },
     read: true,
     actionRequired: false,
     actionUrl: '/admin/products/prod-echo-ge-010',
     createdAt: '2024-11-09T07:45:00Z'
-  },
-  {
-    id: 'notif-004',
-    type: 'user',
-    priority: 'medium',
-    title: 'Tentative de connexion suspecte',
-    message: 'Tentative de connexion depuis une adresse IP inhabituelle (197.15.45.12)',
-    data: {
-      userId: 'user-admin-001',
-      ipAddress: '197.15.45.12',
-      location: 'Casablanca, Maroc',
-      blocked: true
-    },
-    read: false,
-    actionRequired: true,
-    actionUrl: '/admin/security/logs',
-    createdAt: '2024-11-09T06:20:00Z'
-  },
-  {
-    id: 'notif-005',
-    type: 'system',
-    priority: 'critical',
-    title: 'Maintenance système programmée',
-    message: 'Maintenance planifiée dimanche 10 novembre de 02:00 à 06:00 (GMT+1)',
-    data: {
-      maintenanceId: 'maint-2024-11-10',
-      startTime: '2024-11-10T01:00:00Z',
-      endTime: '2024-11-10T05:00:00Z',
-      affectedServices: ['API', 'Base de données', 'Notifications']
-    },
-    read: false,
-    actionRequired: false,
-    createdAt: '2024-11-08T14:00:00Z',
-    expiresAt: '2024-11-10T06:00:00Z'
-  },
-  {
-    id: 'notif-006',
-    type: 'rfp',
-    priority: 'medium',
-    title: 'Devis accepté - Clinique Atlas',
-    message: 'Clinique Atlas a accepté le devis pour 3 moniteurs patients (450,000 DH)',
-    data: {
-      rfpId: 'rfp-2024-087',
-      customerName: 'Clinique Atlas',
-      amount: 450000,
-      status: 'accepted',
-      products: ['Moniteur Patient Philips MP50', 'Moniteur Patient Philips MP60']
-    },
-    read: true,
-    actionRequired: false,
-    actionUrl: '/admin/rfp/rfp-2024-087',
-    createdAt: '2024-11-08T16:30:00Z'
-  },
-  {
-    id: 'notif-007',
-    type: 'inventory',
-    priority: 'high',
-    title: 'Réapprovisionnement urgent requis',
-    message: 'Plusieurs produits sous le seuil critique de stock',
-    data: {
-      lowStockCount: 12,
-      criticalProducts: [
-        'Table de Chirurgie Maquet',
-        'Défibrillateur Zoll X-Series',
-        'Ventilateur Hamilton C6'
-      ]
-    },
-    read: false,
-    actionRequired: true,
-    actionUrl: '/admin/inventory/low-stock',
-    createdAt: '2024-11-08T12:00:00Z'
-  },
-  {
-    id: 'notif-008',
-    type: 'security',
-    priority: 'high',
-    title: 'Mise à jour de sécurité disponible',
-    message: 'Mise à jour de sécurité critique disponible pour le système KITMED',
-    data: {
-      version: 'v2.1.3',
-      securityLevel: 'critical',
-      vulnerabilities: ['CVE-2024-001', 'CVE-2024-002'],
-      estimatedDuration: '30 minutes'
-    },
-    read: false,
-    actionRequired: true,
-    actionUrl: '/admin/system/updates',
-    createdAt: '2024-11-08T09:15:00Z'
   }
 ];
 
@@ -170,7 +81,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '20');
 
-    let filteredNotifications = notifications;
+    let filteredNotifications = [...notifications];
 
     // Filter by type
     if (type && type !== 'all') {

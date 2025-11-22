@@ -3,10 +3,14 @@ import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
 const categoryCreateSchema = z.object({
+  name: z.string().min(1, 'Category name is required'),
   type: z.enum(['discipline', 'equipment']),
   parentId: z.string().nullable().optional(),
   sortOrder: z.number().default(0),
   isActive: z.boolean().default(true),
+  description: z.string().nullable().optional(),
+  metaTitle: z.string().nullable().optional(),
+  metaDescription: z.string().nullable().optional(),
   imageUrl: z.union([
     z.string().refine(
       (val) => {
@@ -23,10 +27,14 @@ const categoryCreateSchema = z.object({
     fr: z.object({
       name: z.string().min(1, 'French name is required'),
       description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }),
     en: z.object({
       name: z.string().optional(),
       description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }).optional(),
   }),
 });

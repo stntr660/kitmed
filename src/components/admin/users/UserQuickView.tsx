@@ -26,7 +26,7 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  role: 'admin' | 'editor';
   status: 'active' | 'inactive' | 'pending' | 'suspended';
   permissions?: {
     resource: string;
@@ -61,12 +61,8 @@ export function UserQuickView({ open, onOpenChange, user, onEdit }: UserQuickVie
     switch (role) {
       case 'admin':
         return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'manager':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'editor':
         return 'bg-green-100 text-green-800 border-green-200';
-      case 'viewer':
-        return 'bg-gray-100 text-gray-800 border-gray-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -241,7 +237,7 @@ export function UserQuickView({ open, onOpenChange, user, onEdit }: UserQuickVie
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-gray-600">{t('admin.users.activity.lastActivity')}</div>
                     <div className="text-sm font-medium text-gray-900">
-                      {user.lastLogin ? formatDate(user.lastLogin) : t('admin.users.neverLoggedIn')}
+                      {user.lastLogin ? formatDate(user.lastLogin, 'time') : t('admin.users.neverLoggedIn')}
                     </div>
                   </div>
 

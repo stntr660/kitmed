@@ -33,12 +33,27 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error Boundary caught an error:', error, errorInfo);
     
-    // Log specific details about undefined component errors
+    // Log specific details about different error types
     if (error.message.includes('Element type is invalid')) {
       console.error('Component import error detected:', {
         error: error.message,
         stack: error.stack,
         componentStack: errorInfo.componentStack,
+      });
+    }
+    
+    // Log hydration-related errors
+    if (
+      error.message.includes('hydration') ||
+      error.message.includes('server HTML') ||
+      error.message.includes('client-side') ||
+      error.message.includes('Text content does not match')
+    ) {
+      console.error('Hydration error detected:', {
+        error: error.message,
+        stack: error.stack,
+        componentStack: errorInfo.componentStack,
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -85,18 +100,32 @@ interface DefaultErrorFallbackProps {
 
 function DefaultErrorFallback({ error, retry, errorInfo }: DefaultErrorFallbackProps) {
   const isComponentError = error.message.includes('Element type is invalid');
+  const isHydrationError = error.message.includes('hydration') || 
+                          error.message.includes('server HTML') || 
+                          error.message.includes('Text content does not match');
   
   return (
     <Card className="border-red-200 bg-red-50">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-red-700">
           <AlertTriangle className="h-5 w-5" />
-          {isComponentError ? 'Component Error' : 'Something went wrong'}
+          {isHydrationError ? 'Hydration Error' : isComponentError ? 'Component Error' : 'Something went wrong'}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="text-sm text-red-600">
-          {isComponentError ? (
+          {isHydrationError ? (
+            <div>
+              <p className="font-medium mb-2">Server and client content mismatch detected.</p>
+              <p className="text-xs">This is usually caused by:</p>
+              <ul className="list-disc list-inside text-xs mt-1 space-y-1">
+                <li>Different content rendered on server vs client</li>
+                <li>Dynamic values (dates, random numbers) during SSR</li>
+                <li>Browser-only APIs called during server rendering</li>
+                <li>Conditional rendering based on client-side state</li>
+              </ul>
+            </div>
+          ) : isComponentError ? (
             <div>
               <p className="font-medium mb-2">A component failed to render properly.</p>
               <p className="text-xs">This is usually caused by:</p>

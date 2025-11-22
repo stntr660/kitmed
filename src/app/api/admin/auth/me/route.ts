@@ -1,24 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyRequestAuth, getAdminUser } from '@/lib/auth-utils';
+import { PrismaClient } from '@prisma/client';
 
-// Mock admin user (matches the one in login)
-const MOCK_ADMIN = {
-  id: '1',
-  email: 'admin@kitmed.ma',
-  firstName: 'Admin',
-  lastName: 'User',
-  role: 'admin',
-  status: 'ACTIVE',
-};
+const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   try {
-    // Check for authentication token
-    const authHeader = request.headers.get('authorization');
-    const cookieToken = request.cookies.get('admin-token')?.value;
+    // Verify JWT token
+    const auth = await verifyRequestAuth(request);
     
-    const token = authHeader?.replace('Bearer ', '') || cookieToken;
-    
-    if (!token || !token.startsWith('mock-jwt-token-')) {
+    if (!auth) {
       return NextResponse.json(
         {
           success: false,
@@ -31,20 +22,63 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Return mock user data (in production, verify JWT and fetch from database)
-    return NextResponse.json({
-      success: true,
-      data: {
-        id: MOCK_ADMIN.id,
-        email: MOCK_ADMIN.email,
-        firstName: MOCK_ADMIN.firstName,
-        lastName: MOCK_ADMIN.lastName,
-        role: 'admin',
-        status: MOCK_ADMIN.status,
+    // Try to get actual user from database first
+    let userData = null;
+    
+    try {
+      // Look up the actual user from database using the token's user ID
+      const dbUser = await prisma.user.findUnique({
+        where: { id: auth.userId },
+        select: {
+          id: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+          role: true,
+          isActive: true,
+          createdAt: true,
+          updatedAt: true,
+          lastLogin: true,
+        },
+      });
+
+      if (dbUser && dbUser.isActive) {
+        userData = {
+          id: dbUser.id,
+          email: dbUser.email,
+          firstName: dbUser.firstName,
+          lastName: dbUser.lastName,
+          role: dbUser.role,
+          status: dbUser.isActive ? 'ACTIVE' : 'INACTIVE',
+          lastLoginAt: dbUser.lastLogin?.toISOString() || new Date().toISOString(),
+          createdAt: dbUser.createdAt.toISOString(),
+          updatedAt: dbUser.updatedAt.toISOString(),
+        };
+      }
+    } catch (dbError) {
+      console.error('Database user lookup failed:', dbError);
+    }
+
+    // Fallback to environment admin user if database lookup fails
+    if (!userData) {
+      const adminUser = getAdminUser();
+      userData = {
+        id: adminUser.id,
+        email: adminUser.email,
+        firstName: adminUser.firstName,
+        lastName: adminUser.lastName,
+        role: adminUser.role,
+        status: adminUser.status,
         lastLoginAt: new Date().toISOString(),
-        createdAt: '2024-01-01T00:00:00.000Z',
+        createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        permissions: [
+      };
+    }
+
+    // Define permissions based on role
+    const getPermissionsByRole = (role: string) => {
+      if (role === 'admin') {
+        return [
           { resource: 'admin', actions: ['read', 'write'] },
           { resource: 'products', actions: ['create', 'read', 'update', 'delete'] },
           { resource: 'rfp_requests', actions: ['create', 'read', 'update', 'delete'] },
@@ -54,7 +88,29 @@ export async function GET(request: NextRequest) {
           { resource: 'categories', actions: ['create', 'read', 'update', 'delete'] },
           { resource: 'partners', actions: ['create', 'read', 'update', 'delete'] },
           { resource: 'content', actions: ['create', 'read', 'update', 'delete'] }
-        ],
+        ];
+      } else if (role === 'editor') {
+        return [
+          { resource: 'admin', actions: ['read'] },
+          { resource: 'products', actions: ['create', 'read', 'update'] },
+          { resource: 'rfp_requests', actions: ['create', 'read', 'update'] },
+          { resource: 'categories', actions: ['read', 'update'] },
+          { resource: 'partners', actions: ['create', 'read', 'update'] },
+          { resource: 'content', actions: ['create', 'read', 'update', 'delete'] }
+        ];
+      } else {
+        return [
+          { resource: 'admin', actions: ['read'] }
+        ];
+      }
+    };
+
+    // Return user data with permissions
+    return NextResponse.json({
+      success: true,
+      data: {
+        ...userData,
+        permissions: getPermissionsByRole(userData.role),
       },
       meta: {
         timestamp: new Date().toISOString(),

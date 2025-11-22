@@ -78,6 +78,7 @@ export interface Category extends BaseEntity {
   name: Record<Locale, string>;
   description?: Record<Locale, string>;
   slug: string;
+  type?: 'discipline' | 'category';
   parentId?: string;
   children?: Category[];
   image?: string;
@@ -162,6 +163,7 @@ export interface Partner {
   };
   websiteUrl?: string;
   logoUrl?: string;
+  type: 'manufacturer' | 'distributor' | 'service' | 'technology';
   status: 'active' | 'inactive';
   featured: boolean;
   sortOrder: number;
@@ -257,7 +259,7 @@ export interface User extends BaseEntity {
   email: string;
   firstName: string;
   lastName: string;
-  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  role: 'admin' | 'editor';
   status: 'active' | 'inactive' | 'pending' | 'suspended';
   isActive: boolean;
   lastLoginAt?: Date;

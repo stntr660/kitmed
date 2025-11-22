@@ -26,6 +26,8 @@ import { UserQuickView } from './UserQuickView';
 import { PermissionMatrix } from './PermissionMatrix';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { formatDate, truncate } from '@/lib/utils';
+import { AuthDebugInfo } from '@/components/debug/AuthDebugInfo';
+import { QuickLogin } from '@/components/debug/QuickLogin';
 
 // Extended User interface with additional security features
 interface User {
@@ -33,7 +35,7 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  role: 'admin' | 'editor';
   status: 'active' | 'inactive' | 'pending' | 'suspended';
   permissions?: {
     resource: string;
@@ -124,7 +126,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       firstName: 'Sarah',
       lastName: 'Wilson',
       email: 'sarah.wilson@kitmed.com',
-      role: 'manager',
+      role: 'editor',
       status: 'active',
       lastLogin: new Date('2024-01-14T16:45:00'),
       createdAt: new Date('2024-01-02T00:00:00'),
@@ -175,7 +177,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       firstName: 'Emily',
       lastName: 'Davis',
       email: 'emily.davis@kitmed.com',
-      role: 'viewer',
+      role: 'editor',
       status: 'pending',
       lastLogin: undefined,
       createdAt: new Date('2024-01-14T00:00:00'),
@@ -230,11 +232,57 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       setLoading(true);
       setError(null);
 
-      // Simulate API call with mock data
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Get authentication token
+      const token = localStorage.getItem('admin-token');
       
-      // Filter mock data based on current filters
-      let filteredUsers = [...mockUsers];
+      if (!token) {
+        console.error('No authentication token found');
+        throw new Error('Authentication required. Please login again.');
+      }
+
+      console.log('Fetching users with token:', token ? 'Token exists' : 'No token');
+
+      // Fetch users from API
+      const response = await fetch('/api/admin/users', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('Users API response status:', response.status);
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          // Clear invalid token
+          localStorage.removeItem('admin-token');
+          throw new Error('Session expired. Please login again.');
+        }
+        
+        const errorData = await response.text();
+        console.error('API Error Response:', errorData);
+        throw new Error(`Failed to fetch users: ${response.status} ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log('Users API result:', result);
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch users');
+      }
+
+      // Map API response to component format
+      let filteredUsers = result.data.items.map((user: any) => ({
+        ...user,
+        status: user.isActive ? 'active' : 'inactive',
+        twoFactorEnabled: false,
+        loginAttempts: 0,
+        permissions: [],
+        _count: {
+          activityLogs: 0,
+          loginAttempts: 0
+        }
+      }));
       
       // Apply search filter
       if (filters.query) {
@@ -290,7 +338,22 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
         filters: filters
       });
     } catch (err) {
-      setError(t('errors.serverError'));
+      console.error('Error loading users:', err);
+      
+      // Provide specific error messages based on the error type
+      let errorMessage = 'Failed to load users';
+      
+      if (err instanceof Error) {
+        errorMessage = err.message;
+        
+        // Special handling for auth errors
+        if (err.message.includes('Authentication required') || err.message.includes('Session expired')) {
+          // Redirect to login or show login modal
+          console.log('Authentication error detected, user needs to login');
+        }
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -456,12 +519,8 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
     switch (role) {
       case 'admin':
         return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'manager':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'editor':
         return 'bg-green-100 text-green-800 border-green-200';
-      case 'viewer':
-        return 'bg-gray-100 text-gray-800 border-gray-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -613,10 +672,28 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
         <CardContent className="p-0">
           {error ? (
             <div className="p-8 text-center">
-              <p className="text-red-600 mb-4">{error}</p>
-              <Button onClick={loadUsers} variant="outline">
-                {t('errors.tryAgain')}
-              </Button>
+              <div className="h-16 w-16 bg-red-100 rounded-xl mx-auto mb-4 flex items-center justify-center">
+                <ExclamationTriangleIcon className="h-8 w-8 text-red-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Unable to load users</h3>
+              <p className="text-red-600 mb-4 max-w-md mx-auto">{error}</p>
+              <div className="flex justify-center space-x-3">
+                <Button onClick={loadUsers} variant="outline">
+                  {t('errors.tryAgain')}
+                </Button>
+                {error.includes('Authentication') || error.includes('Session expired') ? (
+                  <Button onClick={() => window.location.href = '/admin/auth/login'} className="bg-primary-600 hover:bg-primary-700">
+                    Login Again
+                  </Button>
+                ) : null}
+              </div>
+              
+              {/* Show quick login in development if auth error */}
+              {process.env.NODE_ENV === 'development' && (error.includes('Authentication') || error.includes('Session expired')) && (
+                <div className="mt-6">
+                  <QuickLogin />
+                </div>
+              )}
             </div>
           ) : users?.items && users.items.length > 0 ? (
             <div className="overflow-x-auto">
@@ -744,7 +821,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                       <td className="px-6 py-4 text-sm text-gray-600">
                         {user.lastLogin ? (
                           <div>
-                            <div>{formatDate(user.lastLogin)}</div>
+                            <div>{formatDate(user.lastLogin, 'time')}</div>
                             {user.lastLoginIP && (
                               <div className="text-xs text-gray-500 mt-1">
                                 {user.lastLoginIP}
@@ -884,6 +961,9 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
         open={permissionMatrixOpen}
         onOpenChange={setPermissionMatrixOpen}
       />
+
+      {/* Debug component for development */}
+      {process.env.NODE_ENV === 'development' && <AuthDebugInfo />}
     </div>
   );
 }

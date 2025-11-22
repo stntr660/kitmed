@@ -32,6 +32,7 @@ async function getPartner(request: NextRequest, { params }: { params: { id: stri
       slug: partner.slug,
       websiteUrl: partner.websiteUrl,
       logoUrl: partner.logoUrl,
+      type: partner.type,
       status: partner.status,
       featured: partner.isFeatured,
       sortOrder: partner.sortOrder,
@@ -83,8 +84,9 @@ const updatePartnerSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  websiteUrl: z.string().url().optional().or(z.literal('')),
-  logoUrl: z.string().url().optional().or(z.literal('')),
+  websiteUrl: z.string().optional(),
+  logoUrl: z.string().optional(),
+  type: z.enum(['manufacturer', 'distributor', 'service', 'technology']).default('manufacturer'),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.boolean().default(false),
 });
@@ -158,6 +160,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         slug,
         websiteUrl: partnerData.websiteUrl || null,
         logoUrl: partnerData.logoUrl || null,
+        type: partnerData.type,
         status: partnerData.status,
         isFeatured: partnerData.featured,
         translations: {
@@ -187,6 +190,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
       slug: partner.slug,
       websiteUrl: partner.websiteUrl,
       logoUrl: partner.logoUrl,
+      type: partner.type,
       status: partner.status,
       featured: partner.isFeatured,
       sortOrder: partner.sortOrder,
@@ -280,6 +284,6 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
 }
 
 // Export handlers
-export const GET = getPartner;
-export const PUT = updatePartner;
-export const DELETE = deletePartner;
+export const GET = withAuth(getPartner);
+export const PUT = withAuth(updatePartner);
+export const DELETE = withAuth(deletePartner);

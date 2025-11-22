@@ -1,76 +1,114 @@
-import createMiddleware from 'next-intl/middleware';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import createIntlMiddleware from 'next-intl/middleware';
+import { locales } from './i18n';
 
-const intlMiddleware = createMiddleware({
-  // A list of all locales that are supported
-  locales: ['en', 'fr'],
-  
-  // Used when no locale matches - French is now primary
+// Simplified auth verification for middleware (Edge Runtime compatible)
+function extractTokenFromRequest(request: NextRequest): string | null {
+  // Check Authorization header
+  const authHeader = request.headers.get('authorization');
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    return authHeader.substring(7);
+  }
+
+  // Check cookies
+  const tokenFromCookie = request.cookies.get('admin-token')?.value;
+  if (tokenFromCookie) {
+    return tokenFromCookie;
+  }
+
+  return null;
+}
+
+// Create the intl middleware
+const intlMiddleware = createIntlMiddleware({
+  locales: locales,
   defaultLocale: 'fr',
-  
-  // Locale detection options  
-  localeDetection: false,
-  
-  // Always use locale prefix to avoid conflicts
   localePrefix: 'always'
 });
 
-export default function middleware(request: NextRequest) {
-  // Skip middleware for static files and assets first
-  if (
-    request.nextUrl.pathname.startsWith('/_next') ||
-    request.nextUrl.pathname.includes('.')
-  ) {
-    return;
-  }
-
-  // Check maintenance mode - block everything except health check
-  if (process.env.MAINTENANCE_MODE === 'true') {
-    // Allow health check API for monitoring
-    if (request.nextUrl.pathname === '/api/health') {
-      return;
+export async function middleware(request: NextRequest) {
+  // Handle admin API routes with authentication
+  if (request.nextUrl.pathname.startsWith('/api/admin/')) {
+    // Allow login endpoint
+    if (request.nextUrl.pathname === '/api/admin/auth/login') {
+      return NextResponse.next();
     }
+
+    // Check for token presence (detailed verification happens in API routes)
+    const token = extractTokenFromRequest(request);
     
-    // Block all other API routes during maintenance
-    if (request.nextUrl.pathname.startsWith('/api')) {
-      return new Response('Service temporarily unavailable', { 
-        status: 503,
-        headers: {
-          'Retry-After': '3600' // 1 hour
-        }
-      });
+    if (!token) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'UNAUTHORIZED',
+            message: 'Authentication required',
+          },
+        },
+        { status: 401 }
+      );
     }
-    
-    // Allow access to the maintenance page itself and its assets
-    if (request.nextUrl.pathname === '/fr/maintenance') {
-      return;
-    }
-    
-    // For all other routes, rewrite to maintenance page (keeps original URL)
-    const url = request.nextUrl.clone();
-    url.pathname = '/fr/maintenance';
-    return NextResponse.rewrite(url);
+
+    // Token exists, let the API route handle detailed verification
+    return NextResponse.next();
   }
 
-  // Skip other API routes from normal middleware processing
-  if (request.nextUrl.pathname.startsWith('/api')) {
-    return;
+  // Handle API routes (no locale handling needed)
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    return NextResponse.next();
   }
 
-  // Only redirect /admin routes that don't have locale prefixes
-  // This allows /en/admin and /fr/admin to work properly - now defaults to French
-  if (request.nextUrl.pathname === '/admin' || request.nextUrl.pathname.startsWith('/admin/')) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/fr${url.pathname}`;
-    return Response.redirect(url);
+  // Handle internationalization for all other routes
+  const intlResponse = intlMiddleware(request);
+  
+  // Apply security headers to the response
+  if (intlResponse) {
+    // Security headers
+    intlResponse.headers.set('X-Frame-Options', 'DENY');
+    intlResponse.headers.set('X-Content-Type-Options', 'nosniff');
+    intlResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    intlResponse.headers.set('X-XSS-Protection', '1; mode=block');
+    intlResponse.headers.set(
+      'Strict-Transport-Security',
+      'max-age=31536000; includeSubDomains'
+    );
+
+    // Content Security Policy
+    intlResponse.headers.set(
+      'Content-Security-Policy',
+      "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self'; frame-src 'none';"
+    );
+
+    return intlResponse;
   }
 
-  // Let next-intl middleware handle locale routing
-  return intlMiddleware(request);
+  // Fallback response with security headers
+  const response = NextResponse.next();
+  
+  // Security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set(
+    'Strict-Transport-Security',
+    'max-age=31536000; includeSubDomains'
+  );
+
+  // Content Security Policy
+  response.headers.set(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self'; frame-src 'none';"
+  );
+
+  return response;
 }
 
 export const config = {
-  // Match only internationalized pathnames
-  // Note: Update matcher when Arabic support is added: /(fr|en|ar)/:path*
-  matcher: ['/', '/(fr|en)/:path*', '/admin/:path*']
+  matcher: [
+    '/api/admin/:path*',
+    '/((?!api|_next/static|_next/image|favicon.ico|uploads).*)',
+  ],
 };

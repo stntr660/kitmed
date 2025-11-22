@@ -16,9 +16,11 @@ export function useAdminAuth(): UseAdminAuthReturn {
   const [user, setUser] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   // Check authentication status on mount
   useEffect(() => {
+    setMounted(true);
     checkAuthStatus();
   }, []);
 
@@ -114,7 +116,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
 
   return {
     user,
-    loading,
+    loading: loading || !mounted, // Show loading until mounted and auth check completes
     error,
     login,
     logout,
@@ -126,7 +128,12 @@ export function useAdminAuth(): UseAdminAuthReturn {
 function getAuthToken(): string | null {
   if (typeof window === 'undefined') return null;
   
-  // Try to get token from cookie first
+  // In development, use localStorage first (HTTP-only cookies not accessible to JS)
+  if (process.env.NODE_ENV === 'development') {
+    return localStorage.getItem('admin-token');
+  }
+  
+  // In production, try cookies first, then localStorage as fallback
   const cookies = document.cookie.split(';');
   const tokenCookie = cookies.find(cookie => 
     cookie.trim().startsWith('admin-token=')

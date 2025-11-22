@@ -361,6 +361,14 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'avatars',
   },
+  
+  categoryImage: {
+    maxSize: 2 * 1024 * 1024, // 2MB
+    allowedTypes: ALLOWED_IMAGE_TYPES,
+    generateThumbnail: true,
+    optimizeImage: true,
+    folder: 'categories',
+  },
 };
 
 // Utility to get preset by name

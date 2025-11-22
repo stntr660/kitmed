@@ -17,7 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ChevronDownIcon, ChevronUpIcon, GlobeAltIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import { Partner } from '@/types';
-import { ImageUploadBox } from '@/components/ui/image-upload-box';
+import { ImageDropzone } from '@/components/ui/image-dropzone';
 
 interface PartnerDrawerProps {
   open: boolean;
@@ -42,6 +42,7 @@ export function PartnerDrawer({
     description: { fr: '', en: '' },
     websiteUrl: '',
     logoUrl: '',
+    type: 'manufacturer',
     status: 'active',
     featured: false,
   });
@@ -56,6 +57,7 @@ export function PartnerDrawer({
         description: partner.description || { fr: '', en: '' },
         websiteUrl: partner.websiteUrl || '',
         logoUrl: partner.logoUrl || '',
+        type: partner.type || 'manufacturer',
         status: partner.status || 'active',
         featured: partner.featured || false,
       });
@@ -65,6 +67,7 @@ export function PartnerDrawer({
         description: { fr: '', en: '' },
         websiteUrl: '',
         logoUrl: '',
+        type: 'manufacturer',
         status: 'active',
         featured: false,
       });
@@ -157,7 +160,7 @@ export function PartnerDrawer({
                 variant={partner.status === 'active' ? 'default' : 'secondary'}
                 className="ml-4"
               >
-                {t(`admin.${partner.status}`)}
+                {t(`admin.partners.status.${partner.status}`, { defaultValue: partner.status })}
               </Badge>
             )}
           </div>
@@ -223,16 +226,46 @@ export function PartnerDrawer({
                 <p className="text-xs text-gray-500">{t('admin.partners.websiteUrlHint')}</p>
               </div>
 
+              {/* Partner Type */}
+              <div className="space-y-2">
+                <label htmlFor="partner-type" className="text-sm font-semibold text-gray-700">
+                  {t('admin.partners.type')} *
+                </label>
+                <div className="relative">
+                  <BuildingOfficeIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <select
+                    id="partner-type"
+                    value={formData.type || 'manufacturer'}
+                    onChange={(e) => handleInputChange('type', e.target.value)}
+                    disabled={isReadOnly}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="manufacturer">{t('admin.partners.types.manufacturer.title')}</option>
+                    <option value="distributor">{t('admin.partners.types.distributor.title')}</option>
+                    <option value="service">{t('admin.partners.types.service.title')}</option>
+                    <option value="technology">{t('admin.partners.types.technology.title')}</option>
+                  </select>
+                </div>
+                <p className="text-xs text-gray-500">
+                  {formData.type === 'manufacturer' && t('admin.partners.types.manufacturer.description')}
+                  {formData.type === 'distributor' && t('admin.partners.types.distributor.description')}
+                  {formData.type === 'service' && t('admin.partners.types.service.description')}
+                  {formData.type === 'technology' && t('admin.partners.types.technology.description')}
+                </p>
+              </div>
+
               {/* Partner Logo */}
-              <div>
-                <ImageUploadBox
-                  label={t('admin.partners.logo')}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  {t('admin.partners.logo')}
+                </label>
+                <ImageDropzone
                   value={formData.logoUrl || ''}
                   onChange={(url) => handleInputChange('logoUrl', url)}
                   preset="partnerLogo"
-                  placeholder="Télécharger le logo du partenaire"
+                  placeholder="Logo du partenaire"
+                  description="Glissez-déposez le logo ici, ou cliquez pour sélectionner un fichier (PNG, JPG - max 2MB)"
                   maxSize={2}
-                  aspectRatio="square"
                   disabled={isReadOnly}
                 />
               </div>

@@ -256,8 +256,18 @@ export function AdminDashboard() {
       setError(null);
 
       const [statsResponse, activityResponse] = await Promise.all([
-        fetch('/api/admin/dashboard/stats'),
-        fetch('/api/admin/dashboard/activity'),
+        fetch('/api/admin/dashboard/stats', {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }),
+        fetch('/api/admin/dashboard/activity', {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }),
       ]);
 
       if (statsResponse.ok) {

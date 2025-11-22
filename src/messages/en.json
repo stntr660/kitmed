@@ -31,6 +31,17 @@
     "export": "Export",
     "goToHomepage": "Go to homepage",
     "searchPlaceholder": "Search products...",
+    "reference": "Reference",
+    "manufacturer": "Manufacturer",
+    "sku": "SKU",
+    "tags": "Tags",
+    "productWithoutName": "Unnamed Product",
+    "notSpecified": "Not Specified",
+    "french": "French",
+    "english": "English",
+    "specification": "Specification",
+    "value": "Value",
+    "unit": "Unit",
     "searchProducts": "Search products",
     "wishlist": "Wishlist",
     "rfpCart": "RFP Cart",
@@ -105,6 +116,7 @@
         "referenceFournisseur": "Internal or supplier reference code",
         "constructeur": "Manufacturer or brand name",
         "selectCategory": "Select a category",
+        "selectManufacturer": "Select a manufacturer",
         "descriptionFr": "Description courte et détaillée du produit en français",
         "descriptionEn": "Short and detailed product description in English",
         "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
@@ -116,6 +128,7 @@
         "nomEnRequired": "English name is required",
         "referenceFournisseurRequired": "Supplier reference is required",
         "constructeurRequired": "Manufacturer is required",
+        "manufacturerRequired": "Manufacturer is required",
         "categorieRequired": "Category is required",
         "statusRequired": "Status is required"
       },
@@ -205,6 +218,8 @@
       "byManufacturer": "By Manufacturer",
       "featured": "Featured Products",
       "about": "About Us",
+      "team": "Team",
+      "careers": "Careers", 
       "news": "News",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -253,7 +268,7 @@
   "rfp": {
     "title": "Request for Proposal",
     "cart": "RFP Cart",
-    "emptyCart": "Your RFP cart is empty",
+    "emptyCart": "Your RFP cart is empty", 
     "addProducts": "Add products to start building your request",
     "browseProducts": "Browse Products",
     "item": "item",
@@ -438,6 +453,24 @@
     "manageProducts": "Manage your medical equipment catalog with unified actions",
     "productSelected": "product selected",
     "productsSelected": "products selected",
+    "category": "Category",
+    "status": "Status",
+    "products": {
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued",
+        "draft": "Draft"
+      }
+    },
+    "media": "Media",
+    "created": "Created",
+    "actions": "Actions",
+    "files": "Files",
+    "documentation": "Documentation",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "addFirstProduct": "Add Your First Product",
     "getStartedProducts": "Get started by adding your first product to the catalog.",
     "addFirstProduct": "Add Your First Product",
     "header": {
@@ -522,6 +555,24 @@
       "supplierReference": "Supplier Reference (Ref)",
       "supplierReferencePlaceholder": "Internal or supplier reference code",
       "manufacturer": "Manufacturer",
+      "productInformation": "Product Information",
+      "shortDescriptionLabel": "Short Description",
+      "fullDescription": "Full Description",
+      "category": "Category",
+      "lastUpdated": "Last Updated",
+      "mediaFiles": "Media Files",
+      "rfpRequests": "RFP Requests",
+      "recentActivity": "Recent Activity",
+      "productCreated": "Product created",
+      "productUpdated": "Product updated",
+      "editProduct": "Edit Product",
+      "fullDetails": "Full Details",
+      "viewAllMedia": "View All Media",
+      "basicInformation": "Basic Information",
+      "description": "Description",
+      "specifications": "Specifications",
+      "metadata": "Metadata",
+      "createdAt": "Created At",
       "manufacturerPlaceholder": "Manufacturer or brand name",
       "category": "Category / Discipline",
       "selectCategory": "Select a category",
@@ -551,6 +602,11 @@
         "inactive": "Inactive",
         "discontinued": "Discontinued"
       },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued"
+      },
       "featuredProduct": "Featured Product",
       "displayAsFeatured": "Display as featured product",
       "media": "Media",
@@ -560,16 +616,26 @@
       "uploading": "Uploading...",
       "uploadHint": "JPEG, PNG, WebP up to 5MB - First image will be primary",
       "primaryImage": "Primary Image",
+      "tempImage": "Temporary",
+      "tempImageDescription": "This image will be added when the product is created",
       "noImages": "No images uploaded",
+      "noManufacturersFound": "No manufacturers found",
+      "addNewManufacturer": "Add new manufacturer",
+      "newManufacturerName": "New manufacturer name",
+      "pressEnterToAdd": "Press Enter to add, Escape to cancel",
       "saveProductFirst": "Please save the product first to upload images"
     },
     "partners": {
       "manageDescription": "Manage your medical partner and supplier network",
       "searchPlaceholder": "Search partners...",
+      "importCsv": "Import CSV",
       "partnerSelected": "partner selected",
       "partnersSelected": "partners selected",
       "getStarted": "Start by adding your first partner to the network.",
       "addFirst": "Add Your First Partner",
+      "bulkImport": {
+        "title": "CSV Bulk Import"
+      },
       "feature": "Feature",
       
       "addDescription": "Add a new partner to your medical network",
@@ -623,6 +689,26 @@
         "visible": "Visible",
         "draft": "Draft"
       },
+
+      "type": "Partner Type",
+      "types": {
+        "manufacturer": {
+          "title": "Manufacturer",
+          "description": "Companies that manufacture and produce the medical equipment you sell",
+          "badge": "Product linked",
+          "note": "Manufacturers are automatically linked to products by name",
+          "helpTitle": "About manufacturers",
+          "helpDescription": "Manufacturers are automatically associated with products in your catalog. Make sure the name exactly matches the 'Manufacturer' field of your products."
+        },
+        "other": {
+          "title": "Other Partner",
+          "description": "Government, alliances, institutions and other strategic partners",
+          "badge": "Strategic partnership",
+          "examples": "Ministry of Health, Medical alliances, NGOs",
+          "helpTitle": "About other partners",
+          "helpDescription": "These partners include government institutions, strategic alliances and other important organizations."
+        }
+      },
       
       "contactInfo": "Contact information",
       "statusInfo": "Status information",
@@ -631,8 +717,62 @@
       
       "validation": {
         "nameRequired": "Partner name in French is required",
+        "typeRequired": "Partner type is required",
         "websiteInvalid": "Website URL is not valid",
         "logoInvalid": "Logo URL is not valid"
+      },
+      "failedToLoad": "Failed to load partners",
+      "failedToSave": "Failed to save partner",
+      
+      "selectType": "Select partner type",
+      "selectTypeDescription": "Choose the type that best describes the business relationship",
+      "manufacturerDescription": "Partners who manufacture and produce medical equipment",
+      "manufacturerBadge": "Manufacturer",
+      "generalDescription": "Business partners and service providers",
+      "addNew": "Add new partner",
+      "editPartner": "Edit partner",
+      "manufacturerName": "Manufacturer name",
+      "manufacturerNamePlaceholder": "Ex: Philips Healthcare, GE Medical",
+      "manufacturerNameHint": "This name will be used to automatically link products",
+      "manufacturerDescriptionPlaceholder": "Describe this manufacturer and their medical specializations",
+      "linkedProducts": "Linked products",
+      "linkedProductsDescription": "Products automatically associated with this manufacturer",
+      "loadingProducts": "Loading products...",
+      "noLinkedProducts": "No linked products found",
+      "moreProducts": "more products",
+      "nameEnglish": "Name (English)",
+      "nameEnglishPlaceholder": "Partner name in English",
+      
+      "types": {
+        "manufacturer": {
+          "title": "Manufacturer",
+          "description": "Companies that manufacture and produce medical equipment you sell",
+          "badge": "Linked to products",
+          "note": "Manufacturers are automatically linked to products by name",
+          "helpTitle": "About manufacturers",
+          "helpDescription": "Manufacturers are automatically associated with products in your catalog. Make sure the name matches exactly with the 'Constructor' field of your products."
+        },
+        "distributor": {
+          "title": "Distributor", 
+          "description": "Business partners who distribute and resell medical equipment in different regions",
+          "badge": "Commercial network",
+          "helpTitle": "About distributors",
+          "helpDescription": "Distributors help you extend your commercial reach across different regions and markets."
+        },
+        "service": {
+          "title": "Service",
+          "description": "Medical service providers, maintenance, training and specialized technical support",
+          "badge": "Technical support", 
+          "helpTitle": "About services",
+          "helpDescription": "Service partners provide technical support, maintenance and training for your equipment."
+        },
+        "technology": {
+          "title": "Technology",
+          "description": "Technology partners for integration, medical software and innovative digital solutions",
+          "badge": "Digital innovation",
+          "helpTitle": "About technology", 
+          "helpDescription": "Technology partners provide software and integration solutions to modernize your medical practice."
+        }
       },
       
       "bulkImport": {
@@ -680,6 +820,80 @@
           "fieldError": "Field {field}:",
           "retry": "Retry Import"
         }
+      },
+
+      "wizard": {
+        "step1": {
+          "title": "Partner Type",
+          "description": "Select the type of partner to add"
+        },
+        "step2": {
+          "title": "Basic Information",
+          "description": "Enter partner name and contact details"
+        },
+        "step3": {
+          "title": "Additional Details",
+          "description": "Logo, description and international information"
+        },
+        "step4": {
+          "title": "Visibility & Settings",
+          "description": "Configure visibility and partner settings"
+        },
+        "selectPartnerType": "What type of partner are you adding?",
+        "selectPartnerTypeDescription": "Choose the type that best describes this partner",
+        "basicPartnerInformation": "Basic Partner Information",
+        "basicPartnerInformationDescription": "Enter essential details for this partner",
+        "additionalDetails": "Additional Details",
+        "additionalDetailsDescription": "Add logo and international information (optional)",
+        "visibilitySettings": "Visibility & Settings",
+        "visibilitySettingsDescription": "Configure how this partner appears on your platform",
+        "partnerNameFrench": "Partner Name (French)",
+        "briefDescription": "Brief Description",
+        "briefDescriptionPlaceholder": "Brief description of the partner...",
+        "briefDescriptionHint": "A short description of what this partner does",
+        "partnerLogo": "Partner Logo",
+        "uploadPartnerLogo": "Upload partner logo",
+        "internationalVersion": "International Version",
+        "partnerNameEnglish": "Partner Name (English)",
+        "partnerNameEnglishPlaceholder": "Partner name in English",
+        "descriptionEnglish": "Description (English)",
+        "descriptionEnglishPlaceholder": "Brief description in English...",
+        "partnerVisibility": "Partner Visibility",
+        "makeVisible": "Make Visible",
+        "makeVisibleDescription": "Partner will appear on the public website",
+        "keepHidden": "Keep Hidden",
+        "keepHiddenDescription": "Partner will be saved as draft",
+        "specialSettings": "Special Settings",
+        "featuredPartner": "Featured Partner",
+        "highlightPartnerOnHomepage": "Highlight this partner on the homepage and partner listings",
+        "createPartner": "Create Partner",
+        "updatePartner": "Update Partner",
+        "saving": "Saving...",
+        "previous": "Previous",
+        "next": "Next",
+        "partnerType": "Partner Type",
+        "partnerNameFrench": "Partner Name (French)",
+        "partnerNameFrenchPlaceholder": "Enter partner name in French",
+        "partnerNameFrenchHint": "This will be the primary name displayed",
+        "primaryNameHint": "This will be the primary name displayed",
+        "websiteUrl": "Website URL",
+        "websiteUrlPlaceholder": "https://example.com",
+        "websiteUrlHint": "Official website of the partner (optional)",
+        "briefDescriptionFrench": "Brief Description (French)",
+        "briefDescriptionPlaceholder": "Brief description of the partner...",
+        "briefDescriptionHint": "A short description of what this partner does",
+        "partnerLogoDescription": "Upload the partner's official logo",
+        "logoFormatSupported": "Supports PNG, JPG formats",
+        "logoSizeLimit": "Maximum file size: 2MB",
+        "logoRecommendation": "Square format recommended",
+        "featuredPartnerDescription": "Highlight this partner on the homepage and partner listings",
+        "visible": "Visible",
+        "draft": "Draft",
+        "addNewPartner": "Add New Partner",
+        "editPartner": "Edit Partner",
+        "stepOf": "Step {current} of {total}",
+        "createPartner": "Create Partner",
+        "updatePartner": "Update Partner"
       }
     },
     "content": {
@@ -1142,6 +1356,14 @@
       "imageUrl": "Category image",
       "imageUrlPlaceholder": "https://example.com/image.jpg",
       "imageUrlHint": "URL of the image representing this category",
+      "categoryImage": "Category image",
+      "discipline": "Discipline",
+      "equipment": "Equipment",
+      "uploadImage": "Upload image",
+      "imageUploadDescription": "Add a representative image for this medical category.",
+      "imageFormatSupported": "Supported formats: JPEG, PNG, GIF",
+      "imageSizeLimit": "Maximum size: 2MB",
+      "imageRecommendation": "Recommended: 300x300px or larger",
       "slug": "Slug",
       "categoryId": "Category ID",
       "lastUpdated": "Last updated",
@@ -1203,7 +1425,23 @@
         "additionalDetails": "Additional Details",
         "additionalDetailsDescription": "Image, translations and SEO optimization",
         "previous": "Previous",
-        "next": "Next"
+        "next": "Next",
+        "selectMedicalDiscipline": "Select Medical Discipline",
+        "linkEquipmentToDiscipline": "Link this equipment category to a medical discipline",
+        "createTopLevelDiscipline": "This will create a new top-level discipline",
+        "selectDiscipline": "Select Discipline",
+        "noDisciplinesFound": "No Disciplines Found",
+        "noDisciplinesFoundDescription": "You need to create at least one medical discipline before adding equipment categories.",
+        "noDisciplinesFoundHint": "💡 Create a discipline first (like 'Cardiology', 'Radiology', 'Surgery') then come back to add equipment categories.",
+        "disciplineStep": {
+          "title": "Discipline Selection",
+          "description": "Select the medical discipline for this category"
+        },
+        "loadingDisciplines": "Loading disciplines...",
+        "selectADiscipline": "Select a discipline",
+        "equipmentCategoriesHint": "Equipment categories must be linked to a medical discipline for proper organization",
+        "creatingNewDiscipline": "Creating New Discipline",
+        "creatingNewDisciplineDescription": "This will create a new top-level medical discipline that can contain equipment categories"
       },
       
       "help": {
@@ -1690,5 +1928,9 @@
     "loadFailed": "Failed to load settings",
     "saveFailed": "Failed to save settings",
     "retry": "Retry"
+  },
+  "search": {
+    "noResults": "No results found",
+    "showingResults": "Showing {start} to {end} of {total} results"
   }
 }

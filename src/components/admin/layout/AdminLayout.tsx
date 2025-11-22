@@ -12,12 +12,27 @@ import { AlertTriangle } from 'lucide-react';
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { NotificationProvider } from '@/contexts/NotificationContext';
 import { SimplePageLoader } from '@/components/ui/simple-loading';
+import { ClientOnly } from '@/components/ui/client-only';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
 export function AdminLayout({ children }: AdminLayoutProps) {
+  return (
+    <ClientOnly 
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <LoadingSpinner size="lg" />
+        </div>
+      }
+    >
+      <AdminLayoutContent>{children}</AdminLayoutContent>
+    </ClientOnly>
+  );
+}
+
+function AdminLayoutContent({ children }: AdminLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user, loading, error } = useAdminAuth();
   const router = useRouter();

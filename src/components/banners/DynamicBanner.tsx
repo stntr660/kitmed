@@ -33,16 +33,10 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   const [banners, setBanners] = useState<Banner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const params = useParams();
   const locale = (params?.locale as string) || 'fr';
   const t = useTranslations('home.banner');
-
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const fetchBanners = async () => {
@@ -71,6 +65,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
     fetchBanners();
   }, [position, locale]);
+
+
 
   // Loading state
   if (loading) {
@@ -112,7 +108,6 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
   // Render the first active banner
   const banner = banners[0];
-  console.log('DynamicBanner rendering with banner data:', banner);
 
   // CTA Button styles
   const getCtaStyles = () => {
@@ -181,7 +176,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       return (
         <div className={cn(
           'text-center space-y-8 w-full',
-          `text-${banner.textAlign}`
+          banner.textAlign === 'left' ? 'text-left' : 
+          banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
             <h1 className="text-5xl lg:text-7xl font-light text-blue-500 leading-none">
@@ -224,7 +220,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         {/* Left Content - Text Section */}
         <div className={cn(
           `space-y-8 lg:pr-8 transform transition-all duration-1000`,
-          `text-${banner.textAlign}`,
+          banner.textAlign === 'left' ? 'text-left' : 
+          banner.textAlign === 'right' ? 'text-right' : 'text-center',
           isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
         )}>
           <div className="space-y-6">

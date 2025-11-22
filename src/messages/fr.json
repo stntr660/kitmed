@@ -32,6 +32,17 @@
     "no": "Non",
     "goToHomepage": "Aller à l'accueil",
     "searchPlaceholder": "Rechercher des produits...",
+    "reference": "Référence",
+    "manufacturer": "Fabricant",
+    "sku": "SKU",
+    "tags": "Étiquettes",
+    "productWithoutName": "Produit sans nom",
+    "notSpecified": "Non spécifié",
+    "french": "Français",
+    "english": "Anglais",
+    "specification": "Spécification",
+    "value": "Valeur",
+    "unit": "Unité",
     "searchProducts": "Rechercher des produits",
     "wishlist": "Liste de souhaits",
     "rfpCart": "Panier de devis",
@@ -96,6 +107,24 @@
       "nomProduitEn": "Nom du produit (English)",
       "referenceFournisseur": "Référence fournisseur (Ref frs)",
       "constructeur": "Constructeur",
+      "productInformation": "Informations du Produit",
+      "shortDescriptionLabel": "Description Courte",
+      "fullDescription": "Description Complète",
+      "category": "Catégorie",
+      "lastUpdated": "Dernière Mise à Jour",
+      "mediaFiles": "Fichiers Média",
+      "rfpRequests": "Demandes de Devis",
+      "recentActivity": "Activité Récente",
+      "productCreated": "Produit créé",
+      "productUpdated": "Produit mis à jour",
+      "editProduct": "Modifier le Produit",
+      "fullDetails": "Détails Complets",
+      "viewAllMedia": "Voir Tous les Médias",
+      "basicInformation": "Informations de Base",
+      "description": "Description",
+      "specifications": "Spécifications",
+      "metadata": "Métadonnées",
+      "createdAt": "Créé le",
       "categorieDiscipline": "Catégorie / Discipline",
       "descriptionFr": "Description (Français)",
       "descriptionEn": "Description (English)",
@@ -110,6 +139,7 @@
         "referenceFournisseur": "Code de référence interne ou du fournisseur",
         "constructeur": "Nom du fabricant ou de la marque",
         "selectCategory": "Sélectionner une catégorie",
+        "selectManufacturer": "Sélectionner un constructeur",
         "descriptionFr": "Description courte et détaillée du produit en français",
         "descriptionEn": "Short and detailed product description in English",
         "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
@@ -121,6 +151,7 @@
         "nomEnRequired": "English name is required",
         "referenceFournisseurRequired": "La référence fournisseur est requise",
         "constructeurRequired": "Le constructeur est requis",
+        "manufacturerRequired": "Le constructeur est requis",
         "categorieRequired": "La catégorie est requise",
         "statusRequired": "Le statut est requis"
       },
@@ -443,6 +474,24 @@
     "manageProducts": "Gérez votre catalogue d'équipement médical avec des actions unifiées",
     "productSelected": "produit sélectionné",
     "productsSelected": "produits sélectionnés",
+    "category": "Catégorie",
+    "status": "Statut",
+    "products": {
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif", 
+        "discontinued": "Arrêté",
+        "draft": "Brouillon"
+      }
+    },
+    "media": "Médias",
+    "created": "Créé",
+    "actions": "Actions",
+    "files": "Fichiers",
+    "documentation": "Documentation",
+    "activate": "Activer",
+    "deactivate": "Désactiver",
+    "addFirstProduct": "Ajouter votre premier produit",
     "getStartedProducts": "Commencez par ajouter votre premier produit au catalogue.",
     "addFirstProduct": "Ajoutez Votre Premier Produit",
     "header": {
@@ -519,6 +568,12 @@
       "addDescription": "Ajoutez un nouvel équipement médical à votre catalogue",
       "editDescription": "Mettre à jour les informations et spécifications du produit",
       "viewDescription": "Voir les informations détaillées du produit",
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "discontinued": "Arrêté",
+        "draft": "Brouillon"
+      },
       
       "essentialInfo": "Informations essentielles",
       "essentialInfoDescription": "Les détails de base nécessaires pour identifier le produit",
@@ -610,6 +665,11 @@
         "visible": "Visible",
         "draft": "Brouillon"
       },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "discontinued": "Discontinué"
+      },
       "featuredProduct": "Produit en vedette",
       "displayAsFeatured": "Afficher comme produit vedette",
       "media": "Médias",
@@ -619,16 +679,26 @@
       "uploading": "Téléchargement...",
       "uploadHint": "JPEG, PNG, WebP jusqu'à 5MB - Première image sera l'image principale",
       "primaryImage": "Image principale",
+      "tempImage": "Temporaire",
+      "tempImageDescription": "Cette image sera ajoutée lors de la création du produit",
       "noImages": "Aucune image téléchargée",
+      "noManufacturersFound": "Aucun fabricant trouvé",
+      "addNewManufacturer": "Ajouter un nouveau fabricant",
+      "newManufacturerName": "Nom du nouveau fabricant",
+      "pressEnterToAdd": "Appuyez sur Entrée pour ajouter, Échap pour annuler",
       "saveProductFirst": "Veuillez d'abord enregistrer le produit pour télécharger des images"
     },
     "partners": {
       "manageDescription": "Gérez votre réseau de partenaires et fournisseurs médicaux",
       "searchPlaceholder": "Rechercher des partenaires...",
+      "importCsv": "Importer CSV",
       "partnerSelected": "partenaire sélectionné",
       "partnersSelected": "partenaires sélectionnés",
       "getStarted": "Commencez par ajouter votre premier partenaire au réseau.",
       "addFirst": "Ajoutez Votre Premier Partenaire",
+      "bulkImport": {
+        "title": "Import en lot CSV"
+      },
       "feature": "Mettre en avant",
       
       "addDescription": "Ajoutez un nouveau partenaire à votre réseau médical",
@@ -682,6 +752,8 @@
         "visible": "Visible",
         "draft": "Brouillon"
       },
+
+      "type": "Type de partenaire",
       
       "contactInfo": "Informations de contact",
       "statusInfo": "Informations de statut",
@@ -690,8 +762,49 @@
       
       "validation": {
         "nameRequired": "Le nom du partenaire en français est requis",
+        "typeRequired": "Le type de partenaire est requis",
         "websiteInvalid": "L'URL du site web n'est pas valide",
         "logoInvalid": "L'URL du logo n'est pas valide"
+      },
+      "failedToLoad": "Échec du chargement des partenaires",
+      "failedToSave": "Échec de la sauvegarde du partenaire",
+      
+      "selectType": "Sélectionnez le type de partenaire",
+      "selectTypeDescription": "Choisissez le type qui décrit le mieux la relation commerciale",
+      "manufacturerDescription": "Partenaires qui fabriquent et produisent les équipements médicaux",
+      "manufacturerBadge": "Fabricant",
+      "generalDescription": "Partenaires commerciaux et fournisseurs de services",
+      "addNew": "Ajouter un nouveau partenaire",
+      "editPartner": "Modifier le partenaire",
+      "manufacturerName": "Nom du fabricant",
+      "manufacturerNamePlaceholder": "Ex: Philips Healthcare, GE Medical",
+      "manufacturerNameHint": "Ce nom sera utilisé pour lier automatiquement les produits",
+      "manufacturerDescriptionPlaceholder": "Décrivez ce fabricant et ses spécialisations médicales",
+      "linkedProducts": "Produits liés",
+      "linkedProductsDescription": "Produits automatiquement associés à ce fabricant",
+      "loadingProducts": "Chargement des produits...",
+      "noLinkedProducts": "Aucun produit lié trouvé",
+      "moreProducts": "autres produits",
+      "nameEnglish": "Nom (Anglais)",
+      "nameEnglishPlaceholder": "Nom du partenaire en anglais",
+      
+      "types": {
+        "manufacturer": {
+          "title": "Fabricant",
+          "description": "Entreprises qui fabriquent et produisent les équipements médicaux que vous vendez",
+          "badge": "Lié aux produits",
+          "note": "Les fabricants sont automatiquement liés aux produits par nom",
+          "helpTitle": "À propos des fabricants",
+          "helpDescription": "Les fabricants sont automatiquement associés aux produits dans votre catalogue. Assurez-vous que le nom correspond exactement au champ 'Constructeur' de vos produits."
+        },
+        "other": {
+          "title": "Autre partenaire",
+          "description": "Gouvernements, alliances, institutions et autres partenaires stratégiques",
+          "badge": "Partenariat stratégique",
+          "examples": "Ministère de la santé, Alliances médicales, ONG",
+          "helpTitle": "À propos des autres partenaires",
+          "helpDescription": "Ces partenaires incluent les institutions gouvernementales, alliances stratégiques et autres organisations importantes."
+        }
       },
       
       "bulkImport": {
@@ -739,6 +852,80 @@
           "fieldError": "Champ {field}:",
           "retry": "Réessayer l'import"
         }
+      },
+
+      "wizard": {
+        "step1": {
+          "title": "Type de partenaire",
+          "description": "Sélectionnez le type de partenaire à ajouter"
+        },
+        "step2": {
+          "title": "Informations de base",
+          "description": "Entrez le nom du partenaire et les détails de contact"
+        },
+        "step3": {
+          "title": "Détails supplémentaires",
+          "description": "Logo, description et informations internationales"
+        },
+        "step4": {
+          "title": "Visibilité et paramètres",
+          "description": "Configurez la visibilité et les paramètres du partenaire"
+        },
+        "selectPartnerType": "Quel type de partenaire ajoutez-vous ?",
+        "selectPartnerTypeDescription": "Choisissez le type qui décrit le mieux ce partenaire",
+        "basicPartnerInformation": "Informations essentielles du partenaire",
+        "basicPartnerInformationDescription": "Entrez les détails essentiels pour ce partenaire",
+        "additionalDetails": "Détails supplémentaires",
+        "additionalDetailsDescription": "Ajoutez le logo et les informations internationales (optionnel)",
+        "visibilitySettings": "Visibilité et paramètres",
+        "visibilitySettingsDescription": "Configurez comment ce partenaire apparaît sur votre plateforme",
+        "partnerNameFrench": "Nom du partenaire (Français)",
+        "briefDescription": "Brève description",
+        "briefDescriptionPlaceholder": "Brève description du partenaire...",
+        "briefDescriptionHint": "Une courte description de ce que fait ce partenaire",
+        "partnerLogo": "Logo du partenaire",
+        "uploadPartnerLogo": "Télécharger le logo du partenaire",
+        "internationalVersion": "Version internationale",
+        "partnerNameEnglish": "Nom du partenaire (English)",
+        "partnerNameEnglishPlaceholder": "Nom du partenaire en anglais",
+        "descriptionEnglish": "Description (English)",
+        "descriptionEnglishPlaceholder": "Brève description en anglais...",
+        "partnerVisibility": "Visibilité du partenaire",
+        "makeVisible": "Rendre visible",
+        "makeVisibleDescription": "Le partenaire apparaîtra sur le site web public",
+        "keepHidden": "Garder masqué",
+        "keepHiddenDescription": "Le partenaire sera sauvegardé comme brouillon",
+        "specialSettings": "Paramètres spéciaux",
+        "featuredPartner": "Partenaire vedette",
+        "highlightPartnerOnHomepage": "Mettre en évidence ce partenaire sur la page d'accueil et dans les listes de partenaires",
+        "createPartner": "Créer le partenaire",
+        "updatePartner": "Mettre à jour le partenaire",
+        "saving": "Sauvegarde...",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "partnerType": "Type de partenaire",
+        "partnerNameFrench": "Nom du partenaire (Français)",
+        "partnerNameFrenchPlaceholder": "Entrez le nom du partenaire en français",
+        "partnerNameFrenchHint": "Ce sera le nom principal affiché",
+        "primaryNameHint": "Ce sera le nom principal affiché",
+        "websiteUrl": "URL du site web",
+        "websiteUrlPlaceholder": "https://example.com",
+        "websiteUrlHint": "Site web officiel du partenaire (optionnel)",
+        "briefDescriptionFrench": "Brève description (Français)",
+        "briefDescriptionPlaceholder": "Brève description du partenaire...",
+        "briefDescriptionHint": "Une courte description de ce que fait ce partenaire",
+        "partnerLogoDescription": "Téléchargez le logo officiel du partenaire",
+        "logoFormatSupported": "Formats PNG, JPG supportés",
+        "logoSizeLimit": "Taille maximale du fichier : 2MB",
+        "logoRecommendation": "Format carré recommandé",
+        "featuredPartnerDescription": "Mettre en évidence ce partenaire sur la page d'accueil et dans les listes de partenaires",
+        "visible": "Visible",
+        "draft": "Brouillon",
+        "addNewPartner": "Ajouter un nouveau partenaire",
+        "editPartner": "Modifier le partenaire",
+        "stepOf": "Étape {current} sur {total}",
+        "createPartner": "Créer le partenaire",
+        "updatePartner": "Mettre à jour le partenaire"
       }
     },
     "content": {
@@ -1217,6 +1404,14 @@
       "imageUrl": "Image de la catégorie",
       "imageUrlPlaceholder": "https://exemple.com/image.jpg",
       "imageUrlHint": "URL de l'image représentant cette catégorie",
+      "categoryImage": "Image de la catégorie",
+      "discipline": "Discipline",
+      "equipment": "Équipement",
+      "uploadImage": "Télécharger une image",
+      "imageUploadDescription": "Ajoutez une image représentative pour cette catégorie médicale.",
+      "imageFormatSupported": "Formats supportés: JPEG, PNG, GIF",
+      "imageSizeLimit": "Taille maximum: 2MB",
+      "imageRecommendation": "Recommandé: 300x300px ou plus",
       "slug": "Slug",
       "categoryId": "ID de la catégorie",
       "lastUpdated": "Dernière mise à jour",
@@ -1278,7 +1473,23 @@
         "additionalDetails": "Détails supplémentaires",
         "additionalDetailsDescription": "Image, traductions et optimisation SEO",
         "previous": "Précédent",
-        "next": "Suivant"
+        "next": "Suivant",
+        "selectMedicalDiscipline": "Sélectionner la discipline médicale",
+        "linkEquipmentToDiscipline": "Lier cette catégorie d'équipement à une discipline médicale",
+        "createTopLevelDiscipline": "Ceci créera une nouvelle discipline de haut niveau",
+        "selectDiscipline": "Sélectionner la discipline",
+        "noDisciplinesFound": "Aucune discipline trouvée",
+        "noDisciplinesFoundDescription": "Vous devez créer au moins une discipline médicale avant d'ajouter des catégories d'équipement.",
+        "noDisciplinesFoundHint": "💡 Créez d'abord une discipline (comme 'Cardiologie', 'Radiologie', 'Chirurgie') puis revenez pour ajouter des catégories d'équipement.",
+        "disciplineStep": {
+          "title": "Sélection de Discipline",
+          "description": "Sélectionnez la discipline médicale pour cette catégorie"
+        },
+        "loadingDisciplines": "Chargement des disciplines...",
+        "selectADiscipline": "Sélectionner une discipline",
+        "equipmentCategoriesHint": "Les catégories d'équipement doivent être liées à une discipline médicale pour une organisation appropriée",
+        "creatingNewDiscipline": "Création d'une nouvelle discipline",
+        "creatingNewDisciplineDescription": "Ceci créera une nouvelle discipline médicale de haut niveau qui peut contenir des catégories d'équipement"
       },
       
       "help": {
@@ -1820,5 +2031,9 @@
     "loadFailed": "Échec du chargement des paramètres",
     "saveFailed": "Échec de l'enregistrement des paramètres",
     "retry": "Réessayer"
+  },
+  "search": {
+    "noResults": "Aucun résultat trouvé",
+    "showingResults": "Affichage de {start} à {end} sur {total} résultats"
   }
 }
