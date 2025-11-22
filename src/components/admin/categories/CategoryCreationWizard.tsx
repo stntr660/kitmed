@@ -21,14 +21,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { CompactImageUpload } from '@/components/ui/compact-image-upload';
 
 interface CategoryTranslation {
   id: string;
   languageCode: string;
   name: string;
   description?: string;
-  metaTitle?: string;
-  metaDescription?: string;
 }
 
 interface Category {
@@ -36,12 +35,11 @@ interface Category {
   name: string;
   slug: string;
   description?: string;
+  type?: 'discipline' | 'equipment';
   parentId?: string;
   sortOrder: number;
   isActive: boolean;
   imageUrl?: string;
-  metaTitle?: string;
-  metaDescription?: string;
   createdAt: string;
   updatedAt: string;
   translations: CategoryTranslation[];
@@ -61,6 +59,15 @@ interface Category {
 }
 
 type CategoryType = 'discipline' | 'equipment';
+
+interface Discipline {
+  id: string;
+  name: string;
+  nom?: {
+    fr: string;
+    en?: string;
+  };
+}
 
 interface WizardStep {
   id: string;
@@ -92,20 +99,21 @@ export function CategoryCreationWizard({
   const [currentStep, setCurrentStep] = useState(0);
   const [categoryType, setCategoryType] = useState<CategoryType>('discipline');
   
+  // Discipline state
+  const [disciplines, setDisciplines] = useState<Discipline[]>([]);
+  const [selectedDisciplineId, setSelectedDisciplineId] = useState<string>('');
+  const [disciplinesLoading, setDisciplinesLoading] = useState(false);
+  
   // Form state
   const [formData, setFormData] = useState({
     translations: {
       fr: {
         name: '',
         description: '',
-        metaTitle: '',
-        metaDescription: '',
       },
       en: {
         name: '',
         description: '',
-        metaTitle: '',
-        metaDescription: '',
       }
     },
     sortOrder: 0,
@@ -117,6 +125,56 @@ export function CategoryCreationWizard({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
+  // Fetch disciplines when component mounts
+  useEffect(() => {
+    if (open) {
+      fetchDisciplines();
+    }
+  }, [open]);
+
+  const fetchDisciplines = async () => {
+    setDisciplinesLoading(true);
+    
+    try {
+      const token = localStorage.getItem('admin-token');
+      if (!token) {
+        throw new Error('Authentication token not found');
+      }
+
+      const response = await fetch('/api/admin/categories?hierarchical=true&isActive=true', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch disciplines: ${response.status}`);
+      }
+
+      const data = await response.json();
+      // Filter to get only top-level categories (disciplines)
+      const allCategories = data.data?.items || [];
+      const disciplines = allCategories.filter((category: any) => !category.parentId);
+      
+      const disciplineList = disciplines.map((discipline: any) => ({
+        id: discipline.id,
+        name: discipline.name,
+        nom: {
+          fr: discipline.nom?.fr || discipline.name,
+          en: discipline.nom?.en || '',
+        }
+      }));
+      
+      setDisciplines(disciplineList);
+    } catch (error) {
+      console.error('Error fetching disciplines:', error);
+      setError(`Failed to load disciplines: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setDisciplinesLoading(false);
+    }
+  };
+
   // Define wizard steps
   const steps: WizardStep[] = [
     {
@@ -124,6 +182,12 @@ export function CategoryCreationWizard({
       title: t('admin.categories.wizard.step1.title'),
       description: t('admin.categories.wizard.step1.description'),
       icon: RectangleGroupIcon,
+    },
+    {
+      id: 'discipline',
+      title: t('admin.categories.wizard.disciplineStep.title'),
+      description: t('admin.categories.wizard.disciplineStep.description'),
+      icon: InformationCircleIcon,
     },
     {
       id: 'basic',
@@ -140,8 +204,31 @@ export function CategoryCreationWizard({
   ];
 
   // For edit mode, skip the type step
-  const effectiveSteps = mode === 'edit' ? steps.slice(1) : steps;
-  const effectiveCurrentStep = mode === 'edit' ? currentStep : currentStep;
+  // For disciplines, skip the discipline selection step
+  const getEffectiveSteps = () => {
+    let filteredSteps = steps;
+    
+    if (mode === 'edit') {
+      filteredSteps = filteredSteps.slice(1); // Skip type selection for edit
+    }
+    
+    if (categoryType === 'discipline') {
+      filteredSteps = filteredSteps.filter(step => step.id !== 'discipline');
+    }
+    
+    return filteredSteps;
+  };
+  
+  const effectiveSteps = getEffectiveSteps();
+  const effectiveCurrentStep = Math.min(currentStep, effectiveSteps.length - 1);
+
+  // Reset current step when category type changes
+  useEffect(() => {
+    const effectiveSteps = getEffectiveSteps();
+    if (currentStep >= effectiveSteps.length) {
+      setCurrentStep(Math.max(0, effectiveSteps.length - 1));
+    }
+  }, [categoryType, mode]);
 
   // Initialize form data
   useEffect(() => {
@@ -155,14 +242,10 @@ export function CategoryCreationWizard({
             fr: {
               name: frTranslation?.name || category.name,
               description: frTranslation?.description || category.description || '',
-              metaTitle: frTranslation?.metaTitle || category.metaTitle || '',
-              metaDescription: frTranslation?.metaDescription || category.metaDescription || '',
             },
             en: {
               name: enTranslation?.name || '',
               description: enTranslation?.description || '',
-              metaTitle: enTranslation?.metaTitle || '',
-              metaDescription: enTranslation?.metaDescription || '',
             }
           },
           sortOrder: category.sortOrder,
@@ -174,8 +257,8 @@ export function CategoryCreationWizard({
         // Reset form for new category
         setFormData({
           translations: {
-            fr: { name: '', description: '', metaTitle: '', metaDescription: '' },
-            en: { name: '', description: '', metaTitle: '', metaDescription: '' }
+            fr: { name: '', description: '' },
+            en: { name: '', description: '' }
           },
           sortOrder: 0,
           isActive: true,
@@ -183,6 +266,7 @@ export function CategoryCreationWizard({
         });
         setCurrentStep(0);
         setCategoryType('discipline');
+        setSelectedDisciplineId('');
       }
       setError(null);
     }
@@ -224,6 +308,8 @@ export function CategoryCreationWizard({
     switch (currentStepData.id) {
       case 'type':
         return true; // Always can proceed from type selection
+      case 'discipline':
+        return categoryType === 'discipline' || (selectedDisciplineId.trim().length > 0 && disciplines.length > 0);
       case 'basic':
         return formData.translations.fr.name.trim().length > 0;
       case 'details':
@@ -255,7 +341,25 @@ export function CategoryCreationWizard({
         throw new Error(t('admin.categories.validation.nameRequired'));
       }
 
-      await onSave(formData);
+      // Equipment categories MUST have a parent discipline
+      if (categoryType === 'equipment' && (!selectedDisciplineId || !selectedDisciplineId.trim())) {
+        throw new Error('Equipment categories must be linked to a parent discipline');
+      }
+
+      const finalFormData = {
+        ...formData,
+        type: categoryType,
+        parentId: categoryType === 'equipment' && selectedDisciplineId && selectedDisciplineId.trim() ? selectedDisciplineId : formData.parentId || null,
+      };
+      
+      console.log('🔥 WIZARD SENDING:', JSON.stringify({
+        type: categoryType,
+        selectedDisciplineId,
+        parentId: finalFormData.parentId,
+        finalType: finalFormData.type
+      }, null, 2));
+
+      await onSave(finalFormData);
     } catch (error) {
       setError(error instanceof Error ? error.message : 'An error occurred');
     } finally {
@@ -373,6 +477,84 @@ export function CategoryCreationWizard({
           </div>
         );
 
+      case 'discipline':
+        return (
+          <div className="space-y-6">
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {t('admin.categories.wizard.selectMedicalDiscipline')}
+              </h3>
+              <p className="text-gray-600 mb-8">
+                {categoryType === 'equipment' 
+                  ? t('admin.categories.wizard.linkEquipmentToDiscipline')
+                  : t('admin.categories.wizard.createTopLevelDiscipline')
+                }
+              </p>
+            </div>
+
+            {categoryType === 'equipment' && (
+              <div className="space-y-4">
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  {t('admin.categories.wizard.selectDiscipline')} <span className="text-red-500">*</span>
+                </label>
+                
+                {!disciplinesLoading && disciplines.length === 0 ? (
+                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                    <div className="flex items-start space-x-3">
+                      <svg className="w-5 h-5 text-amber-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-amber-900 mb-1">{t('admin.categories.wizard.noDisciplinesFound')}</h4>
+                        <p className="text-sm text-amber-700 mb-3">
+                          {t('admin.categories.wizard.noDisciplinesFoundDescription')}
+                        </p>
+                        <p className="text-xs text-amber-600">
+                          {t('admin.categories.wizard.noDisciplinesFoundHint')}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <select
+                      value={selectedDisciplineId}
+                      onChange={(e) => setSelectedDisciplineId(e.target.value)}
+                      className="w-full h-14 text-base border border-gray-300 rounded-lg px-4 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      required
+                    >
+                      <option value="">
+                        {disciplinesLoading ? t('admin.categories.wizard.loadingDisciplines') : t('admin.categories.wizard.selectADiscipline')}
+                      </option>
+                      {disciplines.map((discipline) => (
+                        <option key={discipline.id} value={discipline.id}>
+                          {discipline.nom?.fr || discipline.name}
+                        </option>
+                      ))}
+                    </select>
+                    
+                    <p className="text-xs text-gray-500">
+                      {t('admin.categories.wizard.equipmentCategoriesHint')}
+                    </p>
+                  </>
+                )}
+              </div>
+            )}
+
+            {categoryType === 'discipline' && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+                <RectangleGroupIcon className="w-12 h-12 mx-auto mb-4 text-blue-600" />
+                <h4 className="font-semibold text-gray-900 mb-2">
+                  {t('admin.categories.wizard.creatingNewDiscipline')}
+                </h4>
+                <p className="text-sm text-blue-700">
+                  {t('admin.categories.wizard.creatingNewDisciplineDescription')}
+                </p>
+              </div>
+            )}
+          </div>
+        );
+
       case 'basic':
         return (
           <div className="space-y-6">
@@ -389,13 +571,15 @@ export function CategoryCreationWizard({
               {/* Category Name (French) */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">
-                  {t('admin.categories.categoryName')} <span className="text-red-500">*</span>
+                  {t('admin.categories.categoryName')}{' '}<span className="text-red-500">*</span>
                 </label>
                 <Input
                   value={formData.translations.fr.name}
                   onChange={(e) => handleInputChange('translations.name', e.target.value, 'fr')}
                   placeholder={t('admin.categories.categoryNamePlaceholder')}
                   className="h-14 text-base"
+                  autoComplete="off"
+                  spellCheck={false}
                   required
                 />
                 {formData.translations.fr.name && (
@@ -470,35 +654,30 @@ export function CategoryCreationWizard({
 
             {/* Category Image */}
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
-                {t('admin.categories.imageUrl')}
+              <label className="block text-sm font-semibold text-gray-900 mb-4">
+                {t('admin.categories.categoryImage')}
               </label>
-              <div className="flex space-x-3">
-                <div className="flex-1">
-                  <Input
-                    type="url"
-                    value={formData.imageUrl}
-                    onChange={(e) => handleInputChange('imageUrl', e.target.value)}
-                    placeholder={t('admin.categories.imageUrlPlaceholder')}
-                    className="h-14 text-base"
-                  />
+              <div className="flex items-start space-x-4">
+                <CompactImageUpload
+                  value={formData.imageUrl}
+                  onChange={(url) => handleInputChange('imageUrl', url)}
+                  preset="categoryImage"
+                  size="lg"
+                  shape="square"
+                  placeholder={t('admin.categories.uploadImage')}
+                  className="flex-shrink-0"
+                />
+                <div className="flex-1 space-y-2">
+                  <p className="text-sm text-gray-700">
+                    {t('admin.categories.imageUploadDescription')}
+                  </p>
+                  <ul className="text-xs text-gray-500 space-y-1">
+                    <li>• {t('admin.categories.imageFormatSupported')}</li>
+                    <li>• {t('admin.categories.imageSizeLimit')}</li>
+                    <li>• {t('admin.categories.imageRecommendation')}</li>
+                  </ul>
                 </div>
-                {formData.imageUrl && (
-                  <div className="h-14 w-14 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <img
-                      src={formData.imageUrl}
-                      alt="Category"
-                      className="h-12 w-12 rounded object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                )}
               </div>
-              <p className="text-xs text-gray-500 mt-1">
-                {t('admin.categories.imageUrlHint')}
-              </p>
             </div>
 
             {/* English Translation */}
@@ -536,91 +715,6 @@ export function CategoryCreationWizard({
               </div>
             </div>
 
-            {/* SEO Fields */}
-            <div className="border-t border-gray-200 pt-6">
-              <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
-                <GlobeAltIcon className="w-5 h-5 mr-2 text-green-600" />
-                {t('admin.categories.seoOptimization')}
-              </h4>
-              
-              <div className="space-y-6">
-                {/* French SEO */}
-                <div>
-                  <h5 className="font-medium text-gray-800 mb-3">Français</h5>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t('admin.categories.metaTitle')}
-                      </label>
-                      <Input
-                        value={formData.translations.fr.metaTitle}
-                        onChange={(e) => handleInputChange('translations.metaTitle', e.target.value, 'fr')}
-                        placeholder={t('admin.categories.metaTitlePlaceholder')}
-                        className="h-12 text-base"
-                        maxLength={60}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        {formData.translations.fr.metaTitle.length}/60 caractères
-                      </p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t('admin.categories.metaDescription')}
-                      </label>
-                      <Textarea
-                        value={formData.translations.fr.metaDescription}
-                        onChange={(e) => handleInputChange('translations.metaDescription', e.target.value, 'fr')}
-                        placeholder={t('admin.categories.metaDescriptionPlaceholder')}
-                        rows={2}
-                        className="text-base resize-none"
-                        maxLength={160}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        {formData.translations.fr.metaDescription.length}/160 caractères
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* English SEO */}
-                <div>
-                  <h5 className="font-medium text-gray-800 mb-3">English</h5>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t('admin.categories.metaTitle')}
-                      </label>
-                      <Input
-                        value={formData.translations.en.metaTitle}
-                        onChange={(e) => handleInputChange('translations.metaTitle', e.target.value, 'en')}
-                        placeholder={t('admin.categories.metaTitlePlaceholderEn')}
-                        className="h-12 text-base"
-                        maxLength={60}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        {formData.translations.en.metaTitle.length}/60 characters
-                      </p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {t('admin.categories.metaDescription')}
-                      </label>
-                      <Textarea
-                        value={formData.translations.en.metaDescription}
-                        onChange={(e) => handleInputChange('translations.metaDescription', e.target.value, 'en')}
-                        placeholder={t('admin.categories.metaDescriptionPlaceholderEn')}
-                        rows={2}
-                        className="text-base resize-none"
-                        maxLength={160}
-                      />
-                      <p className="text-xs text-gray-500 mt-1">
-                        {formData.translations.en.metaDescription.length}/160 characters
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* Visibility Settings */}
             <div className="border-t border-gray-200 pt-6">
@@ -677,7 +771,7 @@ export function CategoryCreationWizard({
               }
             </h2>
             <p className="text-sm text-gray-600 mt-1">
-              {effectiveSteps[effectiveCurrentStep].description}
+              {effectiveSteps[effectiveCurrentStep]?.description || ''}
             </p>
           </div>
           <Button 

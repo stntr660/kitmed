@@ -41,6 +41,7 @@ interface Category {
   name: string;
   slug: string;
   description?: string;
+  type?: 'discipline' | 'equipment';
   parentId?: string;
   sortOrder: number;
   isActive: boolean;
@@ -129,7 +130,11 @@ function TreeView({
           <div key={category.id} className="group">
             {/* Category Row */}
             <div
-              className="flex items-center py-3 px-4 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
+              className={`flex items-center py-3 px-4 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer ${
+                getCategoryType(category, level) === 'discipline'
+                  ? 'border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-transparent shadow-sm'
+                  : 'border-l-4 border-green-300 bg-gradient-to-r from-green-50 to-transparent ml-4'
+              }`}
               style={getIndentStyle(level)}
             >
               {/* Expand/Collapse Button */}
@@ -191,10 +196,29 @@ function TreeView({
                 <div className="flex items-center justify-between">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-1">
-                      <h4 className="text-sm md:text-base font-medium text-gray-900 truncate">
+                      {/* Category Type Badge */}
+                      <Badge 
+                        variant={getCategoryType(category, level) === 'discipline' ? 'default' : 'secondary'}
+                        className={`text-xs px-2 py-1 ${
+                          getCategoryType(category, level) === 'discipline' 
+                            ? 'bg-blue-100 text-blue-800 border-blue-200' 
+                            : 'bg-green-100 text-green-800 border-green-200'
+                        }`}
+                      >
+                        {getCategoryType(category, level) === 'discipline' ? t('admin.categories.discipline') : t('admin.categories.equipment')}
+                      </Badge>
+                      <h4 className={`${
+                        getCategoryType(category, level) === 'discipline'
+                          ? 'text-lg font-semibold text-blue-900' 
+                          : 'text-sm font-medium text-gray-800'
+                      } truncate`}>
                         {category.nom?.fr || category.name}
                       </h4>
-                      <LevelIndicator level={level} compact={true} />
+                      <LevelIndicator 
+                        level={level} 
+                        compact={true} 
+                        categoryType={getCategoryType(category, level)}
+                      />
                       {!category.isActive && (
                         <Badge variant="secondary" className="text-xs">
                           {t('admin.inactive')}
@@ -441,7 +465,11 @@ export function HierarchicalCategoryManager() {
         ...(showInactiveCategories ? {} : { isActive: 'true' }),
       });
 
-      const response = await fetch(`/api/admin/categories?${params}`);
+      const response = await fetch(`/api/admin/categories?${params}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
+      });
       
       if (response.ok) {
         const data = await response.json();
@@ -470,6 +498,16 @@ export function HierarchicalCategoryManager() {
     });
   }, []);
 
+  // Auto-expand disciplines (top-level categories) on load
+  useEffect(() => {
+    if (categories.length > 0) {
+      const disciplineIds = categories
+        .filter(category => !category.parentId) // Top-level = disciplines
+        .map(category => category.id);
+      setExpandedIds(new Set(disciplineIds));
+    }
+  }, [categories]);
+
   // Selection operations
   const handleSelect = useCallback((id: string, isSelected: boolean) => {
     setSelectedIds(prev => {
@@ -491,6 +529,18 @@ export function HierarchicalCategoryManager() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!categories.length) return;
+      
+      // Don't interfere with typing in input fields, textareas, or content editable elements
+      const target = event.target as HTMLElement;
+      if (target && (
+        target.tagName === 'INPUT' || 
+        target.tagName === 'TEXTAREA' || 
+        target.contentEditable === 'true' ||
+        target.closest('input') ||
+        target.closest('textarea')
+      )) {
+        return;
+      }
       
       const allCategoryIds = getAllCategoryIds(categories);
       
@@ -568,16 +618,17 @@ export function HierarchicalCategoryManager() {
     return maxDepth;
   };
 
-  // Determine category type based on content and hierarchy
+  // Get category type from database field
   const getCategoryType = (category: Category, level: number = 0): 'discipline' | 'equipment' => {
-    const name = category.nom?.fr || category.name;
-    const hasEquipmentKeywords = /équipement|appareil|machine|moniteur|scanner/i.test(name);
-    const hasDisciplineKeywords = /cardiologie|radiologie|chirurgie|laboratoire|urgence/i.test(name);
+    // Primary: Use the type field from database if available
+    if (category.type === 'discipline') return 'discipline';
+    if (category.type === 'equipment') return 'equipment';
     
-    if (hasEquipmentKeywords) return 'equipment';
-    if (hasDisciplineKeywords) return 'discipline';
+    // Secondary: Check parent relationship (null parentId = discipline, has parentId = equipment)
+    if (category.parentId === null || category.parentId === undefined) return 'discipline';
+    if (category.parentId) return 'equipment';
     
-    // If it's a top-level category, likely a discipline
+    // Final fallback: Use level-based inference
     return level === 0 ? 'discipline' : 'equipment';
   };
 
@@ -679,6 +730,9 @@ export function HierarchicalCategoryManager() {
     try {
       const response = await fetch(`/api/admin/categories/${category.id}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
       });
 
       if (response.ok) {
@@ -711,6 +765,7 @@ export function HierarchicalCategoryManager() {
         description: categoryData.translations.fr.description?.trim() || null,
         metaTitle: categoryData.translations.fr.metaTitle?.trim() || null,
         metaDescription: categoryData.translations.fr.metaDescription?.trim() || null,
+        type: categoryData.type || 'discipline', // Include type field from wizard
         sortOrder: categoryData.sortOrder || 0,
         isActive: categoryData.isActive !== false, // Default to true
         imageUrl: categoryData.imageUrl && categoryData.imageUrl.trim() ? categoryData.imageUrl : null,
@@ -731,12 +786,18 @@ export function HierarchicalCategoryManager() {
             }
           })
         },
-        ...(parentCategory && { parentId: parentCategory.id }),
+        // Priority: Use parentId from wizard data, fallback to parentCategory
+        ...(categoryData.parentId ? { parentId: categoryData.parentId } : parentCategory && { parentId: parentCategory.id }),
       };
+
+      console.log('🔥 MANAGER SENDING PAYLOAD:', JSON.stringify(payload, null, 2));
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
         body: JSON.stringify(payload),
       });
 
@@ -780,7 +841,10 @@ export function HierarchicalCategoryManager() {
     try {
       const response = await fetch('/api/admin/categories/bulk', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
         body: JSON.stringify({
           action,
           categoryIds: Array.from(selectedIds),

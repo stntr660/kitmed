@@ -3,26 +3,30 @@ import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
 const categoryCreateSchema = z.object({
-  name: z.string().min(1, 'Category name is required'),
-  description: z.string().nullable().optional(),
+  type: z.enum(['discipline', 'equipment']),
   parentId: z.string().nullable().optional(),
   sortOrder: z.number().default(0),
   isActive: z.boolean().default(true),
-  imageUrl: z.string().url().nullable().optional().or(z.literal(null)),
-  metaTitle: z.string().nullable().optional(),
-  metaDescription: z.string().nullable().optional(),
+  imageUrl: z.union([
+    z.string().refine(
+      (val) => {
+        if (!val || val.trim() === '') return true; // empty string is valid
+        // Allow relative URLs starting with / or full URLs
+        return val.startsWith('/') || /^https?:\/\//.test(val);
+      },
+      { message: 'Must be a valid URL or relative path starting with /' }
+    ),
+    z.null(),
+    z.literal('')
+  ]).optional(),
   translations: z.object({
     fr: z.object({
       name: z.string().min(1, 'French name is required'),
       description: z.string().nullable().optional(),
-      metaTitle: z.string().nullable().optional(),
-      metaDescription: z.string().nullable().optional(),
     }),
     en: z.object({
       name: z.string().optional(),
       description: z.string().nullable().optional(),
-      metaTitle: z.string().nullable().optional(),
-      metaDescription: z.string().nullable().optional(),
     }).optional(),
   }),
 });
@@ -30,7 +34,7 @@ const categoryCreateSchema = z.object({
 const categoriesQuerySchema = z.object({
   query: z.string().optional(),
   parentId: z.string().optional().nullable(),
-  isActive: z.string().optional().transform(val => val === 'true'),
+  isActive: z.string().optional().transform(val => val === 'true' ? true : val === 'false' ? false : undefined),
   hierarchical: z.string().optional().transform(val => val === 'true'),
   page: z.string().optional().transform(val => parseInt(val || '1')),
   pageSize: z.string().optional().transform(val => parseInt(val || '50')),
@@ -43,6 +47,7 @@ interface CategoryWithTranslations {
   name: string;
   slug: string;
   description: string | null;
+  type: string;
   parentId: string | null;
   sortOrder: number;
   isActive: boolean;
@@ -243,6 +248,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
+    console.log('🔥 RAW REQUEST:', JSON.stringify(body, null, 2));
+    
+    // Infer type if not provided: parentId exists = equipment, otherwise = discipline
+    if (!body.type) {
+      body.type = body.parentId ? 'equipment' : 'discipline';
+      console.log('🔥 INFERRED TYPE:', body.type, 'based on parentId:', body.parentId);
+    }
+    
+    console.log('🔥 FINAL TYPE BEFORE SAVE:', body.type);
     const categoryData = categoryCreateSchema.parse(body);
 
     // Generate slug from French name
@@ -274,32 +288,34 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Create category with translations
+    console.log('🔥 CREATING WITH TYPE:', categoryData.type, 'PARENT:', categoryData.parentId);
     const category = await prisma.category.create({
       data: {
         name: categoryData.translations.fr.name,
         slug: finalSlug,
         description: categoryData.translations.fr.description || null,
+        type: categoryData.type,
         parentId: categoryData.parentId,
         sortOrder: categoryData.sortOrder,
         isActive: categoryData.isActive,
         imageUrl: categoryData.imageUrl,
-        metaTitle: categoryData.translations.fr.metaTitle || null,
-        metaDescription: categoryData.translations.fr.metaDescription || null,
+        metaTitle: null,
+        metaDescription: null,
         translations: {
           create: [
             {
               languageCode: 'fr',
               name: categoryData.translations.fr.name,
               description: categoryData.translations.fr.description || null,
-              metaTitle: categoryData.translations.fr.metaTitle || null,
-              metaDescription: categoryData.translations.fr.metaDescription || null,
+              metaTitle: null,
+              metaDescription: null,
             },
             ...(categoryData.translations.en?.name ? [{
               languageCode: 'en',
               name: categoryData.translations.en.name,
               description: categoryData.translations.en.description || null,
-              metaTitle: categoryData.translations.en.metaTitle || null,
-              metaDescription: categoryData.translations.en.metaDescription || null,
+              metaTitle: null,
+              metaDescription: null,
             }] : [])
           ]
         }
@@ -315,6 +331,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     });
 
+    console.log('🔥 SAVED CATEGORY:', { id: category.id, type: category.type, parentId: category.parentId });
     return NextResponse.json({
       message: 'Category created successfully',
       data: category
