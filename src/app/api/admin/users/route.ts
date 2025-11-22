@@ -1,170 +1,119 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { withAuth } from '@/lib/auth';
+import { prisma } from '@/lib/database';
+import { hashPassword } from '@/lib/auth-utils';
 
-// User schema
-const userSchema = z.object({
-  id: z.string().optional(),
-  email: z.string().email(),
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
-  role: z.enum(['super_admin', 'admin', 'editor', 'viewer']),
-  isActive: z.boolean().default(true),
-  permissions: z.array(z.string()).default([]),
-  twoFactorEnabled: z.boolean().default(false),
-  lastLogin: z.string().optional(), // ISO date string
-});
-
-// Mock users storage
-let users: any[] = [
-  {
-    id: 'user-1',
-    email: 'admin@kitmed.fr',
-    firstName: 'Mohamed',
-    lastName: 'Admin',
-    role: 'super_admin',
-    isActive: true,
-    permissions: ['all'],
-    twoFactorEnabled: true,
-    lastLogin: '2024-11-09T08:30:00Z',
-    createdAt: '2024-01-01T00:00:00Z',
-    updatedAt: '2024-11-09T08:30:00Z',
-    activityCount: 145,
-    loginHistory: [
-      { date: '2024-11-09T08:30:00Z', ip: '192.168.1.100', device: 'Chrome/MacOS' },
-      { date: '2024-11-08T16:45:00Z', ip: '192.168.1.100', device: 'Chrome/MacOS' },
-    ]
-  },
-  {
-    id: 'user-2',
-    email: 'editor@kitmed.fr',
-    firstName: 'Fatima',
-    lastName: 'Editor',
-    role: 'editor',
-    isActive: true,
-    permissions: ['content.read', 'content.write', 'products.read'],
-    twoFactorEnabled: false,
-    lastLogin: '2024-11-08T14:20:00Z',
-    createdAt: '2024-02-15T10:00:00Z',
-    updatedAt: '2024-11-08T14:20:00Z',
-    activityCount: 87,
-    loginHistory: [
-      { date: '2024-11-08T14:20:00Z', ip: '192.168.1.105', device: 'Firefox/Windows' },
-    ]
-  },
-  {
-    id: 'user-3',
-    email: 'viewer@kitmed.fr',
-    firstName: 'Ahmed',
-    lastName: 'Viewer',
-    role: 'viewer',
-    isActive: false,
-    permissions: ['content.read', 'products.read'],
-    twoFactorEnabled: false,
-    lastLogin: '2024-10-15T09:15:00Z',
-    createdAt: '2024-03-10T12:30:00Z',
-    updatedAt: '2024-10-15T09:15:00Z',
-    activityCount: 23,
-    loginHistory: []
-  }
-];
-
-export async function GET(request: NextRequest) {
+async function getUsers(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const role = searchParams.get('role');
-    const status = searchParams.get('status');
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
-    const search = searchParams.get('search');
-
-    let filteredUsers = users;
-
-    // Filter by role
-    if (role && role !== 'all') {
-      filteredUsers = filteredUsers.filter(user => user.role === role);
-    }
-
-    // Filter by status
-    if (status === 'active') {
-      filteredUsers = filteredUsers.filter(user => user.isActive);
-    } else if (status === 'inactive') {
-      filteredUsers = filteredUsers.filter(user => !user.isActive);
-    }
-
-    // Search filter
-    if (search) {
-      const searchLower = search.toLowerCase();
-      filteredUsers = filteredUsers.filter(user => 
-        user.firstName.toLowerCase().includes(searchLower) ||
-        user.lastName.toLowerCase().includes(searchLower) ||
-        user.email.toLowerCase().includes(searchLower)
-      );
-    }
-
-    // Sort by creation date (newest first)
-    filteredUsers.sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
-    // Pagination
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        role: true,
+        isActive: true,
+        lastLogin: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' }
+    });
 
     return NextResponse.json({
-      users: paginatedUsers,
-      total: filteredUsers.length,
-      page,
-      totalPages: Math.ceil(filteredUsers.length / limit),
+      success: true,
+      data: {
+        items: users,
+        total: users.length,
+        page: 1,
+        totalPages: 1
+      }
     });
   } catch (error) {
-    console.error('Users fetch error:', error);
+    console.error('Failed to fetch users:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch users' },
+      { success: false, error: 'Failed to fetch users' },
       { status: 500 }
     );
   }
 }
 
-export async function POST(request: NextRequest) {
+async function createUser(request: NextRequest) {
   try {
-    const body = await request.json();
-    const validatedUser = userSchema.parse(body);
+    const data = await request.json();
+    const { firstName, lastName, email, password, role, isActive } = data;
+
+    // Get current user from request context (set by withAuth middleware)
+    const currentUser = (request as any).user;
     
-    // Check if email already exists
-    const existingUser = users.find(user => user.email === validatedUser.email);
+    // Only admin users can create other users
+    if (currentUser.role.toLowerCase() !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Insufficient permissions. Only administrators can create users.' },
+        { status: 403 }
+      );
+    }
+
+    // Validate role assignment permissions
+    if (role === 'admin' && currentUser.role.toLowerCase() !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Only administrators can create admin users.' },
+        { status: 403 }
+      );
+    }
+
+    // Check if user already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email }
+    });
+
     if (existingUser) {
       return NextResponse.json(
-        { error: 'User with this email already exists' },
+        { success: false, error: 'User with this email already exists' },
         { status: 400 }
       );
     }
-    
-    const newUser = {
-      ...validatedUser,
-      id: `user-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      activityCount: 0,
-      loginHistory: [],
-    };
 
-    users.unshift(newUser);
-    
-    return NextResponse.json(newUser, { status: 201 });
+    // Use provided password or generate a temporary one
+    const passwordToHash = password || Math.random().toString(36).slice(-8);
+    const passwordHash = await hashPassword(passwordToHash);
+
+    const user = await prisma.user.create({
+      data: {
+        firstName,
+        lastName,
+        email,
+        role,
+        isActive,
+        passwordHash
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        role: true,
+        isActive: true,
+        lastLogin: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: user,
+      message: password ? 'User created successfully' : `User created with temporary password: ${passwordToHash}`
+    });
   } catch (error) {
-    console.error('User creation error:', error);
-    
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Invalid user data', details: error.issues },
-        { status: 400 }
-      );
-    }
-    
+    console.error('Failed to create user:', error);
     return NextResponse.json(
-      { error: 'Failed to create user' },
+      { success: false, error: 'Failed to create user' },
       { status: 500 }
     );
   }
 }
+
+// Export authenticated handlers
+export const GET = withAuth(getUsers);
+export const POST = withAuth(createUser);
