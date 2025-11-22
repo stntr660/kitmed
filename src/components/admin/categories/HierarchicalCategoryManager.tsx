@@ -26,6 +26,7 @@ import { HelpTooltip, QuickStartGuide, HelpButton, ExpandableHelp } from './Cont
 import { CategoryTypeIcon, HierarchyConnectionLines, LevelIndicator, HierarchyStats } from './HierarchyIndicators';
 import { CategoryQuickView } from './CategoryQuickView';
 import { formatDate } from '@/lib/utils';
+import { useAdminPermissions } from '@/hooks/useAdminPermissions';
 
 interface CategoryTranslation {
   id: string;
@@ -81,6 +82,9 @@ interface TreeViewProps {
   getCategoryType: (category: Category, level: number) => 'discipline' | 'equipment';
   showMobileActions: string | null;
   setShowMobileActions: (id: string | null) => void;
+  canCreate: boolean;
+  canDelete: boolean;
+  isAdmin: boolean;
 }
 
 function TreeView({
@@ -97,7 +101,10 @@ function TreeView({
   onAddChild,
   getCategoryType,
   showMobileActions,
-  setShowMobileActions
+  setShowMobileActions,
+  canCreate,
+  canDelete: canDeleteCategories,
+  isAdmin
 }: TreeViewProps) {
   const t = useTranslations();
 
@@ -158,14 +165,16 @@ function TreeView({
               </div>
 
               {/* Checkbox */}
-              <div className="mr-3">
-                <input
-                  type="checkbox"
-                  checked={isSelected}
-                  onChange={(e) => handleCheckboxChange(category, e)}
-                  className="rounded border-gray-300 h-4 w-4"
-                />
-              </div>
+              {isAdmin && (
+                <div className="mr-3">
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={(e) => handleCheckboxChange(category, e)}
+                    className="rounded border-gray-300 h-4 w-4"
+                  />
+                </div>
+              )}
 
               {/* Category Icon with Visual Hierarchy */}
               <div className="mr-3 relative">
@@ -286,20 +295,22 @@ function TreeView({
 
               {/* Desktop Actions */}
               <div className="hidden md:flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <HelpTooltip content={t('admin.categories.addSubcategory')}>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onAddChild(category);
-                    }}
-                    className="hover:bg-blue-50 hover:text-blue-700 h-12 w-12"
-                    aria-label={t('admin.categories.accessibility.categoryActions', { name: category.nom?.fr || category.name })}
-                  >
-                    <PlusIcon className="h-5 w-5" />
-                  </Button>
-                </HelpTooltip>
+                {canCreate && (
+                  <HelpTooltip content={t('admin.categories.addSubcategory')}>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddChild(category);
+                      }}
+                      className="hover:bg-blue-50 hover:text-blue-700 h-12 w-12"
+                      aria-label={t('admin.categories.accessibility.categoryActions', { name: category.nom?.fr || category.name })}
+                    >
+                      <PlusIcon className="h-5 w-5" />
+                    </Button>
+                  </HelpTooltip>
+                )}
                 <Button
                   size="sm"
                   variant="ghost"
@@ -324,19 +335,21 @@ function TreeView({
                 >
                   <PencilIcon className="h-5 w-5" />
                 </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete(category);
-                  }}
-                  className="hover:bg-gray-50 hover:text-gray-700 h-12 w-12"
-                  disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
-                  aria-label={`${t('common.delete')} ${category.nom?.fr || category.name}`}
-                >
-                  <TrashIcon className="h-5 w-5" />
-                </Button>
+                {canDeleteCategories && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete(category);
+                    }}
+                    className="hover:bg-gray-50 hover:text-gray-700 h-12 w-12"
+                    disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
+                    aria-label={`${t('common.delete')} ${category.nom?.fr || category.name}`}
+                  >
+                    <TrashIcon className="h-5 w-5" />
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -344,18 +357,20 @@ function TreeView({
             {showMobileActions === category.id && (
               <div className="md:hidden bg-gray-50 border border-gray-200 rounded-lg mx-4 mt-2 p-4">
                 <div className="grid grid-cols-2 gap-3">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      onAddChild(category);
-                      setShowMobileActions(null);
-                    }}
-                    className="flex items-center justify-center space-x-2 h-12 text-sm"
-                  >
-                    <PlusIcon className="h-4 w-4" />
-                    <span>{t('admin.categories.addSubcategory')}</span>
-                  </Button>
+                  {canCreate && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        onAddChild(category);
+                        setShowMobileActions(null);
+                      }}
+                      className="flex items-center justify-center space-x-2 h-12 text-sm"
+                    >
+                      <PlusIcon className="h-4 w-4" />
+                      <span>{t('admin.categories.addSubcategory')}</span>
+                    </Button>
+                  )}
                   <Button
                     size="sm"
                     variant="outline"
@@ -380,19 +395,21 @@ function TreeView({
                     <PencilIcon className="h-4 w-4" />
                     <span>{t('common.edit')}</span>
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      onDelete(category);
-                      setShowMobileActions(null);
-                    }}
-                    className="flex items-center justify-center space-x-2 h-12 text-sm"
-                    disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
-                  >
-                    <TrashIcon className="h-4 w-4" />
-                    <span>{t('common.delete')}</span>
-                  </Button>
+                  {canDeleteCategories && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        onDelete(category);
+                        setShowMobileActions(null);
+                      }}
+                      className="flex items-center justify-center space-x-2 h-12 text-sm"
+                      disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
+                    >
+                      <TrashIcon className="h-4 w-4" />
+                      <span>{t('common.delete')}</span>
+                    </Button>
+                  )}
                 </div>
                 <button
                   onClick={() => setShowMobileActions(null)}
@@ -420,6 +437,9 @@ function TreeView({
                 getCategoryType={getCategoryType}
                 showMobileActions={showMobileActions}
                 setShowMobileActions={setShowMobileActions}
+                canCreate={canCreate}
+                canDelete={canDeleteCategories}
+                isAdmin={isAdmin}
               />
             )}
           </div>
@@ -431,6 +451,7 @@ function TreeView({
 
 export function HierarchicalCategoryManager() {
   const t = useTranslations();
+  const { canCreate, canDelete, isAdmin } = useAdminPermissions();
 
   // Data state
   const [categories, setCategories] = useState<Category[]>([]);
@@ -912,13 +933,15 @@ export function HierarchicalCategoryManager() {
           
           <div className="flex space-x-3">
             <HelpButton onClick={() => setHelpGuideOpen(true)} />
-            <Button
-              onClick={handleAddCategory}
-              className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700 h-12"
-            >
-              <PlusIcon className="h-5 w-5" />
-              <span>{t('admin.categories.addCategory')}</span>
-            </Button>
+            {canCreate('categories') && (
+              <Button
+                onClick={handleAddCategory}
+                className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700 h-12"
+              >
+                <PlusIcon className="h-5 w-5" />
+                <span>{t('admin.categories.addCategory')}</span>
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -978,7 +1001,7 @@ export function HierarchicalCategoryManager() {
           )}
 
           {/* Bulk Actions */}
-          {selectedIds.size > 0 && (
+          {selectedIds.size > 0 && isAdmin && (
             <div className="mt-6 p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <span className="text-sm font-semibold text-primary-700">
@@ -1032,17 +1055,19 @@ export function HierarchicalCategoryManager() {
           ) : categories.length > 0 ? (
             <div className="p-4">
               {/* Select All Checkbox */}
-              <div className="flex items-center space-x-3 pb-4 border-b border-gray-200">
-                <input
-                  type="checkbox"
-                  checked={categories.length > 0 && selectedIds.size > 0}
-                  onChange={handleSelectAll}
-                  className="rounded border-gray-300 h-5 w-5"
-                />
-                <span className="text-sm font-medium text-gray-700">
-                  {t('admin.categories.selectAll')}
-                </span>
-              </div>
+              {isAdmin && (
+                <div className="flex items-center space-x-3 pb-4 border-b border-gray-200">
+                  <input
+                    type="checkbox"
+                    checked={categories.length > 0 && selectedIds.size > 0}
+                    onChange={handleSelectAll}
+                    className="rounded border-gray-300 h-5 w-5"
+                  />
+                  <span className="text-sm font-medium text-gray-700">
+                    {t('admin.categories.selectAll')}
+                  </span>
+                </div>
+              )}
 
               {/* Tree View */}
               <div className="mt-4">
@@ -1061,6 +1086,9 @@ export function HierarchicalCategoryManager() {
                   getCategoryType={getCategoryType}
                   showMobileActions={showMobileActions}
                   setShowMobileActions={setShowMobileActions}
+                  canCreate={canCreate('categories')}
+                  canDelete={canDelete('categories')}
+                  isAdmin={isAdmin}
                 />
               </div>
             </div>

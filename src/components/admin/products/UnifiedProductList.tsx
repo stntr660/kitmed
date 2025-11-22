@@ -26,6 +26,7 @@ import type { ImportResult } from './CSVUpload';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { Product } from '@/types';
 import { formatDate, truncate } from '@/lib/utils';
+import { useAdminPermissions } from '@/hooks/useAdminPermissions';
 
 interface ProductWithDetails extends Product {
   category: {
@@ -51,6 +52,7 @@ interface UnifiedProductListProps {
 
 export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListProps) {
   const t = useTranslations();
+  const { canCreate, canUpdate, canDelete, canImport, canExport, isAdmin } = useAdminPermissions();
   
   // Data state
   const [products, setProducts] = useState<AdminSearchResult<ProductWithDetails> | null>(null);
@@ -97,7 +99,11 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         }
       });
 
-      const response = await fetch(`/api/admin/products?${params}`);
+      const response = await fetch(`/api/admin/products?${params}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
+      });
       
       if (response.ok) {
         const data = await response.json();
@@ -140,14 +146,19 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
         body: JSON.stringify(productData),
       });
 
       if (response.ok) {
+        const result = await response.json();
         await loadProducts();
         setDrawerOpen(false);
         setSelectedProduct(null);
+        return result.data; // Return the created/updated product
       } else {
         throw new Error('Failed to save product');
       }
@@ -162,6 +173,9 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     try {
       const response = await fetch(`/api/admin/products/${productId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
       });
 
       if (response.ok) {
@@ -229,7 +243,10 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     try {
       const response = await fetch('/api/admin/products/bulk', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
         body: JSON.stringify({
           action,
           productIds: selectedProducts,
@@ -249,7 +266,10 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     try {
       const response = await fetch('/api/admin/products/export', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+        },
         body: JSON.stringify(filters),
       });
 
@@ -311,29 +331,35 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
           </p>
         </div>
         <div className="flex space-x-3">
-          <Button
-            variant="outline"
-            onClick={handleExport}
-            className="flex items-center space-x-2"
-          >
-            <ArrowDownTrayIcon className="h-5 w-5" />
-            <span>{t('common.export')}</span>
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => setShowCSVUpload(!showCSVUpload)}
-            className="flex items-center space-x-2"
-          >
-            <ArrowUpTrayIcon className="h-5 w-5" />
-            <span>{t('product.form.bulkImport.title')}</span>
-          </Button>
-          <Button
-            onClick={handleAddProduct}
-            className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700"
-          >
-            <PlusIcon className="h-5 w-5" />
-            <span>{t('common.add')} {t('navigation.products')}</span>
-          </Button>
+          {canExport('products') && (
+            <Button
+              variant="outline"
+              onClick={handleExport}
+              className="flex items-center space-x-2"
+            >
+              <ArrowDownTrayIcon className="h-5 w-5" />
+              <span>{t('common.export')}</span>
+            </Button>
+          )}
+          {canImport('products') && (
+            <Button
+              variant="outline"
+              onClick={() => setShowCSVUpload(!showCSVUpload)}
+              className="flex items-center space-x-2"
+            >
+              <ArrowUpTrayIcon className="h-5 w-5" />
+              <span>{t('product.form.bulkImport.title')}</span>
+            </Button>
+          )}
+          {canCreate('products') && (
+            <Button
+              onClick={handleAddProduct}
+              className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700"
+            >
+              <PlusIcon className="h-5 w-5" />
+              <span>{t('common.add')} {t('navigation.products')}</span>
+            </Button>
+          )}
         </div>
       </div>
 
@@ -366,14 +392,14 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                   onClick={() => handleStatusFilter(status)}
                   className="capitalize h-12 px-6"
                 >
-                  {t(`admin.${status}`)}
+                  {t(`admin.products.status.${status}`, { defaultValue: status })}
                 </Button>
               ))}
             </div>
           </div>
 
           {/* Bulk Actions */}
-          {selectedProducts.length > 0 && (
+          {selectedProducts.length > 0 && isAdmin && (
             <div className="mt-6 p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-primary-700">
@@ -425,16 +451,18 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-4 text-left">
-                      <input
-                        type="checkbox"
-                        checked={products.items.every(product => 
-                          selectedProducts.includes(product.id)
-                        )}
-                        onChange={handleSelectAll}
-                        className="rounded border-gray-300 h-5 w-5"
-                      />
-                    </th>
+                    {isAdmin && (
+                      <th className="px-6 py-4 text-left">
+                        <input
+                          type="checkbox"
+                          checked={products.items.every(product => 
+                            selectedProducts.includes(product.id)
+                          )}
+                          onChange={handleSelectAll}
+                          className="rounded border-gray-300 h-5 w-5"
+                        />
+                      </th>
+                    )}
                     <th 
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('name')}
@@ -473,14 +501,16 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                 <tbody className="bg-white divide-y divide-gray-200">
                   {products.items.map((product) => (
                     <tr key={product.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
-                        <input
-                          type="checkbox"
-                          checked={selectedProducts.includes(product.id)}
-                          onChange={() => handleSelectProduct(product.id)}
-                          className="rounded border-gray-300 h-5 w-5"
-                        />
-                      </td>
+                      {isAdmin && (
+                        <td className="px-6 py-4">
+                          <input
+                            type="checkbox"
+                            checked={selectedProducts.includes(product.id)}
+                            onChange={() => handleSelectProduct(product.id)}
+                            className="rounded border-gray-300 h-5 w-5"
+                          />
+                        </td>
+                      )}
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-4">
                           <div className="h-12 w-12 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
@@ -513,7 +543,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                             </div>
                             {product.shortDescription && (
                               <div className="text-sm text-gray-600 mt-1">
-                                {truncate(product.shortDescription, 70)}
+                                {truncate(product.shortDescription.fr || product.shortDescription.en || '', 70)}
                               </div>
                             )}
                             {product.featured && (
@@ -530,12 +560,12 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
                         <Badge variant="outline" className="bg-gray-50">
-                          {product.category?.name || t('admin.uncategorized')}
+                          {product.category?.name?.fr || product.category?.name?.en || product.category?.name || t('admin.uncategorized')}
                         </Badge>
                       </td>
                       <td className="px-6 py-4">
                         <Badge variant={getStatusColor(product.status)}>
-                          {t(`admin.${product.status}`)}
+                          {t(`admin.products.status.${product.status}`, { defaultValue: product.status })}
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
@@ -554,22 +584,26 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                           >
                             <EyeIcon className="h-4 w-4" />
                           </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleEditProduct(product)}
-                            className="hover:bg-amber-50 hover:text-amber-700"
-                          >
-                            <PencilIcon className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleDeleteProduct(product.id)}
-                            className="text-gray-600 hover:text-gray-700"
-                          >
-                            <TrashIcon className="h-4 w-4" />
-                          </Button>
+                          {canUpdate('products') && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => handleEditProduct(product)}
+                              className="hover:bg-amber-50 hover:text-amber-700"
+                            >
+                              <PencilIcon className="h-4 w-4" />
+                            </Button>
+                          )}
+                          {canDelete('products') && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => handleDeleteProduct(product.id)}
+                              className="text-gray-600 hover:text-gray-700"
+                            >
+                              <TrashIcon className="h-4 w-4" />
+                            </Button>
+                          )}
                         </div>
                       </td>
                     </tr>
