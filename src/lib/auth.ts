@@ -3,7 +3,11 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { AdminUser, AdminPermission, AdminResource, AdminAction } from '@/types/admin';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-change-in-production';
+// Use centralized JWT_SECRET validation
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required for production');
+}
+const JWT_SECRET = process.env.JWT_SECRET;
 const SALT_ROUNDS = 12;
 
 // Password utilities
@@ -207,7 +211,7 @@ export const logActivity = async (
   };
 
   // In a real implementation, you'd save this to the database
-  console.log('Activity Log:', activityLog);
+  // TODO: Implement proper audit logging to database
 };
 
 // Password strength validation

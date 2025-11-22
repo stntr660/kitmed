@@ -222,7 +222,10 @@ export async function POST(request: NextRequest) {
     );
 
   } catch (error) {
-    console.error('Login error:', error);
+    // Log to proper logging service in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Login error:', error);
+    }
     
     return NextResponse.json(
       {
@@ -240,7 +243,7 @@ export async function POST(request: NextRequest) {
 // Handle preflight requests for CORS
 export async function OPTIONS() {
   const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com', 'https://admin.yourdomain.com']  
+    ? ['https://kitmed.ma', 'https://admin.kitmed.ma', 'https://www.kitmed.ma']  
     : ['http://localhost:3000', 'http://localhost:3001'];
     
   return new NextResponse(null, {

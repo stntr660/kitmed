@@ -2,7 +2,11 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { NextRequest } from 'next/server';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-change-immediately';
+// Validate JWT_SECRET is set in production
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required for production');
+}
+export const JWT_SECRET = process.env.JWT_SECRET;
 
 export interface AdminUser {
   id: string;

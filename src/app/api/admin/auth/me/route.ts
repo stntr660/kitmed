@@ -56,7 +56,10 @@ export async function GET(request: NextRequest) {
         };
       }
     } catch (dbError) {
-      console.error('Database user lookup failed:', dbError);
+      // Log to proper logging service in production
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Database user lookup failed:', dbError);
+      }
     }
 
     // Fallback to environment admin user if database lookup fails
@@ -119,7 +122,10 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Auth check error:', error);
+    // Log to proper logging service in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Auth check error:', error);
+    }
 
     return NextResponse.json(
       {
