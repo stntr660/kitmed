@@ -4,25 +4,36 @@ import { z } from 'zod';
 
 const categoryUpdateSchema = z.object({
   name: z.string().min(1, 'Category name is required').optional(),
-  description: z.string().optional(),
-  parentId: z.string().optional().nullable(),
+  description: z.string().nullable().optional(),
+  parentId: z.string().nullable().optional(),
   sortOrder: z.number().optional(),
   isActive: z.boolean().optional(),
-  imageUrl: z.string().url().optional().nullable(),
-  metaTitle: z.string().optional(),
-  metaDescription: z.string().optional(),
+  imageUrl: z.union([
+    z.string().refine(
+      (val) => {
+        if (!val || val.trim() === '') return true; // empty string is valid
+        // Allow relative URLs starting with / or full URLs
+        return val.startsWith('/') || /^https?:\/\//.test(val);
+      },
+      { message: 'Must be a valid URL or relative path starting with /' }
+    ),
+    z.null(),
+    z.literal('')
+  ]).optional(),
+  metaTitle: z.string().nullable().optional(),
+  metaDescription: z.string().nullable().optional(),
   translations: z.object({
     fr: z.object({
       name: z.string().min(1, 'French name is required'),
-      description: z.string().optional(),
-      metaTitle: z.string().optional(),
-      metaDescription: z.string().optional(),
+      description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }),
     en: z.object({
       name: z.string().optional(),
-      description: z.string().optional(),
-      metaTitle: z.string().optional(),
-      metaDescription: z.string().optional(),
+      description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }).optional(),
   }).optional(),
 });
