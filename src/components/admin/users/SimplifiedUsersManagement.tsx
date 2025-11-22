@@ -145,13 +145,27 @@ export function SimplifiedUsersManagement() {
     e.preventDefault();
     
     try {
+      // Get authentication token
+      const token = localStorage.getItem('admin-token');
+      
+      if (!token) {
+        console.error('No authentication token found');
+        setError('Authentication required. Please login again.');
+        return;
+      }
+
       const url = selectedUser ? `/api/admin/users/${selectedUser.id}` : '/api/admin/users';
       const method = selectedUser ? 'PUT' : 'POST';
+      
+      console.log('Saving user with token:', token ? 'Token exists' : 'No token');
       
       const response = await fetch(url, {
         method,
         credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(formData)
       });
 
@@ -172,9 +186,23 @@ export function SimplifiedUsersManagement() {
     if (!confirm('Are you sure you want to delete this user?')) return;
 
     try {
+      // Get authentication token
+      const token = localStorage.getItem('admin-token');
+      
+      if (!token) {
+        console.error('No authentication token found');
+        setError('Authentication required. Please login again.');
+        return;
+      }
+
+      console.log('Deleting user with token:', token ? 'Token exists' : 'No token');
+      
       const response = await fetch(`/api/admin/users/${userId}`, {
         method: 'DELETE',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       if (response.ok) {
