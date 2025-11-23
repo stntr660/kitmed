@@ -18,6 +18,23 @@ function isMaintenanceModeEnabled(): boolean {
   }
 }
 
+// Check if user has valid admin authentication
+function hasAdminAuthentication(request: NextRequest): boolean {
+  // Check Authorization header
+  const authHeader = request.headers.get('authorization');
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    return authHeader.substring(7).length > 0; // Basic token presence check
+  }
+
+  // Check admin token cookie
+  const adminToken = request.cookies.get('admin-token')?.value;
+  if (adminToken && adminToken.length > 0) {
+    return true;
+  }
+
+  return false;
+}
+
 export async function maintenanceMiddleware(request: NextRequest) {
   const { pathname, locale } = request.nextUrl;
   
@@ -42,13 +59,24 @@ export async function maintenanceMiddleware(request: NextRequest) {
   const maintenanceEnabled = isMaintenanceModeEnabled();
   
   if (maintenanceEnabled && !pathname.includes('/maintenance')) {
-    // Extract locale from pathname if it exists
-    const localeMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
-    const currentLocale = localeMatch ? localeMatch[1] : 'fr';
+    // Check if user is authenticated admin - admins can bypass maintenance mode
+    const isAdminUser = hasAdminAuthentication(request);
     
-    // Redirect to maintenance page with proper locale
-    const maintenanceUrl = new URL(`/${currentLocale}/maintenance`, request.url);
-    return NextResponse.redirect(maintenanceUrl);
+    if (!isAdminUser) {
+      // Extract locale from pathname if it exists
+      const localeMatch = pathname.match(/^\/([a-z]{2})(\/|$)/);
+      const currentLocale = localeMatch ? localeMatch[1] : 'fr';
+      
+      // Redirect to maintenance page with proper locale
+      const maintenanceUrl = new URL(`/${currentLocale}/maintenance`, request.url);
+      return NextResponse.redirect(maintenanceUrl);
+    }
+    
+    // Admin user - allow access but add a warning header
+    const response = NextResponse.next();
+    response.headers.set('X-Maintenance-Mode', 'active');
+    response.headers.set('X-Admin-Bypass', 'true');
+    return response;
   }
   
   return NextResponse.next();

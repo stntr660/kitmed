@@ -1355,7 +1355,21 @@
       "dataRetention": "Rétention des Données Médicales",
       "dataRetentionDesc": "Années de rétention des données équipement médical",
       "auditLogs": "Journaux d'Audit",
-      "auditLogsDesc": "Maintenir des journaux détaillés de toutes les activités système"
+      "auditLogsDesc": "Maintenir des journaux détaillés de toutes les activités système",
+      "general": "Général",
+      "language": "Langue",
+      "french": "Français",
+      "english": "Anglais",
+      "emailAddress": "Adresse Email",
+      "emailName": "Nom Email",
+      "thirtyMinutes": "30 minutes",
+      "oneHour": "1 heure",
+      "twoHours": "2 heures",
+      "fourHours": "4 heures",
+      "emailNotificationsDesc": "Recevoir des notifications pour les événements importants",
+      "saveSettings": "Enregistrer les Paramètres",
+      "description": "Gérer les paramètres et la configuration de votre plateforme",
+      "saveFailed": "Échec de l'enregistrement des paramètres"
     },
     "categories": {
       "manageDescription": "Gérez votre hiérarchie de catégories et disciplines médicales",

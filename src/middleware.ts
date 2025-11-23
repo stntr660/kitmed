@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import createIntlMiddleware from 'next-intl/middleware';
 import { locales } from './i18n';
+import { maintenanceMiddleware } from './middleware/maintenance';
 
 // Simplified auth verification for middleware (Edge Runtime compatible)
 function extractTokenFromRequest(request: NextRequest): string | null {
@@ -60,11 +61,22 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Check maintenance mode before internationalization
+  const maintenanceResponse = await maintenanceMiddleware(request);
+  if (maintenanceResponse && maintenanceResponse.status !== 200) {
+    return maintenanceResponse; // Redirect to maintenance page
+  }
+
   // Handle internationalization for all other routes
   const intlResponse = intlMiddleware(request);
   
   // Apply security headers to the response
   if (intlResponse) {
+    // Copy maintenance headers if they exist
+    if (maintenanceResponse && maintenanceResponse.headers.get('X-Maintenance-Mode')) {
+      intlResponse.headers.set('X-Maintenance-Mode', maintenanceResponse.headers.get('X-Maintenance-Mode')!);
+      intlResponse.headers.set('X-Admin-Bypass', maintenanceResponse.headers.get('X-Admin-Bypass') || 'false');
+    }
     // Security headers
     intlResponse.headers.set('X-Frame-Options', 'DENY');
     intlResponse.headers.set('X-Content-Type-Options', 'nosniff');

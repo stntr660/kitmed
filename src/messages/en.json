@@ -1307,7 +1307,21 @@
       "dataRetention": "Medical Data Retention",
       "dataRetentionDesc": "Years to retain medical equipment data",
       "auditLogs": "Audit Logs",
-      "auditLogsDesc": "Maintain detailed logs of all system activities"
+      "auditLogsDesc": "Maintain detailed logs of all system activities",
+      "general": "General",
+      "language": "Language",
+      "french": "French",
+      "english": "English",
+      "emailAddress": "Email Address",
+      "emailName": "Email Name",
+      "thirtyMinutes": "30 minutes",
+      "oneHour": "1 hour",
+      "twoHours": "2 hours",
+      "fourHours": "4 hours",
+      "emailNotificationsDesc": "Receive notifications for important events",
+      "saveSettings": "Save Settings",
+      "description": "Manage your platform settings and configuration",
+      "saveFailed": "Failed to save settings"
     },
     "categories": {
       "manageDescription": "Manage your medical category hierarchy and disciplines",
