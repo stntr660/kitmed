@@ -308,7 +308,7 @@ async function deleteProduct(request: NextRequest, { params }: { params: { id: s
   }
 }
 
-// Export handlers
-export const GET = getProduct;
-export const PUT = updateProduct;
-export const DELETE = deleteProduct;
+// Export handlers with auth middleware
+export const GET = withAuth(getProduct);
+export const PUT = withAuth(updateProduct);
+export const DELETE = withAuth(deleteProduct);

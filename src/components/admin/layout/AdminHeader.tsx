@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { AdminUser } from '@/types/admin';
 import { cn } from '@/lib/utils';
+import { removeAdminToken } from '@/lib/auth-utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { NotificationCenter } from './NotificationCenter';
 import type { Locale } from '@/types';
@@ -29,9 +30,8 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
   const router = useRouter();
 
   const handleLogout = () => {
-    // Clear auth data
-    localStorage.removeItem('admin-token');
-    document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+    // Clear auth data using hydration-safe utility
+    removeAdminToken();
 
     // Redirect to login
     router.push('/en/admin/login');

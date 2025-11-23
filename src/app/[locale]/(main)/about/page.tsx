@@ -22,14 +22,13 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationSection } from '@/components/ui/compliance-badges';
 
 export default function AboutPage() {
   const t = useTranslations('about');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
 
   return (
     <div className="flex flex-col">

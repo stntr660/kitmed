@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { RFPCart, RFPItem, Product } from '@/types';
 import { generateId } from '@/lib/utils';
+import { safeLocalStorage } from '@/lib/hydration-utils';
 
 interface RFPStore {
   cart: RFPCart;
@@ -169,7 +170,7 @@ export const useRFPStore = create<RFPStore>()(
     }),
     {
       name: 'kitmed-rfp-cart',
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => safeLocalStorage()),
       partialize: (state) => ({
         cart: state.cart,
       }),

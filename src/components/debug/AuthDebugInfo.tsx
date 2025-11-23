@@ -4,25 +4,27 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ClientOnly } from '@/components/ui/client-only';
+import { getAdminToken, removeAdminToken } from '@/lib/auth-utils';
 
 interface AuthDebugInfoProps {
   show?: boolean;
 }
 
-export function AuthDebugInfo({ show = false }: AuthDebugInfoProps) {
+function AuthDebugInfoComponent({ show = false }: AuthDebugInfoProps) {
   const [debugInfo, setDebugInfo] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(show);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const info = {
         hasToken: !!token,
         tokenLength: token?.length || 0,
         tokenPrefix: token ? token.substring(0, 20) + '...' : 'No token',
         localStorage: {
           keys: Object.keys(localStorage),
-          adminToken: localStorage.getItem('admin-token') ? 'Present' : 'Missing'
+          adminToken: getAdminToken() ? 'Present' : 'Missing'
         },
         cookies: document.cookie ? document.cookie.split(';').map(c => c.trim()) : [],
         timestamp: new Date().toLocaleString()
@@ -32,7 +34,7 @@ export function AuthDebugInfo({ show = false }: AuthDebugInfoProps) {
   }, []);
 
   const testAuthEndpoint = async () => {
-    const token = localStorage.getItem('admin-token');
+    const token = getAdminToken();
     try {
       const response = await fetch('/api/admin/auth/me', {
         headers: {
@@ -66,7 +68,7 @@ export function AuthDebugInfo({ show = false }: AuthDebugInfoProps) {
   };
 
   const testUsersEndpoint = async () => {
-    const token = localStorage.getItem('admin-token');
+    const token = getAdminToken();
     try {
       const response = await fetch('/api/admin/users', {
         headers: {
@@ -100,8 +102,7 @@ export function AuthDebugInfo({ show = false }: AuthDebugInfoProps) {
   };
 
   const clearToken = () => {
-    localStorage.removeItem('admin-token');
-    document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+    removeAdminToken();
     window.location.reload();
   };
 
@@ -194,5 +195,13 @@ export function AuthDebugInfo({ show = false }: AuthDebugInfoProps) {
         )}
       </CardContent>
     </Card>
+  );
+}
+
+export function AuthDebugInfo(props: AuthDebugInfoProps) {
+  return (
+    <ClientOnly fallback={null}>
+      <AuthDebugInfoComponent {...props} />
+    </ClientOnly>
   );
 }

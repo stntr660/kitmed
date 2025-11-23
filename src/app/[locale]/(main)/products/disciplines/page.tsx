@@ -9,7 +9,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ArrowRight, Building2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 
 interface Category {
   id: string;
@@ -25,8 +25,7 @@ export default function ProductsByDisciplinePage() {
   const t = useTranslations('common');
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
 
   useEffect(() => {
     loadCategories();
@@ -112,7 +111,7 @@ export default function ProductsByDisciplinePage() {
                       
                       {/* Product Count Badge */}
                       <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                        {category.count}
+                        {category.productCount || 0} produits
                       </div>
                     </div>
                     

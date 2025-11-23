@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { AdminUser } from '@/types/admin';
+import { getAdminToken, setAdminToken, removeAdminToken } from '@/lib/auth-utils';
 
 interface UseAdminAuthReturn {
   user: AdminUser | null;
@@ -29,7 +30,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
       setLoading(true);
       setError(null);
 
-      const token = getAuthToken();
+      const token = getAdminToken();
       if (!token) {
         setUser(null);
         return;
@@ -46,7 +47,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
         setUser(data.data);
       } else {
         // Token is invalid, remove it
-        removeAuthToken();
+        removeAdminToken();
         setUser(null);
         if (response.status === 401) {
           setError('Session expired. Please login again.');
@@ -55,7 +56,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
     } catch (err) {
       console.error('Auth check failed:', err);
       setError('Authentication check failed');
-      removeAuthToken();
+      removeAdminToken();
       setUser(null);
     } finally {
       setLoading(false);
@@ -78,7 +79,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
       const data = await response.json();
 
       if (response.ok) {
-        setAuthToken(data.data.token);
+        setAdminToken(data.data.token);
         setUser(data.data.user);
         return true;
       } else {
@@ -95,7 +96,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
   };
 
   const logout = () => {
-    removeAuthToken();
+    removeAdminToken();
     setUser(null);
     setError(null);
 
@@ -103,7 +104,7 @@ export function useAdminAuth(): UseAdminAuthReturn {
     fetch('/api/admin/auth/logout', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${getAuthToken()}`,
+        'Authorization': `Bearer ${getAdminToken()}`,
       },
     }).catch(() => {
       // Ignore errors on logout
@@ -124,42 +125,3 @@ export function useAdminAuth(): UseAdminAuthReturn {
   };
 }
 
-// Token management utilities
-function getAuthToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  
-  // In development, use localStorage first (HTTP-only cookies not accessible to JS)
-  if (process.env.NODE_ENV === 'development') {
-    return localStorage.getItem('admin-token');
-  }
-  
-  // In production, try cookies first, then localStorage as fallback
-  const cookies = document.cookie.split(';');
-  const tokenCookie = cookies.find(cookie => 
-    cookie.trim().startsWith('admin-token=')
-  );
-  
-  if (tokenCookie) {
-    return tokenCookie.split('=')[1];
-  }
-  
-  // Fallback to localStorage
-  return localStorage.getItem('admin-token');
-}
-
-function setAuthToken(token: string): void {
-  if (typeof window === 'undefined') return;
-  
-  // Store in localStorage for testing (httpOnly cookies are handled server-side)
-  localStorage.setItem('admin-token', token);
-}
-
-function removeAuthToken(): void {
-  if (typeof window === 'undefined') return;
-  
-  // Remove cookie
-  document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-  
-  // Remove from localStorage
-  localStorage.removeItem('admin-token');
-}

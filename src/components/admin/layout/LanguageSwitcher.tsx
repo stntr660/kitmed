@@ -39,7 +39,9 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
     const currentPath = pathname.replace(/^\/[a-z]{2}/, '');
     const newUrl = `/${newLocale}${currentPath}`;
     
-    window.location.href = newUrl;
+    if (typeof window !== 'undefined') {
+      window.location.href = newUrl;
+    }
   };
 
   return (

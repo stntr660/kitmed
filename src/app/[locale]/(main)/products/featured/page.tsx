@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
@@ -61,8 +61,7 @@ export default function FeaturedProductsPage() {
   const t = useTranslations('common');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
 
   useEffect(() => {
     loadFeaturedProducts();

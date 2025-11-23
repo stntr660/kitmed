@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { Shield, CheckCircle, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useIsHydrated } from '@/components/ui/hydration-safe';
 
 interface ComplianceBadgesProps {
   variant?: 'grid' | 'inline' | 'compact';
@@ -18,7 +19,7 @@ const certifications = [
     fullName: 'Office National de Sécurité Sanitaire des produits Alimentaires',
     description: 'Autorisé par ONSSA',
     descriptionEn: 'Authorized by ONSSA',
-    logo: '/images/compliance/onssa-logo.png',
+    logo: '/images/compliance/onssa-logo.svg',
     fallbackColor: 'from-blue-500 to-blue-600',
     website: 'https://www.onssa.gov.ma'
   },
@@ -28,7 +29,7 @@ const certifications = [
     fullName: 'Quality Management System',
     description: 'Gestion de la Qualité',
     descriptionEn: 'Quality Management',
-    logo: '/images/compliance/iso-9001-logo.png',
+    logo: '/images/compliance/iso-9001-logo.svg',
     fallbackColor: 'from-green-500 to-green-600',
     website: 'https://www.iso.org/iso-9001-quality-management.html'
   },
@@ -38,7 +39,7 @@ const certifications = [
     fullName: 'Medical Devices Quality Management',
     description: 'Dispositifs Médicaux',
     descriptionEn: 'Medical Devices',
-    logo: '/images/compliance/iso-13485-logo.png',
+    logo: '/images/compliance/iso-13485-logo.svg',
     fallbackColor: 'from-red-500 to-red-600',
     website: 'https://www.iso.org/iso-13485-medical-devices.html'
   },
@@ -48,7 +49,7 @@ const certifications = [
     fullName: 'Cosmetics Good Manufacturing Practices',
     description: 'Bonnes Pratiques GMP',
     descriptionEn: 'Cosmetics GMP',
-    logo: '/images/compliance/iso-22716-logo.png',
+    logo: '/images/compliance/iso-22716-logo.svg',
     fallbackColor: 'from-purple-500 to-purple-600',
     website: 'https://www.iso.org/standard/36437.html'
   }
@@ -102,11 +103,19 @@ export function ComplianceBadges({
 // Individual certification badge component for grid layout
 function CertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
+  const isHydrated = useIsHydrated();
 
   return (
     <div className="flex flex-col items-center p-3 bg-white rounded-lg border border-gray-200 hover:border-primary-300 transition-colors">
       <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 bg-gray-50">
-        {!imageError ? (
+        {!isHydrated ? (
+          // Always show fallback during SSR
+          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
+            <span className="text-white font-bold text-xs">
+              {certification.name.split(' ')[0]}
+            </span>
+          </div>
+        ) : !imageError ? (
           <Image
             src={certification.logo}
             alt={`${certification.name} Logo`}
@@ -136,11 +145,19 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
 // Individual certification badge component for inline layout
 function InlineCertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
+  const isHydrated = useIsHydrated();
 
   return (
     <div className="flex items-center space-x-2">
       <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gray-50">
-        {!imageError ? (
+        {!isHydrated ? (
+          // Always show fallback during SSR
+          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
+            <span className="text-white font-bold text-xs">
+              {certification.name.split(' ')[0]}
+            </span>
+          </div>
+        ) : !imageError ? (
           <Image
             src={certification.logo}
             alt={`${certification.name} Logo`}

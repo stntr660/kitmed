@@ -22,6 +22,7 @@ import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { CompactImageUpload } from '@/components/ui/compact-image-upload';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface CategoryTranslation {
   id: string;
@@ -136,7 +137,7 @@ export function CategoryCreationWizard({
     setDisciplinesLoading(true);
     
     try {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       if (!token) {
         throw new Error('Authentication token not found');
       }

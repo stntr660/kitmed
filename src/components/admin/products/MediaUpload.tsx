@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Dropzone, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone';
 import { cn } from '@/lib/utils';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface MediaFile {
   id: string;
@@ -46,7 +47,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     
     try {
       setLoading(true);
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/products/${productId}/media`, {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -88,7 +89,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         formData.append('files', file);
       });
 
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/products/${productId}/media`, {
         method: 'POST',
         headers: {
@@ -133,7 +134,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         formData.append('files', file);
       });
 
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/products/${newProductId}/media`, {
         method: 'POST',
         headers: {
@@ -164,7 +165,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     if (disabled) return;
     
     try {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'DELETE',
         headers: {
@@ -186,7 +187,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     if (disabled) return;
     
     try {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
         headers: { 
@@ -218,7 +219,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     if (newIndex < 0 || newIndex >= media.length) return;
 
     try {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
         headers: { 

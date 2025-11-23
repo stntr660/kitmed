@@ -18,6 +18,7 @@ import {
   PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
+import { removeAdminToken } from '@/lib/auth-utils';
 import { AdminUser } from '@/types/admin';
 import { Badge } from '@/components/ui/badge';
 import { Logo } from '@/components/ui/logo';
@@ -218,8 +219,12 @@ function SidebarContent({ user }: { user: AdminUser }) {
   const navigation = getNavigation(locale, t);
 
   const handleLogout = async () => {
-    document.cookie = 'admin-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    window.location.href = '/admin/login';
+    // Use hydration-safe logout
+    removeAdminToken();
+    
+    if (typeof window !== 'undefined') {
+      window.location.href = '/admin/login';
+    }
   };
 
   return (

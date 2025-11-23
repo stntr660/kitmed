@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hydration Error Detection</title>
+</head>
+<body>
+    <h1>Hydration Error Detection</h1>
+    <div id="errors"></div>
+
+    <script>
+        // Capture all React hydration errors
+        window.addEventListener('error', function(e) {
+            if (e.message && e.message.includes('Hydration')) {
+                const errorDiv = document.getElementById('errors');
+                const error = document.createElement('div');
+                error.style.color = 'red';
+                error.style.padding = '10px';
+                error.style.margin = '5px';
+                error.style.border = '1px solid red';
+                error.innerHTML = `
+                    <strong>HYDRATION ERROR DETECTED:</strong><br>
+                    Message: ${e.message}<br>
+                    File: ${e.filename}<br>
+                    Line: ${e.lineno}<br>
+                    Stack: <pre>${e.error?.stack || 'No stack available'}</pre>
+                `;
+                errorDiv.appendChild(error);
+                console.error('HYDRATION ERROR:', e);
+            }
+        });
+
+        // Also capture console errors
+        const originalConsoleError = console.error;
+        console.error = function(...args) {
+            if (args[0] && typeof args[0] === 'string' && args[0].includes('Hydration')) {
+                const errorDiv = document.getElementById('errors');
+                const error = document.createElement('div');
+                error.style.color = 'orange';
+                error.style.padding = '10px';
+                error.style.margin = '5px';
+                error.style.border = '1px solid orange';
+                error.innerHTML = `
+                    <strong>CONSOLE HYDRATION ERROR:</strong><br>
+                    ${args.join(' ')}
+                `;
+                errorDiv.appendChild(error);
+            }
+            originalConsoleError.apply(console, args);
+        };
+
+        // Check for hydration every 2 seconds
+        setInterval(() => {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'http://localhost:3001/en';
+            document.body.appendChild(iframe);
+            
+            iframe.onload = () => {
+                setTimeout(() => {
+                    document.body.removeChild(iframe);
+                }, 1000);
+            };
+        }, 2000);
+
+        console.log('Hydration error detection script loaded');
+    </script>
+</body>
+</html>

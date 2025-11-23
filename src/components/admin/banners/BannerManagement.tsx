@@ -29,6 +29,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { BannerForm } from './BannerForm';
 import { BannerPreview } from './BannerPreview';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface Banner {
   id: string;
@@ -86,7 +87,7 @@ export function BannerManagement() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
       
@@ -127,7 +128,7 @@ export function BannerManagement() {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
 
@@ -179,7 +180,7 @@ export function BannerManagement() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(updatePayload),
       });

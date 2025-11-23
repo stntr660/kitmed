@@ -50,16 +50,23 @@ export function formatDate(
 
 /**
  * Get relative time in a hydration-safe way
+ * NOTE: This function causes hydration mismatches due to server/client time differences.
+ * Use ClientOnly wrapper when displaying relative times.
  */
 export function formatRelativeTime(date: string | Date, locale: string = 'en'): string {
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
-    const now = new Date();
     
     if (isNaN(dateObj.getTime())) {
       return 'Invalid Date';
     }
 
+    // Return absolute date for SSR to prevent hydration mismatches
+    if (typeof window === 'undefined') {
+      return formatDate(dateObj, 'date', locale);
+    }
+    
+    const now = new Date();
     const diffInMilliseconds = now.getTime() - dateObj.getTime();
     const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
     const diffInHours = Math.floor(diffInMinutes / 60);

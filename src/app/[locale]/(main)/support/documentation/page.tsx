@@ -181,7 +181,7 @@ export default function DocumentationPage() {
                         <span className="text-sm">{category.name}</span>
                       </div>
                       <Badge variant="secondary" className="text-xs">
-                        {category.count}
+                        {category.productCount || 0}
                       </Badge>
                     </button>
                   ))}

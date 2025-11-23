@@ -14,14 +14,13 @@ import {
   Target
 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 export default function NewRFPPage() {
   const t = useTranslations('rfp');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
 
   return (
     <div className="flex flex-col">

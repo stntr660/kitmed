@@ -18,13 +18,12 @@ import {
   CheckCircle,
   Printer
 } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 
 export default function ContactPage() {
   const t = useTranslations('contact');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
   
   const [formData, setFormData] = useState({
     firstName: '',

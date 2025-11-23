@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { formatDate } from '@/lib/utils';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface User {
   id: string;
@@ -67,7 +68,7 @@ export function SimplifiedUsersManagement() {
       setError(null);
       
       // Get authentication token
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       if (!token) {
         console.error('No authentication token found');
@@ -104,8 +105,9 @@ export function SimplifiedUsersManagement() {
         
         // Special handling for auth errors
         if (err.message.includes('Authentication') || err.message.includes('Session expired')) {
-          // Clear invalid token
-          localStorage.removeItem('admin-token');
+          // Clear invalid token using auth utilities
+          const { removeAdminToken } = await import('@/lib/auth-utils');
+          removeAdminToken();
         }
       }
       
@@ -146,7 +148,7 @@ export function SimplifiedUsersManagement() {
     
     try {
       // Get authentication token
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       if (!token) {
         console.error('No authentication token found');
@@ -187,7 +189,7 @@ export function SimplifiedUsersManagement() {
 
     try {
       // Get authentication token
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       if (!token) {
         console.error('No authentication token found');

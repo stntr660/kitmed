@@ -26,6 +26,7 @@ import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } fr
 import { MediaUpload } from './MediaUpload';
 import { ClientOnly } from '@/components/ui/client-only';
 import { Product } from '@/types';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ProductDrawerProps {
   open: boolean;
@@ -71,7 +72,7 @@ export function ProductDrawer({
   const fetchCategories = async () => {
     try {
       setCategoriesLoading(true);
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       const response = await fetch('/api/admin/categories?isActive=true', {
         headers: {
@@ -96,7 +97,7 @@ export function ProductDrawer({
   const fetchManufacturers = async () => {
     try {
       setManufacturersLoading(true);
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       const response = await fetch('/api/admin/partners?type=manufacturer', {
         headers: {
@@ -192,7 +193,7 @@ export function ProductDrawer({
         formData.append('files', file);
       });
 
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/products/${productId}/media`, {
         method: 'POST',
         headers: {
@@ -214,7 +215,7 @@ export function ProductDrawer({
     if (!newManufacturerName.trim()) return;
 
     try {
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       const response = await fetch('/api/admin/partners', {
         method: 'POST',
         headers: {

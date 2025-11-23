@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITMED Hydration Debugger</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: #f8fafc;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { 
+            background: #1e40af; 
+            color: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .controls { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .button { 
+            background: #3b82f6; 
+            color: white; 
+            border: none; 
+            padding: 12px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            margin: 5px;
+            font-weight: 500;
+        }
+        .button:hover { background: #2563eb; }
+        .button.danger { background: #dc2626; }
+        .button.danger:hover { background: #b91c1c; }
+        .comparison { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin-bottom: 20px;
+        }
+        .panel { 
+            background: white; 
+            border-radius: 8px; 
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .panel-header { 
+            background: #374151; 
+            color: white; 
+            padding: 15px; 
+            font-weight: 600;
+        }
+        .panel-content { 
+            padding: 15px; 
+            height: 500px; 
+            overflow-y: auto; 
+            font-family: 'Courier New', monospace; 
+            font-size: 12px; 
+            line-height: 1.4;
+        }
+        .difference { 
+            background: #fef2f2; 
+            border-left: 4px solid #ef4444; 
+            padding: 8px; 
+            margin: 4px 0;
+        }
+        .match { 
+            background: #f0fdf4; 
+            border-left: 4px solid #22c55e; 
+            padding: 8px; 
+            margin: 4px 0;
+        }
+        .log-panel { 
+            background: #111827; 
+            color: #f9fafb; 
+            border-radius: 8px; 
+            margin-top: 20px;
+        }
+        .log-content { 
+            padding: 15px; 
+            height: 300px; 
+            overflow-y: auto; 
+            font-family: 'Courier New', monospace; 
+            font-size: 12px;
+        }
+        .error-log { color: #fca5a5; }
+        .warn-log { color: #fcd34d; }
+        .info-log { color: #93c5fd; }
+        .success-log { color: #86efac; }
+        .status { 
+            display: inline-block; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-size: 12px; 
+            font-weight: 600;
+        }
+        .status.pending { background: #fbbf24; color: #92400e; }
+        .status.active { background: #10b981; color: #065f46; }
+        .status.error { background: #ef4444; color: #991b1b; }
+        .iframe-container { 
+            margin-top: 20px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        iframe { 
+            width: 100%; 
+            height: 800px; 
+            border: none; 
+        }
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            margin-bottom: 20px;
+        }
+        .stat-card { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-value { 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: #1e40af;
+        }
+        .stat-label { 
+            font-size: 12px; 
+            color: #6b7280; 
+            text-transform: uppercase; 
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 KITMED HYDRATION DEBUGGER</h1>
+            <p>Real-time SSR/Client HTML comparison and hydration error detection</p>
+        </div>
+
+        <div class="controls">
+            <button class="button" onclick="loadKitMedPage()">Load KITMED Homepage</button>
+            <button class="button" onclick="captureCurrentHTML()">📸 Capture HTML Snapshot</button>
+            <button class="button" onclick="compareSnapshots()">🔍 Compare SSR vs Client</button>
+            <button class="button" onclick="runHydrationTest()">🧪 Run Hydration Test</button>
+            <button class="button danger" onclick="clearLogs()">Clear Logs</button>
+            
+            <div style="margin-top: 10px;">
+                <span class="status pending" id="debugger-status">Initializing...</span>
+                <span style="margin-left: 15px;">Auto-refresh: 
+                    <label><input type="checkbox" id="auto-refresh" onchange="toggleAutoRefresh()"> Enabled</label>
+                </span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="error-count">0</div>
+                <div class="stat-label">Hydration Errors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="diff-count">0</div>
+                <div class="stat-label">HTML Differences</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="snapshot-count">0</div>
+                <div class="stat-label">Snapshots Captured</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="test-duration">0s</div>
+                <div class="stat-label">Last Test Duration</div>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="panel">
+                <div class="panel-header">📄 Server HTML (SSR)</div>
+                <div class="panel-content" id="ssr-html">Waiting for capture...</div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">🌐 Client HTML (Hydrated)</div>
+                <div class="panel-content" id="client-html">Waiting for capture...</div>
+            </div>
+        </div>
+
+        <div class="log-panel">
+            <div class="panel-header">📋 Hydration Error Log</div>
+            <div class="log-content" id="error-log"></div>
+        </div>
+
+        <div class="iframe-container">
+            <iframe id="test-frame" src="about:blank"></iframe>
+        </div>
+    </div>
+
+    <script>
+        let ssrSnapshot = '';
+        let clientSnapshot = '';
+        let errorCount = 0;
+        let snapshotCount = 0;
+        let autoRefreshInterval = null;
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logElement = document.getElementById('error-log');
+            const logEntry = document.createElement('div');
+            logEntry.className = `${type}-log`;
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            logElement.appendChild(logEntry);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function updateStatus(status) {
+            const statusEl = document.getElementById('debugger-status');
+            statusEl.textContent = status;
+            statusEl.className = 'status active';
+        }
+
+        function updateStats() {
+            document.getElementById('error-count').textContent = errorCount;
+            document.getElementById('diff-count').textContent = getDifferenceCount();
+            document.getElementById('snapshot-count').textContent = snapshotCount;
+        }
+
+        function getDifferenceCount() {
+            const ssrPanel = document.getElementById('ssr-html');
+            return ssrPanel.querySelectorAll('.difference').length;
+        }
+
+        function loadKitMedPage() {
+            const iframe = document.getElementById('test-frame');
+            iframe.src = 'http://localhost:3001/en'; // Use the dev server port
+            updateStatus('Loading KITMED Homepage...');
+            log('Loading KITMED homepage into iframe', 'info');
+            
+            iframe.onload = function() {
+                updateStatus('Page Loaded - Ready for Testing');
+                log('KITMED homepage loaded successfully', 'success');
+                
+                // Inject the hydration debugger script
+                setTimeout(() => {
+                    injectDebuggerScript();
+                }, 1000);
+            };
+        }
+
+        function injectDebuggerScript() {
+            const iframe = document.getElementById('test-frame');
+            if (!iframe.contentWindow) return;
+
+            try {
+                // Inject our hydration debugger
+                const script = iframe.contentDocument.createElement('script');
+                script.textContent = `
+                    // Enhanced Hydration Debugger for iframe
+                    (function() {
+                        let ssrCaptured = false;
+                        let clientCaptured = false;
+                        
+                        function captureSSR() {
+                            if (ssrCaptured) return;
+                            const html = document.documentElement.outerHTML;
+                            parent.postMessage({
+                                type: 'SSR_HTML',
+                                data: html,
+                                timestamp: Date.now()
+                            }, '*');
+                            ssrCaptured = true;
+                        }
+                        
+                        function captureClient() {
+                            if (clientCaptured) return;
+                            setTimeout(() => {
+                                const html = document.documentElement.outerHTML;
+                                parent.postMessage({
+                                    type: 'CLIENT_HTML',
+                                    data: html,
+                                    timestamp: Date.now()
+                                }, '*');
+                                clientCaptured = true;
+                            }, 2000); // Wait for hydration to complete
+                        }
+                        
+                        // Capture SSR immediately
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', captureSSR);
+                        } else {
+                            captureSSR();
+                        }
+                        
+                        // Capture client after hydration
+                        captureClient();
+                        
+                        // Enhanced error catching
+                        const originalError = console.error;
+                        console.error = function(...args) {
+                            const message = args.join(' ');
+                            if (message.includes('Hydration') || message.includes('hydrat') || 
+                                message.includes('Text content does not match') ||
+                                message.includes('Server HTML')) {
+                                parent.postMessage({
+                                    type: 'HYDRATION_ERROR',
+                                    data: {
+                                        message: message,
+                                        stack: new Error().stack,
+                                        timestamp: Date.now()
+                                    }
+                                }, '*');
+                            }
+                            originalError.apply(console, args);
+                        };
+                        
+                        // Monitor DOM mutations for hydration patterns
+                        if (window.MutationObserver) {
+                            const observer = new MutationObserver((mutations) => {
+                                mutations.forEach((mutation) => {
+                                    if (mutation.type === 'childList') {
+                                        // Detect hydration-specific changes
+                                        if (mutation.addedNodes.length > 0) {
+                                            parent.postMessage({
+                                                type: 'DOM_MUTATION',
+                                                data: {
+                                                    type: mutation.type,
+                                                    addedNodes: mutation.addedNodes.length,
+                                                    timestamp: Date.now()
+                                                }
+                                            }, '*');
+                                        }
+                                    }
+                                });
+                            });
+                            
+                            observer.observe(document.body, {
+                                childList: true,
+                                subtree: true,
+                                attributes: true
+                            });
+                        }
+                        
+                        // Expose manual capture functions
+                        window.debugCapture = {
+                            ssr: captureSSR,
+                            client: captureClient
+                        };
+                        
+                    })();
+                `;
+                
+                iframe.contentDocument.head.appendChild(script);
+                log('Hydration debugger injected into iframe', 'success');
+                updateStatus('Debugger Active - Monitoring Hydration');
+            } catch (error) {
+                log('Failed to inject debugger: ' + error.message, 'error');
+                updateStatus('Injection Failed');
+            }
+        }
+
+        // Listen for messages from iframe
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'http://localhost:3001') return;
+            
+            const { type, data, timestamp } = event.data;
+            
+            switch (type) {
+                case 'SSR_HTML':
+                    ssrSnapshot = data;
+                    displayHTML('ssr-html', data, 'SSR Snapshot');
+                    log('SSR HTML captured (' + data.length + ' characters)', 'success');
+                    snapshotCount++;
+                    updateStats();
+                    break;
+                    
+                case 'CLIENT_HTML':
+                    clientSnapshot = data;
+                    displayHTML('client-html', data, 'Client Snapshot');
+                    log('Client HTML captured (' + data.length + ' characters)', 'success');
+                    snapshotCount++;
+                    updateStats();
+                    
+                    // Auto-compare when both snapshots are available
+                    if (ssrSnapshot && clientSnapshot) {
+                        setTimeout(() => compareSnapshots(), 500);
+                    }
+                    break;
+                    
+                case 'HYDRATION_ERROR':
+                    errorCount++;
+                    updateStats();
+                    log('🚨 HYDRATION ERROR: ' + data.message, 'error');
+                    
+                    // Try to extract component info
+                    if (data.stack) {
+                        const componentMatch = data.stack.match(/at (\\w+)/);
+                        if (componentMatch) {
+                            log('  └─ Suspected component: ' + componentMatch[1], 'warn');
+                        }
+                    }
+                    break;
+                    
+                case 'DOM_MUTATION':
+                    log('DOM mutation detected: ' + data.addedNodes + ' nodes added', 'info');
+                    break;
+            }
+        });
+
+        function displayHTML(elementId, html, title) {
+            const element = document.getElementById(elementId);
+            
+            // Clean and format HTML
+            const formatted = html
+                .replace(/></g, '>\\n<')
+                .replace(/\\n\\s*\\n/g, '\\n')
+                .substring(0, 50000); // Limit display length
+                
+            element.innerHTML = `<strong>${title} (${new Date().toLocaleTimeString()})</strong>\\n\\n${escapeHtml(formatted)}`;
+        }
+
+        function escapeHtml(html) {
+            const div = document.createElement('div');
+            div.textContent = html;
+            return div.innerHTML;
+        }
+
+        function captureCurrentHTML() {
+            const iframe = document.getElementById('test-frame');
+            if (!iframe.contentWindow) {
+                log('No iframe loaded', 'error');
+                return;
+            }
+
+            try {
+                iframe.contentWindow.postMessage({ action: 'capture' }, '*');
+                log('Manual capture triggered', 'info');
+            } catch (error) {
+                log('Capture failed: ' + error.message, 'error');
+            }
+        }
+
+        function compareSnapshots() {
+            if (!ssrSnapshot || !clientSnapshot) {
+                log('Need both SSR and Client snapshots for comparison', 'warn');
+                return;
+            }
+
+            const startTime = Date.now();
+            updateStatus('Comparing HTML Snapshots...');
+            
+            log('Starting detailed HTML comparison...', 'info');
+            
+            // Normalize HTML for comparison
+            const normalizeHTML = (html) => {
+                return html
+                    .replace(/\\s+/g, ' ')
+                    .replace(/<!--[\\s\\S]*?-->/g, '')
+                    .replace(/\\s*([<>])\\s*/g, '$1')
+                    .trim();
+            };
+            
+            const normalizedSSR = normalizeHTML(ssrSnapshot);
+            const normalizedClient = normalizeHTML(clientSnapshot);
+            
+            if (normalizedSSR === normalizedClient) {
+                log('✅ No HTML differences found - Hydration appears successful!', 'success');
+                displayComparison([], []);
+                updateStatus('No Differences Found');
+            } else {
+                log('⚠️ HTML differences detected - analyzing...', 'warn');
+                
+                // Find differences
+                const differences = findDetailedDifferences(normalizedSSR, normalizedClient);
+                displayComparison(differences.ssr, differences.client);
+                
+                log(`Found ${differences.count} difference(s)`, 'error');
+                differences.summary.forEach(diff => {
+                    log(`  • ${diff}`, 'warn');
+                });
+                
+                updateStatus(`${differences.count} Differences Found`);
+            }
+            
+            const duration = ((Date.now() - startTime) / 1000).toFixed(1);
+            document.getElementById('test-duration').textContent = duration + 's';
+            log(`Comparison completed in ${duration}s`, 'info');
+        }
+
+        function findDetailedDifferences(ssr, client) {
+            const ssrLines = ssr.split('\\n');
+            const clientLines = client.split('\\n');
+            const maxLines = Math.max(ssrLines.length, clientLines.length);
+            
+            const ssrDiffs = [];
+            const clientDiffs = [];
+            const summary = [];
+            let diffCount = 0;
+            
+            for (let i = 0; i < maxLines; i++) {
+                const ssrLine = (ssrLines[i] || '').trim();
+                const clientLine = (clientLines[i] || '').trim();
+                
+                if (ssrLine !== clientLine) {
+                    diffCount++;
+                    
+                    ssrDiffs.push(`<div class="difference">Line ${i + 1}: ${escapeHtml(ssrLine)}</div>`);
+                    clientDiffs.push(`<div class="difference">Line ${i + 1}: ${escapeHtml(clientLine)}</div>`);
+                    
+                    // Analyze difference type
+                    if (ssrLine.includes('class=') && clientLine.includes('class=')) {
+                        summary.push(`Line ${i + 1}: CSS class mismatch`);
+                    } else if (ssrLine.includes('data-') !== clientLine.includes('data-')) {
+                        summary.push(`Line ${i + 1}: Data attribute difference`);
+                    } else if (ssrLine.length === 0 || clientLine.length === 0) {
+                        summary.push(`Line ${i + 1}: Missing content`);
+                    } else {
+                        summary.push(`Line ${i + 1}: Content mismatch`);
+                    }
+                } else {
+                    ssrDiffs.push(`<div class="match">${escapeHtml(ssrLine)}</div>`);
+                    clientDiffs.push(`<div class="match">${escapeHtml(clientLine)}</div>`);
+                }
+            }
+            
+            return {
+                ssr: ssrDiffs,
+                client: clientDiffs,
+                count: diffCount,
+                summary: summary
+            };
+        }
+
+        function displayComparison(ssrDiffs, clientDiffs) {
+            document.getElementById('ssr-html').innerHTML = ssrDiffs.join('');
+            document.getElementById('client-html').innerHTML = clientDiffs.join('');
+        }
+
+        function runHydrationTest() {
+            errorCount = 0;
+            snapshotCount = 0;
+            updateStats();
+            clearLogs();
+            
+            log('🧪 Starting comprehensive hydration test...', 'info');
+            updateStatus('Running Hydration Test...');
+            
+            // Reload the page to test fresh hydration
+            loadKitMedPage();
+        }
+
+        function clearLogs() {
+            document.getElementById('error-log').innerHTML = '';
+            document.getElementById('ssr-html').innerHTML = 'Cleared...';
+            document.getElementById('client-html').innerHTML = 'Cleared...';
+            log('Logs cleared', 'info');
+        }
+
+        function toggleAutoRefresh() {
+            const enabled = document.getElementById('auto-refresh').checked;
+            
+            if (enabled) {
+                autoRefreshInterval = setInterval(() => {
+                    log('Auto-refresh: Reloading page...', 'info');
+                    loadKitMedPage();
+                }, 30000); // Refresh every 30 seconds
+                log('Auto-refresh enabled (30s interval)', 'info');
+            } else {
+                if (autoRefreshInterval) {
+                    clearInterval(autoRefreshInterval);
+                    autoRefreshInterval = null;
+                }
+                log('Auto-refresh disabled', 'info');
+            }
+        }
+
+        // Initialize
+        log('KITMED Hydration Debugger initialized', 'success');
+        updateStatus('Ready - Load KITMED page to start');
+        updateStats();
+    </script>
+</body>
+</html>

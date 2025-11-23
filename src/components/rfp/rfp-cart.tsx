@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { X, Plus, Minus, ShoppingCart, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,8 +26,7 @@ import Link from 'next/link';
 export function RFPCart() {
   const t = useTranslations('rfp');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
   
   const {
     cart,

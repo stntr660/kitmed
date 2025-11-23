@@ -17,7 +17,7 @@ import {
   Phone
 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 // import Image from 'next/image';
 
 interface Partner {
@@ -39,8 +39,7 @@ interface Partner {
 export default function PartnersPage() {
   const t = useTranslations('partners');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
   
   const [partners, setPartners] = useState<Partner[]>([]);
   const [featuredPartners, setFeaturedPartners] = useState<Partner[]>([]);

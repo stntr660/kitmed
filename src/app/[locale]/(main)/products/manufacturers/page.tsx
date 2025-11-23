@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ArrowRight, Building2 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 
 interface Manufacturer {
   name: string;
@@ -20,8 +20,7 @@ export default function ProductsByManufacturerPage() {
   const t = useTranslations('common');
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [loading, setLoading] = useState(true);
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const locale = useHydrationSafeLocale('fr');
 
   useEffect(() => {
     loadManufacturers();

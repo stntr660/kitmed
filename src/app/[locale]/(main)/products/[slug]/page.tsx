@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeParams } from '@/hooks/useHydrationSafeParams';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -60,7 +60,7 @@ interface Product {
 }
 
 export default function ProductDetailPage() {
-  const params = useParams();
+  const params = useHydrationSafeParams();
   const slug = params.slug as string;
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
