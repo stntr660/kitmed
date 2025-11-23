@@ -11,7 +11,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { MaintenanceButton } from '@/components/admin/MaintenanceButton';
 
@@ -21,8 +20,6 @@ interface SystemSettings {
   defaultLanguage: 'fr' | 'en';
   emailFromAddress: string;
   emailFromName: string;
-  emailNotificationsEnabled: boolean;
-  sessionTimeout: '30' | '60' | '120' | '240';
   maintenanceMode: boolean;
 }
 
@@ -80,8 +77,6 @@ export function SettingsManagement() {
     defaultLanguage: 'fr',
     emailFromAddress: 'noreply@kitmed.fr',
     emailFromName: 'KITMED Support',
-    emailNotificationsEnabled: true,
-    sessionTimeout: '60',
     maintenanceMode: false,
   });
 
@@ -235,31 +230,11 @@ export function SettingsManagement() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                {t('admin.settings.sessionTimeout')}
-              </label>
-              <select 
-                value={settings.sessionTimeout} 
-                onChange={(e) => handleSettingChange('sessionTimeout', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="30">{t('admin.settings.thirtyMinutes')}</option>
-                <option value="60">{t('admin.settings.oneHour')}</option>
-                <option value="120">{t('admin.settings.twoHours')}</option>
-                <option value="240">{t('admin.settings.fourHours')}</option>
-              </select>
-            </div>
-
-            <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <div>
-                <div className="font-medium text-blue-800">{t('admin.settings.emailNotifications')}</div>
-                <div className="text-sm text-blue-600">{t('admin.settings.emailNotificationsDesc')}</div>
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="font-medium text-green-800">Paramètres de sécurité</div>
+              <div className="text-sm text-green-600 mt-1">
+                Les paramètres de sécurité sont configurés automatiquement pour une protection optimale.
               </div>
-              <Switch
-                checked={settings.emailNotificationsEnabled}
-                onCheckedChange={(checked) => handleSettingChange('emailNotificationsEnabled', checked)}
-              />
             </div>
           </CardContent>
         </Card>
