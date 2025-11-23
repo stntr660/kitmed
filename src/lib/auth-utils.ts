@@ -1,140 +1,205 @@
+/**
+ * Authentication utilities with hydration-safe localStorage access
+ */
+import { safeLocalStorage } from '@/lib/hydration-utils';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { NextRequest } from 'next/server';
 
-// Validate JWT_SECRET is set in production
-if (!process.env.JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is required for production');
-}
-export const JWT_SECRET = process.env.JWT_SECRET;
-
-export interface AdminUser {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: 'admin' | 'editor';
-  status: 'ACTIVE' | 'INACTIVE';
-}
-
-export interface JWTPayload {
-  userId: string;
-  email: string;
-  role: string;
-  iat?: number;
-  exp?: number;
-}
-
-// Hash password for storage
-export async function hashPassword(password: string): Promise<string> {
-  const salt = await bcrypt.genSalt(12);
-  return bcrypt.hash(password, salt);
-}
-
-// Verify password against hash
-export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  return bcrypt.compare(password, hashedPassword);
-}
-
-// Generate JWT token
-export function generateToken(user: AdminUser): string {
-  const payload: JWTPayload = {
-    userId: user.id,
-    email: user.email,
-    role: user.role,
-  };
-
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: '24h',
-    issuer: 'kitmed-app',
-    audience: 'kitmed-admin',
-  });
-}
-
-// Verify and decode JWT token
-export function verifyToken(token: string): JWTPayload | null {
-  try {
-    return jwt.verify(token, JWT_SECRET, {
-      issuer: 'kitmed-app',
-      audience: 'kitmed-admin',
-    }) as JWTPayload;
-  } catch (error) {
-    console.error('Token verification failed:', error);
-    return null;
+/**
+ * Get admin auth token safely
+ */
+export function getAdminToken(): string | null {
+  if (typeof window === 'undefined') return null;
+  
+  const storage = safeLocalStorage();
+  
+  // In development, use localStorage first (HTTP-only cookies not accessible to JS)
+  if (process.env.NODE_ENV === 'development') {
+    return storage.getItem('admin-token');
   }
+  
+  // In production, try cookies first, then localStorage as fallback
+  if (typeof document !== 'undefined') {
+    const cookies = document.cookie.split(';');
+    const tokenCookie = cookies.find(cookie => 
+      cookie.trim().startsWith('admin-token=')
+    );
+    
+    if (tokenCookie) {
+      return tokenCookie.split('=')[1];
+    }
+  }
+  
+  // Fallback to localStorage
+  return storage.getItem('admin-token');
 }
 
-// Extract token from request
-export function extractTokenFromRequest(request: NextRequest): string | null {
-  // Check Authorization header
-  const authHeader = request.headers.get('authorization');
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    return authHeader.substring(7);
-  }
-
-  // Check cookies
-  const tokenFromCookie = request.cookies.get('admin-token')?.value;
-  if (tokenFromCookie) {
-    return tokenFromCookie;
-  }
-
-  return null;
+/**
+ * Set admin auth token safely
+ */
+export function setAdminToken(token: string): void {
+  if (typeof window === 'undefined') return;
+  
+  const storage = safeLocalStorage();
+  storage.setItem('admin-token', token);
 }
 
-// Verify request authentication
-export async function verifyRequestAuth(request: NextRequest): Promise<JWTPayload | null> {
-  const token = extractTokenFromRequest(request);
+/**
+ * Remove admin auth token safely
+ */
+export function removeAdminToken(): void {
+  if (typeof window === 'undefined') return;
+  
+  const storage = safeLocalStorage();
+  
+  // Remove cookie (only in browser)
+  if (typeof document !== 'undefined') {
+    document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+  }
+  
+  // Remove from localStorage
+  storage.removeItem('admin-token');
+}
+
+/**
+ * Get auth headers for API requests
+ */
+export function getAuthHeaders(): HeadersInit {
+  const token = getAdminToken();
+  
   if (!token) {
-    return null;
+    return {};
   }
-
-  return verifyToken(token);
-}
-
-// Get admin user from environment (temporary solution)
-export function getAdminUser(): AdminUser {
+  
   return {
-    id: '1',
-    email: process.env.ADMIN_EMAIL || 'admin@kitmed.ma',
-    firstName: 'Admin',
-    lastName: 'User',
-    role: 'admin',
-    status: 'ACTIVE',
+    'Authorization': `Bearer ${token}`,
   };
 }
 
-// Rate limiting utility
-const loginAttempts = new Map<string, { count: number; lastAttempt: number }>();
-const MAX_ATTEMPTS = 5;
-const LOCKOUT_TIME = 15 * 60 * 1000; // 15 minutes
+/**
+ * Create fetch options with auth headers
+ */
+export function createAuthFetchOptions(
+  options: RequestInit = {}
+): RequestInit {
+  const authHeaders = getAuthHeaders();
+  
+  return {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeaders,
+      ...options.headers,
+    },
+  };
+}
 
+/**
+ * Check if user is authenticated
+ */
+export function isAuthenticated(): boolean {
+  return !!getAdminToken();
+}
+
+// Rate limiting store (in production, use Redis or similar)
+const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>();
+
+/**
+ * Server-side JWT verification
+ */
+export async function verifyRequestAuth(request: NextRequest): Promise<{ userId: string; email: string; role: string } | null> {
+  try {
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return null;
+    }
+
+    const token = authHeader.substring(7);
+    const secret = process.env.JWT_SECRET || 'development-secret-key';
+    
+    const decoded = jwt.verify(token, secret) as any;
+    
+    return {
+      userId: decoded.userId || decoded.id,
+      email: decoded.email,
+      role: decoded.role
+    };
+  } catch (error) {
+    return null;
+  }
+}
+
+/**
+ * Get admin user from environment
+ */
+export function getAdminUser() {
+  return {
+    id: process.env.ADMIN_USER_ID || 'admin-1',
+    email: process.env.ADMIN_EMAIL || 'admin@kitmed.ma',
+    firstName: process.env.ADMIN_FIRST_NAME || 'Admin',
+    lastName: process.env.ADMIN_LAST_NAME || 'User',
+    role: 'ADMIN' as const,
+    status: 'ACTIVE' as const,
+  };
+}
+
+/**
+ * Verify password against hash
+ */
+export async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  try {
+    return await bcrypt.compare(password, hash);
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ * Generate JWT token
+ */
+export function generateToken(user: { id: string; email: string; firstName: string; lastName: string; role: string }): string {
+  const secret = process.env.JWT_SECRET || 'development-secret-key';
+  
+  return jwt.sign(
+    {
+      userId: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      role: user.role,
+    },
+    secret,
+    { expiresIn: '24h' }
+  );
+}
+
+/**
+ * Check rate limit for IP address
+ */
 export function checkRateLimit(ip: string): { allowed: boolean; remainingAttempts: number } {
   const now = Date.now();
-  const attempt = loginAttempts.get(ip);
-
-  if (!attempt) {
-    loginAttempts.set(ip, { count: 1, lastAttempt: now });
-    return { allowed: true, remainingAttempts: MAX_ATTEMPTS - 1 };
+  const windowMs = 15 * 60 * 1000; // 15 minutes
+  const maxAttempts = 5;
+  
+  const record = rateLimitStore.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitStore.set(ip, { attempts: 0, resetTime: now + windowMs });
+    return { allowed: true, remainingAttempts: maxAttempts };
   }
-
-  // Reset if lockout time has passed
-  if (now - attempt.lastAttempt > LOCKOUT_TIME) {
-    loginAttempts.set(ip, { count: 1, lastAttempt: now });
-    return { allowed: true, remainingAttempts: MAX_ATTEMPTS - 1 };
-  }
-
-  // Check if max attempts reached
-  if (attempt.count >= MAX_ATTEMPTS) {
+  
+  if (record.attempts >= maxAttempts) {
     return { allowed: false, remainingAttempts: 0 };
   }
-
-  // Increment attempt count
-  attempt.count++;
-  attempt.lastAttempt = now;
   
-  return { allowed: true, remainingAttempts: MAX_ATTEMPTS - attempt.count };
+  record.attempts++;
+  return { allowed: true, remainingAttempts: maxAttempts - record.attempts };
 }
 
+/**
+ * Reset rate limit for IP address
+ */
 export function resetRateLimit(ip: string): void {
-  loginAttempts.delete(ip);
+  rateLimitStore.delete(ip);
 }

@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Play, ChevronDown } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useIsHydrated } from '@/components/ui/hydration-safe';
 
 interface Banner {
   id: string;
@@ -33,9 +34,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   const [banners, setBanners] = useState<Banner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
+  const isHydrated = useIsHydrated();
+  const locale = useHydrationSafeLocale('fr');
   const t = useTranslations('home.banner');
 
   useEffect(() => {
@@ -63,47 +63,58 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       }
     };
 
-    fetchBanners();
-  }, [position, locale]);
+    if (isHydrated) {
+      fetchBanners();
+    }
+  }, [position, locale, isHydrated]);
 
+  // Static fallback component - consistent across SSR and client
+  const StaticFallback = () => (
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+      <div className="relative container mx-auto px-4 lg:px-8 py-8">
+        <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
+          <div className="text-center space-y-6">
+            <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
+              kit<span className="text-blue-600">Med</span>
+            </h1>
+            <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+              Medical equipment solutions
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 
+  // Always render StaticFallback during SSR and initial hydration
+  if (!isHydrated) {
+    return <StaticFallback />;
+  }
 
-  // Loading state
+  // Loading state after hydration - same structure as fallback
   if (loading) {
     return (
       <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
         <div className="relative container mx-auto px-4 lg:px-8 py-8">
           <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="text-center space-y-6">
+              <div className="animate-pulse">
+                <div className="h-20 bg-gray-200 rounded mb-6 w-80 mx-auto"></div>
+                <div className="h-6 bg-gray-200 rounded w-64 mx-auto"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     );
   }
 
-  // Error state or no banners - show default content
+  // Error state or no banners - show fallback
   if (error || banners.length === 0) {
     if (fallbackComponent) {
-      return fallbackComponent;
+      return <>{fallbackComponent}</>;
     }
-    
-    // Default minimal banner when no data available
-    return (
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-        <div className="relative container mx-auto px-4 lg:px-8 py-8">
-          <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
-            <div className="text-center space-y-6">
-              <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
-                kit<span className="text-blue-600">Med</span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                Medical equipment solutions
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
+    return <StaticFallback />;
   }
 
   // Render the first active banner
@@ -147,7 +158,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
               <img 
                 src={banner.imageUrl}
                 alt={banner.title}
-                className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto hover:scale-105 transition-transform duration-500"
                 style={{ filter: 'hue-rotate(15deg) saturate(0.9)' }}
               />
             </div>
@@ -214,18 +225,16 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       );
     }
 
-    // Default: Split layout with enhanced elements
+    // Default: Split layout
     return (
       <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-6rem)]">
         {/* Left Content - Text Section */}
         <div className={cn(
-          `space-y-8 lg:pr-8 transform transition-all duration-1000`,
+          'space-y-8 lg:pr-8',
           banner.textAlign === 'left' ? 'text-left' : 
-          banner.textAlign === 'right' ? 'text-right' : 'text-center',
-          isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+          banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
-            
             <div className="space-y-4">
               <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
                 {banner.title === 'kitMed' ? (
@@ -265,39 +274,30 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 </Link>
               </Button>
             )}
-            
           </div>
-
         </div>
 
-        {/* Right Content - Product Image (Enhanced UFSK Style) */}
+        {/* Right Content - Product Image */}
         {banner.imageUrl && (
-          <div className={cn(
-            'relative transform transition-all duration-1000 delay-300',
-            isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-          )}>
+          <div className="relative">
             <div className="relative max-w-lg mx-auto">
-              {/* Main Product Image - Using actual medical equipment styling */}
               <div className="relative">
                 <img 
                   src={banner.imageUrl}
                   alt={banner.title}
-                  className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
-                  style={{
-                    filter: 'hue-rotate(15deg) saturate(0.9)',
-                  }}
+                  className="w-full h-auto hover:scale-105 transition-transform duration-500"
+                  style={{ filter: 'hue-rotate(15deg) saturate(0.9)' }}
                 />
                 
-                {/* Floating Info Badges */}
-                <div className="absolute top-8 right-4 bg-white rounded-lg p-3 shadow-lg animate-pulse">
+                {/* Info Badge */}
+                <div className="absolute top-8 right-4 bg-white rounded-lg p-3 shadow-lg">
                   <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                 </div>
-                
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-gray-300 rounded-full opacity-50 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 border border-blue-200 rounded-full opacity-30 animate-pulse delay-1000"></div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 border border-gray-300 rounded-full opacity-50"></div>
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 border border-blue-200 rounded-full opacity-30"></div>
               
               {/* Background decoration */}
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-blue-50/30 to-transparent blur-xl"></div>
@@ -314,9 +314,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       {banner.backgroundUrl ? (
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${banner.backgroundUrl})`,
-          }}
+          style={{ backgroundImage: `url(${banner.backgroundUrl})` }}
         >
           <div 
             className="absolute inset-0 bg-white"
@@ -331,7 +329,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         {renderBannerContent()}
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <ChevronDown className="h-6 w-6 text-gray-400" />
         </div>
       </div>

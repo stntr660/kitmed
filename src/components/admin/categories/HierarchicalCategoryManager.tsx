@@ -27,6 +27,7 @@ import { CategoryTypeIcon, HierarchyConnectionLines, LevelIndicator, HierarchySt
 import { CategoryQuickView } from './CategoryQuickView';
 import { formatDate } from '@/lib/utils';
 import { useAdminPermissions } from '@/hooks/useAdminPermissions';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface CategoryTranslation {
   id: string;
@@ -488,7 +489,7 @@ export function HierarchicalCategoryManager() {
 
       const response = await fetch(`/api/admin/categories?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
       
@@ -752,7 +753,7 @@ export function HierarchicalCategoryManager() {
       const response = await fetch(`/api/admin/categories/${category.id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
 
@@ -817,7 +818,7 @@ export function HierarchicalCategoryManager() {
         method,
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(payload),
       });
@@ -864,7 +865,7 @@ export function HierarchicalCategoryManager() {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify({
           action,

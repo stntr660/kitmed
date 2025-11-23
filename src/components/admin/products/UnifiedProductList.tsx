@@ -27,6 +27,7 @@ import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { Product } from '@/types';
 import { formatDate, truncate } from '@/lib/utils';
 import { useAdminPermissions } from '@/hooks/useAdminPermissions';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ProductWithDetails extends Product {
   category: {
@@ -101,7 +102,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
 
       const response = await fetch(`/api/admin/products?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
       
@@ -148,7 +149,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         method,
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(productData),
       });
@@ -174,7 +175,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
       const response = await fetch(`/api/admin/products/${productId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
 
@@ -245,7 +246,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify({
           action,
@@ -268,7 +269,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(filters),
       });

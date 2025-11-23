@@ -1,5 +1,5 @@
-import { Poppins } from 'next/font/google';
 import { Toaster } from 'sonner';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 
 const poppins = Poppins({ 
@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
+    <html className="h-full">
+      <body className={`${poppins.variable} min-h-full bg-medical-bg font-sans`}>
         {children}
         <Toaster position="top-right" />
       </body>

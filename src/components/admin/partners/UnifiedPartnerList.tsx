@@ -25,6 +25,7 @@ import { Partner } from '@/types';
 import { formatDate, truncate } from '@/lib/utils';
 import { ClientOnly } from '@/components/ui/client-only';
 import { useAdminPermissions } from '@/hooks/useAdminPermissions';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface PartnerWithDetails extends Partner {
   name: string; // Computed field for compatibility
@@ -85,7 +86,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
 
       const response = await fetch(`/api/admin/partners?${params}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
       
@@ -139,7 +140,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
         method,
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(partnerData),
       });
@@ -163,7 +164,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
       const response = await fetch(`/api/admin/partners/${partnerId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
 
@@ -234,7 +235,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify({
           action,

@@ -28,6 +28,7 @@ import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { formatDate, truncate } from '@/lib/utils';
 import { AuthDebugInfo } from '@/components/debug/AuthDebugInfo';
 import { QuickLogin } from '@/components/debug/QuickLogin';
+import { getAdminToken } from '@/lib/auth-utils';
 
 // Extended User interface with additional security features
 interface User {
@@ -233,7 +234,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       setError(null);
 
       // Get authentication token
-      const token = localStorage.getItem('admin-token');
+      const token = getAdminToken();
       
       if (!token) {
         console.error('No authentication token found');
@@ -254,8 +255,9 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       
       if (!response.ok) {
         if (response.status === 401) {
-          // Clear invalid token
-          localStorage.removeItem('admin-token');
+          // Clear invalid token using auth utilities
+          const { removeAdminToken } = await import('@/lib/auth-utils');
+          removeAdminToken();
           throw new Error('Session expired. Please login again.');
         }
         

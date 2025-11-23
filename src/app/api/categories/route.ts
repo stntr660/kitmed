@@ -45,8 +45,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         imageUrl: category.imageUrl,
         sortOrder: category.sortOrder,
         ...(includeProductCount && {
-          productCount: category._count?.products || 0,
-          count: `${category._count?.products || 0}+ produits`
+          productCount: category._count?.products || 0
         })
       };
     });
