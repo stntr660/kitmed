@@ -29,17 +29,17 @@ const certifications = [
     fullName: 'Quality Management System',
     description: 'Gestion de la Qualité',
     descriptionEn: 'Quality Management',
-    logo: '/images/compliance/iso-9001-logo.svg',
+    logo: '/images/compliance/iso-logo.png',
     fallbackColor: 'from-green-500 to-green-600',
     website: 'https://www.iso.org/iso-9001-quality-management.html'
   },
   {
-    id: 'iso12485',
-    name: 'ISO 12485',
+    id: 'iso13485',
+    name: 'ISO 13485',
     fullName: 'Medical Devices Quality Management',
     description: 'Dispositifs Médicaux',
     descriptionEn: 'Medical Devices',
-    logo: '/images/compliance/iso-13485-logo.svg',
+    logo: '/images/compliance/iso-logo.png',
     fallbackColor: 'from-red-500 to-red-600',
     website: 'https://www.iso.org/iso-13485-medical-devices.html'
   },
@@ -49,7 +49,7 @@ const certifications = [
     fullName: 'Cosmetics Good Manufacturing Practices',
     description: 'Bonnes Pratiques GMP',
     descriptionEn: 'Cosmetics GMP',
-    logo: '/images/compliance/iso-22716-logo.svg',
+    logo: '/images/compliance/iso-logo.png',
     fallbackColor: 'from-purple-500 to-purple-600',
     website: 'https://www.iso.org/standard/36437.html'
   }
@@ -66,7 +66,7 @@ export function ComplianceBadges({
       <div className={cn("flex items-center space-x-2", className)}>
         <Shield className="h-4 w-4 text-primary" />
         <span className="text-xs font-medium text-gray-900">
-          ONSAA • ISO 9001/12485/22716
+          ONSSA • ISO 9001/13485/22716
         </span>
       </div>
     );
@@ -88,7 +88,7 @@ export function ComplianceBadges({
 
   // Default grid variant
   return (
-    <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-4", className)}>
+    <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-6", className)}>
       {certifications.map((cert) => (
         <CertificationBadge 
           key={cert.id} 
@@ -104,28 +104,34 @@ export function ComplianceBadges({
 function CertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
   const isHydrated = useIsHydrated();
+  
+  // Make ONSSA logo bigger to align with ISO logos
+  const logoSize = certification.id === 'onssa' ? 130 : 90;
+  const borderRadius = certification.id === 'onssa' ? '' : 'rounded-full';
 
   return (
-    <div className="flex flex-col items-center p-3 bg-white rounded-lg border border-gray-200 hover:border-primary-300 transition-colors">
-      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-2 bg-gray-50">
+    <div className="flex flex-col items-center p-2">
+      <div className="relative">
         {!isHydrated ? (
-          // Always show fallback during SSR
-          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
-            <span className="text-white font-bold text-xs">
-              {certification.name.split(' ')[0]}
-            </span>
-          </div>
+          // Show logo during SSR
+          <Image
+            src={certification.logo}
+            alt={`${certification.name} Logo`}
+            width={logoSize}
+            height={logoSize}
+            className={`object-contain ${borderRadius}`}
+          />
         ) : !imageError ? (
           <Image
             src={certification.logo}
             alt={`${certification.name} Logo`}
-            width={48}
-            height={48}
-            className="rounded-lg object-contain"
+            width={logoSize}
+            height={logoSize}
+            className={`object-contain ${borderRadius}`}
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
+          <div className={`w-20 h-20 bg-gradient-to-br ${certification.fallbackColor} rounded-full flex items-center justify-center`}>
             <span className="text-white font-bold text-xs">
               {certification.name.split(' ')[0]}
             </span>
@@ -133,10 +139,10 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
         )}
       </div>
       {showLabels && (
-        <>
-          <div className="text-xs font-semibold text-gray-900 text-center">{certification.name}</div>
-          <div className="text-xs text-gray-600 text-center">{certification.description}</div>
-        </>
+        <div className="mt-2 text-center">
+          <div className="text-sm font-semibold text-gray-900">{certification.name}</div>
+          <div className="text-xs text-gray-600">{certification.description}</div>
+        </div>
       )}
     </div>
   );
@@ -146,28 +152,33 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
 function InlineCertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
   const isHydrated = useIsHydrated();
+  
+  // Make ONSSA logo bigger to align with ISO logos
+  const logoSize = certification.id === 'onssa' ? 90 : 60;
+  const borderRadius = certification.id === 'onssa' ? '' : 'rounded-full';
 
   return (
-    <div className="flex items-center space-x-2">
-      <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gray-50">
+    <div className="flex items-center space-x-3">
+      <div className="relative">
         {!isHydrated ? (
-          // Always show fallback during SSR
-          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
-            <span className="text-white font-bold text-xs">
-              {certification.name.split(' ')[0]}
-            </span>
-          </div>
+          <Image
+            src={certification.logo}
+            alt={`${certification.name} Logo`}
+            width={logoSize}
+            height={logoSize}
+            className={`object-contain ${borderRadius}`}
+          />
         ) : !imageError ? (
           <Image
             src={certification.logo}
             alt={`${certification.name} Logo`}
-            width={32}
-            height={32}
-            className="rounded-lg object-contain"
+            width={logoSize}
+            height={logoSize}
+            className={`object-contain ${borderRadius}`}
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${certification.fallbackColor} rounded-lg flex items-center justify-center`}>
+          <div className={`w-12 h-12 bg-gradient-to-br ${certification.fallbackColor} rounded-full flex items-center justify-center`}>
             <span className="text-white font-bold text-xs">
               {certification.name.split(' ')[0]}
             </span>
@@ -176,7 +187,7 @@ function InlineCertificationBadge({ certification, showLabels }: { certification
       </div>
       {showLabels && (
         <div>
-          <div className="text-xs font-semibold text-gray-900">{certification.name}</div>
+          <div className="text-sm font-semibold text-gray-900">{certification.name}</div>
           <div className="text-xs text-gray-600">{certification.description}</div>
         </div>
       )}

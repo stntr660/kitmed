@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .iso-text { font-family: Arial, sans-serif; font-weight: bold; fill: white; }
+      .iso-bg { fill: #1a5490; }
+      .iso-globe-line { fill: none; stroke: white; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" class="iso-bg"/>
+  
+  <!-- Globe wireframe top -->
+  <ellipse cx="100" cy="60" rx="60" ry="15" class="iso-globe-line"/>
+  
+  <!-- Globe wireframe middle -->
+  <ellipse cx="100" cy="100" rx="75" ry="20" class="iso-globe-line"/>
+  
+  <!-- Globe wireframe bottom -->
+  <ellipse cx="100" cy="140" rx="60" ry="15" class="iso-globe-line"/>
+  
+  <!-- Vertical meridians -->
+  <path d="M 40 100 Q 100 60 160 100 Q 100 140 40 100" class="iso-globe-line"/>
+  <path d="M 160 100 Q 100 60 40 100 Q 100 140 160 100" class="iso-globe-line"/>
+  
+  <!-- Vertical lines -->
+  <line x1="100" y1="25" x2="100" y2="175" class="iso-globe-line"/>
+  <line x1="70" y1="35" x2="70" y2="165" class="iso-globe-line"/>
+  <line x1="130" y1="35" x2="130" y2="165" class="iso-globe-line"/>
+  <line x1="50" y1="45" x2="50" y2="155" class="iso-globe-line"/>
+  <line x1="150" y1="45" x2="150" y2="155" class="iso-globe-line"/>
+  
+  <!-- ISO text -->
+  <text x="100" y="110" text-anchor="middle" class="iso-text" style="font-size: 48px;">ISO</text>
+</svg>
