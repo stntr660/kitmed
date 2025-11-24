@@ -1321,7 +1321,14 @@
       "emailNotificationsDesc": "Receive notifications for important events",
       "saveSettings": "Save Settings",
       "description": "Manage your platform settings and configuration",
-      "saveFailed": "Failed to save settings"
+      "saveFailed": "Failed to save settings",
+      "saveSuccess": "Settings saved successfully!",
+      "emailAddress": "Email address",
+      "emailName": "Sender name",
+      "general": "General",
+      "french": "French",
+      "english": "English",
+      "language": "Language"
     },
     "categories": {
       "manageDescription": "Manage your medical category hierarchy and disciplines",
@@ -1523,6 +1530,7 @@
     "welcomeSubtitle": "Manage your medical equipment catalog with ease. Track products, RFP requests, and partner relationships all in one place.",
     "loading": "Loading dashboard...",
     "retry": "Retry",
+    "dashboardDataUnavailable": "Dashboard data is currently unavailable. Please check your connection.",
     "totalProducts": "Total Products",
     "pendingRfps": "Pending RFPs",
     "activePartners": "Active Partners",

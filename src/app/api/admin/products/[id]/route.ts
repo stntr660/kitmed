@@ -278,9 +278,46 @@ async function deleteProduct(request: NextRequest, { params }: { params: { id: s
       );
     }
 
-    // Delete product (cascading deletes will handle translations)
-    await prisma.product.delete({
-      where: { id: params.id },
+    // Use transaction to handle all related deletions
+    await prisma.$transaction(async (tx) => {
+      try {
+        // Delete RFP items that reference this product
+        await tx.rFPItem.deleteMany({
+          where: { productId: params.id },
+        });
+
+        // Delete product files associations if they exist
+        try {
+          await tx.productFile.deleteMany({
+            where: { productId: params.id },
+          });
+        } catch (fileError) {
+          console.log('ProductFile deletion skipped:', fileError.message);
+        }
+
+        // Delete product media
+        await tx.productMedia.deleteMany({
+          where: { productId: params.id },
+        });
+
+        // Delete product attributes
+        await tx.productAttribute.deleteMany({
+          where: { productId: params.id },
+        });
+
+        // Delete product translations
+        await tx.productTranslation.deleteMany({
+          where: { productId: params.id },
+        });
+
+        // Finally delete the product itself
+        await tx.product.delete({
+          where: { id: params.id },
+        });
+      } catch (error) {
+        console.error('Transaction error:', error);
+        throw error;
+      }
     });
 
     return NextResponse.json({

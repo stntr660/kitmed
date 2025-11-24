@@ -21,6 +21,7 @@ import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { AdminDashboardStats } from '@/types/admin';
 import { formatCurrency, formatDate } from '@/lib/utils';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface StatCardProps {
   title: string;
@@ -118,6 +119,9 @@ interface RecentActivity {
 
 function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
   const t = useTranslations('dashboard');
+  
+  // Handle empty activity gracefully
+  const hasActivities = activities && activities.length > 0;
   const getActivityIcon = (type: string) => {
     let IconComponent;
     
@@ -181,54 +185,65 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          {activities.map((activity) => {
-            const Icon = getActivityIcon(activity.type);
-            const iconColorClass = getActivityTypeColor(activity.type);
-            
-            return (
-              <div key={activity.id} className="group flex items-start space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-all duration-200">
-                <div className="flex-shrink-0">
-                  <div className={`p-2 rounded-lg ring-1 ${iconColorClass} group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="h-4 w-4" />
+        {hasActivities ? (
+          <div className="space-y-4">
+            {activities.map((activity) => {
+              const Icon = getActivityIcon(activity.type);
+              const iconColorClass = getActivityTypeColor(activity.type);
+              
+              return (
+                <div key={activity.id} className="group flex items-start space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-all duration-200">
+                  <div className="flex-shrink-0">
+                    <div className={`p-2 rounded-lg ring-1 ${iconColorClass} group-hover:scale-110 transition-transform duration-200`}>
+                      <Icon className="h-4 w-4" />
+                    </div>
                   </div>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between mb-1">
-                    <h4 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
-                      {activity.title}
-                    </h4>
-                    {activity.status && (
-                      <Badge 
-                        variant={getStatusColor(activity.status) as any}
-                        className="text-xs"
-                      >
-                        {activity.status}
-                      </Badge>
-                    )}
-                  </div>
-                  <p className="text-sm text-gray-600 mb-2 leading-relaxed">
-                    {activity.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs text-gray-500 font-medium">
-                      {activity.time}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between mb-1">
+                      <h4 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                        {activity.title}
+                      </h4>
+                      {activity.status && (
+                        <Badge 
+                          variant={getStatusColor(activity.status) as any}
+                          className="text-xs"
+                        >
+                          {activity.status}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                      {activity.description}
                     </p>
-                    {activity.user && (
-                      <p className="text-xs text-gray-500">
-                        by <span className="font-medium">{activity.user}</span>
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs text-gray-500 font-medium">
+                        {activity.time}
                       </p>
-                    )}
+                      {activity.user && (
+                        <p className="text-xs text-gray-500">
+                          by <span className="font-medium">{activity.user}</span>
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <DocumentTextIcon className="h-8 w-8 text-gray-400" />
+            </div>
+            <p className="text-sm text-gray-500 mb-2">No recent activity</p>
+            <p className="text-xs text-gray-400">Activity will appear here as you use the system</p>
+          </div>
+        )}
         <div className="mt-6 pt-4 border-t border-gray-200">
           <Button 
             variant="outline" 
             className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
+            disabled={!hasActivities}
           >
             {t('viewAllActivity')}
           </Button>
@@ -255,17 +270,23 @@ export function AdminDashboard() {
       setLoading(true);
       setError(null);
 
+      const token = getAdminToken();
+      if (!token) {
+        setError('Authentication required');
+        return;
+      }
+
       const [statsResponse, activityResponse] = await Promise.all([
         fetch('/api/admin/dashboard/stats', {
-          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
         }),
         fetch('/api/admin/dashboard/activity', {
-          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
         }),
       ]);
@@ -273,11 +294,17 @@ export function AdminDashboard() {
       if (statsResponse.ok) {
         const statsData = await statsResponse.json();
         setStats(statsData.data);
+      } else {
+        console.error('Stats API failed:', statsResponse.status, statsResponse.statusText);
+        setError('Failed to load dashboard statistics');
       }
 
       if (activityResponse.ok) {
         const activityData = await activityResponse.json();
         setRecentActivity(activityData.data);
+      } else {
+        console.error('Activity API failed:', activityResponse.status, activityResponse.statusText);
+        // Don't set error for activity failure, stats are more important
       }
     } catch (err) {
       console.error('Failed to load dashboard data:', err);
@@ -323,51 +350,30 @@ export function AdminDashboard() {
     );
   }
 
-  // Mock data if API not available
-  const mockStats: AdminDashboardStats = stats || {
-    products: { total: 156, active: 142, featured: 12, recentlyAdded: 8 },
-    rfpRequests: { total: 89, pending: 23, processing: 15, completed: 51 },
-    partners: { total: 34, active: 31, featured: 8 },
-    categories: { total: 12, active: 11, withProducts: 10 },
-  };
-
-  const mockActivity: RecentActivity[] = recentActivity.length > 0 ? recentActivity : [
-    {
-      id: '1',
-      type: 'rfp',
-      title: t('newRfpRequest'),
-      description: 'RFP-2024-0034 submitted by Regional Hospital',
-      time: '2 minutes ago',
-      status: 'pending',
-      user: 'System',
-    },
-    {
-      id: '2',
-      type: 'product',
-      title: t('productUpdated'),
-      description: 'Digital Ophthalmoscope specifications updated',
-      time: '15 minutes ago',
-      status: 'completed',
-      user: 'John Smith',
-    },
-    {
-      id: '3',
-      type: 'partner',
-      title: t('newPartnerAdded'),
-      description: 'MedTech Solutions registered as new partner',
-      time: '1 hour ago',
-      status: 'completed',
-      user: 'Sarah Johnson',
-    },
-    {
-      id: '4',
-      type: 'user',
-      title: t('userLogin'),
-      description: 'Admin user logged in from new device',
-      time: '2 hours ago',
-      user: 'Mike Davis',
-    },
-  ];
+  // Use real data only - no fallback to mock data
+  if (!stats) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-900">{t('title')}</h1>
+        </div>
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-amber-600 mb-4">
+              {t('dashboardDataUnavailable') || 'Dashboard data is currently unavailable. Please check your connection.'}
+            </p>
+            <Button 
+              onClick={loadDashboardData} 
+              className="mt-4"
+              variant="outline"
+            >
+              {t('retry')}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-10 animate-in fade-in duration-500">
@@ -392,7 +398,7 @@ export function AdminDashboard() {
         {[
           {
             title: t('totalProducts'),
-            value: mockStats.products.total,
+            value: stats.products.total,
             change: 5.4,
             changeLabel: t('fromLastMonth'),
             icon: CubeIcon,
@@ -401,7 +407,7 @@ export function AdminDashboard() {
           },
           {
             title: t('pendingRfps'),
-            value: mockStats.rfpRequests.pending,
+            value: stats.rfpRequests.pending,
             change: -2.1,
             changeLabel: t('fromLastWeek'),
             icon: DocumentTextIcon,
@@ -410,7 +416,7 @@ export function AdminDashboard() {
           },
           {
             title: t('activePartners'),
-            value: mockStats.partners.active,
+            value: stats.partners.active,
             change: 12.3,
             changeLabel: t('fromLastMonth'),
             icon: BuildingOfficeIcon,
@@ -419,7 +425,7 @@ export function AdminDashboard() {
           },
           {
             title: t('featuredProducts'),
-            value: mockStats.products.featured,
+            value: stats.products.featured,
             icon: EyeIcon,
             href: "/en/admin/products?featured=true",
             color: "red" as const
@@ -517,7 +523,7 @@ export function AdminDashboard() {
       {/* Content Grid */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Recent Activity */}
-        <RecentActivityCard activities={mockActivity} />
+        <RecentActivityCard activities={recentActivity} />
 
         {/* System Overview */}
         <Card className="border border-gray-200/60 bg-white">
@@ -534,28 +540,28 @@ export function AdminDashboard() {
                   <div className="h-2 w-2 bg-primary-500 rounded-full"></div>
                   <span className="text-sm font-semibold text-gray-600">{t('activeProducts')}</span>
                 </div>
-                <span className="font-semibold text-lg text-primary-600">{mockStats.products.active}</span>
+                <span className="font-semibold text-lg text-primary-600">{stats.products.active}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-amber-50/50 rounded-xl">
                 <div className="flex items-center space-x-3">
                   <div className="h-2 w-2 bg-amber-500 rounded-full"></div>
                   <span className="text-sm font-semibold text-gray-600">{t('processingRfps')}</span>
                 </div>
-                <span className="font-semibold text-lg text-amber-600">{mockStats.rfpRequests.processing}</span>
+                <span className="font-semibold text-lg text-amber-600">{stats.rfpRequests.processing}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-green-50/50 rounded-xl">
                 <div className="flex items-center space-x-3">
                   <div className="h-2 w-2 bg-green-500 rounded-full"></div>
                   <span className="text-sm font-semibold text-gray-600">{t('featuredPartners')}</span>
                 </div>
-                <span className="font-semibold text-lg text-green-600">{mockStats.partners.featured}</span>
+                <span className="font-semibold text-lg text-green-600">{stats.partners.featured}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-purple-50/50 rounded-xl">
                 <div className="flex items-center space-x-3">
                   <div className="h-2 w-2 bg-purple-500 rounded-full"></div>
                   <span className="text-sm font-semibold text-gray-600">{t('categoriesWithProducts')}</span>
                 </div>
-                <span className="font-semibold text-lg text-purple-600">{mockStats.categories.withProducts}</span>
+                <span className="font-semibold text-lg text-purple-600">{stats.categories.withProducts}</span>
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-gray-200">

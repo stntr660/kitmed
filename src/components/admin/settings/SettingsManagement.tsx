@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { MaintenanceButton } from '@/components/admin/MaintenanceButton';
+import { getAdminToken } from '@/lib/auth-utils';
 
 // Simplified essential settings only
 interface SystemSettings {
@@ -31,6 +32,7 @@ export function SettingsManagement() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [hasChanges, setHasChanges] = useState(false);
 
   // Load settings on component mount
@@ -43,12 +45,23 @@ export function SettingsManagement() {
       setLoading(true);
       setError(null);
 
+      const token = getAdminToken();
+      if (!token) {
+        setError('Authentication required');
+        setSettings(getMockSettings());
+        return;
+      }
+
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
 
       const response = await fetch('/api/admin/settings', {
         signal: controller.signal,
         cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
       });
       
       clearTimeout(timeoutId);
@@ -101,20 +114,54 @@ export function SettingsManagement() {
       setSaving(true);
       setError(null);
 
+      const token = getAdminToken();
+      if (!token) {
+        setError('Authentication required');
+        return;
+      }
+
+      console.log('Saving settings:', settings);
+
       const response = await fetch('/api/admin/settings', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify(settings),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      console.log('Save response:', result);
+
+      if (response.ok && result.success) {
         setHasChanges(false);
+        setSuccessMessage(t('admin.settings.saveSuccess'));
+        setError(null);
+        
+        // Check if language was changed
+        const languageChanged = settings.defaultLanguage !== result.data.defaultLanguage;
+        
+        // Update the settings state with the returned data
+        setSettings(result.data);
+        
+        // Clear success message after 3 seconds
+        setTimeout(() => setSuccessMessage(null), 3000);
+        
+        console.log('Settings saved successfully');
+        
+        // If language was changed, reload page to apply new language
+        if (languageChanged) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500); // Give time for success message to show
+        }
       } else {
-        throw new Error('Failed to save settings');
+        throw new Error(result.error || 'Failed to save settings');
       }
     } catch (err) {
       console.error('Failed to save settings:', err);
-      setError(t('admin.settings.saveFailed'));
+      setError(t('admin.settings.saveFailed') || 'Failed to save settings');
     } finally {
       setSaving(false);
     }
@@ -163,6 +210,15 @@ export function SettingsManagement() {
           <CardContent className="p-4 flex items-center space-x-3">
             <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />
             <p className="text-red-800">{error}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      {successMessage && (
+        <Card className="border-green-200 bg-green-50">
+          <CardContent className="p-4 flex items-center space-x-3">
+            <CheckCircleIcon className="h-5 w-5 text-green-600" />
+            <p className="text-green-800">{successMessage}</p>
           </CardContent>
         </Card>
       )}

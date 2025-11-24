@@ -1369,7 +1369,14 @@
       "emailNotificationsDesc": "Recevoir des notifications pour les événements importants",
       "saveSettings": "Enregistrer les Paramètres",
       "description": "Gérer les paramètres et la configuration de votre plateforme",
-      "saveFailed": "Échec de l'enregistrement des paramètres"
+      "saveFailed": "Échec de l'enregistrement des paramètres",
+      "saveSuccess": "Paramètres enregistrés avec succès !",
+      "emailAddress": "Adresse email",
+      "emailName": "Nom de l'expéditeur",
+      "general": "Général",
+      "french": "Français",
+      "english": "Anglais",
+      "language": "Langue"
     },
     "categories": {
       "manageDescription": "Gérez votre hiérarchie de catégories et disciplines médicales",
@@ -1588,6 +1595,7 @@
     "welcomeSubtitle": "Gérez votre catalogue d'équipements médicaux facilement. Suivez les produits, demandes de devis et relations partenaires en un seul endroit.",
     "loading": "Chargement du tableau de bord...",
     "retry": "Réessayer",
+    "dashboardDataUnavailable": "Les données du tableau de bord ne sont pas disponibles actuellement. Veuillez vérifier votre connexion.",
     "totalProducts": "Total Produits",
     "pendingRfps": "Devis en attente",
     "activePartners": "Partenaires Actifs",
