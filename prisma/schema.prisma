@@ -7,364 +7,329 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Category {
-  id              String                @id @default(uuid())
-  name            String
-  slug            String                @unique
-  description     String?
-  type            String                @default("discipline") @map("type") // "discipline" or "equipment"
-  parentId        String?               @map("parent_id")
-  sortOrder       Int                   @default(0) @map("sort_order")
-  isActive        Boolean               @default(true) @map("is_active")
-  metaTitle       String?               @map("meta_title")
-  metaDescription String?               @map("meta_description")
-  imageUrl        String?               @map("image_url")
-  createdAt       DateTime              @default(now()) @map("created_at")
-  updatedAt       DateTime              @updatedAt @map("updated_at")
-  parent          Category?             @relation("CategoryParent", fields: [parentId], references: [id])
-  children        Category[]            @relation("CategoryParent")
-  translations    CategoryTranslation[]
-  products        Product[]
-
-  @@map("categories")
+model activity_logs {
+  id            String   @id
+  user_id       String?
+  action        String
+  resource_type String
+  resource_id   String?
+  details       Json?
+  ip_address    String?
+  user_agent    String?
+  created_at    DateTime @default(now())
+  users         users?   @relation(fields: [user_id], references: [id])
 }
 
-model CategoryTranslation {
-  id              String   @id @default(uuid())
-  categoryId      String   @map("category_id")
-  languageCode    String   @map("language_code")
-  name            String
-  description     String?
-  metaTitle       String?  @map("meta_title")
-  metaDescription String?  @map("meta_description")
-  category        Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+model banner_translations {
+  id            String  @id
+  banner_id     String
+  language_code String
+  title         String
+  subtitle      String?
+  description   String?
+  cta_text      String?
+  banners       banners @relation(fields: [banner_id], references: [id], onDelete: Cascade)
 
-  @@unique([categoryId, languageCode])
-  @@map("category_translations")
+  @@unique([banner_id, language_code])
 }
 
-model Product {
-  id                   String               @id @default(uuid())
-  referenceFournisseur String               @unique @map("reference_fournisseur")
-  categoryId           String               @map("category_id")
-  partnerId            String?              @map("partner_id")
-  constructeur         String
-  slug                 String               @unique
-  status               String               @default("active")
-  isFeatured           Boolean              @default(false) @map("is_featured")
-  sortOrder            Int                  @default(0) @map("sort_order")
-  metaTitle            String?              @map("meta_title")
-  metaDescription      String?              @map("meta_description")
-  pdfBrochureUrl       String?              @map("pdf_brochure_url")
-  createdAt            DateTime             @default(now()) @map("created_at")
-  updatedAt            DateTime             @updatedAt @map("updated_at")
-  attributes           ProductAttribute[]
-  media                ProductMedia[]
-  translations         ProductTranslation[]
-  category             Category             @relation(fields: [categoryId], references: [id])
-  partner              Partner?             @relation(fields: [partnerId], references: [id])
-  rfpItems             RFPItem[]
-  productFiles         ProductFile[]
-
-  @@map("products")
+model banners {
+  id                  String                @id
+  title               String
+  subtitle            String?
+  description         String?
+  image_url           String?
+  background_url      String?
+  cta_text            String?
+  cta_url             String?
+  cta_style           String                @default("primary")
+  position            String                @default("homepage")
+  layout              String                @default("split")
+  text_align          String                @default("left")
+  overlay_opacity     Float                 @default(0.9)
+  sort_order          Int                   @default(0)
+  is_active           Boolean               @default(true)
+  start_date          DateTime?
+  end_date            DateTime?
+  created_at          DateTime              @default(now())
+  updated_at          DateTime
+  banner_translations banner_translations[]
 }
 
-model ProductTranslation {
-  id              String  @id @default(uuid())
-  productId       String  @map("product_id")
-  languageCode    String  @map("language_code")
-  nom             String
-  description     String?
-  ficheTechnique  String? @map("fiche_technique")
-  metaTitle       String? @map("meta_title")
-  metaDescription String? @map("meta_description")
-  product         Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  @@unique([productId, languageCode])
-  @@map("product_translations")
+model categories {
+  id                    String                  @id
+  name                  String
+  slug                  String                  @unique
+  description           String?
+  parent_id             String?
+  sort_order            Int                     @default(0)
+  is_active             Boolean                 @default(true)
+  meta_title            String?
+  meta_description      String?
+  image_url             String?
+  created_at            DateTime                @default(now())
+  updated_at            DateTime
+  type                  String                  @default("discipline")
+  categories            categories?             @relation("categoriesTocategories", fields: [parent_id], references: [id])
+  other_categories      categories[]            @relation("categoriesTocategories")
+  category_translations category_translations[]
+  products              products[]
 }
 
-model ProductMedia {
-  id        String   @id @default(uuid())
-  productId String   @map("product_id")
-  type      String
-  url       String
-  altText   String?  @map("alt_text")
-  title     String?
-  sortOrder Int      @default(0) @map("sort_order")
-  isPrimary Boolean  @default(false) @map("is_primary")
-  createdAt DateTime @default(now()) @map("created_at")
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+model category_translations {
+  id               String     @id
+  category_id      String
+  language_code    String
+  name             String
+  description      String?
+  meta_title       String?
+  meta_description String?
+  categories       categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
-  @@map("product_media")
+  @@unique([category_id, language_code])
 }
 
-model ProductAttribute {
-  id        String  @id @default(uuid())
-  productId String  @map("product_id")
-  name      String
-  value     String
-  type      String  @default("text")
-  sortOrder Int     @default(0) @map("sort_order")
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+model file_registry {
+  id               String          @id
+  original_url     String
+  url_hash         String          @unique
+  content_hash     String
+  local_path       String
+  filename         String
+  mime_type        String
+  file_size        Int
+  file_type        String
+  downloaded_at    DateTime        @default(now())
+  last_accessed_at DateTime        @default(now())
+  access_count     Int             @default(1)
+  is_orphaned      Boolean         @default(false)
+  product_files    product_files[]
 
-  @@map("product_attributes")
+  @@index([content_hash])
+  @@index([file_type])
+  @@index([is_orphaned])
+  @@index([url_hash])
 }
 
-model RFPRequest {
-  id                     String    @id @default(uuid())
-  referenceNumber        String    @unique @map("reference_number")
-  status                 String    @default("pending")
-  customerName           String    @map("customer_name")
-  customerEmail          String    @map("customer_email")
-  customerPhone          String?   @map("customer_phone")
-  companyName            String?   @map("company_name")
-  companyAddress         String?   @map("company_address")
-  contactPerson          String?   @map("contact_person")
-  message                String?
-  urgencyLevel           String    @default("normal") @map("urgency_level")
-  preferredContactMethod String    @default("email") @map("preferred_contact_method")
-  assignedTo             String?   @map("assigned_to")
-  notes                  String?
-  quoteAmount            Float?    @map("quote_amount")
-  quoteValidUntil        DateTime? @map("quote_valid_until")
-  createdAt              DateTime  @default(now()) @map("created_at")
-  updatedAt              DateTime  @updatedAt @map("updated_at")
-  items                  RFPItem[]
-
-  @@map("rfp_requests")
-}
-
-model RFPItem {
-  id                  String     @id @default(uuid())
-  rfpId               String     @map("rfp_id")
-  productId           String     @map("product_id")
-  quantity            Int        @default(1)
-  specialRequirements String?    @map("special_requirements")
-  quotedPrice         Float?     @map("quoted_price")
-  createdAt           DateTime   @default(now()) @map("created_at")
-  product             Product    @relation(fields: [productId], references: [id])
-  rfp                 RFPRequest @relation(fields: [rfpId], references: [id], onDelete: Cascade)
-
-  @@map("rfp_items")
-}
-
-model Partner {
-  id           String               @id @default(uuid())
-  name         String
-  slug         String               @unique
-  description  String?
-  websiteUrl   String?              @map("website_url")
-  logoUrl      String?              @map("logo_url")
-  type         String               @default("manufacturer") // manufacturer, distributor, service, technology
-  isFeatured   Boolean              @default(false) @map("is_featured")
-  sortOrder    Int                  @default(0) @map("sort_order")
-  status       String               @default("active")
-  createdAt    DateTime             @default(now()) @map("created_at")
-  updatedAt    DateTime             @updatedAt @map("updated_at")
-  translations PartnerTranslation[]
-  products     Product[]
-
-  @@map("partners")
-}
-
-model PartnerTranslation {
-  id           String  @id @default(uuid())
-  partnerId    String  @map("partner_id")
-  languageCode String  @map("language_code")
-  name         String
-  description  String?
-  partner      Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
-
-  @@unique([partnerId, languageCode])
-  @@map("partner_translations")
-}
-
-model Page {
-  id              String            @id @default(uuid())
-  slug            String            @unique
+model notifications {
+  id              String    @id
+  type            String
+  priority        String
   title           String
-  content         String?
-  status          String            @default("published")
-  metaTitle       String?           @map("meta_title")
-  metaDescription String?           @map("meta_description")
-  isHomepage      Boolean           @default(false) @map("is_homepage")
-  sortOrder       Int               @default(0) @map("sort_order")
-  createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @updatedAt @map("updated_at")
-  translations    PageTranslation[]
-
-  @@map("pages")
+  message         String
+  data            Json?
+  user_id         String?
+  read            Boolean   @default(false)
+  action_required Boolean   @default(false)
+  action_url      String?
+  expires_at      DateTime?
+  created_at      DateTime  @default(now())
+  updated_at      DateTime
+  users           users?    @relation(fields: [user_id], references: [id])
 }
 
-model PageTranslation {
-  id              String  @id @default(uuid())
-  pageId          String  @map("page_id")
-  languageCode    String  @map("language_code")
-  title           String
-  content         String?
-  metaTitle       String? @map("meta_title")
-  metaDescription String? @map("meta_description")
-  page            Page    @relation(fields: [pageId], references: [id], onDelete: Cascade)
+model page_translations {
+  id               String  @id
+  page_id          String
+  language_code    String
+  title            String
+  content          String?
+  meta_title       String?
+  meta_description String?
+  pages            pages   @relation(fields: [page_id], references: [id], onDelete: Cascade)
 
-  @@unique([pageId, languageCode])
-  @@map("page_translations")
+  @@unique([page_id, language_code])
 }
 
-model Banner {
-  id             String              @id @default(uuid())
-  title          String
-  subtitle       String?
-  description    String?
-  imageUrl       String?             @map("image_url")
-  backgroundUrl  String?             @map("background_url")
-  ctaText        String?             @map("cta_text")
-  ctaUrl         String?             @map("cta_url")
-  ctaStyle       String              @default("primary") @map("cta_style")
-  position       String              @default("homepage")
-  layout         String              @default("split")
-  textAlign      String              @default("left") @map("text_align")
-  overlayOpacity Float               @default(0.9) @map("overlay_opacity")
-  sortOrder      Int                 @default(0) @map("sort_order")
-  isActive       Boolean             @default(true) @map("is_active")
-  startDate      DateTime?           @map("start_date")
-  endDate        DateTime?           @map("end_date")
-  createdAt      DateTime            @default(now()) @map("created_at")
-  updatedAt      DateTime            @updatedAt @map("updated_at")
-  translations   BannerTranslation[]
-
-  @@map("banners")
+model page_views {
+  id         String   @id
+  page_path  String
+  referrer   String?
+  user_agent String?
+  ip_address String?
+  session_id String?
+  created_at DateTime @default(now())
 }
 
-model BannerTranslation {
-  id           String  @id @default(uuid())
-  bannerId     String  @map("banner_id")
-  languageCode String  @map("language_code")
-  title        String
-  subtitle     String?
-  description  String?
-  ctaText      String? @map("cta_text")
-  banner       Banner  @relation(fields: [bannerId], references: [id], onDelete: Cascade)
-
-  @@unique([bannerId, languageCode])
-  @@map("banner_translations")
+model pages {
+  id                String              @id
+  slug              String              @unique
+  title             String
+  content           String?
+  status            String              @default("published")
+  meta_title        String?
+  meta_description  String?
+  is_homepage       Boolean             @default(false)
+  sort_order        Int                 @default(0)
+  created_at        DateTime            @default(now())
+  updated_at        DateTime
+  page_translations page_translations[]
 }
 
-model User {
-  id            String         @id @default(uuid())
-  email         String         @unique
-  passwordHash  String         @map("password_hash")
-  firstName     String         @map("first_name")
-  lastName      String         @map("last_name")
-  role          String         @default("editor")
-  isActive      Boolean        @default(true) @map("is_active")
-  lastLogin     DateTime?      @map("last_login")
-  createdAt     DateTime       @default(now()) @map("created_at")
-  updatedAt     DateTime       @updatedAt @map("updated_at")
-  activityLogs  ActivityLog[]
-  sessions      UserSession[]
-  notifications Notification[]
+model partner_translations {
+  id            String   @id
+  partner_id    String
+  language_code String
+  name          String
+  description   String?
+  partners      partners @relation(fields: [partner_id], references: [id], onDelete: Cascade)
 
-  @@map("users")
+  @@unique([partner_id, language_code])
 }
 
-model UserSession {
-  id        String   @id @default(uuid())
-  userId    String   @map("user_id")
-  token     String   @unique
-  expiresAt DateTime @map("expires_at")
-  createdAt DateTime @default(now()) @map("created_at")
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("user_sessions")
+model partners {
+  id                   String                 @id
+  name                 String
+  slug                 String                 @unique
+  description          String?
+  website_url          String?
+  logo_url             String?
+  type                 String                 @default("manufacturer")
+  is_featured          Boolean                @default(false)
+  sort_order           Int                    @default(0)
+  status               String                 @default("active")
+  created_at           DateTime               @default(now())
+  updated_at           DateTime
+  partner_translations partner_translations[]
+  products             products[]
 }
 
-model ActivityLog {
-  id           String   @id @default(uuid())
-  userId       String?  @map("user_id")
-  action       String
-  resourceType String   @map("resource_type")
-  resourceId   String?  @map("resource_id")
-  details      Json?
-  ipAddress    String?  @map("ip_address")
-  userAgent    String?  @map("user_agent")
-  createdAt    DateTime @default(now()) @map("created_at")
-  user         User?    @relation(fields: [userId], references: [id])
-
-  @@map("activity_logs")
+model product_attributes {
+  id         String   @id
+  product_id String
+  name       String
+  value      String
+  type       String   @default("text")
+  sort_order Int      @default(0)
+  products   products @relation(fields: [product_id], references: [id], onDelete: Cascade)
 }
 
-model PageView {
-  id        String   @id @default(uuid())
-  pagePath  String   @map("page_path")
-  referrer  String?
-  userAgent String?  @map("user_agent")
-  ipAddress String?  @map("ip_address")
-  sessionId String?  @map("session_id")
-  createdAt DateTime @default(now()) @map("created_at")
+model product_files {
+  id            String        @id
+  product_id    String
+  file_id       String
+  file_type     String
+  sort_order    Int           @default(0)
+  is_primary    Boolean       @default(false)
+  alt_text      String?
+  title         String?
+  description   String?
+  created_at    DateTime      @default(now())
+  file_registry file_registry @relation(fields: [file_id], references: [id], onDelete: Cascade)
+  products      products      @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-  @@map("page_views")
+  @@unique([product_id, file_id, file_type])
+  @@index([file_id])
+  @@index([file_type])
+  @@index([product_id])
 }
 
-model Notification {
-  id             String    @id @default(uuid())
-  type           String    // rfp, inventory, product, user, system, security
-  priority       String    // low, medium, high, critical
-  title          String
-  message        String
-  data           Json?
-  userId         String?   @map("user_id")
-  read           Boolean   @default(false)
-  actionRequired Boolean   @default(false) @map("action_required")
-  actionUrl      String?   @map("action_url")
-  expiresAt      DateTime? @map("expires_at")
-  createdAt      DateTime  @default(now()) @map("created_at")
-  updatedAt      DateTime  @updatedAt @map("updated_at")
-  user           User?     @relation(fields: [userId], references: [id])
-
-  @@map("notifications")
+model product_media {
+  id         String   @id
+  product_id String
+  type       String
+  url        String
+  alt_text   String?
+  title      String?
+  sort_order Int      @default(0)
+  is_primary Boolean  @default(false)
+  created_at DateTime @default(now())
+  products   products @relation(fields: [product_id], references: [id], onDelete: Cascade)
 }
 
-model FileRegistry {
-  id            String        @id @default(uuid())
-  originalUrl   String        @map("original_url")
-  urlHash       String        @unique @map("url_hash") // SHA-256 hash of URL
-  contentHash   String        @map("content_hash") // SHA-256 hash of file content
-  localPath     String        @map("local_path") // Relative path from public/
-  filename      String        
-  mimeType      String        @map("mime_type")
-  fileSize      Int           @map("file_size") // Size in bytes
-  fileType      String        @map("file_type") // pdf, image, document
-  downloadedAt  DateTime      @default(now()) @map("downloaded_at")
-  lastAccessedAt DateTime     @default(now()) @map("last_accessed_at")
-  accessCount   Int           @default(1) @map("access_count")
-  isOrphaned    Boolean       @default(false) @map("is_orphaned") // No products reference this file
-  productFiles  ProductFile[]
+model product_translations {
+  id               String   @id
+  product_id       String
+  language_code    String
+  nom              String
+  description      String?
+  fiche_technique  String?
+  meta_title       String?
+  meta_description String?
+  products         products @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
-  @@index([urlHash])
-  @@index([contentHash])
-  @@index([fileType])
-  @@index([isOrphaned])
-  @@map("file_registry")
+  @@unique([product_id, language_code])
 }
 
-model ProductFile {
-  id           String       @id @default(uuid())
-  productId    String       @map("product_id")
-  fileId       String       @map("file_id")
-  fileType     String       @map("file_type") // pdf_brochure, product_image
-  sortOrder    Int          @default(0) @map("sort_order")
-  isPrimary    Boolean      @default(false) @map("is_primary") // For images
-  altText      String?      @map("alt_text")
-  title        String?      
-  description  String?
-  createdAt    DateTime     @default(now()) @map("created_at")
-  product      Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
-  file         FileRegistry @relation(fields: [fileId], references: [id], onDelete: Cascade)
+model products {
+  id                    String                 @id
+  reference_fournisseur String                 @unique
+  category_id           String
+  constructeur          String
+  slug                  String                 @unique
+  status                String                 @default("active")
+  is_featured           Boolean                @default(false)
+  sort_order            Int                    @default(0)
+  meta_title            String?
+  meta_description      String?
+  pdf_brochure_url      String?
+  created_at            DateTime               @default(now())
+  updated_at            DateTime
+  partner_id            String?
+  product_attributes    product_attributes[]
+  product_files         product_files[]
+  product_media         product_media[]
+  product_translations  product_translations[]
+  categories            categories             @relation(fields: [category_id], references: [id])
+  partners              partners?              @relation(fields: [partner_id], references: [id])
+  rfp_items             rfp_items[]
+}
 
-  @@unique([productId, fileId, fileType])
-  @@index([productId])
-  @@index([fileId])
-  @@index([fileType])
-  @@map("product_files")
+model rfp_items {
+  id                   String       @id
+  rfp_id               String
+  product_id           String
+  quantity             Int          @default(1)
+  special_requirements String?
+  quoted_price         Float?
+  created_at           DateTime     @default(now())
+  products             products     @relation(fields: [product_id], references: [id])
+  rfp_requests         rfp_requests @relation(fields: [rfp_id], references: [id], onDelete: Cascade)
+}
+
+model rfp_requests {
+  id                       String      @id
+  reference_number         String      @unique
+  status                   String      @default("pending")
+  customer_name            String
+  customer_email           String
+  customer_phone           String?
+  company_name             String?
+  company_address          String?
+  contact_person           String?
+  message                  String?
+  urgency_level            String      @default("normal")
+  preferred_contact_method String      @default("email")
+  assigned_to              String?
+  notes                    String?
+  quote_amount             Float?
+  quote_valid_until        DateTime?
+  created_at               DateTime    @default(now())
+  updated_at               DateTime
+  rfp_items                rfp_items[]
+}
+
+model user_sessions {
+  id         String   @id
+  user_id    String
+  token      String   @unique
+  expires_at DateTime
+  created_at DateTime @default(now())
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model users {
+  id            String          @id
+  email         String          @unique
+  password_hash String
+  first_name    String
+  last_name     String
+  role          String          @default("editor")
+  is_active     Boolean         @default(true)
+  last_login    DateTime?
+  created_at    DateTime        @default(now())
+  updated_at    DateTime
+  activity_logs activity_logs[]
+  notifications notifications[]
+  user_sessions user_sessions[]
 }
