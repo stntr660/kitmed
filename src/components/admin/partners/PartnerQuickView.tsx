@@ -82,15 +82,17 @@ export function PartnerQuickView({
           <Card>
             <CardContent className="p-6">
               <div className="flex items-start space-x-4">
-                <div className="h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="h-20 w-20 flex items-center justify-center flex-shrink-0">
                   {partner.logoUrl ? (
                     <img
                       src={partner.logoUrl}
                       alt={partner.nom?.fr || 'Partner logo'}
-                      className="h-14 w-14 rounded-lg object-cover"
+                      className="h-18 w-18 rounded-lg object-contain"
                     />
                   ) : (
-                    <BuildingOfficeIcon className="h-8 w-8 text-primary-600" />
+                    <div className="h-20 w-20 bg-primary-100 rounded-xl flex items-center justify-center">
+                      <BuildingOfficeIcon className="h-10 w-10 text-primary-600" />
+                    </div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">

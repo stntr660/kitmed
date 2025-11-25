@@ -715,6 +715,11 @@
       "noWebsite": "No website provided",
       "lastUpdated": "Last updated",
       
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      
       "validation": {
         "nameRequired": "Partner name in French is required",
         "typeRequired": "Partner type is required",

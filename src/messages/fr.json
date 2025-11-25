@@ -760,6 +760,11 @@
       "noWebsite": "Aucun site web renseigné",
       "lastUpdated": "Dernière mise à jour",
       
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      
       "validation": {
         "nameRequired": "Le nom du partenaire en français est requis",
         "typeRequired": "Le type de partenaire est requis",
@@ -796,6 +801,27 @@
           "note": "Les fabricants sont automatiquement liés aux produits par nom",
           "helpTitle": "À propos des fabricants",
           "helpDescription": "Les fabricants sont automatiquement associés aux produits dans votre catalogue. Assurez-vous que le nom correspond exactement au champ 'Constructeur' de vos produits."
+        },
+        "distributor": {
+          "title": "Distributeur",
+          "description": "Partenaires commerciaux qui distribuent et revendent les équipements médicaux dans différentes régions",
+          "badge": "Réseau commercial",
+          "helpTitle": "À propos des distributeurs",
+          "helpDescription": "Les distributeurs vous aident à étendre votre portée commerciale dans différentes régions et marchés."
+        },
+        "service": {
+          "title": "Service",
+          "description": "Prestataires de services médicaux, maintenance, formation et support technique spécialisé",
+          "badge": "Support technique",
+          "helpTitle": "À propos des services",
+          "helpDescription": "Les partenaires de service fournissent un support technique, une maintenance et une formation pour vos équipements."
+        },
+        "technology": {
+          "title": "Technologie",
+          "description": "Partenaires technologiques pour l'intégration, logiciels médicaux et solutions numériques innovantes",
+          "badge": "Innovation numérique",
+          "helpTitle": "À propos de la technologie",
+          "helpDescription": "Les partenaires technologiques fournissent des logiciels et des solutions d'intégration pour moderniser votre pratique médicale."
         },
         "other": {
           "title": "Autre partenaire",

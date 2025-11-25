@@ -186,11 +186,11 @@ export default function PartnersPage() {
                       </div>
                       
                       {partner.logoUrl && (
-                        <div className="w-full h-16 mb-4 flex items-center justify-center bg-gray-50 rounded-lg">
+                        <div className="w-full h-20 mb-4 flex items-center justify-center">
                           <img
                             src={partner.logoUrl}
                             alt={getPartnerName(partner)}
-                            className="max-h-10 w-auto object-contain"
+                            className="max-h-16 w-auto object-contain"
                           />
                         </div>
                       )}
@@ -267,11 +267,11 @@ export default function PartnersPage() {
                       </div>
                       
                       {partner.logoUrl && (
-                        <div className="w-full h-12 mb-3 flex items-center justify-center bg-gray-50 rounded">
+                        <div className="w-full h-16 mb-3 flex items-center justify-center">
                           <img
                             src={partner.logoUrl}
                             alt={getPartnerName(partner)}
-                            className="max-h-8 w-auto object-contain"
+                            className="max-h-12 w-auto object-contain"
                           />
                         </div>
                       )}

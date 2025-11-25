@@ -190,15 +190,15 @@ export default function HomePage() {
                 partners.map((partner) => (
                 <div key={partner.id} className="group">
                   <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
-                    <div className="h-16 flex items-center justify-center mb-4">
+                    <div className="h-20 flex items-center justify-center mb-4">
                       {partner.logo ? (
                         <img 
                           src={partner.logo}
                           alt={partner.name}
-                          className="max-h-12 max-w-20 object-contain"
+                          className="max-h-16 max-w-24 object-contain"
                         />
                       ) : (
-                        <div className="w-20 h-12 bg-gray-100 rounded flex items-center justify-center">
+                        <div className="w-24 h-16 bg-gray-100 rounded flex items-center justify-center">
                           <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
                         </div>
                       )}

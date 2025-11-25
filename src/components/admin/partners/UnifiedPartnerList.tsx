@@ -454,15 +454,17 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                       )}
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-4">
-                          <div className="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                          <div className="h-16 w-16 flex items-center justify-center">
                             {partner.logoUrl ? (
                               <img
                                 src={partner.logoUrl}
                                 alt={partner.name}
-                                className="h-10 w-10 rounded-lg object-cover"
+                                className="h-14 w-14 rounded-lg object-contain"
                               />
                             ) : (
-                              <BuildingOfficeIcon className="h-6 w-6 text-primary-600" />
+                              <div className="h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <BuildingOfficeIcon className="h-8 w-8 text-primary-600" />
+                              </div>
                             )}
                           </div>
                           <div className="min-w-0">
