@@ -2,9 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
+import { 
+  downloadWithDeduplication, 
+  associateFileWithProduct,
+  markOrphanedFiles,
+  type FileDeduplicationResult 
+} from '@/lib/file-deduplication';
 
 const csvProductSchema = z.object({
   referenceFournisseur: z.string().min(1, 'Référence fournisseur is required'),
@@ -31,44 +34,18 @@ interface ImportResult {
     message: string;
   }>;
   filesDownloaded?: number;
+  filesDeduplicationSaved?: number;
   data?: any[];
 }
 
-// File download utility
-async function downloadAndSaveFile(url: string, fileName: string, subDir: string): Promise<string | null> {
+// Download file with deduplication
+async function downloadFileWithDeduplication(url: string, subDir: string): Promise<FileDeduplicationResult | null> {
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const buffer = await response.arrayBuffer();
-    const uint8Array = new Uint8Array(buffer);
-    
-    // Create uploads directory structure
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', subDir);
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true });
-    }
-    
-    const filePath = join(uploadsDir, fileName);
-    await writeFile(filePath, uint8Array);
-    
-    return `/uploads/${subDir}/${fileName}`;
+    return await downloadWithDeduplication(url, { subDir });
   } catch (error) {
     console.error(`Failed to download ${url}:`, error);
     return null;
   }
-}
-
-// Generate unique filename
-function generateFileName(originalUrl: string, productRef: string, index: number = 0): string {
-  const urlParts = originalUrl.split('/');
-  const originalName = urlParts[urlParts.length - 1];
-  const extension = originalName.includes('.') ? originalName.split('.').pop() : 'jpg';
-  const timestamp = Date.now();
-  const suffix = index > 0 ? `-${index}` : '';
-  return `${productRef}-${timestamp}${suffix}.${extension}`;
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
@@ -138,6 +115,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       imported: 0,
       errors: [],
       filesDownloaded: 0,
+      filesDeduplicationSaved: 0,
     };
 
     const validProducts = [];
@@ -209,13 +187,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
 
-        // Download PDF brochure if URL provided
-        let localPdfUrl = null;
+        // Download PDF brochure if URL provided with deduplication
+        let pdfFileId = null;
         if (productData.pdfBrochureUrl && productData.pdfBrochureUrl.startsWith('http')) {
-          const pdfFileName = generateFileName(productData.pdfBrochureUrl, productData.referenceFournisseur);
-          localPdfUrl = await downloadAndSaveFile(productData.pdfBrochureUrl, pdfFileName, 'brochures');
-          if (localPdfUrl) {
-            result.filesDownloaded!++;
+          const pdfResult = await downloadFileWithDeduplication(productData.pdfBrochureUrl, 'brochures');
+          if (pdfResult) {
+            pdfFileId = pdfResult.fileId;
+            if (pdfResult.isNewDownload) {
+              result.filesDownloaded!++;
+            } else {
+              result.filesDeduplicationSaved!++;
+            }
           } else {
             result.errors.push({
               row: productData.rowNumber,
@@ -232,7 +214,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             constructeur: productData.constructeur,
             categoryId: productData.categoryId,
             slug,
-            pdfBrochureUrl: localPdfUrl || productData.pdfBrochureUrl || null,
+            pdfBrochureUrl: pdfFileId ? null : (productData.pdfBrochureUrl || null), // Keep legacy URL if no file ID
             status: productData.status,
             isFeatured: productData.featured,
             translations: {
@@ -257,32 +239,56 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           },
         });
 
-        // Download and attach images if URLs provided
+        // Associate PDF file if downloaded
+        if (pdfFileId) {
+          try {
+            await associateFileWithProduct(product.id, pdfFileId, 'pdf_brochure', {
+              title: `${productData.nom.fr} - Brochure`,
+              description: 'Product brochure PDF'
+            });
+          } catch (error) {
+            console.error('Failed to associate PDF file:', error);
+          }
+        }
+
+        // Download and attach images if URLs provided with deduplication
         if (productData.imageUrls && productData.imageUrls.trim()) {
           const imageUrlList = productData.imageUrls.split(',').map(url => url.trim()).filter(Boolean);
-          const mediaItems = [];
           
           for (let i = 0; i < imageUrlList.length; i++) {
             const imageUrl = imageUrlList[i];
             if (imageUrl.startsWith('http')) {
-              const imageFileName = generateFileName(imageUrl, productData.referenceFournisseur, i);
-              const localImageUrl = await downloadAndSaveFile(imageUrl, imageFileName, 'products');
+              const imageResult = await downloadFileWithDeduplication(imageUrl, 'products');
               
-              if (localImageUrl) {
+              if (imageResult) {
                 try {
-                  const mediaItem = await prisma.productMedia.create({
+                  // Associate file with product through ProductFile table
+                  await associateFileWithProduct(product.id, imageResult.fileId, 'product_image', {
+                    sortOrder: i,
+                    isPrimary: i === 0,
+                    altText: `${productData.nom.fr} - Image ${i + 1}`,
+                    title: productData.nom.fr,
+                    description: 'Product image'
+                  });
+                  
+                  // Also create legacy ProductMedia entry for backward compatibility
+                  await prisma.productMedia.create({
                     data: {
                       productId: product.id,
                       type: 'image',
-                      url: localImageUrl,
+                      url: imageResult.localPath,
                       sortOrder: i,
-                      isPrimary: i === 0, // First image is primary
+                      isPrimary: i === 0,
                       altText: `${productData.nom.fr} - Image ${i + 1}`,
                       title: productData.nom.fr,
                     },
                   });
-                  mediaItems.push(mediaItem);
-                  result.filesDownloaded!++;
+                  
+                  if (imageResult.isNewDownload) {
+                    result.filesDownloaded!++;
+                  } else {
+                    result.filesDeduplicationSaved!++;
+                  }
                 } catch (mediaError) {
                   result.errors.push({
                     row: productData.rowNumber,
@@ -315,8 +321,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     result.success = result.imported > 0;
     result.data = createdProducts;
 
+    // Mark any orphaned files for cleanup
+    try {
+      await markOrphanedFiles();
+    } catch (error) {
+      console.warn('Failed to mark orphaned files:', error);
+    }
+
+    const deduplicationMessage = result.filesDeduplicationSaved! > 0 
+      ? ` (${result.filesDeduplicationSaved} files reused through deduplication)` 
+      : '';
+
     return NextResponse.json({
-      message: `Successfully imported ${result.imported} products and downloaded ${result.filesDownloaded} files${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}`,
+      message: `Successfully imported ${result.imported} products, downloaded ${result.filesDownloaded} new files${deduplicationMessage}${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}`,
       data: result,
     });
 

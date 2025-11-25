@@ -7,68 +7,193 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/// Medical disciplines/specialties (Cardiology, Ophthalmology, etc.)
+model Discipline {
+  id                String                    @id @default(uuid())
+  /// Medical specialty name (e.g., "Cardiology", "Ophthalmology")
+  name              String
+  /// URL-friendly identifier
+  slug              String                    @unique
+  /// Detailed description of the medical specialty
+  description       String?
+  /// Standard medical specialty code (ICD-10, SNOMED, or custom)
+  specialtyCode     String?                   @unique @map("specialty_code")
+  /// Required certifications for this specialty
+  certificationReqs String?                   @map("certification_requirements")
+  /// Color code for UI theming (hex color)
+  colorCode         String?                   @map("color_code")
+  /// Icon identifier for UI display
+  iconCode          String?                   @map("icon_code")
+  /// Display order in listings
+  sortOrder         Int                       @default(0) @map("sort_order")
+  /// Whether this discipline is active
+  isActive          Boolean                   @default(true) @map("is_active")
+  /// Whether to feature prominently
+  isFeatured        Boolean                   @default(false) @map("is_featured")
+  /// SEO meta title
+  metaTitle         String?                   @map("meta_title")
+  /// SEO meta description
+  metaDescription   String?                   @map("meta_description")
+  /// Primary image URL for discipline
+  imageUrl          String?                   @map("image_url")
+  createdAt         DateTime                  @default(now()) @map("created_at")
+  updatedAt         DateTime                  @updatedAt @map("updated_at")
+  
+  // Relationships
+  translations      DisciplineTranslation[]
+  categories        Category[]
+  products          Product[]                 @relation("DisciplineProducts")
+
+  @@index([slug])
+  @@index([specialtyCode])
+  @@index([isActive, sortOrder])
+  @@index([isFeatured, isActive])
+  @@map("disciplines")
+}
+
+/// Multi-language support for disciplines
+model DisciplineTranslation {
+  id              String     @id @default(uuid())
+  disciplineId    String     @map("discipline_id")
+  languageCode    String     @map("language_code") // 'fr', 'en'
+  name            String
+  description     String?
+  metaTitle       String?    @map("meta_title")
+  metaDescription String?    @map("meta_description")
+  
+  discipline      Discipline @relation(fields: [disciplineId], references: [id], onDelete: Cascade)
+
+  @@unique([disciplineId, languageCode])
+  @@index([languageCode])
+  @@map("discipline_translations")
+}
+
+/// Equipment categories within medical disciplines
 model Category {
   id              String                @id @default(uuid())
+  /// Category name (e.g., "Monitors", "Surgical Tools")
   name            String
+  /// URL-friendly identifier
   slug            String                @unique
+  /// Detailed description of equipment category
   description     String?
-  type            String                @default("discipline") @map("type") // "discipline" or "equipment"
+  /// Parent discipline this category belongs to
+  disciplineId    String                @map("discipline_id")
+  /// Parent category for hierarchical structure (optional)
   parentId        String?               @map("parent_id")
+  /// Equipment classification level (1=main category, 2=subcategory, etc.)
+  level           Int                   @default(1)
+  /// Display order within discipline/parent
   sortOrder       Int                   @default(0) @map("sort_order")
+  /// Whether category is active
   isActive        Boolean               @default(true) @map("is_active")
+  /// Whether to feature prominently
+  isFeatured      Boolean               @default(false) @map("is_featured")
+  /// SEO meta title
   metaTitle       String?               @map("meta_title")
+  /// SEO meta description
   metaDescription String?               @map("meta_description")
+  /// Primary image URL for category
   imageUrl        String?               @map("image_url")
+  /// Equipment safety classification (Class I, II, III for medical devices)
+  safetyClass     String?               @map("safety_class")
+  /// FDA/CE regulatory requirements
+  regulatoryNotes String?               @map("regulatory_notes")
   createdAt       DateTime              @default(now()) @map("created_at")
   updatedAt       DateTime              @updatedAt @map("updated_at")
-  parent          Category?             @relation("CategoryParent", fields: [parentId], references: [id])
-  children        Category[]            @relation("CategoryParent")
+  
+  // Relationships
+  discipline      Discipline            @relation(fields: [disciplineId], references: [id])
+  parent          Category?             @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children        Category[]            @relation("CategoryHierarchy")
   translations    CategoryTranslation[]
   products        Product[]
 
+  @@index([slug])
+  @@index([disciplineId, isActive])
+  @@index([disciplineId, sortOrder])
+  @@index([parentId, sortOrder])
+  @@index([level, isActive])
+  @@index([isFeatured, isActive])
   @@map("categories")
 }
 
+/// Multi-language support for categories
 model CategoryTranslation {
   id              String   @id @default(uuid())
   categoryId      String   @map("category_id")
-  languageCode    String   @map("language_code")
+  languageCode    String   @map("language_code") // 'fr', 'en'
   name            String
   description     String?
   metaTitle       String?  @map("meta_title")
   metaDescription String?  @map("meta_description")
+  
   category        Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, languageCode])
+  @@index([languageCode])
   @@map("category_translations")
 }
 
+/// Enhanced Product model with discipline relationship
 model Product {
   id                   String               @id @default(uuid())
+  /// Supplier reference number
   referenceFournisseur String               @unique @map("reference_fournisseur")
+  /// Primary category this product belongs to
   categoryId           String               @map("category_id")
+  /// Medical discipline this product serves (derived from category but can be overridden)
+  disciplineId         String               @map("discipline_id")
+  /// Manufacturing/supply partner
   partnerId            String?              @map("partner_id")
+  /// Manufacturer name
   constructeur         String
+  /// URL-friendly identifier
   slug                 String               @unique
-  status               String               @default("active")
+  /// Product lifecycle status
+  status               String               @default("active") // active, discontinued, pending
+  /// Whether to feature prominently
   isFeatured           Boolean              @default(false) @map("is_featured")
+  /// Display order in listings
   sortOrder            Int                  @default(0) @map("sort_order")
+  /// SEO meta title
   metaTitle            String?              @map("meta_title")
+  /// SEO meta description
   metaDescription      String?              @map("meta_description")
+  /// PDF brochure file URL
   pdfBrochureUrl       String?              @map("pdf_brochure_url")
+  /// Medical device classification
+  deviceClass          String?              @map("device_class") // Class I, II, III
+  /// FDA/CE certification numbers
+  certificationNumbers String[]             @map("certification_numbers")
+  /// Warranty period in months
+  warrantyMonths       Int?                 @map("warranty_months")
+  /// Maintenance requirements level
+  maintenanceLevel     String?              @map("maintenance_level") // low, medium, high
+  /// Installation complexity
+  installationLevel    String?              @map("installation_level") // simple, complex, specialist
   createdAt            DateTime             @default(now()) @map("created_at")
   updatedAt            DateTime             @updatedAt @map("updated_at")
+  
+  // Relationships
+  category             Category             @relation(fields: [categoryId], references: [id])
+  discipline           Discipline           @relation("DisciplineProducts", fields: [disciplineId], references: [id])
+  partner              Partner?             @relation(fields: [partnerId], references: [id])
   attributes           ProductAttribute[]
   media                ProductMedia[]
   translations         ProductTranslation[]
-  category             Category             @relation(fields: [categoryId], references: [id])
-  partner              Partner?             @relation(fields: [partnerId], references: [id])
   rfpItems             RFPItem[]
   productFiles         ProductFile[]
 
+  @@index([categoryId, isActive])
+  @@index([disciplineId, isActive])
+  @@index([status, isFeatured])
+  @@index([constructeur])
+  @@index([deviceClass])
   @@map("products")
 }
 
+/// Product translations remain the same
 model ProductTranslation {
   id              String  @id @default(uuid())
   productId       String  @map("product_id")
@@ -84,6 +209,7 @@ model ProductTranslation {
   @@map("product_translations")
 }
 
+/// All other models remain the same...
 model ProductMedia {
   id        String   @id @default(uuid())
   productId String   @map("product_id")
