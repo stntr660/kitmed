@@ -1,0 +1,758 @@
+[
+  {
+    "referenceFournisseur": "11057",
+    "constructeur": "MORIA",
+    "frenchName": "slightly émoussées blades)",
+    "englishName": "slightly blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "11081",
+    "constructeur": "MORIA",
+    "frenchName": "Bangerter pinces(avec pushbutton)",
+    "englishName": "Bangerter Forceps(with pushbutton)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13132",
+    "constructeur": "MORIA",
+    "frenchName": "Castroviejo-Bonnet Speculum(claw open blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13241",
+    "constructeur": "MORIA",
+    "frenchName": "droites",
+    "englishName": "straight",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13242",
+    "constructeur": "MORIA",
+    "frenchName": "angulées",
+    "englishName": "angled",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13243",
+    "constructeur": "MORIA",
+    "frenchName": "courbes",
+    "englishName": "curved",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13263",
+    "constructeur": "MORIA",
+    "frenchName": "Gills-Aron-Rosa ciseaux(angulées pointed blades)",
+    "englishName": "Gills-Aron-Rosa Scissors(Angled pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "13330",
+    "constructeur": "MORIA",
+    "frenchName": "Handle",
+    "englishName": "Dezard trephine",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "1353",
+    "constructeur": "MORIA",
+    "frenchName": "Wolkmann Retractor(with 4 prongs",
+    "englishName": "for wounds)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "15",
+    "constructeur": "MORIA",
+    "frenchName": "Hydrodissection Cannula(Ø 25G",
+    "englishName": "angled)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "17000",
+    "constructeur": "MORIA",
+    "frenchName": "Worst ciseaux(courbes blades)",
+    "englishName": "Worst Scissors(Curved blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "17169",
+    "constructeur": "MORIA",
+    "frenchName": "Hanna perforatrice(pour kératoplastie: PK-DALK-DSAEK)",
+    "englishName": "Hanna Punch(for keratoplasty: PK-DALK-DSAEK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "17171P",
+    "constructeur": "MORIA",
+    "frenchName": "réceptacle bloc(pour Hanna perforatrice)",
+    "englishName": "Receptacle Block(for Hanna Punch)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18013",
+    "constructeur": "MORIA",
+    "frenchName": "émoussées blades)",
+    "englishName": "blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18069",
+    "constructeur": "MORIA",
+    "frenchName": "Crozafon-De-Laage perforatrice(glaucome perforatrice)",
+    "englishName": "Crozafon-De-Laage Punch(Glaucoma punch)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18186",
+    "constructeur": "MORIA",
+    "frenchName": "Dezard trépan(avec butée limitée- D15 mm)",
+    "englishName": "Dezard trephine(with limit stop- D15 mm)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18195",
+    "constructeur": "MORIA",
+    "frenchName": "Shapira Speculum(open wire blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18221",
+    "constructeur": "MORIA",
+    "frenchName": "Kratz Speculum",
+    "englishName": "Oblique(open blades for temporal incision)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18224",
+    "constructeur": "MORIA",
+    "frenchName": "Caro Flap Repositioning Manipulator(pour LASIK)",
+    "englishName": "Caro Flap Repositioning Manipulator(for LASIK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "18251",
+    "constructeur": "MORIA",
+    "frenchName": "pointe de remplacement - D 1.2 mm(pour Ref. #18069)",
+    "englishName": "Replacement tip - D 1.2 mm(For Ref. #18069)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19019",
+    "constructeur": "MORIA",
+    "frenchName": "Bahamon Spatula(pour LASIK)",
+    "englishName": "Bahamon Spatula(for LASIK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19030",
+    "constructeur": "MORIA",
+    "frenchName": "Francesci Speculum(fenestrated blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19048",
+    "constructeur": "MORIA",
+    "frenchName": "Olivieri-Cantera Speculum(solid blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19068",
+    "constructeur": "MORIA",
+    "frenchName": "Haptic Cutter(pour IOL explantation)",
+    "englishName": "Haptic Cutter(for IOL explantation)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19069",
+    "constructeur": "MORIA",
+    "frenchName": "Aspirating Speculum(open square blades)",
+    "englishName": "Aspirating Speculum(open square blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19076",
+    "constructeur": "MORIA",
+    "frenchName": "pointe de remplacement(pour #19070)",
+    "englishName": "Replacement tip(For #19070)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19078",
+    "constructeur": "MORIA",
+    "frenchName": "Adjustable Colibri Speculum(open square blades with olive tips",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19084",
+    "constructeur": "MORIA",
+    "frenchName": "Double-Ended Epi-LASIK Spatula(pour Epi-LASIK)",
+    "englishName": "Double-Ended Epi-LASIK Spatula(for Epi-LASIK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19087",
+    "constructeur": "MORIA",
+    "frenchName": "Vryghem Double-Ended Spatula(pour LASIK)",
+    "englishName": "Vryghem Double-Ended Spatula(for LASIK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19089",
+    "constructeur": "MORIA",
+    "frenchName": "De-Epithelialization Spatula(pour surface ablation)",
+    "englishName": "De-Epithelialization Spatula(for surface ablation)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "19155",
+    "constructeur": "MORIA",
+    "frenchName": "ONE turbine(pour kératoplastie)",
+    "englishName": "ONE Turbine(For keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20007",
+    "constructeur": "MORIA",
+    "frenchName": "Mini Busin Spatula(for DSAEK",
+    "englishName": "DMEK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20010",
+    "constructeur": "MORIA",
+    "frenchName": "LASIK Cleaver Spatula(pour LASIK)",
+    "englishName": "LASIK Cleaver Spatula(for LASIK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20011",
+    "constructeur": "MORIA",
+    "frenchName": "contrôle distal)",
+    "englishName": "distal control)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20016",
+    "constructeur": "MORIA",
+    "frenchName": "Renard Corneal Dissector Spatula(pour kératoplastie)",
+    "englishName": "Renard Corneal Dissector Spatula(for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20020",
+    "constructeur": "MORIA",
+    "frenchName": "à action croisée)",
+    "englishName": "cross-action)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20022",
+    "constructeur": "MORIA",
+    "frenchName": "Micro-Dissector(pour DMEK)",
+    "englishName": "Micro-Dissector(for DMEK)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20024",
+    "constructeur": "MORIA",
+    "frenchName": "pour kératoplastie)",
+    "englishName": "for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20025",
+    "constructeur": "MORIA",
+    "frenchName": "pour kératoplastie)",
+    "englishName": "for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20029",
+    "constructeur": "MORIA",
+    "frenchName": "pour kératoplastie)",
+    "englishName": "for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20030",
+    "constructeur": "MORIA",
+    "frenchName": "Gabison ciseaux(sens antihoraire)",
+    "englishName": "Gabison Scissors(Counter-clockwise)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20035",
+    "constructeur": "MORIA",
+    "frenchName": "Adjustable Speculum(open curved blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20036",
+    "constructeur": "MORIA",
+    "frenchName": "Adjustable Speculum(solid blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "20042",
+    "constructeur": "MORIA",
+    "frenchName": "Adjustable Speculum(open square blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "2420A",
+    "constructeur": "MORIA",
+    "frenchName": "pour strabismus)",
+    "englishName": "for strabismus)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "2420B",
+    "constructeur": "MORIA",
+    "frenchName": "pour strabismus)",
+    "englishName": "for strabismus)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "2456",
+    "constructeur": "MORIA",
+    "frenchName": "Jaeger eyelid plate",
+    "englishName": "Jaeger eyelid plate",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "3222",
+    "constructeur": "MORIA",
+    "frenchName": "0.8-mm teeth)",
+    "englishName": "0.8-mm teeth)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "4170",
+    "constructeur": "MORIA",
+    "frenchName": "Sourdille Caliper(graduatations every 1 mm",
+    "englishName": "opening active part 0 to 16 mm)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "4251C",
+    "constructeur": "MORIA",
+    "frenchName": "Sevrin-Stevens ciseaux(pour tenotomy)",
+    "englishName": "Sevrin-Stevens Scissors(for tenotomy)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "4263",
+    "constructeur": "MORIA",
+    "frenchName": "émoussées blades)",
+    "englishName": "blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "4877A",
+    "constructeur": "MORIA",
+    "frenchName": "pointed blades)",
+    "englishName": "pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "4878A",
+    "constructeur": "MORIA",
+    "frenchName": "ciseaux(courbes blades)",
+    "englishName": "Scissors(Curved blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "61",
+    "constructeur": "MORIA",
+    "frenchName": "ALTK artificial chamber base(pour kératoplastie)",
+    "englishName": "ALTK artificial chamber base(For keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "6346A",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer Adult Speculum",
+    "englishName": "Colibri(closed blades",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "6346B",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer Speculum Colibri",
+    "englishName": "child size(fenestrated blades",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "6346C",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer Speculum Colibri",
+    "englishName": "baby size(closed blades",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "6346D",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer Speculum Colibri",
+    "englishName": "newborn size(closed blades",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "7699",
+    "constructeur": "MORIA",
+    "frenchName": "Corcelle Speculum",
+    "englishName": "Oblique(solid blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "7825B",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer iris Spatula(horizontal disk pointe)",
+    "englishName": "Barraquer Iris Spatula(horizontal disk tip)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "7825C",
+    "constructeur": "MORIA",
+    "frenchName": "Barraquer iris Spatula(horizontal disk pointe)",
+    "englishName": "Barraquer Iris Spatula(horizontal disk tip)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "7865",
+    "constructeur": "MORIA",
+    "frenchName": "angulées blades)",
+    "englishName": "angled blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8023A",
+    "constructeur": "MORIA",
+    "frenchName": "pour kératoplastie)",
+    "englishName": "for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8023B",
+    "constructeur": "MORIA",
+    "frenchName": "pour kératoplastie)",
+    "englishName": "for keratoplasty)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8090",
+    "constructeur": "MORIA",
+    "frenchName": "angulées",
+    "englishName": "angled",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8100",
+    "constructeur": "MORIA",
+    "frenchName": "Vannas ciseaux(courbes émoussées blades)",
+    "englishName": "Vannas Scissors(Curved blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8142A",
+    "constructeur": "MORIA",
+    "frenchName": "pointed blades)",
+    "englishName": "pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8143A",
+    "constructeur": "MORIA",
+    "frenchName": "pointed blades)",
+    "englishName": "pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "8144A",
+    "constructeur": "MORIA",
+    "frenchName": "émoussées blades)",
+    "englishName": "blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "917",
+    "constructeur": "MORIA",
+    "frenchName": "One Use-Plus Handpiece pour Artificial Chamber(pour DSAEK surgery)",
+    "englishName": "One Use-Plus Handpiece for Artificial Chamber(For DSAEK surgery)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9600",
+    "constructeur": "MORIA",
+    "frenchName": "Vannas ciseaux(droites pointed blades)",
+    "englishName": "Vannas Scissors(Straight pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9600BIS",
+    "constructeur": "MORIA",
+    "frenchName": "Vannas ciseaux(droites émoussées blades)",
+    "englishName": "Vannas Scissors(Straight blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9611B",
+    "constructeur": "MORIA",
+    "frenchName": "Culler iris Spatula(very delicate)",
+    "englishName": "Culler Iris Spatula(very delicate)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9627A",
+    "constructeur": "MORIA",
+    "frenchName": "Castroviejo Speculum(fenestrated blades",
+    "englishName": "adult)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9627B",
+    "constructeur": "MORIA",
+    "frenchName": "Castroviejo Speculum",
+    "englishName": "child model(fenestrated blades",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9721",
+    "constructeur": "MORIA",
+    "frenchName": "Castroviejo ciseaux(courbes émoussées blades)",
+    "englishName": "Castroviejo Scissors(Curved blunt blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9850",
+    "constructeur": "MORIA",
+    "frenchName": "Troutman ciseaux(Clockwise)",
+    "englishName": "Troutman Scissors(Clockwise)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "9851",
+    "constructeur": "MORIA",
+    "frenchName": "Troutman ciseaux(sens antihoraire)",
+    "englishName": "Troutman Scissors(Counter-clockwise)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC19",
+    "constructeur": "MORIA",
+    "frenchName": "Pascheff Wolff ciseaux(6-mm blades)",
+    "englishName": "Pascheff Wolff Scissors(6-mm blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC19B",
+    "constructeur": "MORIA",
+    "frenchName": "Wolff ciseaux(4-mm blades)",
+    "englishName": "Wolff Scissors(4-mm blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC26B",
+    "constructeur": "MORIA",
+    "frenchName": "pointed blades)",
+    "englishName": "pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC32",
+    "constructeur": "MORIA",
+    "frenchName": "mâchoires dentelées)",
+    "englishName": "serrated jaws)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC50",
+    "constructeur": "MORIA",
+    "frenchName": "Vannas ciseaux(courbes pointed blades)",
+    "englishName": "Vannas Scissors(Curved pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  },
+  {
+    "referenceFournisseur": "MC52",
+    "constructeur": "MORIA",
+    "frenchName": "Vannas ciseaux(droites pointed blades)",
+    "englishName": "Vannas Scissors(Straight pointed blades)",
+    "partnerId": "a378183d-07d2-4f52-aa4d-ddbcf205cc97",
+    "partnerName": "MORIA",
+    "categoryId": "ophthalmology-surgical"
+  }
+]

@@ -42,6 +42,12 @@ interface Product {
     name: string;
     slug: string;
   };
+  partner?: {
+    id: string;
+    name: string;
+    logoUrl: string | null;
+    websiteUrl: string | null;
+  };
   translations: Array<{
     languageCode: string;
     nom: string;
@@ -76,30 +82,15 @@ export default function ProductDetailPage() {
     try {
       setLoading(true);
       
-      // Try to fetch real product data by slug
-      const response = await fetch(`/api/admin/products?slug=${slug}&pageSize=1`);
+      // Try to fetch real product data by slug using the public API
+      const response = await fetch(`/api/products/${slug}`);
       if (response.ok) {
         const data = await response.json();
-        if (data.data && data.data.items && data.data.items.length > 0) {
-          // Find the product with matching slug
-          const productData = data.data.items.find(p => p.slug === slug) || data.data.items[0];
+        if (data.success && data.data) {
+          const productData = data.data;
           
-          // Transform the API data to match our interface
-          const transformedProduct: Product = {
-            id: productData.id,
-            referenceFournisseur: productData.referenceFournisseur,
-            constructeur: productData.constructeur,
-            slug: productData.slug,
-            pdfBrochureUrl: productData.pdfBrochureUrl,
-            status: productData.status,
-            isFeatured: productData.isFeatured || false,
-            createdAt: productData.createdAt,
-            category: productData.category,
-            translations: productData.translations || [],
-            media: productData.media || []
-          };
-          
-          setProduct(transformedProduct);
+          // Use the API data directly since it's already properly formatted
+          setProduct(productData);
           return;
         }
       }
@@ -300,8 +291,18 @@ export default function ProductDetailPage() {
               {/* Header */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge variant="outline" className="text-slate-600">
-                    {product.constructeur}
+                  <Badge variant="outline" className="text-slate-600 flex items-center gap-2">
+                    {product.partner?.logoUrl && (
+                      <Image
+                        src={product.partner.logoUrl}
+                        alt={product.partner.name}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    )}
+                    <Building2 className="h-4 w-4" />
+                    {product.partner?.name || product.constructeur}
                   </Badge>
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (

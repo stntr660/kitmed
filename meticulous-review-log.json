@@ -1,0 +1,698 @@
+{
+  "summary": {
+    "totalAnalyzed": 72,
+    "issuesFound": 94,
+    "fixed": 41,
+    "capitalizationFixed": 8,
+    "descriptionsAdded": 0,
+    "grammarFixed": 52
+  },
+  "timestamp": "2025-11-26T08:35:21.455Z",
+  "detailedChanges": [
+    {
+      "reference": "13160",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn pinces(0.12 mm teeth avec platforms)",
+      "newFrenchName": "Bonn pinces(0.12 mm dents avec plateformes)",
+      "oldFrenchDesc": "Reusablebonnholding pinces withplatformsand0.12 mmfacing micro teeth, avec abird cagehandle. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablebonnholding pinces withplatformsand0.12 mmfacing micro dents, avec abird cagehandle. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    },
+    {
+      "reference": "13161",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn-moria pinces(0.12 mm teeth avec platforms)",
+      "newFrenchName": "Bonn-moria pinces(0.12 mm dents avec plateformes)",
+      "oldFrenchDesc": "Reusablebonnholding pinces avec platforms and0.12 mmfacing micro teeth, avec abird cagehandle. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablebonnholding pinces avec plateformes and0.12 mmfacing micro dents, avec abird cagehandle. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, for"
+      ]
+    },
+    {
+      "reference": "13167",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Moria pinces(7 mm platforms, droit(e), 10/0)",
+      "newFrenchName": "Moria pinces(7 mm plateformes, droit, 10/0)",
+      "oldFrenchDesc": "Moria pinces avec a flat dentelé(e) handle, droit(e), pour 10/0 monofilament, avec 7 mm thinplatforms, et 10.5-cm length. peut être utilisé pour maintenir les fils lors dessutures.",
+      "newFrenchDesc": "Moria pinces avec a flat dentelé manche,droit, pour 10/0 monofilament, avec 7 mm thinplatforms, et 10.5-cm longueur.peut être utilisé pour maintenir les fils lors dessutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: and, for"
+      ]
+    },
+    {
+      "reference": "13238",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces Blaydes (action croisée, mâchoires 7-mm)",
+      "newFrenchName": "Blaydes pinces(à action croisée, 7 mm mâchoires)",
+      "oldFrenchDesc": "Longueur totale de 11,9 cm avec partie active de 13 mm. Manche ergonomique, délicat et résistant pour la manipulation des tissus fins.",
+      "newFrenchDesc": "Longueur totale de 11,9 cm avec partie active de 13 mm. Manche ergonomique, délicat et résistant pour la manipulation des tissus fins.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "13240",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn-kraff pinces(0.1 mm oblique teeth et tying platforms)",
+      "newFrenchName": "Bonn-kraff pinces(0.1 mm oblique dents et nouage plateformes)",
+      "oldFrenchDesc": "Reusablebonn-kraffforceps with0.1 mmoblique teeth et tyingplatforms, avec abird cagehandle. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablebonn-kraffforceps with0.1 mmoblique dents et tyingplatforms, avec abird cagehandle. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: forceps, the, and, with, for"
+      ]
+    },
+    {
+      "reference": "13245",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Mac pherson-moria pinces(0.2 mm teeth avec platforms, angulé(e))",
+      "newFrenchName": "Mac pherson-moria pinces(0.2 mm dents avec plateformes, angulé)",
+      "oldFrenchDesc": "Reusablemac pherson-moria pinces, angulé(e), with0.2 mm teethandplatforms, withclaws. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablemac pherson-moria pinces,angulé, with0.2 mm teethandplatforms, withclaws. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    },
+    {
+      "reference": "13246",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn-kraff pinces (0.12 mm teeth avec platforms et long jaws)",
+      "newFrenchName": "Bonn-kraff pinces (0.12 mm dents avec plateformes et long mâchoires)",
+      "oldFrenchDesc": "Réutilisable bonn-kraff holding pinces avec platforms et 0.12 mm facing micro teeth, avec a bird cage handle. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Réutilisable bonn-kraff maintien pinces avec plateformes et 0.12 mm facing micro dents, avec a bird cage manche. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, for"
+      ]
+    },
+    {
+      "reference": "13261",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces Waring (mâchoires 7-mm)",
+      "newFrenchName": "Waring pinces(7 mm mâchoires)",
+      "oldFrenchDesc": "Total length is 11.7 cm avec an active part incorporating 7 mm platforms. can be used to implant ou explant an intraoculaire cristallin.",
+      "newFrenchDesc": "Total longueur is 11.7 cm avec an actif partie incorporating 7 mm plateformes.can be used to implant ou explant an intraoculaire cristallin.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: for"
+      ]
+    },
+    {
+      "reference": "17150B",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "creux silicone bloc(réutilisable)",
+      "newFrenchName": "Hollow silicone block(réutilisable)",
+      "oldFrenchDesc": "réutilisable creux silicone bloc.",
+      "newFrenchDesc": "Réutilisable hollow silicone block.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "17161",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces de Maintien Faulkner (mâchoires 7-mm)",
+      "newFrenchName": "Faulkner maintien pinces(7 mm mâchoires)",
+      "oldFrenchDesc": "Longueur totale de 11,7 cm avec partie active de 11 mm incluant mâchoires inclinées, émoussées et arrondies de 7 mm.",
+      "newFrenchDesc": "Longueur totale de 11,7 cm avec partie active de 11 mm incluant mâchoires inclinées, émoussées et arrondies de 7 mm.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "17166",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Hanna trépan(pour kératoplastie : PK-DALK)",
+      "newFrenchName": "Hanna trépan(pour kératoplastie : PK-DALK)",
+      "oldFrenchDesc": "Hanna trépan is intended to harvest patient’s cornéen(ne) tissue duringkeratoplasty. it consists de two parts: the main body avec mechanism et the suction cone. it is supplied avec anincision depth adjustment wrenchas well as adisassembly/assembly key.",
+      "newFrenchDesc": "Hanna trépan is intended to harvest patient’s cornéen tissue duringkeratoplasty. it consists de two parts: the main corps avec mechanism et the suction cone. it is supplied avec anincision depth adjustment wrenchas well as adisassembly/assembly key.",
+      "issuesFixed": [
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "17167",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "montage clé(pour Hanna trépan)",
+      "newFrenchName": "Mounting wrench(pour hanna trépan)",
+      "oldFrenchDesc": "Mount key pour Hanna trépan",
+      "newFrenchDesc": "Mount key pour Hanna trépan",
+      "issuesFixed": [
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "17168",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "profondeur ajustement clé(pour kératoplastie)",
+      "newFrenchName": "Depth adjustment wrench(pour keratoplasty)",
+      "oldFrenchDesc": "profondeur ajustement key pour Hanna trépan",
+      "newFrenchDesc": "Depth adjustment key pour hanna trépan",
+      "issuesFixed": [
+        "Missing capital letter",
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "18225",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Fechtner pinces(fin(e) tying platforms)",
+      "newFrenchName": "Fechtner pinces(fin nouage plateformes)",
+      "oldFrenchDesc": "Ergonomic, straightand micro platform. atraumatic thanks to its tip consisting de two rings avec an external width de 0.6 mm et an internal width de 0.4 mm. 11.1-cm total length avec a 6.0 mm active part. can be used to manipulate conjunctiva.",
+      "newFrenchDesc": "Ergonomic,straightand micro plateforme.atraumatic thanks to its pointe consisting de two rings avec an external largeur de 0.6 mm et an internal largeur de 0.4 mm. 11.1-cm total longueur avec a 6.0 mm actif partie.can be used to manipulate conjunctiva.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: and, for, straight"
+      ]
+    },
+    {
+      "reference": "19003",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces à Implant (mâchoires 8-mm)",
+      "newFrenchName": "Implant pinces(8 mm mâchoires)",
+      "oldFrenchDesc": "Pinces à implant à action directe de 12,8 cm avec partie active de 8 mm. Conçues pour l'implantation et la manipulation d'implants intraoculaires.",
+      "newFrenchDesc": "Pinces à implant à action directe de 12,8 cm avec partie active de 8 mm. Conçues pour l'implantation et la manipulation d'implants intraoculaires.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "19039",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "pointe de remplacement(pour #19009/2.8)",
+      "newFrenchName": "Remplacement pointe(pour #19009/2.8)",
+      "oldFrenchDesc": "Remplacement tip pour the beehler mini pupil dilator (#19009/2.8)",
+      "newFrenchDesc": "Remplacement pointe pour the beehler mini pupil dilator (#19009/2.8)",
+      "issuesFixed": [
+        "Missing capital letter",
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "19069T",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "silicone Tubing remplacement Set(pour ref. #19069)",
+      "newFrenchName": "Silicone tubing remplacement set(pour ref. #19069)",
+      "oldFrenchDesc": "Remplacement ensemble de silicone tubing foraspirating spéculum.",
+      "newFrenchDesc": "Remplacement set de silicone tubing foraspirating spéculum.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "English words found: for"
+      ]
+    },
+    {
+      "reference": "19074",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces d'Explantation IOL (mâchoires striées 7-mm)",
+      "newFrenchName": "Iol explantation pinces(7 mm dentelé mâchoires)",
+      "oldFrenchDesc": "Longueur totale de 11,9 cm, partie active avec mâchoires striées de 7 mm. Conçues pour retirer en sécurité les implants intraoculaires.",
+      "newFrenchDesc": "Longueur totale de 11,9 cm, partie active avec mâchoires striées de 7 mm. Conçues pour retirer en sécurité les implants intraoculaires.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "19079",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces de Capsulorhexis Hachet (incision 2.2-mm, action croisée)",
+      "newFrenchName": "Hachet capsulorhexis pinces(2.2 mm incision, à action croisée)",
+      "oldFrenchDesc": "Pinces de capsulorhexis à action croisée avec partie active courbe et pointe angulée à ≈45° pour produire une capsulorhexis parfaitement ronde.",
+      "newFrenchDesc": "Pinces de capsulorhexis à action croisée avec partie active courbe et pointe angulée à ≈45° pour produire une capsulorhexis parfaitement ronde.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "20000",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces Crozafon - 1.8 mm (incision 1.8-mm)",
+      "newFrenchName": "Crozafon pinces - 1.8 mm(1.8 mm incision)",
+      "oldFrenchDesc": "Pinces de capsulorhexis réutilisables avec partie active courbe et pointe angulée à ≈45° pour produire une capsulorhexis parfaitement circulaire.",
+      "newFrenchDesc": "Pinces de capsulorhexis réutilisables avec partie active courbe et pointe angulée à ≈45° pour produire une capsulorhexis parfaitement circulaire.",
+      "issuesFixed": [
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "20001",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Micro Pré-Hachoir Crozafon (action croisée, incision 2.2-mm)",
+      "newFrenchName": "Crozafon micro pre-chopper(à action croisée, 2.2 mm incision)",
+      "oldFrenchDesc": "Total length de 120 mm avec an active part dans the shape de a pinces whose length is 5 mm over 1 mm. aigu(e) pointed tip. can be used pendant cataract surgery to fragment the nucleus.",
+      "newFrenchDesc": "Total longueur de 120 mm avec an actif partie dans the shape de a pinces whose longueur is 5 mm over 1 mm. aigu pointed pointe.can be used during cataract surgery to fragment the nucleus.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "20003",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pinces Ogawa (pour insertion de greffon DSAEK)",
+      "newFrenchName": "Pinces Ogawa (pour insertion de greffon DSAEK)",
+      "oldFrenchDesc": "11.6-cm length avec an active part dans the shape de pinces de 0.5 mm over 0.45 mm. can be used pour donor button insertion pendant lamellar keratoplasty.émoussé(e) tips pour the release de donor tissue inside the patient’s eyeangulation de handle optimized pour a fingertip controlwhen the instrument is closed, active tips remain slightly open not to compress the donor tissue.",
+      "newFrenchDesc": "11.6-cm longueur avec an actif partie dans the shape de pinces de 0.5 mm over 0.45 mm.can be used pour donor button insertion during lamellar keratoplasty.émoussé pointes pour the release de donor tissue inside the patient’s eyeangulation de manche optimized pour a fingertip controlwhen the instrument is closed, actif pointes remain slightly open not to compress the donor tissue.",
+      "issuesFixed": [
+        "English words found: the, and"
+      ]
+    },
+    {
+      "reference": "20028",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Spatule Double-Extrémité Fontana (pour DALK)",
+      "newFrenchName": "Spatule Double-Extrémité Fontana (pour DALK)",
+      "oldFrenchDesc": "One end is a disc-shaped spatule pour detachment de intrastromal adherences: semi-aigu(e) rounded conception pour peripheral dissection, émoussé(e) active part. the other end is a foam et flat spatule pour stromal dissection: beveled up, émoussé(e) tip to protect descemet’s membrane while coupe posterior stroma.",
+      "newFrenchDesc": "One end is a disc-shaped spatule pour detachment de intrastromal adherences: semi-aigu rounded design pour peripheral dissection, émoussé actif partie.the other end is a foam et flat spatule pour stromal dissection: beveled up, émoussé pointe to protect descemet’s membrane while coupe posterior stroma.",
+      "issuesFixed": [
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "20032",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Spatule Double-Extrémité Ancel (pour LASIK, SMILE)",
+      "newFrenchName": "Spatule Double-Extrémité Ancel (pour LASIK, SMILE)",
+      "oldFrenchDesc": "Double-endedinstrument avec: an active hook-shaped part, et the other avec a émoussé(e) spatule. allows entry into an incision et/ou the separation de the stroma pendant refractive surgery (lasik, relex smile).",
+      "newFrenchDesc": "Double-endedinstrument avec:an actif crochet-shaped partie,et the other avec a émoussé spatule.allows entry into an incision et/ou the separation de the stroma during refractive surgery (lasik,relex smile).",
+      "issuesFixed": [
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "2125",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Desmarres pinces(25 mm)",
+      "newFrenchName": "Desmarres pinces(25 mm)",
+      "oldFrenchDesc": "Total length is 10 cm avec a 25 mm x 15 mm active part avec solid side et fenestrated side. can be used dans the treatment de chalazion et ptosis.",
+      "newFrenchDesc": "Total longueur is 10 cm avec a 25 mm x 15 mm actif partie avec solid side et fenestrated side.can be used dans the treatment de chalazion et ptosis.",
+      "issuesFixed": [
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "2131",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Lambert pinces(11 mm)",
+      "newFrenchName": "Lambert pinces(11 mm)",
+      "oldFrenchDesc": "Total length is 9.6 cm avec an active part de 11.5 mm internal diameter, et 13.5 mm external diameter. can be used dans the treatment de chalazion et ptosis.",
+      "newFrenchDesc": "Total longueur is 9.6 cm avec an actif partie de 11.5 mm internal diamètre, et 13.5 mm external diamètre.can be used dans the treatment de chalazion et ptosis.",
+      "issuesFixed": [
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "2146",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "pinces(droites, medium size, regular)",
+      "newFrenchName": "Pinces(droit, medium taille, regular)",
+      "oldFrenchDesc": "Pinces avec lisse platforms.10.4-cm total length avec 5.0 mm active part.",
+      "newFrenchDesc": "Pinces avec lisse plateformes.10.4-cm total longueur avec 5.0 mm actif partie.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "English words found: for"
+      ]
+    },
+    {
+      "reference": "2180A",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonaccolto pinces(0.8-mm mâchoires dentelées)",
+      "newFrenchName": "Bonaccolto pinces(0.8 mm dentelé mâchoires)",
+      "oldFrenchDesc": "Droit(e), standard, 0.8 mm tooth jaws over a 11.0 mm total length. can be used pour dissecting tissue.",
+      "newFrenchDesc": "Droit, standard, 0.8 mm tooth mâchoires over a 11.0 mm total longueur.can be used pour dissecting tissue.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: and"
+      ]
+    },
+    {
+      "reference": "2183",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "pinces(1-mm mâchoires dentelées)",
+      "newFrenchName": "Pinces(1 mm dentelé mâchoires)",
+      "oldFrenchDesc": "11-cm long, courbé(e), standard, 1 mm dentelé(e) pinces over a 9 mm active part. can be used pour dissecting tissue.",
+      "newFrenchDesc": "11-cm long, courbé, standard, 1 mm dentelé pinces over a 9 mm actif partie.can be used pour dissecting tissue.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "Hyphen spacing with mm",
+        "English words found: and"
+      ]
+    },
+    {
+      "reference": "2221",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Barraquer pinces(droites avec oblique teeth)",
+      "newFrenchName": "Barraquer pinces(droites avec oblique teeth)",
+      "oldFrenchDesc": "Total length de the pinces is 10.1 cm avec an active oblique part de 9 mm long avec 12 x 12 teeth. can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral(e) edge, to fix the limb, to remove the iris, to lift the conjunctive et the tenon facia. pinces pour holding are also recommended when it is necessary to manipulate the upper et lower eye muscles: they allow you to exercise léger(ère) traction sur the eyeball.",
+      "newFrenchDesc": "Total longueur de the pinces is 10.1 cm avec an actif oblique partie de 9 mm long avec 12 x 12 dents.can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral edge, to fix the limb, to remove the iris, to lift the conjunctive et the tenon facia. pinces pour maintien are also recommended when it is necessary to manipulate the upper et lower eye muscles: they allow you to exercise léger traction sur the eyeball.",
+      "issuesFixed": [
+        "English words found: the, with"
+      ]
+    },
+    {
+      "reference": "2228",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Elschnig pinces(droites avec crossed teeth)",
+      "newFrenchName": "Elschnig pinces(droites avec crossed teeth)",
+      "oldFrenchDesc": "Crossed teeth can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral(e) edge, to fix the limb, to remove the iris, to lift the conjunctiva et the tenon facia.",
+      "newFrenchDesc": "Crossed dents can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral edge, to fix the limb, to remove the iris, to lift the conjunctiva et the tenon facia.",
+      "issuesFixed": [
+        "English words found: the, with"
+      ]
+    },
+    {
+      "reference": "2280A",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Lester pinces(1.1-mm teeth)",
+      "newFrenchName": "Lester pinces(1.1 mm dents)",
+      "oldFrenchDesc": "Reusablelesterconjunctival pinces avec 1.1 mm teeth et 11.1-cm length. can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the sclera, to fix the limb, to remove the iris, to lift theconjunctivaand the tenon facia.",
+      "newFrenchDesc": "Reusablelesterconjunctival pinces avec 1.1 mm dents et 11.1-cm longueur.can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the sclera, to fix the limb, to remove the iris, to lift theconjunctivaand the tenon facia.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: the, and, with"
+      ]
+    },
+    {
+      "reference": "2321",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "De Wecker pinces “Mosquito”(droites, à action croisée)",
+      "newFrenchName": "De Wecker pinces “Mosquito”(droites, à action croisée)",
+      "oldFrenchDesc": "droites, à action croisée, 7-cm length avec a 3.5-mm partie active.Hemostatic pinces avec flat poignée that can be used to weight down sutures.",
+      "newFrenchDesc": "Droit, à action croisée, 7-cm longueur avec a 3.5 mm actif partie.hemostatic pinces avec flat manche that can be used to weight down sutures.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "Hyphen spacing with mm"
+      ]
+    },
+    {
+      "reference": "2432",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Barraquer pinces(6 mm platforms, droit(e) jaws)",
+      "newFrenchName": "Barraquer pinces(6 mm plateformes, droit mâchoires)",
+      "oldFrenchDesc": "Barraquerforceps avec an active tip de 6 mmplatformsand droit(e) jaws, et 11.1-cm length. can be used to hold the threads duringsutures.",
+      "newFrenchDesc": "Barraquerforceps avec an actif pointe de 6 mmplatformsand droit mâchoires, et 11.1-cm longueur.can be used to hold the threads duringsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: forceps, the, and, for"
+      ]
+    },
+    {
+      "reference": "3201",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Paufique Knife(pour cornea)",
+      "newFrenchName": "Paufique Knife(pour cornea)",
+      "oldFrenchDesc": "127 mmknifewith a 6x3 mm lancet shapedesmarres-paufiquedissector. can be used to make incisions et stromal pockets within the cornea pendant an eye surgery.",
+      "newFrenchDesc": "127 mmknifewith a 6x3 mm lancet shapedesmarres-paufiquedissector.can be used to make incisions et stromal pockets within the cornea during an eye surgery.",
+      "issuesFixed": [
+        "English words found: the, with"
+      ]
+    },
+    {
+      "reference": "3225",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Burrato-Sinskey Manipulator Hook(angulées partie active avec a 0.7-mm angulées pointe)",
+      "newFrenchName": "Burrato-sinskey manipulateur crochet(angulé actif partie avec a 0.7 mm angulé pointe)",
+      "oldFrenchDesc": "12.1-cm total length avec an angulé(e), active part avec collar button olive tip. can be used to implant, position, rotate et manipulate an intraoculaire cristallin (iol)dans the anterior ou posterior chamber without damaging it.",
+      "newFrenchDesc": "12.1-cm total longueur avec an angulé, actif partie avec collar button olive pointe.can be used to implant, position, rotate et manipulate an intraoculaire cristallin (iol)dans the anterior ou posterior chamber without damaging it.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: the, with"
+      ]
+    },
+    {
+      "reference": "6031BIS",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Cilia pinces, Swiss model(1.5-mm concave mâchoires)",
+      "newFrenchName": "Cilia pinces, suisse modèle(1.5 mm concave mâchoires)",
+      "oldFrenchDesc": "Very thin pinces, avec flat et striated handle.9.8-cm total length, avec 4.0 mm active part.",
+      "newFrenchDesc": "Very thin pinces, avec flat et striated manche.9.8-cm total longueur, avec 4.0 mm actif partie.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: and"
+      ]
+    },
+    {
+      "reference": "6223",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "De saint martin-barraquer pinces(5 mm tying platforms, 0.5 mm oblique teeth)",
+      "newFrenchName": "De saint martin-barraquer pinces(5 mm nouage plateformes, 0.5 mm oblique dents)",
+      "oldFrenchDesc": "Saint martin-barraquerforceps avec 5 mm tyingplatforms, 0.5 mm thin oblique teeth, et 9-cm length. can be used pour scléral(e) et conjunctivalsutures.",
+      "newFrenchDesc": "Saint martin-barraquerforceps avec 5 mm tyingplatforms, 0.5 mm thin oblique dents, et 9-cm longueur.can be used pour scléral et conjunctivalsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: forceps, for"
+      ]
+    },
+    {
+      "reference": "7384",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Castroviejo pinces(6 mm tying platforms, 0.4 mm oblique teeth)",
+      "newFrenchName": "Castroviejo pinces(6 mm nouage plateformes, 0.4 mm oblique dents)",
+      "oldFrenchDesc": "Castroviejoforceps avec 6 mm tyingplatforms, 0.4 mm oblique teeth, et 10-cm length. can be used pour scléral(e) et conjunctivalsutures.",
+      "newFrenchDesc": "Castroviejoforceps avec 6 mm tyingplatforms, 0.4 mm oblique dents, et 10-cm longueur.can be used pour scléral et conjunctivalsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: forceps, for"
+      ]
+    },
+    {
+      "reference": "7431",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Barraquer pinces, “colibri” type(1 mm platforms)",
+      "newFrenchName": "Barraquer pinces, “colibri” type(1 mm plateformes)",
+      "oldFrenchDesc": "Barraquer\"colibri\" tying pinces avec an active part de 4 mm courbé(e) length et 1 mmplatforms. can be used to hold the threads duringsutures.",
+      "newFrenchDesc": "Barraquer\"colibri\" nouage pinces avec an actif partie de 4 mm courbé longueur et 1 mmplatforms.can be used to hold the threads duringsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, for"
+      ]
+    },
+    {
+      "reference": "7835",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn pinces(0.12 mm teeth avec platforms)",
+      "newFrenchName": "Bonn pinces(0.12 mm dents avec plateformes)",
+      "oldFrenchDesc": "Reusablebonnholding pinces withplatformsand0.12 mmfacing micro teeth. can be used to hold the cornea.",
+      "newFrenchDesc": "Reusablebonnholding pinces withplatformsand0.12 mmfacing micro dents. can be used to hold the cornea.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    },
+    {
+      "reference": "7835C",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Moria pinces(4 mm platforms, droit(e) jaws)",
+      "newFrenchName": "Moria pinces(4 mm plateformes, droit mâchoires)",
+      "oldFrenchDesc": "Moria holding pinces avec an active tip de 4 mmplatformsandstraightjaws, et 7.5-cm length. can be used to hold the threads duringsutures.",
+      "newFrenchDesc": "Moria maintien pinces avec an actif pointe de 4 mmplatformsandstraightjaws, et 7.5-cm longueur.can be used to hold the threads duringsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, for, straight"
+      ]
+    },
+    {
+      "reference": "7850A",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn-moria pinces (0.18 mm teeth avec platforms)",
+      "newFrenchName": "Bonn-moria pinces (0.18 mm dents avec plateformes)",
+      "oldFrenchDesc": "Réutilisable bonn-moria holding pinces avec platforms et 0.18 mm facing micro teeth. can be used to hold the cornea.",
+      "newFrenchDesc": "Réutilisable bonn-moria maintien pinces avec plateformes et 0.18 mm facing micro dents. can be used to hold the cornea.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, for"
+      ]
+    },
+    {
+      "reference": "7850B",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Moria pinces(0.18 mm teeth avec platforms)",
+      "newFrenchName": "Moria pinces(0.18 mm dents avec plateformes)",
+      "oldFrenchDesc": "Reusablebonnholding pinces withplatformsand0.18 mmfacing micro teeth, bayonet-shaped. can be used to hold the cornea.",
+      "newFrenchDesc": "Reusablebonnholding pinces withplatformsand0.18 mmfacing micro dents, bayonet-shaped. can be used to hold the cornea.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    },
+    {
+      "reference": "7850C",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Moria pinces(3 mm platforms, droit(e) jaws)",
+      "newFrenchName": "Moria pinces(3 mm plateformes, droit mâchoires)",
+      "oldFrenchDesc": "Moria holding pinces avec an active tip de 3 mmplatformsandstraightjaws, et 9.8-cm length. can be used to hold the threads duringsutures.",
+      "newFrenchDesc": "Moria maintien pinces avec an actif pointe de 3 mmplatformsandstraightjaws, et 9.8-cm longueur.can be used to hold the threads duringsutures.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, for, straight"
+      ]
+    },
+    {
+      "reference": "7862",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Barraquer-Troutman pinces(0.12-mm oblique teeth, “colibri” type)",
+      "newFrenchName": "Barraquer-troutman pinces(0.12 mm oblique dents, “colibri” type)",
+      "oldFrenchDesc": "Reusablebarraquer-troutmanforceps avec tyingplatformsand0.12 mmoblique teeth, “colibri” type. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablebarraquer-troutmanforceps avec tyingplatformsand0.12 mmoblique dents, “colibri” type. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: forceps, the, and, for"
+      ]
+    },
+    {
+      "reference": "9510",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Castroviejo “utility” pinces(6.5 mm platforms, 0.3 mm oblique teeth)",
+      "newFrenchName": "Castroviejo “utility” pinces(6.5 mm plateformes, 0.3 mm oblique dents)",
+      "oldFrenchDesc": "Castroviejo\"utility\" pinces avec 0.3 mm oblique teeth, 6.5 mmplatformsand 10.5-cm total length. can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral(e) edge, to fix the limb, to remove the iris, to lift theconjunctivaand the tenon facia.",
+      "newFrenchDesc": "Castroviejo\"utility\" pinces avec 0.3 mm oblique dents, 6.5 mmplatformsand 10.5-cm total longueur.can be used to seize, rotate ou manipulate the eyeball without damaging the tissues, to manipulate the scléral edge, to fix the limb, to remove the iris, to lift theconjunctivaand the tenon facia.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    },
+    {
+      "reference": "9803",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Pierse pinces(0.2 mm oblique teeth, “colibri” type, avec notched jaws et platforms)",
+      "newFrenchName": "Pierse pinces(0.2 mm oblique dents, “colibri” type, avec notched mâchoires et plateformes)",
+      "oldFrenchDesc": "Reusablepierseforceps with0.2 mmnotched jaws andplatforms, “colibri” type. can be used to hold the eye pendant ophtalmique surgery.",
+      "newFrenchDesc": "Reusablepierseforceps with0.2 mmnotched mâchoires andplatforms, “colibri” type. can be used to hold the eye during ophtalmique surgery.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: forceps, the, and, with, for"
+      ]
+    },
+    {
+      "reference": "9980",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Micro-Surgery pinces(droites, ultra-thin pointe)",
+      "newFrenchName": "Micro-Surgery pinces(droites, ultra-thin pointe)",
+      "oldFrenchDesc": "pinces pour micro-surgery, droites, ultra-thin, 13-cm long.",
+      "newFrenchDesc": "Pinces pour micro-surgery, droit, ultra-thin, 13-cm long.",
+      "issuesFixed": [
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "9983",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Micro-Surgery pinces(droites)",
+      "newFrenchName": "Micro-Surgery pinces(droites)",
+      "oldFrenchDesc": "pinces pour micro-surgery, droites, ultra-thin, 13-cm long.",
+      "newFrenchDesc": "Pinces pour micro-surgery, droit, ultra-thin, 13-cm long.",
+      "issuesFixed": [
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "9987",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Micro-Surgery pinces(courbes)",
+      "newFrenchName": "Micro-Surgery pinces(courbes)",
+      "oldFrenchDesc": "pinces pour micro-surgery, courbes, ultra-thin, 12.8-cm long.",
+      "newFrenchDesc": "Pinces pour micro-surgery, courbé, ultra-thin, 12.8-cm long.",
+      "issuesFixed": [
+        "Missing capital letter"
+      ]
+    },
+    {
+      "reference": "M0489",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Castroviejo à double extrémité spatule(à double extrémité)",
+      "newFrenchName": "Castroviejo à double extrémité spatule(à double extrémité)",
+      "oldFrenchDesc": "Castroviejodouble-endedspatulawith a aigu(e) spatulated tip et a émoussé(e) spatulated tip. can be used to manipulate theintraocular lensand/ou thenucleus.",
+      "newFrenchDesc": "Castroviejodouble-endedspatulawith a aigu spatulated pointe et a émoussé spatulated pointe.can be used to manipulate theintraocular lensand/ou thenucleus.",
+      "issuesFixed": [
+        "English words found: the, and, with"
+      ]
+    },
+    {
+      "reference": "M0570N",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Nichamin à double extrémité spatule(à double extrémité)",
+      "newFrenchName": "Nichamin à double extrémité spatule(à double extrémité)",
+      "oldFrenchDesc": "Nichamin à double extrémité spatule avec a aigu(e) 1.25 mm et a émoussé(e) spatule tip de 0.5 mm avec angulations de 110° et 135° respectively. can be used to manipulate theintracular lensand/ou thecrystalline lensduringcataractsurgery.",
+      "newFrenchDesc": "Nichamin à double extrémité spatule avec a aigu 1.25 mm et a émoussé spatule pointe de 0.5 mm avec angulations de 110° et 135° respectively.can be used to manipulate theintracular lensand/ou thecrystalline lensduringcataractsurgery.",
+      "issuesFixed": [
+        "English words found: the, and"
+      ]
+    },
+    {
+      "reference": "M0712",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Koch Spatula(6.5-mm pointe)",
+      "newFrenchName": "Koch spatule(6.5 mm pointe)",
+      "oldFrenchDesc": "119 mm length avec a courbé(e) active part length de 6.55 mm, et width de 0.85 mm. can be used to manipulate theintraocular lensand/ornucleusduringcataractsurgery.",
+      "newFrenchDesc": "119 mm longueur avec a courbé actif partie longueur de 6.55 mm, et largeur de 0.85 mm.can be used to manipulate theintraocular lensand/ornucleusduringcataractsurgery.",
+      "issuesFixed": [
+        "Hyphen spacing with mm",
+        "English words found: the, and"
+      ]
+    },
+    {
+      "reference": "M32390",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Nagahara Spatula(110° angulées pointe)",
+      "newFrenchName": "Nagahara Spatula(110° angulées pointe)",
+      "oldFrenchDesc": "116 mm total length, active part avec 110° angulation et 0.3 mm diameter. can be used to manipulate theintraocular lensand/orcrystalline lensduringcataractsurgery.",
+      "newFrenchDesc": "116 mm total longueur, actif partie avec 110° angulation et 0.3 mm diamètre.can be used to manipulate theintraocular lensand/orcrystalline lensduringcataractsurgery.",
+      "issuesFixed": [
+        "English words found: the, and"
+      ]
+    },
+    {
+      "reference": "MC31",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "iris pinces(courbes, mâchoires dentelées)",
+      "newFrenchName": "Iris pinces(courbé, dentelé mâchoires)",
+      "oldFrenchDesc": "Courbé(e), dentelé(e) iris pinces avec a length de 9.8 cm. can be used to manipulate the iris.",
+      "newFrenchDesc": "Courbé, dentelé iris pinces avec a longueur de 9.8 cm.can be used to manipulate the iris.",
+      "issuesFixed": [
+        "Missing capital letter",
+        "English words found: the"
+      ]
+    },
+    {
+      "reference": "MC43",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "De Wecker “Mosquito” pinces(droites)",
+      "newFrenchName": "De Wecker “Mosquito” pinces(droites)",
+      "oldFrenchDesc": "Droit(e) et 5.4-cm length avec a 2.8 mm active part. hemostatic pinces avec flat handle that can be used to weight down sutures.",
+      "newFrenchDesc": "Droit et 5.4-cm longueur avec a 2.8 mm actif partie.hemostatic pinces avec flat manche that can be used to weight down sutures.",
+      "issuesFixed": [
+        "English words found: and"
+      ]
+    },
+    {
+      "reference": "MC44",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "De Wecker Mosquito pinces(courbes)",
+      "newFrenchName": "De Wecker Mosquito pinces(courbes)",
+      "oldFrenchDesc": "Courbé(e) et 5.4-cm length avec a 2.8 mm active part. hemostatic pinces avec flat handle that can be used to weight down sutures.",
+      "newFrenchDesc": "Courbé et 5.4-cm longueur avec a 2.8 mm actif partie.hemostatic pinces avec flat manche that can be used to weight down sutures.",
+      "issuesFixed": [
+        "English words found: and"
+      ]
+    },
+    {
+      "reference": "TI7835",
+      "manufacturer": "MORIA",
+      "oldFrenchName": "Bonn pinces - titanium(0.12 mm teeth avec platforms)",
+      "newFrenchName": "Bonn pinces - titanium(0.12 mm dents avec plateformes)",
+      "oldFrenchDesc": "Reusablebonnholding pinces intitaniumwithplatformsand0.12 mmfacing micro teeth. can be used to hold the cornea.",
+      "newFrenchDesc": "Reusablebonnholding pinces intitaniumwithplatformsand0.12 mmfacing micro dents. can be used to hold the cornea.",
+      "issuesFixed": [
+        "English words found: for",
+        "English words found: the, and, with, for"
+      ]
+    }
+  ]
+}

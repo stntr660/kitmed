@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown } from 'lucide-react';
 import { DynamicBanner } from '@/components/banners/DynamicBanner';
+import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
@@ -155,6 +156,9 @@ export default function HomePage() {
         {/* Dynamic Banner - always render the same component structure */}
         <DynamicBanner position="homepage" />
 
+        {/* Certifications Banner */}
+        <CertificationsBanner variant="hero" />
+
         {/* Partners Section */}
         <section className="py-12 lg:py-16 bg-white">
           <div className="container mx-auto px-4 lg:px-8">
@@ -174,39 +178,43 @@ export default function HomePage() {
               {!isHydrated || partnersLoading ? (
                 // Loading skeleton - same structure as actual content
                 Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className="group">
-                    <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
-                      <div className="h-16 flex items-center justify-center mb-4">
-                        <div className="animate-pulse bg-gray-200 h-12 w-20 rounded"></div>
+                  <Card key={index} className="border-0 shadow-lg h-full flex flex-col">
+                    <CardContent className="p-6 flex-1 flex flex-col text-center">
+                      <div className="w-full h-20 mb-4 flex items-center justify-center">
+                        <div className="animate-pulse bg-gray-200 h-16 w-20 rounded"></div>
                       </div>
                       <div className="animate-pulse">
-                        <div className="h-4 bg-gray-200 rounded mb-2 w-3/4 mx-auto"></div>
-                        <div className="h-3 bg-gray-200 rounded w-full"></div>
+                        <div className="h-5 bg-gray-200 rounded mb-2 w-3/4 mx-auto"></div>
+                        <div className="h-4 bg-gray-200 rounded w-full"></div>
                       </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 ))
               ) : (
                 partners.map((partner) => (
-                <div key={partner.id} className="group">
-                  <div className="bg-white p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-all duration-300 text-center group-hover:border-blue-300">
-                    <div className="h-20 flex items-center justify-center mb-4">
-                      {partner.logo ? (
-                        <img 
-                          src={partner.logo}
-                          alt={partner.name}
-                          className="max-h-16 max-w-24 object-contain"
-                        />
-                      ) : (
-                        <div className="w-24 h-16 bg-gray-100 rounded flex items-center justify-center">
-                          <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
-                        </div>
+                  <Card key={partner.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
+                    <CardContent className="p-6 flex-1 flex flex-col text-center">
+                      <div className="w-full h-20 mb-4 flex items-center justify-center">
+                        {partner.logo ? (
+                          <img 
+                            src={partner.logo}
+                            alt={partner.name}
+                            className="max-h-16 w-auto object-contain"
+                          />
+                        ) : (
+                          <div className="w-24 h-16 bg-gray-100 rounded flex items-center justify-center">
+                            <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">{partner.name}</h3>
+                      
+                      {partner.description && (
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">{partner.description}</p>
                       )}
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
-                    <p className="text-sm text-gray-600">{partner.description}</p>
-                  </div>
-                </div>
+                    </CardContent>
+                  </Card>
                 ))
               )}
             </div>
@@ -215,7 +223,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50"
+                className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                 asChild
               >
                 <Link href={`/${locale}/partners`}>
@@ -303,8 +311,8 @@ export default function HomePage() {
                 // Loading skeleton - same structure as actual content
                 Array.from({ length: 6 }).map((_, index) => (
                   <div key={index} className="group cursor-pointer">
-                    <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-blue-300">
-                      <div className="relative aspect-square bg-gradient-to-br from-blue-50 to-white overflow-hidden">
+                    <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
+                      <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                         <div className="animate-pulse bg-gray-200 w-full h-full"></div>
                         <div className="absolute top-4 right-4 bg-gray-200 animate-pulse px-3 py-1 rounded-full text-xs font-medium w-16 h-6">
                         </div>
@@ -328,8 +336,8 @@ export default function HomePage() {
                 categories.map((category) => (
                   <div key={category.id} className="group cursor-pointer">
                     <Link href={`/${locale}/products?category=${category.slug}`}>
-                      <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-blue-300">
-                        <div className="relative aspect-square bg-gradient-to-br from-blue-50 to-white overflow-hidden">
+                      <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
+                        <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                           {category.imageUrl ? (
                             <img 
                               src={category.imageUrl} 
@@ -337,31 +345,31 @@ export default function HomePage() {
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-white">
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                                  <span className="text-blue-600 font-bold text-xl">{category.name.charAt(0)}</span>
+                                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
+                                  <span className="text-primary-600 font-bold text-xl">{category.name.charAt(0)}</span>
                                 </div>
                               </div>
                             </div>
                           )}
-                          <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                          <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium">
                             {category.productCount} {t('disciplines.productsCount')}
                           </div>
                         </div>
                         
                         <CardContent className="p-6">
-                          <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
                             {category.name}
                           </h3>
                           <p className="text-gray-600 text-sm leading-relaxed mb-4 min-h-[3rem]">
                             {category.description || t('disciplines.fallbackDescription', { name: category.name.toLowerCase() })}
                           </p>
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500 group-hover:text-blue-600 transition-colors">
+                            <span className="text-sm text-gray-500 group-hover:text-primary-600 transition-colors">
                               {t('disciplines.viewRange')}
                             </span>
-                            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" />
                           </div>
                         </CardContent>
                       </Card>
@@ -375,7 +383,7 @@ export default function HomePage() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-blue-300 text-blue-700 hover:bg-blue-50"
+                className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                 asChild
               >
                 <Link href={`/${locale}/products/disciplines`}>
@@ -446,31 +454,27 @@ export default function HomePage() {
                           </div>
                         )}
                         
-                        <div className="absolute top-3 left-3">
-                          <Badge className="bg-accent-500 text-white border-0 text-xs">
-                            {t('featuredProducts.badge')}
-                          </Badge>
-                        </div>
                       </div>
                       
                       <CardContent className="p-4">
                         <div className="mb-2">
                           <p className="text-xs text-gray-500 font-medium">{product.manufacturer.name}</p>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
                           {product.name}
                         </h3>
                         <p className="text-sm text-gray-600 line-clamp-2 mb-3">
                           {product.shortDescription || t('featuredProducts.noDescription')}
                         </p>
                         {product.category && (
-                          <p className="text-xs text-blue-600 font-medium mb-3">
+                          <p className="text-xs text-primary-600 font-medium mb-3">
                             {product.category.name}
                           </p>
                         )}
                         <Button 
                           size="sm" 
-                          className="w-full bg-accent-500 text-white hover:bg-accent-600"
+                          variant="outline"
+                          className="w-full"
                           asChild
                         >
                           <Link href={`/${locale}/products/${product.slug}`}>

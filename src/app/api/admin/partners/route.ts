@@ -14,7 +14,7 @@ async function getPartners(request: NextRequest) {
       type: searchParams.get('type') || undefined,
       status: searchParams.getAll('status'),
       page: parseInt(searchParams.get('page') || '1'),
-      pageSize: parseInt(searchParams.get('pageSize') || '10'),
+      pageSize: parseInt(searchParams.get('pageSize') || '100'),
       sortBy: searchParams.get('sortBy') || 'createdAt',
       sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || 'desc',
     };

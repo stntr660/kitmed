@@ -165,10 +165,10 @@ export default function PartnersPage() {
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {featuredPartners.map((partner) => (
                   <Card key={partner.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
-                    <CardContent className="p-6 flex-1 flex flex-col">
+                    <CardContent className="p-6 flex-1 flex flex-col text-center">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center">
-                          <Star className="h-4 w-4 text-yellow-500 mr-2" />
+                          <Star className="h-4 w-4 text-primary-500 mr-2" />
                           <Badge variant="secondary" className="text-xs">
                             {t('featured.badge')}
                           </Badge>
@@ -195,12 +195,12 @@ export default function PartnersPage() {
                         </div>
                       )}
                       
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
                         {getPartnerName(partner)}
                       </h3>
                       
                       {getPartnerDescription(partner) && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">
                           {getPartnerDescription(partner)}
                         </p>
                       )}
@@ -246,11 +246,11 @@ export default function PartnersPage() {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {partners.map((partner) => (
                   <Card key={partner.id} className="border-0 shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
-                    <CardContent className="p-4 flex-1 flex flex-col">
+                    <CardContent className="p-4 flex-1 flex flex-col text-center">
                       <div className="flex items-center justify-between mb-3">
                         {partner.isFeatured && (
                           <Badge variant="secondary" className="text-xs">
-                            <Star className="h-3 w-3 mr-1" />
+                            <Star className="h-3 w-3 mr-1 text-primary-500" />
                             {t('featured.badge')}
                           </Badge>
                         )}
@@ -276,12 +276,12 @@ export default function PartnersPage() {
                         </div>
                       )}
                       
-                      <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                      <h3 className="text-sm font-semibold text-gray-900 mb-2 text-center">
                         {getPartnerName(partner)}
                       </h3>
                       
                       {getPartnerDescription(partner) && (
-                        <p className="text-gray-600 text-xs leading-relaxed">
+                        <p className="text-gray-600 text-xs leading-relaxed text-center">
                           {getPartnerDescription(partner)}
                         </p>
                       )}
@@ -322,8 +322,8 @@ export default function PartnersPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('benefits.quality.title')}
@@ -334,8 +334,8 @@ export default function PartnersPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-green-600" />
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('benefits.trust.title')}
@@ -346,8 +346,8 @@ export default function PartnersPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-purple-600" />
+                <div className="w-16 h-16 bg-primary-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('benefits.innovation.title')}

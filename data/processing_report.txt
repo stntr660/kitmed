@@ -1,0 +1,49 @@
+=== KITMED CSV Processing Report ===
+Generated: 2025-11-25T13:38:49.801Z
+
+📊 Statistics:
+- Total processed: 100 products
+- Skipped: 0 products
+
+🏭 Manufacturers found:
+- MORIA
+-  “colibri” type)"
+-  “colibri” type
+-  0.3-mm oblique teeth)"
+-  straight jaws)"
+-  “Colibri” Type(1-mm platforms)"
+-  SMILE)"
+-  cross-action)"
+-  serrated jaws)"
+-  medium size
+-  Swiss model(1.5-mm concave jaws)"
+-  angled)"
+-  2.2-mm incision)"
+-  0.5-mm oblique teeth)"
+-  distal control)"
+-  ultra-thin tip)"
+-  0.4-mm oblique teeth)"
+-  7-mm jaws)"
+-  straight
+-  straight)"
+-  curved)"
+-  curved
+-  0.8-mm teeth)"
+-  angled
+-  for strabismus)"
+-  pointed blades)"
+-  slightly blunt blades)"
+-  blunt blades)"
+-  DMEK)"
+-  for keratoplasty)"
+
+📂 Categories assigned:
+- ophthalmology-surgical
+
+❌ Skipped products:
+
+
+✅ Files created:
+- /Users/mac/Documents/Zonemation/Transformation digital/Clients/KITMEDAPP/data/kitmed_import_ready.csv
+- /Users/mac/Documents/Zonemation/Transformation digital/Clients/KITMEDAPP/data/kitmed_import_ready.json
+- /Users/mac/Documents/Zonemation/Transformation digital/Clients/KITMEDAPP/data/processing_report.txt

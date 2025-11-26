@@ -700,6 +700,7 @@
         "title": "Import en lot CSV"
       },
       "feature": "Mettre en avant",
+      "unfeature": "Retirer de la vedette",
       
       "addDescription": "Ajoutez un nouveau partenaire à votre réseau médical",
       "editDescription": "Mettre à jour les informations du partenaire",

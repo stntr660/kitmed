@@ -232,6 +232,102 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
   }
 }
 
+// PATCH /api/admin/partners/[id] - Partial update partner (for quick updates like featured status)
+const patchPartnerSchema = z.object({
+  isFeatured: z.boolean().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+});
+
+async function patchPartner(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    const body = await request.json();
+    
+    // Validate request body
+    const validation = patchPartnerSchema.safeParse(body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'VALIDATION_ERROR',
+            message: 'Invalid partner data',
+            details: validation.error.issues,
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    const updateData = validation.data;
+
+    // Check if partner exists
+    const existingPartner = await prisma.partner.findUnique({
+      where: { id: params.id },
+    });
+
+    if (!existingPartner) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Partner not found',
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    // Update partner with only provided fields
+    const partner = await prisma.partner.update({
+      where: { id: params.id },
+      data: updateData,
+      include: {
+        translations: true,
+      },
+    });
+
+    // Transform the response to match expected format
+    const transformedPartner = {
+      id: partner.id,
+      slug: partner.slug,
+      name: partner.name,
+      websiteUrl: partner.websiteUrl,
+      logoUrl: partner.logoUrl,
+      type: partner.type,
+      status: partner.status,
+      isFeatured: partner.isFeatured,
+      sortOrder: partner.sortOrder,
+      createdAt: partner.createdAt,
+      updatedAt: partner.updatedAt,
+      translations: partner.translations,
+    };
+
+    return NextResponse.json({
+      success: true,
+      data: transformedPartner,
+      meta: {
+        timestamp: new Date().toISOString(),
+        version: '1.0',
+      },
+    });
+  } catch (error) {
+    console.error('Partner patch error:', error);
+    
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to update partner',
+          details: error instanceof Error ? error.message : 'Unknown error',
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+
 // DELETE /api/admin/partners/[id] - Delete partner
 async function deletePartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
@@ -286,4 +382,5 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
 // Export handlers
 export const GET = withAuth(getPartner);
 export const PUT = withAuth(updatePartner);
+export const PATCH = withAuth(patchPartner);
 export const DELETE = withAuth(deletePartner);

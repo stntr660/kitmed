@@ -22,6 +22,7 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
+import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
   id: string;
@@ -128,6 +129,9 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Certifications Banner */}
+      <CertificationsBanner variant="compact" />
+      
       {/* Hero Section */}
       <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
@@ -274,7 +278,7 @@ export default function ProductsPage() {
                             <Badge 
                               variant="secondary" 
                               className="text-xs border-0"
-                              style={{ backgroundColor: '#3B82F6' + '20', color: '#3B82F6' }}
+                              className="bg-primary-100 text-primary-600"
                             >
                               {categoryInfo.name || 'Category'}
                             </Badge>
@@ -293,7 +297,7 @@ export default function ProductsPage() {
                             </CardTitle>
                           </div>
                           {product.isFeatured && (
-                            <Award className="h-5 w-5 text-amber-500 flex-shrink-0 ml-2" />
+                            <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
                           )}
                         </div>
                         
@@ -312,7 +316,7 @@ export default function ProductsPage() {
                         <div className="space-y-2">
                           <Button 
                             size="sm" 
-                            className="w-full bg-primary text-white hover:bg-gray-600"
+                            className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
                             <Link href={`/fr/products/${product.slug || product.id}`}>
@@ -371,7 +375,7 @@ export default function ProductsPage() {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="min-w-[200px] h-12 border-2 border-gray-300 text-gray-600 hover:bg-gray-50"
+                    className="min-w-[200px] h-12 border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                   >
                     Voir Plus de Produits
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -396,7 +400,7 @@ export default function ProductsPage() {
                   setSearchQuery('');
                   setSelectedCategory('');
                 }}
-                className="bg-primary text-white hover:bg-gray-600"
+                className="bg-primary text-white hover:bg-primary-600"
               >
                 Réinitialiser les Filtres
               </Button>
@@ -441,9 +445,9 @@ export default function ProductsPage() {
                   ) : (
                     <div 
                       className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center"
-                      style={{ backgroundColor: '#3B82F6' }}
+                      className="bg-primary-500"
                     >
-                      <div className="w-5 h-5 bg-white/30 rounded-full"></div>
+                      <div className="w-5 h-5 bg-white/50 rounded-full"></div>
                     </div>
                   )}
                   <span className="text-lg font-semibold">{category.name}</span>

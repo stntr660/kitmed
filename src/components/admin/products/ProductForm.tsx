@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImageUploadBox } from '@/components/ui/image-upload-box';
 import { ProductFormData } from '@/types/admin';
 import { Product, Partner } from '@/types';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ProductFormProps {
   product?: Product | null;
@@ -69,19 +70,102 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   useEffect(() => {
     const fetchManufacturers = async () => {
       setLoadingManufacturers(true);
+      console.group('🔍 ProductForm: Manufacturer Loading Debug');
+      console.log('⏳ Starting manufacturer fetch...');
+      
       try {
-        const response = await fetch('/api/admin/partners?type=manufacturer');
+        const token = getAdminToken();
+        console.log('🔑 Auth token available:', !!token);
+        
+        if (!token) {
+          console.error('❌ No authentication token available - please login first');
+          console.groupEnd();
+          return;
+        }
+        
+        const apiUrl = '/api/admin/partners?type=manufacturer&pageSize=200&status=active';
+        console.log('🌐 Fetching from:', apiUrl);
+        
+        const response = await fetch(apiUrl, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        console.log('📡 Response status:', response.status, response.statusText);
+        console.log('📋 Response headers:', Object.fromEntries(response.headers));
+        
         if (response.ok) {
           const result = await response.json();
-          setManufacturers(result.data || []);
+          console.log('🎯 Full API Response:', result);
+          console.log('📊 Response structure:', {
+            success: result.success,
+            dataExists: !!result.data,
+            itemsExists: !!result.data?.items,
+            itemsLength: result.data?.items?.length || 0,
+          });
+          
+          // Access the items array from the paginated response
+          const manufacturersList = result.data?.items || [];
+          console.log(`✅ Raw manufacturers list (${manufacturersList.length} items):`, manufacturersList);
+          console.log('📊 Expected count: 49 manufacturers');
+          console.log('🔍 Actual count received:', manufacturersList.length);
+          
+          if (manufacturersList.length < 49) {
+            console.warn('⚠️ Missing manufacturers! Expected 49, got', manufacturersList.length);
+            console.log('🔍 Check API pagination or database query');
+          } else if (manufacturersList.length >= 49) {
+            console.log('✅ All manufacturers loaded successfully');
+          }
+          
+          // Debug each manufacturer structure
+          if (manufacturersList.length > 0) {
+            console.log('🔬 First manufacturer structure:', manufacturersList[0]);
+            console.log('🔬 Available fields:', Object.keys(manufacturersList[0]));
+            
+            // Check for name field variations
+            const firstManufacturer = manufacturersList[0];
+            console.log('📝 Name field analysis:', {
+              hasName: 'name' in firstManufacturer,
+              hasNom: 'nom' in firstManufacturer,
+              nameValue: firstManufacturer.name,
+              nomValue: firstManufacturer.nom,
+              nomFr: firstManufacturer.nom?.fr,
+              nomEn: firstManufacturer.nom?.en,
+            });
+          }
+          
+          console.log('💾 Setting manufacturers state with:', manufacturersList);
+          setManufacturers(manufacturersList);
+          console.log('✅ Manufacturers successfully loaded into state');
+        } else {
+          const errorData = await response.json().catch(() => ({}));
+          console.error('❌ Failed to fetch manufacturers:', {
+            status: response.status,
+            statusText: response.statusText,
+            errorData,
+          });
+          
+          if (response.status === 401) {
+            console.error('🔒 Authentication failed - please login to admin panel first');
+          }
         }
       } catch (error) {
-        console.error('Error fetching manufacturers:', error);
+        console.error('💥 Network error fetching manufacturers:', error);
+        console.error('📋 Error details:', {
+          name: error.name,
+          message: error.message,
+          stack: error.stack,
+        });
       } finally {
         setLoadingManufacturers(false);
+        console.log('🏁 Manufacturer loading complete');
+        console.groupEnd();
       }
     };
 
+    console.log('🚀 ProductForm useEffect triggered - starting manufacturer fetch');
     fetchManufacturers();
   }, []);
 
@@ -183,13 +267,59 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 disabled={loadingManufacturers}
               >
                 <option value="">
-                  {loadingManufacturers ? t('common.loading') : t('product.form.placeholders.selectManufacturer')}
+                  {loadingManufacturers 
+                    ? t('common.loading') 
+                    : manufacturers.length > 0 
+                      ? `${t('product.form.placeholders.selectManufacturer')} (${manufacturers.length} available)`
+                      : 'No manufacturers available - please login first'
+                  }
                 </option>
-                {manufacturers.map((manufacturer) => (
-                  <option key={manufacturer.id} value={manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}>
-                    {manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}
-                  </option>
-                ))}
+                {(() => {
+                  console.group('🎨 ProductForm: Rendering Dropdown Options');
+                  console.log('📊 Manufacturers state:', manufacturers);
+                  console.log('📋 Manufacturers count:', manufacturers.length);
+                  
+                  const options = manufacturers.map((manufacturer, index) => {
+                    // Debug each manufacturer during render
+                    console.log(`🔍 Manufacturer ${index + 1}:`, {
+                      id: manufacturer.id,
+                      name: manufacturer.name,
+                      nomFr: manufacturer.nom?.fr,
+                      nomEn: manufacturer.nom?.en,
+                      fullObject: manufacturer,
+                    });
+                    
+                    // Try different name sources
+                    const displayName = manufacturer.name || manufacturer.nom?.fr || manufacturer.nom?.en || 'Unnamed';
+                    const optionValue = manufacturer.name || manufacturer.nom?.fr || manufacturer.nom?.en || '';
+                    
+                    console.log(`✏️ Option ${index + 1} will display:`, {
+                      value: optionValue,
+                      display: displayName,
+                    });
+                    
+                    return (
+                      <option key={manufacturer.id} value={optionValue}>
+                        {displayName}
+                      </option>
+                    );
+                  });
+                  
+                  console.log('🎯 Total options to render:', options.length);
+                  console.log('📊 Expected: 49 manufacturers in dropdown');
+                  console.log('🔍 Actual: ', options.length, 'options rendered');
+                  
+                  if (options.length < 49) {
+                    console.warn('⚠️ DROPDOWN ISSUE: Missing options!', {
+                      expected: 49,
+                      rendered: options.length,
+                      missing: 49 - options.length
+                    });
+                  }
+                  
+                  console.groupEnd();
+                  return options;
+                })()}
               </select>
               {errors.constructeur && (
                 <p className="text-sm text-red-600 mt-1">{errors.constructeur.message}</p>

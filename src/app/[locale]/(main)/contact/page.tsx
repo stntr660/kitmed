@@ -60,8 +60,8 @@ export default function ContactPage() {
         <section className="py-20 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-2xl mx-auto text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="h-8 w-8 text-primary-600" />
               </div>
               <h1 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
                 {t('success.title')}
@@ -82,7 +82,7 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6" variant="outline">
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                      <Building2 className="h-5 w-5 mr-2 text-blue-600" />
+                      <Building2 className="h-5 w-5 mr-2 text-primary-600" />
                       Direction
                     </h3>
                     <div className="space-y-4">
@@ -134,10 +134,10 @@ export default function ContactPage() {
                       <div className="flex items-center space-x-3">
                         <Phone className="h-5 w-5 text-gray-500" />
                         <div className="space-y-1">
-                          <a href="tel:+212522860366" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="tel:+212522860366" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             +212 522 86 03 66
                           </a>
-                          <a href="tel:+212522860431" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="tel:+212522860431" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             +212 522 86 04 31
                           </a>
                         </div>
@@ -149,10 +149,10 @@ export default function ContactPage() {
                       <div className="flex items-center space-x-3">
                         <Mail className="h-5 w-5 text-gray-500" />
                         <div className="space-y-1">
-                          <a href="mailto:INFO@KITMED.MA" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="mailto:INFO@KITMED.MA" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             INFO@KITMED.MA
                           </a>
-                          <a href="mailto:EXPORT@KITMED.MA" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="mailto:EXPORT@KITMED.MA" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             EXPORT@KITMED.MA
                           </a>
                         </div>
@@ -179,10 +179,10 @@ export default function ContactPage() {
                       <div className="flex items-center space-x-3">
                         <Phone className="h-5 w-5 text-gray-500" />
                         <div className="space-y-1">
-                          <a href="tel:+212522863427" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="tel:+212522863427" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             +212 522 86 34 27
                           </a>
-                          <a href="tel:+212522860856" className="block text-gray-900 hover:text-blue-600 transition-colors">
+                          <a href="tel:+212522860856" className="block text-gray-900 hover:text-primary-600 transition-colors">
                             +212 522 86 08 56
                           </a>
                         </div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                      <Clock className="h-5 w-5 mr-2 text-green-600" />
+                      <Clock className="h-5 w-5 mr-2 text-primary-600" />
                       {t('hours.title')}
                     </h3>
                     <div className="space-y-2">
@@ -213,7 +213,7 @@ export default function ContactPage() {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.sunday')}</span>
-                        <span className="text-red-600">{t('hours.closed')}</span>
+                        <span className="text-accent-600">{t('hours.closed')}</span>
                       </div>
                     </div>
                   </CardContent>

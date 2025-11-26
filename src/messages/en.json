@@ -595,6 +595,13 @@
       "technicalSheetEnglishPlaceholder": "Technical specifications and functional details in English",
       "pdfBrochure": "Downloadable PDF Brochure",
       "pdfBrochurePlaceholder": "URL to technical documentation or downloadable brochure",
+      "brochureDocument": "Brochure Document",
+      "brochureDocumentPlaceholder": "https://example.com/product-brochure.pdf",
+      "brochureDocumentHint": "Link to PDF brochure or technical sheet",
+      "specificationsEnglish": "Technical Specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications and details in English",
+      "specificationsPlaceholder": "Technical specifications and details in French",
+      "specificationsHint": "Enter detailed technical information for this product",
       "statusVisibility": "Status & Visibility",
       "status": "Status",
       "statusOptions": {
@@ -637,6 +644,7 @@
         "title": "CSV Bulk Import"
       },
       "feature": "Feature",
+      "unfeature": "Remove from featured",
       
       "addDescription": "Add a new partner to your medical network",
       "editDescription": "Update partner information",

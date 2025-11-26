@@ -69,8 +69,8 @@ export default function NewRFPPage() {
 
             <div className="grid gap-8 md:grid-cols-3">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FileText className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FileText className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('howItWorks.step1.title')}
@@ -81,8 +81,8 @@ export default function NewRFPPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="h-8 w-8 text-green-600" />
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('howItWorks.step2.title')}
@@ -93,8 +93,8 @@ export default function NewRFPPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="h-8 w-8 text-purple-600" />
+                <div className="w-16 h-16 bg-primary-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('howItWorks.step3.title')}
@@ -145,8 +145,8 @@ export default function NewRFPPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('whyKitmed.expertise.title')}
@@ -157,8 +157,8 @@ export default function NewRFPPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-green-600" />
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('whyKitmed.support.title')}
@@ -169,8 +169,8 @@ export default function NewRFPPage() {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Building2 className="h-8 w-8 text-purple-600" />
+                <div className="w-16 h-16 bg-primary-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {t('whyKitmed.experience.title')}

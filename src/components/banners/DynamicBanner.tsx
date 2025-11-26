@@ -154,12 +154,11 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           </div>
           
           {banner.imageUrl && (
-            <div className="relative mx-auto max-w-md">
+            <div className="relative mx-auto max-w-xl">
               <img 
                 src={banner.imageUrl}
                 alt={banner.title}
                 className="w-full h-auto hover:scale-105 transition-transform duration-500"
-                style={{ filter: 'hue-rotate(15deg) saturate(0.9)' }}
               />
             </div>
           )}
@@ -280,27 +279,14 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         {/* Right Content - Product Image */}
         {banner.imageUrl && (
           <div className="relative">
-            <div className="relative max-w-lg mx-auto">
+            <div className="relative max-w-2xl mx-auto">
               <div className="relative">
                 <img 
                   src={banner.imageUrl}
                   alt={banner.title}
                   className="w-full h-auto hover:scale-105 transition-transform duration-500"
-                  style={{ filter: 'hue-rotate(15deg) saturate(0.9)' }}
                 />
-                
-                {/* Info Badge */}
-                <div className="absolute top-8 right-4 bg-white rounded-lg p-3 shadow-lg">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                </div>
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-gray-300 rounded-full opacity-50"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 border border-blue-200 rounded-full opacity-30"></div>
-              
-              {/* Background decoration */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-blue-50/30 to-transparent blur-xl"></div>
             </div>
           </div>
         )}
@@ -318,7 +304,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         >
           <div 
             className="absolute inset-0 bg-white"
-            style={{ opacity: banner.overlayOpacity }}
+            style={{ opacity: banner.overlayOpacity / 100 }}
           />
         </div>
       ) : (

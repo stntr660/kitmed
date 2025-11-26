@@ -117,7 +117,7 @@ export default function ProductsByManufacturerPage() {
                       </div>
                       
                       {/* Product Count Badge */}
-                      <div className="absolute top-3 right-3 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                      <div className="absolute top-3 right-3 bg-primary-600 text-white px-2 py-1 rounded-full text-xs font-medium">
                         {manufacturer.productCount} produit{manufacturer.productCount > 1 ? 's' : ''}
                       </div>
                     </div>
@@ -137,7 +137,7 @@ export default function ProductsByManufacturerPage() {
                       
                       <Button 
                         size="sm"
-                        className="w-full bg-primary text-white hover:bg-blue-700"
+                        className="w-full bg-primary text-white hover:bg-primary-700"
                         asChild
                       >
                         <Link href={`/${locale}/products?manufacturer=${encodeURIComponent(manufacturer.name)}`} className="flex items-center justify-center">

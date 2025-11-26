@@ -12,6 +12,7 @@ import {
   BuildingOfficeIcon,
   XMarkIcon as X,
 } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,7 +23,7 @@ import { PartnerQuickView } from './PartnerQuickView';
 import { CSVUpload } from './CSVUpload';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { Partner } from '@/types';
-import { formatDate, truncate } from '@/lib/utils';
+import { cn, formatDate, truncate } from '@/lib/utils';
 import { ClientOnly } from '@/components/ui/client-only';
 import { useAdminPermissions } from '@/hooks/useAdminPermissions';
 import { getAdminToken } from '@/lib/auth-utils';
@@ -166,6 +167,27 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
         headers: {
           'Authorization': `Bearer ${getAdminToken()}`,
         },
+      });
+
+      if (response.ok) {
+        await loadPartners();
+      }
+    } catch (error) {
+      // Handle error silently
+    }
+  };
+
+  const handleToggleFeatured = async (partnerId: string, currentFeatured: boolean) => {
+    try {
+      const response = await fetch(`/api/admin/partners/${partnerId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
+        body: JSON.stringify({
+          isFeatured: !currentFeatured,
+        }),
       });
 
       if (response.ok) {
@@ -516,18 +538,37 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                             variant="ghost"
                             onClick={() => handleQuickView(partner)}
                             className="hover:bg-blue-50 hover:text-blue-700"
+                            title={t('admin.view')}
                           >
                             <EyeIcon className="h-4 w-4" />
                           </Button>
                           {canUpdate('partners') && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => handleEditPartner(partner)}
-                              className="hover:bg-amber-50 hover:text-amber-700"
-                            >
-                              <PencilIcon className="h-4 w-4" />
-                            </Button>
+                            <>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleToggleFeatured(partner.id, partner.isFeatured || false)}
+                                className={cn(
+                                  "hover:bg-amber-50 hover:text-amber-700",
+                                  partner.isFeatured ? "text-amber-600" : "text-gray-400"
+                                )}
+                                title={partner.isFeatured ? t('admin.partners.unfeature') : t('admin.partners.feature')}
+                              >
+                                <StarIcon className={cn(
+                                  "h-4 w-4",
+                                  partner.isFeatured ? "fill-current" : "stroke-current fill-none"
+                                )} />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleEditPartner(partner)}
+                                className="hover:bg-blue-50 hover:text-blue-700"
+                                title={t('admin.edit')}
+                              >
+                                <PencilIcon className="h-4 w-4" />
+                              </Button>
+                            </>
                           )}
                           {canDelete('partners') && (
                             <Button
@@ -535,6 +576,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                               variant="ghost"
                               onClick={() => handleDeletePartner(partner.id)}
                               className="text-gray-600 hover:text-gray-700"
+                              title={t('common.delete')}
                             >
                               <TrashIcon className="h-4 w-4" />
                             </Button>

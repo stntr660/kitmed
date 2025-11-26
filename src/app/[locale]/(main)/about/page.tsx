@@ -24,6 +24,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationSection } from '@/components/ui/compliance-badges';
+import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -32,8 +33,11 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col">
+      {/* Certifications Banner */}
+      <CertificationsBanner variant="compact" />
+      
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6" variant="outline">
@@ -81,8 +85,8 @@ export default function AboutPage() {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Building2 className="h-6 w-6 text-blue-600" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Building2 className="h-6 w-6 text-primary-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -95,8 +99,8 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Stethoscope className="h-6 w-6 text-green-600" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Stethoscope className="h-6 w-6 text-primary-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -109,8 +113,8 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Globe className="h-6 w-6 text-purple-600" />
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Globe className="h-6 w-6 text-primary-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -145,8 +149,8 @@ export default function AboutPage() {
               <Card className="border-0 shadow-lg h-full flex flex-col">
                 <CardContent className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <Target className="h-6 w-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                      <Target className="h-6 w-6 text-primary-600" />
                     </div>
                     <h3 className="text-2xl font-semibold text-gray-900">
                       {t('mission.title')}
@@ -163,7 +167,7 @@ export default function AboutPage() {
                       t('mission.points.3')
                     ].map((point, index) => (
                       <li key={index} className="flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{point}</span>
                       </li>
                     ))}
@@ -175,8 +179,8 @@ export default function AboutPage() {
               <Card className="border-0 shadow-lg h-full flex flex-col">
                 <CardContent className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                      <Eye className="h-6 w-6 text-purple-600" />
+                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                      <Eye className="h-6 w-6 text-primary-600" />
                     </div>
                     <h3 className="text-2xl font-semibold text-gray-900">
                       {t('vision.title')}
@@ -193,7 +197,7 @@ export default function AboutPage() {
                       t('vision.points.3')
                     ].map((point, index) => (
                       <li key={index} className="flex items-start space-x-3">
-                        <Star className="h-5 w-5 text-yellow-500 mt-0.5 flex-shrink-0" />
+                        <Star className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{point}</span>
                       </li>
                     ))}
@@ -220,17 +224,17 @@ export default function AboutPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { icon: Heart, color: 'red', key: 'excellence' },
-                { icon: Shield, color: 'blue', key: 'integrity' },
-                { icon: Users, color: 'green', key: 'partnership' },
-                { icon: Award, color: 'yellow', key: 'quality' },
-                { icon: Globe, color: 'purple', key: 'innovation' },
-                { icon: CheckCircle, color: 'indigo', key: 'commitment' }
+                { icon: Heart, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'excellence' },
+                { icon: Shield, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'integrity' },
+                { icon: Users, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'partnership' },
+                { icon: Award, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'quality' },
+                { icon: Globe, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'innovation' },
+                { icon: CheckCircle, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'commitment' }
               ].map((value, index) => (
                 <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
                   <CardContent className="p-6 text-center flex-1 flex flex-col">
-                    <div className={`w-16 h-16 bg-${value.color}-100 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      <value.icon className={`h-8 w-8 text-${value.color}-600`} />
+                    <div className={`w-16 h-16 ${value.bgShade} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                      <value.icon className={`h-8 w-8 ${value.textShade}`} />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       {t(`values.items.${value.key}.title`)}

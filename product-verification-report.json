@@ -1,0 +1,1018 @@
+{
+  "summary": {
+    "totalProducts": 72,
+    "averageScore": 98,
+    "distribution": {
+      "excellent": 70,
+      "good": 2,
+      "poor": 0,
+      "critical": 0
+    }
+  },
+  "products": [
+    {
+      "referenceFournisseur": "1121B",
+      "constructeur": "MORIA",
+      "frenchName": "Curette Abadie (petit modèle: Ø 8mm)",
+      "englishName": "Abadie Curette(small model: Ø 8mm)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "1205-P-5010",
+      "constructeur": "KEELER",
+      "frenchName": "Vantage Plus LED Digital avec logiciel Keeler Kapture",
+      "englishName": "Vantage Plus LED Digital with Keeler Kapture software",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement de Diagnostic"
+    },
+    {
+      "referenceFournisseur": "13160",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Bonn (dents 0.12-mm avec plateformes)",
+      "englishName": "Bonn Forceps(0.12-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13161",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Bonn-Moria (dents 0.12-mm avec plateformes)",
+      "englishName": "Bonn-Moria Forceps(0.12-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13167",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Moria (plateformes 7-mm, droites, 10/0)",
+      "englishName": "Moria Forceps(7-mm platforms, straight, 10/0)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13238",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Blaydes (action croisée, mâchoires 7-mm)",
+      "englishName": "Blaydes Forceps(cross-action, 7-mm jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13240",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Bonn-Kraff (dents obliques 0.1-mm et plateformes de nouage)",
+      "englishName": "Bonn-Kraff Forceps(0.1-mm oblique teeth and tying platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13245",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Mac Pherson-Moria (dents 0.2-mm avec plateformes, angulées)",
+      "englishName": "Mac Pherson-Moria Forceps(0.2-mm teeth with platforms, angled)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13246",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Bonn-Kraff (0.12-mm dents avec plateformes)",
+      "englishName": "Bonn-Kraff Forceps (0.12-mm teeth with platforms and long jaws)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "13261",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Waring (mâchoires 7-mm)",
+      "englishName": "Waring Forceps(7-mm jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "17150B",
+      "constructeur": "MORIA",
+      "frenchName": "creux silicone bloc(réutilisable)",
+      "englishName": "Hollow Silicone Block(reusable)",
+      "overallScore": 99,
+      "issues": [
+        "French Quality: No capital letter at start"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "17161",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces de Maintien Faulkner (mâchoires 7-mm)",
+      "englishName": "Faulkner Holding Forceps(7-mm jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "17166",
+      "constructeur": "MORIA",
+      "frenchName": "Hanna trépan(pour kératoplastie : PK-DALK)",
+      "englishName": "Hanna trephine(For keratoplasty : PK-DALK)",
+      "overallScore": 103,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "17167",
+      "constructeur": "MORIA",
+      "frenchName": "montage clé(pour Hanna trépan)",
+      "englishName": "Mounting wrench(For Hanna trephine)",
+      "overallScore": 102,
+      "issues": [
+        "French Quality: No capital letter at start"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "17168",
+      "constructeur": "MORIA",
+      "frenchName": "profondeur ajustement clé(pour kératoplastie)",
+      "englishName": "Depth adjustment wrench(For keratoplasty)",
+      "overallScore": 99,
+      "issues": [
+        "French Quality: No capital letter at start"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "18158",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Colin (action croisée, mâchoires striées)",
+      "englishName": "Colin Forceps(cross-action, serrated jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "18225",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Fechtner (plateformes de nouage fines)",
+      "englishName": "Fechtner Forceps(fine tying platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19003",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces à Implant (mâchoires 8-mm)",
+      "englishName": "Implant Forceps(8-mm jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19039",
+      "constructeur": "MORIA",
+      "frenchName": "pointe de remplacement(pour #19009/2.8)",
+      "englishName": "Replacement tip(For #19009/2.8)",
+      "overallScore": 99,
+      "issues": [
+        "French Quality: No capital letter at start"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19069T",
+      "constructeur": "MORIA",
+      "frenchName": "silicone Tubing remplacement Set(pour ref. #19069)",
+      "englishName": "Silicone Tubing Replacement Set(For ref. #19069)",
+      "overallScore": 99,
+      "issues": [
+        "French Quality: No capital letter at start"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19074",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces d'Explantation IOL (mâchoires striées 7-mm)",
+      "englishName": "IOL Explantation Forceps(7-mm serrated jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19079",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces de Capsulorhexis Hachet (incision 2.2-mm, action croisée)",
+      "englishName": "Hachet Capsulorhexis Forceps(2.2-mm incision, cross-action)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "19082",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces De Laage (courbes)",
+      "englishName": "De Laage Forceps(curved)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20000",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Crozafon - 1.8 mm (incision 1.8-mm)",
+      "englishName": "Crozafon Forceps - 1.8 mm(1.8-mm incision)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20001",
+      "constructeur": "MORIA",
+      "frenchName": "Micro Pré-Hachoir Crozafon (action croisée, incision 2.2-mm)",
+      "englishName": "Crozafon Micro Pre-Chopper(cross-action, 2.2-mm incision)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20003",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Ogawa (pour insertion de greffon DSAEK)",
+      "englishName": "Ogawa Forceps(for DSAEK graft insertion)",
+      "overallScore": 103,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20004",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Busin 20G (20G, contrôle distal)",
+      "englishName": "20G Busin Forceps(20G, distal control)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20021",
+      "constructeur": "MORIA",
+      "frenchName": "Dissecteur Stroma-Descemetique en Y (pour DMEK)",
+      "englishName": "Y Stroma-Descemetic Dissector(for DMEK)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20028",
+      "constructeur": "MORIA",
+      "frenchName": "Spatule Double-Extrémité Fontana (pour DALK)",
+      "englishName": "Fontana Double-Ended Spatula(for DALK)",
+      "overallScore": 103,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20032",
+      "constructeur": "MORIA",
+      "frenchName": "Spatule Double-Extrémité Ancel (pour LASIK, SMILE)",
+      "englishName": "Ancel Double-Ended Spatula(for LASIK, SMILE)",
+      "overallScore": 103,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "20033",
+      "constructeur": "MORIA",
+      "frenchName": "Can Pendular Marker(pour toric IOLs)",
+      "englishName": "Can Pendular Marker(for toric IOLs)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2125",
+      "constructeur": "MORIA",
+      "frenchName": "Desmarres pinces(25 mm)",
+      "englishName": "Desmarres Forceps(25 mm)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2131",
+      "constructeur": "MORIA",
+      "frenchName": "Lambert pinces(11 mm)",
+      "englishName": "Lambert Forceps(11 mm)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2146",
+      "constructeur": "MORIA",
+      "frenchName": "pinces(droites, medium size, regular)",
+      "englishName": "Forceps(straight, medium size, regular)",
+      "overallScore": 98,
+      "issues": [
+        "French Quality: No capital letter at start",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2180A",
+      "constructeur": "MORIA",
+      "frenchName": "Bonaccolto pinces(0.8-mm mâchoires dentelées)",
+      "englishName": "Bonaccolto Forceps(0.8-mm serrated jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2183",
+      "constructeur": "MORIA",
+      "frenchName": "pinces(1-mm mâchoires dentelées)",
+      "englishName": "Forceps(1-mm serrated jaws)",
+      "overallScore": 98,
+      "issues": [
+        "French Quality: No capital letter at start",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2221",
+      "constructeur": "MORIA",
+      "frenchName": "Barraquer pinces(droites avec oblique teeth)",
+      "englishName": "Barraquer Forceps(straight with oblique teeth)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2228",
+      "constructeur": "MORIA",
+      "frenchName": "Elschnig pinces(droites avec crossed teeth)",
+      "englishName": "Elschnig Forceps(straight with crossed teeth)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2280A",
+      "constructeur": "MORIA",
+      "frenchName": "Lester pinces(1.1-mm teeth)",
+      "englishName": "Lester Forceps(1.1-mm teeth)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2321",
+      "constructeur": "MORIA",
+      "frenchName": "De Wecker pinces “Mosquito”(droites, à action croisée)",
+      "englishName": "De Wecker Forceps “Mosquito”(straight, cross-action)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "2414-P-5032",
+      "constructeur": "KEELER",
+      "frenchName": "Plaque Guide de Tonomètre KAT T (Démontable)",
+      "englishName": "Tonometer Guide Plate KAT T (Removable)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement de Diagnostic"
+    },
+    {
+      "referenceFournisseur": "2432",
+      "constructeur": "MORIA",
+      "frenchName": "Barraquer pinces(6-mm platforms, droites mâchoires)",
+      "englishName": "Barraquer Forceps(6-mm platforms, straight jaws)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "3010-P-2000",
+      "constructeur": "KEELER",
+      "frenchName": "Keeler PSL Classic – Lampe à Fente Portable de Main",
+      "englishName": "Keeler PSL Classic – Portable Handheld Slit Lamp",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement de Diagnostic"
+    },
+    {
+      "referenceFournisseur": "3201",
+      "constructeur": "MORIA",
+      "frenchName": "Paufique Knife(pour cornea)",
+      "englishName": "Paufique Knife(for cornea)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "3225",
+      "constructeur": "MORIA",
+      "frenchName": "Burrato-Sinskey Manipulator Hook(angulées partie active avec a 0.7-mm angulées pointe)",
+      "englishName": "Burrato-Sinskey Manipulator Hook(angled active part with a 0.7-mm angled tip)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "393",
+      "constructeur": "MORIA",
+      "frenchName": "One Use-Plus 130 Head(pour LASIK surgery)",
+      "englishName": "One Use-Plus 130 Head(For LASIK surgery)",
+      "overallScore": 100,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "6031BIS",
+      "constructeur": "MORIA",
+      "frenchName": "Cilia pinces, Swiss model(1.5-mm concave mâchoires)",
+      "englishName": "Cilia Forceps, Swiss model(1.5-mm concave jaws)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "6223",
+      "constructeur": "MORIA",
+      "frenchName": "De Saint Martin-Barraquer pinces(5-mm tying platforms, 0.5-mm oblique teeth)",
+      "englishName": "De Saint Martin-Barraquer Forceps(5-mm tying platforms, 0.5-mm oblique teeth)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7384",
+      "constructeur": "MORIA",
+      "frenchName": "Castroviejo pinces(6-mm tying platforms, 0.4-mm oblique teeth)",
+      "englishName": "Castroviejo Forceps(6-mm tying platforms, 0.4-mm oblique teeth)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7431",
+      "constructeur": "MORIA",
+      "frenchName": "Barraquer pinces, “Colibri” Type(1-mm platforms)",
+      "englishName": "Barraquer Forceps, “Colibri” Type(1-mm platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7835",
+      "constructeur": "MORIA",
+      "frenchName": "Bonn pinces(0.12-mm teeth avec platforms)",
+      "englishName": "Bonn Forceps(0.12-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7835C",
+      "constructeur": "MORIA",
+      "frenchName": "Moria pinces(4-mm platforms, droites mâchoires)",
+      "englishName": "Moria Forceps(4-mm platforms, straight jaws)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7850A",
+      "constructeur": "MORIA",
+      "frenchName": "Pinces Bonn-Moria (0.18-mm dents avec plateformes)",
+      "englishName": "Bonn-Moria Forceps (0.18-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7850B",
+      "constructeur": "MORIA",
+      "frenchName": "Moria pinces(0.18-mm teeth avec platforms)",
+      "englishName": "Moria Forceps(0.18-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7850C",
+      "constructeur": "MORIA",
+      "frenchName": "Moria pinces(3-mm platforms, droites mâchoires)",
+      "englishName": "Moria Forceps(3-mm platforms, straight jaws)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "7862",
+      "constructeur": "MORIA",
+      "frenchName": "Barraquer-Troutman pinces(0.12-mm oblique teeth, “colibri” type)",
+      "englishName": "Barraquer-Troutman Forceps(0.12-mm oblique teeth, “colibri” type)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9510",
+      "constructeur": "MORIA",
+      "frenchName": "Castroviejo “Utility” pinces(6.5-mm platforms, 0.3-mm oblique teeth)",
+      "englishName": "Castroviejo “Utility” Forceps(6.5-mm platforms, 0.3-mm oblique teeth)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9601",
+      "constructeur": "MORIA",
+      "frenchName": "Ciseaux Vannas (Courbes émoussées)",
+      "englishName": "Vannas Scissors (Curved blunt blades)",
+      "overallScore": 103,
+      "issues": [],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9803",
+      "constructeur": "MORIA",
+      "frenchName": "Pierse pinces(0.2-mm oblique teeth, “colibri” type, avec notched mâchoires and platforms)",
+      "englishName": "Pierse Forceps(0.2-mm oblique teeth, “colibri” type, with notched jaws and platforms)",
+      "overallScore": 93,
+      "issues": [
+        "French Quality: English words in French: and, for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9980",
+      "constructeur": "MORIA",
+      "frenchName": "Micro-Surgery pinces(droites, ultra-thin pointe)",
+      "englishName": "Micro-Surgery Forceps(straight, ultra-thin tip)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9983",
+      "constructeur": "MORIA",
+      "frenchName": "Micro-Surgery pinces(droites)",
+      "englishName": "Micro-Surgery Forceps(straight)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "9987",
+      "constructeur": "MORIA",
+      "frenchName": "Micro-Surgery pinces(courbes)",
+      "englishName": "Micro-Surgery Forceps(curved)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "M0489",
+      "constructeur": "MORIA",
+      "frenchName": "Castroviejo Double-Ended Spatula(double-ended)",
+      "englishName": "Castroviejo Double-Ended Spatula(double-ended)",
+      "overallScore": 81,
+      "issues": [
+        "French Quality: French identical to English",
+        "Terminology: Missing French translation: spatula should be spatule"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "M0570N",
+      "constructeur": "MORIA",
+      "frenchName": "Nichamin Double-Ended Spatula(double-ended)",
+      "englishName": "Nichamin Double-Ended Spatula(double-ended)",
+      "overallScore": 81,
+      "issues": [
+        "French Quality: French identical to English",
+        "Terminology: Missing French translation: spatula should be spatule"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "M0712",
+      "constructeur": "MORIA",
+      "frenchName": "Koch Spatula(6.5-mm pointe)",
+      "englishName": "Koch Spatula(6.5-mm tip)",
+      "overallScore": 96,
+      "issues": [
+        "Terminology: Missing French translation: spatula should be spatule"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "M32390",
+      "constructeur": "MORIA",
+      "frenchName": "Nagahara Spatula(110° angulées pointe)",
+      "englishName": "Nagahara Spatula(110° angled tip)",
+      "overallScore": 96,
+      "issues": [
+        "Terminology: Missing French translation: spatula should be spatule"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "MC31",
+      "constructeur": "MORIA",
+      "frenchName": "iris pinces(courbes, mâchoires dentelées)",
+      "englishName": "Iris Forceps(curved, serrated jaws)",
+      "overallScore": 98,
+      "issues": [
+        "French Quality: No capital letter at start",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "MC40",
+      "constructeur": "MORIA",
+      "frenchName": "Dumont pinces(droites)",
+      "englishName": "Dumont Forceps(straight)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "MC40B",
+      "constructeur": "MORIA",
+      "frenchName": "Dumont pinces(courbes)",
+      "englishName": "Dumont Forceps(curved)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "MC43",
+      "constructeur": "MORIA",
+      "frenchName": "De Wecker “Mosquito” pinces(droites)",
+      "englishName": "De Wecker “Mosquito” Forceps(straight)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "MC44",
+      "constructeur": "MORIA",
+      "frenchName": "De Wecker Mosquito pinces(courbes)",
+      "englishName": "De Wecker Mosquito Forceps(curved)",
+      "overallScore": 99,
+      "issues": [
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    },
+    {
+      "referenceFournisseur": "TI7835",
+      "constructeur": "MORIA",
+      "frenchName": "Bonn pinces - Titanium(0.12-mm teeth avec platforms)",
+      "englishName": "Bonn Forceps - Titanium(0.12-mm teeth with platforms)",
+      "overallScore": 96,
+      "issues": [
+        "French Quality: English words in French: for",
+        "Terminology: Missing French translation: for should be pour"
+      ],
+      "imageCount": 1,
+      "hasCategory": true,
+      "hasPartner": true,
+      "categoryName": "Équipement Chirurgical"
+    }
+  ],
+  "criticalIssues": [],
+  "poorQuality": []
+}

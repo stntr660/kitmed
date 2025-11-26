@@ -1,0 +1,295 @@
+{
+  "filename": "data/kitmed_full_import_2025-11-25T13-46-22.csv",
+  "analyzedLines": 50,
+  "totalLines": 615,
+  "qualityDistribution": {
+    "excellent": 0,
+    "good": 33,
+    "poor": 16,
+    "critical": 1
+  },
+  "averageScore": 72,
+  "issues": {
+    "duplicateReferences": [],
+    "invalidUrls": [],
+    "languageIssues": [
+      "2180A",
+      "2183",
+      "MC43",
+      "2125",
+      "MC44",
+      "2321",
+      "18158",
+      "6031BIS",
+      "20000",
+      "MC40",
+      "MC40B",
+      "20003",
+      "20004",
+      "9980",
+      "9983"
+    ],
+    "translationProblems": [
+      "9601",
+      "13246",
+      "7850A",
+      "7862",
+      "9803",
+      "13160",
+      "13161",
+      "13240",
+      "2280A",
+      "7835",
+      "9510",
+      "2180A",
+      "2183",
+      "2432",
+      "7431",
+      "7835C",
+      "TI7835",
+      "2131",
+      "2228",
+      "1121B",
+      "20028",
+      "20032",
+      "M0570N",
+      "M0489",
+      "M0712",
+      "M32390",
+      "MC43",
+      "2125",
+      "MC44",
+      "2321",
+      "18158",
+      "2146",
+      "6031BIS",
+      "13245",
+      "7850C",
+      "2221",
+      "20021",
+      "20000",
+      "18225",
+      "19074",
+      "MC40",
+      "MC40B",
+      "19079",
+      "19082",
+      "20001",
+      "6223",
+      "20003",
+      "20004",
+      "9980",
+      "9983"
+    ]
+  },
+  "criticalProducts": [
+    {
+      "line": 33,
+      "ref": "6031BIS",
+      "manufacturer": "MORIA",
+      "frName": "Cilia Forceps, Swiss model(1.5-mm concave jaws)",
+      "enName": "Cilia Forceps, Swiss model(1.5-mm concave jaws)",
+      "score": 40,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "French Name: French text appears to be in Spanish (2 Spanish words found)",
+        "English Name: English text appears to be in Spanish (2 Spanish words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    }
+  ],
+  "poorQualityProducts": [
+    {
+      "line": 12,
+      "ref": "2180A",
+      "manufacturer": "MORIA",
+      "frName": "Bonaccolto Forceps(0.8-mm serrated jaws)",
+      "enName": "Bonaccolto Forceps(0.8-mm serrated jaws)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 13,
+      "ref": "2183",
+      "manufacturer": "MORIA",
+      "frName": "Forceps(1-mm serrated jaws)",
+      "enName": "Forceps(1-mm serrated jaws)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 23,
+      "ref": "M0570N",
+      "manufacturer": "MORIA",
+      "frName": "Nichamin Double-Ended Spatula(double-ended)",
+      "enName": "Nichamin Double-Ended Spatula(double-ended)",
+      "score": 65,
+      "issues": [
+        "English Name: English text appears to be in French (2 French words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 24,
+      "ref": "M0489",
+      "manufacturer": "MORIA",
+      "frName": "Castroviejo Double-Ended Spatula(double-ended)",
+      "enName": "Castroviejo Double-Ended Spatula(double-ended)",
+      "score": 65,
+      "issues": [
+        "English Name: English text appears to be in French (2 French words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 27,
+      "ref": "MC43",
+      "manufacturer": "MORIA",
+      "frName": "De Wecker “Mosquito” Forceps(straight)",
+      "enName": "De Wecker “Mosquito” Forceps(straight)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 28,
+      "ref": "2125",
+      "manufacturer": "MORIA",
+      "frName": "Desmarres Forceps(25 mm)",
+      "enName": "Desmarres Forceps(25 mm)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 29,
+      "ref": "MC44",
+      "manufacturer": "MORIA",
+      "frName": "De Wecker Mosquito Forceps(curved)",
+      "enName": "De Wecker Mosquito Forceps(curved)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 30,
+      "ref": "2321",
+      "manufacturer": "MORIA",
+      "frName": "De Wecker Forceps “Mosquito”(straight, cross-actio...",
+      "enName": "De Wecker Forceps “Mosquito”(straight, cross-actio...",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 31,
+      "ref": "18158",
+      "manufacturer": "MORIA",
+      "frName": "Colin Forceps(cross-action, serrated jaws)",
+      "enName": "Colin Forceps(cross-action, serrated jaws)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 38,
+      "ref": "20000",
+      "manufacturer": "MORIA",
+      "frName": "Crozafon Forceps - 1.8 mm(1.8-mm incision)",
+      "enName": "Crozafon Forceps - 1.8 mm(1.8-mm incision)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 41,
+      "ref": "MC40",
+      "manufacturer": "MORIA",
+      "frName": "Dumont Forceps(straight)",
+      "enName": "Dumont Forceps(straight)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 42,
+      "ref": "MC40B",
+      "manufacturer": "MORIA",
+      "frName": "Dumont Forceps(curved)",
+      "enName": "Dumont Forceps(curved)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 47,
+      "ref": "20003",
+      "manufacturer": "MORIA",
+      "frName": "Ogawa Forceps(for DSAEK graft insertion)",
+      "enName": "Ogawa Forceps(for DSAEK graft insertion)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 48,
+      "ref": "20004",
+      "manufacturer": "MORIA",
+      "frName": "20G Busin Forceps(20G, distal control)",
+      "enName": "20G Busin Forceps(20G, distal control)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (2 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 49,
+      "ref": "9980",
+      "manufacturer": "MORIA",
+      "frName": "Micro-Surgery Forceps(straight, ultra-thin tip)",
+      "enName": "Micro-Surgery Forceps(straight, ultra-thin tip)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (4 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    },
+    {
+      "line": 50,
+      "ref": "9983",
+      "manufacturer": "MORIA",
+      "frName": "Micro-Surgery Forceps(straight)",
+      "enName": "Micro-Surgery Forceps(straight)",
+      "score": 55,
+      "issues": [
+        "French Name: French text appears to be in English (3 English words found)",
+        "Translation: French and English texts are identical - missing translation"
+      ]
+    }
+  ]
+}
