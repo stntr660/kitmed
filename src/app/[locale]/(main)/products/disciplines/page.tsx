@@ -85,10 +85,10 @@ export default function ProductsByDisciplinePage() {
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  Spécialités Médicales
+                  Disciplines Médicales
                 </h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {categories.length} spécialité{categories.length > 1 ? 's' : ''} disponible{categories.length > 1 ? 's' : ''}
+                  Choisissez votre domaine d'expertise parmi nos {categories.length} discipline{categories.length > 1 ? 's' : ''} médicale{categories.length > 1 ? 's' : ''}
                 </p>
               </div>
               
@@ -109,10 +109,6 @@ export default function ProductsByDisciplinePage() {
                         </div>
                       )}
                       
-                      {/* Product Count Badge */}
-                      <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                        {category.productCount || 0} produits
-                      </div>
                     </div>
                     
                     <CardHeader className="p-6 pb-4">
@@ -126,11 +122,11 @@ export default function ProductsByDisciplinePage() {
                     
                     <CardContent className="p-6 pt-0">
                       <Button 
-                        className="w-full bg-primary text-white hover:bg-blue-700"
+                        className="w-full bg-primary text-white hover:bg-primary-700"
                         asChild
                       >
-                        <Link href={`/${locale}/products?category=${category.id}`} className="flex items-center justify-center">
-                          Explorer les Produits
+                        <Link href={`/${locale}/products/disciplines/${category.slug}`} className="flex items-center justify-center">
+                          Explorer les Catégories
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>

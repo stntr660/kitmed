@@ -2084,5 +2084,59 @@
   "search": {
     "noResults": "Aucun résultat trouvé",
     "showingResults": "Affichage de {start} à {end} sur {total} résultats"
+  },
+  "partnerDetail": {
+    "loading": "Chargement du partenaire...",
+    "notFound": "Partenaire non trouvé",
+    "notFoundDescription": "Ce partenaire n'existe pas ou n'est pas disponible.",
+    "backToPartners": "Retour aux Partenaires",
+    "featuredBadge": "Partenaire Vedette",
+    "productsCount": "{count} produits",
+    "visitWebsite": "Visiter le Site Web",
+    "viewProducts": "Voir les Produits",
+    "viewProductsShort": "Voir Produits",
+    "productsTitle": "Produits {partnerName}",
+    "productsDescription": "Découvrez notre gamme complète de produits de qualité {partnerName}",
+    "viewDetails": "Voir les Détails",
+    "noProductsTitle": "Aucun Produit Disponible",
+    "noProductsDescription": "Ce partenaire ne propose pas encore de produits dans notre catalogue.",
+    "viewAllProducts": "Voir Tous les Produits",
+    "loadingError": "Erreur lors du chargement",
+    "productFallbackDescription": "Produit médical professionnel de {partnerName}."
+  },
+  "products": {
+    "hero": {
+      "badge": "Catalogue Premium KITMED",
+      "title": "Équipements Médicaux",
+      "subtitle": "d'Excellence",
+      "description": "Découvrez notre collection exclusive d'équipements médicaux de pointe, sélectionnés pour leur innovation et leur fiabilité exceptionnelles."
+    },
+    "search": {
+      "placeholder": "Rechercher par nom, référence ou marque...",
+      "loading": "Chargement des produits...",
+      "allCategories": "Toutes",
+      "sortPrice": "Prix",
+      "sortPopularity": "Popularité"
+    },
+    "listing": {
+      "title": "Produits Premium",
+      "count": "{total} équipement{plural} disponible{plural}",
+      "loadMore": "Voir Plus de Produits",
+      "featured": "Vedette",
+      "viewDetails": "Voir Détails",
+      "quote": "Devis",
+      "reference": "Réf: {ref}",
+      "descriptionFallback": "Description disponible sur demande"
+    },
+    "noResults": {
+      "title": "Aucun Produit Trouvé",
+      "description": "Aucun équipement ne correspond à vos critères de recherche. Essayez de modifier vos filtres ou votre recherche.",
+      "resetFilters": "Réinitialiser les Filtres"
+    },
+    "categories": {
+      "title": "Explorer par",
+      "subtitle": "Spécialité",
+      "description": "Équipements spécialisés pour chaque domaine médical"
+    }
   }
 }

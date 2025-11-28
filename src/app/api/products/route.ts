@@ -8,6 +8,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const query = searchParams.get('query');
     const category = searchParams.get('category');
     const manufacturer = searchParams.get('manufacturer');
+    const partner = searchParams.get('partner');
     const featured = searchParams.get('featured');
     const page = parseInt(searchParams.get('page') || '1');
     const pageSize = parseInt(searchParams.get('pageSize') || '12');
@@ -51,6 +52,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Manufacturer filter
     if (manufacturer) {
       where.constructeur = { contains: manufacturer };
+    }
+
+    // Partner filter
+    if (partner) {
+      where.partnerId = partner;
     }
 
     // Featured products filter

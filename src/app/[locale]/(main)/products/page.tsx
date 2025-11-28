@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -69,6 +70,8 @@ interface ProductsResponse {
 
 export default function ProductsPage() {
   const t = useTranslations('common');
+  const tProducts = useTranslations('products');
+  const locale = useHydrationSafeLocale('fr');
   const [products, setProducts] = useState<ProductsResponse | null>(null);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,11 +81,11 @@ export default function ProductsPage() {
   useEffect(() => {
     loadProducts();
     loadCategories();
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, locale]);
 
   const loadCategories = async () => {
     try {
-      const response = await fetch('/api/categories?includeProductCount=true&locale=fr');
+      const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data || []);
@@ -102,7 +105,7 @@ export default function ProductsPage() {
       if (searchQuery) params.append('query', searchQuery);
       if (selectedCategory) params.append('category', selectedCategory);
 
-      const response = await fetch(`/api/products?${params}&locale=fr`);
+      const response = await fetch(`/api/products?${params}&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data.data);
@@ -142,17 +145,16 @@ export default function ProductsPage() {
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              🏥 Catalogue Premium KITMED
+              🏥 {tProducts('hero.badge')}
             </Badge>
             
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Équipements Médicaux
-              <span className="text-primary-300 block mt-2">d'Excellence</span>
+              {tProducts('hero.title')}
+              <span className="text-primary-300 block mt-2">{tProducts('hero.subtitle')}</span>
             </h1>
             
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Découvrez notre collection exclusive d'équipements médicaux de pointe, 
-              sélectionnés pour leur innovation et leur fiabilité exceptionnelles.
+              {tProducts('hero.description')}
             </p>
           </div>
         </div>
@@ -167,7 +169,7 @@ export default function ProductsPage() {
               <div className="flex-1 relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
                 <Input
-                  placeholder="Rechercher par nom, référence ou marque..."
+                  placeholder={tProducts('search.placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 h-14 text-lg border-2 border-slate-200 focus:border-primary-500 shadow-sm"
@@ -181,7 +183,7 @@ export default function ProductsPage() {
                   onClick={() => setSelectedCategory('')}
                   className="h-14 px-6"
                 >
-                  Toutes
+                  {tProducts('search.allCategories')}
                 </Button>
                 {categories.slice(0, 3).map((category) => (
                   <Button
@@ -207,27 +209,27 @@ export default function ProductsPage() {
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <LoadingSpinner size="lg" text="Chargement des produits..." />
+              <LoadingSpinner size="lg" text={tProducts('search.loading')} />
             </div>
           ) : products && products.items.length > 0 ? (
             <>
               <div className="flex items-center justify-between mb-12">
                 <div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                    Produits Premium
+                    {tProducts('listing.title')}
                   </h2>
                   <p className="text-slate-600">
-                    {products.total} équipement{products.total > 1 ? 's' : ''} disponible{products.total > 1 ? 's' : ''}
+                    {tProducts('listing.count', { total: products.total, plural: products.total > 1 ? 's' : '' })}
                   </p>
                 </div>
                 
                 <div className="flex gap-4">
                   <Button variant="outline" size="sm">
-                    Prix
+                    {tProducts('search.sortPrice')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <Button variant="outline" size="sm">
-                    Popularité
+                    {tProducts('search.sortPopularity')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
@@ -271,7 +273,7 @@ export default function ProductsPage() {
                           {product.isFeatured && (
                             <Badge className="bg-accent-500 text-white border-0 text-xs">
                               <Sparkles className="h-3 w-3 mr-1" />
-                              Vedette
+                              {tProducts('listing.featured')}
                             </Badge>
                           )}
                           {categoryInfo && (
@@ -302,14 +304,14 @@ export default function ProductsPage() {
                         </div>
                         
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {getProductDescription(product) || 'Description disponible sur demande'}
+                          {getProductDescription(product) || tProducts('listing.descriptionFallback')}
                         </div>
                       </CardHeader>
                       
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xs text-slate-500 font-mono">
-                            Réf: {product.referenceFournisseur}
+                            {tProducts('listing.reference', { ref: product.referenceFournisseur })}
                           </div>
                         </div>
                         
@@ -319,8 +321,8 @@ export default function ProductsPage() {
                             className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
-                            <Link href={`/fr/products/${product.slug || product.id}`}>
-                              Voir Détails
+                            <Link href={`/${locale}/products/${product.slug || product.id}`}>
+                              {tProducts('listing.viewDetails')}
                             </Link>
                           </Button>
                           
@@ -344,7 +346,7 @@ export default function ProductsPage() {
                                   className="flex-1"
                                 >
                                   <MessageSquare className="h-4 w-4 mr-1" />
-                                  Devis
+                                  {tProducts('listing.quote')}
                                 </Button>
                               }
                             />
@@ -377,7 +379,7 @@ export default function ProductsPage() {
                     variant="outline" 
                     className="min-w-[200px] h-12 border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                   >
-                    Voir Plus de Produits
+                    {tProducts('listing.loadMore')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -389,11 +391,10 @@ export default function ProductsPage() {
                 <Search className="h-12 w-12 text-slate-400" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Aucun Produit Trouvé
+                {tProducts('noResults.title')}
               </h3>
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                Aucun équipement ne correspond à vos critères de recherche. 
-                Essayez de modifier vos filtres ou votre recherche.
+                {tProducts('noResults.description')}
               </p>
               <Button 
                 onClick={() => {
@@ -402,7 +403,7 @@ export default function ProductsPage() {
                 }}
                 className="bg-primary text-white hover:bg-primary-600"
               >
-                Réinitialiser les Filtres
+                {tProducts('noResults.resetFilters')}
               </Button>
             </div>
           )}
@@ -414,11 +415,11 @@ export default function ProductsPage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Explorer par
-              <span className="text-primary-300"> Spécialité</span>
+              {tProducts('categories.title')}
+              <span className="text-primary-300"> {tProducts('categories.subtitle')}</span>
             </h2>
             <p className="text-xl text-slate-300 leading-relaxed">
-              Équipements spécialisés pour chaque domaine médical
+              {tProducts('categories.description')}
             </p>
           </div>
           

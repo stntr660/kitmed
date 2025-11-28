@@ -25,6 +25,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     const searchParams = request.nextUrl.searchParams;
     const includeTranslations = searchParams.get('includeTranslations') === 'true';
     const includeProducts = searchParams.get('includeProducts') === 'true';
+    const locale = searchParams.get('locale') || 'fr';
 
     // Check feature flags
     const shouldUseDisciplines = await MigrationFeatureFlags.shouldUseDisciplines();
@@ -37,7 +38,9 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
       const include: any = {};
       
       if (includeTranslations) {
-        include.translations = true;
+        include.translations = {
+          where: { languageCode: locale }
+        };
       }
       
       if (includeProducts) {
@@ -60,12 +63,31 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
       });
 
     } else {
-      // Query legacy categories table
-      const include: any = {};
-      
-      if (includeTranslations) {
-        include.translations = true;
-      }
+      // Query legacy categories table with children
+      const include: any = {
+        translations: {
+          where: { languageCode: locale }
+        },
+        children: {
+          where: {
+            isActive: true,
+            type: 'equipment'
+          },
+          include: {
+            translations: {
+              where: { languageCode: locale }
+            },
+            _count: {
+              select: {
+                products: {
+                  where: { status: 'active' }
+                }
+              }
+            }
+          },
+          orderBy: { sortOrder: 'asc' }
+        }
+      };
       
       if (includeProducts) {
         include.products = {
@@ -79,8 +101,12 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
       discipline = await prisma.category.findFirst({
         where: { 
-          id,
-          type: 'discipline'
+          OR: [
+            { id },
+            { slug: id }
+          ],
+          type: 'discipline',
+          isActive: true
         },
         include
       });
@@ -88,9 +114,48 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     if (!discipline) {
       return NextResponse.json(
-        { error: 'Discipline not found' },
+        { 
+          success: false,
+          error: {
+            code: 'DISCIPLINE_NOT_FOUND', 
+            message: 'Discipline not found'
+          }
+        },
         { status: 404 }
       );
+    }
+
+    // Transform the response for consistency
+    let transformedData = discipline;
+    
+    if (!shouldUseDisciplines && discipline.children) {
+      // Get translation or fallback to default name
+      const translation = discipline.translations[0];
+      const disciplineName = translation?.name || discipline.name;
+      const disciplineDescription = translation?.description || discipline.description;
+
+      // Transform children with proper translations and product counts
+      const transformedChildren = discipline.children.map((child: any) => {
+        const childTranslation = child.translations[0];
+        return {
+          id: child.id,
+          name: childTranslation?.name || child.name,
+          slug: child.slug,
+          description: childTranslation?.description || child.description,
+          imageUrl: child.imageUrl,
+          productCount: child._count.products,
+          type: child.type
+        };
+      });
+
+      transformedData = {
+        id: discipline.id,
+        name: disciplineName,
+        slug: discipline.slug,
+        description: disciplineDescription,
+        imageUrl: discipline.imageUrl,
+        children: transformedChildren
+      };
     }
 
     // Log access in migration mode
@@ -99,7 +164,8 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     }
 
     return NextResponse.json({
-      data: discipline,
+      success: true,
+      data: transformedData,
       meta: {
         source: shouldUseDisciplines ? 'disciplines' : 'categories',
         migrationMode: isInMigrationMode,
@@ -111,8 +177,11 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     
     return NextResponse.json(
       { 
-        error: 'Failed to fetch discipline',
-        message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to fetch discipline'
+        }
       },
       { status: 500 }
     );

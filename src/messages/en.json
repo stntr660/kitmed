@@ -1967,5 +1967,59 @@
   "search": {
     "noResults": "No results found",
     "showingResults": "Showing {start} to {end} of {total} results"
+  },
+  "partnerDetail": {
+    "loading": "Loading partner...",
+    "notFound": "Partner not found",
+    "notFoundDescription": "This partner does not exist or is not available.",
+    "backToPartners": "Back to Partners",
+    "featuredBadge": "Featured Partner",
+    "productsCount": "{count} products",
+    "visitWebsite": "Visit Website",
+    "viewProducts": "View Products",
+    "viewProductsShort": "View Products",
+    "productsTitle": "{partnerName} Products",
+    "productsDescription": "Discover our complete range of quality {partnerName} products",
+    "viewDetails": "View Details",
+    "noProductsTitle": "No Products Available",
+    "noProductsDescription": "This partner does not yet offer products in our catalog.",
+    "viewAllProducts": "View All Products",
+    "loadingError": "Loading error",
+    "productFallbackDescription": "Professional medical product from {partnerName}."
+  },
+  "products": {
+    "hero": {
+      "badge": "KITMED Premium Catalog",
+      "title": "Medical Equipment",
+      "subtitle": "of Excellence",
+      "description": "Discover our exclusive collection of cutting-edge medical equipment, selected for their exceptional innovation and reliability."
+    },
+    "search": {
+      "placeholder": "Search by name, reference or brand...",
+      "loading": "Loading products...",
+      "allCategories": "All",
+      "sortPrice": "Price",
+      "sortPopularity": "Popularity"
+    },
+    "listing": {
+      "title": "Premium Products",
+      "count": "{total} equipment{plural} available",
+      "loadMore": "View More Products",
+      "featured": "Featured",
+      "viewDetails": "View Details",
+      "quote": "Quote",
+      "reference": "Ref: {ref}",
+      "descriptionFallback": "Description available on request"
+    },
+    "noResults": {
+      "title": "No Products Found",
+      "description": "No equipment matches your search criteria. Try modifying your filters or search.",
+      "resetFilters": "Reset Filters"
+    },
+    "categories": {
+      "title": "Explore by",
+      "subtitle": "Specialty",
+      "description": "Specialized equipment for every medical field"
+    }
   }
 }

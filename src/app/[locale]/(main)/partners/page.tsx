@@ -39,6 +39,7 @@ interface Partner {
 export default function PartnersPage() {
   const t = useTranslations('partners');
   const tCommon = useTranslations('common');
+  const tPartner = useTranslations('partnerDetail');
   const locale = useHydrationSafeLocale('fr');
   
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -208,18 +209,27 @@ export default function PartnersPage() {
                       {/* Spacer to push button to bottom */}
                       <div className="flex-1"></div>
                       
-                      {partner.websiteUrl && (
-                        <Button variant="outline" size="sm" className="w-full" asChild>
-                          <a
-                            href={partner.websiteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {t('visitWebsite')}
-                            <ExternalLink className="ml-2 h-3 w-3" />
-                          </a>
+                      <div className="space-y-2">
+                        <Button size="sm" className="w-full" asChild>
+                          <Link href={`/${locale}/partners/${partner.slug}`}>
+                            {tPartner('viewProducts')}
+                            <ArrowRight className="ml-2 h-3 w-3" />
+                          </Link>
                         </Button>
-                      )}
+                        
+                        {partner.websiteUrl && (
+                          <Button variant="outline" size="sm" className="w-full" asChild>
+                            <a
+                              href={partner.websiteUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {t('visitWebsite')}
+                              <ExternalLink className="ml-2 h-3 w-3" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -281,13 +291,19 @@ export default function PartnersPage() {
                       </h3>
                       
                       {getPartnerDescription(partner) && (
-                        <p className="text-gray-600 text-xs leading-relaxed text-center">
+                        <p className="text-gray-600 text-xs leading-relaxed text-center mb-3">
                           {getPartnerDescription(partner)}
                         </p>
                       )}
                       
                       {/* Spacer for consistent height */}
                       <div className="flex-1"></div>
+                      
+                      <Button size="sm" variant="outline" className="w-full mt-3" asChild>
+                        <Link href={`/${locale}/partners/${partner.slug}`}>
+                          {tPartner('viewProductsShort')}
+                        </Link>
+                      </Button>
                     </CardContent>
                   </Card>
                 ))}
