@@ -75,7 +75,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     category: [],
     page: 1,
     pageSize: 10,
-    sortBy: 'createdAt',
+    sortBy: 'created_at',
     sortOrder: 'desc',
     ...initialFilters,
   });

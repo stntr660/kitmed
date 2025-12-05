@@ -72,10 +72,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
     try {
       // Fetch statistics for all statuses
       const responses = await Promise.all([
-        fetch('/api/rfp-requests?status=pending&pageSize=1'),
-        fetch('/api/rfp-requests?status=reviewing&pageSize=1'),
-        fetch('/api/rfp-requests?status=quoted&pageSize=1'),
-        fetch('/api/rfp-requests?status=completed&pageSize=1'),
+        fetch('/api/admin/rfp-requests?status=pending&pageSize=1'),
+        fetch('/api/admin/rfp-requests?status=reviewing&pageSize=1'),
+        fetch('/api/admin/rfp-requests?status=quoted&pageSize=1'),
+        fetch('/api/admin/rfp-requests?status=completed&pageSize=1'),
       ]);
 
       const [pendingRes, reviewingRes, quotedRes, completedRes] = responses;

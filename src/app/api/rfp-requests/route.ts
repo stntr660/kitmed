@@ -240,3 +240,7 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Export handlers
+export const GET = getRFPRequests;
+export const POST = createRFPRequest;
