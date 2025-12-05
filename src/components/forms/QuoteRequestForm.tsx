@@ -16,9 +16,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  MessageSquare, 
-  CheckCircle, 
+import {
+  MessageSquare,
+  CheckCircle,
   AlertCircle,
   Building2,
   Mail,
@@ -114,7 +114,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
   // Load all products for selection
   const loadAllProducts = async () => {
     if (allProducts.length > 0) return; // Don't reload if already loaded
-    
+
     setLoadingProducts(true);
     try {
       const response = await fetch(`/api/admin/products?pageSize=100&status=active`);
@@ -141,9 +141,9 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     const existingItem = quoteItems.find(item => item.productId === selectedProduct.id);
     if (existingItem) {
       // Increase quantity if product already exists
-      setQuoteItems(items => 
-        items.map(item => 
-          item.productId === selectedProduct.id 
+      setQuoteItems(items =>
+        items.map(item =>
+          item.productId === selectedProduct.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -169,9 +169,9 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
   const updateItemQuantity = (productId: string, quantity: number) => {
     if (quantity < 1) return;
-    setQuoteItems(items => 
-      items.map(item => 
-        item.productId === productId 
+    setQuoteItems(items =>
+      items.map(item =>
+        item.productId === productId
           ? { ...item, quantity }
           : item
       )
@@ -187,7 +187,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.customerName || !formData.customerEmail) {
       setError('Nom et email sont requis');
       return;
@@ -228,7 +228,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
       const result = await response.json();
       setSuccess(true);
-      
+
       // Reset form after 2 seconds and close
       setTimeout(() => {
         setOpen(false);
@@ -260,7 +260,6 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
       setLoading(false);
     }
   };
-
 
   const contactOptions = [
     { value: 'email', label: 'Email', icon: Mail },
@@ -340,7 +339,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                       <X className="h-4 w-4" />
                     </Button>
                   </div>
-                  
+
                   <div className="relative mb-3">
                     <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <Input
@@ -350,7 +349,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                       className="pl-10"
                     />
                   </div>
-                  
+
                   {loadingProducts ? (
                     <div className="flex items-center justify-center py-8">
                       <div className="text-sm text-gray-500">Chargement des produits...</div>
@@ -420,7 +419,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                     </div>
                   </div>
                 ))}
-                
+
                 {quoteItems.length === 0 && (
                   <div className="text-center py-4 text-gray-500 text-sm">
                     Aucun produit sélectionné. Cliquez sur "Ajouter un produit" pour commencer.
@@ -444,7 +443,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                     className="h-10"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="customerEmail" className="text-sm text-gray-700 mb-1 block">
                     Email *
@@ -475,7 +474,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                     className="h-10"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="companyName" className="text-sm text-gray-700 mb-1 block">
                     Entreprise

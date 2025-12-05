@@ -20,7 +20,7 @@ interface AdminLayoutProps {
 
 export function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <ClientOnly 
+    <ClientOnly
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <LoadingSpinner size="lg" />
@@ -86,7 +86,7 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
 
   // Check if current page requires special layout (like login)
   const isAuthPage = pathname?.includes('/login') || pathname?.includes('/forgot-password');
-  
+
   if (isAuthPage) {
     return <>{children}</>;
   }
@@ -97,8 +97,8 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
       <div className="min-h-screen bg-gradient-to-br from-medical-bg to-gray-50/50">
         {/* Sidebar */}
         <ErrorBoundary>
-          <AdminSidebar 
-            open={sidebarOpen} 
+          <AdminSidebar
+            open={sidebarOpen}
             onClose={() => setSidebarOpen(false)}
             user={user}
           />
@@ -108,7 +108,7 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
         <div className="lg:pl-80">
           {/* Header */}
           <ErrorBoundary>
-            <AdminHeader 
+            <AdminHeader
               onMenuClick={() => setSidebarOpen(true)}
               user={user}
             />
@@ -131,7 +131,7 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
 
         {/* Mobile sidebar overlay */}
         {sidebarOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />

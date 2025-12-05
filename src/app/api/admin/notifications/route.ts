@@ -112,7 +112,7 @@ export async function GET(request: NextRequest) {
     );
 
     // Sort by creation date (newest first)
-    filteredNotifications.sort((a, b) => 
+    filteredNotifications.sort((a, b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
 
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const validatedNotification = notificationSchema.parse(body);
-    
+
     const newNotification = {
       ...validatedNotification,
       id: `notif-${Date.now()}`,
@@ -169,18 +169,18 @@ export async function POST(request: NextRequest) {
     };
 
     notifications.unshift(newNotification);
-    
+
     return NextResponse.json(newNotification, { status: 201 });
   } catch (error) {
     console.error('Notification creation error:', error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Invalid notification data', details: error.issues },
         { status: 400 }
       );
     }
-    
+
     return NextResponse.json(
       { error: 'Failed to create notification' },
       { status: 500 }

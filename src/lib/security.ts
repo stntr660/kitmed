@@ -20,9 +20,9 @@ export function getSecurityHeaders(): Record<string, string> {
   return {
     // HTTPS enforcement
     'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
-    
+
     // Content Security Policy
-    'Content-Security-Policy': 
+    'Content-Security-Policy':
       "default-src 'self'; " +
       "script-src 'self' 'unsafe-eval' 'unsafe-inline'; " +
       "style-src 'self' 'unsafe-inline'; " +
@@ -33,20 +33,20 @@ export function getSecurityHeaders(): Record<string, string> {
       "object-src 'none'; " +
       "base-uri 'self'; " +
       "form-action 'self'",
-    
+
     // XSS Protection
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    
+
     // Permissions Policy
-    'Permissions-Policy': 
+    'Permissions-Policy':
       'camera=(), microphone=(), geolocation=(), payment=()',
-    
+
     // Remove server information
     'Server': 'KITMED-Platform',
-    
+
     // MIME type sniffing
     'X-Content-Type-Options': 'nosniff',
   };
@@ -93,7 +93,7 @@ const RATE_LIMITS: Record<string, RateLimitConfig> = {
 export function applyRateLimit(request: NextRequest): { allowed: boolean; remaining: number } {
   const ip = getClientIP(request);
   const path = new URL(request.url).pathname;
-  
+
   // Find applicable rate limit
   let config = RATE_LIMITS.default;
   for (const [pattern, rateConfig] of Object.entries(RATE_LIMITS)) {
@@ -102,11 +102,11 @@ export function applyRateLimit(request: NextRequest): { allowed: boolean; remain
       break;
     }
   }
-  
+
   const key = `${ip}:${path}`;
   const now = Date.now();
   const store = rateLimitStore.get(key);
-  
+
   // Initialize or reset if window expired
   if (!store || now > store.resetTime) {
     rateLimitStore.set(key, {
@@ -115,17 +115,17 @@ export function applyRateLimit(request: NextRequest): { allowed: boolean; remain
     });
     return { allowed: true, remaining: config.maxRequests - 1 };
   }
-  
+
   // Check if limit exceeded
   if (store.requests >= config.maxRequests) {
     logger.warn(`Rate limit exceeded for ${ip} on ${path}`, { ip, path, requests: store.requests });
     return { allowed: false, remaining: 0 };
   }
-  
+
   // Increment counter
   store.requests++;
   rateLimitStore.set(key, store);
-  
+
   return { allowed: true, remaining: config.maxRequests - store.requests };
 }
 
@@ -136,13 +136,13 @@ export function getClientIP(request: NextRequest): string {
   const xForwardedFor = request.headers.get('x-forwarded-for');
   const xRealIp = request.headers.get('x-real-ip');
   const cfConnectingIp = request.headers.get('cf-connecting-ip');
-  
+
   if (cfConnectingIp) return cfConnectingIp;
   if (xRealIp) return xRealIp;
   if (xForwardedFor) {
     return xForwardedFor.split(',')[0].trim();
   }
-  
+
   return 'unknown';
 }
 
@@ -151,7 +151,7 @@ export function getClientIP(request: NextRequest): string {
  */
 export function isAllowedOrigin(origin: string | null): boolean {
   if (!origin) return false;
-  
+
   const allowedOrigins = getAllowedOrigins();
   return allowedOrigins.includes(origin);
 }
@@ -161,19 +161,19 @@ export function isAllowedOrigin(origin: string | null): boolean {
  */
 export function getCORSHeaders(origin: string | null): Record<string, string> {
   const headers: Record<string, string> = {};
-  
+
   if (isAllowedOrigin(origin)) {
     headers['Access-Control-Allow-Origin'] = origin!;
   } else if (process.env.NODE_ENV === 'development') {
     // More permissive in development
     headers['Access-Control-Allow-Origin'] = '*';
   }
-  
+
   headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
   headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With';
   headers['Access-Control-Allow-Credentials'] = 'true';
   headers['Access-Control-Max-Age'] = '86400'; // 24 hours
-  
+
   return headers;
 }
 
@@ -199,25 +199,25 @@ export function validateFileUpload(filename: string, mimeType: string): { valid:
     'image/webp',
     'application/pdf',
   ];
-  
+
   const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.pdf'];
-  
+
   // Check MIME type
   if (!allowedTypes.includes(mimeType)) {
     return { valid: false, error: 'File type not allowed' };
   }
-  
+
   // Check file extension
   const extension = filename.toLowerCase().split('.').pop();
   if (!extension || !allowedExtensions.includes(`.${extension}`)) {
     return { valid: false, error: 'File extension not allowed' };
   }
-  
+
   // Check for potential malicious filenames
   if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
     return { valid: false, error: 'Invalid filename' };
   }
-  
+
   return { valid: true };
 }
 
@@ -239,13 +239,13 @@ export function generateSecureToken(length: number = 32): string {
 export function withSecurity(handler: Function) {
   return async (request: NextRequest, context: any) => {
     const origin = request.headers.get('origin');
-    
+
     // Apply rate limiting
     const rateLimit = applyRateLimit(request);
     if (!rateLimit.allowed) {
       return NextResponse.json(
         { success: false, error: { code: 'RATE_LIMITED', message: 'Too many requests' } },
-        { 
+        {
           status: 429,
           headers: {
             'Retry-After': '60',
@@ -255,21 +255,21 @@ export function withSecurity(handler: Function) {
         }
       );
     }
-    
+
     // Execute handler
     const response = await handler(request, context);
-    
+
     // Add security headers to response
     const securityHeaders = getSecurityHeaders();
     const corsHeaders = getCORSHeaders(origin);
-    
+
     Object.entries({ ...securityHeaders, ...corsHeaders }).forEach(([key, value]) => {
       response.headers.set(key, value);
     });
-    
+
     // Add rate limit headers
     response.headers.set('X-RateLimit-Remaining', rateLimit.remaining.toString());
-    
+
     return response;
   };
 }

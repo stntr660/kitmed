@@ -41,7 +41,7 @@ export function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const success = await login(data.email, data.password);
-      
+
       if (success) {
         // Preserve current locale when redirecting after successful login
         const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
@@ -187,7 +187,6 @@ export function LoginForm() {
             </form>
           </CardContent>
         </Card>
-
 
         {/* Footer */}
         <div className="text-center mt-8">

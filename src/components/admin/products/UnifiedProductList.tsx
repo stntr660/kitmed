@@ -54,20 +54,20 @@ interface UnifiedProductListProps {
 export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListProps) {
   const t = useTranslations();
   const { canCreate, canUpdate, canDelete, canImport, canExport, isAdmin } = useAdminPermissions();
-  
+
   // Data state
   const [products, setProducts] = useState<AdminSearchResult<ProductWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-  
+
   // UI state
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerMode, setDrawerMode] = useState<'add' | 'edit' | 'view'>('add');
   const [selectedProduct, setSelectedProduct] = useState<ProductWithDetails | null>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [showCSVUpload, setShowCSVUpload] = useState(false);
-  
+
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
@@ -105,7 +105,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
           'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setProducts(data.data);
@@ -139,15 +139,15 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
 
   const handleSaveProduct = async (productData: Partial<Product>) => {
     try {
-      const url = drawerMode === 'add' 
-        ? '/api/admin/products' 
+      const url = drawerMode === 'add'
+        ? '/api/admin/products'
         : `/api/admin/products/${selectedProduct?.id}`;
-      
+
       const method = drawerMode === 'add' ? 'POST' : 'PUT';
 
       const response = await fetch(url, {
         method,
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -195,7 +195,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -226,11 +226,11 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
 
   const handleSelectAll = () => {
     if (!products) return;
-    
-    const allSelected = products.items.every(product => 
+
+    const allSelected = products.items.every(product =>
       selectedProducts.includes(product.id)
     );
-    
+
     if (allSelected) {
       setSelectedProducts([]);
     } else {
@@ -244,7 +244,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     try {
       const response = await fetch('/api/admin/products/bulk', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -267,7 +267,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
     try {
       const response = await fetch('/api/admin/products/export', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -384,7 +384,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {['active', 'inactive', 'discontinued'].map((status) => (
                 <Button
@@ -456,7 +456,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                       <th className="px-6 py-4 text-left">
                         <input
                           type="checkbox"
-                          checked={products.items.every(product => 
+                          checked={products.items.every(product =>
                             selectedProducts.includes(product.id)
                           )}
                           onChange={handleSelectAll}
@@ -464,13 +464,13 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                         />
                       </th>
                     )}
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('name')}
                     >
                       {t('navigation.products')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('sku')}
                     >
@@ -479,7 +479,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.category')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
@@ -488,7 +488,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.media')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -638,7 +638,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
               total: products.total
             })}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -649,11 +649,11 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, products.totalPages))].map((_, i) => {
               const page = products.page - 2 + i;
               if (page < 1 || page > products.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -666,7 +666,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"

@@ -9,10 +9,10 @@ export async function POST(request: NextRequest) {
 
     // In a real implementation, this would update the database
     // For now, we'll simulate the operation
-    
+
     let updatedCount = 0;
     const timestamp = new Date().toISOString();
-    
+
     // Simulate updating notifications based on filters
     if (type) {
       // Mark all notifications of a specific type as read
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       // Mark all notifications as read
       updatedCount = 12; // Mock count
     }
-    
+
     return NextResponse.json({
       success: true,
       updatedCount,

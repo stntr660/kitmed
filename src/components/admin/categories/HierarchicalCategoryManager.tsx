@@ -179,8 +179,8 @@ function TreeView({
 
               {/* Category Icon with Visual Hierarchy */}
               <div className="mr-3 relative">
-                <HierarchyConnectionLines 
-                  level={level} 
+                <HierarchyConnectionLines
+                  level={level}
                   isLast={category === categories[categories.length - 1]}
                   hasChildren={hasChildren}
                   isExpanded={isExpanded}
@@ -192,7 +192,7 @@ function TreeView({
                     className="h-10 w-10 rounded-lg object-cover border-2 border-white shadow-sm"
                   />
                 ) : (
-                  <CategoryTypeIcon 
+                  <CategoryTypeIcon
                     categoryName={category.nom?.fr || category.name}
                     categoryType={getCategoryType(category, level)}
                     level={level}
@@ -207,11 +207,11 @@ function TreeView({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-1">
                       {/* Category Type Badge */}
-                      <Badge 
+                      <Badge
                         variant={getCategoryType(category, level) === 'discipline' ? 'default' : 'secondary'}
                         className={`text-xs px-2 py-1 ${
-                          getCategoryType(category, level) === 'discipline' 
-                            ? 'bg-blue-100 text-blue-800 border-blue-200' 
+                          getCategoryType(category, level) === 'discipline'
+                            ? 'bg-blue-100 text-blue-800 border-blue-200'
                             : 'bg-green-100 text-green-800 border-green-200'
                         }`}
                       >
@@ -219,14 +219,14 @@ function TreeView({
                       </Badge>
                       <h4 className={`${
                         getCategoryType(category, level) === 'discipline'
-                          ? 'text-lg font-semibold text-blue-900' 
+                          ? 'text-lg font-semibold text-blue-900'
                           : 'text-sm font-medium text-gray-800'
                       } truncate`}>
                         {category.nom?.fr || category.name}
                       </h4>
-                      <LevelIndicator 
-                        level={level} 
-                        compact={true} 
+                      <LevelIndicator
+                        level={level}
+                        compact={true}
                         categoryType={getCategoryType(category, level)}
                       />
                       {!category.isActive && (
@@ -251,7 +251,7 @@ function TreeView({
                       )}
                     </div>
                   </div>
-                  
+
                   {/* Mobile Actions Toggle */}
                   <div className="md:hidden">
                     <button
@@ -492,7 +492,7 @@ export function HierarchicalCategoryManager() {
           'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data.items);
@@ -505,7 +505,6 @@ export function HierarchicalCategoryManager() {
       setLoading(false);
     }
   }, [searchQuery, showInactiveCategories, t]);
-
 
   // Tree operations
   const handleExpand = useCallback((id: string) => {
@@ -551,25 +550,25 @@ export function HierarchicalCategoryManager() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!categories.length) return;
-      
+
       // Don't interfere with typing in input fields, textareas, or content editable elements
       const target = event.target as HTMLElement;
       if (target && (
-        target.tagName === 'INPUT' || 
-        target.tagName === 'TEXTAREA' || 
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
         target.contentEditable === 'true' ||
         target.closest('input') ||
         target.closest('textarea')
       )) {
         return;
       }
-      
+
       const allCategoryIds = getAllCategoryIds(categories);
-      
+
       switch (event.key) {
         case 'ArrowDown':
           event.preventDefault();
-          setKeyboardNavIndex(prev => 
+          setKeyboardNavIndex(prev =>
             prev < allCategoryIds.length - 1 ? prev + 1 : prev
           );
           break;
@@ -608,7 +607,7 @@ export function HierarchicalCategoryManager() {
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleClick);
-    
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('click', handleClick);
@@ -628,7 +627,7 @@ export function HierarchicalCategoryManager() {
 
   const getMaxDepth = (categories: Category[], currentDepth = 0): number => {
     if (!categories.length) return currentDepth;
-    
+
     let maxDepth = currentDepth;
     categories.forEach(category => {
       if (category.children && category.children.length > 0) {
@@ -636,7 +635,7 @@ export function HierarchicalCategoryManager() {
         maxDepth = Math.max(maxDepth, childDepth);
       }
     });
-    
+
     return maxDepth;
   };
 
@@ -645,11 +644,11 @@ export function HierarchicalCategoryManager() {
     // Primary: Use the type field from database if available
     if (category.type === 'discipline') return 'discipline';
     if (category.type === 'equipment') return 'equipment';
-    
+
     // Secondary: Check parent relationship (null parentId = discipline, has parentId = equipment)
     if (category.parentId === null || category.parentId === undefined) return 'discipline';
     if (category.parentId) return 'equipment';
-    
+
     // Final fallback: Use level-based inference
     return level === 0 ? 'discipline' : 'equipment';
   };
@@ -689,7 +688,7 @@ export function HierarchicalCategoryManager() {
       });
       return ids;
     };
-    
+
     setExpandedIds(new Set(getAllCategoryIds(categories)));
   }, [categories]);
 
@@ -708,10 +707,10 @@ export function HierarchicalCategoryManager() {
       });
       return ids;
     };
-    
+
     const allIds = getAllCategoryIds(categories);
     const allSelected = allIds.every(id => selectedIds.has(id));
-    
+
     if (allSelected) {
       setSelectedIds(new Set());
     } else {
@@ -775,10 +774,10 @@ export function HierarchicalCategoryManager() {
 
   const handleSaveCategory = async (categoryData: any) => {
     try {
-      const url = wizardMode === 'add' 
-        ? '/api/admin/categories' 
+      const url = wizardMode === 'add'
+        ? '/api/admin/categories'
         : `/api/admin/categories/${selectedCategory?.id}`;
-      
+
       const method = wizardMode === 'add' ? 'POST' : 'PUT';
 
       // Format payload to match API schema
@@ -816,7 +815,7 @@ export function HierarchicalCategoryManager() {
 
       const response = await fetch(url, {
         method,
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -832,15 +831,15 @@ export function HierarchicalCategoryManager() {
         const errorData = await response.json();
         console.error('API Error Response:', errorData);
         console.error('Payload sent:', payload);
-        
+
         // Show detailed validation errors if available
         if (errorData.details && Array.isArray(errorData.details)) {
-          const validationErrors = errorData.details.map((err: any) => 
+          const validationErrors = errorData.details.map((err: any) =>
             `${err.path?.join('.')}: ${err.message}`
           ).join(', ');
           throw new Error(`Validation errors: ${validationErrors}`);
         }
-        
+
         throw new Error(errorData.error || 'Failed to save category');
       }
     } catch (error) {
@@ -863,7 +862,7 @@ export function HierarchicalCategoryManager() {
     try {
       const response = await fetch('/api/admin/categories/bulk', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -931,7 +930,7 @@ export function HierarchicalCategoryManager() {
               <span className="hidden sm:inline">{t('admin.categories.expandAll')}</span>
             </Button>
           </div>
-          
+
           <div className="flex space-x-3">
             <HelpButton onClick={() => setHelpGuideOpen(true)} />
             {canCreate('categories') && (
@@ -974,7 +973,7 @@ export function HierarchicalCategoryManager() {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3 items-center">
               <label className="flex items-center space-x-2 cursor-pointer">
                 <input
@@ -991,7 +990,7 @@ export function HierarchicalCategoryManager() {
           {/* Statistics */}
           {categories.length > 0 && (
             <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-              <HierarchyStats 
+              <HierarchyStats
                 totalCategories={getAllCategoryIds(categories).length}
                 maxDepth={getMaxDepth(categories)}
                 topLevelCount={categories.length}
@@ -1006,8 +1005,8 @@ export function HierarchicalCategoryManager() {
             <div className="mt-6 p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <span className="text-sm font-semibold text-primary-700">
-                  {selectedIds.size} {selectedIds.size === 1 
-                    ? t('admin.categories.categorySelected') 
+                  {selectedIds.size} {selectedIds.size === 1
+                    ? t('admin.categories.categorySelected')
                     : t('admin.categories.categoriesSelected')
                   }
                 </span>

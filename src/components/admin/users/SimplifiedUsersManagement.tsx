@@ -42,7 +42,7 @@ interface UsersResponse {
 
 export function SimplifiedUsersManagement() {
   const t = useTranslations();
-  
+
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -66,17 +66,15 @@ export function SimplifiedUsersManagement() {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Get authentication token
       const token = getAdminToken();
-      
+
       if (!token) {
         console.error('No authentication token found');
         throw new Error('Authentication required. Please login again.');
       }
 
-      console.log('Fetching users with token:', token ? 'Token exists' : 'No token');
-      
       const response = await fetch('/api/admin/users', {
         credentials: 'include',
         headers: {
@@ -84,10 +82,10 @@ export function SimplifiedUsersManagement() {
           'Authorization': `Bearer ${token}`,
         },
       });
-      
+
       if (response.ok) {
         const result: UsersResponse = await response.json();
-        console.log('Users API response:', result);
+
         setUsers(result.data.items);
       } else {
         const errorText = await response.text();
@@ -96,13 +94,13 @@ export function SimplifiedUsersManagement() {
       }
     } catch (err) {
       console.error('Failed to load users:', err);
-      
+
       // Provide specific error messages based on the error type
       let errorMessage = 'Failed to load users';
-      
+
       if (err instanceof Error) {
         errorMessage = err.message;
-        
+
         // Special handling for auth errors
         if (err.message.includes('Authentication') || err.message.includes('Session expired')) {
           // Clear invalid token using auth utilities
@@ -110,7 +108,7 @@ export function SimplifiedUsersManagement() {
           removeAdminToken();
         }
       }
-      
+
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -145,11 +143,11 @@ export function SimplifiedUsersManagement() {
 
   const handleSaveUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       // Get authentication token
       const token = getAdminToken();
-      
+
       if (!token) {
         console.error('No authentication token found');
         setError('Authentication required. Please login again.');
@@ -158,13 +156,11 @@ export function SimplifiedUsersManagement() {
 
       const url = selectedUser ? `/api/admin/users/${selectedUser.id}` : '/api/admin/users';
       const method = selectedUser ? 'PUT' : 'POST';
-      
-      console.log('Saving user with token:', token ? 'Token exists' : 'No token');
-      
+
       const response = await fetch(url, {
         method,
         credentials: 'include',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
@@ -190,15 +186,13 @@ export function SimplifiedUsersManagement() {
     try {
       // Get authentication token
       const token = getAdminToken();
-      
+
       if (!token) {
         console.error('No authentication token found');
         setError('Authentication required. Please login again.');
         return;
       }
 
-      console.log('Deleting user with token:', token ? 'Token exists' : 'No token');
-      
       const response = await fetch(`/api/admin/users/${userId}`, {
         method: 'DELETE',
         credentials: 'include',
@@ -218,8 +212,8 @@ export function SimplifiedUsersManagement() {
     }
   };
 
-  const filteredUsers = users.filter(user => 
-    searchQuery === '' || 
+  const filteredUsers = users.filter(user =>
+    searchQuery === '' ||
     `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -331,10 +325,10 @@ export function SimplifiedUsersManagement() {
                           </div>
                           <div>
                             <div className="text-sm font-medium text-gray-900">
-                              {user.firstName} {user.lastName}
+                              {user.first_name} {user.last_name}
                             </div>
                             <div className="text-sm text-gray-500">
-                              Created {formatDate(user.createdAt)}
+                              Created {formatDate(user.created_at)}
                             </div>
                           </div>
                         </div>
@@ -348,12 +342,12 @@ export function SimplifiedUsersManagement() {
                         </Badge>
                       </td>
                       <td className="px-6 py-4">
-                        <Badge variant={getStatusColor(user.isActive)}>
-                          {user.isActive ? 'Active' : 'Inactive'}
+                        <Badge variant={getStatusColor(user.is_active)}>
+                          {user.is_active ? 'Active' : 'Inactive'}
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-500">
-                        {user.lastLogin ? formatDate(user.lastLogin, 'time') : 'Never'}
+                        {user.last_login ? formatDate(user.last_login, 'time') : 'Never'}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex justify-end space-x-2">
@@ -402,7 +396,7 @@ export function SimplifiedUsersManagement() {
             <h3 className="text-lg font-semibold mb-4">
               {selectedUser ? 'Edit User' : 'Add User'}
             </h3>
-            
+
             <form onSubmit={handleSaveUser} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">First Name</label>
@@ -412,7 +406,7 @@ export function SimplifiedUsersManagement() {
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">Last Name</label>
                 <Input
@@ -421,7 +415,7 @@ export function SimplifiedUsersManagement() {
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <Input
@@ -431,7 +425,7 @@ export function SimplifiedUsersManagement() {
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Password {selectedUser && <span className="text-sm text-gray-500">(leave blank to keep current)</span>}
@@ -444,7 +438,7 @@ export function SimplifiedUsersManagement() {
                   placeholder={selectedUser ? "Leave blank to keep current password" : "Enter password"}
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">Role</label>
                 <select
@@ -456,7 +450,7 @@ export function SimplifiedUsersManagement() {
                   <option value="admin">Administrator</option>
                 </select>
               </div>
-              
+
               <div className="flex items-center">
                 <input
                   type="checkbox"
@@ -469,7 +463,7 @@ export function SimplifiedUsersManagement() {
                   Active User
                 </label>
               </div>
-              
+
               <div className="flex justify-end space-x-3 pt-4">
                 <Button
                   type="button"

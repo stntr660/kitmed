@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyRequestAuth, getAdminUser } from '@/lib/auth-utils';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/database';
 
 export async function GET(request: NextRequest) {
   try {
     // Verify JWT token
     const auth = await verifyRequestAuth(request);
-    
+
     if (!auth) {
       return NextResponse.json(
         {
@@ -24,35 +22,35 @@ export async function GET(request: NextRequest) {
 
     // Try to get actual user from database first
     let userData = null;
-    
+
     try {
       // Look up the actual user from database using the token's user ID
-      const dbUser = await prisma.user.findUnique({
+      const dbUser = await prisma.users.findUnique({
         where: { id: auth.userId },
         select: {
           id: true,
           email: true,
-          firstName: true,
-          lastName: true,
+          first_name: true,
+          last_name: true,
           role: true,
-          isActive: true,
-          createdAt: true,
-          updatedAt: true,
-          lastLogin: true,
+          is_active: true,
+          created_at: true,
+          updated_at: true,
+          last_login: true,
         },
       });
 
-      if (dbUser && dbUser.isActive) {
+      if (dbUser && dbUser.is_active) {
         userData = {
           id: dbUser.id,
           email: dbUser.email,
-          firstName: dbUser.firstName,
-          lastName: dbUser.lastName,
+          firstName: dbUser.first_name,
+          lastName: dbUser.last_name,
           role: dbUser.role,
-          status: dbUser.isActive ? 'ACTIVE' : 'INACTIVE',
-          lastLoginAt: dbUser.lastLogin?.toISOString() || new Date().toISOString(),
-          createdAt: dbUser.createdAt.toISOString(),
-          updatedAt: dbUser.updatedAt.toISOString(),
+          status: dbUser.is_active ? 'ACTIVE' : 'INACTIVE',
+          lastLoginAt: dbUser.last_login?.toISOString() || new Date().toISOString(),
+          createdAt: dbUser.created_at.toISOString(),
+          updatedAt: dbUser.updated_at.toISOString(),
         };
       }
     } catch (dbError) {

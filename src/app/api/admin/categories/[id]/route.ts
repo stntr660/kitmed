@@ -91,7 +91,7 @@ export async function GET(
     // Process category to include computed fields
     const frTranslation = category.translations.find(t => t.languageCode === 'fr');
     const enTranslation = category.translations.find(t => t.languageCode === 'en');
-    
+
     const processedCategory = {
       ...category,
       nom: {
@@ -154,7 +154,7 @@ export async function PUT(
       const parent = await prisma.category.findUnique({
         where: { id: categoryData.parentId }
       });
-      
+
       if (!parent) {
         return NextResponse.json(
           { error: 'Parent category not found' },
@@ -168,13 +168,13 @@ export async function PUT(
           where: { id: parentId },
           select: { parentId: true }
         });
-        
+
         if (!parent) return false;
         if (parent.parentId === targetId) return true;
         if (parent.parentId) {
           return await checkCircularReference(parent.parentId, targetId);
         }
-        
+
         return false;
       };
 
@@ -188,7 +188,7 @@ export async function PUT(
 
     // Generate new slug if name changed
     let slug = existingCategory.slug;
-    if (categoryData.translations?.fr?.name && 
+    if (categoryData.translations?.fr?.name &&
         categoryData.translations.fr.name !== existingCategory.name) {
       const newSlug = categoryData.translations.fr.name
         .toLowerCase()
@@ -199,8 +199,8 @@ export async function PUT(
       let finalSlug = newSlug;
       let counter = 1;
       while (true) {
-        const existing = await prisma.category.findUnique({ 
-          where: { slug: finalSlug } 
+        const existing = await prisma.category.findUnique({
+          where: { slug: finalSlug }
         });
         if (!existing || existing.id === id) break;
         finalSlug = `${newSlug}-${counter}`;
@@ -372,7 +372,7 @@ export async function DELETE(
     // Check if category has children
     if (category._count.children > 0) {
       return NextResponse.json(
-        { 
+        {
           error: 'Cannot delete category with subcategories',
           details: `This category has ${category._count.children} subcategories. Please move or delete them first.`
         },
@@ -383,7 +383,7 @@ export async function DELETE(
     // Check if category has products
     if (category._count.products > 0) {
       return NextResponse.json(
-        { 
+        {
           error: 'Cannot delete category with products',
           details: `This category has ${category._count.products} products. Please move or delete them first.`
         },

@@ -100,10 +100,10 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
               </p>
             )}
           </div>
-          
+
           {banner.imageUrl && (
             <div className="relative mx-auto max-w-md">
-              <img 
+              <img
                 src={banner.imageUrl}
                 alt={content.title}
                 className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
@@ -114,7 +114,7 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
 
           {content.ctaText && banner.ctaUrl && (
             <div className="pt-4">
-              <Button 
+              <Button
                 className={cn(
                   'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
                   getCtaStyles()
@@ -161,7 +161,7 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
 
           {content.ctaText && banner.ctaUrl && (
             <div className="pt-6">
-              <Button 
+              <Button
                 className={cn(
                   'px-12 py-4 rounded-lg font-semibold text-lg transition-all duration-200 inline-flex items-center space-x-3',
                   getCtaStyles()
@@ -212,7 +212,7 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
 
           {content.ctaText && banner.ctaUrl && (
             <div className="pt-4">
-              <Button 
+              <Button
                 className={cn(
                   'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
                   getCtaStyles()
@@ -224,10 +224,10 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
             </div>
           )}
         </div>
-        
+
         {banner.imageUrl && (
           <div className="relative">
-            <img 
+            <img
               src={banner.imageUrl}
               alt={content.title}
               className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
@@ -245,13 +245,13 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
       <div className="relative min-h-[600px] overflow-hidden rounded-lg border shadow-lg bg-white">
         {/* Background */}
         {banner.backgroundUrl ? (
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${banner.backgroundUrl})`,
             }}
           >
-            <div 
+            <div
               className="absolute inset-0 bg-white"
               style={{ opacity: banner.overlayOpacity }}
             />
@@ -259,7 +259,7 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
         )}
-        
+
         {/* Content */}
         <div className="relative container mx-auto px-4 lg:px-8 py-8">
           {renderBannerContent()}
@@ -296,7 +296,7 @@ export function BannerPreview({ banner, device, locale = 'fr' }: BannerPreviewPr
             <span className="ml-2 text-gray-600 capitalize">{banner.ctaStyle}</span>
           </div>
         </div>
-        
+
         {(banner.startDate || banner.endDate) && (
           <div className="mt-3 pt-3 border-t border-gray-200">
             <div className="text-xs text-gray-500">

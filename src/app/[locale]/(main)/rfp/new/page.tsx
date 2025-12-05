@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   FileText,
   ArrowRight,
   CheckCircle,

@@ -34,14 +34,14 @@ export interface CRUDConfig<T> {
   entityName: string;
   entityNamePlural: string;
   apiEndpoint: string;
-  
+
   // Table configuration
   columns: TableColumn<T>[];
-  
+
   // Component renderers
   renderForm: (item: T | null, onSave: (item: T) => void, onCancel: () => void) => ReactNode;
   renderDetails: (item: T) => ReactNode;
-  
+
   // Optional customizations
   getStatusColor?: (status: string) => string;
   getRowActions?: (item: T) => Array<{
@@ -60,22 +60,22 @@ interface AdminCRUDViewProps<T extends CRUDItem> {
   headerActions?: ReactNode;
 }
 
-export function AdminCRUDView<T extends CRUDItem>({ 
-  config, 
+export function AdminCRUDView<T extends CRUDItem>({
+  config,
   initialFilters = {},
-  headerActions 
+  headerActions
 }: AdminCRUDViewProps<T>) {
   // State management
   const [items, setItems] = useState<AdminSearchResult<T> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  
+
   // Sheet state
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sheetMode, setSheetMode] = useState<'view' | 'edit' | 'create'>('view');
   const [selectedItem, setSelectedItem] = useState<T | null>(null);
-  
+
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
     status: [],
@@ -107,7 +107,7 @@ export function AdminCRUDView<T extends CRUDItem>({
       });
 
       const response = await fetch(`${config.apiEndpoint}?${params}`);
-      
+
       if (response.ok) {
         const data = await response.json();
         setItems(data.data);
@@ -163,11 +163,11 @@ export function AdminCRUDView<T extends CRUDItem>({
 
   const handleSelectAll = () => {
     if (!items) return;
-    
-    const allSelected = items.items.every(item => 
+
+    const allSelected = items.items.every(item =>
       selectedItems.includes(item.id)
     );
-    
+
     if (allSelected) {
       setSelectedItems([]);
     } else {
@@ -222,7 +222,7 @@ export function AdminCRUDView<T extends CRUDItem>({
   // Default row actions
   const getRowActions = (item: T) => {
     const customActions = config.getRowActions?.(item) || [];
-    
+
     const defaultActions = [
       {
         icon: <Eye className="h-4 w-4" />,
@@ -336,7 +336,7 @@ export function AdminCRUDView<T extends CRUDItem>({
                     <th className="px-6 py-3 text-left">
                       <input
                         type="checkbox"
-                        checked={items.items.every(item => 
+                        checked={items.items.every(item =>
                           selectedItems.includes(item.id)
                         )}
                         onChange={handleSelectAll}
@@ -373,7 +373,7 @@ export function AdminCRUDView<T extends CRUDItem>({
                       </td>
                       {config.columns.map((column) => (
                         <td key={column.key} className="px-6 py-4 text-sm text-gray-900">
-                          {column.render 
+                          {column.render
                             ? column.render(item[column.key], item)
                             : item[column.key]
                           }
@@ -421,7 +421,7 @@ export function AdminCRUDView<T extends CRUDItem>({
             {Math.min(items.page * items.pageSize, items.total)} of{' '}
             {items.total} results
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -431,11 +431,11 @@ export function AdminCRUDView<T extends CRUDItem>({
             >
               Previous
             </Button>
-            
+
             {[...Array(Math.min(5, items.totalPages))].map((_, i) => {
               const page = items.page - 2 + i;
               if (page < 1 || page > items.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -447,7 +447,7 @@ export function AdminCRUDView<T extends CRUDItem>({
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -462,15 +462,15 @@ export function AdminCRUDView<T extends CRUDItem>({
 
       {/* Unified Sheet for Create/Edit/View */}
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent 
-          side="right" 
+        <SheetContent
+          side="right"
           className="w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl overflow-y-auto"
         >
           <SheetHeader>
             <SheetTitle>{getSheetTitle()}</SheetTitle>
             <SheetDescription>{getSheetDescription()}</SheetDescription>
           </SheetHeader>
-          
+
           <div className="mt-6">
             {sheetMode === 'view' && selectedItem && config.renderDetails(selectedItem)}
             {(sheetMode === 'edit' || sheetMode === 'create') && (

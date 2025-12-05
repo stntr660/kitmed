@@ -26,31 +26,30 @@ export function QuickLogin() {
       });
 
       const data = await response.json();
-      console.log('Login response:', data);
 
       if (data.success && data.data.token) {
         localStorage.setItem('admin-token', data.data.token);
-        setResult({ 
-          success: true, 
+        setResult({
+          success: true,
           message: 'Login successful! Token saved.',
           token: data.data.token.substring(0, 20) + '...'
         });
-        
+
         // Reload page to update auth state
         setTimeout(() => {
           window.location.reload();
         }, 1000);
       } else {
-        setResult({ 
-          success: false, 
-          message: data.error?.message || 'Login failed' 
+        setResult({
+          success: false,
+          message: data.error?.message || 'Login failed'
         });
       }
     } catch (error) {
       console.error('Login error:', error);
-      setResult({ 
-        success: false, 
-        message: error instanceof Error ? error.message : 'Login failed' 
+      setResult({
+        success: false,
+        message: error instanceof Error ? error.message : 'Login failed'
       });
     } finally {
       setLoading(false);
@@ -61,7 +60,7 @@ export function QuickLogin() {
     <Card className="w-96 mx-auto mt-8">
       <CardContent className="p-6">
         <h3 className="text-lg font-semibold mb-4">Quick Login (Dev Only)</h3>
-        
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
@@ -72,7 +71,7 @@ export function QuickLogin() {
               placeholder="admin@kitmed.ma"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium mb-1">Password</label>
             <Input
@@ -82,15 +81,15 @@ export function QuickLogin() {
               placeholder="admin123"
             />
           </div>
-          
-          <Button 
-            onClick={handleLogin} 
+
+          <Button
+            onClick={handleLogin}
             disabled={loading}
             className="w-full"
           >
             {loading ? 'Logging in...' : 'Login & Save Token'}
           </Button>
-          
+
           {result && (
             <div className="mt-4">
               <Badge variant={result.success ? 'default' : 'destructive'}>

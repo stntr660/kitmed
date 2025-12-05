@@ -54,20 +54,20 @@ export default function ProductsByDisciplinePage() {
           <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
               🏥 Spécialités Médicales KITMED
             </Badge>
-            
+
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Produits par
               <span className="text-primary-300 block mt-2">Discipline</span>
             </h1>
-            
+
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Explorez nos équipements médicaux organisés par spécialité pour trouver 
+              Explorez nos équipements médicaux organisés par spécialité pour trouver
               les solutions parfaitement adaptées à votre domaine d'expertise.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function ProductsByDisciplinePage() {
                   Choisissez votre domaine d'expertise parmi nos {categories.length} discipline{categories.length > 1 ? 's' : ''} médicale{categories.length > 1 ? 's' : ''}
                 </p>
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {categories.map((category) => (
                   <Card key={category.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -108,9 +108,9 @@ export default function ProductsByDisciplinePage() {
                           <Building2 className="h-16 w-16 text-slate-400" />
                         </div>
                       )}
-                      
+
                     </div>
-                    
+
                     <CardHeader className="p-6 pb-4">
                       <CardTitle className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                         {category.name}
@@ -119,9 +119,9 @@ export default function ProductsByDisciplinePage() {
                         {category.description || `Solutions professionnelles pour ${category.name.toLowerCase()}`}
                       </p>
                     </CardHeader>
-                    
+
                     <CardContent className="p-6 pt-0">
-                      <Button 
+                      <Button
                         className="w-full bg-primary text-white hover:bg-primary-700"
                         asChild
                       >

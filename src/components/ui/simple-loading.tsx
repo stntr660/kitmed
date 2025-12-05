@@ -36,7 +36,7 @@ export function SimplePageLoader() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a[href^="/"]');
-      
+
       if (link && !link.getAttribute('href')?.includes('#')) {
         const href = link.getAttribute('href');
         if (href && href !== pathname && !href.startsWith('http')) {

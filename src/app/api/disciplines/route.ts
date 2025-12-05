@@ -1,6 +1,6 @@
 /**
  * Disciplines API Route
- * 
+ *
  * New endpoint for managing medical disciplines separately from equipment categories.
  * Includes backward compatibility and feature flag support.
  */
@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 
 /**
  * GET /api/disciplines
- * 
+ *
  * Retrieve all medical disciplines with optional filtering.
  * Supports both new discipline table and legacy category table based on feature flags.
  */
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     if (shouldUseDisciplines) {
       // Use new disciplines table
       const where: any = {};
-      
+
       if (search) {
         where.OR = [
           { name: { contains: search, mode: 'insensitive' } },
@@ -46,17 +46,17 @@ export async function GET(request: NextRequest) {
           { description: { contains: search, mode: 'insensitive' } }
         ];
       }
-      
+
       if (active !== null && active !== undefined) {
         where.isActive = active === 'true';
       }
 
       const include: any = {};
-      
+
       if (includeTranslations) {
         include.translations = true;
       }
-      
+
       if (includeProducts) {
         include.productDisciplines = {
           include: {
@@ -106,7 +106,7 @@ export async function GET(request: NextRequest) {
       const where: any = {
         type: 'discipline'
       };
-      
+
       if (search) {
         where.OR = [
           { name: { contains: search, mode: 'insensitive' } },
@@ -114,17 +114,17 @@ export async function GET(request: NextRequest) {
           { description: { contains: search, mode: 'insensitive' } }
         ];
       }
-      
+
       if (active !== null && active !== undefined) {
         where.isActive = active === 'true';
       }
 
       const include: any = {};
-      
+
       if (includeTranslations) {
         include.translations = true;
       }
-      
+
       if (includeProducts) {
         include.products = {
           include: {
@@ -151,7 +151,7 @@ export async function GET(request: NextRequest) {
 
     // Add migration mode logging
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Disciplines API called - using ${shouldUseDisciplines ? 'new' : 'legacy'} data source`);
+
     }
 
     // Add deprecation warning for legacy usage
@@ -183,9 +183,9 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error in disciplines API:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Failed to fetch disciplines'
       },
@@ -196,7 +196,7 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST /api/disciplines
- * 
+ *
  * Create a new medical discipline.
  * Routes to appropriate table based on feature flags.
  */
@@ -240,8 +240,7 @@ export async function POST(request: NextRequest) {
 
       // Log creation in migration mode
       if (isInMigrationMode) {
-        console.log(`[MIGRATION] Created discipline in new table: ${discipline.id}`);
-        
+
         // Also log in activity log
         await prisma.activity_logs?.create({
           data: {
@@ -278,7 +277,7 @@ export async function POST(request: NextRequest) {
       });
 
       if (isInMigrationMode) {
-        console.log(`[MIGRATION] Created discipline in legacy table: ${discipline.id}`);
+
       }
     }
 
@@ -292,7 +291,7 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error creating discipline:', error);
-    
+
     // Handle unique constraint violations
     if ((error as any)?.code === 'P2002') {
       return NextResponse.json(
@@ -300,9 +299,9 @@ export async function POST(request: NextRequest) {
         { status: 409 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to create discipline',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
       },

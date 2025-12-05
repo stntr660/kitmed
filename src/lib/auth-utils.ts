@@ -11,26 +11,26 @@ import { NextRequest } from 'next/server';
  */
 export function getAdminToken(): string | null {
   if (typeof window === 'undefined') return null;
-  
+
   const storage = safeLocalStorage();
-  
+
   // In development, use localStorage first (HTTP-only cookies not accessible to JS)
   if (process.env.NODE_ENV === 'development') {
     return storage.getItem('admin-token');
   }
-  
+
   // In production, try cookies first, then localStorage as fallback
   if (typeof document !== 'undefined') {
     const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find(cookie => 
+    const tokenCookie = cookies.find(cookie =>
       cookie.trim().startsWith('admin-token=')
     );
-    
+
     if (tokenCookie) {
       return tokenCookie.split('=')[1];
     }
   }
-  
+
   // Fallback to localStorage
   return storage.getItem('admin-token');
 }
@@ -40,7 +40,7 @@ export function getAdminToken(): string | null {
  */
 export function setAdminToken(token: string): void {
   if (typeof window === 'undefined') return;
-  
+
   const storage = safeLocalStorage();
   storage.setItem('admin-token', token);
 }
@@ -50,14 +50,14 @@ export function setAdminToken(token: string): void {
  */
 export function removeAdminToken(): void {
   if (typeof window === 'undefined') return;
-  
+
   const storage = safeLocalStorage();
-  
+
   // Remove cookie (only in browser)
   if (typeof document !== 'undefined') {
     document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
   }
-  
+
   // Remove from localStorage
   storage.removeItem('admin-token');
 }
@@ -67,11 +67,11 @@ export function removeAdminToken(): void {
  */
 export function getAuthHeaders(): HeadersInit {
   const token = getAdminToken();
-  
+
   if (!token) {
     return {};
   }
-  
+
   return {
     'Authorization': `Bearer ${token}`,
   };
@@ -84,7 +84,7 @@ export function createAuthFetchOptions(
   options: RequestInit = {}
 ): RequestInit {
   const authHeaders = getAuthHeaders();
-  
+
   return {
     ...options,
     headers: {
@@ -117,9 +117,9 @@ export async function verifyRequestAuth(request: NextRequest): Promise<{ userId:
 
     const token = authHeader.substring(7);
     const secret = process.env.JWT_SECRET || 'development-secret-key';
-    
+
     const decoded = jwt.verify(token, secret) as any;
-    
+
     return {
       userId: decoded.userId || decoded.id,
       email: decoded.email,
@@ -160,7 +160,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
  */
 export function generateToken(user: { id: string; email: string; firstName: string; lastName: string; role: string }): string {
   const secret = process.env.JWT_SECRET || 'development-secret-key';
-  
+
   return jwt.sign(
     {
       userId: user.id,
@@ -181,18 +181,18 @@ export function checkRateLimit(ip: string): { allowed: boolean; remainingAttempt
   const now = Date.now();
   const windowMs = 15 * 60 * 1000; // 15 minutes
   const maxAttempts = 5;
-  
+
   const record = rateLimitStore.get(ip);
-  
+
   if (!record || now > record.resetTime) {
     rateLimitStore.set(ip, { attempts: 0, resetTime: now + windowMs });
     return { allowed: true, remainingAttempts: maxAttempts };
   }
-  
+
   if (record.attempts >= maxAttempts) {
     return { allowed: false, remainingAttempts: 0 };
   }
-  
+
   record.attempts++;
   return { allowed: true, remainingAttempts: maxAttempts - record.attempts };
 }
@@ -202,4 +202,11 @@ export function checkRateLimit(ip: string): { allowed: boolean; remainingAttempt
  */
 export function resetRateLimit(ip: string): void {
   rateLimitStore.delete(ip);
+}
+/**
+ * Hash password for storage
+ */
+export async function hashPassword(password: string): Promise<string> {
+  const saltRounds = 12;
+  return await bcrypt.hash(password, saltRounds);
 }

@@ -36,19 +36,19 @@ interface UnifiedRFPListProps {
 
 export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
   const t = useTranslations();
-  
+
   // Data state
   const [rfpRequests, setRFPRequests] = useState<AdminSearchResult<RFPWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRFPs, setSelectedRFPs] = useState<string[]>([]);
-  
+
   // UI state
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerMode, setDrawerMode] = useState<'view' | 'respond' | 'manage'>('view');
   const [selectedRFP, setSelectedRFP] = useState<RFPWithDetails | null>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
-  
+
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
@@ -77,14 +77,14 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         fetch('/api/rfp-requests?status=quoted&pageSize=1'),
         fetch('/api/rfp-requests?status=completed&pageSize=1'),
       ]);
-      
+
       const [pendingRes, reviewingRes, quotedRes, completedRes] = responses;
-      
+
       if (responses.every(res => res.ok)) {
         const [pendingData, reviewingData, quotedData, completedData] = await Promise.all(
           responses.map(res => res.json())
         );
-        
+
         setStats({
           pending: pendingData.success ? pendingData.data.total : 0,
           reviewing: reviewingData.success ? reviewingData.data.total : 0,
@@ -97,7 +97,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       // Keep existing stats if fetch fails
     }
   };
-  
+
   useEffect(() => {
     loadRFPRequests();
   }, [filters]);
@@ -106,7 +106,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Build query parameters
       const params = new URLSearchParams({
         page: (filters.page || 1).toString(),
@@ -114,30 +114,30 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         sortBy: filters.sortBy || 'createdAt',
         sortOrder: filters.sortOrder || 'desc',
       });
-      
+
       if (filters.query) {
         params.append('search', filters.query);
       }
-      
+
       if (filters.status && filters.status.length > 0) {
         filters.status.forEach(status => {
           params.append('status', status);
         });
       }
-      
+
       // Fetch RFP requests
       const response = await fetch(`/api/rfp-requests?${params}`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to load RFP requests');
       }
-      
+
       const result = await response.json();
-      
+
       if (!result.success) {
         throw new Error(result.error || 'Failed to load RFP requests');
       }
-      
+
       // Transform data to match expected format
       const transformedItems = result.data.items.map((item: any) => ({
         id: item.id,
@@ -159,7 +159,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         estimatedValue: item.quoteAmount,
         items: item.items || [],
       }));
-      
+
       setRFPRequests({
         items: transformedItems,
         total: result.data.total,
@@ -167,10 +167,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         pageSize: result.data.pageSize,
         totalPages: result.data.totalPages,
       });
-      
+
       // Calculate statistics
       await loadStatistics();
-      
+
     } catch (err) {
       console.error('Failed to load RFP requests:', err);
       setError(t('errors.serverError'));
@@ -206,11 +206,11 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
   const handleRFPAction = async (action: string, data?: any) => {
     try {
       if (!selectedRFP) return;
-      
+
       let endpoint = '';
       let method = 'PUT';
       let body: any = {};
-      
+
       switch (action) {
         case 'update-status':
           endpoint = `/api/rfp-requests/${selectedRFP.id}`;
@@ -218,10 +218,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
           break;
         case 'add-quote':
           endpoint = `/api/rfp-requests/${selectedRFP.id}`;
-          body = { 
+          body = {
             status: 'quoted',
             quoteAmount: data.amount,
-            quoteValidUntil: data.validUntil 
+            quoteValidUntil: data.validUntil
           };
           break;
         case 'update-notes':
@@ -233,10 +233,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
           method = 'DELETE';
           break;
         default:
-          console.log('Unknown action:', action);
+
           return;
       }
-      
+
       const response = await fetch(endpoint, {
         method,
         headers: {
@@ -244,15 +244,15 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         },
         body: method !== 'DELETE' ? JSON.stringify(body) : undefined,
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Action failed');
       }
-      
+
       // Reload data
       await loadRFPRequests();
-      
+
     } catch (error) {
       console.error('RFP action failed:', error);
       throw error;
@@ -267,7 +267,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -290,8 +290,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
   const handleExport = async () => {
     try {
       // Simulate export
-      console.log('Exporting RFP requests with filters:', filters);
-      
+
       // In real app, make API call and download file
       await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (err) {
@@ -302,7 +301,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
   // Status helpers
   const getStatusIcon = (status: string) => {
     let IconComponent;
-    
+
     switch (status) {
       case 'pending':
         IconComponent = ClockIcon;
@@ -318,7 +317,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
         IconComponent = ClockIcon;
         break;
     }
-    
+
     return validateIconComponent(IconComponent, `StatusIcon-${status}`);
   };
 
@@ -398,7 +397,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card className="border border-gray-200/60">
           <CardContent className="p-6">
             <div className="flex items-center">
@@ -412,7 +411,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card className="border border-gray-200/60">
           <CardContent className="p-6">
             <div className="flex items-center">
@@ -426,7 +425,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card className="border border-gray-200/60">
           <CardContent className="p-6">
             <div className="flex items-center">
@@ -457,7 +456,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {['pending', 'reviewing', 'quoted', 'completed'].map((status) => (
                 <Button
@@ -489,7 +488,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('requestNumber')}
                     >
@@ -498,7 +497,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.rfpRequests.table.customer')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
@@ -513,7 +512,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.rfpRequests.table.estimatedValue')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -626,7 +625,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             {Math.min(rfpRequests.page * rfpRequests.pageSize, rfpRequests.total)} {t('admin.rfpRequests.pagination.of')}{' '}
             {rfpRequests.total} {t('admin.rfpRequests.pagination.results')}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -637,11 +636,11 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, rfpRequests.totalPages))].map((_, i) => {
               const page = rfpRequests.page - 2 + i;
               if (page < 1 || page > rfpRequests.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -654,7 +653,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"

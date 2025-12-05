@@ -170,11 +170,11 @@ describe('SettingsManagement', () => {
     await waitFor(() => {
       // Check for proper heading structure
       expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-      
+
       // Check for proper button roles
       const categoryButtons = screen.getAllByRole('button');
       expect(categoryButtons.length).toBeGreaterThan(0);
-      
+
       // Check for proper navigation structure
       expect(screen.getByRole('navigation')).toBeInTheDocument();
     });
@@ -211,14 +211,14 @@ describe('SettingsManagement', () => {
     });
 
     const securityButton = screen.getByText('Security');
-    
+
     // Focus the button
     securityButton.focus();
     expect(document.activeElement).toBe(securityButton);
-    
+
     // Test Enter key activation
     fireEvent.keyDown(securityButton, { key: 'Enter' });
-    
+
     await waitFor(() => {
       expect(screen.getByText('Two-Factor Authentication')).toBeInTheDocument();
     });

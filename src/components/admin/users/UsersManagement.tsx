@@ -67,13 +67,13 @@ interface UsersManagementProps {
 
 export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
   const t = useTranslations();
-  
+
   // Data state
   const [users, setUsers] = useState<AdminSearchResult<UserWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-  
+
   // UI state
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerMode, setDrawerMode] = useState<'add' | 'edit' | 'view'>('add');
@@ -81,7 +81,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [permissionMatrixOpen, setPermissionMatrixOpen] = useState(false);
   const [showCSVUpload, setShowCSVUpload] = useState(false);
-  
+
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
@@ -235,13 +235,11 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
 
       // Get authentication token
       const token = getAdminToken();
-      
+
       if (!token) {
         console.error('No authentication token found');
         throw new Error('Authentication required. Please login again.');
       }
-
-      console.log('Fetching users with token:', token ? 'Token exists' : 'No token');
 
       // Fetch users from API
       const response = await fetch('/api/admin/users', {
@@ -251,8 +249,6 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
         },
       });
 
-      console.log('Users API response status:', response.status);
-      
       if (!response.ok) {
         if (response.status === 401) {
           // Clear invalid token using auth utilities
@@ -260,15 +256,14 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
           removeAdminToken();
           throw new Error('Session expired. Please login again.');
         }
-        
+
         const errorData = await response.text();
         console.error('API Error Response:', errorData);
         throw new Error(`Failed to fetch users: ${response.status} ${response.statusText}`);
       }
 
       const result = await response.json();
-      console.log('Users API result:', result);
-      
+
       if (!result.success) {
         throw new Error(result.error || 'Failed to fetch users');
       }
@@ -276,7 +271,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       // Map API response to component format
       let filteredUsers = result.data.items.map((user: any) => ({
         ...user,
-        status: user.isActive ? 'active' : 'inactive',
+        status: user.is_active ? 'active' : 'inactive',
         twoFactorEnabled: false,
         loginAttempts: 0,
         permissions: [],
@@ -285,28 +280,28 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
           loginAttempts: 0
         }
       }));
-      
+
       // Apply search filter
       if (filters.query) {
         const query = filters.query.toLowerCase();
-        filteredUsers = filteredUsers.filter(user => 
-          user.firstName.toLowerCase().includes(query) ||
-          user.lastName.toLowerCase().includes(query) ||
+        filteredUsers = filteredUsers.filter(user =>
+          (user.first_name || '').toLowerCase().includes(query) ||
+          (user.last_name || '').toLowerCase().includes(query) ||
           user.email.toLowerCase().includes(query) ||
           user.department?.toLowerCase().includes(query)
         );
       }
-      
+
       // Apply status filter
       if (filters.status && filters.status.length > 0) {
-        filteredUsers = filteredUsers.filter(user => 
+        filteredUsers = filteredUsers.filter(user =>
           filters.status!.includes(user.status)
         );
       }
-      
+
       // Apply role filter (using category filter for roles)
       if (filters.category && filters.category.length > 0) {
-        filteredUsers = filteredUsers.filter(user => 
+        filteredUsers = filteredUsers.filter(user =>
           filters.category!.includes(user.role)
         );
       }
@@ -315,22 +310,22 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       filteredUsers.sort((a, b) => {
         const field = filters.sortBy || 'createdAt';
         const order = filters.sortOrder || 'desc';
-        
+
         let aValue: any = a[field as keyof UserWithDetails];
         let bValue: any = b[field as keyof UserWithDetails];
-        
+
         if (aValue instanceof Date) aValue = aValue.getTime();
         if (bValue instanceof Date) bValue = bValue.getTime();
-        
+
         const result = aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
         return order === 'desc' ? -result : result;
       });
-      
+
       // Apply pagination
       const startIndex = ((filters.page || 1) - 1) * (filters.pageSize || 10);
       const endIndex = startIndex + (filters.pageSize || 10);
       const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
-      
+
       setUsers({
         items: paginatedUsers,
         total: filteredUsers.length,
@@ -341,20 +336,20 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
       });
     } catch (err) {
       console.error('Error loading users:', err);
-      
+
       // Provide specific error messages based on the error type
       let errorMessage = 'Failed to load users';
-      
+
       if (err instanceof Error) {
         errorMessage = err.message;
-        
+
         // Special handling for auth errors
         if (err.message.includes('Authentication required') || err.message.includes('Session expired')) {
           // Redirect to login or show login modal
-          console.log('Authentication error detected, user needs to login');
+
         }
       }
-      
+
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -383,7 +378,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       await loadUsers();
       setDrawerOpen(false);
       setSelectedUser(null);
@@ -412,7 +407,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -422,7 +417,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
   const handleRoleFilter = (role: string) => {
     setFilters(prev => ({
       ...prev,
-      category: prev.category?.includes(role) 
+      category: prev.category?.includes(role)
         ? prev.category.filter(r => r !== role)
         : [...(prev.category || []), role],
       page: 1,
@@ -453,11 +448,11 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
 
   const handleSelectAll = () => {
     if (!users) return;
-    
-    const allSelected = users.items.every(user => 
+
+    const allSelected = users.items.every(user =>
       selectedUsers.includes(user.id)
     );
-    
+
     if (allSelected) {
       setSelectedUsers([]);
     } else {
@@ -482,12 +477,12 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       // Create mock CSV content
-      const csvContent = mockUsers.map(user => 
+      const csvContent = mockUsers.map(user =>
         `${user.firstName},${user.lastName},${user.email},${user.role},${user.status}`
       ).join('\n');
-      
+
       const blob = new Blob(['First Name,Last Name,Email,Role,Status\n' + csvContent], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -591,7 +586,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {/* Status filters */}
               {['active', 'inactive', 'pending', 'suspended'].map((status) => (
@@ -689,7 +684,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                   </Button>
                 ) : null}
               </div>
-              
+
               {/* Show quick login in development if auth error */}
               {process.env.NODE_ENV === 'development' && (error.includes('Authentication') || error.includes('Session expired')) && (
                 <div className="mt-6">
@@ -705,32 +700,32 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                     <th className="px-6 py-4 text-left">
                       <input
                         type="checkbox"
-                        checked={users.items.every(user => 
+                        checked={users.items.every(user =>
                           selectedUsers.includes(user.id)
                         )}
                         onChange={handleSelectAll}
                         className="rounded border-gray-300 h-5 w-5"
                       />
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('firstName')}
                     >
                       {t('admin.users.table.user')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('email')}
                     >
                       {t('admin.users.table.email')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('role')}
                     >
                       {t('admin.users.table.role')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
@@ -739,7 +734,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.users.table.security')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('lastLogin')}
                     >
@@ -772,7 +767,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                           </div>
                           <div className="min-w-0">
                             <div className="text-sm font-medium text-gray-900">
-                              {user.firstName} {user.lastName}
+                              {user.first_name} {user.last_name}
                             </div>
                             {user.department && (
                               <div className="text-sm text-gray-600 mt-1">
@@ -821,12 +816,12 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                         </div>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
-                        {user.lastLogin ? (
+                        {user.last_login ? (
                           <div>
-                            <div>{formatDate(user.lastLogin, 'time')}</div>
-                            {user.lastLoginIP && (
+                            <div>{formatDate(user.last_login, 'time')}</div>
+                            {user.last_login_ip && (
                               <div className="text-xs text-gray-500 mt-1">
-                                {user.lastLoginIP}
+                                {user.last_login_ip}
                               </div>
                             )}
                           </div>
@@ -896,7 +891,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
               total: users.total
             })}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -907,11 +902,11 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, users.totalPages))].map((_, i) => {
               const page = users.page - 2 + i;
               if (page < 1 || page > users.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -924,7 +919,7 @@ export function UsersManagement({ initialFilters = {} }: UsersManagementProps) {
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"

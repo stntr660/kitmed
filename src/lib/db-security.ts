@@ -51,10 +51,9 @@ export class SecurePrismaClient {
     // Only log sensitive operations for security auditing
     const sensitiveOperations = ['CREATE', 'UPDATE', 'DELETE', 'DROP', 'ALTER'];
     const query = event.query.toUpperCase();
-    
+
     if (sensitiveOperations.some(op => query.includes(op))) {
-      console.log(`🔒 AUDIT: ${event.timestamp} - ${event.query}`);
-      
+
       // Log to database activity log
       try {
         await this.client.activityLog.create({
@@ -134,33 +133,33 @@ export class SecurePrismaClient {
     }
   ): Promise<T> {
     const startTime = Date.now();
-    
+
     try {
       const result = await operation();
-      
+
       // Log successful operation
       if (this.auditLog) {
         await this.logActivity({
           ...context,
-          details: { 
-            success: true, 
-            duration: Date.now() - startTime 
+          details: {
+            success: true,
+            duration: Date.now() - startTime
           },
         });
       }
-      
+
       return result;
     } catch (error) {
       // Log failed operation
       await this.logActivity({
         ...context,
-        details: { 
-          success: false, 
+        details: {
+          success: false,
           error: error instanceof Error ? error.message : 'Unknown error',
-          duration: Date.now() - startTime 
+          duration: Date.now() - startTime
         },
       });
-      
+
       throw error;
     }
   }
@@ -207,7 +206,7 @@ export class SecurePrismaClient {
       // Check if critical tables exist and have data
       const productCount = await this.client.product.count();
       const categoryCount = await this.client.category.count();
-      
+
       return productCount > 0 && categoryCount > 0;
     } catch (error) {
       console.error('Backup validation failed:', error);
@@ -222,20 +221,20 @@ export class SecurePrismaClient {
     connections: number;
   }> {
     const startTime = Date.now();
-    
+
     try {
       await this.client.$queryRaw`SELECT 1`;
       const latency = Date.now() - startTime;
-      
+
       // Get connection count (PostgreSQL specific)
       const connectionResult = await this.client.$queryRaw<[{ count: number }]>`
-        SELECT count(*) as count 
-        FROM pg_stat_activity 
+        SELECT count(*) as count
+        FROM pg_stat_activity
         WHERE datname = current_database()
       `;
-      
+
       const connections = Number(connectionResult[0]?.count) || 0;
-      
+
       return {
         database: true,
         latency,
@@ -253,9 +252,9 @@ export class SecurePrismaClient {
 
   // Graceful shutdown
   public async disconnect(): Promise<void> {
-    console.log('🔄 Closing secure Prisma client...');
+
     await this.client.$disconnect();
-    console.log('✅ Secure Prisma client disconnected');
+
   }
 }
 

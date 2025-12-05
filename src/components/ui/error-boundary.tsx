@@ -32,7 +32,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error Boundary caught an error:', error, errorInfo);
-    
+
     // Log specific details about different error types
     if (error.message.includes('Element type is invalid')) {
       console.error('Component import error detected:', {
@@ -41,7 +41,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         componentStack: errorInfo.componentStack,
       });
     }
-    
+
     // Log hydration-related errors
     if (
       error.message.includes('hydration') ||
@@ -80,8 +80,8 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       }
 
       return (
-        <DefaultErrorFallback 
-          error={this.state.error!} 
+        <DefaultErrorFallback
+          error={this.state.error!}
           retry={this.retry}
           errorInfo={this.state.errorInfo}
         />
@@ -100,10 +100,10 @@ interface DefaultErrorFallbackProps {
 
 function DefaultErrorFallback({ error, retry, errorInfo }: DefaultErrorFallbackProps) {
   const isComponentError = error.message.includes('Element type is invalid');
-  const isHydrationError = error.message.includes('hydration') || 
-                          error.message.includes('server HTML') || 
+  const isHydrationError = error.message.includes('hydration') ||
+                          error.message.includes('server HTML') ||
                           error.message.includes('Text content does not match');
-  
+
   return (
     <Card className="border-red-200 bg-red-50">
       <CardHeader>
@@ -157,9 +157,9 @@ function DefaultErrorFallback({ error, retry, errorInfo }: DefaultErrorFallbackP
           </details>
         )}
 
-        <Button 
-          onClick={retry} 
-          variant="outline" 
+        <Button
+          onClick={retry}
+          variant="outline"
           size="sm"
           className="border-red-300 text-red-700 hover:bg-red-100"
         >
@@ -175,7 +175,7 @@ function DefaultErrorFallback({ error, retry, errorInfo }: DefaultErrorFallbackP
 export function useErrorHandler() {
   return (error: Error, errorInfo?: React.ErrorInfo) => {
     console.error('Error caught by error handler:', error, errorInfo);
-    
+
     // In development, show more detailed error info
     if (process.env.NODE_ENV === 'development') {
       console.group('Error Details');

@@ -64,7 +64,7 @@ export function safeLocalStorage() {
 export function formatDateStable(date: string | Date, options?: Intl.DateTimeFormatOptions): string {
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
-    
+
     // Use UTC formatting to ensure consistency across server/client
     const defaultOptions: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -73,10 +73,10 @@ export function formatDateStable(date: string | Date, options?: Intl.DateTimeFor
       timeZone: 'UTC',
       ...options
     };
-    
+
     return new Intl.DateTimeFormat('en-US', defaultOptions).format(dateObj);
   } catch (error) {
-    console.warn('Date formatting error:', error);
+
     return 'Invalid Date';
   }
 }
@@ -89,7 +89,7 @@ export function debounce<T extends (...args: any[]) => void>(
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout;
-  
+
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
@@ -103,12 +103,12 @@ export function useHydrationState() {
   if (!isBrowser()) {
     return { isHydrated: false, isClient: false };
   }
-  
+
   const [isHydrated, setIsHydrated] = React.useState(false);
-  
+
   React.useEffect(() => {
     setIsHydrated(true);
   }, []);
-  
+
   return { isHydrated, isClient: true };
 }

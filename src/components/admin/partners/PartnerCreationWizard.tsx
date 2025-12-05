@@ -53,7 +53,7 @@ export function PartnerCreationWizard({
 
   // Wizard state
   const [currentStep, setCurrentStep] = useState(0);
-  
+
   // Form state
   const [formData, setFormData] = useState({
     nom: { fr: '', en: '' },
@@ -104,7 +104,7 @@ export function PartnerCreationWizard({
     }
     return steps;
   };
-  
+
   const effectiveSteps = getEffectiveSteps();
   const effectiveCurrentStep = currentStep;
 
@@ -160,7 +160,7 @@ export function PartnerCreationWizard({
 
   const canProceedToNext = () => {
     const currentStepData = effectiveSteps[effectiveCurrentStep];
-    
+
     switch (currentStepData.id) {
       case 'type':
         return true; // Always can proceed from type selection
@@ -212,8 +212,8 @@ export function PartnerCreationWizard({
         <div key={step.id} className="flex items-center">
           <div className={`
             flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all
-            ${index <= effectiveCurrentStep 
-              ? 'bg-primary-600 border-primary-600 text-white' 
+            ${index <= effectiveCurrentStep
+              ? 'bg-primary-600 border-primary-600 text-white'
               : 'bg-white border-gray-300 text-gray-500'
             }
           `}>
@@ -262,10 +262,10 @@ export function PartnerCreationWizard({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card 
+              <Card
                 className={`cursor-pointer transition-all border-2 ${
-                  formData.type === 'manufacturer' 
-                    ? 'border-blue-500 bg-blue-50' 
+                  formData.type === 'manufacturer'
+                    ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
                 onClick={() => handleInputChange('type', 'manufacturer')}
@@ -289,10 +289,10 @@ export function PartnerCreationWizard({
                 </CardContent>
               </Card>
 
-              <Card 
+              <Card
                 className={`cursor-pointer transition-all border-2 ${
-                  formData.type === 'other' 
-                    ? 'border-green-500 bg-green-50' 
+                  formData.type === 'other'
+                    ? 'border-green-500 bg-green-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
                 onClick={() => handleInputChange('type', 'other')}
@@ -450,7 +450,7 @@ export function PartnerCreationWizard({
                 <GlobeAltIcon className="w-5 h-5 mr-2 text-blue-600" />
                 {t('admin.partners.wizard.internationalVersion')}
               </h4>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -591,7 +591,7 @@ export function PartnerCreationWizard({
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
             <h2 className="text-2xl font-semibold text-gray-900">
-              {mode === 'add' 
+              {mode === 'add'
                 ? t('admin.partners.wizard.addNewPartner')
                 : t('admin.partners.wizard.editPartner')
               }
@@ -600,8 +600,8 @@ export function PartnerCreationWizard({
               {effectiveSteps[effectiveCurrentStep].description}
             </p>
           </div>
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             onClick={() => onOpenChange(false)}
             className="text-gray-400 hover:text-gray-600"
@@ -628,8 +628,8 @@ export function PartnerCreationWizard({
 
         {/* Footer */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={handlePrevious}
             disabled={effectiveCurrentStep === 0}
             className="flex items-center space-x-2"
@@ -639,15 +639,15 @@ export function PartnerCreationWizard({
           </Button>
 
           <div className="text-sm text-gray-500">
-            {t('admin.partners.wizard.stepOf', { 
-              current: effectiveCurrentStep + 1, 
-              total: effectiveSteps.length 
+            {t('admin.partners.wizard.stepOf', {
+              current: effectiveCurrentStep + 1,
+              total: effectiveSteps.length
             })}
           </div>
 
           <div className="flex space-x-3">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={saving}
             >
@@ -655,7 +655,7 @@ export function PartnerCreationWizard({
             </Button>
 
             {effectiveCurrentStep === effectiveSteps.length - 1 ? (
-              <Button 
+              <Button
                 onClick={handleSubmit}
                 disabled={saving || !canProceedToNext()}
                 className="bg-primary-600 hover:bg-primary-700 min-w-[120px]"
@@ -670,7 +670,7 @@ export function PartnerCreationWizard({
                 )}
               </Button>
             ) : (
-              <Button 
+              <Button
                 onClick={handleNext}
                 disabled={!canProceedToNext()}
                 className="bg-primary-600 hover:bg-primary-700 flex items-center space-x-2 min-w-[120px]"

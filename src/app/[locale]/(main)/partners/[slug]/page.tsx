@@ -65,22 +65,22 @@ export default function PartnerProductsPage({ params }: PageProps) {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Load partner info
       const partnerResponse = await fetch(`/api/partners/${params.slug}?locale=${locale}`);
       if (!partnerResponse.ok) {
         setError(tPartner('notFound'));
         return;
       }
-      
+
       const partnerData = await partnerResponse.json();
       setPartner(partnerData.data);
-      
+
       // Load partner products
       const productsResponse = await fetch(
         `/api/products?partner=${partnerData.data.id}&locale=${locale}&page=${page}&pageSize=12`
       );
-      
+
       if (productsResponse.ok) {
         const productsData = await productsResponse.json();
         setProducts(productsData.data.items);
@@ -133,14 +133,14 @@ export default function PartnerProductsPage({ params }: PageProps) {
     <div className="min-h-screen bg-slate-50">
       {/* Certifications Banner */}
       <CertificationsBanner variant="compact" />
-      
+
       {/* Partner Header */}
       <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
@@ -187,11 +187,11 @@ export default function PartnerProductsPage({ params }: PageProps) {
                     {tPartner('productsCount', { count: partner.productCount || products.length })}
                   </Badge>
                 </div>
-                
+
                 <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                   {partner.name}
                 </h1>
-                
+
                 {partner.description && (
                   <p className="text-xl text-primary-100 mb-6 leading-relaxed max-w-3xl">
                     {partner.description}
@@ -200,7 +200,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
 
                 {partner.websiteUrl && (
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button 
+                    <Button
                       className="bg-white text-primary-600 hover:bg-primary-50 transition-colors"
                       asChild
                     >
@@ -230,7 +230,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                   {tPartner('productsDescription', { partnerName: partner.name })}
                 </p>
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {products.map((product) => (
                   <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -247,7 +247,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                           <Package className="h-16 w-16 text-slate-400" />
                         </div>
                       )}
-                      
+
                       {/* Reference Badge */}
                       <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
                         {product.referenceFournisseur}
@@ -262,7 +262,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                         </div>
                       )}
                     </div>
-                    
+
                     <CardHeader className="p-6 pb-4">
                       <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-2">
                         {product.name}
@@ -271,10 +271,10 @@ export default function PartnerProductsPage({ params }: PageProps) {
                         {product.shortDescription || tPartner('productFallbackDescription', { partnerName: partner.name })}
                       </p>
                     </CardHeader>
-                    
+
                     <CardContent className="p-6 pt-0">
                       <div className="space-y-3">
-                        <Button 
+                        <Button
                           className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
                           asChild
                         >
@@ -282,18 +282,18 @@ export default function PartnerProductsPage({ params }: PageProps) {
                             {tPartner('viewDetails')}
                           </Link>
                         </Button>
-                        
+
                         {/* PDF Brochure Button */}
                         {product.pdfBrochureUrl && (
-                          <Button 
+                          <Button
                             variant="outline"
                             size="sm"
                             className="w-full border-primary-600 text-primary-600 hover:bg-primary-50"
                             asChild
                           >
-                            <a 
-                              href={product.pdfBrochureUrl} 
-                              target="_blank" 
+                            <a
+                              href={product.pdfBrochureUrl}
+                              target="_blank"
                               rel="noopener noreferrer"
                               className="flex items-center justify-center"
                             >

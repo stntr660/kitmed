@@ -23,7 +23,7 @@ interface PermissionMatrixProps {
 // Permission definitions
 const resources = [
   'products',
-  'categories', 
+  'categories',
   'partners',
   'rfps',
   'users',
@@ -34,7 +34,7 @@ const resources = [
 
 const actions = [
   'create',
-  'read', 
+  'read',
   'update',
   'delete',
   'export',
@@ -66,7 +66,7 @@ interface RolePermissions {
 // Default permission matrix
 const getDefaultPermissions = (): Record<Role, RolePermissions> => {
   const createPermissions = (role: Role): Permission[] => {
-    return resources.flatMap(resource => 
+    return resources.flatMap(resource =>
       actions.map(action => ({
         resource,
         action,
@@ -81,7 +81,7 @@ const getDefaultPermissions = (): Record<Role, RolePermissions> => {
       permissions: createPermissions('admin')
     },
     manager: {
-      role: 'manager', 
+      role: 'manager',
       permissions: createPermissions('manager')
     },
     editor: {
@@ -143,7 +143,7 @@ const getDefaultPermission = (role: Role, resource: Resource, action: Action): b
 
 export function PermissionMatrix({ open, onOpenChange }: PermissionMatrixProps) {
   const t = useTranslations();
-  
+
   const [permissions, setPermissions] = useState<Record<Role, RolePermissions>>(getDefaultPermissions());
   const [activeRole, setActiveRole] = useState<Role>('viewer');
   const [hasChanges, setHasChanges] = useState(false);
@@ -294,7 +294,7 @@ export function PermissionMatrix({ open, onOpenChange }: PermissionMatrixProps) 
 
                         {actions.map((action) => {
                           const allowed = isPermissionAllowed(activeRole, resource, action);
-                          const isRestricted = activeRole === 'admin' || 
+                          const isRestricted = activeRole === 'admin' ||
                             (activeRole === 'viewer' && action !== 'read');
 
                           return (
@@ -342,7 +342,7 @@ export function PermissionMatrix({ open, onOpenChange }: PermissionMatrixProps) 
                   })()}
                 </div>
               </div>
-              
+
               <div className="text-sm text-gray-600">
                 {activeRole === 'admin' && (
                   <span className="flex items-center text-purple-600">

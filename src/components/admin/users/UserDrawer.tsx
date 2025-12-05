@@ -53,7 +53,7 @@ interface UserDrawerProps {
 
 export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawerProps) {
   const t = useTranslations();
-  
+
   // Form state
   const [formData, setFormData] = useState<Partial<User>>({
     firstName: '',
@@ -140,7 +140,7 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
   const handleFieldChange = (field: keyof User, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setFormTouched(true);
-    
+
     // Clear field error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));

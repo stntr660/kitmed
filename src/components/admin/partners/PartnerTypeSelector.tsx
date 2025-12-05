@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { 
-  BuildingOffice2Icon, 
+import {
+  BuildingOffice2Icon,
   WrenchScrewdriverIcon,
   UserGroupIcon,
   GlobeAltIcon
@@ -74,13 +74,13 @@ export function PartnerTypeSelector({ value, onChange, disabled }: PartnerTypeSe
         {partnerTypes.map((type) => {
           const Icon = type.icon;
           const isSelected = value === type.id;
-          
+
           return (
             <Card
               key={type.id}
               className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
-                isSelected 
-                  ? 'ring-2 ring-blue-500 ring-opacity-50 bg-blue-50 border-blue-200' 
+                isSelected
+                  ? 'ring-2 ring-blue-500 ring-opacity-50 bg-blue-50 border-blue-200'
                   : 'border-gray-200 hover:border-gray-300'
               } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={() => !disabled && onChange(type.id)}
@@ -104,7 +104,7 @@ export function PartnerTypeSelector({ value, onChange, disabled }: PartnerTypeSe
                     <p className="text-sm text-gray-600 leading-relaxed">
                       {t(type.descriptionKey)}
                     </p>
-                    
+
                     {/* Special note for manufacturers */}
                     {type.id === 'manufacturer' && (
                       <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
@@ -115,7 +115,7 @@ export function PartnerTypeSelector({ value, onChange, disabled }: PartnerTypeSe
                     )}
                   </div>
                 </div>
-                
+
                 {/* Selection indicator */}
                 {isSelected && (
                   <div className="mt-4 flex items-center justify-center">

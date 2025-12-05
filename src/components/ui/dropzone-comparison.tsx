@@ -93,7 +93,7 @@ export function DropzoneComparison() {
       <div className="bg-gray-100 p-4 rounded-lg">
         <h4 className="font-semibold text-gray-800 mb-2">Implementation Note:</h4>
         <p className="text-sm text-gray-600">
-          The partner forms now use <code className="bg-white px-1 rounded">ImageDropzone</code> instead of 
+          The partner forms now use <code className="bg-white px-1 rounded">ImageDropzone</code> instead of
           <code className="bg-white px-1 rounded">CompactImageUpload</code> for better user experience.
           The new component provides a more professional and user-friendly interface for logo uploads.
         </p>

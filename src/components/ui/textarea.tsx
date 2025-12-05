@@ -13,19 +13,19 @@ export interface TextareaProps
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ 
-    className, 
+  ({
+    className,
     variant = 'default',
     error = false,
     helperText,
     label,
     required = false,
     id,
-    ...props 
+    ...props
   }, ref) => {
     const textareaId = getStableId(id, 'textarea');
     const helperTextId = helperText ? `${textareaId}-helper` : undefined;
-    
+
     const textareaElement = (
       <textarea
         className={cn(
@@ -53,7 +53,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label 
+          <label
             htmlFor={textareaId}
             className={cn(
               "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",

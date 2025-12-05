@@ -4,13 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Plus, 
-  Edit, 
-  Trash2, 
-  Eye, 
-  EyeOff, 
-  Image, 
+import {
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  EyeOff,
+  Image,
   Calendar,
   Settings,
   Upload,
@@ -81,7 +81,7 @@ export function BannerManagement() {
   const fetchBanners = async () => {
     try {
       setLoading(true);
-      
+
       // Use proper authenticated route
       const response = await fetch('/api/admin/banners', {
         method: 'GET',
@@ -90,11 +90,9 @@ export function BannerManagement() {
           'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
-      
-      console.log('Banner API response status:', response.status);
-      
+
       if (response.ok) {
-        console.log('Banner API succeeded with authentication');
+
         setIsUsingFallback(false);
         const result = await response.json();
         setBanners(result.data.items || []);
@@ -208,11 +206,11 @@ export function BannerManagement() {
 
   const getStatusColor = (banner: Banner) => {
     if (!banner.isActive) return 'bg-gray-500';
-    
+
     const now = new Date();
     const startDate = banner.startDate ? new Date(banner.startDate) : null;
     const endDate = banner.endDate ? new Date(banner.endDate) : null;
-    
+
     if (startDate && startDate > now) return 'bg-yellow-500'; // Scheduled
     if (endDate && endDate < now) return 'bg-red-500'; // Expired
     return 'bg-green-500'; // Active
@@ -220,11 +218,11 @@ export function BannerManagement() {
 
   const getStatusText = (banner: Banner) => {
     if (!banner.isActive) return 'Inactive';
-    
+
     const now = new Date();
     const startDate = banner.startDate ? new Date(banner.startDate) : null;
     const endDate = banner.endDate ? new Date(banner.endDate) : null;
-    
+
     if (startDate && startDate > now) return 'Scheduled';
     if (endDate && endDate < now) return 'Expired';
     return 'Active';
@@ -251,8 +249,8 @@ export function BannerManagement() {
             </div>
           )}
         </div>
-        <Button 
-          onClick={handleCreateBanner} 
+        <Button
+          onClick={handleCreateBanner}
           className="flex items-center space-x-2"
         >
           <Plus className="h-4 w-4" />
@@ -297,10 +295,10 @@ export function BannerManagement() {
                         }}
                       />
                     )}
-                    
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-white/90" style={{ opacity: banner.overlayOpacity || 0.9 }}></div>
-                    
+
                     {/* Content Preview */}
                     <div className="absolute inset-0 p-2 flex items-center">
                       <div className="flex-1 min-w-0">
@@ -315,7 +313,7 @@ export function BannerManagement() {
                           <p className="text-xs text-gray-700 truncate">{banner.subtitle}</p>
                         )}
                       </div>
-                      
+
                       {/* Product Image */}
                       {banner.imageUrl && (
                         <div className="w-8 h-8 ml-2 flex-shrink-0">
@@ -338,7 +336,7 @@ export function BannerManagement() {
                     <span className="ml-2 text-xs text-gray-500">{banner.title}</span>
                   </div>
                 )}
-                
+
                 <div className="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                   <Button
                     size="sm"
@@ -431,7 +429,7 @@ export function BannerManagement() {
               {selectedBanner ? 'Edit Banner' : 'Create New Banner'}
             </DialogTitle>
             <DialogDescription>
-              {selectedBanner 
+              {selectedBanner
                 ? 'Update banner content and settings'
                 : 'Create a new banner for your homepage'
               }

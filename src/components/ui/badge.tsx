@@ -46,18 +46,18 @@ export interface BadgeProps
   onRemove?: () => void;
 }
 
-function Badge({ 
-  className, 
-  variant, 
+function Badge({
+  className,
+  variant,
   size,
   removable = false,
   onRemove,
   children,
-  ...props 
+  ...props
 }: BadgeProps) {
   return (
-    <div 
-      className={cn(badgeVariants({ variant, size }), className)} 
+    <div
+      className={cn(badgeVariants({ variant, size }), className)}
       {...props}
     >
       {children}
@@ -71,16 +71,16 @@ function Badge({
           }}
           aria-label="Remove"
         >
-          <svg 
-            className="h-3 w-3" 
-            fill="currentColor" 
+          <svg
+            className="h-3 w-3"
+            fill="currentColor"
             viewBox="0 0 20 20"
             aria-hidden="true"
           >
-            <path 
-              fillRule="evenodd" 
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" 
-              clipRule="evenodd" 
+            <path
+              fillRule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clipRule="evenodd"
             />
           </svg>
         </button>

@@ -1,10 +1,9 @@
+import createIntlMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import createIntlMiddleware from 'next-intl/middleware';
-import { locales } from './i18n';
 import { maintenanceMiddleware } from './middleware/maintenance';
 
-// Simplified auth verification for middleware (Edge Runtime compatible)
+// Simplified auth verification for proxy (Edge Runtime compatible)
 function extractTokenFromRequest(request: NextRequest): string | null {
   // Check Authorization header
   const authHeader = request.headers.get('authorization');
@@ -23,9 +22,8 @@ function extractTokenFromRequest(request: NextRequest): string | null {
 
 // Create the intl middleware
 const intlMiddleware = createIntlMiddleware({
-  locales: locales,
-  defaultLocale: 'fr',
-  localePrefix: 'always'
+  locales: ['en', 'fr'],
+  defaultLocale: 'fr'
 });
 
 export async function middleware(request: NextRequest) {
@@ -38,7 +36,7 @@ export async function middleware(request: NextRequest) {
 
     // Check for token presence (detailed verification happens in API routes)
     const token = extractTokenFromRequest(request);
-    
+
     if (!token) {
       return NextResponse.json(
         {
@@ -69,7 +67,7 @@ export async function middleware(request: NextRequest) {
 
   // Handle internationalization for all other routes
   const intlResponse = intlMiddleware(request);
-  
+
   // Apply security headers to the response
   if (intlResponse) {
     // Copy maintenance headers if they exist
@@ -98,7 +96,7 @@ export async function middleware(request: NextRequest) {
 
   // Fallback response with security headers
   const response = NextResponse.next();
-  
+
   // Security headers
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-Content-Type-Options', 'nosniff');

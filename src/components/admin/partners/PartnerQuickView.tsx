@@ -11,9 +11,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { 
-  PencilIcon, 
-  GlobeAltIcon, 
+import {
+  PencilIcon,
+  GlobeAltIcon,
   BuildingOfficeIcon,
   StarIcon,
   ClockIcon,
@@ -29,11 +29,11 @@ interface PartnerQuickViewProps {
   onEdit: () => void;
 }
 
-export function PartnerQuickView({ 
-  open, 
-  onOpenChange, 
-  partner, 
-  onEdit 
+export function PartnerQuickView({
+  open,
+  onOpenChange,
+  partner,
+  onEdit
 }: PartnerQuickViewProps) {
   const t = useTranslations();
 

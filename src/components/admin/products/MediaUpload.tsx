@@ -44,7 +44,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   // Load existing media when productId changes
   const loadMedia = useCallback(async () => {
     if (!productId) return;
-    
+
     try {
       setLoading(true);
       const token = getAdminToken();
@@ -83,7 +83,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
 
     try {
       setUploading(true);
-      
+
       const formData = new FormData();
       files.forEach(file => {
         formData.append('files', file);
@@ -128,7 +128,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
 
     try {
       setUploading(true);
-      
+
       const formData = new FormData();
       tempFiles.forEach(file => {
         formData.append('files', file);
@@ -156,14 +156,14 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     }
   };
 
-  // Expose uploadTempFiles function 
+  // Expose uploadTempFiles function
   React.useEffect(() => {
     (window as any).uploadTempFiles = uploadTempFiles;
   }, [uploadTempFiles]);
 
   const handleDeleteMedia = async (mediaId: string) => {
     if (disabled) return;
-    
+
     try {
       const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
@@ -185,12 +185,12 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
 
   const handleSetPrimary = async (mediaId: string) => {
     if (disabled) return;
-    
+
     try {
       const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
@@ -212,17 +212,17 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
 
   const handleMoveMedia = async (mediaId: string, direction: 'up' | 'down') => {
     if (disabled) return;
-    
+
     const currentIndex = media.findIndex(m => m.id === mediaId);
     const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
-    
+
     if (newIndex < 0 || newIndex >= media.length) return;
 
     try {
       const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
@@ -299,7 +299,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* Overlay controls */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -324,7 +324,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
               </div>
             </div>
           ))}
-          
+
           {/* Show actual media */}
           {media.map((item, index) => (
             <div key={item.id} className="relative group">
@@ -335,7 +335,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* Overlay controls */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
@@ -353,7 +353,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                       <StarIcon className="h-4 w-4 text-gray-500" />
                     )}
                   </Button>
-                  
+
                   {/* Delete button */}
                   <Button
                     size="sm"

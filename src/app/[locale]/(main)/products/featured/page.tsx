@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  ArrowRight, 
+import {
+  ArrowRight,
   Heart,
   Download,
   Eye,
@@ -102,20 +102,20 @@ export default function FeaturedProductsPage() {
           <div className="absolute top-10 left-10 w-64 h-64 bg-accent-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-accent-500 text-white border-0 shadow-xl">
               ⭐ Sélection Premium KITMED
             </Badge>
-            
+
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Produits
               <span className="text-accent-300 block mt-2">en Vedette</span>
             </h1>
-            
+
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Découvrez notre sélection exclusive d'équipements médicaux d'exception, 
+              Découvrez notre sélection exclusive d'équipements médicaux d'exception,
               choisis pour leur innovation, leur qualité et leur performance remarquable.
             </p>
           </div>
@@ -139,12 +139,12 @@ export default function FeaturedProductsPage() {
                   {products.length} produit{products.length > 1 ? 's' : ''} d'exception sélectionné{products.length > 1 ? 's' : ''} pour vous
                 </p>
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product) => {
                   const primaryImage = getPrimaryImage(product);
                   const categoryInfo = product.category;
-                  
+
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden ring-2 ring-accent-500/20">
                       {/* Product Image */}
@@ -161,7 +161,7 @@ export default function FeaturedProductsPage() {
                             <Building2 className="h-16 w-16 text-slate-400" />
                           </div>
                         )}
-                        
+
                         {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
@@ -172,7 +172,7 @@ export default function FeaturedProductsPage() {
                             <Eye className="h-4 w-4" />
                           </Button>
                         </div>
-                        
+
                         {/* Featured Badge */}
                         <div className="absolute top-4 left-4 space-y-2">
                           <Badge className="bg-accent-500 text-white border-0 text-xs">
@@ -180,8 +180,8 @@ export default function FeaturedProductsPage() {
                             Vedette
                           </Badge>
                           {categoryInfo && (
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className="text-xs border-0"
                               style={{ backgroundColor: '#3B82F6' + '20', color: '#3B82F6' }}
                             >
@@ -190,7 +190,7 @@ export default function FeaturedProductsPage() {
                           )}
                         </div>
                       </div>
-                      
+
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
@@ -203,12 +203,12 @@ export default function FeaturedProductsPage() {
                           </div>
                           <Award className="h-5 w-5 text-accent-500 flex-shrink-0 ml-2" />
                         </div>
-                        
+
                         <div className="text-sm text-slate-600 line-clamp-2">
                           {getProductDescription(product) || 'Description disponible sur demande'}
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xs text-slate-500 font-mono">
@@ -220,10 +220,10 @@ export default function FeaturedProductsPage() {
                             ))}
                           </div>
                         </div>
-                        
+
                         <div className="space-y-2">
-                          <Button 
-                            size="sm" 
+                          <Button
+                            size="sm"
                             className="w-full bg-accent-500 text-white hover:bg-accent-600"
                             asChild
                           >
@@ -231,9 +231,9 @@ export default function FeaturedProductsPage() {
                               Voir Détails Premium
                             </Link>
                           </Button>
-                          
+
                           <div className="flex gap-2">
-                            <QuoteRequestForm 
+                            <QuoteRequestForm
                               product={{
                                 id: product.id,
                                 referenceFournisseur: product.referenceFournisseur,
@@ -246,9 +246,9 @@ export default function FeaturedProductsPage() {
                                 }]
                               }}
                               trigger={
-                                <Button 
-                                  size="sm" 
-                                  variant="outline" 
+                                <Button
+                                  size="sm"
+                                  variant="outline"
                                   className="flex-1"
                                 >
                                   <MessageSquare className="h-4 w-4 mr-1" />
@@ -256,11 +256,11 @@ export default function FeaturedProductsPage() {
                                 </Button>
                               }
                             />
-                            
+
                             {product.pdfBrochureUrl && (
-                              <Button 
-                                size="sm" 
-                                variant="outline" 
+                              <Button
+                                size="sm"
+                                variant="outline"
                                 className="px-3"
                                 asChild
                               >

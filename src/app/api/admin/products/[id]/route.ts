@@ -68,7 +68,7 @@ async function getProduct(request: NextRequest, { params }: { params: { id: stri
     });
   } catch (error) {
     console.error('Product fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -108,7 +108,7 @@ const updateProductSchema = z.object({
 async function updateProduct(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = updateProductSchema.safeParse(body);
     if (!validation.success) {
@@ -151,16 +151,16 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    
+
     // Only add timestamp if the slug would conflict
     let slug = baseSlug;
     const existingWithSlug = await prisma.product.findFirst({
-      where: { 
+      where: {
         slug: baseSlug,
         id: { not: params.id }
       }
     });
-    
+
     if (existingWithSlug) {
       const timestamp = Date.now().toString().slice(-6);
       slug = `${baseSlug}-${timestamp}`;
@@ -242,7 +242,7 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
     });
   } catch (error) {
     console.error('Product update error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -292,7 +292,7 @@ async function deleteProduct(request: NextRequest, { params }: { params: { id: s
             where: { productId: params.id },
           });
         } catch (fileError) {
-          console.log('ProductFile deletion skipped:', fileError.message);
+
         }
 
         // Delete product media
@@ -330,7 +330,7 @@ async function deleteProduct(request: NextRequest, { params }: { params: { id: s
     });
   } catch (error) {
     console.error('Product deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

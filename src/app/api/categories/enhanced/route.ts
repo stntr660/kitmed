@@ -1,6 +1,6 @@
 /**
  * Enhanced Categories API Route
- * 
+ *
  * Updated categories endpoint that works with the new disciplines-categories separation.
  * Provides backward compatibility while enabling new functionality.
  */
@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 
 /**
  * GET /api/categories/enhanced
- * 
+ *
  * Enhanced categories endpoint that can return:
  * - Equipment categories only (when disciplines are separated)
  * - Legacy categories with type filtering (backward compatibility)
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     if (shouldUseDisciplines && type !== 'discipline') {
       // Use enhanced logic - categories table now only contains equipment categories
       const where: any = {};
-      
+
       if (search) {
         where.OR = [
           { name: { contains: search, mode: 'insensitive' } },
@@ -51,11 +51,11 @@ export async function GET(request: NextRequest) {
           { description: { contains: search, mode: 'insensitive' } }
         ];
       }
-      
+
       if (parentId !== null && parentId !== undefined) {
         where.parentId = parentId;
       }
-      
+
       if (active !== null && active !== undefined) {
         where.isActive = active === 'true';
       }
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
       const include: any = {
         translations: includeTranslations
       };
-      
+
       if (includeProducts) {
         include.productCategories = {
           include: {
@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
     } else {
       // Use legacy logic or handle discipline requests
       const where: any = {};
-      
+
       if (search) {
         where.OR = [
           { name: { contains: search, mode: 'insensitive' } },
@@ -102,16 +102,16 @@ export async function GET(request: NextRequest) {
           { description: { contains: search, mode: 'insensitive' } }
         ];
       }
-      
+
       // Filter by type if specified
       if (type) {
         where.type = type;
       }
-      
+
       if (parentId !== null && parentId !== undefined) {
         where.parentId = parentId;
       }
-      
+
       if (active !== null && active !== undefined) {
         where.isActive = active === 'true';
       }
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
       const include: any = {
         translations: includeTranslations
       };
-      
+
       if (includeProducts) {
         include.products = {
           include: {
@@ -162,7 +162,7 @@ export async function GET(request: NextRequest) {
         // In the new system, add information about the separation
         baseCategory.entity_type = 'category'; // This is an equipment category
         baseCategory.has_disciplines_separation = true;
-        
+
         // Transform product relationships if they exist
         if (category.productCategories) {
           baseCategory.products = category.productCategories.map((pc: any) => pc.product);
@@ -172,7 +172,7 @@ export async function GET(request: NextRequest) {
         // Legacy system information
         baseCategory.entity_type = category.type || 'category';
         baseCategory.has_disciplines_separation = false;
-        
+
         if (category.products) {
           baseCategory.product_count = category.products.length;
         }
@@ -189,7 +189,7 @@ export async function GET(request: NextRequest) {
 
     // Log access in migration mode
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Enhanced categories API called - using ${shouldUseDisciplines ? 'separated' : 'legacy'} data model`);
+
     }
 
     // Add migration-specific headers
@@ -236,9 +236,9 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Error in enhanced categories API:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Internal server error',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Failed to fetch categories'
       },
@@ -262,7 +262,7 @@ function buildCategoryTree(categories: any[]): any[] {
   // Build tree structure
   categories.forEach(category => {
     const categoryNode = categoryMap.get(category.id);
-    
+
     if (category.parentId) {
       const parent = categoryMap.get(category.parentId);
       if (parent) {
@@ -294,13 +294,13 @@ function buildCategoryTree(categories: any[]): any[] {
 
 /**
  * POST /api/categories/enhanced
- * 
+ *
  * Create a new category with enhanced logic for the disciplines-categories separation
  */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Check feature flags
     const shouldUseDisciplines = await MigrationFeatureFlags.shouldUseDisciplines();
     const isInMigrationMode = await MigrationFeatureFlags.isInMigrationMode();
@@ -309,7 +309,7 @@ export async function POST(request: NextRequest) {
     // Disciplines should be created via /api/disciplines endpoint
     if (shouldUseDisciplines && body.type === 'discipline') {
       return NextResponse.json(
-        { 
+        {
           error: 'Disciplines should be created via /api/disciplines endpoint',
           redirect: '/api/disciplines',
           message: 'Use the dedicated disciplines API for better functionality'
@@ -380,7 +380,7 @@ export async function POST(request: NextRequest) {
 
     // Log creation in migration mode
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Category created via enhanced API: ${category.id}, type: ${category.type}`);
+
     }
 
     return NextResponse.json({
@@ -398,9 +398,9 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error creating category via enhanced API:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to create category',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
       },

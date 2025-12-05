@@ -3,13 +3,13 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
   Youtube,
   ExternalLink,
   Building2,
@@ -117,7 +117,7 @@ export function Footer({ locale, className }: FooterProps) {
                   Casablanca - Maroc
                 </span>
               </div>
-              
+
               <div className="flex items-start space-x-2">
                 <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
@@ -129,14 +129,14 @@ export function Footer({ locale, className }: FooterProps) {
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-2">
                 <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <span className="text-medical-text-secondary">
                   +212 522 86 04 16
                 </span>
               </div>
-              
+
               <div className="flex items-start space-x-2">
                 <Mail className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
@@ -165,7 +165,7 @@ export function Footer({ locale, className }: FooterProps) {
                   Casablanca - Maroc
                 </span>
               </div>
-              
+
               <div className="flex items-start space-x-2">
                 <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
@@ -177,7 +177,7 @@ export function Footer({ locale, className }: FooterProps) {
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-2">
                 <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <span className="text-medical-text-secondary">
@@ -222,7 +222,7 @@ export function Footer({ locale, className }: FooterProps) {
             <Shield className="h-4 w-4 mr-2" />
             Certifications et Normes
           </h3>
-          
+
           {/* Professional Certifications */}
           <ComplianceBadges variant="grid" className="mb-6" />
 
@@ -235,7 +235,7 @@ export function Footer({ locale, className }: FooterProps) {
                   Conformité Réglementaire Complète
                 </p>
                 <p className="text-sm text-gray-600">
-                  Autorisations officielles ONSSA et certifications ISO pour garantir la qualité 
+                  Autorisations officielles ONSSA et certifications ISO pour garantir la qualité
                   et la sécurité de nos équipements médicaux au Maroc.
                 </p>
               </div>
@@ -251,7 +251,7 @@ export function Footer({ locale, className }: FooterProps) {
             <p className="text-xs text-medical-text-muted">
               © 2024 KITMED. {t('rights')}
             </p>
-            
+
             <div className="flex items-center space-x-4">
               <Link
                 href="/legal/privacy"

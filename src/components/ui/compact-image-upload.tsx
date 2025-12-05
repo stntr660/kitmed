@@ -21,7 +21,7 @@ export interface CompactImageUploadProps {
 
 const sizeClasses = {
   sm: 'w-16 h-16',
-  md: 'w-24 h-24', 
+  md: 'w-24 h-24',
   lg: 'w-32 h-32'
 };
 
@@ -51,7 +51,7 @@ export function CompactImageUpload({
     if (!files || files.length === 0) return;
 
     const file = files[0];
-    
+
     // Validate file size
     if (file.size > maxSize * 1024 * 1024) {
       toast.error(`File too large (max ${maxSize}MB)`);
@@ -91,7 +91,7 @@ export function CompactImageUpload({
       }
 
       const result = await response.json();
-      
+
       if (result.success && result.data.results.length > 0) {
         const uploadedFile = result.data.results[0];
         onChange(uploadedFile.url);
@@ -164,10 +164,10 @@ export function CompactImageUpload({
           // Shape classes
           shapeClasses[shape],
           // State styles
-          dragOver 
-            ? 'border-blue-500 bg-blue-50' 
-            : hasImage 
-              ? 'border-gray-200 hover:border-gray-300' 
+          dragOver
+            ? 'border-blue-500 bg-blue-50'
+            : hasImage
+              ? 'border-gray-200 hover:border-gray-300'
               : 'border-gray-300 hover:border-gray-400',
           disabled && 'cursor-not-allowed opacity-50',
           hasImage ? 'bg-gray-50' : 'bg-gray-50 hover:bg-gray-100'

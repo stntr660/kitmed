@@ -19,7 +19,7 @@ interface EnvironmentConfig {
  */
 export function validateEnvironment(): EnvironmentConfig {
   const errors: string[] = [];
-  
+
   // Critical variables that must be set
   const requiredVars = {
     JWT_SECRET: process.env.JWT_SECRET,
@@ -53,10 +53,10 @@ export function validateEnvironment(): EnvironmentConfig {
     if (!process.env.ADMIN_PASSWORD_HASH) {
       errors.push('ADMIN_PASSWORD_HASH required for production deployment');
     }
-    
+
     // Database URL validation for production
     if (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('postgresql://')) {
-      console.warn('⚠️  Warning: Production should use PostgreSQL database');
+
     }
   }
 
@@ -85,22 +85,22 @@ export function validateEnvironment(): EnvironmentConfig {
 export function initializeEnvironment(): void {
   try {
     const config = validateEnvironment();
-    
+
     if (process.env.NODE_ENV === 'development') {
-      console.log('✅ Environment validation passed');
+
       console.log(`📊 Database: ${config.DATABASE_URL.includes('postgresql') ? 'PostgreSQL' : 'SQLite'}`);
-      console.log(`🔐 JWT Secret length: ${config.JWT_SECRET.length} characters`);
+
     }
-    
+
   } catch (error) {
     console.error('🚨 CRITICAL: Environment validation failed');
     console.error((error as Error).message);
-    
+
     // In production, exit the process
     if (process.env.NODE_ENV === 'production') {
       process.exit(1);
     }
-    
+
     throw error;
   }
 }
@@ -133,13 +133,13 @@ export function getLogger() {
     },
     warn: (message: string, context?: any) => {
       if (isDevelopment()) {
-        console.warn(message, context);
+
       }
       // TODO: Production warning logging
     },
     info: (message: string, context?: any) => {
       if (isDevelopment()) {
-        console.log(message, context);
+
       }
       // TODO: Production info logging
     }

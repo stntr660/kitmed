@@ -36,12 +36,12 @@ interface ProductDrawerProps {
   onSave?: (product: Partial<Product>) => Promise<void>;
 }
 
-export function ProductDrawer({ 
-  open, 
-  onOpenChange, 
-  product, 
+export function ProductDrawer({
+  open,
+  onOpenChange,
+  product,
   mode,
-  onSave 
+  onSave
 }: ProductDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export function ProductDrawer({
     status: 'active',
     featured: false,
   });
-  
+
   // Progressive disclosure state
   const [showInternationalFields, setShowInternationalFields] = useState(false);
   const [showAdvancedFields, setShowAdvancedFields] = useState(false);
@@ -73,13 +73,13 @@ export function ProductDrawer({
     try {
       setCategoriesLoading(true);
       const token = getAdminToken();
-      
+
       const response = await fetch('/api/admin/categories?isActive=true', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data?.items || []);
@@ -98,7 +98,7 @@ export function ProductDrawer({
     try {
       setManufacturersLoading(true);
       const token = getAdminToken();
-      
+
       const response = await fetch('/api/admin/partners?type=manufacturer', {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -148,7 +148,7 @@ export function ProductDrawer({
         featured: false,
       });
     }
-    
+
     // Clear temp files when drawer closes
     if (!open) {
       setTempFiles([]);
@@ -165,16 +165,16 @@ export function ProductDrawer({
 
   const handleSave = async () => {
     if (!onSave) return;
-    
+
     setLoading(true);
     try {
       const savedProduct = await onSave(formData);
-      
+
       // If we have temp files and a new product was created, upload them
       if (tempFiles.length > 0 && savedProduct?.id && mode === 'add') {
         await uploadTempFilesToProduct(savedProduct.id);
       }
-      
+
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to save product:', error);
@@ -236,13 +236,13 @@ export function ProductDrawer({
           id: result.data.id,
           name: newManufacturerName.trim()
         };
-        
+
         // Add to manufacturers list
         setManufacturers(prev => [newManufacturer, ...prev]);
-        
+
         // Select the new manufacturer
         handleInputChange('constructeur', newManufacturerName.trim());
-        
+
         // Reset states
         setNewManufacturerName('');
         setShowNewManufacturerInput(false);
@@ -320,7 +320,7 @@ export function ProductDrawer({
               </SheetDescription>
             </div>
             {product && (
-              <Badge 
+              <Badge
                 variant={product.status === 'active' ? 'default' : 'secondary'}
                 className="ml-4"
               >
@@ -361,7 +361,7 @@ export function ProductDrawer({
                   <label htmlFor="constructeur" className="text-sm font-semibold text-gray-700">
                     {t('admin.products.brand')} *
                   </label>
-                  
+
                   {showNewManufacturerInput ? (
                     <div className="space-y-2">
                       <div className="flex gap-2">
@@ -429,7 +429,7 @@ export function ProductDrawer({
                       </SelectContent>
                     </Select>
                   )}
-                  
+
                   <p className="text-xs text-gray-500">{t('admin.products.brandHint')}</p>
                   {manufacturersLoading && (
                     <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -532,7 +532,7 @@ export function ProductDrawer({
               </div>
               <p className="text-sm text-blue-600">{t('admin.products.internationalDescription')}</p>
             </CardHeader>
-            
+
             {showInternationalFields && (
               <CardContent className="space-y-4 border-t border-blue-100 pt-4">
                 <div className="space-y-2">
@@ -599,7 +599,7 @@ export function ProductDrawer({
               </div>
               <p className="text-sm text-amber-600">{t('admin.products.technicalDetailsDescription')}</p>
             </CardHeader>
-            
+
             {showAdvancedFields && (
               <CardContent className="space-y-4 border-t border-amber-100 pt-4">
                 <div className="space-y-2">
@@ -733,7 +733,7 @@ export function ProductDrawer({
             </CardHeader>
             <CardContent>
               <ClientOnly fallback={<div className="p-8 text-center"><LoadingSpinner /></div>}>
-                <MediaUpload 
+                <MediaUpload
                   productId={product?.id || null}
                   disabled={isReadOnly}
                   onTempFilesChange={setTempFiles}
@@ -752,7 +752,7 @@ export function ProductDrawer({
           >
             {mode === 'view' ? t('common.close') : t('common.cancel')}
           </Button>
-          
+
           {mode !== 'view' && (
             <Button
               onClick={handleSave}

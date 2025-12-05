@@ -21,17 +21,17 @@ export function formatCurrency(amount: number, currency = 'USD'): string {
 
 export function formatDate(date: Date | string | null | undefined, format: 'short' | 'long' | 'time' = 'short'): string {
   if (!date) return '-';
-  
+
   const d = typeof date === 'string' ? new Date(date) : date;
-  
+
   // Check if the date is valid
   if (isNaN(d.getTime())) return 'Invalid Date';
-  
+
   // Use UTC formatting to prevent hydration mismatches between server and client
   const options: Intl.DateTimeFormatOptions = {
     timeZone: 'UTC'
   };
-  
+
   switch (format) {
     case 'long':
       options.year = 'numeric';
@@ -50,7 +50,7 @@ export function formatDate(date: Date | string | null | undefined, format: 'shor
       options.day = 'numeric';
       break;
   }
-  
+
   return new Intl.DateTimeFormat('en-US', options).format(d);
 }
 

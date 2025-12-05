@@ -8,16 +8,16 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
 
     // Get active categories with translations and product count
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.categories.findMany({
       where: {
-        isActive: true,
-        parentId: null, // Only root categories for homepage
+        is_active: true,
+        parent_id: null, // Only root categories for homepage
       },
       orderBy: {
-        sortOrder: 'asc',
+        sort_order: 'asc',
       },
       include: {
-        translations: true,
+        category_translations: true,
         ...(includeProductCount && {
           _count: {
             select: {
@@ -34,16 +34,16 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // Process categories to include localized data
     const processedCategories = categories.map(category => {
-      const translation = category.translations.find(t => t.languageCode === locale);
-      const fallbackTranslation = category.translations.find(t => t.languageCode === 'fr');
-      
+      const translation = category.category_translations.find(t => t.language_code === locale);
+      const fallbackTranslation = category.category_translations.find(t => t.language_code === 'fr');
+
       return {
         id: category.id,
         name: translation?.name || fallbackTranslation?.name || category.name,
         slug: category.slug,
         description: translation?.description || fallbackTranslation?.description || category.description,
-        imageUrl: category.imageUrl,
-        sortOrder: category.sortOrder,
+        imageUrl: category.image_url,
+        sortOrder: category.sort_order,
         ...(includeProductCount && {
           productCount: category._count?.products || 0
         })
@@ -58,9 +58,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   } catch (error) {
     console.error('Public categories API error:', error);
     return NextResponse.json(
-      { 
+      {
         success: false,
-        error: 'Failed to fetch categories' 
+        error: 'Failed to fetch categories'
       },
       { status: 500 }
     );

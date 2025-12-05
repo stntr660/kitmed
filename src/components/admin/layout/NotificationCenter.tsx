@@ -127,8 +127,8 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
       <button
         className={cn(
           'relative flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-200',
-          isOpen 
-            ? 'text-primary-600 bg-primary-50' 
+          isOpen
+            ? 'text-primary-600 bg-primary-50'
             : 'text-gray-600 hover:text-primary-600 hover:bg-primary-50',
           criticalCount > 0 && 'animate-pulse'
         )}
@@ -140,13 +140,13 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
         ) : (
           <BellIcon className="h-6 w-6" aria-hidden="true" />
         )}
-        
+
         {/* Notification Badge */}
         {unreadCount > 0 && (
           <span className={cn(
             'absolute -top-1 -right-1 flex items-center justify-center rounded-full text-xs font-medium min-w-[20px] h-5 px-1',
-            criticalCount > 0 
-              ? 'bg-red-500 text-white animate-pulse' 
+            criticalCount > 0
+              ? 'bg-red-500 text-white animate-pulse'
               : 'bg-blue-500 text-white'
           )}>
             {unreadCount > 99 ? '99+' : unreadCount}
@@ -165,8 +165,8 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
       {/* Notification Panel */}
       {isOpen && (
         <>
-          <div 
-            className="fixed inset-0 z-40 bg-black bg-opacity-20" 
+          <div
+            className="fixed inset-0 z-40 bg-black bg-opacity-20"
             onClick={() => setIsOpen(false)}
           />
           <div className="absolute right-0 z-50 mt-2 w-96 origin-top-right rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/5 max-h-[600px] flex flex-col">
@@ -258,7 +258,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
               ) : (
                 <div className="divide-y divide-gray-100">
                   {filteredNotifications.map((notification) => (
-                    <div 
+                    <div
                       key={notification.id}
                       className={cn(
                         'relative group cursor-pointer transition-colors',
@@ -283,7 +283,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
                               )}>
                                 {notification.title}
                               </p>
-                              
+
                               {/* Message */}
                               <p className="text-sm text-gray-600 mt-1 line-clamp-2">
                                 {notification.message}
@@ -306,7 +306,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
                                     Action requise
                                   </span>
                                 )}
-                                
+
                                 <span className="text-xs text-gray-500">
                                   {formatDistanceToNow(new Date(notification.createdAt), {
                                     addSuffix: true,
@@ -321,7 +321,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
                               {!notification.read && (
                                 <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                               )}
-                              
+
                               <button
                                 className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-gray-600"
                                 onClick={(e) => {
@@ -370,7 +370,7 @@ export function NotificationCenter({ locale = 'fr' }: NotificationCenterProps) {
             {/* Footer */}
             {filteredNotifications.length > 0 && (
               <div className="px-4 py-3 border-t border-gray-100 bg-gray-50">
-                <button 
+                <button
                   className="text-sm text-primary-600 hover:text-primary-700 font-medium w-full text-center"
                   onClick={() => {
                     setIsOpen(false);

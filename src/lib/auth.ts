@@ -49,7 +49,7 @@ export const verifyToken = (token: string): any => {
 export const authenticate = async (request: NextRequest): Promise<AdminUser | null> => {
   try {
     const authHeader = request.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '') || 
+    const token = authHeader?.replace('Bearer ', '') ||
                   request.cookies.get('admin-token')?.value;
 
     if (!token) {
@@ -57,7 +57,7 @@ export const authenticate = async (request: NextRequest): Promise<AdminUser | nu
     }
 
     const decoded = verifyToken(token);
-    
+
     // In a real implementation, you'd fetch the user from the database
     // For now, we'll return the decoded token data
     return {
@@ -160,7 +160,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
         { resource: 'analytics', actions: ['read', 'export'] },
         { resource: 'settings', actions: ['read', 'update'] },
       ];
-    
+
     case 'editor':
       return [
         { resource: 'products', actions: ['create', 'read', 'update', 'export'] },
@@ -170,7 +170,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
         { resource: 'content', actions: ['create', 'read', 'update'] },
         { resource: 'analytics', actions: ['read'] },
       ];
-    
+
     default:
       return [];
   }
@@ -179,7 +179,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
 // Session management
 export const createSession = async (user: AdminUser): Promise<string> => {
   const token = generateToken(user);
-  
+
   // In a real implementation, you'd store session in database
   // For now, we'll just return the token
   return token;

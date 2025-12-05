@@ -21,14 +21,14 @@ export default function TestHydrationPage() {
                 {isHydrated ? 'Hydrated' : 'Hydrating...'}
               </span>
             </div>
-            
+
             <div className="flex justify-between">
               <span>Current Locale:</span>
               <span className="px-2 py-1 bg-gray-100 rounded text-sm">
                 {locale}
               </span>
             </div>
-            
+
             <div className="flex justify-between">
               <span>Client/Server Match:</span>
               <span className={`px-2 py-1 rounded text-sm ${isHydrated ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
@@ -40,7 +40,7 @@ export default function TestHydrationPage() {
 
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Component Tests</h2>
-          
+
           <div className="space-y-6">
             <div>
               <h3 className="font-medium mb-2">Compliance Badges (Image Loading Test)</h3>

@@ -99,12 +99,12 @@ export function CategoryCreationWizard({
   // Wizard state
   const [currentStep, setCurrentStep] = useState(0);
   const [categoryType, setCategoryType] = useState<CategoryType>('discipline');
-  
+
   // Discipline state
   const [disciplines, setDisciplines] = useState<Discipline[]>([]);
   const [selectedDisciplineId, setSelectedDisciplineId] = useState<string>('');
   const [disciplinesLoading, setDisciplinesLoading] = useState(false);
-  
+
   // Form state
   const [formData, setFormData] = useState({
     translations: {
@@ -135,7 +135,7 @@ export function CategoryCreationWizard({
 
   const fetchDisciplines = async () => {
     setDisciplinesLoading(true);
-    
+
     try {
       const token = getAdminToken();
       if (!token) {
@@ -147,7 +147,7 @@ export function CategoryCreationWizard({
           'Authorization': `Bearer ${token}`,
         },
       });
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Failed to fetch disciplines: ${response.status}`);
@@ -157,7 +157,7 @@ export function CategoryCreationWizard({
       // Filter to get only top-level categories (disciplines)
       const allCategories = data.data?.items || [];
       const disciplines = allCategories.filter((category: any) => !category.parentId);
-      
+
       const disciplineList = disciplines.map((discipline: any) => ({
         id: discipline.id,
         name: discipline.name,
@@ -166,7 +166,7 @@ export function CategoryCreationWizard({
           en: discipline.nom?.en || '',
         }
       }));
-      
+
       setDisciplines(disciplineList);
     } catch (error) {
       console.error('Error fetching disciplines:', error);
@@ -208,18 +208,18 @@ export function CategoryCreationWizard({
   // For disciplines, skip the discipline selection step
   const getEffectiveSteps = () => {
     let filteredSteps = steps;
-    
+
     if (mode === 'edit') {
       filteredSteps = filteredSteps.slice(1); // Skip type selection for edit
     }
-    
+
     if (categoryType === 'discipline') {
       filteredSteps = filteredSteps.filter(step => step.id !== 'discipline');
     }
-    
+
     return filteredSteps;
   };
-  
+
   const effectiveSteps = getEffectiveSteps();
   const effectiveCurrentStep = Math.min(currentStep, effectiveSteps.length - 1);
 
@@ -305,7 +305,7 @@ export function CategoryCreationWizard({
 
   const canProceedToNext = () => {
     const currentStepData = effectiveSteps[effectiveCurrentStep];
-    
+
     switch (currentStepData.id) {
       case 'type':
         return true; // Always can proceed from type selection
@@ -352,13 +352,6 @@ export function CategoryCreationWizard({
         type: categoryType,
         parentId: categoryType === 'equipment' && selectedDisciplineId && selectedDisciplineId.trim() ? selectedDisciplineId : formData.parentId || null,
       };
-      
-      console.log('🔥 WIZARD SENDING:', JSON.stringify({
-        type: categoryType,
-        selectedDisciplineId,
-        parentId: finalFormData.parentId,
-        finalType: finalFormData.type
-      }, null, 2));
 
       await onSave(finalFormData);
     } catch (error) {
@@ -374,8 +367,8 @@ export function CategoryCreationWizard({
         <div key={step.id} className="flex items-center">
           <div className={`
             flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all
-            ${index <= effectiveCurrentStep 
-              ? 'bg-primary-600 border-primary-600 text-white' 
+            ${index <= effectiveCurrentStep
+              ? 'bg-primary-600 border-primary-600 text-white'
               : 'bg-white border-gray-300 text-gray-500'
             }
           `}>
@@ -413,10 +406,10 @@ export function CategoryCreationWizard({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card 
+              <Card
                 className={`cursor-pointer transition-all border-2 ${
-                  categoryType === 'discipline' 
-                    ? 'border-blue-500 bg-blue-50' 
+                  categoryType === 'discipline'
+                    ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
                 onClick={() => setCategoryType('discipline')}
@@ -437,10 +430,10 @@ export function CategoryCreationWizard({
                 </CardContent>
               </Card>
 
-              <Card 
+              <Card
                 className={`cursor-pointer transition-all border-2 ${
-                  categoryType === 'equipment' 
-                    ? 'border-green-500 bg-green-50' 
+                  categoryType === 'equipment'
+                    ? 'border-green-500 bg-green-50'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
                 onClick={() => setCategoryType('equipment')}
@@ -486,7 +479,7 @@ export function CategoryCreationWizard({
                 {t('admin.categories.wizard.selectMedicalDiscipline')}
               </h3>
               <p className="text-gray-600 mb-8">
-                {categoryType === 'equipment' 
+                {categoryType === 'equipment'
                   ? t('admin.categories.wizard.linkEquipmentToDiscipline')
                   : t('admin.categories.wizard.createTopLevelDiscipline')
                 }
@@ -498,7 +491,7 @@ export function CategoryCreationWizard({
                 <label className="block text-sm font-semibold text-gray-900 mb-2">
                   {t('admin.categories.wizard.selectDiscipline')} <span className="text-red-500">*</span>
                 </label>
-                
+
                 {!disciplinesLoading && disciplines.length === 0 ? (
                   <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                     <div className="flex items-start space-x-3">
@@ -533,7 +526,7 @@ export function CategoryCreationWizard({
                         </option>
                       ))}
                     </select>
-                    
+
                     <p className="text-xs text-gray-500">
                       {t('admin.categories.wizard.equipmentCategoriesHint')}
                     </p>
@@ -687,7 +680,7 @@ export function CategoryCreationWizard({
                 <GlobeAltIcon className="w-5 h-5 mr-2 text-blue-600" />
                 {t('admin.categories.internationalVersion')}
               </h4>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -716,7 +709,6 @@ export function CategoryCreationWizard({
               </div>
             </div>
 
-
             {/* Visibility Settings */}
             <div className="border-t border-gray-200 pt-6">
               <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
@@ -734,7 +726,7 @@ export function CategoryCreationWizard({
                     {formData.isActive ? t('admin.categories.makeVisible') : t('admin.categories.keepHidden')}
                   </label>
                   <p className="text-sm text-gray-600">
-                    {formData.isActive 
+                    {formData.isActive
                       ? t('admin.categories.makeVisibleDescription')
                       : t('admin.categories.keepHiddenDescription')
                     }
@@ -763,8 +755,8 @@ export function CategoryCreationWizard({
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
             <h2 className="text-2xl font-semibold text-gray-900">
-              {mode === 'add' 
-                ? (parentCategory 
+              {mode === 'add'
+                ? (parentCategory
                     ? t('admin.categories.addSubcategory')
                     : t('admin.categories.addCategory')
                   )
@@ -775,8 +767,8 @@ export function CategoryCreationWizard({
               {effectiveSteps[effectiveCurrentStep]?.description || ''}
             </p>
           </div>
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             onClick={() => onOpenChange(false)}
             className="text-gray-400 hover:text-gray-600"
@@ -803,8 +795,8 @@ export function CategoryCreationWizard({
 
         {/* Footer */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={handlePrevious}
             disabled={effectiveCurrentStep === 0}
             className="flex items-center space-x-2"
@@ -818,8 +810,8 @@ export function CategoryCreationWizard({
           </div>
 
           <div className="flex space-x-3">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={saving}
             >
@@ -827,7 +819,7 @@ export function CategoryCreationWizard({
             </Button>
 
             {effectiveCurrentStep === effectiveSteps.length - 1 ? (
-              <Button 
+              <Button
                 onClick={handleSubmit}
                 disabled={saving || !canProceedToNext()}
                 className="bg-primary-600 hover:bg-primary-700 min-w-[120px]"
@@ -842,7 +834,7 @@ export function CategoryCreationWizard({
                 )}
               </Button>
             ) : (
-              <Button 
+              <Button
                 onClick={handleNext}
                 disabled={!canProceedToNext()}
                 className="bg-primary-600 hover:bg-primary-700 flex items-center space-x-2 min-w-[120px]"

@@ -24,7 +24,7 @@ export default function MaintenancePage() {
   const phrases = [
     "Nous créons quelque chose d'extraordinaire",
     "Une nouvelle plateforme médicale naît",
-    "L'innovation prend forme dans l'ombre", 
+    "L'innovation prend forme dans l'ombre",
     "Notre site se métamorphose",
     "Bientôt, l'impossible deviendra possible"
   ];
@@ -59,7 +59,7 @@ export default function MaintenancePage() {
             <h1 className="text-6xl lg:text-8xl font-thin text-white/90 tracking-wider">
               Bientôt<span className="text-primary-300">{dots}</span>
             </h1>
-            
+
             <div className="h-20 flex items-center justify-center">
               <p className="text-2xl lg:text-3xl text-slate-300/80 font-light italic transition-all duration-1000 ease-in-out">
                 "{phrases[currentPhrase]}"
@@ -71,9 +71,9 @@ export default function MaintenancePage() {
 
         {/* Bouton de retour discret */}
         <div className="pt-8">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             className="text-slate-400/60 hover:text-white/80 transition-all duration-500"
             asChild
           >

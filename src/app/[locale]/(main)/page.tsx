@@ -69,7 +69,7 @@ export default function HomePage() {
         setCategoriesLoading(true);
         const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
         const result = await response.json();
-        
+
         if (result.success && result.data) {
           setCategories(result.data.slice(0, 6)); // Limit to 6 categories
         }
@@ -85,7 +85,7 @@ export default function HomePage() {
         setPartnersLoading(true);
         const response = await fetch(`/api/partners?featured=true&status=active&pageSize=6`);
         const result = await response.json();
-        
+
         if (result.success && result.data) {
           // Transform partner data to match expected interface with safe fallbacks
           const transformedPartners = result.data.map((partner: any) => {
@@ -98,7 +98,7 @@ export default function HomePage() {
                 partnerName = partner.name[locale] || partner.name.fr || partner.name.en || 'Partner';
               }
             }
-            
+
             // Safely extract description
             let partnerDescription = '';
             if (partner.description) {
@@ -108,7 +108,7 @@ export default function HomePage() {
                 partnerDescription = partner.description[locale] || partner.description.fr || partner.description.en || '';
               }
             }
-            
+
             return {
               id: partner.id,
               name: partnerName,
@@ -132,7 +132,7 @@ export default function HomePage() {
         setProductsLoading(true);
         const response = await fetch(`/api/products?status=active&featured=true&pageSize=6&locale=${locale}`);
         const result = await response.json();
-        
+
         if (result.success && result.data) {
           setFeaturedProducts(result.data.items || []);
         }
@@ -173,7 +173,7 @@ export default function HomePage() {
                 {t('partners.description')}
               </p>
             </div>
-            
+
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {!isHydrated || partnersLoading ? (
                 // Loading skeleton - same structure as actual content
@@ -196,7 +196,7 @@ export default function HomePage() {
                     <CardContent className="p-6 flex-1 flex flex-col text-center">
                       <div className="w-full h-20 mb-4 flex items-center justify-center">
                         {partner.logo ? (
-                          <img 
+                          <img
                             src={partner.logo}
                             alt={partner.name}
                             className="max-h-16 w-auto object-contain"
@@ -207,9 +207,9 @@ export default function HomePage() {
                           </div>
                         )}
                       </div>
-                      
+
                       <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">{partner.name}</h3>
-                      
+
                       {partner.description && (
                         <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">{partner.description}</p>
                       )}
@@ -218,11 +218,11 @@ export default function HomePage() {
                 ))
               )}
             </div>
-            
+
             <div className="mt-12 text-center">
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                 asChild
               >
@@ -249,7 +249,7 @@ export default function HomePage() {
                 {t('sections.innovationDescription')}
               </p>
             </div>
-            
+
             <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
@@ -258,13 +258,13 @@ export default function HomePage() {
                   description: t('features.0.description')
                 },
                 {
-                  number: "02", 
+                  number: "02",
                   title: t('features.1.title'),
                   description: t('features.1.description')
                 },
                 {
                   number: "03",
-                  title: t('features.2.title'), 
+                  title: t('features.2.title'),
                   description: t('features.2.description')
                 }
               ].map((feature, index) => (
@@ -276,11 +276,11 @@ export default function HomePage() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <h3 className="text-2xl font-light text-gray-900 mb-4">
                     {feature.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
                     {feature.description}
                   </p>
@@ -305,7 +305,7 @@ export default function HomePage() {
                 {t('disciplines.description')}
               </p>
             </div>
-            
+
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {!isHydrated || categoriesLoading ? (
                 // Loading skeleton - same structure as actual content
@@ -317,7 +317,7 @@ export default function HomePage() {
                         <div className="absolute top-4 right-4 bg-gray-200 animate-pulse px-3 py-1 rounded-full text-xs font-medium w-16 h-6">
                         </div>
                       </div>
-                      
+
                       <CardContent className="p-6">
                         <div className="animate-pulse">
                           <div className="h-6 bg-gray-200 rounded mb-3 w-3/4"></div>
@@ -339,8 +339,8 @@ export default function HomePage() {
                       <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
                         <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                           {category.imageUrl ? (
-                            <img 
-                              src={category.imageUrl} 
+                            <img
+                              src={category.imageUrl}
                               alt={category.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
@@ -357,7 +357,7 @@ export default function HomePage() {
                             {category.productCount} {t('disciplines.productsCount')}
                           </div>
                         </div>
-                        
+
                         <CardContent className="p-6">
                           <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
                             {category.name}
@@ -378,11 +378,11 @@ export default function HomePage() {
                 ))
               )}
             </div>
-            
+
             <div className="mt-12 text-center">
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
                 asChild
               >
@@ -409,7 +409,7 @@ export default function HomePage() {
                 {t('featuredProducts.description')}
               </p>
             </div>
-            
+
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {!isHydrated || productsLoading ? (
                 // Loading skeleton - same structure as actual content
@@ -421,7 +421,7 @@ export default function HomePage() {
                         <div className="animate-pulse bg-gray-200 h-6 w-16 rounded"></div>
                       </div>
                     </div>
-                    
+
                     <CardContent className="p-4">
                       <div className="animate-pulse">
                         <div className="h-3 bg-gray-200 rounded mb-2 w-1/2"></div>
@@ -436,7 +436,7 @@ export default function HomePage() {
               ) : featuredProducts.length > 0 ? (
                 featuredProducts.map((product) => {
                   const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
-                  
+
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
                       <div className="relative h-48 bg-slate-100 overflow-hidden">
@@ -453,9 +453,9 @@ export default function HomePage() {
                             </div>
                           </div>
                         )}
-                        
+
                       </div>
-                      
+
                       <CardContent className="p-4">
                         <div className="mb-2">
                           <p className="text-xs text-gray-500 font-medium">{product.manufacturer.name}</p>
@@ -471,8 +471,8 @@ export default function HomePage() {
                             {product.category.name}
                           </p>
                         )}
-                        <Button 
-                          size="sm" 
+                        <Button
+                          size="sm"
                           variant="outline"
                           className="w-full"
                           asChild
@@ -491,11 +491,11 @@ export default function HomePage() {
                 </div>
               )}
             </div>
-            
+
             <div className="mt-12 text-center">
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
                 asChild
               >
@@ -583,10 +583,10 @@ export default function HomePage() {
               <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
                 {t('sections.consultationDescription')}
               </p>
-              
+
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
                   asChild
                 >
@@ -595,9 +595,9 @@ export default function HomePage() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                
-                <Button 
-                  size="lg" 
+
+                <Button
+                  size="lg"
                   variant="outline"
                   className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
                   asChild

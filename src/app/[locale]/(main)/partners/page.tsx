@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   Star,
   ExternalLink,
   Building2,
@@ -41,7 +41,7 @@ export default function PartnersPage() {
   const tCommon = useTranslations('common');
   const tPartner = useTranslations('partnerDetail');
   const locale = useHydrationSafeLocale('fr');
-  
+
   const [partners, setPartners] = useState<Partner[]>([]);
   const [featuredPartners, setFeaturedPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,16 +55,16 @@ export default function PartnersPage() {
           fetch('/api/partners'),
           fetch('/api/partners?featured=true'),
         ]);
-        
+
         if (!allResponse.ok || !featuredResponse.ok) {
           throw new Error('Failed to fetch partners');
         }
-        
+
         const [allData, featuredData] = await Promise.all([
           allResponse.json(),
           featuredResponse.json(),
         ]);
-        
+
         if (allData.success && featuredData.success) {
           setPartners(allData.data);
           setFeaturedPartners(featuredData.data);
@@ -185,7 +185,7 @@ export default function PartnersPage() {
                           </a>
                         )}
                       </div>
-                      
+
                       {partner.logoUrl && (
                         <div className="w-full h-20 mb-4 flex items-center justify-center">
                           <img
@@ -195,20 +195,20 @@ export default function PartnersPage() {
                           />
                         </div>
                       )}
-                      
+
                       <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
                         {getPartnerName(partner)}
                       </h3>
-                      
+
                       {getPartnerDescription(partner) && (
                         <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">
                           {getPartnerDescription(partner)}
                         </p>
                       )}
-                      
+
                       {/* Spacer to push button to bottom */}
                       <div className="flex-1"></div>
-                      
+
                       <div className="space-y-2">
                         <Button size="sm" className="w-full" asChild>
                           <Link href={`/${locale}/partners/${partner.slug}`}>
@@ -216,7 +216,7 @@ export default function PartnersPage() {
                             <ArrowRight className="ml-2 h-3 w-3" />
                           </Link>
                         </Button>
-                        
+
                         {partner.websiteUrl && (
                           <Button variant="outline" size="sm" className="w-full" asChild>
                             <a
@@ -275,7 +275,7 @@ export default function PartnersPage() {
                           </a>
                         )}
                       </div>
-                      
+
                       {partner.logoUrl && (
                         <div className="w-full h-16 mb-3 flex items-center justify-center">
                           <img
@@ -285,20 +285,20 @@ export default function PartnersPage() {
                           />
                         </div>
                       )}
-                      
+
                       <h3 className="text-sm font-semibold text-gray-900 mb-2 text-center">
                         {getPartnerName(partner)}
                       </h3>
-                      
+
                       {getPartnerDescription(partner) && (
                         <p className="text-gray-600 text-xs leading-relaxed text-center mb-3">
                           {getPartnerDescription(partner)}
                         </p>
                       )}
-                      
+
                       {/* Spacer for consistent height */}
                       <div className="flex-1"></div>
-                      
+
                       <Button size="sm" variant="outline" className="w-full mt-3" asChild>
                         <Link href={`/${locale}/partners/${partner.slug}`}>
                           {tPartner('viewProductsShort')}
@@ -387,10 +387,10 @@ export default function PartnersPage() {
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
               {t('cta.description')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
                 asChild
               >
@@ -399,9 +399,9 @@ export default function PartnersPage() {
                   {t('cta.contact')}
                 </Link>
               </Button>
-              
-              <Button 
-                size="lg" 
+
+              <Button
+                size="lg"
                 variant="outline"
                 className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
                 asChild

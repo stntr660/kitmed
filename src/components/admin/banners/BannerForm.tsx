@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -15,10 +15,10 @@ import {
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Upload, 
-  Image as ImageIcon, 
-  Link2, 
+import {
+  Upload,
+  Image as ImageIcon,
+  Link2,
   Settings,
   Eye,
   Calendar,
@@ -172,8 +172,7 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
   }, [banner, reset]);
 
   const onSubmit = async (data: BannerFormData) => {
-    console.log('Form submission started', { data, banner });
-    console.log('Form errors:', errors);
+
     setLoading(true);
     try {
       const payload = {
@@ -214,8 +213,6 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
       const url = banner ? `/api/admin/banners/${banner.id}` : '/api/admin/banners';
       const method = banner ? 'PUT' : 'POST';
 
-      console.log('Making request:', { url, method, payload });
-
       const response = await fetch(url, {
         method,
         headers: {
@@ -225,20 +222,18 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
         body: JSON.stringify(payload),
       });
 
-      console.log('Response received:', { status: response.status, ok: response.ok });
-
       if (response.ok) {
         onSuccess();
       } else {
         const errorData = await response.json();
         console.error('Failed to save banner:', errorData);
-        
+
         // Extract error message from different possible structures
         let errorMessage = 'Please try again.';
         if (errorData.error?.message) {
           errorMessage = errorData.error.message;
         } else if (errorData.error?.details) {
-          errorMessage = Array.isArray(errorData.error.details) 
+          errorMessage = Array.isArray(errorData.error.details)
             ? errorData.error.details.map((d: any) => d.message || d).join(', ')
             : String(errorData.error.details);
         } else if (errorData.message) {
@@ -246,7 +241,7 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
         } else if (errorData.error) {
           errorMessage = String(errorData.error);
         }
-        
+
         alert(`Failed to save banner: ${errorMessage}`);
       }
     } catch (error) {
@@ -259,27 +254,27 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
 
   const handleImageUpload = async (file: File, type: 'image' | 'background') => {
     const setUploadLoading = type === 'image' ? setImageUploadLoading : setBackgroundUploadLoading;
-    
+
     setUploadLoading(true);
     try {
       // Upload file to server
       const formData = new FormData();
       formData.append('file', file);
-      
+
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
-      
+
       const result = await response.json();
-      
+
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Upload failed');
       }
-      
+
       // Set the permanent URL from the upload response
       const imageUrl = result.data.url;
-      
+
       if (type === 'image') {
         setValue('imageUrl', imageUrl);
       } else {
@@ -299,7 +294,7 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, (errors) => {
-      console.log('Form validation errors:', errors);
+
       alert('Please fix form validation errors before submitting.');
     })} className="space-y-6">
       <Tabs defaultValue="content" className="w-full">

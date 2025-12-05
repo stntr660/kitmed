@@ -59,7 +59,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               <p className="mt-1 text-sm text-gray-900">{product.nom?.en || t('common.notSpecified')}</p>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">{t('common.sku')}</label>

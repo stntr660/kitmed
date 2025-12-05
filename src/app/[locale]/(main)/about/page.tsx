@@ -3,12 +3,12 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   Heart,
-  Shield, 
-  Award, 
-  Users, 
-  Globe, 
+  Shield,
+  Award,
+  Users,
+  Globe,
   Star,
   CheckCircle,
   Building2,
@@ -35,7 +35,7 @@ export default function AboutPage() {
     <div className="flex flex-col">
       {/* Certifications Banner */}
       <CertificationsBanner variant="compact" />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -82,7 +82,7 @@ export default function AboutPage() {
                   {t('overview.description2')}
                 </p>
               </div>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">

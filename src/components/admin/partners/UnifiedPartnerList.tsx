@@ -39,20 +39,20 @@ interface UnifiedPartnerListProps {
 export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListProps) {
   const t = useTranslations();
   const { canCreate, canUpdate, canDelete, isAdmin } = useAdminPermissions();
-  
+
   // Data state
   const [partners, setPartners] = useState<AdminSearchResult<PartnerWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedPartners, setSelectedPartners] = useState<string[]>([]);
-  
+
   // UI state
   const [wizardOpen, setWizardOpen] = useState(false);
   const [wizardMode, setWizardMode] = useState<'add' | 'edit'>('add');
   const [selectedPartner, setSelectedPartner] = useState<PartnerWithDetails | null>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [csvUploadOpen, setCsvUploadOpen] = useState(false);
-  
+
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
@@ -90,7 +90,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
           'Authorization': `Bearer ${getAdminToken()}`,
         },
       });
-      
+
       if (response.ok) {
         const data = await response.json();
         setPartners(data.data);
@@ -131,15 +131,15 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
 
   const handleSavePartner = async (partnerData: Partial<Partner>) => {
     try {
-      const url = wizardMode === 'add' 
-        ? '/api/admin/partners' 
+      const url = wizardMode === 'add'
+        ? '/api/admin/partners'
         : `/api/admin/partners/${selectedPartner?.id}`;
-      
+
       const method = wizardMode === 'add' ? 'POST' : 'PUT';
 
       const response = await fetch(url, {
         method,
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -206,7 +206,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -237,11 +237,11 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
 
   const handleSelectAll = () => {
     if (!partners) return;
-    
-    const allSelected = partners.items.every(partner => 
+
+    const allSelected = partners.items.every(partner =>
       selectedPartners.includes(partner.id)
     );
-    
+
     if (allSelected) {
       setSelectedPartners([]);
     } else {
@@ -255,7 +255,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
     try {
       const response = await fetch('/api/admin/partners/bulk', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getAdminToken()}`,
         },
@@ -346,7 +346,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {['active', 'inactive'].map((status) => (
                 <Button
@@ -427,7 +427,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                       <th className="px-6 py-4 text-left">
                         <input
                           type="checkbox"
-                          checked={partners.items.every(partner => 
+                          checked={partners.items.every(partner =>
                             selectedPartners.includes(partner.id)
                           )}
                           onChange={handleSelectAll}
@@ -435,7 +435,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                         />
                       </th>
                     )}
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('name')}
                     >
@@ -444,13 +444,13 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.partners.website')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
                       {t('admin.status')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -615,7 +615,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
               total: partners.total
             })}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -626,11 +626,11 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, partners.totalPages))].map((_, i) => {
               const page = partners.page - 2 + i;
               if (page < 1 || page > partners.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -643,7 +643,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -684,8 +684,8 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">{t('admin.partners.bulkImport.title')}</h2>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={() => setCsvUploadOpen(false)}
                   className="text-gray-400 hover:text-gray-600"
                 >

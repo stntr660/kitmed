@@ -16,9 +16,9 @@ interface HydrationDebuggerProps {
   position?: 'top-right' | 'bottom-right' | 'top-left' | 'bottom-left';
 }
 
-export function HydrationDebugger({ 
+export function HydrationDebugger({
   enabled = process.env.NODE_ENV === 'development',
-  position = 'bottom-right' 
+  position = 'bottom-right'
 }: HydrationDebuggerProps) {
   const [hydrationErrors, setHydrationErrors] = useState<HydrationError[]>([]);
   const [hydrationStatus, setHydrationStatus] = useState<'pending' | 'success' | 'error'>('pending');
@@ -33,7 +33,7 @@ export function HydrationDebugger({
     const originalError = console.error;
     console.error = (...args: any[]) => {
       const message = args.join(' ');
-      
+
       // Detect hydration-related errors
       if (
         message.includes('hydration') ||
@@ -47,11 +47,11 @@ export function HydrationDebugger({
           error: message,
           stack: args.find(arg => arg?.stack)?.stack
         };
-        
+
         setHydrationErrors(prev => [...prev, error]);
         setHydrationStatus('error');
       }
-      
+
       originalError(...args);
     };
 
@@ -170,20 +170,20 @@ export function useHydrationMonitor() {
     if (process.env.NODE_ENV !== 'development') return;
 
     const originalError = console.error;
-    
+
     console.error = (...args: any[]) => {
       const message = args.join(' ');
-      
+
       if (message.includes('hydration') || message.includes('server HTML')) {
         const error: HydrationError = {
           timestamp: new Date().toISOString(),
           error: message,
         };
-        
+
         setErrors(prev => [...prev, error]);
         setStatus('error');
       }
-      
+
       originalError(...args);
     };
 

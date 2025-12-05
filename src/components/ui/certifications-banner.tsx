@@ -61,7 +61,7 @@ export function CertificationsBanner({ variant = 'hero', className }: Certificat
   if (variant === 'compact') {
     return <CompactCertificationsBanner className={className} />;
   }
-  
+
   if (variant === 'floating') {
     return <FloatingCertificationsBanner className={className} />;
   }
@@ -82,7 +82,7 @@ function HeroCertificationsBanner({ className }: { className?: string }) {
 
       <div className="relative container mx-auto px-4 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-          
+
           {/* Left side - Title and trust message */}
           <div className="text-center lg:text-left lg:flex-1">
             <h2 className="text-white font-bold text-lg lg:text-xl mb-1">
@@ -96,14 +96,14 @@ function HeroCertificationsBanner({ className }: { className?: string }) {
           {/* Right side - Certification logos */}
           <div className="flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
             {certifications.map((cert, index) => (
-              <CertificationLogo 
-                key={cert.id} 
-                certification={cert} 
+              <CertificationLogo
+                key={cert.id}
+                certification={cert}
                 index={index}
                 size="md"
               />
             ))}
-            
+
             {/* Trust indicator */}
             <div className="hidden lg:flex flex-col items-center ml-3 pl-3 border-l border-white/30">
               <div className="flex items-center gap-1 mb-1">
@@ -131,12 +131,12 @@ function CompactCertificationsBanner({ className }: { className?: string }) {
               Certifié ONSSA • ISO 9001/13485/22716
             </span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-3 lg:gap-5">
             {certifications.map((cert, index) => (
-              <CertificationLogo 
-                key={cert.id} 
-                certification={cert} 
+              <CertificationLogo
+                key={cert.id}
+                certification={cert}
                 index={index}
                 size="sm"
               />
@@ -158,16 +158,16 @@ function FloatingCertificationsBanner({ className }: { className?: string }) {
             <Award className="h-4 w-4 text-primary-600" />
             <span className="text-sm font-medium text-gray-800">Certifications</span>
           </div>
-          
+
           {certifications.map((cert, index) => (
-            <CertificationLogo 
-              key={cert.id} 
-              certification={cert} 
+            <CertificationLogo
+              key={cert.id}
+              certification={cert}
               index={index}
               size="sm"
             />
           ))}
-          
+
           <div className="flex items-center gap-1">
             <CheckCircle className="h-4 w-4 text-primary-500" />
             <span className="text-xs font-medium text-primary-700">Vérifié</span>
@@ -179,18 +179,18 @@ function FloatingCertificationsBanner({ className }: { className?: string }) {
 }
 
 // Individual certification logo component
-function CertificationLogo({ 
-  certification, 
-  index, 
-  size = 'md' 
-}: { 
-  certification: any; 
-  index: number; 
+function CertificationLogo({
+  certification,
+  index,
+  size = 'md'
+}: {
+  certification: any;
+  index: number;
   size: 'sm' | 'md' | 'lg';
 }) {
   const [imageError, setImageError] = useState(false);
   const isHydrated = useIsHydrated();
-  
+
   const sizes = {
     sm: { logo: 32, container: 'w-8 sm:w-10', containerHeight: 'h-12 sm:h-14' },
     md: { logo: 40, container: 'w-10 sm:w-12 lg:w-16', containerHeight: 'h-14 sm:h-16 lg:h-20' },
@@ -200,7 +200,7 @@ function CertificationLogo({
   const currentSize = sizes[size];
 
   return (
-    <div 
+    <div
       className={cn(
         "relative group transition-transform duration-300 hover:scale-105",
         `animate-fade-in-up delay-${index * 100}`
@@ -226,7 +226,7 @@ function CertificationLogo({
       ) : !imageError ? (
         <div className={cn("flex flex-col items-center", currentSize.container)}>
           {/* Logo container with consistent sizing */}
-          <div 
+          <div
             className="flex items-center justify-center"
             style={{ height: `${currentSize.logo}px` }}
           >
@@ -243,7 +243,7 @@ function CertificationLogo({
               onError={() => setImageError(true)}
             />
           </div>
-          
+
           {/* ISO number clearly displayed below logo */}
           {certification.number && (
             <div className="text-center">
@@ -256,7 +256,7 @@ function CertificationLogo({
       ) : (
         <div className={cn("flex flex-col items-center", currentSize.container)}>
           {/* Fallback with consistent sizing */}
-          <div 
+          <div
             className="flex items-center justify-center"
             style={{ height: `${currentSize.logo}px` }}
           >
@@ -269,7 +269,7 @@ function CertificationLogo({
               </span>
             </div>
           </div>
-          
+
           {/* ISO number for fallback too */}
           {certification.number && (
             <div className="text-center">
@@ -303,11 +303,11 @@ export const certificationAnimations = `
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out forwards;
   }
-  
+
   .delay-0 { animation-delay: 0ms; }
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }

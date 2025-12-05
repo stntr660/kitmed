@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
-import { 
-  downloadFileWithProgress, 
+import {
+  downloadFileWithProgress,
   isValidUrl,
   type DownloadProgress
 } from '@/lib/url-downloader';
@@ -36,12 +36,12 @@ const csvProductSchema = z.object({
   imageUrl2: z.string().optional().default(''),
   imageUrl3: z.string().optional().default(''),
   downloadFiles: z.preprocess(
-    (val) => String(val || 'false'), 
+    (val) => String(val || 'false'),
     z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
   ).default(false),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.preprocess(
-    (val) => String(val || 'false'), 
+    (val) => String(val || 'false'),
     z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
   ).default(false),
 });
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   const progress = progressStore.get(jobId);
-  
+
   if (!progress) {
     return NextResponse.json(
       { error: 'Job not found' },
@@ -76,7 +76,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 // POST endpoint to start bulk import with progress tracking
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const jobId = `import_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-  
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -134,9 +134,9 @@ async function processImportWithProgress(jobId: string, file: File) {
 
   try {
     // Parse CSV
-    updateProgress({ 
+    updateProgress({
       currentStep: 'Parsing CSV file',
-      progress: 5 
+      progress: 5
     });
 
     const csvText = await file.text();
@@ -149,10 +149,10 @@ async function processImportWithProgress(jobId: string, file: File) {
       trim: true,
     });
 
-    updateProgress({ 
+    updateProgress({
       currentStep: 'Validating records',
       progress: 10,
-      totalProducts: records.length 
+      totalProducts: records.length
     });
 
     // Validate records
@@ -169,15 +169,15 @@ async function processImportWithProgress(jobId: string, file: File) {
 
       try {
         const validatedProduct = csvProductSchema.parse(record);
-        
+
         // Check for duplicates
         const existingProduct = await prisma.product.findUnique({
           where: { referenceFournisseur: validatedProduct.referenceFournisseur },
         });
 
         if (existingProduct) {
-          updateProgress({ 
-            errors: [...(progressStore.get(jobId)?.errors || []), 
+          updateProgress({
+            errors: [...(progressStore.get(jobId)?.errors || []),
               `Row ${rowNumber}: Product ${validatedProduct.referenceFournisseur} already exists`]
           });
           continue;
@@ -185,7 +185,7 @@ async function processImportWithProgress(jobId: string, file: File) {
 
         // Collect file URLs
         const urls: Array<{ type: 'image' | 'pdf'; url: string; field: string }> = [];
-        
+
         if (validatedProduct.downloadFiles) {
           if (validatedProduct.imageUrl && isValidUrl(validatedProduct.imageUrl)) {
             urls.push({ type: 'image', url: validatedProduct.imageUrl, field: 'imageUrl' });
@@ -227,31 +227,31 @@ async function processImportWithProgress(jobId: string, file: File) {
         });
 
       } catch (error) {
-        updateProgress({ 
-          errors: [...(progressStore.get(jobId)?.errors || []), 
+        updateProgress({
+          errors: [...(progressStore.get(jobId)?.errors || []),
             `Row ${rowNumber}: Validation error`]
         });
       }
 
       // Update validation progress
-      updateProgress({ 
-        progress: 10 + (i / records.length) * 20 
+      updateProgress({
+        progress: 10 + (i / records.length) * 20
       });
     }
 
     // Download files with progress tracking
     const fileDownloadResults = new Map<string, any>();
-    
+
     if (fileDownloads.length > 0) {
-      updateProgress({ 
+      updateProgress({
         currentStep: 'Downloading files',
-        progress: 30 
+        progress: 30
       });
 
       for (let i = 0; i < fileDownloads.length; i++) {
         const productDownload = fileDownloads[i];
         const downloads: any[] = [];
-        
+
         const productSlug = productDownload.productRef
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
@@ -259,7 +259,7 @@ async function processImportWithProgress(jobId: string, file: File) {
 
         for (const urlInfo of productDownload.urls) {
           try {
-            const downloadOptions = urlInfo.type === 'image' 
+            const downloadOptions = urlInfo.type === 'image'
               ? { ...uploadPresets.productImage, folder: `products/${productSlug}` }
               : { ...uploadPresets.productDocument, folder: `documents/${productSlug}` };
 
@@ -280,39 +280,39 @@ async function processImportWithProgress(jobId: string, file: File) {
                 }
               }
             );
-            
+
             downloads.push(downloadResult);
-            
+
           } catch (error) {
-            updateProgress({ 
-              errors: [...(progressStore.get(jobId)?.errors || []), 
+            updateProgress({
+              errors: [...(progressStore.get(jobId)?.errors || []),
                 `Failed to download ${urlInfo.url}: ${error.message}`]
             });
           }
         }
 
         fileDownloadResults.set(productDownload.productRef, downloads);
-        
+
         // Update file download progress
-        updateProgress({ 
-          progress: 30 + (i / fileDownloads.length) * 40 
+        updateProgress({
+          progress: 30 + (i / fileDownloads.length) * 40
         });
       }
     }
 
     // Create products
-    updateProgress({ 
+    updateProgress({
       currentStep: 'Creating products in database',
-      progress: 70 
+      progress: 70
     });
 
     const createdProducts = [];
     for (let i = 0; i < validProducts.length; i++) {
       const productData = validProducts[i];
-      
+
       try {
         const downloads = fileDownloadResults.get(productData.referenceFournisseur) || [];
-        
+
         const slug = productData.nom.fr
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
@@ -375,15 +375,15 @@ async function processImportWithProgress(jobId: string, file: File) {
         });
 
         createdProducts.push(product);
-        
-        updateProgress({ 
+
+        updateProgress({
           processedProducts: i + 1,
-          progress: 70 + (i / validProducts.length) * 25 
+          progress: 70 + (i / validProducts.length) * 25
         });
-        
+
       } catch (error) {
-        updateProgress({ 
-          errors: [...(progressStore.get(jobId)?.errors || []), 
+        updateProgress({
+          errors: [...(progressStore.get(jobId)?.errors || []),
             `Failed to create product ${productData.referenceFournisseur}: ${error.message}`]
         });
       }
@@ -424,7 +424,7 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
   }
 
   const deleted = progressStore.delete(jobId);
-  
+
   return NextResponse.json({
     success: deleted,
     message: deleted ? 'Job removed' : 'Job not found',

@@ -5,7 +5,7 @@ import { AdminUser } from '@/types/admin';
 
 /**
  * Hook for checking admin permissions and role-based access control
- * 
+ *
  * This hook provides utilities to check if the current user has permission
  * to perform specific actions based on their role and permissions.
  */
@@ -18,9 +18,9 @@ export function useAdminPermissions() {
   const hasPermission = (resource: string, action: string = 'read'): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Check specific permissions
-    return user.permissions?.some(p => 
+    return user.permissions?.some(p =>
       p.resource === resource && p.actions.includes(action)
     ) || false;
   };
@@ -45,7 +45,7 @@ export function useAdminPermissions() {
   const canCreate = (resource: string): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Editor restrictions based on resource
     switch (resource) {
       case 'users':
@@ -66,7 +66,7 @@ export function useAdminPermissions() {
   const canUpdate = (resource: string): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Editor restrictions
     switch (resource) {
       case 'users':
@@ -89,7 +89,7 @@ export function useAdminPermissions() {
   const canDelete = (resource: string): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Editor restrictions - limited delete permissions
     switch (resource) {
       case 'users':
@@ -110,7 +110,7 @@ export function useAdminPermissions() {
   const canExport = (resource: string): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Editor restrictions
     switch (resource) {
       case 'analytics':
@@ -125,7 +125,7 @@ export function useAdminPermissions() {
   const canImport = (resource: string): boolean => {
     if (!user) return false;
     if (user.role === 'admin') return true;
-    
+
     // Editor restrictions
     switch (resource) {
       case 'users':

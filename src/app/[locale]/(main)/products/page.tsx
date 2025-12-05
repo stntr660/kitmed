@@ -8,10 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  Search, 
-  Filter, 
-  ArrowRight, 
+import {
+  Search,
+  Filter,
+  ArrowRight,
   Heart,
   Download,
   Eye,
@@ -101,7 +101,7 @@ export default function ProductsPage() {
       const params = new URLSearchParams();
       params.append('status', 'active');
       params.append('pageSize', '12');
-      
+
       if (searchQuery) params.append('query', searchQuery);
       if (selectedCategory) params.append('category', selectedCategory);
 
@@ -129,30 +129,29 @@ export default function ProductsPage() {
     return product.media?.find(m => m.isPrimary && m.type === 'image');
   };
 
-
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Certifications Banner */}
       <CertificationsBanner variant="compact" />
-      
+
       {/* Hero Section */}
       <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
               🏥 {tProducts('hero.badge')}
             </Badge>
-            
+
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               {tProducts('hero.title')}
               <span className="text-primary-300 block mt-2">{tProducts('hero.subtitle')}</span>
             </h1>
-            
+
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
               {tProducts('hero.description')}
             </p>
@@ -175,7 +174,7 @@ export default function ProductsPage() {
                   className="pl-12 h-14 text-lg border-2 border-slate-200 focus:border-primary-500 shadow-sm"
                 />
               </div>
-              
+
               {/* Category Filter */}
               <div className="flex gap-3 flex-wrap">
                 <Button
@@ -222,7 +221,7 @@ export default function ProductsPage() {
                     {tProducts('listing.count', { total: products.total, plural: products.total > 1 ? 's' : '' })}
                   </p>
                 </div>
-                
+
                 <div className="flex gap-4">
                   <Button variant="outline" size="sm">
                     {tProducts('search.sortPrice')}
@@ -234,12 +233,12 @@ export default function ProductsPage() {
                   </Button>
                 </div>
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.items.map((product) => {
                   const primaryImage = getPrimaryImage(product);
                   const categoryInfo = product.category;
-                  
+
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                       {/* Product Image */}
@@ -256,7 +255,7 @@ export default function ProductsPage() {
                             <Building2 className="h-16 w-16 text-slate-400" />
                           </div>
                         )}
-                        
+
                         {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
@@ -267,7 +266,7 @@ export default function ProductsPage() {
                             <Eye className="h-4 w-4" />
                           </Button>
                         </div>
-                        
+
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
                           {product.isFeatured && (
@@ -277,8 +276,8 @@ export default function ProductsPage() {
                             </Badge>
                           )}
                           {categoryInfo && (
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className="text-xs border-0"
                               className="bg-primary-100 text-primary-600"
                             >
@@ -287,7 +286,7 @@ export default function ProductsPage() {
                           )}
                         </div>
                       </div>
-                      
+
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
@@ -302,22 +301,22 @@ export default function ProductsPage() {
                             <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
                           )}
                         </div>
-                        
+
                         <div className="text-sm text-slate-600 line-clamp-2">
                           {getProductDescription(product) || tProducts('listing.descriptionFallback')}
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xs text-slate-500 font-mono">
                             {tProducts('listing.reference', { ref: product.referenceFournisseur })}
                           </div>
                         </div>
-                        
+
                         <div className="space-y-2">
-                          <Button 
-                            size="sm" 
+                          <Button
+                            size="sm"
                             className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
@@ -325,9 +324,9 @@ export default function ProductsPage() {
                               {tProducts('listing.viewDetails')}
                             </Link>
                           </Button>
-                          
+
                           <div className="flex gap-2">
-                            <QuoteRequestForm 
+                            <QuoteRequestForm
                               product={{
                                 id: product.id,
                                 referenceFournisseur: product.referenceFournisseur,
@@ -340,9 +339,9 @@ export default function ProductsPage() {
                                 }]
                               }}
                               trigger={
-                                <Button 
-                                  size="sm" 
-                                  variant="outline" 
+                                <Button
+                                  size="sm"
+                                  variant="outline"
                                   className="flex-1"
                                 >
                                   <MessageSquare className="h-4 w-4 mr-1" />
@@ -350,11 +349,11 @@ export default function ProductsPage() {
                                 </Button>
                               }
                             />
-                            
+
                             {product.pdfBrochureUrl && (
-                              <Button 
-                                size="sm" 
-                                variant="outline" 
+                              <Button
+                                size="sm"
+                                variant="outline"
                                 className="px-3"
                                 asChild
                               >
@@ -370,14 +369,37 @@ export default function ProductsPage() {
                   );
                 })}
               </div>
-              
+
               {/* Load More Button */}
               {products.totalPages > 1 && (
                 <div className="mt-16 text-center">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
+                  <Button
+                    size="lg"
+                    variant="outline"
                     className="min-w-[200px] h-12 border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
+                    onClick={() => {
+                      if (products.page < products.totalPages) {
+                        const params = new URLSearchParams();
+                        params.append('status', 'active');
+                        params.append('pageSize', '12');
+                        params.append('page', String(products.page + 1));
+
+                        if (searchQuery) params.append('query', searchQuery);
+                        if (selectedCategory) params.append('category', selectedCategory);
+
+                        fetch(`/api/products?${params}&locale=${locale}`)
+                          .then(res => res.json())
+                          .then(data => {
+                            if (data.success) {
+                              setProducts(prev => prev ? {
+                                ...data.data,
+                                items: [...prev.items, ...data.data.items]
+                              } : data.data);
+                            }
+                          })
+                          .catch(err => console.error('Failed to load more products:', err));
+                      }
+                    }}
                   >
                     {tProducts('listing.loadMore')}
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -396,7 +418,7 @@ export default function ProductsPage() {
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
                 {tProducts('noResults.description')}
               </p>
-              <Button 
+              <Button
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('');
@@ -422,7 +444,7 @@ export default function ProductsPage() {
               {tProducts('categories.description')}
             </p>
           </div>
-          
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <Button
@@ -444,7 +466,7 @@ export default function ProductsPage() {
                       />
                     </div>
                   ) : (
-                    <div 
+                    <div
                       className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center"
                       className="bg-primary-500"
                     >

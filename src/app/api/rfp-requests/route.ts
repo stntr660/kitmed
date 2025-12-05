@@ -4,19 +4,19 @@ import { z } from 'zod';
 
 // Validation schemas
 const createRFPSchema = z.object({
-  customerName: z.string().min(1, 'Customer name is required'),
-  customerEmail: z.string().email('Valid email is required'),
-  customerPhone: z.string().nullable().optional(),
-  companyName: z.string().nullable().optional(),
-  companyAddress: z.string().nullable().optional(),
-  contactPerson: z.string().nullable().optional(),
+  customer_name: z.string().min(1, 'Customer name is required'),
+  customer_email: z.string().email('Valid email is required'),
+  customer_phone: z.string().nullable().optional(),
+  company_name: z.string().nullable().optional(),
+  company_address: z.string().nullable().optional(),
+  contact_person: z.string().nullable().optional(),
   message: z.string().nullable().optional(),
-  urgencyLevel: z.enum(['low', 'normal', 'high', 'urgent']).default('normal'),
-  preferredContactMethod: z.enum(['email', 'phone', 'whatsapp']).default('email'),
+  urgency_level: z.enum(['low', 'normal', 'high', 'urgent']).default('normal'),
+  preferred_contact_method: z.enum(['email', 'phone', 'whatsapp']).default('email'),
   items: z.array(z.object({
-    productId: z.string(),
+    product_id: z.string(),
     quantity: z.number().min(1).default(1),
-    specialRequirements: z.string().nullable().optional(),
+    special_requirements: z.string().nullable().optional(),
   })).optional().default([]),
 });
 
@@ -66,23 +66,23 @@ export async function GET(request: NextRequest) {
     }
 
     if (query.urgency) {
-      where.urgencyLevel = query.urgency;
+      where.urgency_level = query.urgency;
     }
 
     if (query.search) {
       where.OR = [
-        { customerName: { contains: query.search } },
-        { customerEmail: { contains: query.search } },
-        { companyName: { contains: query.search } },
-        { referenceNumber: { contains: query.search } },
+        { customer_name: { contains: query.search } },
+        { customer_email: { contains: query.search } },
+        { company_name: { contains: query.search } },
+        { reference_number: { contains: query.search } },
       ];
     }
 
     // Get total count
-    const total = await prisma.rFPRequest.count({ where });
+    const total = await prisma.rfp_requests.count({ where });
 
     // Get RFP requests
-    const rfpRequests = await prisma.rFPRequest.findMany({
+    const rfpRequests = await prisma.rfp_requests.findMany({
       where,
       skip,
       take: pageSize,
@@ -127,22 +127,22 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('RFP requests fetch error:', error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Invalid query parameters', 
-          details: error.errors 
+        {
+          success: false,
+          error: 'Invalid query parameters',
+          details: error.errors
         },
         { status: 400 }
       );
     }
 
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Internal server error' 
+      {
+        success: false,
+        error: 'Internal server error'
       },
       { status: 500 }
     );
@@ -156,14 +156,14 @@ export async function POST(request: NextRequest) {
     const validatedData = createRFPSchema.parse(body);
 
     // Generate unique reference number
-    let referenceNumber: string;
+    let reference_number: string;
     let isUnique = false;
     let attempts = 0;
 
     do {
-      referenceNumber = generateReferenceNumber();
-      const existing = await prisma.rFPRequest.findUnique({
-        where: { referenceNumber },
+      reference_number = generateReferenceNumber();
+      const existing = await prisma.rfp_requests.findUnique({
+        where: { reference_number },
       });
       isUnique = !existing;
       attempts++;
@@ -177,24 +177,24 @@ export async function POST(request: NextRequest) {
     }
 
     // Create RFP request with items
-    const rfpRequest = await prisma.rFPRequest.create({
+    const rfpRequest = await prisma.rfp_requests.create({
       data: {
-        referenceNumber,
-        customerName: validatedData.customerName,
-        customerEmail: validatedData.customerEmail,
-        customerPhone: validatedData.customerPhone,
-        companyName: validatedData.companyName,
-        companyAddress: validatedData.companyAddress,
-        contactPerson: validatedData.contactPerson,
+        reference_number,
+        customer_name: validatedData.customer_name,
+        customer_email: validatedData.customer_email,
+        customer_phone: validatedData.customer_phone,
+        company_name: validatedData.company_name,
+        company_address: validatedData.company_address,
+        contact_person: validatedData.contact_person,
         message: validatedData.message,
-        urgencyLevel: validatedData.urgencyLevel,
-        preferredContactMethod: validatedData.preferredContactMethod,
+        urgency_level: validatedData.urgency_level,
+        preferred_contact_method: validatedData.preferred_contact_method,
         status: 'pending',
         items: {
           create: validatedData.items.map(item => ({
-            productId: item.productId,
+            product_id: item.product_id,
             quantity: item.quantity,
-            specialRequirements: item.specialRequirements,
+            special_requirements: item.special_requirements,
           })),
         },
       },
@@ -214,27 +214,27 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: rfpRequest,
-      message: `Quote request created with reference ${referenceNumber}`,
+      message: `Quote request created with reference ${reference_number}`,
     }, { status: 201 });
 
   } catch (error) {
     console.error('RFP request creation error:', error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Validation failed', 
-          details: error.errors 
+        {
+          success: false,
+          error: 'Validation failed',
+          details: error.errors
         },
         { status: 400 }
       );
     }
 
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Internal server error' 
+      {
+        success: false,
+        error: 'Internal server error'
       },
       { status: 500 }
     );

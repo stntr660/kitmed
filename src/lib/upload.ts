@@ -39,7 +39,7 @@ export interface UploadError {
 // Ensure upload directory exists
 async function ensureUploadDir(folder?: string): Promise<string> {
   const uploadPath = folder ? join(UPLOAD_DIR, folder) : UPLOAD_DIR;
-  
+
   try {
     await mkdir(uploadPath, { recursive: true });
     return uploadPath;
@@ -54,7 +54,7 @@ function generateFilename(originalName: string): string {
   const name = originalName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9]/g, '-');
   const timestamp = Date.now();
   const uuid = randomUUID().split('-')[0];
-  
+
   return `${name}-${timestamp}-${uuid}.${extension}`.toLowerCase();
 }
 
@@ -165,17 +165,17 @@ export async function uploadFile(
 
   // Prepare upload directory
   const uploadPath = await ensureUploadDir(folder);
-  
+
   // Generate filename
   const filename = generateFilename(file.name);
   const filePath = join(uploadPath, filename);
-  
+
   // Get file buffer
   const arrayBuffer = await file.arrayBuffer();
   let buffer = Buffer.from(arrayBuffer);
-  
+
   // Get image dimensions if it's an image
-  const dimensions = ALLOWED_IMAGE_TYPES.includes(file.type) 
+  const dimensions = ALLOWED_IMAGE_TYPES.includes(file.type)
     ? await getImageDimensions(buffer)
     : null;
 
@@ -186,7 +186,7 @@ export async function uploadFile(
 
   // Save main file
   await writeFile(filePath, buffer);
-  
+
   // Generate thumbnail if requested
   let thumbnailUrl: string | undefined;
   if (shouldGenerateThumbnail && dimensions) {
@@ -195,7 +195,7 @@ export async function uploadFile(
       const thumbnailFilename = `thumb-${filename}`;
       const thumbnailPath = join(uploadPath, thumbnailFilename);
       await writeFile(thumbnailPath, thumbnailBuffer);
-      
+
       const thumbnailSubPath = folder ? `${folder}/${thumbnailFilename}` : thumbnailFilename;
       thumbnailUrl = `/uploads/${thumbnailSubPath}`;
     }
@@ -278,10 +278,10 @@ export async function deleteFile(filename: string, folder?: string): Promise<voi
   const { unlink } = await import('fs/promises');
   const uploadPath = folder ? join(UPLOAD_DIR, folder) : UPLOAD_DIR;
   const filePath = join(uploadPath, filename);
-  
+
   try {
     await unlink(filePath);
-    
+
     // Also delete thumbnail if it exists
     const thumbnailFilename = `thumb-${filename}`;
     const thumbnailPath = join(uploadPath, thumbnailFilename);
@@ -305,11 +305,11 @@ export async function getFileInfo(filename: string, folder?: string): Promise<{
   const { lookup } = await import('mime-types');
   const uploadPath = folder ? join(UPLOAD_DIR, folder) : UPLOAD_DIR;
   const filePath = join(uploadPath, filename);
-  
+
   try {
     const stats = await stat(filePath);
     const mimeType = lookup(filename) || 'application/octet-stream';
-    
+
     return {
       exists: true,
       size: stats.size,
@@ -329,7 +329,7 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'products',
   },
-  
+
   partnerLogo: {
     maxSize: 2 * 1024 * 1024, // 2MB
     allowedTypes: ALLOWED_IMAGE_TYPES,
@@ -337,7 +337,7 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'partners',
   },
-  
+
   bannerImage: {
     maxSize: 10 * 1024 * 1024, // 10MB
     allowedTypes: ALLOWED_IMAGE_TYPES,
@@ -345,7 +345,7 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'banners',
   },
-  
+
   productDocument: {
     maxSize: 20 * 1024 * 1024, // 20MB
     allowedTypes: ALLOWED_DOCUMENT_TYPES,
@@ -353,7 +353,7 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: false,
     folder: 'documents',
   },
-  
+
   avatar: {
     maxSize: 1 * 1024 * 1024, // 1MB
     allowedTypes: ALLOWED_IMAGE_TYPES,
@@ -361,7 +361,7 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'avatars',
   },
-  
+
   categoryImage: {
     maxSize: 2 * 1024 * 1024, // 2MB
     allowedTypes: ALLOWED_IMAGE_TYPES,
@@ -379,16 +379,16 @@ export function getUploadPreset(presetName: string): UploadOptions {
 // Clean up old files (utility for maintenance)
 export async function cleanupOldFiles(maxAgeMs: number = 30 * 24 * 60 * 60 * 1000): Promise<void> {
   const { readdir, stat, unlink } = await import('fs/promises');
-  
+
   async function cleanDirectory(dirPath: string): Promise<void> {
     try {
       const files = await readdir(dirPath);
       const now = Date.now();
-      
+
       for (const file of files) {
         const filePath = join(dirPath, file);
         const stats = await stat(filePath);
-        
+
         if (stats.isFile() && (now - stats.mtime.getTime()) > maxAgeMs) {
           await unlink(filePath);
         }
@@ -397,10 +397,10 @@ export async function cleanupOldFiles(maxAgeMs: number = 30 * 24 * 60 * 60 * 100
       console.error(`Failed to clean directory ${dirPath}:`, error);
     }
   }
-  
+
   // Clean main upload directory and subdirectories
   await cleanDirectory(UPLOAD_DIR);
-  
+
   for (const preset of Object.values(uploadPresets)) {
     if (preset.folder) {
       await cleanDirectory(join(UPLOAD_DIR, preset.folder));

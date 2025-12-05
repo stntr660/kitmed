@@ -36,15 +36,15 @@ export class DatabasePool {
       });
 
       this.redis.on('connect', () => {
-        console.log('✅ Redis connected successfully');
+
       });
     } else {
-      console.warn('⚠️  REDIS_URL not configured, Redis features disabled');
+
     }
 
     // Pool event handlers
     this.pool.on('connect', (client) => {
-      console.log('🐘 PostgreSQL client connected');
+
     });
 
     this.pool.on('error', (err) => {
@@ -52,11 +52,11 @@ export class DatabasePool {
     });
 
     this.pool.on('acquire', () => {
-      console.log('📊 PostgreSQL client acquired from pool');
+
     });
 
     this.pool.on('release', () => {
-      console.log('📤 PostgreSQL client released back to pool');
+
     });
   }
 
@@ -162,11 +162,10 @@ export class DatabasePool {
 
   // Graceful shutdown
   public async close(): Promise<void> {
-    console.log('🔄 Closing database connections...');
-    
+
     try {
       await this.pool.end();
-      console.log('✅ PostgreSQL pool closed');
+
     } catch (error) {
       console.error('❌ Error closing PostgreSQL pool:', error);
     }
@@ -174,7 +173,7 @@ export class DatabasePool {
     if (this.redis) {
       try {
         this.redis.disconnect();
-        console.log('✅ Redis connection closed');
+
       } catch (error) {
         console.error('❌ Error closing Redis connection:', error);
       }
@@ -187,13 +186,13 @@ export const dbPool = DatabasePool.getInstance();
 
 // Graceful shutdown handlers
 process.on('SIGINT', async () => {
-  console.log('\n🛑 Received SIGINT, gracefully shutting down...');
+
   await dbPool.close();
   process.exit(0);
 });
 
 process.on('SIGTERM', async () => {
-  console.log('\n🛑 Received SIGTERM, gracefully shutting down...');
+
   await dbPool.close();
   process.exit(0);
 });

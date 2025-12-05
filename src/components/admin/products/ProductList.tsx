@@ -46,7 +46,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-  
+
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
     status: [],
@@ -79,7 +79,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
       });
 
       const response = await fetch(`/api/admin/products?${params}`);
-      
+
       if (response.ok) {
         const data = await response.json();
         setProducts(data.data);
@@ -101,7 +101,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -131,11 +131,11 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
 
   const handleSelectAll = () => {
     if (!products) return;
-    
-    const allSelected = products.items.every(product => 
+
+    const allSelected = products.items.every(product =>
       selectedProducts.includes(product.id)
     );
-    
+
     if (allSelected) {
       setSelectedProducts([]);
     } else {
@@ -260,7 +260,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-2">
               {['active', 'inactive', 'discontinued'].map((status) => (
                 <Button
@@ -330,20 +330,20 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                     <th className="px-6 py-3 text-left">
                       <input
                         type="checkbox"
-                        checked={products.items.every(product => 
+                        checked={products.items.every(product =>
                           selectedProducts.includes(product.id)
                         )}
                         onChange={handleSelectAll}
                         className="rounded border-gray-300"
                       />
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('nom')}
                     >
                       {t('navigation.products')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('referenceFournisseur')}
                     >
@@ -355,7 +355,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.category')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('status')}
                     >
@@ -364,7 +364,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.media')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -458,7 +458,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
           ) : (
             <div className="p-6 text-center">
               <p className="text-gray-500">{t('search.noResults')}</p>
-              <Button 
+              <Button
                 onClick={() => router.push('/admin/products/new')}
                 className="mt-4"
               >
@@ -479,7 +479,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
               total: products.total
             })}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -489,11 +489,11 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, products.totalPages))].map((_, i) => {
               const page = products.page - 2 + i;
               if (page < 1 || page > products.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -505,7 +505,7 @@ export function ProductList({ initialFilters = {} }: ProductListProps) {
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"

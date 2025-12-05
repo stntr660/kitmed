@@ -1,6 +1,6 @@
 /**
  * KITMED Typography System - WCAG 2.1 AA Compliance Validation
- * 
+ *
  * This module validates that our typography system meets accessibility standards
  * and provides cross-language support for English, French, and Arabic.
  */
@@ -24,14 +24,14 @@ export const ACCESSIBILITY_STANDARDS = {
   // Minimum font sizes for WCAG AA compliance
   minimumFontSizes: {
     xs: '12px',    // 0.75rem - Helper text, metadata
-    sm: '14px',    // 0.875rem - Body text, form inputs  
+    sm: '14px',    // 0.875rem - Body text, form inputs
     base: '16px',  // 1rem - Primary body text
     lg: '18px',    // 1.125rem - Large body text
     xl: '20px',    // 1.25rem - Subheadings
     '2xl': '24px', // 1.5rem - Section headers
     '3xl': '30px', // 1.875rem - Page titles
   },
-  
+
   // Font weight hierarchy for medical professionalism
   fontWeightHierarchy: {
     normal: 400,   // Body text, descriptions
@@ -39,14 +39,14 @@ export const ACCESSIBILITY_STANDARDS = {
     semibold: 600, // Page titles, card titles, emphasis
     bold: 700,     // Reserved for critical emphasis only (brand elements)
   },
-  
+
   // Color contrast ratios (AA compliance)
   colorContrast: {
     normalText: 4.5,  // Minimum for text smaller than 18px or non-bold 24px
     largeText: 3.0,   // Minimum for text 18px+ or bold 14px+
     uiElements: 3.0,  // For form controls, icons, focus indicators
   },
-  
+
   // Line height recommendations for readability
   lineHeights: {
     tight: 1.25,    // Headings and display text
@@ -66,13 +66,13 @@ export const LANGUAGE_SUPPORT = {
     ltr: ['en', 'fr'], // Left-to-right languages
     rtl: ['ar'],       // Right-to-left languages
   },
-  
+
   // Font family considerations
   fontFamilies: {
     latin: ['Inter', 'system-ui', 'sans-serif'], // English, French
     arabic: ['Noto Sans Arabic', 'Tahoma', 'sans-serif'], // Arabic
   },
-  
+
   // Character-specific adjustments
   languageAdjustments: {
     ar: {
@@ -157,7 +157,7 @@ export const PERFORMANCE_METRICS = {
     largestContentfulPaint: '<2.5s', // Main content loads fast
     cumulativeLayoutShift: '<0.1',   // No typography-related layout shifts
   },
-  
+
   // Font loading optimization
   fontLoading: {
     strategy: 'swap',  // Use font-display: swap for better performance
@@ -179,7 +179,7 @@ export const KITMED_TYPOGRAPHY_AUDIT = {
   },
   crossLanguage: {
     english: 'supported',
-    french: 'supported', 
+    french: 'supported',
     arabic: 'supported',
     rtl: 'supported',
   },

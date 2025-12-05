@@ -7,13 +7,13 @@ async function getDashboardActivity(request: NextRequest) {
   try {
     // Get recent activity logs
     const activityLogs = await activityDb.getRecent(10);
-    
+
     // Transform activity logs into the format expected by the frontend
     const activities = activityLogs.map(log => {
       let type: 'rfp' | 'product' | 'partner' | 'user' = 'product';
       let title = log.action;
       let description = '';
-      
+
       // Convert details object to string description if needed
       if (log.details) {
         if (typeof log.details === 'string') {
@@ -31,7 +31,7 @@ async function getDashboardActivity(request: NextRequest) {
           description = String(log.details);
         }
       }
-      
+
       // Determine activity type and format based on resource type and action
       switch (log.resourceType) {
         case 'product':
@@ -89,9 +89,9 @@ async function getDashboardActivity(request: NextRequest) {
         type,
         title,
         description,
-        time: formatDistanceToNow(log.createdAt, { addSuffix: true }),
+        time: formatDistanceToNow(log.created_at, { addSuffix: true }),
         status: getStatusFromAction(log.action),
-        user: log.user ? `${log.user.firstName} ${log.user.lastName}` : 'System'
+        user: log.user ? `${log.user.first_name} ${log.user.last_name}` : 'System'
       };
     });
 
@@ -105,7 +105,7 @@ async function getDashboardActivity(request: NextRequest) {
     });
   } catch (error) {
     console.error('Dashboard activity error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

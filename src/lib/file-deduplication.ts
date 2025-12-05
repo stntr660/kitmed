@@ -44,7 +44,7 @@ export function determineFileType(mimeType: string, url: string): string {
   if (mimeType === 'application/pdf') {
     return 'pdf';
   }
-  
+
   // Fallback to URL extension
   const extension = url.split('.').pop()?.toLowerCase();
   if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(extension || '')) {
@@ -53,7 +53,7 @@ export function determineFileType(mimeType: string, url: string): string {
   if (extension === 'pdf') {
     return 'pdf';
   }
-  
+
   return 'document';
 }
 
@@ -138,14 +138,14 @@ export async function downloadWithDeduplication(
   options: DownloadFromUrlOptions = {}
 ): Promise<FileDeduplicationResult> {
   const urlHash = generateUrlHash(url);
-  
+
   // Check if file already exists by URL hash
   let existingFile = await findFileByUrlHash(urlHash);
-  
+
   if (existingFile) {
     // Update access metadata
     await updateFileAccess(existingFile.id);
-    
+
     return {
       fileId: existingFile.id,
       localPath: existingFile.localPath,
@@ -154,31 +154,31 @@ export async function downloadWithDeduplication(
       fileSize: existingFile.fileSize
     };
   }
-  
+
   // Download the file
   const downloadResult = await downloadFileFromUrl(url, options);
-  
+
   // Read downloaded file to generate content hash
   const fs = await import('fs/promises');
   const path = await import('path');
   const fullPath = path.join(process.cwd(), 'public', downloadResult.filePath);
   const fileBuffer = await fs.readFile(fullPath);
   const contentHash = generateContentHash(fileBuffer);
-  
+
   // Check if we already have this content (different URL, same file)
   const duplicateContent = await findFileByContentHash(contentHash);
-  
+
   if (duplicateContent) {
     // Same content exists, remove newly downloaded file
     try {
       await fs.unlink(fullPath);
     } catch (error) {
-      console.warn('Failed to remove duplicate file:', error);
+
     }
-    
+
     // Update access metadata for existing file
     await updateFileAccess(duplicateContent.id);
-    
+
     return {
       fileId: duplicateContent.id,
       localPath: duplicateContent.localPath,
@@ -187,7 +187,7 @@ export async function downloadWithDeduplication(
       fileSize: duplicateContent.fileSize
     };
   }
-  
+
   // Register new unique file
   const registeredFile = await registerFile(
     url,
@@ -197,7 +197,7 @@ export async function downloadWithDeduplication(
     downloadResult.fileSize,
     contentHash
   );
-  
+
   return {
     fileId: registeredFile.id,
     localPath: registeredFile.localPath,
@@ -232,7 +232,7 @@ export async function associateFileWithProduct(
       description: options.description || null
     }
   });
-  
+
   return productFile.id;
 }
 
@@ -248,11 +248,11 @@ export async function markOrphanedFiles(): Promise<number> {
         isOrphaned: false
       }
     });
-    
+
     if (orphanedFiles.length === 0) {
       return 0;
     }
-    
+
     // Mark them as orphaned
     await prisma.fileRegistry.updateMany({
       where: {
@@ -264,7 +264,7 @@ export async function markOrphanedFiles(): Promise<number> {
         isOrphaned: true
       }
     });
-    
+
     return orphanedFiles.length;
   } catch (error) {
     console.error('Error marking orphaned files:', error);
@@ -307,17 +307,17 @@ export async function getFileRegistryStats(): Promise<{
         select: { contentHash: true }
       })
     ]);
-    
+
     // Calculate duplicates by counting unique content hashes vs total files
     const uniqueContentHashes = new Set(allFiles.map(f => f.contentHash));
     const duplicatesFound = totalFiles - uniqueContentHashes.size;
-    
+
     // Convert file type stats to record
     const fileTypes: Record<string, number> = {};
     fileTypeStats.forEach(stat => {
       fileTypes[stat.fileType] = stat._count.fileType;
     });
-    
+
     return {
       totalFiles,
       totalSize: totalSizeResult._sum.fileSize || 0,
@@ -344,7 +344,7 @@ export async function cleanupOrphanedFiles(olderThanDays: number = 7): Promise<{
 }> {
   const cutoffDate = new Date();
   cutoffDate.setDate(cutoffDate.getDate() - olderThanDays);
-  
+
   try {
     const orphanedFiles = await prisma.fileRegistry.findMany({
       where: {
@@ -354,30 +354,30 @@ export async function cleanupOrphanedFiles(olderThanDays: number = 7): Promise<{
         }
       }
     });
-    
+
     const fs = await import('fs/promises');
     const path = await import('path');
-    
+
     let deleted = 0;
     const errors: string[] = [];
-    
+
     for (const file of orphanedFiles) {
       try {
         // Delete physical file
         const fullPath = path.join(process.cwd(), 'public', file.localPath);
         await fs.unlink(fullPath);
-        
+
         // Delete from registry
         await prisma.fileRegistry.delete({
           where: { id: file.id }
         });
-        
+
         deleted++;
       } catch (error) {
         errors.push(`Failed to delete ${file.filename}: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     }
-    
+
     return { deleted, errors };
   } catch (error) {
     return {

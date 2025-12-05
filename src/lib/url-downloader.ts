@@ -76,7 +76,7 @@ function getContentType(response: Response, url: string): string {
 
 // Download file from URL with retry logic
 async function fetchWithRetry(
-  url: string, 
+  url: string,
   options: DownloadFromUrlOptions,
   retryCount = 0
 ): Promise<Response> {
@@ -109,7 +109,7 @@ async function fetchWithRetry(
     clearTimeout(timeoutId);
 
     if (retryCount < maxRetries) {
-      console.warn(`Download attempt ${retryCount + 1} failed for ${url}, retrying...`);
+
       await new Promise(resolve => setTimeout(resolve, retryDelay * (retryCount + 1)));
       return fetchWithRetry(url, options, retryCount + 1);
     }
@@ -133,7 +133,7 @@ export async function downloadFileFromUrl(
   try {
     // Download the file
     const response = await fetchWithRetry(url, options);
-    
+
     // Get file info
     const arrayBuffer = await response.arrayBuffer();
     const contentType = getContentType(response, url);
@@ -144,7 +144,7 @@ export async function downloadFileFromUrl(
 
     // Upload to local storage
     const uploadResult = await uploadFile(file, options);
-    
+
     const downloadTime = Date.now() - startTime;
 
     return {
@@ -173,23 +173,23 @@ export async function downloadFilesFromUrls(
   const BATCH_SIZE = 5;
   for (let i = 0; i < urls.length; i += BATCH_SIZE) {
     const batch = urls.slice(i, i + BATCH_SIZE);
-    
+
     const promises = batch.map(async (url, index) => {
       try {
         const result = await downloadFileFromUrl(url, options);
         return { success: true, result, url, index: i + index };
       } catch (error) {
-        return { 
-          success: false, 
+        return {
+          success: false,
           error: error instanceof Error ? error.message : 'Unknown error',
-          url, 
-          index: i + index 
+          url,
+          index: i + index
         };
       }
     });
 
     const batchResults = await Promise.all(promises);
-    
+
     batchResults.forEach((item) => {
       if (item.success) {
         results.push(item.result);
@@ -229,19 +229,19 @@ export async function validateUrls(urls: string[]): Promise<{
 
     try {
       // Quick HEAD request to check if URL is accessible
-      const response = await fetch(url, { 
+      const response = await fetch(url, {
         method: 'HEAD',
-        signal: AbortSignal.timeout(5000) 
+        signal: AbortSignal.timeout(5000)
       });
-      
+
       if (response.ok) {
         valid.push(url);
       } else {
         invalid.push({ url, reason: `HTTP ${response.status}` });
       }
     } catch (error) {
-      invalid.push({ 
-        url, 
+      invalid.push({
+        url,
         reason: error instanceof Error ? error.message : 'Network error'
       });
     }
@@ -262,11 +262,11 @@ export function sanitizeFilename(filename: string): string {
 // Get file size from URL without downloading
 export async function getRemoteFileSize(url: string): Promise<number | null> {
   try {
-    const response = await fetch(url, { 
+    const response = await fetch(url, {
       method: 'HEAD',
       signal: AbortSignal.timeout(5000)
     });
-    
+
     const contentLength = response.headers.get('content-length');
     return contentLength ? parseInt(contentLength, 10) : null;
   } catch {
@@ -291,7 +291,7 @@ export async function downloadFileWithProgress(
   onProgress?: (progress: DownloadProgress) => void
 ): Promise<DownloadResult> {
   const startTime = Date.now();
-  
+
   if (!isValidUrl(url)) {
     throw new Error(`Invalid URL: ${url}`);
   }
@@ -352,9 +352,9 @@ export async function downloadFileWithProgress(
 
     while (true) {
       const { done, value } = await reader.read();
-      
+
       if (done) break;
-      
+
       chunks.push(value);
       downloadedBytes += value.length;
 
@@ -391,7 +391,7 @@ export async function downloadFileWithProgress(
     const contentType = getContentType(response, url);
     const filename = getFilenameFromUrl(url);
     const file = new File([arrayBuffer], filename, { type: contentType });
-    
+
     const uploadResult = await uploadFile(file, options);
     const downloadTime = Date.now() - startTime;
 
@@ -417,7 +417,7 @@ export async function downloadFileWithProgress(
       progress: 0,
       error: error instanceof Error ? error.message : 'Unknown error',
     });
-    
+
     throw error;
   }
 }

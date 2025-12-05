@@ -1,6 +1,6 @@
 /**
  * Individual Partner API Routes
- * 
+ *
  * Handles CRUD operations for specific partners.
  */
 
@@ -13,7 +13,7 @@ interface RouteContext {
 
 /**
  * GET /api/partners/[slug]
- * 
+ *
  * Retrieve a specific partner by slug.
  */
 export async function GET(request: NextRequest, { params }: RouteContext) {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     const locale = searchParams.get('locale') || 'fr';
 
     const partner = await prisma.partners.findFirst({
-      where: { 
+      where: {
         OR: [
           { id: slug },
           { slug: slug }
@@ -39,10 +39,10 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     if (!partner) {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
-            code: 'PARTNER_NOT_FOUND', 
+            code: 'PARTNER_NOT_FOUND',
             message: 'Partner not found'
           }
         },
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     // Get product count separately to avoid timeout
     const productCount = await prisma.products.count({
-      where: { 
+      where: {
         partner_id: partner.id,
         status: 'active'
       }
@@ -83,9 +83,9 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error fetching partner:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
 /**
  * PUT /api/partners/[slug]
- * 
+ *
  * Update a specific partner.
  */
 export async function PUT(request: NextRequest, { params }: RouteContext) {
@@ -130,11 +130,11 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error updating partner:', error);
-    
+
     // Handle not found
     if ((error as any)?.code === 'P2025') {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
             code: 'PARTNER_NOT_FOUND',
@@ -144,11 +144,11 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         { status: 404 }
       );
     }
-    
+
     // Handle unique constraint violations
     if ((error as any)?.code === 'P2002') {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
             code: 'DUPLICATE_SLUG',
@@ -158,9 +158,9 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         { status: 409 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',
@@ -174,7 +174,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
 /**
  * DELETE /api/partners/[slug]
- * 
+ *
  * Delete a specific partner.
  */
 export async function DELETE(request: NextRequest, { params }: RouteContext) {
@@ -190,7 +190,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
     if (!partnerToDelete) {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
             code: 'PARTNER_NOT_FOUND',
@@ -203,7 +203,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
     // Check for existing relationships
     const productCount = await prisma.products.count({
-      where: { 
+      where: {
         partner_id: partnerToDelete.id,
         status: 'active'
       }
@@ -211,7 +211,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
     if (productCount > 0 && !force) {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
             code: 'HAS_PRODUCTS',
@@ -237,10 +237,10 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
     return NextResponse.json({
       success: true,
-      data: { 
+      data: {
         id: partner.id,
         slug: partner.slug,
-        deleted: true 
+        deleted: true
       },
       meta: {
         forced: force,
@@ -250,11 +250,11 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error deleting partner:', error);
-    
+
     // Handle not found
     if ((error as any)?.code === 'P2025') {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
             code: 'PARTNER_NOT_FOUND',
@@ -264,9 +264,9 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',

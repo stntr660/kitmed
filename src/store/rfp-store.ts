@@ -7,7 +7,7 @@ import { safeLocalStorage } from '@/lib/hydration-utils';
 interface RFPStore {
   cart: RFPCart;
   isOpen: boolean;
-  
+
   // Actions
   addItem: (product: Product, quantity?: number, notes?: string) => void;
   removeItem: (productId: string) => void;
@@ -17,7 +17,7 @@ interface RFPStore {
   toggleCart: () => void;
   openCart: () => void;
   closeCart: () => void;
-  
+
   // Computed properties
   itemCount: () => number;
   hasItems: () => boolean;

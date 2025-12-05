@@ -67,7 +67,6 @@
   },
   "navigation": {
     "products": "Products",
-    "solutions": "Solutions",
     "partners": "Partners",
     "about": "About",
     "contact": "Contact",
@@ -75,9 +74,6 @@
     "byDiscipline": "By Discipline",
     "byManufacturer": "By Manufacturer",
     "featured": "Featured",
-    "hospitalSolutions": "Hospital Solutions",
-    "clinicSolutions": "Clinic Solutions",
-    "labSolutions": "Laboratory Solutions",
     "company": "Company",
     "team": "Team",
     "news": "News"
@@ -2020,6 +2016,24 @@
       "title": "Explore by",
       "subtitle": "Specialty",
       "description": "Specialized equipment for every medical field"
+    },
+    "manufacturers": {
+      "badge": "KITMED Partner Manufacturers",
+      "title": "Products by",
+      "titleSuffix": "Manufacturer",
+      "description": "Explore our catalog organized by manufacturer to discover innovations from each recognized medical partner brand.",
+      "sectionTitle": "Our Partner Manufacturers",
+      "sectionDescription": "{count} partner manufacturer{plural}",
+      "loading": "Loading manufacturers...",
+      "noManufacturers": {
+        "title": "No manufacturers available",
+        "description": "No manufacturers are currently available."
+      },
+      "viewProducts": "View Products",
+      "productCount": "{count} product{plural}",
+      "viewDetails": "View Details",
+      "websiteLink": "Official Website",
+      "backToProducts": "Back to Products"
     }
   }
 }

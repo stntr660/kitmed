@@ -13,7 +13,7 @@ export function formatDate(
 ): string {
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
-    
+
     if (isNaN(dateObj.getTime())) {
       return 'Invalid Date';
     }
@@ -43,7 +43,7 @@ export function formatDate(
 
     return new Intl.DateTimeFormat(locale, options).format(dateObj);
   } catch (error) {
-    console.warn('Date formatting error:', error);
+
     return 'Invalid Date';
   }
 }
@@ -56,7 +56,7 @@ export function formatDate(
 export function formatRelativeTime(date: string | Date, locale: string = 'en'): string {
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
-    
+
     if (isNaN(dateObj.getTime())) {
       return 'Invalid Date';
     }
@@ -65,7 +65,7 @@ export function formatRelativeTime(date: string | Date, locale: string = 'en'): 
     if (typeof window === 'undefined') {
       return formatDate(dateObj, 'date', locale);
     }
-    
+
     const now = new Date();
     const diffInMilliseconds = now.getTime() - dateObj.getTime();
     const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
@@ -86,7 +86,7 @@ export function formatRelativeTime(date: string | Date, locale: string = 'en'): 
       return formatDate(dateObj, 'date', locale);
     }
   } catch (error) {
-    console.warn('Relative time formatting error:', error);
+
     return 'Invalid Date';
   }
 }
@@ -98,7 +98,7 @@ export function isToday(date: string | Date): boolean {
   try {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
     const today = new Date();
-    
+
     return (
       dateObj.getUTCFullYear() === today.getUTCFullYear() &&
       dateObj.getUTCMonth() === today.getUTCMonth() &&

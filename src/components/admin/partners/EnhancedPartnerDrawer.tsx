@@ -15,10 +15,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  ChevronDownIcon, 
-  ChevronUpIcon, 
-  GlobeAltIcon, 
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  GlobeAltIcon,
   BuildingOfficeIcon,
   ExclamationTriangleIcon,
   LinkIcon
@@ -35,12 +35,12 @@ interface EnhancedPartnerDrawerProps {
   onSave?: (partner: Partial<Partner>) => Promise<void>;
 }
 
-export function EnhancedPartnerDrawer({ 
-  open, 
-  onOpenChange, 
-  partner, 
+export function EnhancedPartnerDrawer({
+  open,
+  onOpenChange,
+  partner,
   mode,
-  onSave 
+  onSave
 }: EnhancedPartnerDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
@@ -54,7 +54,7 @@ export function EnhancedPartnerDrawer({
     status: 'active',
     featured: false,
   });
-  
+
   // UI State
   const [showInternationalFields, setShowInternationalFields] = useState(false);
   const [showTypeSelection, setShowTypeSelection] = useState(mode === 'add');
@@ -73,7 +73,7 @@ export function EnhancedPartnerDrawer({
         featured: partner.featured || false,
       });
       setShowTypeSelection(false);
-      
+
       // Load linked products if it's a manufacturer
       if (partner.type === 'manufacturer') {
         loadLinkedProducts(partner.nom.fr);
@@ -109,10 +109,10 @@ export function EnhancedPartnerDrawer({
 
   const handleSave = async () => {
     if (!onSave) return;
-    
+
     // Reset error state
     setError(null);
-    
+
     // Validate required fields
     if (!formData.nom?.fr?.trim()) {
       setError(t('admin.partners.validation.nameRequired'));
@@ -123,7 +123,7 @@ export function EnhancedPartnerDrawer({
       setError(t('admin.partners.validation.typeRequired'));
       return;
     }
-    
+
     setLoading(true);
     try {
       await onSave(formData);
@@ -139,7 +139,7 @@ export function EnhancedPartnerDrawer({
   const handleInputChange = (field: keyof Partner, value: any) => {
     if (mode === 'view') return;
     setFormData(prev => ({ ...prev, [field]: value }));
-    
+
     // If type changed to manufacturer and we have a name, load products
     if (field === 'type' && value === 'manufacturer' && formData.nom?.fr) {
       loadLinkedProducts(formData.nom.fr);
@@ -155,7 +155,7 @@ export function EnhancedPartnerDrawer({
         [lang]: value
       }
     }));
-    
+
     // If manufacturer name changed, reload products
     if (field === 'nom' && lang === 'fr' && formData.type === 'manufacturer' && value.trim()) {
       loadLinkedProducts(value);
@@ -254,15 +254,15 @@ export function EnhancedPartnerDrawer({
               {/* Partner Name */}
               <div className="space-y-2">
                 <label htmlFor="nom-fr" className="text-sm font-semibold text-gray-900">
-                  {isManufacturer 
-                    ? t('admin.partners.manufacturerName') 
+                  {isManufacturer
+                    ? t('admin.partners.manufacturerName')
                     : t('admin.partners.partnerName')} *
                 </label>
                 <Input
                   id="nom-fr"
                   value={formData.nom?.fr || ''}
                   onChange={(e) => handleNestedInputChange('nom', 'fr', e.target.value)}
-                  placeholder={isManufacturer 
+                  placeholder={isManufacturer
                     ? t('admin.partners.manufacturerNamePlaceholder')
                     : t('admin.partners.partnerNamePlaceholder')
                   }
@@ -320,7 +320,7 @@ export function EnhancedPartnerDrawer({
                   id="description-fr"
                   value={formData.description?.fr || ''}
                   onChange={(e) => handleNestedInputChange('description', 'fr', e.target.value)}
-                  placeholder={isManufacturer 
+                  placeholder={isManufacturer
                     ? t('admin.partners.manufacturerDescriptionPlaceholder')
                     : t('admin.partners.descriptionPlaceholder')
                   }
@@ -358,8 +358,8 @@ export function EnhancedPartnerDrawer({
                       <div key={product.id} className="flex items-center p-3 bg-gray-50 rounded-lg">
                         <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
                           {product.media?.[0] ? (
-                            <img 
-                              src={product.media[0].url} 
+                            <img
+                              src={product.media[0].url}
                               alt={product.nom}
                               className="w-full h-full object-cover rounded-lg"
                             />
@@ -425,7 +425,7 @@ export function EnhancedPartnerDrawer({
                 </Button>
               </div>
             </CardHeader>
-            
+
             {showInternationalFields && (
               <CardContent className="space-y-4 border-t border-blue-100 pt-4">
                 <div className="space-y-2">
@@ -544,7 +544,7 @@ export function EnhancedPartnerDrawer({
           >
             {mode === 'view' ? t('common.close') : t('common.cancel')}
           </Button>
-          
+
           {mode !== 'view' && (
             <Button
               onClick={handleSave}

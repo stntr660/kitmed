@@ -35,7 +35,7 @@ export function ImageDropzone({
     if (files.length === 0) return;
 
     const file = files[0];
-    
+
     // Validate file size
     if (file.size > maxSize * 1024 * 1024) {
       toast.error(`File too large (max ${maxSize}MB)`);
@@ -75,8 +75,7 @@ export function ImageDropzone({
       }
 
       const result = await response.json();
-      console.log('Upload result:', result);
-      
+
       if (result.success && result.data.results.length > 0) {
         const uploadedFile = result.data.results[0];
         onChange(uploadedFile.url);
@@ -87,7 +86,7 @@ export function ImageDropzone({
       }
     } catch (error) {
       console.error('Upload error:', error);
-      
+
       let errorMessage = 'Upload failed';
       if (error instanceof Error) {
         if (error.message.includes('401')) {
@@ -98,7 +97,7 @@ export function ImageDropzone({
           errorMessage = error.message;
         }
       }
-      
+
       toast.error(errorMessage);
       // Reset preview on error
       setPreviewUrl(value || '');
@@ -135,7 +134,7 @@ export function ImageDropzone({
               onChange('');
             }}
           />
-          
+
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="flex space-x-2">

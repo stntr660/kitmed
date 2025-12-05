@@ -9,7 +9,7 @@ import { z } from 'zod';
 async function getBanners(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    
+
     const filters = {
       position: searchParams.get('position') || undefined,
       isActive: searchParams.get('isActive') === 'true' ? true : searchParams.get('isActive') === 'false' ? false : undefined,
@@ -66,7 +66,7 @@ async function getBanners(request: NextRequest) {
     });
   } catch (error) {
     console.error('Banners list error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -114,7 +114,7 @@ const createBannerSchema = z.object({
 async function createBanner(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = createBannerSchema.safeParse(body);
     if (!validation.success) {
@@ -186,7 +186,7 @@ async function createBanner(request: NextRequest) {
     });
   } catch (error) {
     console.error('Banner creation error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

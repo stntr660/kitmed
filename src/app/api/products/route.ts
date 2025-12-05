@@ -25,17 +25,17 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Text search in product translations
     if (query) {
       where.OR = [
-        { referenceFournisseur: { contains: query } },
+        { reference_fournisseur: { contains: query } },
         { constructeur: { contains: query } },
-        { 
-          translations: {
+        {
+          product_translations: {
             some: {
               nom: { contains: query }
             }
           }
         },
         {
-          translations: {
+          product_translations: {
             some: {
               description: { contains: query }
             }
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // Category filter
     if (category) {
-      where.categoryId = category;
+      where.category_id = category;
     }
 
     // Manufacturer filter
@@ -56,12 +56,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // Partner filter
     if (partner) {
-      where.partnerId = partner;
+      where.partner_id = partner;
     }
 
     // Featured products filter
     if (featured === 'true') {
-      where.isFeatured = true;
+      where.is_featured = true;
     }
 
     // Status filter (for potential future use)
@@ -71,91 +71,91 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // Execute queries
     const [items, total] = await Promise.all([
-      prisma.product.findMany({
+      prisma.products.findMany({
         where,
         include: {
-          translations: true,
-          category: {
+          product_translations: true,
+          categories: {
             select: {
               id: true,
               slug: true,
-              imageUrl: true,
-              translations: {
+              image_url: true,
+              category_translations: {
                 select: {
                   name: true,
-                  languageCode: true
+                  language_code: true
                 }
               }
             }
           },
-          media: {
+          product_media: {
             orderBy: {
-              isPrimary: 'desc'
+              is_primary: 'desc'
             },
             take: 5,
             select: {
               id: true,
               url: true,
               type: true,
-              isPrimary: true,
-              altText: true
+              is_primary: true,
+              alt_text: true
             }
           }
         },
-        orderBy: { createdAt: 'desc' },
+        orderBy: { created_at: 'desc' },
         skip,
         take,
       }),
-      prisma.product.count({ where }),
+      prisma.products.count({ where }),
     ]);
 
     // Transform the data to return localized strings
     const transformedItems = items.map(product => {
-      const translation = product.translations.find(t => t.languageCode === locale);
-      const fallbackTranslation = product.translations.find(t => t.languageCode === 'fr');
-      
-      const categoryTranslation = product.category?.translations.find(t => t.languageCode === locale);
-      const categoryFallback = product.category?.translations.find(t => t.languageCode === 'fr');
+      const translation = product.product_translations.find(t => t.language_code === locale);
+      const fallbackTranslation = product.product_translations.find(t => t.language_code === 'fr');
+
+      const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
+      const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
 
       return {
         id: product.id,
         slug: product.slug,
-        referenceFournisseur: product.referenceFournisseur,
+        referenceFournisseur: product.reference_fournisseur,
         constructeur: product.constructeur,
         status: product.status,
-        isFeatured: product.isFeatured,
-        pdfBrochureUrl: product.pdfBrochureUrl,
-        createdAt: product.createdAt,
-        updatedAt: product.updatedAt,
+        isFeatured: product.is_featured,
+        pdfBrochureUrl: product.pdf_brochure_url,
+        createdAt: product.created_at,
+        updatedAt: product.updated_at,
         // Return localized strings, not objects
         name: translation?.nom || fallbackTranslation?.nom || 'Unnamed Product',
         description: translation?.description || fallbackTranslation?.description || '',
         shortDescription: (translation?.description || fallbackTranslation?.description || '').substring(0, 150),
-        category: product.category ? {
-          id: product.category.id,
+        category: product.categories ? {
+          id: product.categories.id,
           name: categoryTranslation?.name || categoryFallback?.name || 'Uncategorized',
-          slug: product.category.slug,
-          imageUrl: product.category.imageUrl
+          slug: product.categories.slug,
+          imageUrl: product.categories.image_url
         } : null,
         manufacturer: {
           name: product.constructeur || 'Unknown Manufacturer'
         },
-        discipline: product.category ? {
+        discipline: product.categories ? {
           name: categoryTranslation?.name || categoryFallback?.name || 'Discipline',
           color: '#3B82F6',
-          imageUrl: product.category.imageUrl
+          imageUrl: product.categories.image_url
         } : {
           name: 'Unspecified',
           color: '#6B7280',
           imageUrl: null
         },
         // Transform media
-        media: product.media.map(media => ({
+        media: product.product_media.map(media => ({
           id: media.id,
           url: media.url,
           type: media.type,
-          isPrimary: media.isPrimary,
-          altText: media.altText
+          isPrimary: media.is_primary,
+          altText: media.alt_text
         }))
       };
     });
@@ -174,7 +174,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     });
   } catch (error) {
     console.error('Products list error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

@@ -12,12 +12,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { 
-  PencilIcon, 
-  EyeIcon, 
+import {
+  PencilIcon,
+  EyeIcon,
   CalendarIcon,
   TagIcon,
-  CubeIcon 
+  CubeIcon
 } from '@heroicons/react/24/outline';
 import { Product } from '@/types';
 import { formatDate } from '@/lib/utils';
@@ -42,12 +42,12 @@ interface ProductQuickViewProps {
   onViewDetails?: () => void;
 }
 
-export function ProductQuickView({ 
-  open, 
-  onOpenChange, 
-  product, 
+export function ProductQuickView({
+  open,
+  onOpenChange,
+  product,
   onEdit,
-  onViewDetails 
+  onViewDetails
 }: ProductQuickViewProps) {
   const t = useTranslations();
 
@@ -83,7 +83,7 @@ export function ProductQuickView({
                   <p className="text-sm text-gray-500 font-mono">{product.sku}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Badge className={getStatusColor(product.status)}>
                   {t(`admin.products.status.${product.status}`, { defaultValue: product.status })}
@@ -109,7 +109,7 @@ export function ProductQuickView({
                 <p className="text-xs text-primary-700 font-medium">{t('product.mediaFiles')}</p>
               </CardContent>
             </Card>
-            
+
             <Card className="bg-green-50 border-green-200">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-green-600">
@@ -118,7 +118,7 @@ export function ProductQuickView({
                 <p className="text-xs text-green-700 font-medium">{t('product.rfpRequests')}</p>
               </CardContent>
             </Card>
-            
+
             <Card className="bg-amber-50 border-amber-200">
               <CardContent className="p-4 text-center">
                 <div className="text-2xl font-bold text-amber-600">
@@ -162,7 +162,7 @@ export function ProductQuickView({
                     {product.category?.name?.fr || product.category?.name?.en || product.category?.name || t('admin.uncategorized')}
                   </p>
                 </div>
-                
+
                 <div>
                   <span className="font-semibold text-gray-700">{t('product.createdAt')}:</span>
                   <p className="text-gray-600 mt-1 flex items-center">
@@ -218,7 +218,7 @@ export function ProductQuickView({
                     {formatDate(product.createdAt)}
                   </span>
                 </div>
-                
+
                 {product.updatedAt && product.updatedAt !== product.createdAt && (
                   <div className="flex items-center space-x-3 text-sm">
                     <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
@@ -244,7 +244,7 @@ export function ProductQuickView({
               <PencilIcon className="h-4 w-4" />
               <span>{t('product.editProduct')}</span>
             </Button>
-            
+
             <Button
               variant="outline"
               onClick={onViewDetails}
@@ -254,7 +254,7 @@ export function ProductQuickView({
               <span>{t('product.fullDetails')}</span>
             </Button>
           </div>
-          
+
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}

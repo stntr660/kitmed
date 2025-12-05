@@ -5,7 +5,7 @@ import { prisma } from '@/lib/database';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    
+
     const featured = searchParams.get('featured') === 'true';
     const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined;
 
@@ -15,18 +15,18 @@ export async function GET(request: NextRequest) {
     };
 
     if (featured) {
-      where.isFeatured = true;
+      where.is_featured = true;
     }
 
     // Fetch partners with translations
-    const partners = await prisma.partner.findMany({
+    const partners = await prisma.partners.findMany({
       where,
       include: {
-        translations: true,
+        partner_translations: true,
       },
       orderBy: [
-        { sortOrder: 'asc' },
-        { createdAt: 'desc' },
+        { sort_order: 'asc' },
+        { created_at: 'desc' },
       ],
       take: limit,
     });
@@ -35,16 +35,16 @@ export async function GET(request: NextRequest) {
     const transformedPartners = partners.map(partner => ({
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
-      isFeatured: partner.isFeatured,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
+      isFeatured: partner.is_featured,
       name: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
     }));
 
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Public partners fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

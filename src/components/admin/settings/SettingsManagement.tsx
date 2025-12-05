@@ -63,19 +63,19 @@ export function SettingsManagement() {
           'Authorization': `Bearer ${token}`,
         },
       });
-      
+
       clearTimeout(timeoutId);
-      
+
       if (response.ok) {
         const data = await response.json();
         setSettings(data);
       } else {
-        console.warn('Settings API returned error, using mock data');
+
         setSettings(getMockSettings());
       }
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') {
-        console.warn('Settings API request timed out, using mock data');
+
       } else {
         console.error('Failed to load settings:', err);
       }
@@ -120,11 +120,9 @@ export function SettingsManagement() {
         return;
       }
 
-      console.log('Saving settings:', settings);
-
       const response = await fetch('/api/admin/settings', {
         method: 'PUT',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
@@ -132,24 +130,21 @@ export function SettingsManagement() {
       });
 
       const result = await response.json();
-      console.log('Save response:', result);
 
       if (response.ok && result.success) {
         setHasChanges(false);
         setSuccessMessage(t('admin.settings.saveSuccess'));
         setError(null);
-        
+
         // Check if language was changed
         const languageChanged = settings.defaultLanguage !== result.data.defaultLanguage;
-        
+
         // Update the settings state with the returned data
         setSettings(result.data);
-        
+
         // Clear success message after 3 seconds
         setTimeout(() => setSuccessMessage(null), 3000);
-        
-        console.log('Settings saved successfully');
-        
+
         // If language was changed, reload page to apply new language
         if (languageChanged) {
           setTimeout(() => {
@@ -246,8 +241,8 @@ export function SettingsManagement() {
                 <label className="block text-sm font-medium text-gray-700">
                   {t('admin.settings.language')}
                 </label>
-                <select 
-                  value={settings.defaultLanguage} 
+                <select
+                  value={settings.defaultLanguage}
                   onChange={(e) => handleSettingChange('defaultLanguage', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
@@ -256,7 +251,7 @@ export function SettingsManagement() {
                 </select>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Input
                 label={t('admin.settings.emailAddress')}

@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   Shield,
   Lock,
   Eye,
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
               Politique de Confidentialité
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              KITMED s'engage à protéger vos données personnelles et respecter votre vie privée. 
+              KITMED s'engage à protéger vos données personnelles et respecter votre vie privée.
               Cette politique explique comment nous collectons, utilisons et protégeons vos informations.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
@@ -362,10 +362,10 @@ export default function PrivacyPage() {
               Contact et Mises à Jour
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Cette politique de confidentialité peut être mise à jour. Nous vous informerons 
+              Cette politique de confidentialité peut être mise à jour. Nous vous informerons
               de tout changement important par email ou via notre site web.
             </p>
-            
+
             <div className="grid gap-8 md:grid-cols-3 mb-12">
               <div>
                 <h3 className="font-medium mb-3">Délégué à la Protection des Données</h3>
@@ -376,7 +376,7 @@ export default function PrivacyPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div>
                 <h3 className="font-medium mb-3">Service Clientèle</h3>
                 <div className="text-gray-300 space-y-2">
@@ -386,7 +386,7 @@ export default function PrivacyPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div>
                 <h3 className="font-medium mb-3">Adresse</h3>
                 <div className="text-gray-300 space-y-2">
@@ -401,7 +401,7 @@ export default function PrivacyPage() {
 
             <div className="border-t border-gray-700 pt-8">
               <p className="text-gray-400 text-sm">
-                En continuant à utiliser nos services, vous acceptez cette politique de confidentialité. 
+                En continuant à utiliser nos services, vous acceptez cette politique de confidentialité.
                 Pour toute question, n'hésitez pas à nous contacter.
               </p>
             </div>

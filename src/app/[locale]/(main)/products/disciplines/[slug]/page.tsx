@@ -53,7 +53,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Load discipline with its categories
       const response = await fetch(`/api/disciplines/${params.slug}?locale=${locale}`);
       if (response.ok) {
@@ -109,14 +109,14 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
     <div className="min-h-screen bg-slate-50">
       {/* Certifications Banner */}
       <CertificationsBanner variant="compact" />
-      
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             {/* Breadcrumb */}
@@ -132,15 +132,15 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
               🏥 {discipline.name}
             </Badge>
-            
+
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               Équipements
               <span className="text-primary-100 block mt-2">{discipline.name}</span>
             </h1>
-            
+
             <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-              {discipline.description || 
-               `Découvrez notre gamme complète d'équipements pour ${discipline.name.toLowerCase()}, 
+              {discipline.description ||
+               `Découvrez notre gamme complète d'équipements pour ${discipline.name.toLowerCase()},
                 sélectionnés pour leur qualité et leur performance exceptionnelles.`}
             </p>
 
@@ -166,7 +166,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                   Choisissez la catégorie qui correspond à vos besoins spécifiques en {discipline.name.toLowerCase()}
                 </p>
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {discipline.children.map((category) => (
                   <Card key={category.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -185,7 +185,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                           </div>
                         </div>
                       )}
-                      
+
                       {/* Product Count Badge */}
                       <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
                         {category.productCount || 0} produits
@@ -198,25 +198,25 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                         </Badge>
                       </div>
                     </div>
-                    
+
                     <CardHeader className="p-6 pb-4">
                       <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
                         {category.name}
                       </CardTitle>
                       <p className="text-slate-600 leading-relaxed line-clamp-3">
-                        {category.description || 
+                        {category.description ||
                          `Solutions professionnelles spécialisées pour ${category.name.toLowerCase()} en ${discipline.name.toLowerCase()}.`}
                       </p>
                     </CardHeader>
-                    
+
                     <CardContent className="p-6 pt-0">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-sm text-slate-500">
                           <span>Produits disponibles</span>
                           <span className="font-semibold">{category.productCount || 0}</span>
                         </div>
-                        
-                        <Button 
+
+                        <Button
                           className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
                           asChild
                         >

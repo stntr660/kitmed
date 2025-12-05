@@ -1,6 +1,6 @@
 /**
  * Individual Discipline API Routes
- * 
+ *
  * Handles CRUD operations for specific disciplines with backward compatibility.
  */
 
@@ -16,7 +16,7 @@ interface RouteContext {
 
 /**
  * GET /api/disciplines/[id]
- * 
+ *
  * Retrieve a specific discipline by ID.
  */
 export async function GET(request: NextRequest, { params }: RouteContext) {
@@ -36,13 +36,13 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     if (shouldUseDisciplines) {
       // Query new disciplines table
       const include: any = {};
-      
+
       if (includeTranslations) {
         include.translations = {
           where: { languageCode: locale }
         };
       }
-      
+
       if (includeProducts) {
         include.productDisciplines = {
           include: {
@@ -65,17 +65,17 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     } else {
       // Query legacy categories table with children
       const include: any = {
-        translations: {
-          where: { languageCode: locale }
+        category_translations: {
+          where: { language_code: locale }
         },
-        children: {
+        other_categories: {
           where: {
-            isActive: true,
+            is_active: true,
             type: 'equipment'
           },
           include: {
-            translations: {
-              where: { languageCode: locale }
+            category_translations: {
+              where: { language_code: locale }
             },
             _count: {
               select: {
@@ -85,28 +85,28 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
               }
             }
           },
-          orderBy: { sortOrder: 'asc' }
+          orderBy: { sort_order: 'asc' }
         }
       };
-      
+
       if (includeProducts) {
         include.products = {
           include: {
-            translations: true,
+            product_translations: true,
             media: true,
             attributes: true
           }
         };
       }
 
-      discipline = await prisma.category.findFirst({
-        where: { 
+      discipline = await prisma.categories.findFirst({
+        where: {
           OR: [
             { id },
             { slug: id }
           ],
           type: 'discipline',
-          isActive: true
+          is_active: true
         },
         include
       });
@@ -114,10 +114,10 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     if (!discipline) {
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: {
-            code: 'DISCIPLINE_NOT_FOUND', 
+            code: 'DISCIPLINE_NOT_FOUND',
             message: 'Discipline not found'
           }
         },
@@ -127,7 +127,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     // Transform the response for consistency
     let transformedData = discipline;
-    
+
     if (!shouldUseDisciplines && discipline.children) {
       // Get translation or fallback to default name
       const translation = discipline.translations[0];
@@ -160,7 +160,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
     // Log access in migration mode
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Discipline accessed: ${id} from ${shouldUseDisciplines ? 'disciplines' : 'categories'} table`);
+
     }
 
     return NextResponse.json({
@@ -174,9 +174,9 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error fetching discipline:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: {
           code: 'INTERNAL_ERROR',
@@ -190,7 +190,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
 /**
  * PUT /api/disciplines/[id]
- * 
+ *
  * Update a specific discipline.
  */
 export async function PUT(request: NextRequest, { params }: RouteContext) {
@@ -214,11 +214,11 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
           ...(slug && { slug }),
           ...(description !== undefined && { description }),
           ...(iconUrl !== undefined && { iconUrl }),
-          ...(colorHex !== undefined && { colorHex }),
-          ...(sortOrder !== undefined && { sortOrder }),
-          ...(isActive !== undefined && { isActive }),
-          ...(metaTitle !== undefined && { metaTitle }),
-          ...(metaDescription !== undefined && { metaDescription }),
+          ...(colorHex !== undefined && { color_hex: colorHex }),
+          ...(sortOrder !== undefined && { sort_order: sortOrder }),
+          ...(isActive !== undefined && { is_active: isActive }),
+          ...(metaTitle !== undefined && { meta_title: metaTitle }),
+          ...(metaDescription !== undefined && { meta_description: metaDescription }),
         },
         include: {
           translations: true
@@ -227,16 +227,16 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
     } else {
       // Update in categories table
-      discipline = await prisma.category.update({
+      discipline = await prisma.categories.update({
         where: { id },
         data: {
           ...(name && { name }),
           ...(slug && { slug }),
           ...(description !== undefined && { description }),
-          ...(sortOrder !== undefined && { sortOrder }),
-          ...(isActive !== undefined && { isActive }),
-          ...(metaTitle !== undefined && { metaTitle }),
-          ...(metaDescription !== undefined && { metaDescription }),
+          ...(sortOrder !== undefined && { sort_order: sortOrder }),
+          ...(isActive !== undefined && { is_active: isActive }),
+          ...(metaTitle !== undefined && { meta_title: metaTitle }),
+          ...(metaDescription !== undefined && { meta_description: metaDescription }),
         },
         include: {
           translations: true
@@ -246,8 +246,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
     // Log update in migration mode
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Discipline updated: ${id} in ${shouldUseDisciplines ? 'disciplines' : 'categories'} table`);
-      
+
       // Log activity
       await prisma.activity_logs?.create({
         data: {
@@ -274,7 +273,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error updating discipline:', error);
-    
+
     // Handle not found
     if ((error as any)?.code === 'P2025') {
       return NextResponse.json(
@@ -282,7 +281,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         { status: 404 }
       );
     }
-    
+
     // Handle unique constraint violations
     if ((error as any)?.code === 'P2002') {
       return NextResponse.json(
@@ -290,9 +289,9 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         { status: 409 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to update discipline',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
       },
@@ -303,7 +302,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
 /**
  * DELETE /api/disciplines/[id]
- * 
+ *
  * Delete a specific discipline.
  */
 export async function DELETE(request: NextRequest, { params }: RouteContext) {
@@ -325,7 +324,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
       });
       hasProducts = productCount > 0;
     } else {
-      const productCount = await prisma.product.count({
+      const productCount = await prisma.products.count({
         where: { categoryId: id }
       });
       hasProducts = productCount > 0;
@@ -333,7 +332,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
     if (hasProducts && !force) {
       return NextResponse.json(
-        { 
+        {
           error: 'Cannot delete discipline with associated products',
           message: 'Use force=true to delete anyway, which will remove product associations'
         },
@@ -359,21 +358,20 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     } else {
       // Update products to remove category association if forced
       if (force && hasProducts) {
-        await prisma.product.updateMany({
+        await prisma.products.updateMany({
           where: { categoryId: id },
           data: { categoryId: null }
         });
       }
 
-      discipline = await prisma.category.delete({
+      discipline = await prisma.categories.delete({
         where: { id }
       });
     }
 
     // Log deletion in migration mode
     if (isInMigrationMode) {
-      console.log(`[MIGRATION] Discipline deleted: ${id} from ${shouldUseDisciplines ? 'disciplines' : 'categories'} table`);
-      
+
       // Log activity
       await prisma.activity_logs?.create({
         data: {
@@ -403,7 +401,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
 
   } catch (error) {
     console.error('Error deleting discipline:', error);
-    
+
     // Handle not found
     if ((error as any)?.code === 'P2025') {
       return NextResponse.json(
@@ -411,9 +409,9 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to delete discipline',
         message: process.env.NODE_ENV === 'development' ? (error as Error).message : 'Internal server error'
       },

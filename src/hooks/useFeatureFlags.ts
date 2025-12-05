@@ -1,41 +1,41 @@
 /**
  * React Hook for Feature Flags
- * 
+ *
  * Provides a React-friendly interface to the feature flags system
  * with caching and real-time updates.
  */
 
 import { useState, useEffect } from 'react';
-import { 
-  getFeatureFlags, 
-  isFeatureEnabled, 
+import {
+  getFeatureFlags,
+  isFeatureEnabled,
   MigrationFeatureFlags,
   UIFeatureFlags,
   APIFeatureFlags,
-  type FeatureFlags 
+  type FeatureFlags
 } from '@/lib/feature-flags';
 
 interface UseFeatureFlagsReturn {
   flags: FeatureFlags | null;
   isLoading: boolean;
   error: Error | null;
-  
+
   // Migration flags
   shouldUseDisciplines: boolean;
   shouldUseNewAPI: boolean;
   shouldSupportLegacy: boolean;
   isInMigrationMode: boolean;
-  
+
   // UI flags
   shouldShowNewDisciplineUI: boolean;
   shouldShowNewAdminInterface: boolean;
   shouldEnableEnhancedFilters: boolean;
-  
+
   // API flags
   shouldUseNewDisciplineEndpoints: boolean;
   shouldUseNewCategoryEndpoints: boolean;
   shouldIncludeLegacyFields: boolean;
-  
+
   // Utility functions
   refreshFlags: () => Promise<void>;
   isEnabled: (flag: keyof FeatureFlags) => boolean;
@@ -58,7 +58,7 @@ export function useFeatureFlags(): UseFeatureFlagsReturn {
       try {
         setError(null);
         const currentFlags = await getFeatureFlags();
-        
+
         if (mounted) {
           setFlags(currentFlags);
           setIsLoading(false);
@@ -108,23 +108,23 @@ export function useFeatureFlags(): UseFeatureFlagsReturn {
     flags,
     isLoading,
     error,
-    
+
     // Migration flags
     shouldUseDisciplines: flags?.SEPARATE_DISCIPLINES_CATEGORIES || false,
     shouldUseNewAPI: flags?.NEW_DISCIPLINE_API || false,
     shouldSupportLegacy: flags?.LEGACY_CATEGORY_SUPPORT || false,
     isInMigrationMode: flags?.MIGRATION_MODE || false,
-    
+
     // UI flags
     shouldShowNewDisciplineUI: flags?.NEW_DISCIPLINE_UI || false,
     shouldShowNewAdminInterface: flags?.NEW_ADMIN_INTERFACE || false,
     shouldEnableEnhancedFilters: flags?.ENHANCED_PRODUCT_FILTERS || false,
-    
+
     // API flags
     shouldUseNewDisciplineEndpoints: flags?.NEW_DISCIPLINE_API || false,
     shouldUseNewCategoryEndpoints: flags?.NEW_CATEGORY_API || false,
     shouldIncludeLegacyFields: flags?.LEGACY_CATEGORY_SUPPORT || false,
-    
+
     // Utility functions
     refreshFlags,
     isEnabled,
@@ -148,27 +148,27 @@ export function useMigrationFeatureFlags() {
     isLoading,
     error,
     refreshFlags,
-    
+
     // Migration-specific flags
     shouldUseDisciplines: flags?.SEPARATE_DISCIPLINES_CATEGORIES || false,
     shouldUseNewAPI: flags?.NEW_DISCIPLINE_API || false,
     shouldSupportLegacy: flags?.LEGACY_CATEGORY_SUPPORT || false,
     isInMigrationMode: flags?.MIGRATION_MODE || false,
     dataSource,
-    
+
     // Migration utility functions
     async shouldUseDisciplinesAsync() {
       return await MigrationFeatureFlags.shouldUseDisciplines();
     },
-    
+
     async shouldUseNewAPIAsync() {
       return await MigrationFeatureFlags.shouldUseNewAPI();
     },
-    
+
     async shouldSupportLegacyAsync() {
       return await MigrationFeatureFlags.shouldSupportLegacy();
     },
-    
+
     async isInMigrationModeAsync() {
       return await MigrationFeatureFlags.isInMigrationMode();
     },
@@ -184,21 +184,21 @@ export function useUIFeatureFlags() {
   return {
     isLoading,
     error,
-    
+
     // UI-specific flags
     shouldShowNewDisciplineUI: flags?.NEW_DISCIPLINE_UI || false,
     shouldShowNewAdminInterface: flags?.NEW_ADMIN_INTERFACE || false,
     shouldEnableEnhancedFilters: flags?.ENHANCED_PRODUCT_FILTERS || false,
-    
+
     // UI utility functions
     async shouldShowNewDisciplineUIAsync() {
       return await UIFeatureFlags.shouldShowNewDisciplineUI();
     },
-    
+
     async shouldShowNewAdminInterfaceAsync() {
       return await UIFeatureFlags.shouldShowNewAdminInterface();
     },
-    
+
     async shouldEnableEnhancedFiltersAsync() {
       return await UIFeatureFlags.shouldEnableEnhancedFilters();
     },
@@ -214,21 +214,21 @@ export function useAPIFeatureFlags() {
   return {
     isLoading,
     error,
-    
+
     // API-specific flags
     shouldUseNewDisciplineEndpoints: flags?.NEW_DISCIPLINE_API || false,
     shouldUseNewCategoryEndpoints: flags?.NEW_CATEGORY_API || false,
     shouldIncludeLegacyFields: flags?.LEGACY_CATEGORY_SUPPORT || false,
-    
+
     // API utility functions
     async shouldUseNewDisciplineEndpointsAsync() {
       return await APIFeatureFlags.shouldUseNewDisciplineEndpoints();
     },
-    
+
     async shouldUseNewCategoryEndpointsAsync() {
       return await APIFeatureFlags.shouldUseNewCategoryEndpoints();
     },
-    
+
     async shouldIncludeLegacyFieldsAsync() {
       return await APIFeatureFlags.shouldIncludeLegacyFields();
     },
@@ -283,7 +283,7 @@ export function FeatureFlagsProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     // Log feature flag changes in development
     if (process.env.NODE_ENV === 'development' && flags.flags) {
-      console.log('🚩 Feature Flags Updated:', flags.flags);
+
     }
   }, [flags.flags]);
 

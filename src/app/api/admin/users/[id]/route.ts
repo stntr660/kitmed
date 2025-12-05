@@ -14,7 +14,7 @@ async function updateUser(
 
     // Get current user from request context (set by withAuth middleware)
     const currentUser = (request as any).user;
-    
+
     // Only admin users can update other users
     if (currentUser.role.toLowerCase() !== 'admin') {
       return NextResponse.json(
@@ -82,7 +82,7 @@ async function deleteUser(
   try {
     // Get current user from request context (set by withAuth middleware)
     const currentUser = (request as any).user;
-    
+
     // Only admin users can delete other users
     if (currentUser.role.toLowerCase() !== 'admin') {
       return NextResponse.json(

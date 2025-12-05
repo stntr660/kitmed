@@ -9,17 +9,17 @@ async function uploadFiles(request: NextRequest) {
     const formData = await request.formData();
     const preset = formData.get('preset') as string;
     const files = formData.getAll('files') as File[];
-    
+
     if (files.length === 0) {
       throw new Error('No files provided');
     }
-    
+
     // Get upload options from preset or use defaults
     const uploadOptions = preset ? getUploadPreset(preset) : {};
-    
+
     // Handle the file upload directly with the files array
     const result = await uploadFilesFunction(files, uploadOptions);
-    
+
     // Log activity for successful uploads
     if (result.results.length > 0) {
       await activityDb.log({
@@ -46,7 +46,7 @@ async function uploadFiles(request: NextRequest) {
     });
   } catch (error) {
     console.error('Upload error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

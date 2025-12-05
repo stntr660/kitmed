@@ -5,19 +5,19 @@ import { hashPassword } from '@/lib/auth-utils';
 
 async function getUsers(request: NextRequest) {
   try {
-    const users = await prisma.user.findMany({
+    const users = await prisma.users.findMany({
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
+        first_name: true,
+        last_name: true,
         email: true,
         role: true,
-        isActive: true,
-        lastLogin: true,
-        createdAt: true,
-        updatedAt: true,
+        is_active: true,
+        last_login: true,
+        created_at: true,
+        updated_at: true,
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { created_at: 'desc' }
     });
 
     return NextResponse.json({
@@ -41,11 +41,11 @@ async function getUsers(request: NextRequest) {
 async function createUser(request: NextRequest) {
   try {
     const data = await request.json();
-    const { firstName, lastName, email, password, role, isActive } = data;
+    const { first_name, last_name, email, password, role, is_active } = data;
 
     // Get current user from request context (set by withAuth middleware)
     const currentUser = (request as any).user;
-    
+
     // Only admin users can create other users
     if (currentUser.role.toLowerCase() !== 'admin') {
       return NextResponse.json(
@@ -63,7 +63,7 @@ async function createUser(request: NextRequest) {
     }
 
     // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
+    const existingUser = await prisma.users.findUnique({
       where: { email }
     });
 
@@ -76,27 +76,27 @@ async function createUser(request: NextRequest) {
 
     // Use provided password or generate a temporary one
     const passwordToHash = password || Math.random().toString(36).slice(-8);
-    const passwordHash = await hashPassword(passwordToHash);
+    const password_hash = await hashPassword(passwordToHash);
 
-    const user = await prisma.user.create({
+    const user = await prisma.users.create({
       data: {
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         email,
         role,
-        isActive,
-        passwordHash
+        is_active,
+        password_hash
       },
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
+        first_name: true,
+        last_name: true,
         email: true,
         role: true,
-        isActive: true,
-        lastLogin: true,
-        createdAt: true,
-        updatedAt: true,
+        is_active: true,
+        last_login: true,
+        created_at: true,
+        updated_at: true,
       }
     });
 

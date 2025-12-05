@@ -1,6 +1,6 @@
 'use client';
 
-import { 
+import {
   RectangleGroupIcon,
   WrenchScrewdriverIcon,
   BeakerIcon,
@@ -16,16 +16,16 @@ interface CategoryTypeIconProps {
   className?: string;
 }
 
-export function CategoryTypeIcon({ 
-  categoryName, 
-  categoryType = 'discipline', 
+export function CategoryTypeIcon({
+  categoryName,
+  categoryType = 'discipline',
   level,
   className = ''
 }: CategoryTypeIconProps) {
   // Get category-specific icon based on name
   const getCategoryIcon = () => {
     const name = categoryName.toLowerCase();
-    
+
     // Medical disciplines
     if (name.includes('cardio') || name.includes('cardiac')) {
       return HeartIcon;
@@ -39,17 +39,17 @@ export function CategoryTypeIcon({
     if (name.includes('radiolog') || name.includes('radio')) {
       return CircleStackIcon;
     }
-    
+
     // Default icons by type
     if (categoryType === 'equipment') {
       return WrenchScrewdriverIcon;
     }
-    
+
     return RectangleGroupIcon;
   };
 
   const Icon = getCategoryIcon();
-  
+
   // Color scheme based on category type and level
   const getColorClass = () => {
     if (categoryType === 'equipment') {
@@ -86,18 +86,18 @@ interface HierarchyConnectionLinesProps {
   isExpanded?: boolean;
 }
 
-export function HierarchyConnectionLines({ 
-  level, 
-  isLast = false, 
+export function HierarchyConnectionLines({
+  level,
+  isLast = false,
   hasChildren = false,
-  isExpanded = false 
+  isExpanded = false
 }: HierarchyConnectionLinesProps) {
   if (level === 0) return null;
 
   return (
     <div className="absolute left-0 top-0 h-full w-8 flex items-center justify-center">
       {/* Vertical line connecting to parent */}
-      <div 
+      <div
         className="absolute w-px bg-gray-300"
         style={{
           left: `${level * 24 - 12}px`,
@@ -105,9 +105,9 @@ export function HierarchyConnectionLines({
           height: isLast ? '50%' : '100%'
         }}
       />
-      
+
       {/* Horizontal line to this item */}
-      <div 
+      <div
         className="absolute h-px bg-gray-300"
         style={{
           left: `${level * 24 - 12}px`,
@@ -115,7 +115,7 @@ export function HierarchyConnectionLines({
           width: '12px'
         }}
       />
-      
+
       {/* Additional lines for parent levels */}
       {Array.from({ length: level - 1 }).map((_, index) => (
         <div
@@ -138,9 +138,9 @@ interface LevelIndicatorProps {
   compact?: boolean;
 }
 
-export function LevelIndicator({ 
-  level, 
-  maxLevel = 4, 
+export function LevelIndicator({
+  level,
+  maxLevel = 4,
   showNumbers = false,
   compact = false,
   categoryType = 'discipline'
@@ -161,18 +161,18 @@ export function LevelIndicator({
 
   // Color scheme based on category type
   const baseColor = categoryType === 'discipline' ? 'blue' : 'green';
-  
+
   const dots = Array.from({ length: maxLevel }).map((_, index) => {
     const isActive = index <= level;
     const intensity = Math.max(0, 1 - (index - level) * 0.3);
-    
+
     return (
       <div
         key={index}
         className={`
           ${compact ? 'w-1.5 h-1.5' : 'w-2 h-2'} rounded-full transition-all
-          ${isActive 
-            ? `bg-${baseColor}-500` 
+          ${isActive
+            ? `bg-${baseColor}-500`
             : 'bg-gray-200'
           }
         `}
@@ -194,8 +194,8 @@ export function LevelIndicator({
       )}
       {level > 0 && (
         <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${
-          categoryType === 'discipline' 
-            ? 'bg-blue-50 text-blue-700 border border-blue-200' 
+          categoryType === 'discipline'
+            ? 'bg-blue-50 text-blue-700 border border-blue-200'
             : 'bg-green-50 text-green-700 border border-green-200'
         }`}>
           {categoryType === 'discipline' ? 'Sub-discipline' : 'Equipment'} L{level}
@@ -214,10 +214,10 @@ interface DepthIndicatorProps {
   style?: 'bar' | 'border' | 'background';
 }
 
-export function DepthIndicator({ 
-  level, 
+export function DepthIndicator({
+  level,
   categoryType = 'discipline',
-  style = 'border' 
+  style = 'border'
 }: DepthIndicatorProps) {
   const getColorIntensity = () => {
     const maxLevel = 4;
@@ -228,7 +228,7 @@ export function DepthIndicator({
   const getColorClass = () => {
     const baseColor = categoryType === 'equipment' ? 'green' : 'blue';
     const intensity = getColorIntensity();
-    
+
     switch (style) {
       case 'bar':
         return `bg-${baseColor}-${Math.max(200, 600 - level * 100)} h-1`;
@@ -256,12 +256,12 @@ interface CategoryBreadcrumbProps {
   maxItems?: number;
 }
 
-export function CategoryBreadcrumb({ 
-  categoryPath, 
+export function CategoryBreadcrumb({
+  categoryPath,
   onCategoryClick,
-  maxItems = 4 
+  maxItems = 4
 }: CategoryBreadcrumbProps) {
-  const displayPath = categoryPath.length > maxItems 
+  const displayPath = categoryPath.length > maxItems
     ? [...categoryPath.slice(0, 1), { id: '...', name: '...', level: -1 }, ...categoryPath.slice(-2)]
     : categoryPath;
 
@@ -272,7 +272,7 @@ export function CategoryBreadcrumb({
           {index > 0 && (
             <span className="text-gray-400">/</span>
           )}
-          
+
           {category.name === '...' ? (
             <span className="text-gray-400">...</span>
           ) : (
@@ -303,12 +303,12 @@ interface HierarchyStatsProps {
   disciplines?: number;
 }
 
-export function HierarchyStats({ 
-  totalCategories, 
-  maxDepth, 
+export function HierarchyStats({
+  totalCategories,
+  maxDepth,
   topLevelCount,
   equipment = 0,
-  disciplines = 0 
+  disciplines = 0
 }: HierarchyStatsProps) {
   return (
     <div className="flex items-center space-x-6 text-sm text-gray-600">
@@ -316,7 +316,7 @@ export function HierarchyStats({
         <RectangleGroupIcon className="h-4 w-4" />
         <span>{totalCategories} catégories</span>
       </div>
-      
+
       <div className="flex items-center space-x-2">
         <div className="h-4 w-4 flex items-center justify-center">
           <div className="grid grid-cols-2 gap-0.5 h-3 w-3">
@@ -327,12 +327,12 @@ export function HierarchyStats({
         </div>
         <span>{maxDepth} niveaux</span>
       </div>
-      
+
       <div className="flex items-center space-x-2">
         <HeartIcon className="h-4 w-4 text-blue-600" />
         <span>{disciplines} disciplines</span>
       </div>
-      
+
       <div className="flex items-center space-x-2">
         <WrenchScrewdriverIcon className="h-4 w-4 text-green-600" />
         <span>{equipment} équipements</span>

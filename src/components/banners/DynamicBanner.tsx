@@ -152,10 +152,10 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
               </p>
             )}
           </div>
-          
+
           {banner.imageUrl && (
             <div className="relative mx-auto max-w-xl">
-              <img 
+              <img
                 src={banner.imageUrl}
                 alt={banner.title}
                 className="w-full h-auto hover:scale-105 transition-transform duration-500"
@@ -166,7 +166,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-4">
               <a href={banner.ctaUrl}>
-                <Button 
+                <Button
                   className={cn(
                     'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
                     getCtaStyles()
@@ -186,7 +186,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       return (
         <div className={cn(
           'text-center space-y-8 w-full',
-          banner.textAlign === 'left' ? 'text-left' : 
+          banner.textAlign === 'left' ? 'text-left' :
           banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
@@ -208,7 +208,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-6">
               <a href={banner.ctaUrl}>
-                <Button 
+                <Button
                   className={cn(
                     'px-12 py-4 rounded-lg font-semibold text-lg transition-all duration-200 inline-flex items-center space-x-3',
                     getCtaStyles()
@@ -230,7 +230,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         {/* Left Content - Text Section */}
         <div className={cn(
           'space-y-8 lg:pr-8',
-          banner.textAlign === 'left' ? 'text-left' : 
+          banner.textAlign === 'left' ? 'text-left' :
           banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
@@ -248,7 +248,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 </h2>
               )}
             </div>
-            
+
             {banner.description && (
               <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
                 {banner.description}
@@ -259,8 +259,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             {banner.ctaText && banner.ctaUrl && (
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className={cn(
                   'px-8 py-4 text-lg font-medium transition-all duration-300',
                   getCtaStyles()
@@ -281,7 +281,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           <div className="relative">
             <div className="relative max-w-2xl mx-auto">
               <div className="relative">
-                <img 
+                <img
                   src={banner.imageUrl}
                   alt={banner.title}
                   className="w-full h-auto hover:scale-105 transition-transform duration-500"
@@ -298,11 +298,11 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       {banner.backgroundUrl ? (
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${banner.backgroundUrl})` }}
         >
-          <div 
+          <div
             className="absolute inset-0 bg-white"
             style={{ opacity: banner.overlayOpacity / 100 }}
           />
@@ -310,7 +310,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
       )}
-      
+
       <div className="relative container mx-auto px-4 lg:px-8 py-8">
         {renderBannerContent()}
 

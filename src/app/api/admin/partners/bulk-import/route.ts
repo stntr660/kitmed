@@ -94,7 +94,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     };
 
     const validPartners = [];
-    
+
     // Validate each row
     for (let i = 0; i < records.length; i++) {
       const rowNumber = i + 2; // +2 because CSV rows start at 1 and we have headers
@@ -103,16 +103,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       try {
         // Validate the record
         const validatedPartner = csvPartnerSchema.parse(record);
-        
+
         // Generate slug from French name
         const baseSlug = validatedPartner.nom_fr
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
-        
+
         // Check if slug already exists
         const existingPartner = await prisma.partner.findFirst({
-          where: { 
+          where: {
             slug: { startsWith: baseSlug }
           },
         });

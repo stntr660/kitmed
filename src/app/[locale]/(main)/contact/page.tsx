@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { 
+import {
   MapPin,
   Phone,
   Mail,
@@ -24,7 +24,7 @@ export default function ContactPage() {
   const t = useTranslations('contact');
   const tCommon = useTranslations('common');
   const locale = useHydrationSafeLocale('fr');
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -34,7 +34,7 @@ export default function ContactPage() {
     subject: '',
     message: '',
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -46,10 +46,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitted(true);
     setIsSubmitting(false);
   };
@@ -103,7 +103,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-12 lg:grid-cols-2">
-              
+
               {/* Contact Information */}
               <div className="space-y-8">
                 <div>
@@ -340,9 +340,9 @@ export default function ContactPage() {
                         />
                       </div>
 
-                      <Button 
-                        type="submit" 
-                        size="lg" 
+                      <Button
+                        type="submit"
+                        size="lg"
                         className="w-full"
                         disabled={isSubmitting}
                       >

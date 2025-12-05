@@ -34,7 +34,7 @@ async function getDashboardStats(request: NextRequest) {
     });
   } catch (error) {
     console.error('Dashboard stats error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

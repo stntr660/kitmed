@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { 
-  cleanupOrphanedFiles, 
-  markOrphanedFiles, 
-  getFileRegistryStats 
+import {
+  cleanupOrphanedFiles,
+  markOrphanedFiles,
+  getFileRegistryStats
 } from '@/lib/file-deduplication';
 
 export async function POST(request: NextRequest) {
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('File cleanup error:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to perform file cleanup operation',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
@@ -63,7 +63,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error getting file stats:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to get file statistics',
         details: error instanceof Error ? error.message : 'Unknown error'
       },

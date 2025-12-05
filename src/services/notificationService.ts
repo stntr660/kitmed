@@ -50,13 +50,13 @@ class NotificationService {
     deadline?: string;
     priority?: 'normal' | 'urgent';
   }): Promise<void> {
-    const isUrgent = rfpData.priority === 'urgent' || 
+    const isUrgent = rfpData.priority === 'urgent' ||
       (rfpData.deadline && new Date(rfpData.deadline) < new Date(Date.now() + 24 * 60 * 60 * 1000));
 
     await this.createNotification({
       type: 'rfp',
       priority: isUrgent ? 'high' : 'medium',
-      title: isUrgent ? 
+      title: isUrgent ?
         `🚨 Nouveau devis URGENT - ${rfpData.customerName}` :
         `📋 Nouveau devis - ${rfpData.customerName}`,
       message: isUrgent ?
@@ -82,7 +82,7 @@ class NotificationService {
       'expired': 'Devis expiré',
     };
 
-    const priority: NotificationPriority = 
+    const priority: NotificationPriority =
       rfpData.status === 'accepted' ? 'high' :
       rfpData.status === 'rejected' ? 'medium' : 'low';
 
@@ -106,11 +106,11 @@ class NotificationService {
     category?: string;
   }): Promise<void> {
     const isCritical = productData.currentStock === 0;
-    
+
     await this.createNotification({
       type: 'inventory',
       priority: isCritical ? 'critical' : 'medium',
-      title: isCritical ? 
+      title: isCritical ?
         `🔴 Rupture de stock - ${productData.name}` :
         `⚠️ Stock faible - ${productData.name}`,
       message: isCritical ?
@@ -234,11 +234,11 @@ class NotificationService {
     securityFixes?: string[];
   }): Promise<void> {
     const hasSecurityFixes = updateData.securityFixes && updateData.securityFixes.length > 0;
-    
+
     await this.createNotification({
       type: 'system',
       priority: hasSecurityFixes ? 'high' : 'medium',
-      title: hasSecurityFixes ? 
+      title: hasSecurityFixes ?
         `🔒 Mise à jour de sécurité disponible v${updateData.version}` :
         `⬆️ Nouvelle version disponible v${updateData.version}`,
       message: hasSecurityFixes ?
@@ -256,7 +256,7 @@ class NotificationService {
     size?: string;
     error?: string;
   }): Promise<void> {
-    const priority: NotificationPriority = 
+    const priority: NotificationPriority =
       backupData.status === 'failed' ? 'high' :
       backupData.status === 'partial' ? 'medium' : 'low';
 
@@ -324,37 +324,37 @@ export const notificationService = new NotificationService();
 export const NotificationHelpers = {
   // Quick notification creators
   rfp: {
-    created: (data: Parameters<typeof notificationService.notifyNewRFP>[0]) => 
+    created: (data: Parameters<typeof notificationService.notifyNewRFP>[0]) =>
       notificationService.notifyNewRFP(data),
-    statusChanged: (data: Parameters<typeof notificationService.notifyRFPStatusChange>[0]) => 
+    statusChanged: (data: Parameters<typeof notificationService.notifyRFPStatusChange>[0]) =>
       notificationService.notifyRFPStatusChange(data),
   },
-  
+
   inventory: {
-    lowStock: (data: Parameters<typeof notificationService.notifyLowStock>[0]) => 
+    lowStock: (data: Parameters<typeof notificationService.notifyLowStock>[0]) =>
       notificationService.notifyLowStock(data),
-    restocked: (data: Parameters<typeof notificationService.notifyStockReplenished>[0]) => 
+    restocked: (data: Parameters<typeof notificationService.notifyStockReplenished>[0]) =>
       notificationService.notifyStockReplenished(data),
   },
-  
+
   product: {
-    added: (data: Parameters<typeof notificationService.notifyProductAdded>[0]) => 
+    added: (data: Parameters<typeof notificationService.notifyProductAdded>[0]) =>
       notificationService.notifyProductAdded(data),
-    updated: (data: Parameters<typeof notificationService.notifyProductUpdated>[0]) => 
+    updated: (data: Parameters<typeof notificationService.notifyProductUpdated>[0]) =>
       notificationService.notifyProductUpdated(data),
   },
-  
+
   security: {
-    suspicious: (data: Parameters<typeof notificationService.notifySuspiciousActivity>[0]) => 
+    suspicious: (data: Parameters<typeof notificationService.notifySuspiciousActivity>[0]) =>
       notificationService.notifySuspiciousActivity(data),
   },
-  
+
   system: {
-    maintenance: (data: Parameters<typeof notificationService.notifySystemMaintenance>[0]) => 
+    maintenance: (data: Parameters<typeof notificationService.notifySystemMaintenance>[0]) =>
       notificationService.notifySystemMaintenance(data),
-    update: (data: Parameters<typeof notificationService.notifySystemUpdate>[0]) => 
+    update: (data: Parameters<typeof notificationService.notifySystemUpdate>[0]) =>
       notificationService.notifySystemUpdate(data),
-    backup: (data: Parameters<typeof notificationService.notifyBackupStatus>[0]) => 
+    backup: (data: Parameters<typeof notificationService.notifyBackupStatus>[0]) =>
       notificationService.notifyBackupStatus(data),
   },
 };

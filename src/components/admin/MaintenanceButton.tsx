@@ -22,10 +22,10 @@ interface MaintenanceButtonProps {
   className?: string;
 }
 
-export function MaintenanceButton({ 
-  currentMaintenanceMode, 
+export function MaintenanceButton({
+  currentMaintenanceMode,
   onMaintenanceModeChange,
-  className 
+  className
 }: MaintenanceButtonProps) {
   const router = useRouter();
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -41,7 +41,7 @@ export function MaintenanceButton({
 
     // Update the maintenance mode
     onMaintenanceModeChange(pendingState);
-    
+
     // If enabling maintenance mode, redirect to maintenance page after a short delay
     if (pendingState === true) {
       setTimeout(() => {
@@ -73,8 +73,8 @@ export function MaintenanceButton({
               Mode Maintenance
             </div>
             <div className="text-sm text-red-600 mt-1">
-              {currentMaintenanceMode 
-                ? "Le site est actuellement en mode maintenance" 
+              {currentMaintenanceMode
+                ? "Le site est actuellement en mode maintenance"
                 : "Activer le mode maintenance pour les visiteurs"
               }
             </div>
@@ -119,7 +119,7 @@ export function MaintenanceButton({
                 <div>
                   <p>Êtes-vous sûr de vouloir activer le mode maintenance ?</p>
                   <div className="mt-2 p-3 bg-orange-50 border border-orange-200 rounded-md text-sm text-orange-800">
-                    <strong>Attention :</strong> Tous les visiteurs seront redirigés vers la page de maintenance. 
+                    <strong>Attention :</strong> Tous les visiteurs seront redirigés vers la page de maintenance.
                     Seuls les administrateurs pourront accéder au site.
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export function MaintenanceButton({
             <Button variant="outline" onClick={cancelMaintenanceToggle}>
               Annuler
             </Button>
-            <Button 
+            <Button
               onClick={confirmMaintenanceToggle}
               variant={pendingState ? "destructive" : "default"}
               className="min-w-[100px]"

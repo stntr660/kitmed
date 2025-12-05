@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
-import { 
-  verifyPassword, 
-  generateToken, 
-  getAdminUser, 
-  checkRateLimit, 
-  resetRateLimit 
+import {
+  verifyPassword,
+  generateToken,
+  getAdminUser,
+  checkRateLimit,
+  resetRateLimit
 } from '@/lib/auth-utils';
 
 const prisma = new PrismaClient();
@@ -19,8 +19,8 @@ const loginSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
-    const clientIP = request.headers.get('x-forwarded-for') || 
-                    request.headers.get('x-real-ip') || 
+    const clientIP = request.headers.get('x-forwarded-for') ||
+                    request.headers.get('x-real-ip') ||
                     'unknown';
 
     // Check rate limiting
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    
+
     // Validate request body
     const validation = loginSchema.safeParse(body);
     if (!validation.success) {
@@ -62,28 +62,28 @@ export async function POST(request: NextRequest) {
     await new Promise(resolve => setTimeout(resolve, 200));
 
     // First, check if user exists in database
-    const dbUser = await prisma.user.findUnique({
+    const dbUser = await prisma.users.findUnique({
       where: { email },
       select: {
         id: true,
         email: true,
-        firstName: true,
-        lastName: true,
+        first_name: true,
+        last_name: true,
         role: true,
-        isActive: true,
-        passwordHash: true,
+        is_active: true,
+        password_hash: true,
       },
     });
 
-    if (dbUser && dbUser.isActive) {
+    if (dbUser && dbUser.is_active) {
       // Verify database user password
-      const passwordMatch = await verifyPassword(password, dbUser.passwordHash);
-      
+      const passwordMatch = await verifyPassword(password, dbUser.password_hash);
+
       if (passwordMatch) {
         // Update last login
-        await prisma.user.update({
+        await prisma.users.update({
           where: { id: dbUser.id },
-          data: { lastLogin: new Date() }
+          data: { last_login: new Date() }
         });
 
         // Reset rate limit on successful login
@@ -93,23 +93,23 @@ export async function POST(request: NextRequest) {
         const userForToken = {
           id: dbUser.id,
           email: dbUser.email,
-          firstName: dbUser.firstName,
-          lastName: dbUser.lastName,
+          firstName: dbUser.first_name,
+          lastName: dbUser.last_name,
           role: dbUser.role.toUpperCase() as 'ADMIN' | 'EDITOR', // Use actual user role from database
           status: 'ACTIVE' as const,
         };
 
         // Generate secure JWT token
         const token = generateToken(userForToken);
-        
+
         // Create response with user data (excluding sensitive info)
         const userResponse = {
           id: dbUser.id,
           email: dbUser.email,
-          firstName: dbUser.firstName,
-          lastName: dbUser.lastName,
+          firstName: dbUser.first_name,
+          lastName: dbUser.last_name,
           role: dbUser.role,
-          status: dbUser.isActive ? 'ACTIVE' : 'INACTIVE',
+          status: dbUser.is_active ? 'ACTIVE' : 'INACTIVE',
           lastLoginAt: new Date().toISOString(),
         };
 
@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
 
         // Generate secure JWT token
         const token = generateToken(adminUser);
-        
+
         // Create response with user data (excluding sensitive info)
         const userResponse = {
           id: adminUser.id,
@@ -226,7 +226,7 @@ export async function POST(request: NextRequest) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Login error:', error);
     }
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -242,10 +242,10 @@ export async function POST(request: NextRequest) {
 
 // Handle preflight requests for CORS
 export async function OPTIONS() {
-  const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://kitmed.ma', 'https://admin.kitmed.ma', 'https://www.kitmed.ma']  
+  const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? ['https://kitmed.ma', 'https://admin.kitmed.ma', 'https://www.kitmed.ma']
     : ['http://localhost:3000', 'http://localhost:3001'];
-    
+
   return new NextResponse(null, {
     status: 200,
     headers: {

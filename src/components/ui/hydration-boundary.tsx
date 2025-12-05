@@ -47,7 +47,7 @@ interface SSRSafeProps {
 
 export function SSRSafe({ children, condition, fallback = null }: SSRSafeProps) {
   const [shouldRender, setShouldRender] = useState(false);
-  
+
   useEffect(() => {
     setShouldRender(condition());
   }, [condition]);

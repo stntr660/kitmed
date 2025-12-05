@@ -6,10 +6,10 @@ import { z } from 'zod';
 // GET /api/admin/banners/[id] - Get single banner
 async function getBanner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const banner = await prisma.banner.findUnique({
+    const banner = await prisma.banners.findUnique({
       where: { id: params.id },
       include: {
-        translations: true,
+        banner_translations: true,
       },
     });
 
@@ -26,9 +26,41 @@ async function getBanner(request: NextRequest, { params }: { params: { id: strin
       );
     }
 
+    // Transform response to camelCase for frontend compatibility
+    const transformedBanner = banner ? {
+      id: banner.id,
+      title: banner.title,
+      subtitle: banner.subtitle,
+      description: banner.description,
+      imageUrl: banner.image_url,
+      backgroundUrl: banner.background_url,
+      ctaText: banner.cta_text,
+      ctaUrl: banner.cta_url,
+      ctaStyle: banner.cta_style,
+      position: banner.position,
+      layout: banner.layout,
+      textAlign: banner.text_align,
+      overlayOpacity: banner.overlay_opacity,
+      sortOrder: banner.sort_order,
+      isActive: banner.is_active,
+      startDate: banner.start_date,
+      endDate: banner.end_date,
+      createdAt: banner.created_at,
+      updatedAt: banner.updated_at,
+      translations: banner.banner_translations.map(t => ({
+        id: t.id,
+        bannerId: t.banner_id,
+        languageCode: t.language_code,
+        title: t.title,
+        subtitle: t.subtitle,
+        description: t.description,
+        ctaText: t.cta_text,
+      })),
+    } : null;
+
     return NextResponse.json({
       success: true,
-      data: banner,
+      data: transformedBanner,
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
@@ -36,7 +68,7 @@ async function getBanner(request: NextRequest, { params }: { params: { id: strin
     });
   } catch (error) {
     console.error('Banner fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -88,7 +120,7 @@ const updateBannerSchema = z.object({
 async function updateBanner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = updateBannerSchema.safeParse(body);
     if (!validation.success) {
@@ -113,7 +145,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     const bannerData = validation.data;
 
     // Check if banner exists
-    const existingBanner = await prisma.banner.findUnique({
+    const existingBanner = await prisma.banners.findUnique({
       where: { id: params.id },
       include: { translations: true },
     });
@@ -134,28 +166,28 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     // Update banner
     const updatedBanner = await prisma.$transaction(async (tx) => {
       // Update main banner record
-      const banner = await tx.banner.update({
+      const banner = await tx.banners.update({
         where: { id: params.id },
         data: {
           ...(bannerData.title && { title: bannerData.title }),
           ...(bannerData.subtitle !== undefined && { subtitle: bannerData.subtitle || null }),
           ...(bannerData.description !== undefined && { description: bannerData.description || null }),
-          ...(bannerData.imageUrl !== undefined && { imageUrl: bannerData.imageUrl || null }),
-          ...(bannerData.backgroundUrl !== undefined && { backgroundUrl: bannerData.backgroundUrl || null }),
-          ...(bannerData.ctaText !== undefined && { ctaText: bannerData.ctaText || null }),
-          ...(bannerData.ctaUrl !== undefined && { ctaUrl: bannerData.ctaUrl || null }),
-          ...(bannerData.ctaStyle && { ctaStyle: bannerData.ctaStyle }),
+          ...(bannerData.imageUrl !== undefined && { image_url: bannerData.imageUrl || null }),
+          ...(bannerData.backgroundUrl !== undefined && { background_url: bannerData.backgroundUrl || null }),
+          ...(bannerData.ctaText !== undefined && { cta_text: bannerData.ctaText || null }),
+          ...(bannerData.ctaUrl !== undefined && { cta_url: bannerData.ctaUrl || null }),
+          ...(bannerData.ctaStyle && { cta_style: bannerData.ctaStyle }),
           ...(bannerData.position && { position: bannerData.position }),
           ...(bannerData.layout && { layout: bannerData.layout }),
-          ...(bannerData.textAlign && { textAlign: bannerData.textAlign }),
-          ...(bannerData.overlayOpacity !== undefined && { overlayOpacity: bannerData.overlayOpacity }),
-          ...(bannerData.sortOrder !== undefined && { sortOrder: bannerData.sortOrder }),
-          ...(bannerData.isActive !== undefined && { isActive: bannerData.isActive }),
-          ...(bannerData.startDate !== undefined && { 
-            startDate: bannerData.startDate ? new Date(bannerData.startDate) : null 
+          ...(bannerData.textAlign && { text_align: bannerData.textAlign }),
+          ...(bannerData.overlayOpacity !== undefined && { overlay_opacity: bannerData.overlayOpacity }),
+          ...(bannerData.sortOrder !== undefined && { sort_order: bannerData.sortOrder }),
+          ...(bannerData.isActive !== undefined && { is_active: bannerData.isActive }),
+          ...(bannerData.startDate !== undefined && {
+            start_date: bannerData.startDate ? new Date(bannerData.startDate) : null
           }),
-          ...(bannerData.endDate !== undefined && { 
-            endDate: bannerData.endDate ? new Date(bannerData.endDate) : null 
+          ...(bannerData.endDate !== undefined && {
+            end_date: bannerData.endDate ? new Date(bannerData.endDate) : null
           }),
         },
       });
@@ -164,16 +196,16 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
       if (bannerData.translations) {
         // Update French translation
         if (bannerData.translations.fr) {
-          await tx.bannerTranslation.upsert({
+          await tx.banner_translations.upsert({
             where: {
-              bannerId_languageCode: {
-                bannerId: params.id,
-                languageCode: 'fr',
+              banner_id_language_code: {
+                banner_id: params.id,
+                language_code: 'fr',
               },
             },
             create: {
-              bannerId: params.id,
-              languageCode: 'fr',
+              banner_id: params.id,
+              language_code: 'fr',
               title: bannerData.translations.fr.title || existingBanner.title,
               subtitle: bannerData.translations.fr.subtitle || null,
               description: bannerData.translations.fr.description || null,
@@ -181,14 +213,14 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
             },
             update: {
               ...(bannerData.translations.fr.title && { title: bannerData.translations.fr.title }),
-              ...(bannerData.translations.fr.subtitle !== undefined && { 
-                subtitle: bannerData.translations.fr.subtitle || null 
+              ...(bannerData.translations.fr.subtitle !== undefined && {
+                subtitle: bannerData.translations.fr.subtitle || null
               }),
-              ...(bannerData.translations.fr.description !== undefined && { 
-                description: bannerData.translations.fr.description || null 
+              ...(bannerData.translations.fr.description !== undefined && {
+                description: bannerData.translations.fr.description || null
               }),
-              ...(bannerData.translations.fr.ctaText !== undefined && { 
-                ctaText: bannerData.translations.fr.ctaText || null 
+              ...(bannerData.translations.fr.ctaText !== undefined && {
+                ctaText: bannerData.translations.fr.ctaText || null
               }),
             },
           });
@@ -196,16 +228,16 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 
         // Update English translation
         if (bannerData.translations.en) {
-          await tx.bannerTranslation.upsert({
+          await tx.banner_translations.upsert({
             where: {
-              bannerId_languageCode: {
-                bannerId: params.id,
-                languageCode: 'en',
+              banner_id_language_code: {
+                banner_id: params.id,
+                language_code: 'en',
               },
             },
             create: {
-              bannerId: params.id,
-              languageCode: 'en',
+              banner_id: params.id,
+              language_code: 'en',
               title: bannerData.translations.en.title || existingBanner.title,
               subtitle: bannerData.translations.en.subtitle || null,
               description: bannerData.translations.en.description || null,
@@ -213,21 +245,21 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
             },
             update: {
               ...(bannerData.translations.en.title && { title: bannerData.translations.en.title }),
-              ...(bannerData.translations.en.subtitle !== undefined && { 
-                subtitle: bannerData.translations.en.subtitle || null 
+              ...(bannerData.translations.en.subtitle !== undefined && {
+                subtitle: bannerData.translations.en.subtitle || null
               }),
-              ...(bannerData.translations.en.description !== undefined && { 
-                description: bannerData.translations.en.description || null 
+              ...(bannerData.translations.en.description !== undefined && {
+                description: bannerData.translations.en.description || null
               }),
-              ...(bannerData.translations.en.ctaText !== undefined && { 
-                ctaText: bannerData.translations.en.ctaText || null 
+              ...(bannerData.translations.en.ctaText !== undefined && {
+                ctaText: bannerData.translations.en.ctaText || null
               }),
             },
           });
         }
       }
 
-      return tx.banner.findUnique({
+      return tx.banners.findUnique({
         where: { id: params.id },
         include: { translations: true },
       });
@@ -243,7 +275,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     });
   } catch (error) {
     console.error('Banner update error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -262,7 +294,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 async function deleteBanner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     // Check if banner exists
-    const existingBanner = await prisma.banner.findUnique({
+    const existingBanner = await prisma.banners.findUnique({
       where: { id: params.id },
     });
 
@@ -280,7 +312,7 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
     }
 
     // Delete banner (translations will be deleted automatically due to cascade)
-    await prisma.banner.delete({
+    await prisma.banners.delete({
       where: { id: params.id },
     });
 
@@ -294,7 +326,7 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
     });
   } catch (error) {
     console.error('Banner deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

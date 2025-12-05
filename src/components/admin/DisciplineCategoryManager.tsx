@@ -1,6 +1,6 @@
 /**
  * Discipline Category Manager Component
- * 
+ *
  * Provides a unified interface for managing both disciplines and categories
  * with feature flag support for gradual migration.
  */
@@ -24,7 +24,7 @@ export const DisciplineCategoryManager: React.FC<DisciplineCategoryManagerProps>
 }) => {
   const [activeTab, setActiveTab] = useState(initialTab);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const {
     shouldUseDisciplines,
     shouldShowNewUI,
@@ -51,7 +51,7 @@ export const DisciplineCategoryManager: React.FC<DisciplineCategoryManagerProps>
   // Migration mode indicator
   const MigrationModeIndicator = () => {
     if (!isInMigrationMode) return null;
-    
+
     return (
       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
         <div className="flex">
@@ -113,7 +113,7 @@ export const DisciplineCategoryManager: React.FC<DisciplineCategoryManagerProps>
     <div className="space-y-6">
       <MigrationModeIndicator />
       <FeatureStatusIndicator />
-      
+
       {/* Tab Navigation */}
       <div className="border-b border-gray-200">
         <nav className="-mb-px flex space-x-8">
@@ -149,11 +149,11 @@ export const DisciplineCategoryManager: React.FC<DisciplineCategoryManagerProps>
       {/* Tab Content */}
       <div className="mt-6">
         {activeTab === 'disciplines' ? (
-          <DisciplineManager 
+          <DisciplineManager
             onEntityChange={(entity) => onEntityChange?.('discipline', entity)}
           />
         ) : (
-          <CategoryManager 
+          <CategoryManager
             onEntityChange={(entity) => onEntityChange?.('category', entity)}
           />
         )}

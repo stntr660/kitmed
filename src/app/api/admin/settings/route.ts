@@ -35,16 +35,13 @@ async function getSettings() {
 async function updateSettings(request: NextRequest) {
   try {
     const body = await request.json();
-    console.log('Settings update request:', body);
-    
+
     // Validate the settings data
     const validatedSettings = settingsSchema.parse(body);
-    console.log('Validated settings:', validatedSettings);
-    
+
     // Update settings (in production, save to database)
     currentSettings = validatedSettings;
-    
-    console.log('Settings updated successfully:', currentSettings);
+
     return NextResponse.json({
       success: true,
       data: currentSettings,
@@ -52,23 +49,23 @@ async function updateSettings(request: NextRequest) {
     });
   } catch (error) {
     console.error('Settings update error:', error);
-    
+
     if (error instanceof z.ZodError) {
       console.error('Validation errors:', error.issues);
       return NextResponse.json(
-        { 
+        {
           success: false,
-          error: 'Invalid settings data', 
-          details: error.issues 
+          error: 'Invalid settings data',
+          details: error.issues
         },
         { status: 400 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
-        error: 'Failed to update settings' 
+        error: 'Failed to update settings'
       },
       { status: 500 }
     );

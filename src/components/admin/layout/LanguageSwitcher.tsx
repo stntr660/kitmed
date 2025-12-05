@@ -34,11 +34,11 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
 
   const handleLanguageSwitch = (newLocale: Locale) => {
     setIsOpen(false);
-    
+
     // Force a full page reload with the new locale
     const currentPath = pathname.replace(/^\/[a-z]{2}/, '');
     const newUrl = `/${newLocale}${currentPath}`;
-    
+
     if (typeof window !== 'undefined') {
       window.location.href = newUrl;
     }
@@ -46,7 +46,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
 
   return (
     <div className="relative">
-      <button 
+      <button
         className="flex items-center gap-x-2 text-sm leading-6 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-xl px-3 py-2 transition-all duration-200"
         onClick={() => setIsOpen(!isOpen)}
       >

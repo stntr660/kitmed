@@ -5,7 +5,7 @@ import { CompactImageUpload } from './compact-image-upload';
 
 /**
  * CompactImageUpload Usage Examples
- * 
+ *
  * This component demonstrates various use cases for the CompactImageUpload component
  * which can be used throughout the KITMED application for image uploads.
  */
@@ -168,7 +168,7 @@ export function CompactImageUploadExamples() {
 
 function MyComponent() {
   const [imageUrl, setImageUrl] = useState('');
-  
+
   return (
     <CompactImageUpload
       value={imageUrl}

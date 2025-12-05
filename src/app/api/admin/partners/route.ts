@@ -8,14 +8,14 @@ import { z } from 'zod';
 async function getPartners(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    
+
     const filters = {
       query: searchParams.get('query') || undefined,
       type: searchParams.get('type') || undefined,
       status: searchParams.getAll('status'),
       page: parseInt(searchParams.get('page') || '1'),
       pageSize: parseInt(searchParams.get('pageSize') || '100'),
-      sortBy: searchParams.get('sortBy') || 'createdAt',
+      sortBy: searchParams.get('sortBy') || 'created_at',
       sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || 'desc',
     };
 
@@ -28,21 +28,21 @@ async function getPartners(request: NextRequest) {
     // Text search in partner translations
     if (filters.query) {
       where.OR = [
-        { 
-          translations: {
+        {
+          partner_translations: {
             some: {
-              name: { contains: filters.query }
+              nom: { contains: filters.query }
             }
           }
         },
         {
-          translations: {
+          partner_translations: {
             some: {
               description: { contains: filters.query }
             }
           }
         },
-        { websiteUrl: { contains: filters.query } },
+        { website_url: { contains: filters.query } },
       ];
     }
 
@@ -58,44 +58,44 @@ async function getPartners(request: NextRequest) {
 
     // Execute queries
     const [items, total] = await Promise.all([
-      prisma.partner.findMany({
+      prisma.partners.findMany({
         where,
         include: {
-          translations: true,
+          partner_translations: true,
         },
         orderBy: { [filters.sortBy]: filters.sortOrder },
         skip,
         take,
       }),
-      prisma.partner.count({ where }),
+      prisma.partners.count({ where }),
     ]);
 
     // Transform the data to match expected format
     const transformedItems = items.map(partner => ({
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
       type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       // Create a name field from French translation for compatibility
-      name: partner.translations.find(t => t.languageCode === 'fr')?.name || 
-            partner.translations[0]?.name || 
+      name: partner.partner_translations.find(t => t.language_code === 'fr')?.nom ||
+            partner.partner_translations[0]?.nom ||
             'Unnamed Partner',
       // Create nom object for new structure
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.nom || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.nom || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     }));
 
     const result = {
@@ -117,7 +117,7 @@ async function getPartners(request: NextRequest) {
     });
   } catch (error) {
     console.error('Partners list error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -152,7 +152,7 @@ const createPartnerSchema = z.object({
 async function createPartner(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = createPartnerSchema.safeParse(body);
     if (!validation.success) {
@@ -176,38 +176,38 @@ async function createPartner(request: NextRequest) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    
+
     // Add timestamp to ensure uniqueness
     const timestamp = Date.now().toString().slice(-6);
     const slug = `${baseSlug}-${timestamp}`;
 
     // Create partner in database
-    const partner = await prisma.partner.create({
+    const partner = await prisma.partners.create({
       data: {
-        name: partnerData.nom.fr, // Use French name as primary
+        nom: partnerData.nom.fr, // Use French name as primary
         slug,
-        websiteUrl: partnerData.websiteUrl || null,
-        logoUrl: partnerData.logoUrl || null,
+        website_url: partnerData.websiteUrl || null,
+        logo_url: partnerData.logoUrl || null,
         type: partnerData.type,
         status: partnerData.status,
-        isFeatured: partnerData.featured,
-        translations: {
+        is_featured: partnerData.featured,
+        partner_translations: {
           create: [
             {
-              languageCode: 'fr',
-              name: partnerData.nom.fr,
+              language_code: 'fr',
+              nom: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
-              languageCode: 'en',
-              name: partnerData.nom.en,
+              language_code: 'en',
+              nom: partnerData.nom.en,
               description: partnerData.description?.en || null,
             }] : []),
           ],
         },
       },
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -215,14 +215,14 @@ async function createPartner(request: NextRequest) {
     const transformedPartner = {
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
       type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       nom: {
         fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
         en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
@@ -244,7 +244,7 @@ async function createPartner(request: NextRequest) {
     });
   } catch (error) {
     console.error('Partner creation error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

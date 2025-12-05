@@ -35,7 +35,7 @@ async function getBanner(request: NextRequest, { params }: { params: { id: strin
     });
   } catch (error) {
     console.error('Banner fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -83,7 +83,7 @@ const updateBannerSchema = z.object({
 async function updateBanner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = updateBannerSchema.safeParse(body);
     if (!validation.success) {
@@ -212,7 +212,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     });
   } catch (error) {
     console.error('Banner update error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -263,7 +263,7 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
     });
   } catch (error) {
     console.error('Banner deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

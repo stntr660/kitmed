@@ -11,48 +11,48 @@ export async function GET(
     const locale = searchParams.get('locale') || 'fr';
 
     // Find product by slug
-    const product = await prisma.product.findFirst({
+    const product = await prisma.products.findFirst({
       where: {
         slug: slug,
         status: 'active' // Only active products for public API
       },
       include: {
-        translations: true,
-        category: {
+        product_translations: true,
+        categories: {
           select: {
             id: true,
             slug: true,
             name: true,
-            imageUrl: true,
-            translations: {
+            image_url: true,
+            category_translations: {
               select: {
                 name: true,
-                languageCode: true
+                language_code: true
               }
             }
           }
         },
-        partner: {
+        partners: {
           select: {
             id: true,
             name: true,
-            logoUrl: true,
-            websiteUrl: true
+            logo_url: true,
+            website_url: true
           }
         },
-        media: {
+        product_media: {
           orderBy: [
-            { isPrimary: 'desc' },
-            { sortOrder: 'asc' }
+            { is_primary: 'desc' },
+            { sort_order: 'asc' }
           ],
           select: {
             id: true,
             url: true,
             type: true,
-            isPrimary: true,
-            altText: true,
+            is_primary: true,
+            alt_text: true,
             title: true,
-            sortOrder: true
+            sort_order: true
           }
         }
       }
@@ -72,57 +72,57 @@ export async function GET(
     }
 
     // Get translations for the requested locale with fallback
-    const translation = product.translations.find(t => t.languageCode === locale);
-    const fallbackTranslation = product.translations.find(t => t.languageCode === 'fr');
-    
-    const categoryTranslation = product.category?.translations.find(t => t.languageCode === locale);
-    const categoryFallback = product.category?.translations.find(t => t.languageCode === 'fr');
+    const translation = product.product_translations.find(t => t.language_code === locale);
+    const fallbackTranslation = product.product_translations.find(t => t.language_code === 'fr');
+
+    const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
+    const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
 
     // Transform the product data
     const transformedProduct = {
       id: product.id,
       slug: product.slug,
-      referenceFournisseur: product.referenceFournisseur,
+      referenceFournisseur: product.reference_fournisseur,
       constructeur: product.constructeur,
       status: product.status,
-      isFeatured: product.isFeatured,
-      pdfBrochureUrl: product.pdfBrochureUrl,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
-      
+      isFeatured: product.is_featured,
+      pdfBrochureUrl: product.pdf_brochure_url,
+      createdAt: product.created_at,
+      updatedAt: product.updated_at,
+
       // Localized content
-      translations: product.translations.map(t => ({
-        languageCode: t.languageCode,
+      translations: product.product_translations.map(t => ({
+        languageCode: t.language_code,
         nom: t.nom,
         description: t.description,
-        ficheTechnique: t.ficheTechnique
+        ficheTechnique: t.fiche_technique
       })),
-      
+
       // Category info
-      category: product.category ? {
-        id: product.category.id,
-        name: categoryTranslation?.name || categoryFallback?.name || product.category.name,
-        slug: product.category.slug,
-        imageUrl: product.category.imageUrl
+      category: product.categories ? {
+        id: product.categories.id,
+        name: categoryTranslation?.name || categoryFallback?.name || product.categories.name,
+        slug: product.categories.slug,
+        imageUrl: product.categories.image_url
       } : null,
-      
+
       // Partner/Manufacturer info
-      partner: product.partner ? {
-        id: product.partner.id,
-        name: product.partner.name,
-        logoUrl: product.partner.logoUrl,
-        websiteUrl: product.partner.websiteUrl
+      partner: product.partners ? {
+        id: product.partners.id,
+        name: product.partners.name,
+        logoUrl: product.partners.logo_url,
+        websiteUrl: product.partners.website_url
       } : null,
-      
+
       // Media files
-      media: product.media.map(media => ({
+      media: product.product_media.map(media => ({
         id: media.id,
         url: media.url,
         type: media.type,
-        isPrimary: media.isPrimary,
-        altText: media.altText,
+        isPrimary: media.is_primary,
+        altText: media.alt_text,
         title: media.title,
-        sortOrder: media.sortOrder
+        sortOrder: media.sort_order
       }))
     };
 
@@ -132,7 +132,7 @@ export async function GET(
     });
   } catch (error) {
     console.error('Product detail error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

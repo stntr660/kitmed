@@ -33,13 +33,13 @@ export function ProductCard({
 }: ProductCardProps) {
   const t = useTranslations('product');
   const { addItem, getItem } = useRFPStore();
-  
+
   const [isHovered, setIsHovered] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
-  
+
   const inCart = getItem(product.id);
   const primaryImage = product.images.find(img => img.isPrimary) || product.images[0];
-  
+
   const handleAddToRFP = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -78,7 +78,7 @@ export function ProductCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <Card 
+      <Card
         className={cn(
           'group relative overflow-hidden transition-shadow duration-200 h-full flex flex-col',
           'hover:shadow-medical-lg',
@@ -90,7 +90,7 @@ export function ProductCard({
         )}
         variant="medical"
       >
-        <Link 
+        <Link
           href={`/${locale}/products/${product.slug}`}
           className="flex-1 flex flex-col"
           aria-label={`${t('viewProduct')} ${product.nom ? product.nom[locale] : 'Product'}`}
@@ -98,17 +98,17 @@ export function ProductCard({
           {/* Image Section */}
           <div className="relative aspect-square overflow-hidden bg-gray-50">
             {product.featured && (
-              <Badge 
-                variant="accent" 
+              <Badge
+                variant="accent"
                 className="absolute left-2 top-2 z-10"
               >
                 {t('featured')}
               </Badge>
             )}
-            
+
             {product.status === 'discontinued' && (
-              <Badge 
-                variant="discontinued" 
+              <Badge
+                variant="discontinued"
                 className="absolute right-2 top-2 z-10"
               >
                 {t('discontinued')}
@@ -185,11 +185,11 @@ export function ProductCard({
             )}
 
             {/* Discipline */}
-            <Badge 
-              variant="medical" 
+            <Badge
+              variant="medical"
               size="sm"
               className="mb-3 flex items-center gap-2"
-              style={{ 
+              style={{
                 backgroundColor: `${product.discipline.color}20`,
                 color: product.discipline.color,
                 borderColor: `${product.discipline.color}40`

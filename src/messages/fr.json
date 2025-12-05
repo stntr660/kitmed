@@ -72,7 +72,6 @@
   },
   "navigation": {
     "products": "Produits",
-    "solutions": "Solutions",
     "partners": "Partenaires",
     "about": "À propos",
     "contact": "Contact",
@@ -80,9 +79,6 @@
     "byDiscipline": "Par Discipline",
     "byManufacturer": "Par Fabricant",
     "featured": "En Vedette",
-    "hospitalSolutions": "Solutions Hospitalières",
-    "clinicSolutions": "Solutions Cliniques",
-    "labSolutions": "Solutions de Laboratoire",
     "company": "Entreprise",
     "team": "Équipe",
     "news": "Actualités"
@@ -2137,6 +2133,24 @@
       "title": "Explorer par",
       "subtitle": "Spécialité",
       "description": "Équipements spécialisés pour chaque domaine médical"
+    },
+    "manufacturers": {
+      "badge": "Fabricants Partenaires KITMED",
+      "title": "Produits par",
+      "titleSuffix": "Fabricant",
+      "description": "Explorez notre catalogue organisé par fabricant pour découvrir les innovations de chaque marque partenaire reconnue dans le domaine médical.",
+      "sectionTitle": "Nos Fabricants Partenaires",
+      "sectionDescription": "{count} fabricant{plural} partenaire{plural}",
+      "loading": "Chargement des fabricants...",
+      "noManufacturers": {
+        "title": "Aucun fabricant disponible",
+        "description": "Aucun fabricant n'est actuellement disponible."
+      },
+      "viewProducts": "Voir les Produits",
+      "productCount": "{count} produit{plural}",
+      "viewDetails": "Voir Détails",
+      "websiteLink": "Site Web Officiel",
+      "backToProducts": "Retour aux Produits"
     }
   }
 }

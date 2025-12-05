@@ -42,10 +42,9 @@ function AuthDebugInfoComponent({ show = false }: AuthDebugInfoProps) {
           'Content-Type': 'application/json',
         },
       });
-      
+
       const result = await response.json();
-      console.log('Auth test result:', { status: response.status, result });
-      
+
       setDebugInfo(prev => ({
         ...prev,
         lastAuthTest: {
@@ -76,10 +75,9 @@ function AuthDebugInfoComponent({ show = false }: AuthDebugInfoProps) {
           'Content-Type': 'application/json',
         },
       });
-      
+
       const result = await response.json();
-      console.log('Users test result:', { status: response.status, result });
-      
+
       setDebugInfo(prev => ({
         ...prev,
         lastUsersTest: {

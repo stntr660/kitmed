@@ -27,12 +27,12 @@ interface PartnerDrawerProps {
   onSave?: (partner: Partial<Partner>) => Promise<void>;
 }
 
-export function PartnerDrawer({ 
-  open, 
-  onOpenChange, 
-  partner, 
+export function PartnerDrawer({
+  open,
+  onOpenChange,
+  partner,
   mode,
-  onSave 
+  onSave
 }: PartnerDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ export function PartnerDrawer({
     status: 'active',
     featured: false,
   });
-  
+
   // Progressive disclosure state
   const [showInternationalFields, setShowInternationalFields] = useState(false);
 
@@ -76,16 +76,16 @@ export function PartnerDrawer({
 
   const handleSave = async () => {
     if (!onSave) return;
-    
+
     // Reset error state
     setError(null);
-    
+
     // Validate required fields
     if (!formData.nom?.fr?.trim()) {
       setError(t('admin.partners.validation.nameRequired'));
       return;
     }
-    
+
     setLoading(true);
     try {
       await onSave(formData);
@@ -156,7 +156,7 @@ export function PartnerDrawer({
               </SheetDescription>
             </div>
             {partner && (
-              <Badge 
+              <Badge
                 variant={partner.status === 'active' ? 'default' : 'secondary'}
                 className="ml-4"
               >
@@ -322,7 +322,7 @@ export function PartnerDrawer({
               </div>
               <p className="text-sm text-blue-600">{t('admin.partners.internationalDescription')}</p>
             </CardHeader>
-            
+
             {showInternationalFields && (
               <CardContent className="space-y-4 border-t border-blue-100 pt-4">
                 <div className="space-y-2">
@@ -441,7 +441,7 @@ export function PartnerDrawer({
           >
             {mode === 'view' ? t('common.close') : t('common.cancel')}
           </Button>
-          
+
           {mode !== 'view' && (
             <Button
               onClick={handleSave}

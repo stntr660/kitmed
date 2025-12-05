@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { 
+import {
   Wrench,
   Calendar,
   Phone,
@@ -161,7 +161,7 @@ export default function MaintenancePage() {
               Maintenance & Support Technique
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Services de maintenance professionnels pour assurer le bon fonctionnement 
+              Services de maintenance professionnels pour assurer le bon fonctionnement
               et la longévité de vos équipements médicaux.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -236,7 +236,7 @@ export default function MaintenancePage() {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div>
                         <div className="text-lg font-semibold text-gray-900">{service.pricing}</div>

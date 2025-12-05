@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { 
+import {
   CubeIcon,
   DocumentTextIcon,
   BuildingOfficeIcon,
@@ -33,14 +33,14 @@ interface StatCardProps {
   color?: 'blue' | 'green' | 'yellow' | 'red';
 }
 
-function StatCard({ 
-  title, 
-  value, 
-  change, 
-  changeLabel, 
-  icon: Icon, 
+function StatCard({
+  title,
+  value,
+  change,
+  changeLabel,
+  icon: Icon,
   href,
-  color = 'blue' 
+  color = 'blue'
 }: StatCardProps) {
   const colorClasses = {
     blue: 'text-primary-600 bg-primary-50 ring-primary-200',
@@ -55,16 +55,16 @@ function StatCard({
         <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <CardContent className="p-8 relative z-10">
           <div className="flex items-start justify-between mb-6">
-            <div 
+            <div
               className={`p-4 rounded-2xl ring-1 ${colorClasses[color]} transition-all duration-300 hover:scale-110 hover:rotate-2`}
             >
               <Icon className="h-8 w-8" />
             </div>
             {change !== undefined && (
-              <div 
+              <div
                 className={`flex items-center space-x-2 px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-200 ${
-                  change >= 0 
-                    ? 'text-green-700 bg-green-50 ring-1 ring-green-200' 
+                  change >= 0
+                    ? 'text-green-700 bg-green-50 ring-1 ring-green-200'
                     : 'text-red-700 bg-red-50 ring-1 ring-red-200'
                 }`}
               >
@@ -79,7 +79,7 @@ function StatCard({
               </div>
             )}
           </div>
-          
+
           <div>
             <dt className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wider">
               {title}
@@ -119,12 +119,12 @@ interface RecentActivity {
 
 function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
   const t = useTranslations('dashboard');
-  
+
   // Handle empty activity gracefully
   const hasActivities = activities && activities.length > 0;
   const getActivityIcon = (type: string) => {
     let IconComponent;
-    
+
     switch (type) {
       case 'rfp':
         IconComponent = DocumentTextIcon;
@@ -142,7 +142,7 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
         IconComponent = DocumentTextIcon;
         break;
     }
-    
+
     return validateIconComponent(IconComponent, `ActivityIcon-${type}`);
   };
 
@@ -190,7 +190,7 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
             {activities.map((activity) => {
               const Icon = getActivityIcon(activity.type);
               const iconColorClass = getActivityTypeColor(activity.type);
-              
+
               return (
                 <div key={activity.id} className="group flex items-start space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-all duration-200">
                   <div className="flex-shrink-0">
@@ -204,7 +204,7 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
                         {activity.title}
                       </h4>
                       {activity.status && (
-                        <Badge 
+                        <Badge
                           variant={getStatusColor(activity.status) as any}
                           className="text-xs"
                         >
@@ -240,8 +240,8 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
           </div>
         )}
         <div className="mt-6 pt-4 border-t border-gray-200">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
             disabled={!hasActivities}
           >
@@ -337,8 +337,8 @@ export function AdminDashboard() {
         <Card>
           <CardContent className="p-6 text-center">
             <p className="text-red-600">{error}</p>
-            <Button 
-              onClick={loadDashboardData} 
+            <Button
+              onClick={loadDashboardData}
               className="mt-4"
               variant="outline"
             >
@@ -362,8 +362,8 @@ export function AdminDashboard() {
             <p className="text-amber-600 mb-4">
               {t('dashboardDataUnavailable') || 'Dashboard data is currently unavailable. Please check your connection.'}
             </p>
-            <Button 
-              onClick={loadDashboardData} 
+            <Button
+              onClick={loadDashboardData}
               className="mt-4"
               variant="outline"
             >
@@ -382,7 +382,7 @@ export function AdminDashboard() {
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full transform translate-x-48 -translate-y-48" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full transform -translate-x-32 translate-y-32" />
-        
+
         <div className="relative z-10 max-w-4xl">
           <h1 className="text-2xl font-medium text-white mb-4 font-poppins tracking-tight animate-in slide-in-from-bottom duration-600 delay-200">
             {t('welcomeBackKitmed')}
@@ -484,8 +484,8 @@ export function AdminDashboard() {
                   className="animate-in slide-in-from-bottom duration-300 hover:-translate-y-1 transition-transform"
                   style={{ animationDelay: `${700 + index * 100}ms` }}
                 >
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className={`h-32 w-full flex-col space-y-3 group border-2 transition-all duration-300 rounded-2xl p-6 ${
                       action.color === 'primary' ? 'hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700' :
                       action.color === 'green' ? 'hover:bg-green-50 hover:border-green-300 hover:text-green-700' :
@@ -493,7 +493,7 @@ export function AdminDashboard() {
                       'hover:bg-amber-50 hover:border-amber-300 hover:text-amber-700'
                     }`}
                   >
-                    <div 
+                    <div
                       className={`p-3 rounded-2xl transition-all duration-300 hover:scale-110 hover:rotate-2 ${
                         action.color === 'primary' ? 'bg-primary-50 group-hover:bg-primary-100' :
                         action.color === 'green' ? 'bg-green-50 group-hover:bg-green-100' :
@@ -565,8 +565,8 @@ export function AdminDashboard() {
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-gray-200">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
               >
                 {t('viewDetailedAnalytics')}

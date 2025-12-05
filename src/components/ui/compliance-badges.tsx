@@ -55,12 +55,12 @@ const certifications = [
   }
 ];
 
-export function ComplianceBadges({ 
-  variant = 'grid', 
-  showLabels = true, 
-  className 
+export function ComplianceBadges({
+  variant = 'grid',
+  showLabels = true,
+  className
 }: ComplianceBadgesProps) {
-  
+
   if (variant === 'compact') {
     return (
       <div className={cn("flex items-center space-x-2", className)}>
@@ -76,9 +76,9 @@ export function ComplianceBadges({
     return (
       <div className={cn("flex flex-wrap items-center gap-3", className)}>
         {certifications.map((cert) => (
-          <InlineCertificationBadge 
-            key={cert.id} 
-            certification={cert} 
+          <InlineCertificationBadge
+            key={cert.id}
+            certification={cert}
             showLabels={showLabels}
           />
         ))}
@@ -90,9 +90,9 @@ export function ComplianceBadges({
   return (
     <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-6", className)}>
       {certifications.map((cert) => (
-        <CertificationBadge 
-          key={cert.id} 
-          certification={cert} 
+        <CertificationBadge
+          key={cert.id}
+          certification={cert}
           showLabels={showLabels}
         />
       ))}
@@ -104,7 +104,7 @@ export function ComplianceBadges({
 function CertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
   const isHydrated = useIsHydrated();
-  
+
   // Make ONSSA logo bigger to align with ISO logos
   const logoSize = certification.id === 'onssa' ? 130 : 90;
   const borderRadius = certification.id === 'onssa' ? '' : 'rounded-full';
@@ -152,7 +152,7 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
 function InlineCertificationBadge({ certification, showLabels }: { certification: any; showLabels: boolean }) {
   const [imageError, setImageError] = useState(false);
   const isHydrated = useIsHydrated();
-  
+
   // Make ONSSA logo bigger to align with ISO logos
   const logoSize = certification.id === 'onssa' ? 90 : 60;
   const borderRadius = certification.id === 'onssa' ? '' : 'rounded-full';
@@ -205,14 +205,14 @@ export function CertificationSection({ className }: { className?: string }) {
           Certifications & Normes
         </h3>
       </div>
-      
+
       <p className="text-sm text-gray-600">
-        KITMED est certifié et autorisé par les organismes de réglementation pour 
+        KITMED est certifié et autorisé par les organismes de réglementation pour
         garantir la qualité et la sécurité de nos équipements médicaux.
       </p>
-      
+
       <ComplianceBadges variant="grid" />
-      
+
       <div className="bg-gray-50 rounded-lg p-4">
         <div className="flex items-start space-x-3">
           <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
@@ -221,8 +221,8 @@ export function CertificationSection({ className }: { className?: string }) {
               Conformité Réglementaire Complète
             </p>
             <p className="text-sm text-gray-600">
-              Tous nos produits respectent les standards internationaux de qualité et 
-              de sécurité pour les équipements médicaux, avec autorisation officielle 
+              Tous nos produits respectent les standards internationaux de qualité et
+              de sécurité pour les équipements médicaux, avec autorisation officielle
               du Ministère de la Santé du Maroc.
             </p>
           </div>

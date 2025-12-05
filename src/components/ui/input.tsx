@@ -12,20 +12,20 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ 
-    className, 
-    type, 
+  ({
+    className,
+    type,
     variant = 'default',
     error = false,
     helperText,
     label,
     required = false,
     id,
-    ...props 
+    ...props
   }, ref) => {
     const inputId = getStableId(id, 'input');
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
-    
+
     const inputElement = (
       <input
         type={type}
@@ -54,7 +54,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label 
+          <label
             htmlFor={inputId}
             className={cn(
               "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",

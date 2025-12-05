@@ -11,58 +11,58 @@ export async function GET(request: NextRequest) {
     // Get current date for active banner filtering
     const now = new Date();
 
-    const banners = await prisma.banner.findMany({
+    const banners = await prisma.banners.findMany({
       where: {
         position,
-        isActive: true,
+        is_active: true,
         OR: [
-          { startDate: null },
-          { startDate: { lte: now } },
+          { start_date: null },
+          { start_date: { lte: now } },
         ],
         AND: [
           {
             OR: [
-              { endDate: null },
-              { endDate: { gte: now } },
+              { end_date: null },
+              { end_date: { gte: now } },
             ],
           },
         ],
       },
       include: {
-        translations: {
+        banner_translations: {
           where: {
-            languageCode: locale,
+            language_code: locale,
           },
         },
       },
       orderBy: {
-        sortOrder: 'asc',
+        sort_order: 'asc',
       },
     });
 
     // Transform data to include translation data at the root level
     const transformedBanners = banners.map(banner => {
-      const translation = banner.translations[0];
+      const translation = banner.banner_translations[0];
       return {
         id: banner.id,
         title: translation?.title || banner.title,
         subtitle: translation?.subtitle || banner.subtitle,
         description: translation?.description || banner.description,
-        imageUrl: banner.imageUrl,
-        backgroundUrl: banner.backgroundUrl,
-        ctaText: translation?.ctaText || banner.ctaText,
-        ctaUrl: banner.ctaUrl,
-        ctaStyle: banner.ctaStyle,
+        imageUrl: banner.image_url,
+        backgroundUrl: banner.background_url,
+        ctaText: translation?.cta_text || banner.cta_text,
+        ctaUrl: banner.cta_url,
+        ctaStyle: banner.cta_style,
         position: banner.position,
         layout: banner.layout,
-        textAlign: banner.textAlign,
-        overlayOpacity: banner.overlayOpacity,
-        sortOrder: banner.sortOrder,
-        isActive: banner.isActive,
-        startDate: banner.startDate,
-        endDate: banner.endDate,
-        createdAt: banner.createdAt,
-        updatedAt: banner.updatedAt,
+        textAlign: banner.text_align,
+        overlayOpacity: banner.overlay_opacity,
+        sortOrder: banner.sort_order,
+        isActive: banner.is_active,
+        startDate: banner.start_date,
+        endDate: banner.end_date,
+        createdAt: banner.created_at,
+        updatedAt: banner.updated_at,
       };
     });
 
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Public banners fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
