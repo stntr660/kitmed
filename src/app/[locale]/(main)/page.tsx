@@ -438,7 +438,7 @@ export default function HomePage() {
                   const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
 
                   return (
-                    <Card key={product.id} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
+                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                       <div className="relative h-48 bg-slate-100 overflow-hidden">
                         {primaryImage ? (
                           <img
@@ -454,6 +454,13 @@ export default function HomePage() {
                           </div>
                         )}
 
+                        {/* Featured Badge */}
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-accent-500 text-white border-0 text-xs">
+                            <Star className="h-3 w-3 mr-1" />
+                            {t('featured')}
+                          </Badge>
+                        </div>
                       </div>
 
                       <CardContent className="p-4">
@@ -473,12 +480,11 @@ export default function HomePage() {
                         )}
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="w-full"
+                          className="w-full bg-primary text-white hover:bg-primary-600"
                           asChild
                         >
                           <Link href={`/${locale}/products/${product.slug}`}>
-                            {t('featuredProducts.viewDetails')}
+                            {t('viewDetails')}
                           </Link>
                         </Button>
                       </CardContent>

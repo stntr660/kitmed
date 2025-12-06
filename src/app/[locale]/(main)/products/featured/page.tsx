@@ -146,7 +146,7 @@ export default function FeaturedProductsPage() {
                   const categoryInfo = product.category;
 
                   return (
-                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden ring-2 ring-accent-500/20">
+                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                       {/* Product Image */}
                       <div className="relative h-64 bg-slate-100 overflow-hidden">
                         {primaryImage ? (
@@ -173,18 +173,14 @@ export default function FeaturedProductsPage() {
                           </Button>
                         </div>
 
-                        {/* Featured Badge */}
+                        {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
                           <Badge className="bg-accent-500 text-white border-0 text-xs">
                             <Sparkles className="h-3 w-3 mr-1" />
-                            Vedette
+                            {t('featured')}
                           </Badge>
                           {categoryInfo && (
-                            <Badge
-                              variant="secondary"
-                              className="text-xs border-0"
-                              style={{ backgroundColor: '#3B82F6' + '20', color: '#3B82F6' }}
-                            >
+                            <Badge variant="secondary" className="bg-primary-100 text-primary-600 border-0 text-xs">
                               {categoryInfo.name || 'Category'}
                             </Badge>
                           )}
@@ -197,38 +193,33 @@ export default function FeaturedProductsPage() {
                             <div className="text-sm text-slate-500 font-medium mb-1">
                               {product.manufacturer.name}
                             </div>
-                            <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-accent-600 transition-colors">
+                            <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
                               {getProductName(product)}
                             </CardTitle>
                           </div>
-                          <Award className="h-5 w-5 text-accent-500 flex-shrink-0 ml-2" />
+                          <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
                         </div>
 
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {getProductDescription(product) || 'Description disponible sur demande'}
+                          {getProductDescription(product) || t('featuredProducts.noDescription')}
                         </div>
                       </CardHeader>
 
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xs text-slate-500 font-mono">
-                            Réf: {product.referenceFournisseur}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3 h-3 fill-accent-400 text-accent-400" />
-                            ))}
+                            {t('reference')}: {product.referenceFournisseur}
                           </div>
                         </div>
 
                         <div className="space-y-2">
                           <Button
                             size="sm"
-                            className="w-full bg-accent-500 text-white hover:bg-accent-600"
+                            className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
                             <Link href={`/${locale}/products/${product.slug || product.id}`}>
-                              Voir Détails Premium
+                              {t('viewDetails')}
                             </Link>
                           </Button>
 
