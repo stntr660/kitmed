@@ -310,16 +310,6 @@ export default function ProductsPage() {
                   </p>
                 </div>
 
-                <div className="flex gap-4">
-                  <Button variant="outline" size="sm">
-                    {tProducts('search.sortPrice')}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    {tProducts('search.sortPopularity')}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
