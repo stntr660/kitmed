@@ -201,7 +201,7 @@ export default function FeaturedProductsPage() {
                         </div>
 
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {getProductDescription(product) || t('featuredProducts.noDescription')}
+                          {getProductDescription(product) || tFeatured('noDescription')}
                         </div>
                       </CardHeader>
 
@@ -219,7 +219,7 @@ export default function FeaturedProductsPage() {
                             asChild
                           >
                             <Link href={`/${locale}/products/${product.slug || product.id}`}>
-                              {t('viewDetails')}
+                              {tFeatured('viewDetails')}
                             </Link>
                           </Button>
 
