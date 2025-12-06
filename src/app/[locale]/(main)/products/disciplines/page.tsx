@@ -23,6 +23,7 @@ interface Category {
 
 export default function ProductsByDisciplinePage() {
   const t = useTranslations('common');
+  const tDisciplines = useTranslations('disciplines');
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const locale = useHydrationSafeLocale('fr');
@@ -58,17 +59,16 @@ export default function ProductsByDisciplinePage() {
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              🏥 Spécialités Médicales KITMED
+              🏥 {tDisciplines('medicalSpecialties')}
             </Badge>
 
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Produits par
-              <span className="text-primary-300 block mt-2">Discipline</span>
+              {tDisciplines('title')}
+              <span className="text-primary-300 block mt-2">{tDisciplines('titleSuffix')}</span>
             </h1>
 
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Explorez nos équipements médicaux organisés par spécialité pour trouver
-              les solutions parfaitement adaptées à votre domaine d'expertise.
+              {tDisciplines('description')}
             </p>
           </div>
         </div>
@@ -79,16 +79,19 @@ export default function ProductsByDisciplinePage() {
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <LoadingSpinner size="lg" text="Chargement des spécialités..." />
+              <LoadingSpinner size="lg" text={tDisciplines('loading')} />
             </div>
           ) : categories.length > 0 ? (
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  Disciplines Médicales
+                  {tDisciplines('disciplinesSectionTitle')}
                 </h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  Choisissez votre domaine d'expertise parmi nos {categories.length} discipline{categories.length > 1 ? 's' : ''} médicale{categories.length > 1 ? 's' : ''}
+                  {tDisciplines('disciplinesSectionDescription', { 
+                    count: categories.length, 
+                    plural: categories.length > 1 ? 's' : '' 
+                  })}
                 </p>
               </div>
 
@@ -116,7 +119,7 @@ export default function ProductsByDisciplinePage() {
                         {category.name}
                       </CardTitle>
                       <p className="text-slate-600 leading-relaxed">
-                        {category.description || `Solutions professionnelles pour ${category.name.toLowerCase()}`}
+                        {category.description || tDisciplines('fallbackDescription', { name: category.name.toLowerCase() })}
                       </p>
                     </CardHeader>
 
@@ -126,7 +129,7 @@ export default function ProductsByDisciplinePage() {
                         asChild
                       >
                         <Link href={`/${locale}/products/disciplines/${category.slug}`} className="flex items-center justify-center">
-                          Explorer les Catégories
+                          {tDisciplines('exploreCategories')}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
@@ -141,14 +144,14 @@ export default function ProductsByDisciplinePage() {
                 <Building2 className="h-12 w-12 text-slate-400" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Aucune Spécialité Trouvée
+                {tDisciplines('noSpecialtiesFound')}
               </h3>
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                Aucune spécialité médicale n'est actuellement disponible.
+                {tDisciplines('noSpecialtiesFoundDescription')}
               </p>
               <Button asChild>
                 <Link href={`/${locale}/products`}>
-                  Retour aux Produits
+                  {tDisciplines('backToProducts')}
                 </Link>
               </Button>
             </div>

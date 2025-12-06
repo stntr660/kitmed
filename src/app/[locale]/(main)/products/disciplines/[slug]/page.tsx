@@ -40,6 +40,7 @@ interface PageProps {
 
 export default function DisciplineCategoriesPage({ params }: PageProps) {
   const t = useTranslations('common');
+  const tDisciplines = useTranslations('disciplinesDetail');
   const [discipline, setDiscipline] = useState<Discipline | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,11 +61,11 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
         const data = await response.json();
         setDiscipline(data.data);
       } else {
-        setError('Discipline non trouvée');
+        setError(tDisciplines('notFound'));
       }
     } catch (error) {
       console.error('Failed to load discipline:', error);
-      setError('Erreur lors du chargement');
+      setError(t('loading'));
     } finally {
       setLoading(false);
     }
@@ -73,7 +74,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <LoadingSpinner size="lg" text="Chargement de la discipline..." />
+        <LoadingSpinner size="lg" text={tDisciplines('loading')} />
       </div>
     );
   }
@@ -88,15 +89,15 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               <Building2 className="h-12 w-12 text-slate-400" />
             </div>
             <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              {error || 'Discipline non trouvée'}
+              {error || tDisciplines('notFound')}
             </h3>
             <p className="text-slate-600 mb-8 max-w-md mx-auto">
-              Cette discipline médicale n'existe pas ou n'est pas disponible.
+              {tDisciplines('notFoundDescription')}
             </p>
             <Button asChild>
               <Link href={`/${locale}/products/disciplines`}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Retour aux Disciplines
+                {tDisciplines('backToDisciplines')}
               </Link>
             </Button>
           </div>
@@ -124,7 +125,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10" asChild>
                 <Link href={`/${locale}/products/disciplines`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Disciplines Médicales
+                  {tDisciplines('medicalDisciplines')}
                 </Link>
               </Button>
             </div>
@@ -134,19 +135,21 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             </Badge>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              Équipements
+              {tDisciplines('equipment')}
               <span className="text-primary-100 block mt-2">{discipline.name}</span>
             </h1>
 
             <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
               {discipline.description ||
-               `Découvrez notre gamme complète d'équipements pour ${discipline.name.toLowerCase()},
-                sélectionnés pour leur qualité et leur performance exceptionnelles.`}
+               tDisciplines('fallbackDescription', { disciplineName: discipline.name.toLowerCase() })}
             </p>
 
             {discipline.children && discipline.children.length > 0 && (
               <div className="text-primary-100">
-                {discipline.children.length} catégorie{discipline.children.length > 1 ? 's' : ''} disponible{discipline.children.length > 1 ? 's' : ''}
+                {tDisciplines('categoriesAvailable', { 
+                  count: discipline.children.length,
+                  plural: discipline.children.length > 1 ? tDisciplines('categoryPlural') : tDisciplines('categorySingular')
+                })}
               </div>
             )}
           </div>
@@ -160,10 +163,10 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  Catégories d'Équipements
+                  {tDisciplines('equipmentCategoriesTitle')}
                 </h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  Choisissez la catégorie qui correspond à vos besoins spécifiques en {discipline.name.toLowerCase()}
+                  {tDisciplines('equipmentCategoriesDescription', { disciplineName: discipline.name.toLowerCase() })}
                 </p>
               </div>
 
@@ -188,13 +191,13 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
 
                       {/* Product Count Badge */}
                       <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                        {category.productCount || 0} produits
+                        {tDisciplines('productsBadge', { count: category.productCount || 0 })}
                       </div>
 
                       {/* Category Type Badge */}
                       <div className="absolute top-4 left-4">
                         <Badge variant="secondary" className="bg-white/90 text-primary-700 border-0 text-xs">
-                          Équipement
+                          {tDisciplines('equipmentBadge')}
                         </Badge>
                       </div>
                     </div>
@@ -205,14 +208,17 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                       </CardTitle>
                       <p className="text-slate-600 leading-relaxed line-clamp-3">
                         {category.description ||
-                         `Solutions professionnelles spécialisées pour ${category.name.toLowerCase()} en ${discipline.name.toLowerCase()}.`}
+                         tDisciplines('categoryFallback', { 
+                           categoryName: category.name.toLowerCase(),
+                           disciplineName: discipline.name.toLowerCase()
+                         })}
                       </p>
                     </CardHeader>
 
                     <CardContent className="p-6 pt-0">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-sm text-slate-500">
-                          <span>Produits disponibles</span>
+                          <span>{tDisciplines('productsAvailable')}</span>
                           <span className="font-semibold">{category.productCount || 0}</span>
                         </div>
 
@@ -220,8 +226,8 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                           className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
                           asChild
                         >
-                          <Link href={`/${locale}/products?category=${category.id}`} className="flex items-center justify-center">
-                            Voir les Produits
+                          <Link href={`/${locale}/products/categories/${category.slug}`} className="flex items-center justify-center">
+                            {category.children && category.children.length > 0 ? tDisciplines('exploreCategories') : tDisciplines('viewProducts')}
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>
@@ -237,21 +243,21 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                 <Building2 className="h-12 w-12 text-slate-400" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Aucune Catégorie Disponible
+                {tDisciplines('noCategoriesTitle')}
               </h3>
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                Cette discipline ne contient pas encore de catégories d'équipements.
+                {tDisciplines('noCategoriesDescription')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button variant="outline" asChild>
                   <Link href={`/${locale}/products/disciplines`}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Retour aux Disciplines
+                    {tDisciplines('backToDisciplines')}
                   </Link>
                 </Button>
                 <Button asChild>
                   <Link href={`/${locale}/products`}>
-                    Voir Tous les Produits
+                    {tDisciplines('viewAllProducts')}
                   </Link>
                 </Button>
               </div>
