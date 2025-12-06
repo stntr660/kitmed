@@ -51,7 +51,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // Manufacturer filter
     if (manufacturer) {
-      where.constructeur = { contains: manufacturer };
+      where.partner_id = manufacturer;
     }
 
     // Partner filter
