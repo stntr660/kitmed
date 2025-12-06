@@ -6,26 +6,45 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowLeft, Building2, ExternalLink, Package, Star, FileText } from 'lucide-react';
+import { ArrowLeft, Building2, ExternalLink, Package, Star, FileText, Heart, Eye, Award, Sparkles, Download, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
+import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
   slug: string;
   name: string;
+  description: string;
   shortDescription: string;
   referenceFournisseur: string;
+  constructeur: string;
+  isFeatured: boolean;
   pdfBrochureUrl?: string | null;
-  media: {
+  media: Array<{
+    id: string;
+    type: string;
     url: string;
-    altText: string;
-  }[];
-  category: {
+    isPrimary: boolean;
+    altText: string | null;
+  }>;
+  manufacturer: {
     name: string;
   };
+  category?: {
+    id: string;
+    name: string;
+    slug: string;
+    imageUrl: string | null;
+  };
+  translations: Array<{
+    languageCode: string;
+    nom: string;
+    description: string;
+    ficheTechnique: string | null;
+  }>;
 }
 
 interface Partner {
@@ -231,81 +250,137 @@ export default function PartnerProductsPage({ params }: PageProps) {
                 </p>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {products.map((product) => (
-                  <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    <div className="relative h-56 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-                      {product.media.length > 0 ? (
-                        <Image
-                          src={product.media[0].url}
-                          alt={product.media[0].altText}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                          <Package className="h-16 w-16 text-slate-400" />
-                        </div>
-                      )}
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {products.map((product) => {
+                  const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
+                  const productName = product.name || `Product ${product.referenceFournisseur}`;
+                  const manufacturerName = product.manufacturer?.name || product.constructeur || partner.name;
 
-                      {/* Reference Badge */}
-                      <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                        {product.referenceFournisseur}
+                  return (
+                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                      {/* Product Image */}
+                      <div className="relative h-64 bg-slate-100 overflow-hidden">
+                        {primaryImage ? (
+                          <Image
+                            src={primaryImage.url}
+                            alt={primaryImage.altText || productName}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                            <Building2 className="h-16 w-16 text-slate-400" />
+                          </div>
+                        )}
+
+                        {/* Overlay Controls */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
+                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
+                            <Heart className="h-4 w-4" />
+                          </Button>
+                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
+                            <Eye className="h-4 w-4" />
+                          </Button>
+                        </div>
+
+                        {/* Status Badges */}
+                        <div className="absolute top-4 left-4 space-y-2">
+                          {product.isFeatured && (
+                            <Badge className="bg-accent-500 text-white border-0 text-xs">
+                              <Sparkles className="h-3 w-3 mr-1" />
+                              {t('featured')}
+                            </Badge>
+                          )}
+                          {product.category && (
+                            <Badge variant="secondary" className="bg-primary-100 text-primary-600 border-0 text-xs">
+                              {product.category.name}
+                            </Badge>
+                          )}
+                        </div>
                       </div>
 
-                      {/* Category Badge */}
-                      {product.category && (
-                        <div className="absolute top-4 left-4">
-                          <Badge variant="secondary" className="bg-white/90 text-primary-700 border-0 text-xs">
-                            {product.category.name}
-                          </Badge>
+                      <CardHeader className="p-6 pb-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex-1">
+                            <div className="text-sm text-slate-500 font-medium mb-1">
+                              {manufacturerName}
+                            </div>
+                            <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
+                              {productName}
+                            </CardTitle>
+                          </div>
+                          {product.isFeatured && (
+                            <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
+                          )}
                         </div>
-                      )}
-                    </div>
 
-                    <CardHeader className="p-6 pb-4">
-                      <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-2">
-                        {product.name}
-                      </CardTitle>
-                      <p className="text-slate-600 leading-relaxed line-clamp-3">
-                        {product.shortDescription || tPartner('productFallbackDescription', { partnerName: partner.name })}
-                      </p>
-                    </CardHeader>
+                        <div className="text-sm text-slate-600 line-clamp-2">
+                          {product.description || product.shortDescription || tPartner('productFallbackDescription')}
+                        </div>
+                      </CardHeader>
 
-                    <CardContent className="p-6 pt-0">
-                      <div className="space-y-3">
-                        <Button
-                          className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
-                          asChild
-                        >
-                          <Link href={`/${locale}/products/${product.slug}`}>
-                            {tPartner('viewDetails')}
-                          </Link>
-                        </Button>
+                      <CardContent className="p-6 pt-0 mt-auto">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="text-xs text-slate-500 font-mono">
+                            {t('reference')}: {product.referenceFournisseur}
+                          </div>
+                        </div>
 
-                        {/* PDF Brochure Button */}
-                        {product.pdfBrochureUrl && (
+                        <div className="space-y-2">
                           <Button
-                            variant="outline"
                             size="sm"
-                            className="w-full border-primary-600 text-primary-600 hover:bg-primary-50"
+                            className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
-                            <a
-                              href={product.pdfBrochureUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center justify-center"
-                            >
-                              <FileText className="mr-2 h-4 w-4" />
-                              PDF Brochure
-                            </a>
+                            <Link href={`/${locale}/products/${product.slug || product.id}`}>
+                              {t('viewDetails')}
+                            </Link>
                           </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+
+                          <div className="flex gap-2">
+                            <QuoteRequestForm
+                              product={{
+                                id: product.id,
+                                referenceFournisseur: product.referenceFournisseur,
+                                constructeur: manufacturerName,
+                                translations: product.translations?.length ? product.translations : [{
+                                  languageCode: 'fr',
+                                  nom: productName,
+                                  description: product.description || product.shortDescription || '',
+                                  ficheTechnique: null
+                                }]
+                              }}
+                              trigger={
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="flex-1"
+                                >
+                                  <MessageSquare className="h-4 w-4 mr-1" />
+                                  {t('quote')}
+                                </Button>
+                              }
+                            />
+
+                            {product.pdfBrochureUrl && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="px-3"
+                                asChild
+                              >
+                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
+                                  <Download className="h-4 w-4" />
+                                </a>
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
 
               {/* Pagination */}

@@ -68,7 +68,11 @@
     "manufacturer": "Constructeur",
     "quantity": "Quantité",
     "productImage": "Image du produit",
-    "name": "Nom"
+    "name": "Nom",
+    "viewDetails": "Voir Détails",
+    "quote": "Devis",
+    "partners": "Partenaires",
+    "featured": "En Vedette"
   },
   "navigation": {
     "products": "Produits",
@@ -2120,7 +2124,15 @@
       "emptyCategory": "Catégorie en cours de développement",
       "emptyCategoryDescription": "Cette catégorie ne contient pas encore de produits ou sous-catégories.",
       "discipline": "Discipline",
-      "category": "Catégorie"
+      "category": "Catégorie",
+      "featured": "En Vedette",
+      "reference": "Référence",
+      "viewProduct": "Voir le Produit",
+      "downloadBrochure": "Télécharger la Brochure",
+      "sortByPrice": "Trier par Prix",
+      "sortByPopularity": "Trier par Popularité",
+      "quote": "Devis",
+      "productFallback": "Produit médical de qualité professionnelle"
     }
   },
   "disciplines": {

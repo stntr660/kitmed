@@ -63,7 +63,11 @@
     "manufacturer": "Manufacturer",
     "quantity": "Quantity",
     "productImage": "Product image",
-    "name": "Name"
+    "name": "Name",
+    "viewDetails": "View Details",
+    "quote": "Quote",
+    "partners": "Partners",
+    "featured": "Featured"
   },
   "navigation": {
     "products": "Products",

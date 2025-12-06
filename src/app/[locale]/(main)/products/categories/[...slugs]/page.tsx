@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowRight, ArrowLeft, Building2, ChevronRight, Package } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Building2, ChevronRight, Package, Eye, Heart, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
-// import { ProductCard } from '@/components/product/product-card';
+import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Category {
   id: string;
@@ -292,22 +292,149 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
       {hasProducts && (
         <section className="py-16 lg:py-24 bg-white">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                {tCategories('availableProducts')}
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                {tCategories('availableProductsCount', { count: products.length })}
-              </p>
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-2">
+                  {tCategories('availableProducts')}
+                </h2>
+                <p className="text-slate-600">
+                  {tCategories('availableProductsCount', { count: products.length, plural: products.length > 1 ? 's' : '' })}
+                </p>
+              </div>
+
+              <div className="flex gap-4">
+                <Button variant="outline" size="sm">
+                  {tCategories('sortByPrice')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm">
+                  {tCategories('sortByPopularity')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {products.map((product) => (
-                <div key={product.id} className="border rounded-lg p-4">
-                  <h3 className="font-semibold">{product.translations[0]?.nom}</h3>
-                  <p className="text-sm text-gray-600">{product.referenceFournisseur}</p>
-                </div>
-              ))}
+              {products.map((product) => {
+                const productTranslation = product.translations[0];
+                const productName = productTranslation?.nom || `Product ${product.referenceFournisseur}`;
+                const primaryImage = product.primaryImage;
+
+                return (
+                  <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                    {/* Product Image */}
+                    <div className="relative h-64 bg-slate-100 overflow-hidden">
+                      {primaryImage ? (
+                        <Image
+                          src={primaryImage}
+                          alt={productName}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                          <Building2 className="h-16 w-16 text-slate-400" />
+                        </div>
+                      )}
+
+                      {/* Overlay Controls */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
+                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
+                          <Heart className="h-4 w-4" />
+                        </Button>
+                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                      </div>
+
+                      {/* Status Badges */}
+                      <div className="absolute top-4 left-4 space-y-2">
+                        {product.isFeatured && (
+                          <Badge className="bg-accent-500 text-white border-0 text-xs">
+                            <Sparkles className="h-3 w-3 mr-1" />
+                            {tCategories('featured')}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+
+                    <CardHeader className="p-6 pb-4">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1">
+                          <div className="text-sm text-slate-500 font-medium mb-1">
+                            {product.constructeur}
+                          </div>
+                          <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
+                            {productName}
+                          </CardTitle>
+                        </div>
+                        {product.isFeatured && (
+                          <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
+                        )}
+                      </div>
+
+                      <div className="text-sm text-slate-600 line-clamp-2">
+                        {productTranslation?.description || tCategories('productFallback')}
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="p-6 pt-0 mt-auto">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-xs text-slate-500 font-mono">
+                          {tCategories('reference')}: {product.referenceFournisseur}
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Button
+                          size="sm"
+                          className="w-full bg-primary text-white hover:bg-primary-600"
+                          asChild
+                        >
+                          <Link href={`/${locale}/products/${product.slug || product.id}`}>
+                            {tCategories('viewProduct')}
+                          </Link>
+                        </Button>
+
+                        <div className="flex gap-2">
+                          <QuoteRequestForm
+                            product={{
+                              id: product.id,
+                              referenceFournisseur: product.referenceFournisseur,
+                              constructeur: product.constructeur,
+                              translations: product.translations
+                            }}
+                            trigger={
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="flex-1"
+                              >
+                                <MessageSquare className="h-4 w-4 mr-1" />
+                                {tCategories('quote')}
+                              </Button>
+                            }
+                          />
+
+                          {product.pdfBrochureUrl && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="px-3"
+                              asChild
+                            >
+                              <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
+                                <Download className="h-4 w-4" />
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
