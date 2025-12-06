@@ -16,6 +16,7 @@ interface Manufacturer {
   slug: string;
   logoUrl: string | null;
   websiteUrl: string | null;
+  description?: string;
   productCount?: number;
 }
 
@@ -27,7 +28,7 @@ export default function ProductsByManufacturerPage() {
 
   useEffect(() => {
     loadManufacturers();
-  }, []);
+  }, [locale]);
 
   const loadManufacturers = async () => {
     try {
@@ -42,10 +43,11 @@ export default function ProductsByManufacturerPage() {
           // Transform partners to manufacturers with proper logo data
           const manufacturerList = partnersData.data.map((partner: any) => ({
             id: partner.id,
-            name: partner.name?.fr || partner.name?.en || partner.name || 'Unknown',
+            name: partner.name?.[locale] || partner.name?.fr || partner.name?.en || partner.name || 'Unknown',
             slug: partner.slug,
             logoUrl: partner.logoUrl,
             websiteUrl: partner.websiteUrl,
+            description: partner.description?.[locale] || partner.description?.fr || partner.description?.en || '',
             productCount: 0 // We'll update this if needed
           }));
 
@@ -109,8 +111,8 @@ export default function ProductsByManufacturerPage() {
 
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {manufacturers.map((manufacturer) => (
-                  <Card key={manufacturer.slug} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    <div className="relative h-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
+                  <Card key={manufacturer.slug} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden flex flex-col">
+                    <div className="relative h-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden flex-shrink-0">
                       <div className="w-full h-full bg-white flex items-center justify-center p-4">
                         {manufacturer.logoUrl ? (
                           <img
@@ -128,32 +130,37 @@ export default function ProductsByManufacturerPage() {
                       <CardTitle className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                         {manufacturer.name}
                       </CardTitle>
+                      {manufacturer.description && (
+                        <p className="text-sm text-slate-600 mt-2 line-clamp-3">
+                          {manufacturer.description}
+                        </p>
+                      )}
                     </CardHeader>
 
-                    <CardContent className="p-4 pt-0">
-                      <div className="mb-4">
+                    <CardContent className="p-4 pt-0 mt-auto">
+                      <div className="space-y-3">
                         {manufacturer.websiteUrl && (
                           <a
                             href={manufacturer.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-primary hover:underline"
+                            className="text-xs text-primary hover:underline inline-flex items-center"
                           >
                             {t('manufacturers.websiteLink')}
                           </a>
                         )}
-                      </div>
 
-                      <Button
-                        size="sm"
-                        className="w-full bg-primary text-white hover:bg-primary-700"
-                        asChild
-                      >
-                        <Link href={`/${locale}/partners/${manufacturer.slug}`} className="flex items-center justify-center">
-                          {t('manufacturers.viewDetails')}
-                          <ArrowRight className="ml-2 h-3 w-3" />
-                        </Link>
-                      </Button>
+                        <Button
+                          size="sm"
+                          className="w-full bg-primary text-white hover:bg-primary-700"
+                          asChild
+                        >
+                          <Link href={`/${locale}/partners/${manufacturer.slug}`} className="flex items-center justify-center">
+                            {t('manufacturers.viewDetails')}
+                            <ArrowRight className="ml-2 h-3 w-3" />
+                          </Link>
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
