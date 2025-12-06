@@ -59,7 +59,7 @@ interface Product {
 
 export default function FeaturedProductsPage() {
   const t = useTranslations('common');
-  const tFeatured = useTranslations('featuredProducts');
+  const tFeatured = useTranslations('home.featuredProducts');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const locale = useHydrationSafeLocale('fr');
