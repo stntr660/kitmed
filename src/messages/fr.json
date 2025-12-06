@@ -1784,12 +1784,18 @@
     "featuredProducts": {
       "title": "Sélection Premium",
       "subtitle": "Produits en Vedette",
-      "description": "Découvrez notre sélection d'équipements d'exception choisis pour leur innovation",
+      "description": "Découvrez notre sélection exclusive d'équipements médicaux d'exception, choisis pour leur innovation, leur qualité et leur performance remarquable.",
       "badge": "⭐ Vedette",
       "viewDetails": "Voir Détails",
       "viewAll": "Voir Tous les Produits en Vedette",
       "noDescription": "Description disponible sur demande",
-      "noProducts": "Aucun produit en vedette pour le moment"
+      "noProducts": "Aucun produit en vedette pour le moment",
+      "loading": "Chargement des produits vedettes...",
+      "count": "{count} produit{plural} d'exception",
+      "sectionTitle": "Notre Sélection Premium",
+      "noFeaturedTitle": "Aucun Produit en Vedette",
+      "noFeaturedDescription": "Aucun produit n'est actuellement sélectionné comme produit vedette.",
+      "backToProducts": "Voir Tous les Produits"
     },
     "disciplines": {
       "title": "Spécialités Médicales",

@@ -1705,12 +1705,18 @@
     "featuredProducts": {
       "title": "Premium Selection",
       "subtitle": "Featured Products",
-      "description": "Discover our selection of exceptional equipment chosen for their innovation",
+      "description": "Discover our selection of exceptional equipment chosen for their innovation, quality, and remarkable performance.",
       "badge": "⭐ Featured",
       "viewDetails": "View Details",
       "viewAll": "View All Featured Products",
       "noDescription": "Description available on request",
-      "noProducts": "No featured products at the moment"
+      "noProducts": "No featured products at the moment",
+      "loading": "Loading featured products...",
+      "count": "{count} exceptional product{plural}",
+      "sectionTitle": "Our Premium Selection",
+      "noFeaturedTitle": "No Featured Products",
+      "noFeaturedDescription": "No products are currently selected as featured.",
+      "backToProducts": "View All Products"
     },
     "disciplines": {
       "title": "Medical Specialties",

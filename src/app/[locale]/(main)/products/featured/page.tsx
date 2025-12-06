@@ -59,13 +59,14 @@ interface Product {
 
 export default function FeaturedProductsPage() {
   const t = useTranslations('common');
+  const tFeatured = useTranslations('featuredProducts');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const locale = useHydrationSafeLocale('fr');
 
   useEffect(() => {
     loadFeaturedProducts();
-  }, []);
+  }, [locale]);
 
   const loadFeaturedProducts = async () => {
     try {
@@ -106,17 +107,16 @@ export default function FeaturedProductsPage() {
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-accent-500 text-white border-0 shadow-xl">
-              ⭐ Sélection Premium KITMED
+              {tFeatured('badge')} KITMED
             </Badge>
 
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Produits
-              <span className="text-accent-300 block mt-2">en Vedette</span>
+              {tFeatured('title')}
+              <span className="text-accent-300 block mt-2">{tFeatured('subtitle')}</span>
             </h1>
 
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Découvrez notre sélection exclusive d'équipements médicaux d'exception,
-              choisis pour leur innovation, leur qualité et leur performance remarquable.
+              {tFeatured('description')}
             </p>
           </div>
         </div>
@@ -127,16 +127,16 @@ export default function FeaturedProductsPage() {
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <LoadingSpinner size="lg" text="Chargement des produits vedettes..." />
+              <LoadingSpinner size="lg" text={tFeatured('loading')} />
             </div>
           ) : products.length > 0 ? (
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  Notre Sélection Premium
+                  {tFeatured('title')}
                 </h2>
                 <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {products.length} produit{products.length > 1 ? 's' : ''} d'exception sélectionné{products.length > 1 ? 's' : ''} pour vous
+                  {tFeatured('count', { count: products.length, plural: products.length > 1 ? 's' : '' })}
                 </p>
               </div>
 
@@ -243,7 +243,7 @@ export default function FeaturedProductsPage() {
                                   className="flex-1"
                                 >
                                   <MessageSquare className="h-4 w-4 mr-1" />
-                                  Devis
+                                  {t('quote')}
                                 </Button>
                               }
                             />
@@ -274,14 +274,14 @@ export default function FeaturedProductsPage() {
                 <Sparkles className="h-12 w-12 text-accent-500" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Aucun Produit en Vedette
+                {tFeatured('noFeaturedTitle')}
               </h3>
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                Aucun produit n'est actuellement sélectionné comme produit vedette.
+                {tFeatured('noFeaturedDescription')}
               </p>
               <Button asChild>
                 <Link href={`/${locale}/products`}>
-                  Voir Tous les Produits
+                  {tFeatured('backToProducts')}
                 </Link>
               </Button>
             </div>
