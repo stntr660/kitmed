@@ -549,7 +549,7 @@ export const activityDb = {
       take: limit,
       orderBy: { created_at: 'desc' },
       include: {
-        user: {
+        users: {
           select: {
             id: true,
             first_name: true,
@@ -569,7 +569,7 @@ export const activityDb = {
       },
       orderBy: { created_at: 'desc' },
       include: {
-        user: {
+        users: {
           select: {
             id: true,
             first_name: true,

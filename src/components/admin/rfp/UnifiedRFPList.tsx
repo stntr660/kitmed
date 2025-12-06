@@ -55,7 +55,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
     status: [],
     page: 1,
     pageSize: 10,
-    sortBy: 'createdAt',
+    sortBy: 'created_at',
     sortOrder: 'desc',
     ...initialFilters,
   });
@@ -111,7 +111,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       const params = new URLSearchParams({
         page: (filters.page || 1).toString(),
         pageSize: (filters.pageSize || 10).toString(),
-        sortBy: filters.sortBy || 'createdAt',
+        sortBy: filters.sortBy || 'created_at',
         sortOrder: filters.sortOrder || 'desc',
       });
 
@@ -141,23 +141,23 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       // Transform data to match expected format
       const transformedItems = result.data.items.map((item: any) => ({
         id: item.id,
-        referenceNumber: item.referenceNumber,
-        customerName: item.customerName,
-        customerEmail: item.customerEmail,
-        customerPhone: item.customerPhone,
-        companyName: item.companyName,
-        companyAddress: item.companyAddress,
-        contactPerson: item.contactPerson,
+        referenceNumber: item.reference_number,
+        customerName: item.customer_name,
+        customerEmail: item.customer_email,
+        customerPhone: item.customer_phone,
+        companyName: item.company_name,
+        companyAddress: item.company_address,
+        contactPerson: item.contact_person,
         message: item.message,
         status: item.status,
-        urgencyLevel: item.urgencyLevel,
-        preferredContactMethod: item.preferredContactMethod,
-        createdAt: item.createdAt,
-        updatedAt: item.updatedAt,
-        itemCount: item.items?.length || 0,
-        totalQuantity: item.items?.reduce((sum: number, item: any) => sum + item.quantity, 0) || 0,
-        estimatedValue: item.quoteAmount,
-        items: item.items || [],
+        urgencyLevel: item.urgency_level,
+        preferredContactMethod: item.preferred_contact_method,
+        createdAt: item.created_at,
+        updatedAt: item.updated_at,
+        itemCount: item.rfp_items?.length || 0,
+        totalQuantity: item.rfp_items?.reduce((sum: number, rfpItem: any) => sum + rfpItem.quantity, 0) || 0,
+        estimatedValue: item.quote_amount,
+        items: item.rfp_items || [],
       }));
 
       setRFPRequests({
@@ -490,7 +490,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                   <tr>
                     <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                      onClick={() => handleSort('requestNumber')}
+                      onClick={() => handleSort('reference_number')}
                     >
                       {t('admin.rfpRequests.table.requestNumber')}
                     </th>
@@ -514,7 +514,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
                     </th>
                     <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-                      onClick={() => handleSort('createdAt')}
+                      onClick={() => handleSort('created_at')}
                     >
                       {t('admin.rfpRequests.table.created')}
                     </th>

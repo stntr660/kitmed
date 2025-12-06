@@ -198,18 +198,18 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
     try {
       const rfpData = {
-        customerName: formData.customerName,
-        customerEmail: formData.customerEmail,
-        customerPhone: formData.customerPhone || null,
-        companyName: formData.companyName || null,
-        companyAddress: formData.companyAddress || null,
-        contactPerson: formData.contactPerson || null,
+        customer_name: formData.customerName,
+        customer_email: formData.customerEmail,
+        customer_phone: formData.customerPhone || null,
+        company_name: formData.companyName || null,
+        company_address: formData.companyAddress || null,
+        contact_person: formData.contactPerson || null,
         message: formData.message || null,
-        preferredContactMethod: formData.preferredContactMethod,
+        preferred_contact_method: formData.preferredContactMethod,
         items: quoteItems.map(item => ({
-          productId: item.productId,
+          product_id: item.productId,
           quantity: item.quantity,
-          specialRequirements: item.specialRequirements || null
+          special_requirements: item.specialRequirements || null
         }))
       };
 

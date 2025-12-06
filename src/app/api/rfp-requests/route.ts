@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // Validation schemas
 const createRFPSchema = z.object({
@@ -26,7 +27,7 @@ const querySchema = z.object({
   status: z.string().optional(),
   urgency: z.string().optional(),
   search: z.string().optional(),
-  sortBy: z.string().optional().default('createdAt'),
+  sortBy: z.string().optional().default('created_at'),
   sortOrder: z.enum(['asc', 'desc']).optional().default('desc'),
 });
 
@@ -50,7 +51,7 @@ export async function GET(request: NextRequest) {
       status: searchParams.get('status') || undefined,
       urgency: searchParams.get('urgency') || undefined,
       search: searchParams.get('search') || undefined,
-      sortBy: searchParams.get('sortBy') || 'createdAt',
+      sortBy: searchParams.get('sortBy') || 'created_at',
       sortOrder: searchParams.get('sortOrder') || 'desc',
     });
 
@@ -90,14 +91,14 @@ export async function GET(request: NextRequest) {
         [query.sortBy]: query.sortOrder,
       },
       include: {
-        items: {
+        rfp_items: {
           include: {
-            product: {
+            products: {
               include: {
-                translations: true,
-                media: {
+                product_translations: true,
+                product_media: {
                   where: {
-                    isPrimary: true,
+                    is_primary: true,
                   },
                   take: 1,
                 },
@@ -177,8 +178,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Create RFP request with items
+    const now = new Date();
     const rfpRequest = await prisma.rfp_requests.create({
       data: {
+        id: randomUUID(),
         reference_number,
         customer_name: validatedData.customer_name,
         customer_email: validatedData.customer_email,
@@ -190,8 +193,11 @@ export async function POST(request: NextRequest) {
         urgency_level: validatedData.urgency_level,
         preferred_contact_method: validatedData.preferred_contact_method,
         status: 'pending',
-        items: {
+        created_at: now,
+        updated_at: now,
+        rfp_items: {
           create: validatedData.items.map(item => ({
+            id: randomUUID(),
             product_id: item.product_id,
             quantity: item.quantity,
             special_requirements: item.special_requirements,
@@ -199,11 +205,11 @@ export async function POST(request: NextRequest) {
         },
       },
       include: {
-        items: {
+        rfp_items: {
           include: {
-            product: {
+            products: {
               include: {
-                translations: true,
+                product_translations: true,
               },
             },
           },

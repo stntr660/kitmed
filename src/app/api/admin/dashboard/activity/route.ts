@@ -91,7 +91,7 @@ async function getDashboardActivity(request: NextRequest) {
         description,
         time: formatDistanceToNow(log.created_at, { addSuffix: true }),
         status: getStatusFromAction(log.action),
-        user: log.user ? `${log.user.first_name} ${log.user.last_name}` : 'System'
+        user: log.users ? `${log.users.first_name} ${log.users.last_name}` : 'System'
       };
     });
 
