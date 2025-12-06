@@ -2064,6 +2064,8 @@
       "placeholder": "Search by name, reference or brand...",
       "loading": "Loading products...",
       "allCategories": "All",
+      "allManufacturers": "All Manufacturers", 
+      "onlyFeatured": "Featured Products Only",
       "sortPrice": "Price",
       "sortPopularity": "Popularity"
     },

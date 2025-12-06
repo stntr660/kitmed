@@ -77,11 +77,16 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedManufacturer, setSelectedManufacturer] = useState('');
+  const [onlyFeatured, setOnlyFeatured] = useState(false);
+  const [manufacturers, setManufacturers] = useState<any[]>([]);
 
   useEffect(() => {
     loadProducts();
     loadCategories();
-  }, [searchQuery, selectedCategory, locale]);
+    loadManufacturers();
+  }, [searchQuery, selectedCategory, selectedManufacturer, onlyFeatured, locale]);
 
   const loadCategories = async () => {
     try {
@@ -95,6 +100,18 @@ export default function ProductsPage() {
     }
   };
 
+  const loadManufacturers = async () => {
+    try {
+      const response = await fetch('/api/partners?status=active');
+      if (response.ok) {
+        const data = await response.json();
+        setManufacturers(data.data || []);
+      }
+    } catch (error) {
+      console.error('Failed to load manufacturers:', error);
+    }
+  };
+
   const loadProducts = async () => {
     try {
       setLoading(true);
@@ -104,6 +121,8 @@ export default function ProductsPage() {
 
       if (searchQuery) params.append('query', searchQuery);
       if (selectedCategory) params.append('category', selectedCategory);
+      if (selectedManufacturer) params.append('manufacturer', selectedManufacturer);
+      if (onlyFeatured) params.append('featured', 'true');
 
       const response = await fetch(`/api/products?${params}&locale=${locale}`);
       if (response.ok) {
@@ -194,9 +213,78 @@ export default function ProductsPage() {
                     {category.name}
                   </Button>
                 ))}
-                <Button variant="outline" className="h-14 px-4">
-                  <Filter className="h-4 w-4" />
-                </Button>
+                <div className="relative">
+                  <Button 
+                    variant="outline" 
+                    className="h-14 px-4"
+                    onClick={() => setShowFilters(!showFilters)}
+                  >
+                    <Filter className="h-4 w-4" />
+                  </Button>
+                  
+                  {showFilters && (
+                    <div className="absolute right-0 top-16 bg-white border border-gray-200 rounded-lg shadow-lg p-6 w-80 z-50">
+                      <h3 className="font-semibold text-gray-900 mb-4">{t('filter')}</h3>
+                      
+                      {/* Manufacturer Filter */}
+                      <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {t('manufacturer')}
+                        </label>
+                        <select 
+                          value={selectedManufacturer}
+                          onChange={(e) => setSelectedManufacturer(e.target.value)}
+                          className="w-full border border-gray-300 rounded-md px-3 py-2"
+                        >
+                          <option value="">{tProducts('search.allManufacturers')}</option>
+                          {manufacturers.map((manufacturer) => (
+                            <option key={manufacturer.id} value={manufacturer.id}>
+                              {typeof manufacturer.name === 'string' 
+                                ? manufacturer.name 
+                                : manufacturer.name?.[locale] || manufacturer.name?.fr || manufacturer.name?.en || 'Unknown Manufacturer'
+                              }
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      {/* Featured Only */}
+                      <div className="mb-4">
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={onlyFeatured}
+                            onChange={(e) => setOnlyFeatured(e.target.checked)}
+                            className="rounded border-gray-300 text-primary-600 mr-2"
+                          />
+                          <span className="text-sm text-gray-700">{tProducts('search.onlyFeatured')}</span>
+                        </label>
+                      </div>
+                      
+                      {/* Clear Filters */}
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            setSelectedManufacturer('');
+                            setOnlyFeatured(false);
+                          }}
+                          className="flex-1"
+                        >
+                          {t('clear')}
+                        </Button>
+                        <Button 
+                          size="sm"
+                          onClick={() => setShowFilters(false)}
+                          className="flex-1"
+                        >
+                          {t('close')}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

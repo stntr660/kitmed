@@ -2189,6 +2189,8 @@
       "placeholder": "Rechercher par nom, référence ou marque...",
       "loading": "Chargement des produits...",
       "allCategories": "Toutes",
+      "allManufacturers": "Tous les fabricants",
+      "onlyFeatured": "Produits en vedette uniquement",
       "sortPrice": "Prix",
       "sortPopularity": "Popularité"
     },
