@@ -22,6 +22,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { AdminDashboardStats } from '@/types/admin';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import { getAdminToken } from '@/lib/auth-utils';
+import { useAdminAuth } from '@/hooks/useAdminAuth';
 
 interface StatCardProps {
   title: string;
@@ -31,6 +32,7 @@ interface StatCardProps {
   icon: React.ElementType;
   href?: string;
   color?: 'blue' | 'green' | 'yellow' | 'red';
+  permission?: string;
 }
 
 function StatCard({
@@ -240,13 +242,15 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
           </div>
         )}
         <div className="mt-6 pt-4 border-t border-gray-200">
-          <Button
-            variant="outline"
-            className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
-            disabled={!hasActivities}
-          >
-            {t('viewAllActivity')}
-          </Button>
+          <Link href="/en/admin/rfp-requests">
+            <Button
+              variant="outline"
+              className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
+              disabled={!hasActivities}
+            >
+              {t('viewAllActivity')}
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
@@ -256,10 +260,18 @@ function RecentActivityCard({ activities }: { activities: RecentActivity[] }) {
 export function AdminDashboard() {
   const t = useTranslations('dashboard');
   const tCommon = useTranslations('common');
+  const { user } = useAdminAuth();
   const [stats, setStats] = useState<AdminDashboardStats | null>(null);
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Helper function to check user permissions
+  const hasPermission = (permission: string): boolean => {
+    if (!user) return false;
+    if (user.role === 'admin') return true;
+    return user.permissions?.some(p => p.resource === permission && p.actions.includes('read')) || false;
+  };
 
   useEffect(() => {
     loadDashboardData();
@@ -385,8 +397,15 @@ export function AdminDashboard() {
 
         <div className="relative z-10 max-w-4xl">
           <h1 className="text-2xl font-medium text-white mb-4 font-poppins tracking-tight animate-in slide-in-from-bottom duration-600 delay-200">
-            {t('welcomeBackKitmed')}
+            {user ? `Welcome back, ${user.first_name || user.email}` : t('welcomeBackKitmed')}
           </h1>
+          <div className="flex items-center space-x-4 mb-4">
+            {user && (
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm animate-in slide-in-from-bottom duration-600 delay-400">
+                <span className="text-white/90 text-sm font-medium capitalize">{user.role}</span>
+              </div>
+            )}
+          </div>
           <p className="text-xl text-white/90 leading-relaxed max-w-2xl animate-in slide-in-from-bottom duration-600 delay-300">
             {t('welcomeSubtitle')}
           </p>
@@ -403,7 +422,8 @@ export function AdminDashboard() {
             changeLabel: t('fromLastMonth'),
             icon: CubeIcon,
             href: "/en/admin/products",
-            color: "blue" as const
+            color: "blue" as const,
+            permission: "products"
           },
           {
             title: t('pendingRfps'),
@@ -421,16 +441,18 @@ export function AdminDashboard() {
             changeLabel: t('fromLastMonth'),
             icon: BuildingOfficeIcon,
             href: "/en/admin/partners",
-            color: "green" as const
+            color: "green" as const,
+            permission: "partners"
           },
           {
             title: t('featuredProducts'),
             value: stats.products.featured,
             icon: EyeIcon,
             href: "/en/admin/products?featured=true",
-            color: "red" as const
+            color: "red" as const,
+            permission: "products"
           }
-        ].map((stat, index) => (
+        ].filter(stat => !stat.permission || hasPermission(stat.permission)).map((stat, index) => (
           <div
             key={stat.title}
             className={`animate-in slide-in-from-bottom duration-500`}
@@ -458,41 +480,49 @@ export function AdminDashboard() {
                   title: t('addProduct'),
                   icon: CubeIcon,
                   color: "primary",
-                  description: t('addProductDesc')
+                  description: t('addProductDesc'),
+                  href: "/en/admin/products",
+                  permission: "products"
                 },
                 {
                   title: t('addPartner'),
                   icon: BuildingOfficeIcon,
                   color: "green",
-                  description: t('addPartnerDesc')
+                  description: t('addPartnerDesc'),
+                  href: "/en/admin/partners",
+                  permission: "partners"
                 },
                 {
                   title: t('viewAnalytics'),
                   icon: ChartBarIcon,
                   color: "purple",
-                  description: t('viewAnalyticsDesc')
+                  description: t('viewAnalyticsDesc'),
+                  href: "/en/admin"
                 },
                 {
                   title: t('manageUsers'),
                   icon: UsersIcon,
                   color: "amber",
-                  description: t('manageUsersDesc')
+                  description: t('manageUsersDesc'),
+                  href: "/en/admin/users",
+                  permission: "users"
                 }
-              ].map((action, index) => (
+              ].filter(action => !action.permission || hasPermission(action.permission)).map((action, index) => (
                 <div
                   key={action.title}
                   className="animate-in slide-in-from-bottom duration-300 hover:-translate-y-1 transition-transform"
                   style={{ animationDelay: `${700 + index * 100}ms` }}
                 >
-                  <Button
-                    variant="outline"
-                    className={`h-32 w-full flex-col space-y-3 group border-2 transition-all duration-300 rounded-2xl p-6 ${
-                      action.color === 'primary' ? 'hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700' :
-                      action.color === 'green' ? 'hover:bg-green-50 hover:border-green-300 hover:text-green-700' :
-                      action.color === 'purple' ? 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700' :
-                      'hover:bg-amber-50 hover:border-amber-300 hover:text-amber-700'
-                    }`}
-                  >
+                  <Link href={action.href}>
+                    <Button
+                      variant="outline"
+                      className={`h-32 w-full flex-col space-y-3 group border-2 transition-all duration-300 rounded-2xl p-6 ${
+                        action.color === 'primary' ? 'hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700' :
+                        action.color === 'green' ? 'hover:bg-green-50 hover:border-green-300 hover:text-green-700' :
+                        action.color === 'purple' ? 'hover:bg-purple-50 hover:border-purple-300 hover:text-purple-700' :
+                        'hover:bg-amber-50 hover:border-amber-300 hover:text-amber-700'
+                      }`}
+                    >
                     <div
                       className={`p-3 rounded-2xl transition-all duration-300 hover:scale-110 hover:rotate-2 ${
                         action.color === 'primary' ? 'bg-primary-50 group-hover:bg-primary-100' :
@@ -512,7 +542,8 @@ export function AdminDashboard() {
                       <span className="font-semibold text-base block">{action.title}</span>
                       <span className="text-xs text-gray-500 mt-1 block">{action.description}</span>
                     </div>
-                  </Button>
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -565,12 +596,14 @@ export function AdminDashboard() {
               </div>
             </div>
             <div className="mt-6 pt-4 border-t border-gray-200">
-              <Button
-                variant="outline"
-                className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
-              >
-                {t('viewDetailedAnalytics')}
-              </Button>
+              <Link href="/en/admin">
+                <Button
+                  variant="outline"
+                  className="w-full h-12 font-semibold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-300 transition-all duration-200"
+                >
+                  {t('viewDetailedAnalytics')}
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

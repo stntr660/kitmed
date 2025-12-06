@@ -34,7 +34,8 @@ interface Product {
   id: string;
   referenceFournisseur: string;
   constructeur: string;
-  translations: Array<{
+  name: string;
+  translations?: Array<{
     languageCode: string;
     nom: string;
   }>;
@@ -107,6 +108,11 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
   // Helper function to get product name
   const getProductName = (product: Product, locale: string = 'fr') => {
+    // For public API, name is already a string
+    if (typeof product.name === 'string') {
+      return product.name || product.referenceFournisseur;
+    }
+    // Fallback for admin API structure (with translations array)
     const translation = product.translations?.find(t => t.languageCode === locale);
     return translation?.nom || product.referenceFournisseur;
   };
@@ -117,7 +123,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
     setLoadingProducts(true);
     try {
-      const response = await fetch(`/api/admin/products?pageSize=100&status=active`);
+      const response = await fetch(`/api/products?pageSize=100&status=active`);
       if (response.ok) {
         const data = await response.json();
         setAllProducts(data.data.items || []);

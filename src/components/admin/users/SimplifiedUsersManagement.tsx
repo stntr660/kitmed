@@ -20,14 +20,14 @@ import { getAdminToken } from '@/lib/auth-utils';
 
 interface User {
   id: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   role: string;
-  isActive: boolean;
-  lastLogin?: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  is_active: boolean;
+  last_login?: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 interface UsersResponse {
@@ -50,12 +50,12 @@ export function SimplifiedUsersManagement() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     role: 'user',
-    isActive: true
+    is_active: true
   });
 
   useEffect(() => {
@@ -117,26 +117,28 @@ export function SimplifiedUsersManagement() {
 
   const handleAddUser = () => {
     setSelectedUser(null);
+    setError(null); // Clear any previous errors
     setFormData({
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       role: 'user',
-      isActive: true
+      is_active: true
     });
     setShowForm(true);
   };
 
   const handleEditUser = (user: User) => {
     setSelectedUser(user);
+    setError(null); // Clear any previous errors
     setFormData({
-      firstName: user.firstName,
-      lastName: user.lastName,
+      first_name: user.first_name,
+      last_name: user.last_name,
       email: user.email,
       password: '', // Don't populate existing password
       role: user.role,
-      isActive: user.isActive
+      is_active: user.is_active
     });
     setShowForm(true);
   };
@@ -171,12 +173,16 @@ export function SimplifiedUsersManagement() {
         await loadUsers();
         setShowForm(false);
         setSelectedUser(null);
+        setError(null); // Clear any previous errors
       } else {
-        throw new Error('Failed to save user');
+        const errorData = await response.json().catch(() => null);
+        const errorMessage = errorData?.error || 'Failed to save user';
+        throw new Error(errorMessage);
       }
     } catch (err) {
       console.error('Failed to save user:', err);
-      setError('Failed to save user');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to save user';
+      setError(errorMessage);
     }
   };
 
@@ -214,7 +220,7 @@ export function SimplifiedUsersManagement() {
 
   const filteredUsers = users.filter(user =>
     searchQuery === '' ||
-    `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    `${user.first_name} ${user.last_name}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -397,12 +403,18 @@ export function SimplifiedUsersManagement() {
               {selectedUser ? 'Edit User' : 'Add User'}
             </h3>
 
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-red-600 text-sm">{error}</p>
+              </div>
+            )}
+            
             <form onSubmit={handleSaveUser} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">First Name</label>
                 <Input
-                  value={formData.firstName}
-                  onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+                  value={formData.first_name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, first_name: e.target.value }))}
                   required
                 />
               </div>
@@ -410,8 +422,8 @@ export function SimplifiedUsersManagement() {
               <div>
                 <label className="block text-sm font-medium text-gray-700">Last Name</label>
                 <Input
-                  value={formData.lastName}
-                  onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+                  value={formData.last_name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, last_name: e.target.value }))}
                   required
                 />
               </div>
@@ -455,8 +467,8 @@ export function SimplifiedUsersManagement() {
                 <input
                   type="checkbox"
                   id="isActive"
-                  checked={formData.isActive}
-                  onChange={(e) => setFormData(prev => ({ ...prev, isActive: e.target.checked }))}
+                  checked={formData.is_active}
+                  onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.checked }))}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">

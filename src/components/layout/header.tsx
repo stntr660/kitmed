@@ -33,7 +33,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { useRFPStore } from '@/store/rfp-store';
 import { useSearchStore } from '@/store/search-store';
 import { cn, debounce } from '@/lib/utils';
 import type { Locale } from '@/types';
@@ -77,7 +76,6 @@ export function Header({ locale, className }: HeaderProps) {
 
   const navigation = getNavigation(locale);
 
-  const { itemCount, toggleCart } = useRFPStore();
   const { query, setQuery } = useSearchStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -111,7 +109,6 @@ export function Header({ locale, className }: HeaderProps) {
     router.push(`/${newLocale}${currentPath}`);
   };
 
-  const cartItemCount = itemCount();
 
   return (
     <header className={cn('sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 shadow-sm', className)}>
@@ -210,19 +207,6 @@ export function Header({ locale, className }: HeaderProps) {
             <Search className="h-5 w-5" />
           </button>
 
-          {/* RFP Cart */}
-          <button
-            onClick={toggleCart}
-            className="relative p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
-            aria-label={`${tCommon('rfpCart')}${cartItemCount > 0 ? ` (${cartItemCount} ${tCommon('items')})` : ''}`}
-          >
-            <ShoppingCart className="h-5 w-5" />
-            {cartItemCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 h-5 w-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium">
-                {cartItemCount > 99 ? '99+' : cartItemCount}
-              </span>
-            )}
-          </button>
 
           {/* Language Switcher */}
           <DropdownMenu>
@@ -271,9 +255,6 @@ export function Header({ locale, className }: HeaderProps) {
             <DropdownMenuContent align="end" className="border-gray-200/50 shadow-lg w-48">
               <DropdownMenuItem asChild>
                 <Link href="/account" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('myAccount')}</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/rfp/history" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('rfpHistory')}</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>

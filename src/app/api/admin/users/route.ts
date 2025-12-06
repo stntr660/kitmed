@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { hashPassword } from '@/lib/auth-utils';
+import { v4 as uuidv4 } from 'uuid';
 
 async function getUsers(request: NextRequest) {
   try {
@@ -80,12 +81,14 @@ async function createUser(request: NextRequest) {
 
     const user = await prisma.users.create({
       data: {
+        id: uuidv4(),
         first_name,
         last_name,
         email,
         role,
         is_active,
-        password_hash
+        password_hash,
+        updated_at: new Date()
       },
       select: {
         id: true,

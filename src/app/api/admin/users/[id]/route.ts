@@ -10,7 +10,7 @@ async function updateUser(
 ) {
   try {
     const data = await request.json();
-    const { firstName, lastName, email, password, role, isActive } = data;
+    const { first_name, last_name, email, password, role, is_active } = data;
 
     // Get current user from request context (set by withAuth middleware)
     const currentUser = (request as any).user;
@@ -33,32 +33,33 @@ async function updateUser(
 
     // Prepare update data
     const updateData: any = {
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
       role,
-      isActive
+      is_active,
+      updated_at: new Date()
     };
 
     // Only update password if provided
     if (password && password.trim() !== '') {
       const { hashPassword } = await import('@/lib/auth-utils');
-      updateData.passwordHash = await hashPassword(password);
+      updateData.password_hash = await hashPassword(password);
     }
 
-    const user = await prisma.user.update({
+    const user = await prisma.users.update({
       where: { id: params.id },
       data: updateData,
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
+        first_name: true,
+        last_name: true,
         email: true,
         role: true,
-        isActive: true,
-        lastLogin: true,
-        createdAt: true,
-        updatedAt: true,
+        is_active: true,
+        last_login: true,
+        created_at: true,
+        updated_at: true,
       }
     });
 
@@ -99,7 +100,7 @@ async function deleteUser(
       );
     }
 
-    await prisma.user.delete({
+    await prisma.users.delete({
       where: { id: params.id }
     });
 
