@@ -6,10 +6,10 @@ import { z } from 'zod';
 // GET /api/admin/partners/[id] - Get single partner
 async function getPartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const partner = await prisma.partner.findUnique({
+    const partner = await prisma.partners.findUnique({
       where: { id: params.id },
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -30,23 +30,23 @@ async function getPartner(request: NextRequest, { params }: { params: { id: stri
     const transformedPartner = {
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
       type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({
@@ -114,9 +114,9 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     const partnerData = validation.data;
 
     // Check if partner exists
-    const existingPartner = await prisma.partner.findUnique({
+    const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
-      include: { translations: true },
+      include: { partner_translations: true },
     });
 
     if (!existingPartner) {
@@ -140,7 +140,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
 
     // Only add timestamp if the slug would conflict
     let slug = baseSlug;
-    const existingWithSlug = await prisma.partner.findFirst({
+    const existingWithSlug = await prisma.partners.findFirst({
       where: {
         slug: baseSlug,
         id: { not: params.id }
@@ -153,26 +153,26 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     }
 
     // Update partner in database
-    const partner = await prisma.partner.update({
+    const partner = await prisma.partners.update({
       where: { id: params.id },
       data: {
         name: partnerData.nom.fr, // Use French name as primary
         slug,
-        websiteUrl: partnerData.websiteUrl || null,
-        logoUrl: partnerData.logoUrl || null,
+        website_url: partnerData.websiteUrl || null,
+        logo_url: partnerData.logoUrl || null,
         type: partnerData.type,
         status: partnerData.status,
-        isFeatured: partnerData.featured,
-        translations: {
+        is_featured: partnerData.featured,
+        partner_translations: {
           deleteMany: {}, // Delete existing translations
           create: [
             {
-              languageCode: 'fr',
+              language_code: 'fr',
               name: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
-              languageCode: 'en',
+              language_code: 'en',
               name: partnerData.nom.en,
               description: partnerData.description?.en || null,
             }] : []),
@@ -188,23 +188,23 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     const transformedPartner = {
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
       type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({
@@ -258,10 +258,17 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
       );
     }
 
-    const updateData = validation.data;
+    // Map field names to database columns
+    const updateData: any = {};
+    if (validation.data.isFeatured !== undefined) {
+      updateData.is_featured = validation.data.isFeatured;
+    }
+    if (validation.data.status !== undefined) {
+      updateData.status = validation.data.status;
+    }
 
     // Check if partner exists
-    const existingPartner = await prisma.partner.findUnique({
+    const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
     });
 
@@ -279,11 +286,11 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
     }
 
     // Update partner with only provided fields
-    const partner = await prisma.partner.update({
+    const partner = await prisma.partners.update({
       where: { id: params.id },
       data: updateData,
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -292,15 +299,15 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
       id: partner.id,
       slug: partner.slug,
       name: partner.name,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
       type: partner.type,
       status: partner.status,
       isFeatured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
-      translations: partner.translations,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({
@@ -332,7 +339,7 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
 async function deletePartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     // Check if partner exists
-    const existingPartner = await prisma.partner.findUnique({
+    const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
     });
 
@@ -350,7 +357,7 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
     }
 
     // Delete partner (cascading deletes will handle translations)
-    await prisma.partner.delete({
+    await prisma.partners.delete({
       where: { id: params.id },
     });
 

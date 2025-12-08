@@ -31,7 +31,7 @@ async function getPartners(request: NextRequest) {
         {
           partner_translations: {
             some: {
-              nom: { contains: filters.query }
+              name: { contains: filters.query }
             }
           }
         },
@@ -83,13 +83,13 @@ async function getPartners(request: NextRequest) {
       createdAt: partner.created_at,
       updatedAt: partner.updated_at,
       // Create a name field from French translation for compatibility
-      name: partner.partner_translations.find(t => t.language_code === 'fr')?.nom ||
-            partner.partner_translations[0]?.nom ||
+      name: partner.partner_translations.find(t => t.language_code === 'fr')?.name ||
+            partner.partner_translations[0]?.name ||
             'Unnamed Partner',
       // Create nom object for new structure
       nom: {
-        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.nom || '',
-        en: partner.partner_translations.find(t => t.language_code === 'en')?.nom || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
         fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
@@ -184,7 +184,7 @@ async function createPartner(request: NextRequest) {
     // Create partner in database
     const partner = await prisma.partners.create({
       data: {
-        nom: partnerData.nom.fr, // Use French name as primary
+        name: partnerData.nom.fr, // Use French name as primary
         slug,
         website_url: partnerData.websiteUrl || null,
         logo_url: partnerData.logoUrl || null,
@@ -195,12 +195,12 @@ async function createPartner(request: NextRequest) {
           create: [
             {
               language_code: 'fr',
-              nom: partnerData.nom.fr,
+              name: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
               language_code: 'en',
-              nom: partnerData.nom.en,
+              name: partnerData.nom.en,
               description: partnerData.description?.en || null,
             }] : []),
           ],
@@ -224,14 +224,14 @@ async function createPartner(request: NextRequest) {
       createdAt: partner.created_at,
       updatedAt: partner.updated_at,
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({

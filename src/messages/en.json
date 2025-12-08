@@ -547,6 +547,68 @@
       "addDescription": "Add new medical equipment to your catalog",
       "editDescription": "Update product information and specifications",
       "viewDescription": "View detailed product information",
+      
+      "essentialInfo": "Essential information",
+      "essentialInfoDescription": "Basic details needed to identify the product",
+      
+      "productName": "Product name",
+      "productNamePlaceholder": "Ex: Portable cardiac monitor X200",
+      "productNameHint": "Use the exact commercial product name",
+      
+      "brand": "Brand",
+      "brandPlaceholder": "Ex: Philips, Siemens, GE Healthcare",
+      "brandHint": "Manufacturer or brand name",
+      
+      "referenceCode": "Reference code",
+      "referenceCodePlaceholder": "Ex: PHI-X200-2024 or REF12345",
+      "referenceCodeHint": "Internal code or supplier reference",
+      
+      "medicalDiscipline": "Medical discipline",
+      "selectDiscipline": "Choose medical specialty",
+      "disciplineHint": "Primary medical field of use",
+      
+      "shortDescription": "Short description",
+      "shortDescriptionPlaceholder": "Briefly describe the product and its main features",
+      "shortDescriptionHint": "Simple presentation for sales team",
+      
+      "internationalVersion": "International version",
+      "internationalDescription": "English information for international clients",
+      
+      "technicalDetails": "Technical details",
+      "technicalDetailsDescription": "Advanced information for specialists",
+      
+      "specifications": "Technical specifications",
+      "specificationsPlaceholder": "Detail technical specifications, dimensions, performance, standards, etc.",
+      "specificationsHint": "For tenders and technical documentation",
+      "specificationsEnglish": "Technical specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications, dimensions, performance, standards, etc.",
+      
+      "brochureDocument": "Commercial document",
+      "brochureDocumentPlaceholder": "https://example.com/product-brochure.pdf",
+      "brochureDocumentHint": "Link to PDF brochure or technical sheet",
+      
+      "visibility": "Product visibility",
+      "visibilityDescription": "Control when and how the product appears",
+      
+      "makeVisible": "Make visible",
+      "makeVisibleDescription": "Product will be visible to your clients",
+      
+      "keepHidden": "Keep hidden",
+      "keepHiddenDescription": "Product will remain as draft",
+      
+      "highlightProduct": "Highlight this product",
+      "highlightProductDescription": "will appear in featured products",
+      
+      "statusOptions": {
+        "visible": "Visible",
+        "draft": "Draft"
+      },
+      
+      "productNameEnglish": "Product name (English)",
+      "productNameEnglishPlaceholder": "Product name in English",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Brief description in English",
+      
       "basicInformation": "Basic Information",
       "productNameFrench": "Product Name (French)",
       "productNameFrenchPlaceholder": "Product name in French",

@@ -45,7 +45,7 @@ export function ProductDrawer({
 }: ProductDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState<Array<{id: string; slug: string; name: string; translations: Array<{languageCode: string; name: string}>}>>([]);
+  const [categories, setCategories] = useState<Array<{id: string; slug: string; name: string; category_translations: Array<{language_code: string; name: string}>}>>([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const [manufacturers, setManufacturers] = useState<Array<{id: string; name: string}>>([]);
   const [manufacturersLoading, setManufacturersLoading] = useState(false);
@@ -109,7 +109,7 @@ export function ProductDrawer({
         const data = await response.json();
         const manufacturerList = (data.data?.items || []).map((partner: any) => ({
           id: partner.id,
-          name: partner.name?.fr || partner.name?.en || partner.name || 'Unnamed Manufacturer'
+          name: partner.name || 'Unnamed Manufacturer'
         }));
         setManufacturers(manufacturerList);
       } else {
@@ -469,7 +469,7 @@ export function ProductDrawer({
                 >
                   <option value="">{categoriesLoading ? t('common.loading') + '...' : t('admin.products.selectDiscipline')}</option>
                   {categories.map(category => {
-                    const translatedName = category.translations?.find(t => t.languageCode === 'fr')?.name || category.name;
+                    const translatedName = category.category_translations?.find(t => t.language_code === 'fr')?.name || category.name;
                     return (
                       <option key={category.id} value={category.id}>
                         {translatedName}
