@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown } from 'lucide-react';
 import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
+import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
@@ -27,6 +28,8 @@ interface Partner {
   name: string;
   logo: string;
   description: string;
+  featured?: boolean;
+  priority?: number;
 }
 
 interface Product {
@@ -83,7 +86,7 @@ export default function HomePage() {
     const fetchPartners = async () => {
       try {
         setPartnersLoading(true);
-        const response = await fetch(`/api/partners?featured=true&status=active&pageSize=6`);
+        const response = await fetch(`/api/partners?status=active&pageSize=12`);
         const result = await response.json();
 
         if (result.success && result.data) {
@@ -113,10 +116,24 @@ export default function HomePage() {
               id: partner.id,
               name: partnerName,
               logo: partner.logoUrl || '/uploads/partners/default.png',
-              description: partnerDescription
+              description: partnerDescription,
+              featured: partner.featured || false,
+              priority: partner.priority || 0
             };
           });
-          setPartners(transformedPartners);
+
+          // Sort partners: featured first, then by priority, then by name
+          const sortedPartners = transformedPartners.sort((a, b) => {
+            if (a.featured !== b.featured) {
+              return b.featured ? 1 : -1; // Featured partners first
+            }
+            if (a.priority !== b.priority) {
+              return b.priority - a.priority; // Higher priority first
+            }
+            return a.name.localeCompare(b.name); // Alphabetical by name
+          });
+
+          setPartners(sortedPartners);
         }
       } catch (error) {
         console.error('Error fetching partners:', error);
@@ -174,50 +191,11 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {!isHydrated || partnersLoading ? (
-                // Loading skeleton - same structure as actual content
-                Array.from({ length: 6 }).map((_, index) => (
-                  <Card key={index} className="border-0 shadow-lg h-full flex flex-col">
-                    <CardContent className="p-6 flex-1 flex flex-col text-center">
-                      <div className="w-full h-20 mb-4 flex items-center justify-center">
-                        <div className="animate-pulse bg-gray-200 h-16 w-20 rounded"></div>
-                      </div>
-                      <div className="animate-pulse">
-                        <div className="h-5 bg-gray-200 rounded mb-2 w-3/4 mx-auto"></div>
-                        <div className="h-4 bg-gray-200 rounded w-full"></div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : (
-                partners.map((partner) => (
-                  <Card key={partner.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
-                    <CardContent className="p-6 flex-1 flex flex-col text-center">
-                      <div className="w-full h-20 mb-4 flex items-center justify-center">
-                        {partner.logo ? (
-                          <img
-                            src={partner.logo}
-                            alt={partner.name}
-                            className="max-h-16 w-auto object-contain"
-                          />
-                        ) : (
-                          <div className="w-24 h-16 bg-gray-100 rounded flex items-center justify-center">
-                            <span className="text-xs font-semibold text-gray-500">{partner.name.split(' ')[0]}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">{partner.name}</h3>
-
-                      {partner.description && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">{partner.description}</p>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))
-              )}
-            </div>
+            <ManufacturerCarousel
+              partners={partners}
+              isLoading={!isHydrated || partnersLoading}
+              className="px-4"
+            />
 
             <div className="mt-12 text-center">
               <Button
@@ -439,17 +417,17 @@ export default function HomePage() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      <div className="relative h-48 bg-slate-100 overflow-hidden">
+                      <div className="relative h-48 bg-white overflow-hidden p-4">
                         {primaryImage ? (
                           <img
                             src={primaryImage.url}
                             alt={primaryImage.altText || product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                            <div className="w-12 h-12 bg-slate-300 rounded-full flex items-center justify-center">
-                              <span className="text-slate-500 text-xs">IMG</span>
+                          <div className="w-full h-full bg-white flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                              <span className="text-gray-500 text-xs">IMG</span>
                             </div>
                           </div>
                         )}
