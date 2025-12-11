@@ -4,12 +4,16 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/ui/logo';
+import type { Locale } from '@/types';
 
 export default function MaintenancePage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = (params?.locale as Locale) || 'en';
   const [dots, setDots] = useState('');
 
   // Animation des points
@@ -22,11 +26,11 @@ export default function MaintenancePage() {
   }, []);
 
   const phrases = [
-    "Nous créons quelque chose d'extraordinaire",
-    "Une nouvelle plateforme médicale naît",
-    "L'innovation prend forme dans l'ombre",
-    "Notre site se métamorphose",
-    "Bientôt, l'impossible deviendra possible"
+    "We are creating something extraordinary",
+    "A new medical platform is being born",
+    "Innovation takes shape in the shadows",
+    "Our website is transforming",
+    "Soon, the impossible will become possible"
   ];
 
   const [currentPhrase, setCurrentPhrase] = useState(0);
@@ -37,7 +41,7 @@ export default function MaintenancePage() {
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [phrases.length]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950 flex items-center justify-center px-4 relative overflow-hidden">
@@ -57,7 +61,7 @@ export default function MaintenancePage() {
         <div className="space-y-8">
           <div className="space-y-6">
             <h1 className="text-6xl lg:text-8xl font-thin text-white/90 tracking-wider">
-              Bientôt<span className="text-primary-300">{dots}</span>
+              Coming Soon<span className="text-primary-300">{dots}</span>
             </h1>
 
             <div className="h-20 flex items-center justify-center">
@@ -77,9 +81,9 @@ export default function MaintenancePage() {
             className="text-slate-400/60 hover:text-white/80 transition-all duration-500"
             asChild
           >
-            <Link href="/" className="flex items-center gap-2">
+            <Link href={`/${locale}`} className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm">Retour</span>
+              <span className="text-sm">Back</span>
             </Link>
           </Button>
         </div>
