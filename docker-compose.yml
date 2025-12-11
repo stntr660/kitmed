@@ -1,107 +1,29 @@
 version: '3.8'
 
 services:
-  # KITMED Web Application
-  kitmed-app:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kitmed-web
-    restart: unless-stopped
+    container_name: kitmed-app
     ports:
-      - "3000:3000"
+      - "3000"
     environment:
-      # Database
-      - DATABASE_URL=file:/app/data/production.db
-      
-      # Next.js
-      - NEXTAUTH_URL=http://localhost:3000
-      - NEXTAUTH_SECRET=kitmed-super-secret-key-change-in-production
-      
-      # Application
       - NODE_ENV=production
-      - PORT=3000
-      - HOSTNAME=0.0.0.0
-      - MAINTENANCE_MODE=false
-      
-      # File uploads
-      - UPLOAD_DIR=/app/uploads
-      - MAX_FILE_SIZE=20971520  # 20MB
-    
-    volumes:
-      # Persistent database storage
-      - kitmed_data:/app/data
-      # Persistent file uploads
-      - kitmed_uploads:/app/uploads
-      
-    networks:
-      - kitmed-network
-      
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  # Database initialization service (runs once)
-  kitmed-db-init:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: kitmed-db-init
-    environment:
-      - DATABASE_URL=file:/app/data/production.db
-    volumes:
-      - kitmed_data:/app/data
-    networks:
-      - kitmed-network
-    depends_on:
-      - kitmed-app
-    command: >
-      sh -c "
-        echo 'Initializing database...'
-        npx prisma db push --accept-data-loss
-        echo 'Database initialized successfully!'
-      "
-    restart: "no"
-
-  # Nginx reverse proxy (optional, for production)
-  kitmed-proxy:
-    image: nginx:alpine
-    container_name: kitmed-proxy
+      - DATABASE_URL=postgresql://kitmed_user:KitMed_PostgreSQL_2024_SecurePass_104c764723b98616@10.0.1.22:5432/kitmed_prod
+      - NEXTAUTH_URL=https://kitmed.ma
+      - NEXTAUTH_SECRET=KitMed_NextAuth_Secret_2024_SecureKey_a8b7c6d5e4f3
+      - JWT_SECRET=KitMed_JWT_Secret_2024_SecureKey_1a2b3c4d5e6f
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/ssl:/etc/ssl:ro
-      - kitmed_uploads:/var/www/uploads:ro  # Serve uploads directly
-    depends_on:
-      - kitmed-app
     networks:
-      - kitmed-network
-    profiles:
-      - production  # Only start in production profile
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kitmed-app.rule=Host(`kitmed.ma`) || Host(`www.kitmed.ma`)"
+      - "traefik.http.routers.kitmed-app.entrypoints=websecure"
+      - "traefik.http.routers.kitmed-app.tls.certresolver=letsencrypt"
+      - "traefik.http.services.kitmed-app.loadbalancer.server.port=3000"
 
-# Persistent volumes
-volumes:
-  kitmed_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./docker/data
-      o: bind
-  
-  kitmed_uploads:
-    driver: local
-    driver_opts:
-      type: none  
-      device: ./public/uploads
-      o: bind
-
-# Custom network
 networks:
-  kitmed-network:
-    driver: bridge
+  dokploy-network:
+    external: true
