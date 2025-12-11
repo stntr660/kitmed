@@ -25,44 +25,23 @@ export default function MaintenancePage() {
     return () => clearInterval(timer);
   }, []);
 
-  const phrases = {
-    fr: [
-      "Nous créons quelque chose d'extraordinaire",
-      "Une nouvelle plateforme médicale naît",
-      "L'innovation prend forme dans l'ombre",
-      "Notre site se métamorphose",
-      "Bientôt, l'impossible deviendra possible"
-    ],
-    en: [
-      "We are creating something extraordinary",
-      "A new medical platform is being born",
-      "Innovation takes shape in the shadows",
-      "Our website is transforming",
-      "Soon, the impossible will become possible"
-    ]
-  };
-
-  const content = {
-    fr: {
-      soon: "Bientôt",
-      back: "Retour"
-    },
-    en: {
-      soon: "Coming Soon",
-      back: "Back"
-    }
-  };
+  const phrases = [
+    "We are creating something extraordinary",
+    "A new medical platform is being born",
+    "Innovation takes shape in the shadows",
+    "Our website is transforming",
+    "Soon, the impossible will become possible"
+  ];
 
   const [currentPhrase, setCurrentPhrase] = useState(0);
-  const currentLocale = (locale === 'fr' || locale === 'en') ? locale : 'en';
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentPhrase(prev => (prev + 1) % phrases[currentLocale].length);
+      setCurrentPhrase(prev => (prev + 1) % phrases.length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentLocale]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950 flex items-center justify-center px-4 relative overflow-hidden">
@@ -82,12 +61,12 @@ export default function MaintenancePage() {
         <div className="space-y-8">
           <div className="space-y-6">
             <h1 className="text-6xl lg:text-8xl font-thin text-white/90 tracking-wider">
-              {content[currentLocale].soon}<span className="text-primary-300">{dots}</span>
+              Coming Soon<span className="text-primary-300">{dots}</span>
             </h1>
 
             <div className="h-20 flex items-center justify-center">
               <p className="text-2xl lg:text-3xl text-slate-300/80 font-light italic transition-all duration-1000 ease-in-out">
-                "{phrases[currentLocale][currentPhrase]}"
+                "{phrases[currentPhrase]}"
               </p>
             </div>
           </div>
@@ -104,7 +83,7 @@ export default function MaintenancePage() {
           >
             <Link href={`/${locale}`} className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm">{content[currentLocale].back}</span>
+              <span className="text-sm">Back</span>
             </Link>
           </Button>
         </div>
