@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // GET /api/admin/partners/[id] - Get single partner
 async function getPartner(request: NextRequest, { params }: { params: { id: string } }) {
@@ -32,6 +33,7 @@ async function getPartner(request: NextRequest, { params }: { params: { id: stri
       slug: partner.slug,
       websiteUrl: partner.website_url,
       logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
       type: partner.type,
       status: partner.status,
       featured: partner.is_featured,
@@ -86,6 +88,7 @@ const updatePartnerSchema = z.object({
   }).optional(),
   websiteUrl: z.string().optional(),
   logoUrl: z.string().optional(),
+  defaultPdfUrl: z.string().optional(),
   type: z.enum(['manufacturer', 'distributor', 'service', 'technology']).default('manufacturer'),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.boolean().default(false),
@@ -160,6 +163,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         slug,
         website_url: partnerData.websiteUrl || null,
         logo_url: partnerData.logoUrl || null,
+        default_pdf_url: partnerData.defaultPdfUrl || null,
         type: partnerData.type,
         status: partnerData.status,
         is_featured: partnerData.featured,
@@ -167,11 +171,13 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
           deleteMany: {}, // Delete existing translations
           create: [
             {
+              id: randomUUID(),
               language_code: 'fr',
               name: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
+              id: randomUUID(),
               language_code: 'en',
               name: partnerData.nom.en,
               description: partnerData.description?.en || null,
@@ -180,7 +186,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         },
       },
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -190,6 +196,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
       slug: partner.slug,
       websiteUrl: partner.website_url,
       logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
       type: partner.type,
       status: partner.status,
       featured: partner.is_featured,
@@ -301,9 +308,10 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
       name: partner.name,
       websiteUrl: partner.website_url,
       logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
       type: partner.type,
       status: partner.status,
-      isFeatured: partner.isFeatured,
+      isFeatured: partner.is_featured,
       sortOrder: partner.sort_order,
       createdAt: partner.created_at,
       updatedAt: partner.updated_at,

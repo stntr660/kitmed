@@ -163,6 +163,7 @@ export interface Partner {
   };
   websiteUrl?: string;
   logoUrl?: string;
+  defaultPdfUrl?: string;
   type: 'manufacturer' | 'distributor' | 'service' | 'technology';
   status: 'active' | 'inactive';
   featured: boolean;

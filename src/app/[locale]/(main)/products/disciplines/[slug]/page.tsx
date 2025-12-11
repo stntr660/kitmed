@@ -28,7 +28,7 @@ interface Discipline {
   slug: string;
   description: string;
   imageUrl: string | null;
-  children: Category[];
+  other_categories: Category[];
 }
 
 interface PageProps {
@@ -144,11 +144,11 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                tDisciplines('fallbackDescription', { disciplineName: discipline.name.toLowerCase() })}
             </p>
 
-            {discipline.children && discipline.children.length > 0 && (
+            {discipline.other_categories && discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length > 0 && (
               <div className="text-primary-100">
                 {tDisciplines('categoriesAvailable', { 
-                  count: discipline.children.length,
-                  plural: discipline.children.length > 1 ? tDisciplines('categoryPlural') : tDisciplines('categorySingular')
+                  count: discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length,
+                  plural: discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length > 1 ? tDisciplines('categoryPlural') : tDisciplines('categorySingular')
                 })}
               </div>
             )}
@@ -159,7 +159,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
       {/* Categories Grid */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-8">
-          {discipline.children && discipline.children.length > 0 ? (
+          {discipline.other_categories && discipline.other_categories.length > 0 ? (
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
@@ -171,7 +171,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {discipline.children.map((category) => (
+                {discipline.other_categories.filter((category: Category) => category.productCount > 0).map((category) => (
                   <Card key={category.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                     <div className="relative h-56 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                       {category.imageUrl ? (

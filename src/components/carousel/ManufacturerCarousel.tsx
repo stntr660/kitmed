@@ -1,11 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 interface Partner {
   id: string;
@@ -20,55 +19,54 @@ interface ManufacturerCarouselProps {
   partners: Partner[];
   isLoading: boolean;
   className?: string;
+  locale?: string;
 }
 
 export function ManufacturerCarousel({ 
   partners, 
   isLoading, 
-  className 
+  className,
+  locale = 'fr'
 }: ManufacturerCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [itemsPerView, setItemsPerView] = useState(3);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Responsive items per view
-  useEffect(() => {
-    const updateItemsPerView = () => {
-      if (window.innerWidth < 640) {
-        setItemsPerView(1);
-      } else if (window.innerWidth < 1024) {
-        setItemsPerView(2);
-      } else {
-        setItemsPerView(3);
-      }
-    };
+  // Sort partners to prioritize featured ones
+  const sortedPartners = [...partners].sort((a, b) => {
+    if (a.featured !== b.featured) {
+      return b.featured ? 1 : -1; // Featured partners first
+    }
+    if (a.priority !== b.priority) {
+      return (b.priority || 0) - (a.priority || 0); // Higher priority first
+    }
+    return a.name.localeCompare(b.name); // Alphabetical by name
+  });
 
-    updateItemsPerView();
-    window.addEventListener('resize', updateItemsPerView);
-    return () => window.removeEventListener('resize', updateItemsPerView);
-  }, []);
-
-  // Auto-slide functionality
+  // Continuous smooth scrolling effect - faster speed
   useEffect(() => {
-    const startAutoSlide = () => {
+    const startContinuousScroll = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
       
       intervalRef.current = setInterval(() => {
-        if (!isHovered && partners.length > itemsPerView) {
-          setCurrentIndex((prevIndex) => {
-            const maxIndex = Math.max(0, partners.length - itemsPerView);
-            return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+        if (!isHovered && sortedPartners.length > 0) {
+          setTranslateX((prev) => {
+            // Move by 2px every 30ms for faster smooth continuous scroll
+            const newTranslateX = prev - 2;
+            // Reset when we've scrolled through one complete set
+            const logoWidth = 240; // Updated width for bigger spacing
+            const resetPoint = -(logoWidth * sortedPartners.length);
+            return newTranslateX <= resetPoint ? 0 : newTranslateX;
           });
         }
-      }, 3000);
+      }, 30); // 30ms intervals for faster movement
     };
 
-    if (partners.length > itemsPerView && !isLoading) {
-      startAutoSlide();
+    if (sortedPartners.length > 0 && !isLoading) {
+      startContinuousScroll();
     }
 
     return () => {
@@ -76,45 +74,40 @@ export function ManufacturerCarousel({
         clearInterval(intervalRef.current);
       }
     };
-  }, [partners.length, itemsPerView, isHovered, isLoading]);
+  }, [sortedPartners.length, isHovered, isLoading]);
 
+  // Manual navigation functions
   const goToPrevious = () => {
-    const maxIndex = Math.max(0, partners.length - itemsPerView);
-    setCurrentIndex((prevIndex) => 
-      prevIndex <= 0 ? maxIndex : prevIndex - 1
-    );
+    setTranslateX((prev) => {
+      const logoWidth = 240;
+      const maxScroll = logoWidth * sortedPartners.length;
+      const newTranslateX = prev + logoWidth * 3; // Move 3 logos at a time
+      return newTranslateX > 0 ? -maxScroll + logoWidth : newTranslateX;
+    });
   };
 
   const goToNext = () => {
-    const maxIndex = Math.max(0, partners.length - itemsPerView);
-    setCurrentIndex((prevIndex) => 
-      prevIndex >= maxIndex ? 0 : prevIndex + 1
-    );
+    setTranslateX((prev) => {
+      const logoWidth = 240;
+      const resetPoint = -(logoWidth * sortedPartners.length);
+      const newTranslateX = prev - logoWidth * 3; // Move 3 logos at a time
+      return newTranslateX <= resetPoint ? 0 : newTranslateX;
+    });
   };
 
-  // Don't show navigation if all items fit in view
-  const showNavigation = partners.length > itemsPerView;
+  // Create duplicated partners array for seamless infinite scrolling
+  const extendedPartners = [...sortedPartners, ...sortedPartners, ...sortedPartners]; // Triple for smooth infinite effect
 
   if (isLoading) {
     return (
       <div className={cn("relative", className)}>
-        <div className="flex gap-6 overflow-hidden">
-          {Array.from({ length: itemsPerView }).map((_, index) => (
+        <div className="flex gap-12 overflow-hidden py-12">
+          {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
-              className="flex-none w-full sm:w-1/2 lg:w-1/3"
+              className="flex-none w-48 h-28 flex items-center justify-center"
             >
-              <Card className="border-0 shadow-lg h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="w-full h-20 mb-4 flex items-center justify-center">
-                    <div className="animate-pulse bg-gray-200 h-16 w-24 rounded"></div>
-                  </div>
-                  <div className="animate-pulse w-full">
-                    <div className="h-5 bg-gray-200 rounded mb-2 w-3/4 mx-auto"></div>
-                    <div className="h-4 bg-gray-200 rounded w-full"></div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="animate-pulse bg-gray-200 h-24 w-44 rounded"></div>
             </div>
           ))}
         </div>
@@ -131,142 +124,92 @@ export function ManufacturerCarousel({
   }
 
   return (
-    <div 
-      className={cn("relative group", className)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      role="region"
-      aria-label="Manufacturer logos carousel"
-    >
-      {/* Navigation Buttons */}
-      {showNavigation && (
+    <div className={cn("relative", className)}>
+      {/* Navigation Arrows - Always Visible */}
+      {sortedPartners.length > 3 && (
         <>
-          <Button
-            variant="outline"
-            size="icon"
-            className={cn(
-              "absolute left-0 top-1/2 -translate-y-1/2 z-10 shadow-lg bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-white hover:shadow-xl transition-all duration-300",
-              "opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0"
-            )}
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-gray-600 hover:text-primary-600 transition-colors duration-200"
             onClick={goToPrevious}
             aria-label="Previous manufacturers"
           >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
+            <ChevronLeft className="h-8 w-8" />
+          </button>
           
-          <Button
-            variant="outline"
-            size="icon"
-            className={cn(
-              "absolute right-0 top-1/2 -translate-y-1/2 z-10 shadow-lg bg-white/90 backdrop-blur-sm border-gray-200 hover:bg-white hover:shadow-xl transition-all duration-300",
-              "opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"
-            )}
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-gray-600 hover:text-primary-600 transition-colors duration-200"
             onClick={goToNext}
             aria-label="Next manufacturers"
           >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
+            <ChevronRight className="h-8 w-8" />
+          </button>
         </>
       )}
 
-      {/* Carousel Container */}
+      {/* Continuous scrolling logos */}
       <div 
-        ref={carouselRef}
-        className="overflow-hidden"
-        role="group"
-        aria-live="polite"
-        aria-atomic="false"
+        className="overflow-hidden py-12"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        role="region"
+        aria-label="Manufacturer logos carousel"
       >
         <div 
-          className="flex transition-transform duration-500 ease-in-out gap-6"
+          className="flex gap-12 items-center"
           style={{
-            transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+            transform: `translateX(${translateX}px)`,
+            width: `${extendedPartners.length * 240}px`, // 240px per logo (bigger spacing)
           }}
         >
-          {partners.map((partner, index) => (
+          {extendedPartners.map((partner, index) => (
             <div
-              key={partner.id}
-              className="flex-none w-full sm:w-1/2 lg:w-1/3"
-              role="group"
-              aria-label={`Manufacturer: ${partner.name}`}
+              key={`${partner.id}-${index}`}
+              className="flex-none w-48 h-28 flex items-center justify-center group"
+              title={partner.name}
             >
-              <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group/card relative">
-                <CardContent className="p-6 flex flex-col items-center text-center h-full">
-                  {/* Featured Badge */}
-                  {partner.featured && (
-                    <div className="absolute top-3 right-3 z-10">
-                      <Badge className="bg-primary-600 text-white border-0 text-xs">
-                        <Star className="h-3 w-3 mr-1" />
-                        Featured
-                      </Badge>
-                    </div>
-                  )}
-                  
-                  <div className="w-full h-20 mb-4 flex items-center justify-center">
-                    {partner.logo ? (
-                      <img
-                        src={partner.logo}
-                        alt={`${partner.name} logo`}
-                        className="max-h-16 w-auto object-contain transition-transform duration-300 group-hover/card:scale-105 filter grayscale hover:grayscale-0 transition-all"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = target.nextElementSibling as HTMLElement;
-                          if (fallback) fallback.style.display = 'flex';
-                        }}
-                      />
-                    ) : null}
-                    <div 
-                      className={cn(
-                        "w-24 h-16 bg-gray-100 rounded flex items-center justify-center transition-colors duration-300 group-hover/card:bg-gray-200",
-                        partner.logo ? "hidden" : "flex"
-                      )}
-                    >
-                      <span className="text-xs font-semibold text-gray-500 text-center px-2">
-                        {partner.name.split(' ').slice(0, 2).join(' ')}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 transition-colors duration-300 group-hover/card:text-primary-600">
-                      {partner.name}
-                    </h3>
-                    
-                    {partner.description && (
-                      <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
-                        {partner.description}
-                      </p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+              {partner.logo ? (
+                <img
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  className="max-h-24 max-w-44 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+              ) : null}
+              <div 
+                className={cn(
+                  "w-44 h-24 flex items-center justify-center",
+                  partner.logo ? "hidden" : "flex"
+                )}
+              >
+                <span className="text-sm font-semibold text-gray-400 text-center px-3">
+                  {partner.name.split(' ').slice(0, 2).join(' ')}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Progress Dots */}
-      {showNavigation && (
-        <div className="flex justify-center mt-6 gap-2">
-          {Array.from({ 
-            length: Math.max(0, partners.length - itemsPerView + 1) 
-          }).map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
-                index === currentIndex 
-                  ? "bg-primary-600 w-6" 
-                  : "bg-gray-300 hover:bg-gray-400"
-              )}
-              onClick={() => setCurrentIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      
+      {/* See all partners button */}
+      <div className="text-center mt-8">
+        <Button
+          size="lg"
+          variant="outline"
+          className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
+          asChild
+        >
+          <Link href={`/${locale}/partners`}>
+            Voir tous les partenaires
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }

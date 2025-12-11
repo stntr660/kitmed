@@ -41,9 +41,9 @@ interface Category {
   createdAt: string;
   updatedAt: string;
   translations: CategoryTranslation[];
-  children?: Category[];
+  other_categories?: Category[];
   _count?: {
-    children: number;
+    other_categories: number;
     products: number;
   };
   nom?: {
@@ -106,8 +106,8 @@ export function CategoryDrawer({
   useEffect(() => {
     if (open) {
       if (mode === 'edit' && category) {
-        const frTranslation = category.translations.find(t => t.languageCode === 'fr');
-        const enTranslation = category.translations.find(t => t.languageCode === 'en');
+        const frTranslation = category.category_translations?.find(t => t.language_code === 'fr');
+        const enTranslation = category.category_translations?.find(t => t.language_code === 'en');
 
         setFormData({
           translations: {

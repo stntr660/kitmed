@@ -35,10 +35,12 @@ export default function ProductsByDisciplinePage() {
   const loadCategories = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
+      const response = await fetch(`/api/categories?includeProductCount=true&excludeZeroProducts=true&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
-        setCategories(data.data || []);
+        // Filter for discipline-type categories only
+        const disciplineCategories = (data.data || []).filter((cat: Category) => cat.count !== '0');
+        setCategories(disciplineCategories);
       }
     } catch (error) {
       console.error('Failed to load categories:', error);

@@ -6,6 +6,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get('locale') || 'fr';
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
+    const excludeZeroProducts = searchParams.get('excludeZeroProducts') === 'true';
 
     // Get active categories with translations and product count
     const categories = await prisma.categories.findMany({
@@ -36,6 +37,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const processedCategories = categories.map(category => {
       const translation = category.category_translations.find(t => t.language_code === locale);
       const fallbackTranslation = category.category_translations.find(t => t.language_code === 'fr');
+      const productCount = category._count?.products || 0;
 
       return {
         id: category.id,
@@ -45,9 +47,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         imageUrl: category.image_url,
         sortOrder: category.sort_order,
         ...(includeProductCount && {
-          productCount: category._count?.products || 0
+          productCount
         })
       };
+    }).filter(category => {
+      // Filter out categories with zero products if requested
+      if (excludeZeroProducts && includeProductCount) {
+        return (category as any).productCount > 0;
+      }
+      return true;
     });
 
     return NextResponse.json({

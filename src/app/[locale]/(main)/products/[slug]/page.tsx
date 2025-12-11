@@ -34,6 +34,7 @@ interface Product {
   constructeur: string;
   slug: string;
   pdfBrochureUrl: string | null;
+  pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
   createdAt: string;
@@ -227,7 +228,7 @@ export default function ProductDetailPage() {
                       src={currentImage.url}
                       alt={currentImage.altText || getProductName(product)}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-slate-100 flex items-center justify-center">
@@ -278,7 +279,7 @@ export default function ProductDetailPage() {
                         src={image.url}
                         alt={image.altText || `Image ${index + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </button>
                   ))}
@@ -344,10 +345,13 @@ export default function ProductDetailPage() {
                   />
 
                   {product.pdfBrochureUrl && (
-                    <Button size="lg" variant="outline" className="h-14" asChild>
+                    <Button size="lg" variant="outline" className="h-14 relative" asChild>
                       <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
                         <Download className="h-5 w-5 mr-2" />
                         Télécharger Brochure
+                        {product.pdfSource === 'manufacturer' && (
+                          <span className="ml-2 text-xs text-slate-500">(Générale)</span>
+                        )}
                       </a>
                     </Button>
                   )}

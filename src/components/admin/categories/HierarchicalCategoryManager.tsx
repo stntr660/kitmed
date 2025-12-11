@@ -53,9 +53,9 @@ interface Category {
   createdAt: string;
   updatedAt: string;
   translations: CategoryTranslation[];
-  children?: Category[];
+  other_categories?: Category[];
   _count?: {
-    children: number;
+    other_categories: number;
     products: number;
   };
   nom?: {
@@ -132,7 +132,7 @@ function TreeView({
       {categories.map((category) => {
         const isExpanded = expandedIds.has(category.id);
         const isSelected = selectedIds.has(category.id);
-        const hasChildren = category.children && category.children.length > 0;
+        const hasChildren = category.other_categories && category.other_categories.length > 0;
 
         return (
           <div key={category.id} className="group">
@@ -247,7 +247,7 @@ function TreeView({
                     )}
                     <div className="flex items-center space-x-3 text-xs text-gray-500 mt-1 md:hidden">
                       {category._count && (
-                        <span>{category._count.children + category._count.products} items</span>
+                        <span>{category._count.other_categories + category._count.products} items</span>
                       )}
                     </div>
                   </div>
@@ -278,10 +278,10 @@ function TreeView({
               <div className="hidden md:flex items-center space-x-4 text-sm text-gray-500">
                 {category._count && (
                   <>
-                    <HelpTooltip content={t('admin.categories.accessibility.subcategoriesCount', { count: category._count.children })}>
+                    <HelpTooltip content={t('admin.categories.accessibility.subcategoriesCount', { count: category._count.other_categories })}>
                       <span className="flex items-center space-x-1 cursor-help">
                         <RectangleGroupIcon className="h-4 w-4" />
-                        <span>{category._count.children}</span>
+                        <span>{category._count.other_categories}</span>
                       </span>
                     </HelpTooltip>
                     <HelpTooltip content={t('admin.categories.accessibility.productsCount', { count: category._count.products })}>
@@ -345,7 +345,7 @@ function TreeView({
                       onDelete(category);
                     }}
                     className="hover:bg-gray-50 hover:text-gray-700 h-12 w-12"
-                    disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
+                    disabled={category._count && (category._count.other_categories > 0 || category._count.products > 0)}
                     aria-label={`${t('common.delete')} ${category.nom?.fr || category.name}`}
                   >
                     <TrashIcon className="h-5 w-5" />
@@ -405,7 +405,7 @@ function TreeView({
                         setShowMobileActions(null);
                       }}
                       className="flex items-center justify-center space-x-2 h-12 text-sm"
-                      disabled={category._count && (category._count.children > 0 || category._count.products > 0)}
+                      disabled={category._count && (category._count.other_categories > 0 || category._count.products > 0)}
                     >
                       <TrashIcon className="h-4 w-4" />
                       <span>{t('common.delete')}</span>
@@ -424,7 +424,7 @@ function TreeView({
             {/* Children */}
             {isExpanded && hasChildren && (
               <TreeView
-                categories={category.children!}
+                categories={category.other_categories!}
                 level={level + 1}
                 onExpand={onExpand}
                 onCollapse={onCollapse}
@@ -618,8 +618,8 @@ export function HierarchicalCategoryManager() {
     let ids: string[] = [];
     categories.forEach(category => {
       ids.push(category.id);
-      if (category.children && expandedIds.has(category.id)) {
-        ids = ids.concat(getAllCategoryIds(category.children));
+      if (category.other_categories && expandedIds.has(category.id)) {
+        ids = ids.concat(getAllCategoryIds(category.other_categories));
       }
     });
     return ids;
@@ -630,8 +630,8 @@ export function HierarchicalCategoryManager() {
 
     let maxDepth = currentDepth;
     categories.forEach(category => {
-      if (category.children && category.children.length > 0) {
-        const childDepth = getMaxDepth(category.children, currentDepth + 1);
+      if (category.other_categories && category.other_categories.length > 0) {
+        const childDepth = getMaxDepth(category.other_categories, currentDepth + 1);
         maxDepth = Math.max(maxDepth, childDepth);
       }
     });
@@ -658,8 +658,8 @@ export function HierarchicalCategoryManager() {
     categories.forEach(category => {
       const categoryType = getCategoryType(category, level);
       if (categoryType === 'equipment') count++;
-      if (category.children) {
-        count += getEquipmentCount(category.children, level + 1);
+      if (category.other_categories) {
+        count += getEquipmentCount(category.other_categories, level + 1);
       }
     });
     return count;
@@ -670,8 +670,8 @@ export function HierarchicalCategoryManager() {
     categories.forEach(category => {
       const categoryType = getCategoryType(category, level);
       if (categoryType === 'discipline') count++;
-      if (category.children) {
-        count += getDisciplineCount(category.children, level + 1);
+      if (category.other_categories) {
+        count += getDisciplineCount(category.other_categories, level + 1);
       }
     });
     return count;
@@ -682,8 +682,8 @@ export function HierarchicalCategoryManager() {
       let ids: string[] = [];
       categories.forEach(category => {
         ids.push(category.id);
-        if (category.children) {
-          ids = ids.concat(getAllCategoryIds(category.children));
+        if (category.other_categories) {
+          ids = ids.concat(getAllCategoryIds(category.other_categories));
         }
       });
       return ids;
@@ -701,8 +701,8 @@ export function HierarchicalCategoryManager() {
       let ids: string[] = [];
       categories.forEach(category => {
         ids.push(category.id);
-        if (category.children) {
-          ids = ids.concat(getAllCategoryIds(category.children));
+        if (category.other_categories) {
+          ids = ids.concat(getAllCategoryIds(category.other_categories));
         }
       });
       return ids;

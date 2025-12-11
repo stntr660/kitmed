@@ -323,17 +323,17 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                 return (
                   <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                     {/* Product Image */}
-                    <div className="relative h-64 bg-slate-100 overflow-hidden">
+                    <div className="relative h-64 bg-white overflow-hidden p-4">
                       {primaryImage ? (
                         <Image
                           src={primaryImage}
                           alt={productName}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-contain group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                          <Building2 className="h-16 w-16 text-slate-400" />
+                        <div className="w-full h-full bg-white flex items-center justify-center">
+                          <Building2 className="h-16 w-16 text-gray-400" />
                         </div>
                       )}
 

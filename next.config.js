@@ -7,7 +7,6 @@ const nextConfig = {
   env: {
     _next_intl_trailing_slash: 'false'
   },
-  turbopack: {}, // Required for next-intl compatibility with Turbopack
   experimental: {
     webpackBuildWorker: true,
   },
@@ -28,6 +27,30 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'rumex.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'visionventions.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'visionventions.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'surgicon.ch',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ursapharm.com',
+      },
+      {
+        protocol: 'https',
         hostname: '**',
       },
     ],
@@ -35,6 +58,10 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 80, 96, 120, 128, 160, 200, 256, 384],
     minimumCacheTTL: 31536000, // 1 year
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: false,
+    loader: 'default',
   },
   // Performance optimizations
   compiler: {

@@ -25,6 +25,7 @@ import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { CompactImageUpload } from '@/components/ui/compact-image-upload';
+import { DocumentUpload } from '@/components/ui/document-upload';
 import { Partner } from '@/types';
 
 interface WizardStep {
@@ -60,6 +61,7 @@ export function PartnerCreationWizard({
     description: { fr: '', en: '' },
     websiteUrl: '',
     logoUrl: '',
+    defaultPdfUrl: '',
     type: 'manufacturer' as 'manufacturer' | 'other',
     status: 'active' as 'active' | 'inactive',
     featured: false,
@@ -117,6 +119,7 @@ export function PartnerCreationWizard({
           description: partner.description || { fr: '', en: '' },
           websiteUrl: partner.websiteUrl || '',
           logoUrl: partner.logoUrl || '',
+          defaultPdfUrl: partner.defaultPdfUrl || '',
           type: partner.type || 'manufacturer',
           status: partner.status || 'active',
           featured: partner.featured || false,
@@ -129,6 +132,7 @@ export function PartnerCreationWizard({
           description: { fr: '', en: '' },
           websiteUrl: '',
           logoUrl: '',
+          defaultPdfUrl: '',
           type: 'manufacturer',
           status: 'active',
           featured: false,
@@ -441,6 +445,31 @@ export function PartnerCreationWizard({
                     <li>• {t('admin.partners.wizard.logoRecommendation')}</li>
                   </ul>
                 </div>
+              </div>
+            </div>
+
+            {/* Default PDF Brochure */}
+            <div className="border-t border-gray-200 pt-6">
+              <label className="block text-sm font-semibold text-gray-900 mb-4">
+                Default PDF Brochure
+              </label>
+              <div className="space-y-3">
+                <DocumentUpload
+                  value={formData.defaultPdfUrl}
+                  onChange={(url) => handleInputChange('defaultPdfUrl', url)}
+                  preset="partnerBrochure"
+                  placeholder="Upload default PDF brochure"
+                  label="Default Manufacturer Brochure"
+                  maxSize={25}
+                />
+                <p className="text-sm text-gray-600">
+                  Upload a default PDF brochure that will be used for products without their own PDF.
+                </p>
+                <ul className="text-xs text-gray-500 space-y-1">
+                  <li>• This PDF will be shown as a fallback for products without individual PDFs</li>
+                  <li>• Helps ensure all products have documentation available</li>
+                  <li>• Customers can download the manufacturer's general catalog when product-specific docs aren't available</li>
+                </ul>
               </div>
             </div>
 

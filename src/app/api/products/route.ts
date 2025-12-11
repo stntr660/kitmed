@@ -49,9 +49,22 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       where.category_id = category;
     }
 
-    // Manufacturer filter
+    // Manufacturer filter - handle both UUID and slug
     if (manufacturer) {
-      where.partner_id = manufacturer;
+      // Check if it's a UUID
+      const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(manufacturer);
+      
+      if (isUUID) {
+        where.partner_id = manufacturer;
+      } else {
+        // It's a slug, find the partner first
+        const partner = await prisma.partners.findUnique({
+          where: { slug: manufacturer }
+        });
+        if (partner) {
+          where.partner_id = partner.id;
+        }
+      }
     }
 
     // Partner filter
@@ -100,6 +113,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
               is_primary: true,
               alt_text: true
             }
+          },
+          partners: {
+            select: {
+              default_pdf_url: true
+            }
           }
         },
         orderBy: { created_at: 'desc' },
@@ -117,6 +135,16 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
       const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
 
+      // Determine effective PDF URL - check multiple sources
+      const productPdfUrl = product.pdf_brochure_url;
+      const mediaPdfUrl = product.product_media.find(m => m.type === 'pdf')?.url;
+      const manufacturerPdfUrl = product.partners?.default_pdf_url;
+      
+      const effectivePdfUrl = productPdfUrl || mediaPdfUrl || manufacturerPdfUrl || null;
+      const pdfSource = productPdfUrl ? 'product' : 
+                       mediaPdfUrl ? 'product' : 
+                       manufacturerPdfUrl ? 'manufacturer' : null;
+
       return {
         id: product.id,
         slug: product.slug,
@@ -124,7 +152,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         constructeur: product.constructeur,
         status: product.status,
         isFeatured: product.is_featured,
-        pdfBrochureUrl: product.pdf_brochure_url,
+        pdfBrochureUrl: effectivePdfUrl,
+        pdfSource: pdfSource,
         createdAt: product.created_at,
         updatedAt: product.updated_at,
         // Return localized strings, not objects

@@ -114,17 +114,17 @@ export function RFPCart() {
                       >
                         <div className="flex space-x-4">
                           {/* Product Image */}
-                          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+                          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-white p-2">
                             {primaryImage ? (
                               <Image
                                 src={primaryImage.url}
                                 alt={primaryImage.alt.en || item.product.name.en}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 sizes="64px"
                               />
                             ) : (
-                              <div className="flex h-full w-full items-center justify-center">
+                              <div className="flex h-full w-full items-center justify-center bg-white">
                                 <ShoppingCart className="h-6 w-6 text-gray-400" />
                               </div>
                             )}

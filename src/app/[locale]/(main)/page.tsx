@@ -195,21 +195,9 @@ export default function HomePage() {
               partners={partners}
               isLoading={!isHydrated || partnersLoading}
               className="px-4"
+              locale={locale}
             />
 
-            <div className="mt-12 text-center">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
-                asChild
-              >
-                <Link href={`/${locale}/partners`}>
-                  {t('partners.viewAll')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
 

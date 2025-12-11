@@ -96,7 +96,7 @@ export function ProductCard({
           aria-label={`${t('viewProduct')} ${product.nom ? product.nom[locale] : 'Product'}`}
         >
           {/* Image Section */}
-          <div className="relative aspect-square overflow-hidden bg-gray-50">
+          <div className="relative aspect-square overflow-hidden bg-white">
             {product.featured && (
               <Badge
                 variant="accent"
@@ -118,20 +118,20 @@ export function ProductCard({
             {primaryImage && !imageError ? (
               <motion.div
                 variants={imageVariants}
-                className="h-full w-full"
+                className="h-full w-full bg-white p-4"
               >
                 <Image
                   src={primaryImage.url}
                   alt={primaryImage.alt ? primaryImage.alt[locale] : (product.nom ? product.nom[locale] : 'Product image')}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   onError={() => setImageError(true)}
                   loading="lazy"
                 />
               </motion.div>
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gray-100">
+              <div className="flex h-full w-full items-center justify-center bg-white">
                 <FileText className="h-12 w-12 text-gray-400" />
               </div>
             )}

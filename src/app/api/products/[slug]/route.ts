@@ -37,7 +37,8 @@ export async function GET(
             id: true,
             name: true,
             logo_url: true,
-            website_url: true
+            website_url: true,
+            default_pdf_url: true
           }
         },
         product_media: {
@@ -78,6 +79,13 @@ export async function GET(
     const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
     const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
 
+    // Determine effective PDF URL - check multiple sources
+    const productPdfUrl = product.pdf_brochure_url;
+    const mediaPdfUrl = product.product_media.find(m => m.type === 'pdf')?.url;
+    const manufacturerPdfUrl = product.partners?.default_pdf_url;
+    
+    const effectivePdfUrl = productPdfUrl || mediaPdfUrl || manufacturerPdfUrl || null;
+
     // Transform the product data
     const transformedProduct = {
       id: product.id,
@@ -86,7 +94,10 @@ export async function GET(
       constructeur: product.constructeur,
       status: product.status,
       isFeatured: product.is_featured,
-      pdfBrochureUrl: product.pdf_brochure_url,
+      pdfBrochureUrl: effectivePdfUrl,
+      pdfSource: productPdfUrl ? 'product' : 
+                 mediaPdfUrl ? 'product' : 
+                 manufacturerPdfUrl ? 'manufacturer' : null,
       createdAt: product.created_at,
       updatedAt: product.updated_at,
 

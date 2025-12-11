@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
+import { randomUUID } from 'crypto';
 import {
   downloadFileFromUrl,
   isValidUrl,
@@ -146,9 +147,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         const validatedPartner = csvPartnerSchema.parse(record);
 
         // Check if partner name already exists
-        const existingPartner = await prisma.partner.findFirst({
+        const existingPartner = await prisma.partners.findFirst({
           where: {
-            translations: {
+            partner_translations: {
               some: {
                 name: validatedPartner.nom_fr
               }
@@ -265,23 +266,25 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         // Determine final logo URL (use downloaded file if available, otherwise original URL)
         const finalLogoUrl = logoDownloadResult?.download?.url || partnerData.logoUrl || null;
 
-        const partner = await prisma.partner.create({
+        const partner = await prisma.partners.create({
           data: {
             name: partnerData.nom_fr, // Use French name as primary
             slug,
-            websiteUrl: partnerData.websiteUrl || null,
-            logoUrl: finalLogoUrl,
+            website_url: partnerData.websiteUrl || null,
+            logo_url: finalLogoUrl,
             status: partnerData.status,
-            isFeatured: partnerData.featured,
-            translations: {
+            is_featured: partnerData.featured,
+            partner_translations: {
               create: [
                 {
-                  languageCode: 'fr',
+                  id: randomUUID(),
+                  language_code: 'fr',
                   name: partnerData.nom_fr,
                   description: partnerData.description_fr || null,
                 },
                 ...(partnerData.nom_en ? [{
-                  languageCode: 'en',
+                  id: randomUUID(),
+                  language_code: 'en',
                   name: partnerData.nom_en,
                   description: partnerData.description_en || null,
                 }] : []),
@@ -289,7 +292,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             },
           },
           include: {
-            translations: true,
+            partner_translations: true,
           },
         });
 

@@ -369,6 +369,22 @@ export const uploadPresets: Record<string, UploadOptions> = {
     optimizeImage: true,
     folder: 'categories',
   },
+
+  partnerBrochure: {
+    maxSize: 25 * 1024 * 1024, // 25MB
+    allowedTypes: ALLOWED_DOCUMENT_TYPES,
+    generateThumbnail: false,
+    optimizeImage: false,
+    folder: 'brochures',
+  },
+
+  document: {
+    maxSize: 10 * 1024 * 1024, // 10MB
+    allowedTypes: ALLOWED_DOCUMENT_TYPES,
+    generateThumbnail: false,
+    optimizeImage: false,
+    folder: 'documents',
+  },
 };
 
 // Utility to get preset by name

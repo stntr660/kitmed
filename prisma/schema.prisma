@@ -184,6 +184,7 @@ model partners {
   description          String?
   website_url          String?
   logo_url             String?
+  default_pdf_url      String?
   type                 String                 @default("manufacturer")
   is_featured          Boolean                @default(false)
   sort_order           Int                    @default(0)

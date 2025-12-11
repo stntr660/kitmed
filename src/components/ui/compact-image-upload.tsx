@@ -65,13 +65,15 @@ export function CompactImageUpload({
     }
 
     setIsUploading(true);
+    
+    let response: Response | null = null;
 
     try {
       const formData = new FormData();
       formData.append('files', file);
       formData.append('preset', preset);
 
-      const response = await fetch('/api/admin/upload', {
+      response = await fetch('/api/admin/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('admin-token')}`,

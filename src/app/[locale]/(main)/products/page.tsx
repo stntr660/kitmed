@@ -18,7 +18,8 @@ import {
   Building2,
   Award,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -31,6 +32,7 @@ interface Product {
   constructeur: string;
   slug: string;
   pdfBrochureUrl: string | null;
+  pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
   createdAt: string;
@@ -238,7 +240,7 @@ export default function ProductsPage() {
                         >
                           <option value="">{tProducts('search.allManufacturers')}</option>
                           {manufacturers.map((manufacturer) => (
-                            <option key={manufacturer.id} value={manufacturer.id}>
+                            <option key={manufacturer.id} value={manufacturer.slug || manufacturer.id}>
                               {typeof manufacturer.name === 'string' 
                                 ? manufacturer.name 
                                 : manufacturer.name?.[locale] || manufacturer.name?.fr || manufacturer.name?.en || 'Unknown Manufacturer'
@@ -320,17 +322,17 @@ export default function ProductsPage() {
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                       {/* Product Image */}
-                      <div className="relative h-64 bg-slate-100 overflow-hidden">
+                      <div className="relative h-64 bg-white overflow-hidden p-4">
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
                             alt={primaryImage.altText || getProductName(product)}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="object-contain group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                            <Building2 className="h-16 w-16 text-slate-400" />
+                          <div className="w-full h-full bg-white flex items-center justify-center">
+                            <Building2 className="h-16 w-16 text-gray-400" />
                           </div>
                         )}
 
@@ -360,6 +362,15 @@ export default function ProductsPage() {
                               className="bg-primary-100 text-primary-600"
                             >
                               {categoryInfo.name || 'Category'}
+                            </Badge>
+                          )}
+                          {product.pdfBrochureUrl && (
+                            <Badge
+                              variant="secondary"
+                              className="text-xs border-0 bg-blue-100 text-blue-600"
+                            >
+                              <FileText className="h-3 w-3 mr-1" />
+                              PDF
                             </Badge>
                           )}
                         </div>
@@ -432,11 +443,18 @@ export default function ProductsPage() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="px-3"
+                                className="px-3 relative"
                                 asChild
                               >
-                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
+                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer" title={
+                                  product.pdfSource === 'manufacturer' 
+                                    ? tProducts('listing.manufacturerBrochure') 
+                                    : tProducts('listing.productBrochure')
+                                }>
                                   <Download className="h-4 w-4" />
+                                  {product.pdfSource === 'manufacturer' && (
+                                    <span className="absolute -top-1 -right-1 h-2 w-2 bg-blue-500 rounded-full"></span>
+                                  )}
                                 </a>
                               </Button>
                             )}

@@ -3,6 +3,7 @@ import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { AdminSearchFilters } from '@/types/admin';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // GET /api/admin/partners - List partners with filters
 async function getPartners(request: NextRequest) {
@@ -194,11 +195,13 @@ async function createPartner(request: NextRequest) {
         partner_translations: {
           create: [
             {
+              id: randomUUID(),
               language_code: 'fr',
               name: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
+              id: randomUUID(),
               language_code: 'en',
               name: partnerData.nom.en,
               description: partnerData.description?.en || null,

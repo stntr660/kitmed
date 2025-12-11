@@ -24,19 +24,34 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           where: { language_code: locale }
         },
         other_categories: {
-          where: { is_active: true },
+          where: { 
+            is_active: true,
+            products: {
+              some: {
+                status: 'active'
+              }
+            }
+          },
           include: {
             category_translations: {
               where: { language_code: locale }
             },
             _count: {
-              select: { products: true }
+              select: { 
+                products: {
+                  where: { status: 'active' }
+                }
+              }
             }
           },
           orderBy: { sort_order: 'asc' }
         },
         _count: {
-          select: { products: true }
+          select: { 
+            products: {
+              where: { status: 'active' }
+            }
+          }
         }
       }
     });

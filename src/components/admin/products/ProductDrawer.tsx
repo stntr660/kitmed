@@ -25,6 +25,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import { MediaUpload } from './MediaUpload';
 import { ClientOnly } from '@/components/ui/client-only';
+import { DocumentUpload } from '@/components/ui/document-upload';
 import { Product } from '@/types';
 import { getAdminToken } from '@/lib/auth-utils';
 
@@ -637,15 +638,16 @@ export function ProductDrawer({
                   <label htmlFor="pdf-brochure" className="text-sm font-medium text-gray-700">
                     {t('admin.products.brochureDocument')}
                   </label>
-                  <Input
-                    id="pdf-brochure"
+                  <DocumentUpload
                     value={formData.pdfBrochureUrl || ''}
-                    onChange={(e) => handleInputChange('pdfBrochureUrl', e.target.value)}
-                    placeholder={t('admin.products.brochureDocumentPlaceholder')}
+                    onChange={(url) => handleInputChange('pdfBrochureUrl', url)}
+                    placeholder="Upload product brochure PDF"
+                    label="Product Brochure"
+                    preset="productBrochure"
+                    maxSize={25}
                     disabled={isReadOnly}
-                    type="url"
                   />
-                  <p className="text-xs text-gray-500">{t('admin.products.brochureDocumentHint')}</p>
+                  <p className="text-xs text-gray-500 mt-2">{t('admin.products.brochureDocumentHint')}</p>
                 </div>
               </CardContent>
             )}
