@@ -14,6 +14,7 @@ services:
       - NEXTAUTH_URL=https://kitmed-staging.zonemation.cloud
       - NEXTAUTH_SECRET=KitMed_Staging_NextAuth_Secret_2024_SecureKey
       - JWT_SECRET=KitMed_Staging_JWT_Secret_2024_SecureKey
+      - MAINTENANCE_MODE=false
     restart: unless-stopped
     networks:
       - dokploy-network
