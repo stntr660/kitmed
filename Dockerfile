@@ -18,11 +18,22 @@ COPY package.json package-lock.json* ./
 RUN npm ci --only=production
 
 # ===========================
-# Builder Stage  
+# Builder Stage
 # ===========================
 FROM node:18-alpine AS builder
 
 WORKDIR /app
+
+# Build arguments for environment variables needed during build
+ARG JWT_SECRET=build-time-placeholder-secret-key-for-kitmed-platform
+ARG NEXTAUTH_SECRET=build-time-placeholder-secret-key-for-kitmed-platform
+ARG DATABASE_URL=file:./dev.db
+
+# Set environment variables for build
+ENV JWT_SECRET=$JWT_SECRET
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+ENV DATABASE_URL=$DATABASE_URL
+ENV NODE_ENV=production
 
 # Copy package files
 COPY package.json package-lock.json* ./
