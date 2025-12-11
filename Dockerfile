@@ -44,9 +44,6 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Copy dependencies from previous stage
-COPY --from=deps /app/node_modules ./node_modules
-
 # Generate Prisma client
 RUN npx prisma generate
 
