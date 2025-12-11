@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
-import { 
+import { randomUUID } from 'crypto';
+import {
   downloadFileFromUrl,
   isValidUrl,
   type DownloadResult,
@@ -19,12 +20,12 @@ const csvPartnerSchema = z.object({
   websiteUrl: z.string().optional().default(''),
   logoUrl: z.string().optional().default(''),
   downloadLogo: z.preprocess(
-    (val) => String(val || 'false'), 
+    (val) => String(val || 'false'),
     z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
   ).default(false),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.preprocess(
-    (val) => String(val || 'false'), 
+    (val) => String(val || 'false'),
     z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
   ).default(false),
 });
@@ -54,7 +55,7 @@ interface EnhancedPartnerImportResult {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const startTime = Date.now();
-  
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -135,7 +136,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       partnerName: string;
       logoUrl: string;
     }> = [];
-    
+
     // Validate each row and collect logo URLs
     for (let i = 0; i < records.length; i++) {
       const rowNumber = i + 2; // +2 because CSV rows start at 1 and we have headers
@@ -144,11 +145,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       try {
         // Validate the record
         const validatedPartner = csvPartnerSchema.parse(record);
-        
+
         // Check if partner name already exists
-        const existingPartner = await prisma.partner.findFirst({
-          where: { 
-            translations: {
+        const existingPartner = await prisma.partners.findFirst({
+          where: {
+            partner_translations: {
               some: {
                 name: validatedPartner.nom_fr
               }
@@ -198,8 +199,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Download logos if any were found
     if (logoDownloads.length > 0) {
-      console.log(`Starting logo downloads for ${logoDownloads.length} partners`);
-      
+
       result.logoDownloads.attempted = logoDownloads.length;
 
       for (const logoDownload of logoDownloads) {
@@ -216,29 +216,28 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           };
 
           const downloadResult = await downloadFileFromUrl(logoDownload.logoUrl, downloadOptions);
-          
+
           result.logoDownloads.details.push({
             row: logoDownload.row,
             partnerName: logoDownload.partnerName,
             download: downloadResult,
           });
-          
+
           result.logoDownloads.successful++;
-          console.log(`Downloaded logo for ${logoDownload.partnerName}: ${downloadResult.url}`);
-          
+
         } catch (error) {
           const downloadError: DownloadError = {
             url: logoDownload.logoUrl,
             error: error instanceof Error ? error.message : 'Unknown download error',
             code: 'DOWNLOAD_FAILED',
           };
-          
+
           result.logoDownloads.details.push({
             row: logoDownload.row,
             partnerName: logoDownload.partnerName,
             error: downloadError,
           });
-          
+
           result.logoDownloads.failed++;
           console.error(`Failed to download logo for ${logoDownload.partnerName}:`, downloadError.error);
         }
@@ -259,7 +258,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
-        
+
         // Add timestamp to ensure uniqueness
         const timestamp = Date.now().toString().slice(-6);
         const slug = `${baseSlug}-${timestamp}`;
@@ -267,23 +266,25 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         // Determine final logo URL (use downloaded file if available, otherwise original URL)
         const finalLogoUrl = logoDownloadResult?.download?.url || partnerData.logoUrl || null;
 
-        const partner = await prisma.partner.create({
+        const partner = await prisma.partners.create({
           data: {
             name: partnerData.nom_fr, // Use French name as primary
             slug,
-            websiteUrl: partnerData.websiteUrl || null,
-            logoUrl: finalLogoUrl,
+            website_url: partnerData.websiteUrl || null,
+            logo_url: finalLogoUrl,
             status: partnerData.status,
-            isFeatured: partnerData.featured,
-            translations: {
+            is_featured: partnerData.featured,
+            partner_translations: {
               create: [
                 {
-                  languageCode: 'fr',
+                  id: randomUUID(),
+                  language_code: 'fr',
                   name: partnerData.nom_fr,
                   description: partnerData.description_fr || null,
                 },
                 ...(partnerData.nom_en ? [{
-                  languageCode: 'en',
+                  id: randomUUID(),
+                  language_code: 'en',
                   name: partnerData.nom_en,
                   description: partnerData.description_en || null,
                 }] : []),
@@ -291,7 +292,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             },
           },
           include: {
-            translations: true,
+            partner_translations: true,
           },
         });
 

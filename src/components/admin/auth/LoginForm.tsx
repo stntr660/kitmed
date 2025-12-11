@@ -41,7 +41,7 @@ export function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       const success = await login(data.email, data.password);
-      
+
       if (success) {
         // Preserve current locale when redirecting after successful login
         const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
@@ -61,82 +61,83 @@ export function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <LoginLogo className="mb-6" />
-          <h2 className="text-2xl font-semibold text-gray-900 font-poppins">
-            {t('admin.title')}
-          </h2>
-          <p className="mt-2 text-sm text-gray-600 font-poppins">
-            {t('admin.auth.signIn')}
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <div className="w-full max-w-md">
+        {/* Centered Logo */}
+        <div className="flex justify-center mb-8">
+          <LoginLogo />
         </div>
 
-        {/* Login Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-center">{t('admin.auth.signIn')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Modern Login Card */}
+        <Card className="border-0 bg-white">
+          <CardContent className="p-8">
+            {/* Welcome Message */}
+            <div className="text-center mb-6">
+              <h1 className="text-2xl font-semibold text-gray-900 mb-2">
+                {t('admin.auth.signIn')}
+              </h1>
+              <p className="text-gray-600">
+                {t('admin.title')}
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* Global Error */}
               {(error || errors.root) && (
-                <div className="bg-red-50 border border-red-200 rounded-md p-3">
-                  <p className="text-sm text-red-600">
+                <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-md">
+                  <p className="text-sm text-red-700">
                     {error || errors.root?.message}
                   </p>
                 </div>
               )}
 
               {/* Email Field */}
-              <div>
-                <label htmlFor="email" className="sr-only">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-gray-700">
                   {t('admin.auth.emailPlaceholder')}
                 </label>
                 <Input
                   {...register('email')}
                   type="email"
-                  placeholder={t('admin.auth.emailPlaceholder')}
-                  className={errors.email ? 'border-red-300' : ''}
+                  placeholder="admin@kitmed.ma"
+                  className={`h-12 ${errors.email ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-blue-400'} transition-colors`}
                   disabled={isSubmitting}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="text-xs text-red-600 mt-1">
                     {errors.email.message}
                   </p>
                 )}
               </div>
 
               {/* Password Field */}
-              <div>
-                <label htmlFor="password" className="sr-only">
+              <div className="space-y-2">
+                <label htmlFor="password" className="text-sm font-medium text-gray-700">
                   {t('admin.auth.passwordPlaceholder')}
                 </label>
                 <div className="relative">
                   <Input
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
-                    placeholder={t('admin.auth.passwordPlaceholder')}
-                    className={errors.password ? 'border-red-300 pr-10' : 'pr-10'}
+                    placeholder="••••••••"
+                    className={`h-12 pr-12 ${errors.password ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-blue-400'} transition-colors`}
                     disabled={isSubmitting}
                   />
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isSubmitting}
                   >
                     {showPassword ? (
-                      <EyeSlashIcon className="h-5 w-5 text-gray-400" />
+                      <EyeSlashIcon className="h-5 w-5" />
                     ) : (
-                      <EyeIcon className="h-5 w-5 text-gray-400" />
+                      <EyeIcon className="h-5 w-5" />
                     )}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="text-xs text-red-600 mt-1">
                     {errors.password.message}
                   </p>
                 )}
@@ -144,64 +145,52 @@ export function LoginForm() {
 
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center">
+                <label className="flex items-center cursor-pointer">
                   <input
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                  <span className="ml-2 text-sm text-gray-700">
                     {t('admin.auth.rememberMe')}
-                  </label>
-                </div>
+                  </span>
+                </label>
 
-                <div className="text-sm">
-                  <button
-                    type="button"
-                    className="font-medium text-blue-600 hover:text-blue-500"
-                    onClick={() => {
-                      const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
-                      router.push(`/${currentLocale}/admin/forgot-password`);
-                    }}
-                  >
-                    {t('admin.auth.forgotPassword')}
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                  onClick={() => {
+                    const currentLocale = pathname?.match(/^\/(en|fr)/)?.[1] || 'fr';
+                    router.push(`/${currentLocale}/admin/forgot-password`);
+                  }}
+                >
+                  {t('admin.auth.forgotPassword')}
+                </button>
               </div>
 
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full h-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSubmitting}
-                loading={isSubmitting}
               >
-                {isSubmitting ? t('admin.auth.signingIn') : t('admin.auth.signIn')}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <LoadingSpinner />
+                    <span className="ml-2">{t('admin.auth.signingIn')}</span>
+                  </div>
+                ) : (
+                  t('admin.auth.signIn')
+                )}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        {/* Development Login Info */}
-        {process.env.NODE_ENV === 'development' && (
-          <Card className="bg-yellow-50 border-yellow-200">
-            <CardContent className="p-4">
-              <h3 className="text-sm font-medium text-yellow-800 mb-2">
-                {t('admin.auth.developmentMode')}
-              </h3>
-              <div className="text-xs text-yellow-700 space-y-1">
-                <p><strong>Admin:</strong> admin@kitmed.ma / admin123</p>
-                <p><strong>Editor:</strong> editor@kitmed.ma / editor123</p>
-                <p><strong>Viewer:</strong> viewer@kitmed.ma / viewer123</p>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
         {/* Footer */}
-        <div className="text-center">
-          <p className="text-xs text-gray-500">
+        <div className="text-center mt-8">
+          <p className="text-xs text-gray-400">
             © 2024 KITMED. All rights reserved.
           </p>
         </div>

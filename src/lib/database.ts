@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import type { 
-  Product, 
-  Category, 
-  Partner, 
-  RFPRequest, 
+import type {
+  Product,
+  Category,
+  Partner,
+  RFPRequest,
   User,
   ActivityLog,
-  PageView 
+  PageView
 } from '@prisma/client';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 
@@ -35,7 +35,7 @@ export async function searchWithPagination<T>(
     status,
     category,
     dateRange,
-    sortBy = 'createdAt',
+    sortBy = 'created_at',
     sortOrder = 'desc',
     page = 1,
     pageSize = 10,
@@ -67,7 +67,7 @@ export async function searchWithPagination<T>(
 
   // Date range filter
   if (dateRange) {
-    where.createdAt = {
+    where.created_at = {
       gte: dateRange.start,
       lte: dateRange.end,
     };
@@ -99,7 +99,7 @@ export async function searchWithPagination<T>(
 export const productDb = {
   async search(filters: AdminSearchFilters) {
     return searchWithPagination<Product>(
-      prisma.product,
+      prisma.products,
       filters,
       {
         category: true,
@@ -111,7 +111,7 @@ export const productDb = {
   },
 
   async findById(id: string) {
-    return prisma.product.findUnique({
+    return prisma.products.findUnique({
       where: { id },
       include: {
         category: true,
@@ -123,7 +123,7 @@ export const productDb = {
   },
 
   async create(data: any) {
-    return prisma.product.create({
+    return prisma.products.create({
       data,
       include: {
         category: true,
@@ -135,7 +135,7 @@ export const productDb = {
   },
 
   async update(id: string, data: any) {
-    return prisma.product.update({
+    return prisma.products.update({
       where: { id },
       data,
       include: {
@@ -148,13 +148,13 @@ export const productDb = {
   },
 
   async delete(id: string) {
-    return prisma.product.delete({
+    return prisma.products.delete({
       where: { id },
     });
   },
 
   async bulkUpdate(ids: string[], data: any) {
-    return prisma.product.updateMany({
+    return prisma.products.updateMany({
       where: { id: { in: ids } },
       data,
     });
@@ -162,12 +162,12 @@ export const productDb = {
 
   async getStats() {
     const [total, active, featured, recentlyAdded] = await Promise.all([
-      prisma.product.count(),
-      prisma.product.count({ where: { status: 'active' } }),
-      prisma.product.count({ where: { isFeatured: true } }),
-      prisma.product.count({
+      prisma.products.count(),
+      prisma.products.count({ where: { status: 'active' } }),
+      prisma.products.count({ where: { is_featured: true } }),
+      prisma.products.count({
         where: {
-          createdAt: {
+          created_at: {
             gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // Last 7 days
           },
         },
@@ -182,7 +182,7 @@ export const productDb = {
 export const categoryDb = {
   async search(filters: AdminSearchFilters) {
     return searchWithPagination<Category>(
-      prisma.category,
+      prisma.categories,
       filters,
       {
         translations: true,
@@ -196,7 +196,7 @@ export const categoryDb = {
   },
 
   async findById(id: string) {
-    return prisma.category.findUnique({
+    return prisma.categories.findUnique({
       where: { id },
       include: {
         translations: true,
@@ -208,7 +208,7 @@ export const categoryDb = {
   },
 
   async getTree() {
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.categories.findMany({
       include: {
         translations: true,
         children: {
@@ -224,11 +224,11 @@ export const categoryDb = {
       orderBy: { sortOrder: 'asc' },
     });
 
-    return categories.filter(cat => !cat.parentId);
+    return categories.filter(cat => !cat.parent_id);
   },
 
   async create(data: any) {
-    return prisma.category.create({
+    return prisma.categories.create({
       data,
       include: {
         translations: true,
@@ -239,7 +239,7 @@ export const categoryDb = {
   },
 
   async update(id: string, data: any) {
-    return prisma.category.update({
+    return prisma.categories.update({
       where: { id },
       data,
       include: {
@@ -251,16 +251,16 @@ export const categoryDb = {
   },
 
   async delete(id: string) {
-    return prisma.category.delete({
+    return prisma.categories.delete({
       where: { id },
     });
   },
 
   async getStats() {
     const [total, active, withProducts] = await Promise.all([
-      prisma.category.count(),
-      prisma.category.count({ where: { isActive: true } }),
-      prisma.category.count({
+      prisma.categories.count(),
+      prisma.categories.count({ where: { is_active: true } }),
+      prisma.categories.count({
         where: {
           products: {
             some: {},
@@ -277,7 +277,7 @@ export const categoryDb = {
 export const partnerDb = {
   async search(filters: AdminSearchFilters) {
     return searchWithPagination<Partner>(
-      prisma.partner,
+      prisma.partners,
       filters,
       {
         translations: true,
@@ -286,7 +286,7 @@ export const partnerDb = {
   },
 
   async findById(id: string) {
-    return prisma.partner.findUnique({
+    return prisma.partners.findUnique({
       where: { id },
       include: {
         translations: true,
@@ -295,7 +295,7 @@ export const partnerDb = {
   },
 
   async create(data: any) {
-    return prisma.partner.create({
+    return prisma.partners.create({
       data,
       include: {
         translations: true,
@@ -304,7 +304,7 @@ export const partnerDb = {
   },
 
   async update(id: string, data: any) {
-    return prisma.partner.update({
+    return prisma.partners.update({
       where: { id },
       data,
       include: {
@@ -314,16 +314,16 @@ export const partnerDb = {
   },
 
   async delete(id: string) {
-    return prisma.partner.delete({
+    return prisma.partners.delete({
       where: { id },
     });
   },
 
   async getStats() {
     const [total, active, featured] = await Promise.all([
-      prisma.partner.count(),
-      prisma.partner.count({ where: { status: 'active' } }),
-      prisma.partner.count({ where: { isFeatured: true } }),
+      prisma.partners.count(),
+      prisma.partners.count({ where: { status: 'active' } }),
+      prisma.partners.count({ where: { is_featured: true } }),
     ]);
 
     return { total, active, featured };
@@ -334,7 +334,7 @@ export const partnerDb = {
 export const rfpDb = {
   async search(filters: AdminSearchFilters) {
     return searchWithPagination<any>(
-      prisma.rFPRequest,
+      prisma.rfp_requests,
       filters,
       {
         items: {
@@ -347,7 +347,7 @@ export const rfpDb = {
   },
 
   async findById(id: string) {
-    return prisma.rFPRequest.findUnique({
+    return prisma.rfp_requests.findUnique({
       where: { id },
       include: {
         items: {
@@ -365,7 +365,7 @@ export const rfpDb = {
   },
 
   async create(data: any) {
-    return prisma.rFPRequest.create({
+    return prisma.rfp_requests.create({
       data,
       include: {
         items: {
@@ -378,7 +378,7 @@ export const rfpDb = {
   },
 
   async update(id: string, data: any) {
-    return prisma.rFPRequest.update({
+    return prisma.rfp_requests.update({
       where: { id },
       data,
       include: {
@@ -392,17 +392,17 @@ export const rfpDb = {
   },
 
   async delete(id: string) {
-    return prisma.rFPRequest.delete({
+    return prisma.rfp_requests.delete({
       where: { id },
     });
   },
 
   async getStats() {
     const [total, pending, processing, completed] = await Promise.all([
-      prisma.rFPRequest.count(),
-      prisma.rFPRequest.count({ where: { status: 'pending' } }),
-      prisma.rFPRequest.count({ where: { status: 'processing' } }),
-      prisma.rFPRequest.count({ where: { status: 'quoted' } }),
+      prisma.rfp_requests.count(),
+      prisma.rfp_requests.count({ where: { status: 'pending' } }),
+      prisma.rfp_requests.count({ where: { status: 'processing' } }),
+      prisma.rfp_requests.count({ where: { status: 'quoted' } }),
     ]);
 
     return { total, pending, processing, completed };
@@ -425,9 +425,9 @@ export const rfpDb = {
     }
 
     const [requests, dailyStats] = await Promise.all([
-      prisma.rFPRequest.findMany({
+      prisma.rfp_requests.findMany({
         where: {
-          createdAt: {
+          created_at: {
             gte: startDate,
           },
         },
@@ -435,15 +435,15 @@ export const rfpDb = {
           items: true,
         },
         orderBy: {
-          createdAt: 'desc',
+          created_at: 'desc',
         },
       }),
       prisma.$queryRaw`
-        SELECT 
+        SELECT
           DATE(created_at) as date,
           COUNT(*) as requests,
           COUNT(DISTINCT customer_email) as unique_customers
-        FROM rfp_requests 
+        FROM rfp_requests
         WHERE created_at >= ${startDate}
         GROUP BY DATE(created_at)
         ORDER BY date ASC
@@ -458,33 +458,33 @@ export const rfpDb = {
 export const userDb = {
   async search(filters: AdminSearchFilters) {
     return searchWithPagination<User>(
-      prisma.user,
+      prisma.users,
       filters,
       {
         sessions: true,
         activityLogs: {
           take: 5,
-          orderBy: { createdAt: 'desc' },
+          orderBy: { created_at: 'desc' },
         },
       }
     );
   },
 
   async findById(id: string) {
-    return prisma.user.findUnique({
+    return prisma.users.findUnique({
       where: { id },
       include: {
         sessions: true,
         activityLogs: {
           take: 10,
-          orderBy: { createdAt: 'desc' },
+          orderBy: { created_at: 'desc' },
         },
       },
     });
   },
 
   async findByEmail(email: string) {
-    return prisma.user.findUnique({
+    return prisma.users.findUnique({
       where: { email },
       include: {
         sessions: true,
@@ -493,7 +493,7 @@ export const userDb = {
   },
 
   async create(data: any) {
-    return prisma.user.create({
+    return prisma.users.create({
       data,
       include: {
         sessions: true,
@@ -502,7 +502,7 @@ export const userDb = {
   },
 
   async update(id: string, data: any) {
-    return prisma.user.update({
+    return prisma.users.update({
       where: { id },
       data,
       include: {
@@ -512,15 +512,15 @@ export const userDb = {
   },
 
   async delete(id: string) {
-    return prisma.user.delete({
+    return prisma.users.delete({
       where: { id },
     });
   },
 
   async updateLastLogin(id: string) {
-    return prisma.user.update({
+    return prisma.users.update({
       where: { id },
-      data: { lastLogin: new Date() },
+      data: { last_login: new Date() },
     });
   },
 };
@@ -536,24 +536,32 @@ export const activityDb = {
     ipAddress?: string;
     userAgent?: string;
   }) {
-    return prisma.activityLog.create({
+    const { randomUUID } = await import('crypto');
+    return prisma.activity_logs.create({
       data: {
-        ...data,
-        createdAt: new Date(),
+        id: randomUUID(),
+        user_id: data.userId,
+        action: data.action,
+        resource_type: data.resourceType,
+        resource_id: data.resourceId,
+        details: data.details,
+        ip_address: data.ipAddress,
+        user_agent: data.userAgent,
+        created_at: new Date(),
       },
     });
   },
 
   async getRecent(limit = 50) {
-    return prisma.activityLog.findMany({
+    return prisma.activity_logs.findMany({
       take: limit,
-      orderBy: { createdAt: 'desc' },
+      orderBy: { created_at: 'desc' },
       include: {
-        user: {
+        users: {
           select: {
             id: true,
-            firstName: true,
-            lastName: true,
+            first_name: true,
+            last_name: true,
             email: true,
           },
         },
@@ -562,18 +570,18 @@ export const activityDb = {
   },
 
   async getForResource(resourceType: string, resourceId: string) {
-    return prisma.activityLog.findMany({
+    return prisma.activity_logs.findMany({
       where: {
         resourceType,
         resourceId,
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { created_at: 'desc' },
       include: {
-        user: {
+        users: {
           select: {
             id: true,
-            firstName: true,
-            lastName: true,
+            first_name: true,
+            last_name: true,
             email: true,
           },
         },
@@ -601,23 +609,23 @@ export const analyticsDb = {
     }
 
     const [total, unique, topPages] = await Promise.all([
-      prisma.pageView.count({
+      prisma.page_views.count({
         where: {
-          createdAt: {
+          created_at: {
             gte: startDate,
           },
         },
       }),
       prisma.$queryRaw`
         SELECT COUNT(DISTINCT session_id) as unique_views
-        FROM page_views 
+        FROM page_views
         WHERE created_at >= ${startDate}
       `,
       prisma.$queryRaw`
-        SELECT 
+        SELECT
           page_path,
           COUNT(*) as views
-        FROM page_views 
+        FROM page_views
         WHERE created_at >= ${startDate}
         GROUP BY page_path
         ORDER BY views DESC
@@ -635,10 +643,10 @@ export const analyticsDb = {
     ipAddress?: string;
     sessionId?: string;
   }) {
-    return prisma.pageView.create({
+    return prisma.page_views.create({
       data: {
         ...data,
-        createdAt: new Date(),
+        created_at: new Date(),
       },
     });
   },
@@ -665,13 +673,13 @@ export const dbUtils = {
       pages,
       banners,
     ] = await Promise.all([
-      prisma.product.count(),
-      prisma.category.count(),
-      prisma.partner.count(),
-      prisma.rFPRequest.count(),
-      prisma.user.count(),
-      prisma.page.count(),
-      prisma.banner.count(),
+      prisma.products.count(),
+      prisma.categories.count(),
+      prisma.partners.count(),
+      prisma.rfp_requests.count(),
+      prisma.users.count(),
+      prisma.pages.count(),
+      prisma.banners.count(),
     ]);
 
     return {
@@ -687,9 +695,9 @@ export const dbUtils = {
 
   async cleanup() {
     // Clean up old sessions
-    await prisma.userSession.deleteMany({
+    await prisma.user_sessions.deleteMany({
       where: {
-        expiresAt: {
+        expires_at: {
           lt: new Date(),
         },
       },
@@ -697,9 +705,9 @@ export const dbUtils = {
 
     // Clean up old activity logs (keep last 90 days)
     const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
-    await prisma.activityLog.deleteMany({
+    await prisma.activity_logs.deleteMany({
       where: {
-        createdAt: {
+        created_at: {
           lt: ninetyDaysAgo,
         },
       },
@@ -707,9 +715,9 @@ export const dbUtils = {
 
     // Clean up old page views (keep last 365 days)
     const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
-    await prisma.pageView.deleteMany({
+    await prisma.page_views.deleteMany({
       where: {
-        createdAt: {
+        created_at: {
           lt: oneYearAgo,
         },
       },

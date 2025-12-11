@@ -1,0 +1,42 @@
+=== KITMED TEST SAMPLE - 6 Products ===
+Generated: 2025-11-25T13:56:52.478Z
+
+🧪 TEST CONFIGURATION:
+- Sample size: 6 products (3 per manufacturer)
+- Purpose: Safe testing before full import
+
+🏭 SELECTED PRODUCTS:
+
+📍 MORIA Products (3):
+  1. REF: 9601 | FR: vannas ciseaux(courbe émoussé blades) | EN: Vannas Scissors(Curved blunt blades)
+  2. REF: 13246 | FR: bonn-Kraff pinces(0.12-mm dents with plateformes and long jaws) | EN: Bonn-Kraff Forceps(0.12-mm teeth with platforms and long jaws)
+  3. REF: 7850A | FR: bonn-Moria pinces(0.18-mm dents with plateformes) | EN: Bonn-Moria Forceps(0.18-mm teeth with platforms)
+
+📍 KEELER Products (3):
+  1. REF: 2414-P-5032 | FR: Placa guía de tonómetro KAT T (desmontable) | EN: Placa guía de tonómetro KAT T (desmontable)
+  2. REF: 1205-P-5010 | FR: Vantage Plus LED Digital con software Keeler Kapture | EN: Vantage Plus LED Digital con software Keeler Kapture
+  3. REF: 3010-P-2000 | FR: Keeler PSL Classic – Lámpara de hendidura portátil de mano | EN: Keeler PSL Classic – Lámpara de hendidura portátil de mano
+
+✅ VERIFICATION CHECKLIST:
+- ✅ Manufacturer names: MORIA, KEELER (match database)
+- ✅ French translations: Generated
+- ✅ English names: Preserved
+- ✅ Product references: Unique
+- ✅ Category: ophthalmology-surgical
+- ✅ Images: Primary URLs included
+- ✅ Format: Ready for import script
+
+📁 TEST FILES:
+- Test CSV: /Users/mac/Documents/Zonemation/Transformation digital/Clients/KITMEDAPP/data/kitmed_TEST_import_2025-11-25T13-56-52.csv
+- Test Report: /Users/mac/Documents/Zonemation/Transformation digital/Clients/KITMEDAPP/data/test_sample_report_2025-11-25T13-56-52.txt
+
+🚀 TEST IMPORT COMMAND:
+node scripts/import-products.js
+(Will process only these 6 test products)
+
+⚠️  AFTER SUCCESSFUL TEST:
+1. Verify products appear in admin dashboard
+2. Check French/English translations
+3. Verify images load correctly
+4. Confirm manufacturer mapping
+5. If all good → import full dataset (615 products)

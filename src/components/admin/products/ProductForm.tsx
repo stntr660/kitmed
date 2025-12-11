@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ImageUploadBox } from '@/components/ui/image-upload-box';
 import { ProductFormData } from '@/types/admin';
 import { Product, Partner } from '@/types';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ProductFormProps {
   product?: Product | null;
@@ -23,7 +24,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   const [manufacturers, setManufacturers] = useState<Partner[]>([]);
   const [loadingManufacturers, setLoadingManufacturers] = useState(false);
   const [brochureUrl, setBrochureUrl] = useState(product?.pdfBrochureUrl || '');
-  
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ProductFormData>({
     defaultValues: product ? {
       referenceFournisseur: product.referenceFournisseur,
@@ -69,16 +70,76 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   useEffect(() => {
     const fetchManufacturers = async () => {
       setLoadingManufacturers(true);
+      console.group('🔍 ProductForm: Manufacturer Loading Debug');
+
       try {
-        const response = await fetch('/api/admin/partners?type=manufacturer');
+        const token = getAdminToken();
+
+        if (!token) {
+          console.error('❌ No authentication token available - please login first');
+          console.groupEnd();
+          return;
+        }
+
+        const apiUrl = '/api/admin/partners?type=manufacturer&pageSize=200&status=active';
+
+        const response = await fetch(apiUrl, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        console.log('📋 Response headers:', Object.fromEntries(response.headers));
+
         if (response.ok) {
           const result = await response.json();
-          setManufacturers(result.data || []);
+
+          // Access the items array from the paginated response
+          const manufacturersList = result.data?.items || [];
+          console.log(`✅ Raw manufacturers list (${manufacturersList.length} items):`, manufacturersList);
+
+          if (manufacturersList.length < 49) {
+
+          } else if (manufacturersList.length >= 49) {
+
+          }
+
+          // Debug each manufacturer structure
+          if (manufacturersList.length > 0) {
+
+            console.log('🔬 Available fields:', Object.keys(manufacturersList[0]));
+
+            // Check for name field variations
+            const firstManufacturer = manufacturersList[0];
+
+          }
+
+          setManufacturers(manufacturersList);
+
+        } else {
+          const errorData = await response.json().catch(() => ({}));
+          console.error('❌ Failed to fetch manufacturers:', {
+            status: response.status,
+            statusText: response.statusText,
+            errorData,
+          });
+
+          if (response.status === 401) {
+            console.error('🔒 Authentication failed - please login to admin panel first');
+          }
         }
       } catch (error) {
-        console.error('Error fetching manufacturers:', error);
+        console.error('💥 Network error fetching manufacturers:', error);
+        console.error('📋 Error details:', {
+          name: error.name,
+          message: error.message,
+          stack: error.stack,
+        });
       } finally {
         setLoadingManufacturers(false);
+
+        console.groupEnd();
       }
     };
 
@@ -88,19 +149,19 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   const onSubmit = async (data: ProductFormData) => {
     try {
       setLoading(true);
-      
+
       // Include brochure URL in form data
       const formData = {
         ...data,
         pdfBrochureUrl: brochureUrl,
       };
-      
-      const url = product 
+
+      const url = product
         ? `/api/admin/products/${product.id}`
         : '/api/admin/products';
-      
+
       const method = product ? 'PUT' : 'POST';
-      
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -144,7 +205,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 <p className="text-sm text-red-600 mt-1">{errors.nom.fr.message}</p>
               )}
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t('product.form.nomProduitEn')} *
@@ -183,13 +244,37 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 disabled={loadingManufacturers}
               >
                 <option value="">
-                  {loadingManufacturers ? t('common.loading') : t('product.form.placeholders.selectManufacturer')}
+                  {loadingManufacturers
+                    ? t('common.loading')
+                    : manufacturers.length > 0
+                      ? `${t('product.form.placeholders.selectManufacturer')} (${manufacturers.length} available)`
+                      : 'No manufacturers available - please login first'
+                  }
                 </option>
-                {manufacturers.map((manufacturer) => (
-                  <option key={manufacturer.id} value={manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}>
-                    {manufacturer.nom?.fr || manufacturer.nom?.en || manufacturer.name}
-                  </option>
-                ))}
+                {(() => {
+                  console.group('🎨 ProductForm: Rendering Dropdown Options');
+
+                  const options = manufacturers.map((manufacturer, index) => {
+                    // Debug each manufacturer during render
+
+                    // Try different name sources
+                    const displayName = manufacturer.name || manufacturer.nom?.fr || manufacturer.nom?.en || 'Unnamed';
+                    const optionValue = manufacturer.name || manufacturer.nom?.fr || manufacturer.nom?.en || '';
+
+                    return (
+                      <option key={manufacturer.id} value={optionValue}>
+                        {displayName}
+                      </option>
+                    );
+                  });
+
+                  if (options.length < 49) {
+
+                  }
+
+                  console.groupEnd();
+                  return options;
+                })()}
               </select>
               {errors.constructeur && (
                 <p className="text-sm text-red-600 mt-1">{errors.constructeur.message}</p>
@@ -265,7 +350,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t('product.form.descriptionEn')}
@@ -291,7 +376,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t('product.form.ficheTechniqueEn')}

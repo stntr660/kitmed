@@ -1,6 +1,7 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { RFPCart } from '@/components/rfp/rfp-cart';
+import { ClientOnly } from '@/components/ui/client-only';
 import type { Locale } from '@/types';
 import type { Metadata } from 'next';
 
@@ -43,26 +44,29 @@ export const metadata: Metadata = {
 
 interface MainLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default function MainLayout({ children, params: { locale } }: MainLayoutProps) {
+export default async function MainLayout({ children, params }: MainLayoutProps) {
+  const { locale } = await params;
   return (
     <div className="flex min-h-screen flex-col">
       <Header locale={locale as Locale} />
-      
-      <main 
-        id="main-content" 
+
+      <main
+        id="main-content"
         className="flex-1"
         role="main"
       >
         {children}
       </main>
-      
+
       <Footer locale={locale as Locale} />
-      
+
       {/* Global Components */}
-      <RFPCart />
+      <ClientOnly>
+        <RFPCart />
+      </ClientOnly>
     </div>
   );
 }

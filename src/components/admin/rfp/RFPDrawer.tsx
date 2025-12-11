@@ -13,13 +13,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  BuildingOfficeIcon, 
-  UserIcon, 
+import {
+  BuildingOfficeIcon,
+  UserIcon,
   DocumentTextIcon,
   ClockIcon,
   CheckCircleIcon,
-  ExclamationCircleIcon 
+  ExclamationCircleIcon
 } from '@heroicons/react/24/outline';
 import { validateIconComponent } from '@/lib/component-utils';
 import { RFPRequest } from '@/types';
@@ -33,12 +33,12 @@ interface RFPDrawerProps {
   onAction?: (action: string, data?: any) => Promise<void>;
 }
 
-export function RFPDrawer({ 
-  open, 
-  onOpenChange, 
-  rfp, 
+export function RFPDrawer({
+  open,
+  onOpenChange,
+  rfp,
   mode,
-  onAction 
+  onAction
 }: RFPDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
@@ -72,7 +72,7 @@ export function RFPDrawer({
 
   const getStatusIcon = (status: string) => {
     let IconComponent;
-    
+
     switch (status) {
       case 'pending':
         IconComponent = ClockIcon;
@@ -88,7 +88,7 @@ export function RFPDrawer({
         IconComponent = ClockIcon;
         break;
     }
-    
+
     return validateIconComponent(IconComponent, `StatusIcon-${status}`);
   };
 
@@ -122,7 +122,7 @@ export function RFPDrawer({
 
   const handleAction = async (action: string, data?: any) => {
     if (!onAction) return;
-    
+
     setLoading(true);
     try {
       await onAction(action, data);
@@ -238,8 +238,8 @@ export function RFPDrawer({
                             {/* Product Image */}
                             <div className="flex-shrink-0">
                               {item.product?.media?.[0]?.url ? (
-                                <img 
-                                  src={item.product.media[0].url} 
+                                <img
+                                  src={item.product.media[0].url}
                                   alt={item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom || t('common.productImage')}
                                   className="w-12 h-12 rounded-lg object-cover border border-gray-200"
                                   onError={(e) => {
@@ -248,25 +248,25 @@ export function RFPDrawer({
                                   }}
                                 />
                               ) : null}
-                              <div 
+                              <div
                                 className={`w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                               >
                                 <span className="text-gray-400 text-xs">📦</span>
                               </div>
                             </div>
-                            
+
                             {/* Product Details */}
                             <div className="flex-1 min-w-0">
                               <h4 className="font-medium text-gray-900 text-sm">
-                                {item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom || 
-                                 item.product?.translations?.[0]?.nom || 
+                                {item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom ||
+                                 item.product?.translations?.[0]?.nom ||
                                  t('common.productWithoutName')}
                               </h4>
                               <p className="text-xs text-gray-600">
                                 {item.product?.referenceFournisseur} • {item.product?.constructeur}
                               </p>
                             </div>
-                            
+
                             <span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs font-medium">
                               {t('admin.rfpRequests.drawer.fields.quantity')}: {item.quantity}
                             </span>
@@ -297,17 +297,17 @@ export function RFPDrawer({
                           <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.requestNumber')}</label>
                           <p className="text-gray-900 font-mono">{rfp.referenceNumber}</p>
                         </div>
-                        
+
                         <div>
                           <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.table.customer')}</label>
                           <p className="text-gray-900">{rfp.companyName || rfp.customerName}</p>
                         </div>
-                        
+
                         <div>
                           <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.createdDate')}</label>
                           <p className="text-gray-900">{formatDate(rfp.createdAt)}</p>
                         </div>
-                        
+
                         <div>
                           <label className="text-sm font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.lastUpdated')}</label>
                           <p className="text-gray-900">{formatDate(rfp.updatedAt)}</p>
@@ -333,8 +333,8 @@ export function RFPDrawer({
                                 {/* Product Image */}
                                 <div className="flex-shrink-0">
                                   {item.product?.media?.[0]?.url ? (
-                                    <img 
-                                      src={item.product.media[0].url} 
+                                    <img
+                                      src={item.product.media[0].url}
                                       alt={item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom || t('common.productImage')}
                                       className="w-16 h-16 rounded-lg object-cover border border-gray-200"
                                       onError={(e) => {
@@ -343,18 +343,18 @@ export function RFPDrawer({
                                       }}
                                     />
                                   ) : null}
-                                  <div 
+                                  <div
                                     className={`w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                                   >
                                     <span className="text-gray-400 text-xs">📦</span>
                                   </div>
                                 </div>
-                                
+
                                 {/* Product Details */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="font-medium text-gray-900">
-                                    {item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom || 
-                                     item.product?.translations?.[0]?.nom || 
+                                    {item.product?.translations?.find((t: any) => t.languageCode === 'fr')?.nom ||
+                                     item.product?.translations?.[0]?.nom ||
                                      t('common.productWithoutName')}
                                   </h4>
                                   <p className="text-sm text-gray-600 mt-1">
@@ -371,7 +371,7 @@ export function RFPDrawer({
                                     </p>
                                   )}
                                 </div>
-                                
+
                                 {/* Quantity and Price */}
                                 <div className="flex-shrink-0 text-right">
                                   <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded text-sm font-medium">
@@ -457,7 +457,7 @@ export function RFPDrawer({
                 {loading && <LoadingSpinner size="sm" />}
                 <span>✓ {t('admin.rfpRequests.drawer.actions.markAsSent')}</span>
               </Button>
-              
+
               <Button
                 variant="outline"
                 onClick={() => handleAction('update-status', { status: 'completed' })}
@@ -469,7 +469,7 @@ export function RFPDrawer({
               </Button>
             </div>
           )}
-          
+
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}

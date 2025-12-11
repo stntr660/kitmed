@@ -17,6 +17,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { formatDate } from '@/lib/utils';
 
 // User interface matching the extended structure
 interface User {
@@ -24,7 +25,7 @@ interface User {
   firstName: string;
   lastName: string;
   email: string;
-  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  role: 'admin' | 'editor';
   status: 'active' | 'inactive' | 'pending' | 'suspended';
   permissions?: {
     resource: string;
@@ -52,7 +53,7 @@ interface UserDrawerProps {
 
 export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawerProps) {
   const t = useTranslations();
-  
+
   // Form state
   const [formData, setFormData] = useState<Partial<User>>({
     firstName: '',
@@ -60,7 +61,7 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
     email: '',
     phone: '',
     department: '',
-    role: 'viewer',
+    role: 'editor',
     status: 'active',
     twoFactorEnabled: false,
     isActive: true,
@@ -94,7 +95,7 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
         email: '',
         phone: '',
         department: '',
-        role: 'viewer',
+        role: 'editor',
         status: 'active',
         twoFactorEnabled: false,
         isActive: true,
@@ -139,7 +140,7 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
   const handleFieldChange = (field: keyof User, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setFormTouched(true);
-    
+
     // Clear field error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
@@ -474,13 +475,11 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
                   ) : (
                     <>
                       <select
-                        value={formData.role || 'viewer'}
+                        value={formData.role || 'editor'}
                         onChange={(e) => handleFieldChange('role', e.target.value as any)}
                         className={`w-full h-12 px-3 border rounded-lg bg-white ${errors.role ? 'border-red-500' : 'border-gray-300'}`}
                       >
-                        <option value="viewer">{t('admin.users.roles.viewer')}</option>
                         <option value="editor">{t('admin.users.roles.editor')}</option>
-                        <option value="manager">{t('admin.users.roles.manager')}</option>
                         <option value="admin">{t('admin.users.roles.admin')}</option>
                       </select>
                       {errors.role && (
@@ -577,7 +576,7 @@ export function UserDrawer({ open, onOpenChange, user, mode, onSave }: UserDrawe
                   <div>
                     <div className="text-gray-600">{t('admin.users.activity.lastActivity')}</div>
                     <div className="font-medium">
-                      {user.lastLogin ? new Date(user.lastLogin).toLocaleDateString() : t('admin.users.neverLoggedIn')}
+                      {user.lastLogin ? formatDate(user.lastLogin, 'time') : t('admin.users.neverLoggedIn')}
                     </div>
                   </div>
                   <div>

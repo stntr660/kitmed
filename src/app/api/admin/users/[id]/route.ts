@@ -1,149 +1,122 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { PrismaClient } from '@prisma/client';
+import { withAuth } from '@/lib/auth';
 
-// User update schema
-const userUpdateSchema = z.object({
-  email: z.string().email().optional(),
-  firstName: z.string().min(1).optional(),
-  lastName: z.string().min(1).optional(),
-  role: z.enum(['super_admin', 'admin', 'editor', 'viewer']).optional(),
-  isActive: z.boolean().optional(),
-  permissions: z.array(z.string()).optional(),
-  twoFactorEnabled: z.boolean().optional(),
-});
+const prisma = new PrismaClient();
 
-// Mock users storage (shared with main route)
-let users: any[] = [
-  {
-    id: 'user-1',
-    email: 'admin@kitmed.fr',
-    firstName: 'Mohamed',
-    lastName: 'Admin',
-    role: 'super_admin',
-    isActive: true,
-    permissions: ['all'],
-    twoFactorEnabled: true,
-    lastLogin: '2024-11-09T08:30:00Z',
-    createdAt: '2024-01-01T00:00:00Z',
-    updatedAt: '2024-11-09T08:30:00Z',
-    activityCount: 145,
-    loginHistory: [
-      { date: '2024-11-09T08:30:00Z', ip: '192.168.1.100', device: 'Chrome/MacOS' },
-      { date: '2024-11-08T16:45:00Z', ip: '192.168.1.100', device: 'Chrome/MacOS' },
-    ]
-  }
-];
-
-export async function GET(
+async function updateUser(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = users.find(u => u.id === params.id);
-    
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(user);
-  } catch (error) {
-    console.error('User fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch user' },
-      { status: 500 }
-    );
-  }
-}
+    const data = await request.json();
+    const { first_name, last_name, email, password, role, is_active } = data;
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const body = await request.json();
-    const validatedData = userUpdateSchema.parse(body);
-    
-    const userIndex = users.findIndex(u => u.id === params.id);
-    
-    if (userIndex === -1) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-    
-    // Check email uniqueness if email is being updated
-    if (validatedData.email && validatedData.email !== users[userIndex].email) {
-      const existingUser = users.find(u => u.email === validatedData.email && u.id !== params.id);
-      if (existingUser) {
-        return NextResponse.json(
-          { error: 'User with this email already exists' },
-          { status: 400 }
-        );
-      }
-    }
-    
-    // Update the user
-    const updatedUser = {
-      ...users[userIndex],
-      ...validatedData,
-      updatedAt: new Date().toISOString(),
-    };
-    
-    users[userIndex] = updatedUser;
-    
-    return NextResponse.json(updatedUser);
-  } catch (error) {
-    console.error('User update error:', error);
-    
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: 'Invalid user data', details: error.issues },
-        { status: 400 }
-      );
-    }
-    
-    return NextResponse.json(
-      { error: 'Failed to update user' },
-      { status: 500 }
-    );
-  }
-}
+    // Get current user from request context (set by withAuth middleware)
+    const currentUser = (request as any).user;
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const userIndex = users.findIndex(u => u.id === params.id);
-    
-    if (userIndex === -1) {
+    // Only admin users can update other users
+    if (currentUser.role.toLowerCase() !== 'admin') {
       return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-    
-    // Prevent deletion of super admin
-    if (users[userIndex].role === 'super_admin') {
-      return NextResponse.json(
-        { error: 'Cannot delete super admin user' },
+        { success: false, error: 'Insufficient permissions. Only administrators can update users.' },
         { status: 403 }
       );
     }
-    
-    // Remove the user
-    const deletedUser = users.splice(userIndex, 1)[0];
-    
-    return NextResponse.json(deletedUser);
+
+    // Validate role assignment permissions
+    if (role === 'admin' && currentUser.role.toLowerCase() !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Only administrators can assign admin role.' },
+        { status: 403 }
+      );
+    }
+
+    // Prepare update data
+    const updateData: any = {
+      first_name,
+      last_name,
+      email,
+      role,
+      is_active,
+      updated_at: new Date()
+    };
+
+    // Only update password if provided
+    if (password && password.trim() !== '') {
+      const { hashPassword } = await import('@/lib/auth-utils');
+      updateData.password_hash = await hashPassword(password);
+    }
+
+    const user = await prisma.users.update({
+      where: { id: params.id },
+      data: updateData,
+      select: {
+        id: true,
+        first_name: true,
+        last_name: true,
+        email: true,
+        role: true,
+        is_active: true,
+        last_login: true,
+        created_at: true,
+        updated_at: true,
+      }
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: user
+    });
   } catch (error) {
-    console.error('User deletion error:', error);
+    console.error('Failed to update user:', error);
     return NextResponse.json(
-      { error: 'Failed to delete user' },
+      { success: false, error: 'Failed to update user' },
       { status: 500 }
     );
   }
 }
+
+async function deleteUser(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // Get current user from request context (set by withAuth middleware)
+    const currentUser = (request as any).user;
+
+    // Only admin users can delete other users
+    if (currentUser.role.toLowerCase() !== 'admin') {
+      return NextResponse.json(
+        { success: false, error: 'Insufficient permissions. Only administrators can delete users.' },
+        { status: 403 }
+      );
+    }
+
+    // Prevent users from deleting themselves
+    if (currentUser.userId === params.id) {
+      return NextResponse.json(
+        { success: false, error: 'Cannot delete your own account.' },
+        { status: 400 }
+      );
+    }
+
+    await prisma.users.delete({
+      where: { id: params.id }
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: 'User deleted successfully'
+    });
+  } catch (error) {
+    console.error('Failed to delete user:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to delete user' },
+      { status: 500 }
+    );
+  }
+}
+
+// Export authenticated handlers
+export const PUT = withAuth(updateUser);
+export const DELETE = withAuth(deleteUser);

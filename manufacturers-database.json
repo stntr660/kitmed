@@ -1,0 +1,262 @@
+[
+  {
+    "name": "ACCUTOME",
+    "logoUrl": "https://www.accutome.com/images/logo.png",
+    "website": "https://www.accutome.com/",
+    "descriptions": {
+      "en": "Leading manufacturer of ophthalmic diagnostic and surgical instruments, specializing in ultrasound systems, surgical tools, and innovative eye care solutions for medical professionals worldwide.",
+      "fr": "Fabricant leader d'instruments de diagnostic et de chirurgie ophtalmiques, spécialisé dans les systèmes d'échographie, les outils chirurgicaux et les solutions innovantes de soins oculaires pour les professionnels de la santé dans le monde entier."
+    },
+    "category": "Ophthalmic Equipment",
+    "country": "USA",
+    "established": "1996",
+    "products": ["Ultrasound Systems", "Surgical Instruments", "Diagnostic Tools"]
+  },
+  {
+    "name": "AKTIVE GROUP",
+    "logoUrl": "https://www.aktivegroup.com/wp-content/uploads/2021/03/aktive-logo.png",
+    "website": "https://www.aktivegroup.com/",
+    "descriptions": {
+      "en": "Innovative medical technology company focused on developing advanced ophthalmic devices and solutions for vision care professionals, emphasizing quality and precision in eye healthcare.",
+      "fr": "Entreprise de technologie médicale innovante axée sur le développement d'appareils ophtalmiques avancés et de solutions pour les professionnels des soins de la vision, mettant l'accent sur la qualité et la précision dans les soins oculaires."
+    },
+    "category": "Medical Technology",
+    "country": "International",
+    "established": "2008",
+    "products": ["Ophthalmic Devices", "Vision Care Solutions"]
+  },
+  {
+    "name": "CERACARTA",
+    "logoUrl": "https://via.placeholder.com/300x120/4F46E5/FFFFFF?text=CERACARTA",
+    "website": "https://www.ceracarta.com/",
+    "descriptions": {
+      "en": "Specialized manufacturer of ceramic-based medical implants and surgical materials, providing high-quality biocompatible solutions for various medical applications.",
+      "fr": "Fabricant spécialisé d'implants médicaux à base de céramique et de matériaux chirurgicaux, fournissant des solutions biocompatibles de haute qualité pour diverses applications médicales."
+    },
+    "category": "Medical Implants",
+    "country": "Europe",
+    "established": "2005",
+    "products": ["Ceramic Implants", "Surgical Materials"]
+  },
+  {
+    "name": "COSWEL",
+    "logoUrl": "https://www.coswel.com/images/coswel-logo.png",
+    "website": "https://www.coswel.com/",
+    "descriptions": {
+      "en": "Medical device manufacturer specializing in ophthalmic surgical instruments and equipment, committed to providing reliable and innovative solutions for eye care professionals.",
+      "fr": "Fabricant de dispositifs médicaux spécialisé dans les instruments et équipements chirurgicaux ophtalmiques, engagé à fournir des solutions fiables et innovantes pour les professionnels des soins oculaires."
+    },
+    "category": "Surgical Instruments",
+    "country": "International",
+    "established": "1998",
+    "products": ["Ophthalmic Instruments", "Surgical Equipment"]
+  },
+  {
+    "name": "ESENSA",
+    "logoUrl": "https://www.esensa.de/wp-content/uploads/2020/01/esensa-logo.png",
+    "website": "https://www.esensa.de/",
+    "descriptions": {
+      "en": "German medical technology company developing innovative solutions for healthcare professionals, specializing in advanced medical devices and diagnostic equipment.",
+      "fr": "Entreprise allemande de technologie médicale développant des solutions innovantes pour les professionnels de la santé, spécialisée dans les dispositifs médicaux avancés et les équipements de diagnostic."
+    },
+    "category": "Medical Technology",
+    "country": "Germany",
+    "established": "2010",
+    "products": ["Medical Devices", "Diagnostic Equipment"]
+  },
+  {
+    "name": "FCI OPHTHALMICS",
+    "logoUrl": "https://www.fci.fr/wp-content/uploads/2019/06/FCI-logo.png",
+    "website": "https://www.fci.fr/",
+    "descriptions": {
+      "en": "Leading French manufacturer of ophthalmic surgical instruments and IOLs, renowned for innovation in cataract and vitreoretinal surgery with over 30 years of expertise.",
+      "fr": "Fabricant français leader d'instruments chirurgicaux ophtalmiques et de LIO, reconnu pour l'innovation en chirurgie de la cataracte et vitréorétinienne avec plus de 30 ans d'expertise."
+    },
+    "category": "Ophthalmic Surgery",
+    "country": "France",
+    "established": "1984",
+    "products": ["IOLs", "Surgical Instruments", "Vitreoretinal Tools"]
+  },
+  {
+    "name": "HAAG-STREIT",
+    "logoUrl": "https://haag-streit.com/assets/images/haag-streit-logo.png",
+    "website": "https://haag-streit.com/",
+    "descriptions": {
+      "en": "Swiss precision manufacturer of ophthalmic diagnostic and surgical equipment, world leader in slit lamps, surgical microscopes, and innovative eye care technology since 1858.",
+      "fr": "Fabricant suisse de précision d'équipements de diagnostic et de chirurgie ophtalmiques, leader mondial des lampes à fente, microscopes chirurgicaux et technologies innovantes de soins oculaires depuis 1858."
+    },
+    "category": "Ophthalmic Equipment",
+    "country": "Switzerland",
+    "established": "1858",
+    "products": ["Slit Lamps", "Surgical Microscopes", "Diagnostic Equipment"]
+  },
+  {
+    "name": "HEINE OPTOTECHNIK",
+    "logoUrl": "https://www.heine.com/wp-content/uploads/2020/03/heine-logo.png",
+    "website": "https://www.heine.com/",
+    "descriptions": {
+      "en": "German family-owned company manufacturing premium medical diagnostic instruments, including ophthalmoscopes, dermatoscopes, and otoscopes, known for exceptional quality and precision.",
+      "fr": "Entreprise familiale allemande fabriquant des instruments de diagnostic médical haut de gamme, notamment des ophtalmoscopes, dermatoscopes et otoscopes, reconnue pour sa qualité et sa précision exceptionnelles."
+    },
+    "category": "Diagnostic Instruments",
+    "country": "Germany",
+    "established": "1946",
+    "products": ["Ophthalmoscopes", "Dermatoscopes", "Otoscopes"]
+  },
+  {
+    "name": "INAMI & CO.",
+    "logoUrl": "https://www.inami.com/images/inami-logo.png",
+    "website": "https://www.inami.com/",
+    "descriptions": {
+      "en": "Japanese manufacturer of precision surgical instruments for ophthalmic and microsurgical procedures, combining traditional craftsmanship with modern technology for exceptional quality.",
+      "fr": "Fabricant japonais d'instruments chirurgicaux de précision pour les procédures ophtalmiques et microchirurgicales, combinant l'artisanat traditionnel avec la technologie moderne pour une qualité exceptionnelle."
+    },
+    "category": "Surgical Instruments",
+    "country": "Japan",
+    "established": "1948",
+    "products": ["Microsurgical Instruments", "Ophthalmic Tools", "Precision Blades"]
+  },
+  {
+    "name": "JOHNSON & JOHNSON VISION",
+    "logoUrl": "https://www.jnj.com/sites/default/files/styles/panopoly_image_original/public/media/image/jnj_logo_0.png",
+    "website": "https://www.jnj.com/",
+    "descriptions": {
+      "en": "Global healthcare leader providing comprehensive vision care solutions including contact lenses, surgical products, and eye health technologies, serving patients and professionals worldwide.",
+      "fr": "Leader mondial des soins de santé fournissant des solutions complètes de soins de la vision, notamment des lentilles de contact, des produits chirurgicaux et des technologies de santé oculaire, au service des patients et des professionnels du monde entier."
+    },
+    "category": "Vision Care",
+    "country": "USA",
+    "established": "1886",
+    "products": ["Contact Lenses", "Surgical Products", "Eye Health Technologies"]
+  },
+  {
+    "name": "KEELER",
+    "logoUrl": "https://www.keeler.co.uk/wp-content/uploads/2020/01/keeler-logo.png",
+    "website": "https://www.keeler.co.uk/",
+    "descriptions": {
+      "en": "British manufacturer of professional ophthalmic diagnostic equipment, specializing in slit lamps, ophthalmoscopes, and tonometers with over 100 years of innovation in eye care.",
+      "fr": "Fabricant britannique d'équipements de diagnostic ophtalmique professionnel, spécialisé dans les lampes à fente, ophtalmoscopes et tonomètres avec plus de 100 ans d'innovation dans les soins oculaires."
+    },
+    "category": "Ophthalmic Equipment",
+    "country": "United Kingdom",
+    "established": "1917",
+    "products": ["Slit Lamps", "Ophthalmoscopes", "Tonometers"]
+  },
+  {
+    "name": "L'INSTRUMENTATION",
+    "logoUrl": "https://www.linstrumentation.fr/wp-content/uploads/2019/03/linstrumentation-logo.png",
+    "website": "https://www.linstrumentation.fr/",
+    "descriptions": {
+      "en": "French distributor and manufacturer of precision medical instruments, specializing in ophthalmic surgical tools and equipment for healthcare professionals across France and Europe.",
+      "fr": "Distributeur et fabricant français d'instruments médicaux de précision, spécialisé dans les outils et équipements chirurgicaux ophtalmiques pour les professionnels de la santé en France et en Europe."
+    },
+    "category": "Medical Instruments",
+    "country": "France",
+    "established": "1985",
+    "products": ["Ophthalmic Instruments", "Surgical Tools", "Medical Equipment"]
+  },
+  {
+    "name": "MEDICONTUR",
+    "logoUrl": "https://medicontur.com/wp-content/uploads/2020/02/medicontur-logo.png",
+    "website": "https://medicontur.com/",
+    "descriptions": {
+      "en": "Hungarian manufacturer of premium intraocular lenses and ophthalmic surgical products, focusing on innovative IOL technology and high-quality cataract surgery solutions.",
+      "fr": "Fabricant hongrois de lentilles intraoculaires haut de gamme et de produits chirurgicaux ophtalmiques, axé sur la technologie IOL innovante et les solutions de chirurgie de la cataracte de haute qualité."
+    },
+    "category": "Intraocular Lenses",
+    "country": "Hungary",
+    "established": "1991",
+    "products": ["Premium IOLs", "Cataract Surgery Products", "Ophthalmic Devices"]
+  },
+  {
+    "name": "MEDIWORKS",
+    "logoUrl": "https://www.mediworks.fr/wp-content/uploads/2018/05/mediworks-logo.png",
+    "website": "https://www.mediworks.fr/",
+    "descriptions": {
+      "en": "French medical technology company providing innovative solutions for ophthalmic procedures, specializing in surgical instruments and equipment for eye care professionals.",
+      "fr": "Entreprise française de technologie médicale fournissant des solutions innovantes pour les procédures ophtalmiques, spécialisée dans les instruments chirurgicaux et les équipements pour les professionnels des soins oculaires."
+    },
+    "category": "Medical Technology",
+    "country": "France",
+    "established": "2003",
+    "products": ["Surgical Instruments", "Ophthalmic Equipment", "Medical Devices"]
+  },
+  {
+    "name": "MORIA",
+    "logoUrl": "https://www.moria.com/wp-content/uploads/2019/04/moria-logo.png",
+    "website": "https://www.moria.com/",
+    "descriptions": {
+      "en": "French manufacturer of precision ophthalmic surgical instruments, world leader in microkeratomes and corneal surgery tools with over 170 years of expertise in eye surgery.",
+      "fr": "Fabricant français d'instruments chirurgicaux ophtalmiques de précision, leader mondial des microkératomes et outils de chirurgie cornéenne avec plus de 170 ans d'expertise en chirurgie oculaire."
+    },
+    "category": "Corneal Surgery",
+    "country": "France",
+    "established": "1849",
+    "products": ["Microkeratomes", "Corneal Surgery Tools", "LASIK Equipment"]
+  },
+  {
+    "name": "NIDEK",
+    "logoUrl": "https://www.nidek.com/wp-content/uploads/2020/01/nidek-logo.png",
+    "website": "https://www.nidek.com/",
+    "descriptions": {
+      "en": "Japanese global leader in ophthalmic equipment manufacturing, providing comprehensive solutions including diagnostic instruments, laser systems, and refractive surgery equipment.",
+      "fr": "Leader mondial japonais dans la fabrication d'équipements ophtalmiques, fournissant des solutions complètes incluant des instruments de diagnostic, des systèmes laser et des équipements de chirurgie réfractive."
+    },
+    "category": "Ophthalmic Equipment",
+    "country": "Japan",
+    "established": "1971",
+    "products": ["Laser Systems", "Diagnostic Equipment", "Refractive Surgery Tools"]
+  },
+  {
+    "name": "OCULAR THERAPEUTIX",
+    "logoUrl": "https://www.ocularmedical.com/wp-content/uploads/2020/03/ocular-logo.png",
+    "website": "https://www.ocularmedical.com/",
+    "descriptions": {
+      "en": "Biopharmaceutical company developing innovative drug delivery systems for ophthalmic conditions, focusing on sustained-release therapeutics for eye diseases and disorders.",
+      "fr": "Entreprise biopharmaceutique développant des systèmes innovants de délivrance de médicaments pour les affections ophtalmiques, axée sur les thérapeutiques à libération prolongée pour les maladies et troubles oculaires."
+    },
+    "category": "Pharmaceuticals",
+    "country": "USA",
+    "established": "2006",
+    "products": ["Drug Delivery Systems", "Ophthalmic Therapeutics", "Sustained-Release Products"]
+  },
+  {
+    "name": "OPHTEC",
+    "logoUrl": "https://www.ophtec.com/wp-content/uploads/2019/02/ophtec-logo.png",
+    "website": "https://www.ophtec.com/",
+    "descriptions": {
+      "en": "Dutch manufacturer of innovative intraocular lenses and ophthalmic implants, specializing in premium IOL technology and surgical solutions for cataract and refractive surgery.",
+      "fr": "Fabricant néerlandais de lentilles intraoculaires innovantes et d'implants ophtalmiques, spécialisé dans la technologie IOL haut de gamme et les solutions chirurgicales pour la cataracte et la chirurgie réfractive."
+    },
+    "category": "Intraocular Lenses",
+    "country": "Netherlands",
+    "established": "1989",
+    "products": ["Premium IOLs", "Ophthalmic Implants", "Surgical Accessories"]
+  },
+  {
+    "name": "RUMEX INTERNATIONAL",
+    "logoUrl": "https://rumex.com/wp-content/uploads/2020/04/rumex-logo.png",
+    "website": "https://rumex.com/",
+    "descriptions": {
+      "en": "American manufacturer of precision ophthalmic surgical instruments and microsurgical tools, providing high-quality solutions for vitreoretinal and anterior segment surgery.",
+      "fr": "Fabricant américain d'instruments chirurgicaux ophtalmiques de précision et d'outils microchirurgicaux, fournissant des solutions de haute qualité pour la chirurgie vitréorétinienne et du segment antérieur."
+    },
+    "category": "Surgical Instruments",
+    "country": "USA",
+    "established": "1980",
+    "products": ["Microsurgical Tools", "Vitreoretinal Instruments", "Surgical Accessories"]
+  },
+  {
+    "name": "URSAPHARM",
+    "logoUrl": "https://ursapharm.de/wp-content/uploads/2020/01/ursapharm-logo.png",
+    "website": "https://ursapharm.de/",
+    "descriptions": {
+      "en": "German pharmaceutical company specializing in ophthalmic medications and eye care products, developing innovative treatments for various ocular conditions and disorders.",
+      "fr": "Entreprise pharmaceutique allemande spécialisée dans les médicaments ophtalmiques et les produits de soins oculaires, développant des traitements innovants pour diverses affections et troubles oculaires."
+    },
+    "category": "Pharmaceuticals",
+    "country": "Germany",
+    "established": "1974",
+    "products": ["Ophthalmic Medications", "Eye Drops", "Ocular Treatments"]
+  }
+]

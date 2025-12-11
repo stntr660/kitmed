@@ -12,12 +12,22 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import { MediaUpload } from './MediaUpload';
+import { ClientOnly } from '@/components/ui/client-only';
+import { DocumentUpload } from '@/components/ui/document-upload';
 import { Product } from '@/types';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ProductDrawerProps {
   open: boolean;
@@ -27,15 +37,22 @@ interface ProductDrawerProps {
   onSave?: (product: Partial<Product>) => Promise<void>;
 }
 
-export function ProductDrawer({ 
-  open, 
-  onOpenChange, 
-  product, 
+export function ProductDrawer({
+  open,
+  onOpenChange,
+  product,
   mode,
-  onSave 
+  onSave
 }: ProductDrawerProps) {
   const t = useTranslations();
   const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState<Array<{id: string; slug: string; name: string; category_translations: Array<{language_code: string; name: string}>}>>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [manufacturers, setManufacturers] = useState<Array<{id: string; name: string}>>([]);
+  const [manufacturersLoading, setManufacturersLoading] = useState(false);
+  const [showNewManufacturerInput, setShowNewManufacturerInput] = useState(false);
+  const [newManufacturerName, setNewManufacturerName] = useState('');
+  const [tempFiles, setTempFiles] = useState<File[]>([]);
   const [formData, setFormData] = useState<Partial<Product>>({
     referenceFournisseur: '',
     constructeur: '',
@@ -47,10 +64,64 @@ export function ProductDrawer({
     status: 'active',
     featured: false,
   });
-  
+
   // Progressive disclosure state
   const [showInternationalFields, setShowInternationalFields] = useState(false);
   const [showAdvancedFields, setShowAdvancedFields] = useState(false);
+
+  // Fetch categories from API
+  const fetchCategories = async () => {
+    try {
+      setCategoriesLoading(true);
+      const token = getAdminToken();
+
+      const response = await fetch('/api/admin/categories?isActive=true', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data.data?.items || []);
+      } else {
+        console.error('Failed to fetch categories');
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    } finally {
+      setCategoriesLoading(false);
+    }
+  };
+
+  // Fetch manufacturers from partners API
+  const fetchManufacturers = async () => {
+    try {
+      setManufacturersLoading(true);
+      const token = getAdminToken();
+
+      const response = await fetch('/api/admin/partners?type=manufacturer', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const manufacturerList = (data.data?.items || []).map((partner: any) => ({
+          id: partner.id,
+          name: partner.name || 'Unnamed Manufacturer'
+        }));
+        setManufacturers(manufacturerList);
+      } else {
+        console.error('Failed to fetch manufacturers');
+      }
+    } catch (error) {
+      console.error('Error fetching manufacturers:', error);
+    } finally {
+      setManufacturersLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (product && open) {
@@ -78,19 +149,117 @@ export function ProductDrawer({
         featured: false,
       });
     }
+
+    // Clear temp files when drawer closes
+    if (!open) {
+      setTempFiles([]);
+    }
   }, [product, open, mode]);
+
+  // Fetch categories and manufacturers when drawer opens
+  useEffect(() => {
+    if (open) {
+      fetchCategories();
+      fetchManufacturers();
+    }
+  }, [open]);
 
   const handleSave = async () => {
     if (!onSave) return;
-    
+
     setLoading(true);
     try {
-      await onSave(formData);
+      const savedProduct = await onSave(formData);
+
+      // If we have temp files and a new product was created, upload them
+      if (tempFiles.length > 0 && savedProduct?.id && mode === 'add') {
+        await uploadTempFilesToProduct(savedProduct.id);
+      }
+
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to save product:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Upload temp files to the newly created product
+  const uploadTempFilesToProduct = async (productId: string) => {
+    if (tempFiles.length === 0) return;
+
+    try {
+      const formData = new FormData();
+      tempFiles.forEach(file => {
+        formData.append('files', file);
+      });
+
+      const token = getAdminToken();
+      const response = await fetch(`/api/admin/products/${productId}/media`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        setTempFiles([]); // Clear temp files after successful upload
+      }
+    } catch (error) {
+      console.error('Failed to upload temp files:', error);
+    }
+  };
+
+  // Handle creating a new manufacturer
+  const handleCreateNewManufacturer = async () => {
+    if (!newManufacturerName.trim()) return;
+
+    try {
+      const token = getAdminToken();
+      const response = await fetch('/api/admin/partners', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: { fr: newManufacturerName.trim() },
+          type: 'manufacturer',
+          status: 'active',
+          description: { fr: `Fabricant créé depuis le formulaire produit` }
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const newManufacturer = {
+          id: result.data.id,
+          name: newManufacturerName.trim()
+        };
+
+        // Add to manufacturers list
+        setManufacturers(prev => [newManufacturer, ...prev]);
+
+        // Select the new manufacturer
+        handleInputChange('constructeur', newManufacturerName.trim());
+
+        // Reset states
+        setNewManufacturerName('');
+        setShowNewManufacturerInput(false);
+      } else {
+        console.error('Failed to create manufacturer');
+      }
+    } catch (error) {
+      console.error('Error creating manufacturer:', error);
+    }
+  };
+
+  const handleSelectChange = (value: string) => {
+    if (value === '__add_new__') {
+      setShowNewManufacturerInput(true);
+    } else {
+      handleInputChange('constructeur', value);
     }
   };
 
@@ -152,7 +321,7 @@ export function ProductDrawer({
               </SheetDescription>
             </div>
             {product && (
-              <Badge 
+              <Badge
                 variant={product.status === 'active' ? 'default' : 'secondary'}
                 className="ml-4"
               >
@@ -193,15 +362,82 @@ export function ProductDrawer({
                   <label htmlFor="constructeur" className="text-sm font-semibold text-gray-700">
                     {t('admin.products.brand')} *
                   </label>
-                  <Input
-                    id="constructeur"
-                    value={formData.constructeur || ''}
-                    onChange={(e) => handleInputChange('constructeur', e.target.value)}
-                    placeholder={t('admin.products.brandPlaceholder')}
-                    disabled={isReadOnly}
-                    className="font-medium"
-                  />
+
+                  {showNewManufacturerInput ? (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <Input
+                          value={newManufacturerName}
+                          onChange={(e) => setNewManufacturerName(e.target.value)}
+                          placeholder={t('admin.products.newManufacturerName')}
+                          className="flex-1 font-medium"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              handleCreateNewManufacturer();
+                            }
+                            if (e.key === 'Escape') {
+                              setShowNewManufacturerInput(false);
+                              setNewManufacturerName('');
+                            }
+                          }}
+                        />
+                        <Button
+                          type="button"
+                          size="sm"
+                          onClick={handleCreateNewManufacturer}
+                          disabled={!newManufacturerName.trim()}
+                        >
+                          {t('common.add')}
+                        </Button>
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            setShowNewManufacturerInput(false);
+                            setNewManufacturerName('');
+                          }}
+                        >
+                          {t('common.cancel')}
+                        </Button>
+                      </div>
+                      <p className="text-xs text-gray-500">{t('admin.products.pressEnterToAdd')}</p>
+                    </div>
+                  ) : (
+                    <Select
+                      value={formData.constructeur || ''}
+                      onValueChange={handleSelectChange}
+                      disabled={isReadOnly || manufacturersLoading}
+                    >
+                      <SelectTrigger className="font-medium">
+                        <SelectValue placeholder={manufacturersLoading ? t('common.loading') : t('admin.products.brandPlaceholder')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="__add_new__" className="font-semibold text-blue-600">
+                          ➕ {t('admin.products.addNewManufacturer')}
+                        </SelectItem>
+                        {manufacturers.map((manufacturer) => (
+                          <SelectItem key={manufacturer.id} value={manufacturer.name}>
+                            {manufacturer.name}
+                          </SelectItem>
+                        ))}
+                        {manufacturers.length === 0 && !manufacturersLoading && (
+                          <SelectItem value="" disabled>
+                            {t('admin.products.noManufacturersFound')}
+                          </SelectItem>
+                        )}
+                      </SelectContent>
+                    </Select>
+                  )}
+
                   <p className="text-xs text-gray-500">{t('admin.products.brandHint')}</p>
+                  {manufacturersLoading && (
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <LoadingSpinner size="sm" />
+                      {t('common.loading')}...
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -229,16 +465,18 @@ export function ProductDrawer({
                   id="categoryId"
                   value={formData.categoryId || ''}
                   onChange={(e) => handleInputChange('categoryId', e.target.value)}
-                  disabled={isReadOnly}
+                  disabled={isReadOnly || categoriesLoading}
                   className="flex h-12 w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <option value="">{t('admin.products.selectDiscipline')}</option>
-                  <option value="cardiology">{t('admin.products.categories.cardiology')}</option>
-                  <option value="radiology">{t('admin.products.categories.radiology')}</option>
-                  <option value="surgery">{t('admin.products.categories.surgery')}</option>
-                  <option value="laboratory">{t('admin.products.categories.laboratory')}</option>
-                  <option value="emergency">{t('admin.products.categories.emergency')}</option>
-                  <option value="icu">{t('admin.products.categories.icu')}</option>
+                  <option value="">{categoriesLoading ? t('common.loading') + '...' : t('admin.products.selectDiscipline')}</option>
+                  {categories.map(category => {
+                    const translatedName = category.category_translations?.find(t => t.language_code === 'fr')?.name || category.name;
+                    return (
+                      <option key={category.id} value={category.id}>
+                        {translatedName}
+                      </option>
+                    );
+                  })}
                 </select>
                 <p className="text-xs text-gray-500">{t('admin.products.disciplineHint')}</p>
               </div>
@@ -295,7 +533,7 @@ export function ProductDrawer({
               </div>
               <p className="text-sm text-blue-600">{t('admin.products.internationalDescription')}</p>
             </CardHeader>
-            
+
             {showInternationalFields && (
               <CardContent className="space-y-4 border-t border-blue-100 pt-4">
                 <div className="space-y-2">
@@ -362,7 +600,7 @@ export function ProductDrawer({
               </div>
               <p className="text-sm text-amber-600">{t('admin.products.technicalDetailsDescription')}</p>
             </CardHeader>
-            
+
             {showAdvancedFields && (
               <CardContent className="space-y-4 border-t border-amber-100 pt-4">
                 <div className="space-y-2">
@@ -400,15 +638,16 @@ export function ProductDrawer({
                   <label htmlFor="pdf-brochure" className="text-sm font-medium text-gray-700">
                     {t('admin.products.brochureDocument')}
                   </label>
-                  <Input
-                    id="pdf-brochure"
+                  <DocumentUpload
                     value={formData.pdfBrochureUrl || ''}
-                    onChange={(e) => handleInputChange('pdfBrochureUrl', e.target.value)}
-                    placeholder={t('admin.products.brochureDocumentPlaceholder')}
+                    onChange={(url) => handleInputChange('pdfBrochureUrl', url)}
+                    placeholder="Upload product brochure PDF"
+                    label="Product Brochure"
+                    preset="productBrochure"
+                    maxSize={25}
                     disabled={isReadOnly}
-                    type="url"
                   />
-                  <p className="text-xs text-gray-500">{t('admin.products.brochureDocumentHint')}</p>
+                  <p className="text-xs text-gray-500 mt-2">{t('admin.products.brochureDocumentHint')}</p>
                 </div>
               </CardContent>
             )}
@@ -495,10 +734,13 @@ export function ProductDrawer({
               <p className="text-sm text-gray-600">{t('admin.products.mediaManagementDescription')}</p>
             </CardHeader>
             <CardContent>
-              <MediaUpload 
-                productId={product?.id || null}
-                disabled={isReadOnly}
-              />
+              <ClientOnly fallback={<div className="p-8 text-center"><LoadingSpinner /></div>}>
+                <MediaUpload
+                  productId={product?.id || null}
+                  disabled={isReadOnly}
+                  onTempFilesChange={setTempFiles}
+                />
+              </ClientOnly>
             </CardContent>
           </Card>
         </div>
@@ -512,7 +754,7 @@ export function ProductDrawer({
           >
             {mode === 'view' ? t('common.close') : t('common.cancel')}
           </Button>
-          
+
           {mode !== 'view' && (
             <Button
               onClick={handleSave}

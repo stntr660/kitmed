@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -15,10 +15,10 @@ import {
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Upload, 
-  Image as ImageIcon, 
-  Link2, 
+import {
+  Upload,
+  Image as ImageIcon,
+  Link2,
   Settings,
   Eye,
   Calendar,
@@ -26,9 +26,11 @@ import {
   Save,
   X
 } from 'lucide-react';
+import { CompactImageUpload } from '@/components/ui/compact-image-upload';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { getAdminToken } from '@/lib/auth-utils';
 
 const bannerSchema = z.object({
   // French content (required)
@@ -48,7 +50,7 @@ const bannerSchema = z.object({
   backgroundUrl: z.string().optional(),
 
   // CTA
-  ctaUrl: z.string().url().optional().or(z.literal('')),
+  ctaUrl: z.string().optional().or(z.literal('')),
   ctaStyle: z.enum(['primary', 'secondary', 'outline']),
 
   // Layout & Design
@@ -170,11 +172,28 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
   }, [banner, reset]);
 
   const onSubmit = async (data: BannerFormData) => {
-    console.log('Form submission started', { data, banner });
-    console.log('Form errors:', errors);
+
     setLoading(true);
     try {
       const payload = {
+        // Top-level fields (required by API schema)
+        title: data.title_fr, // Use French title as primary
+        subtitle: data.subtitle_fr || undefined,
+        description: data.description_fr || undefined,
+        ctaText: data.ctaText_fr || undefined,
+        imageUrl: data.imageUrl || undefined,
+        backgroundUrl: data.backgroundUrl || undefined,
+        ctaUrl: data.ctaUrl || undefined,
+        ctaStyle: data.ctaStyle,
+        position: data.position,
+        layout: data.layout,
+        textAlign: data.textAlign,
+        overlayOpacity: data.overlayOpacity,
+        sortOrder: data.sortOrder,
+        isActive: data.isActive,
+        startDate: data.startDate ? `${data.startDate}T00:00:00Z` : undefined,
+        endDate: data.endDate ? `${data.endDate}T23:59:59Z` : undefined,
+        // Translations object (also required by API schema)
         translations: {
           fr: {
             title: data.title_fr,
@@ -189,45 +208,45 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
             ctaText: data.ctaText_en || undefined,
           } : undefined,
         },
-        imageUrl: data.imageUrl || undefined,
-        backgroundUrl: data.backgroundUrl || undefined,
-        ctaUrl: data.ctaUrl || undefined,
-        ctaStyle: data.ctaStyle,
-        position: data.position,
-        layout: data.layout,
-        textAlign: data.textAlign,
-        overlayOpacity: data.overlayOpacity,
-        sortOrder: data.sortOrder,
-        isActive: data.isActive,
-        startDate: data.startDate ? `${data.startDate}T00:00:00Z` : undefined,
-        endDate: data.endDate ? `${data.endDate}T23:59:59Z` : undefined,
       };
 
-      const url = banner ? `/api/admin/banners/no-auth/${banner.id}` : '/api/admin/banners/no-auth';
+      const url = banner ? `/api/admin/banners/${banner.id}` : '/api/admin/banners';
       const method = banner ? 'PUT' : 'POST';
-
-      console.log('Making request:', { url, method, payload });
 
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAdminToken()}`,
         },
         body: JSON.stringify(payload),
       });
 
-      console.log('Response received:', { status: response.status, ok: response.ok });
-
       if (response.ok) {
         onSuccess();
       } else {
-        const error = await response.json();
-        console.error('Failed to save banner:', error);
-        alert(`Failed to save banner: ${error.error || error.message || 'Please try again.'}`);
+        const errorData = await response.json();
+        console.error('Failed to save banner:', errorData);
+
+        // Extract error message from different possible structures
+        let errorMessage = 'Please try again.';
+        if (errorData.error?.message) {
+          errorMessage = errorData.error.message;
+        } else if (errorData.error?.details) {
+          errorMessage = Array.isArray(errorData.error.details)
+            ? errorData.error.details.map((d: any) => d.message || d).join(', ')
+            : String(errorData.error.details);
+        } else if (errorData.message) {
+          errorMessage = errorData.message;
+        } else if (errorData.error) {
+          errorMessage = String(errorData.error);
+        }
+
+        alert(`Failed to save banner: ${errorMessage}`);
       }
     } catch (error) {
       console.error('Error saving banner:', error);
-      alert('An error occurred while saving the banner.');
+      alert(`An error occurred while saving the banner: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
@@ -235,27 +254,27 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
 
   const handleImageUpload = async (file: File, type: 'image' | 'background') => {
     const setUploadLoading = type === 'image' ? setImageUploadLoading : setBackgroundUploadLoading;
-    
+
     setUploadLoading(true);
     try {
       // Upload file to server
       const formData = new FormData();
       formData.append('file', file);
-      
+
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
-      
+
       const result = await response.json();
-      
+
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Upload failed');
       }
-      
+
       // Set the permanent URL from the upload response
       const imageUrl = result.data.url;
-      
+
       if (type === 'image') {
         setValue('imageUrl', imageUrl);
       } else {
@@ -275,11 +294,11 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, (errors) => {
-      console.log('Form validation errors:', errors);
+
       alert('Please fix form validation errors before submitting.');
     })} className="space-y-6">
       <Tabs defaultValue="content" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="content" className="flex items-center space-x-2">
             <Globe className="h-4 w-4" />
             <span>Content</span>
@@ -287,14 +306,6 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
           <TabsTrigger value="media" className="flex items-center space-x-2">
             <ImageIcon className="h-4 w-4" />
             <span>Media</span>
-          </TabsTrigger>
-          <TabsTrigger value="design" className="flex items-center space-x-2">
-            <Settings className="h-4 w-4" />
-            <span>Design</span>
-          </TabsTrigger>
-          <TabsTrigger value="schedule" className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4" />
-            <span>Schedule</span>
           </TabsTrigger>
         </TabsList>
 
@@ -394,12 +405,12 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
             </Card>
           </div>
 
-          {/* CTA URL */}
+          {/* CTA URL and Banner Settings */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg flex items-center space-x-2">
                 <Link2 className="h-5 w-5" />
-                <span>Call to Action</span>
+                <span>Call to Action & Settings</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -409,8 +420,7 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
                   <Input
                     id="ctaUrl"
                     {...register('ctaUrl')}
-                    placeholder="https://example.com/products"
-                    type="url"
+                    placeholder="/products or https://example.com/products"
                   />
                 </div>
                 <div>
@@ -431,6 +441,42 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
                       </Select>
                     )}
                   />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="position">Position</Label>
+                  <Controller
+                    name="position"
+                    control={control}
+                    render={({ field }) => (
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="homepage">Homepage</SelectItem>
+                          <SelectItem value="category">Category Pages</SelectItem>
+                          <SelectItem value="product">Product Pages</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Controller
+                    name="isActive"
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        id="isActive"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    )}
+                  />
+                  <Label htmlFor="isActive">Active</Label>
                 </div>
               </div>
             </CardContent>
@@ -519,153 +565,6 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
           </div>
         </TabsContent>
 
-        <TabsContent value="design" className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Layout Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="layout">Layout</Label>
-                  <Controller
-                    name="layout"
-                    control={control}
-                    render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="split">Split (Text + Image)</SelectItem>
-                          <SelectItem value="centered">Centered</SelectItem>
-                          <SelectItem value="full-width">Full Width</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="textAlign">Text Alignment</Label>
-                  <Controller
-                    name="textAlign"
-                    control={control}
-                    render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="left">Left</SelectItem>
-                          <SelectItem value="center">Center</SelectItem>
-                          <SelectItem value="right">Right</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="overlayOpacity">Overlay Opacity</Label>
-                  <Input
-                    id="overlayOpacity"
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    max="1"
-                    {...register('overlayOpacity', { valueAsNumber: true })}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">0.0 (transparent) to 1.0 (opaque)</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Display Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="position">Position</Label>
-                  <Controller
-                    name="position"
-                    control={control}
-                    render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="homepage">Homepage</SelectItem>
-                          <SelectItem value="products">Products Page</SelectItem>
-                          <SelectItem value="about">About Page</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="sortOrder">Sort Order</Label>
-                  <Input
-                    id="sortOrder"
-                    type="number"
-                    min="0"
-                    {...register('sortOrder', { valueAsNumber: true })}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">Lower numbers appear first</p>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <Controller
-                    name="isActive"
-                    control={control}
-                    render={({ field }) => (
-                      <Checkbox
-                        id="isActive"
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    )}
-                  />
-                  <Label htmlFor="isActive">Active</Label>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="schedule" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Schedule Settings</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="startDate">Start Date</Label>
-                  <Input
-                    id="startDate"
-                    type="date"
-                    {...register('startDate')}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">Leave empty for immediate activation</p>
-                </div>
-
-                <div>
-                  <Label htmlFor="endDate">End Date</Label>
-                  <Input
-                    id="endDate"
-                    type="date"
-                    {...register('endDate')}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">Leave empty for no expiration</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
       </Tabs>
 
       {/* Form Actions */}

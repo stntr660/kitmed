@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   Cookie,
   Settings,
   BarChart3,
@@ -22,7 +22,7 @@ import { useState } from 'react';
 
 export default function CookiesPage() {
   const t = useTranslations('cookies');
-  
+
   const [cookieSettings, setCookieSettings] = useState({
     necessary: true, // Always enabled
     analytics: true,
@@ -113,7 +113,7 @@ export default function CookiesPage() {
 
   const handleToggle = (category: string) => {
     if (category === 'necessary') return; // Cannot disable necessary cookies
-    
+
     setCookieSettings(prev => ({
       ...prev,
       [category]: !prev[category]
@@ -140,7 +140,7 @@ export default function CookiesPage() {
 
   const saveSettings = () => {
     // Here you would save the settings to localStorage and update actual cookies
-    console.log('Cookie settings saved:', cookieSettings);
+
     alert('Vos préférences de cookies ont été enregistrées.');
   };
 
@@ -157,7 +157,7 @@ export default function CookiesPage() {
               Politique des Cookies
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Cette page explique comment KITMED utilise les cookies et technologies similaires 
+              Cette page explique comment KITMED utilise les cookies et technologies similaires
               pour améliorer votre expérience sur notre plateforme.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
@@ -190,8 +190,8 @@ export default function CookiesPage() {
                     Définition
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Un cookie est un petit fichier texte stocké sur votre ordinateur ou 
-                    appareil mobile lorsque vous visitez un site web. Il permet au site 
+                    Un cookie est un petit fichier texte stocké sur votre ordinateur ou
+                    appareil mobile lorsque vous visitez un site web. Il permet au site
                     de mémoriser vos actions et préférences pendant un certain temps.
                   </p>
                 </CardContent>
@@ -208,8 +208,8 @@ export default function CookiesPage() {
                     Utilité
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Les cookies améliorent votre expérience en mémorisant vos préférences, 
-                    en sécurisant votre session, et en nous aidant à analyser l'utilisation 
+                    Les cookies améliorent votre expérience en mémorisant vos préférences,
+                    en sécurisant votre session, et en nous aidant à analyser l'utilisation
                     du site pour l'améliorer continuellement.
                   </p>
                 </CardContent>
@@ -253,7 +253,7 @@ export default function CookiesPage() {
                           <p className="text-gray-600 text-sm mt-1">{category.description}</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center space-x-2">
                         <span className="text-sm text-gray-500">
                           {cookieSettings[category.id as keyof typeof cookieSettings] ? 'Activé' : 'Désactivé'}
@@ -289,7 +289,7 @@ export default function CookiesPage() {
                           <span className="text-gray-600">{category.duration}</span>
                         </div>
                       </div>
-                      
+
                       <div>
                         <h4 className="font-medium text-gray-900 mb-3">Cookies spécifiques :</h4>
                         <div className="space-y-3">
@@ -326,21 +326,21 @@ export default function CookiesPage() {
               </CardHeader>
               <CardContent className="p-8">
                 <p className="text-gray-700 mb-6 leading-relaxed">
-                  Vous pouvez à tout moment modifier vos préférences concernant l'utilisation des cookies. 
+                  Vous pouvez à tout moment modifier vos préférences concernant l'utilisation des cookies.
                   Notez que la désactivation de certains cookies peut affecter le fonctionnement du site.
                 </p>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button onClick={acceptAll} className="bg-green-600 hover:bg-green-700 text-white">
                     <CheckCircle className="mr-2 h-4 w-4" />
                     Accepter Tous les Cookies
                   </Button>
-                  
+
                   <Button onClick={rejectAll} variant="outline" className="border-gray-300">
                     <X className="mr-2 h-4 w-4" />
                     Refuser les Cookies Optionnels
                   </Button>
-                  
+
                   <Button onClick={saveSettings} className="bg-blue-600 hover:bg-blue-700 text-white">
                     <Settings className="mr-2 h-4 w-4" />
                     Sauvegarder mes Préférences
@@ -361,7 +361,7 @@ export default function CookiesPage() {
                 <p className="text-gray-600 mb-4">
                   Vous pouvez également gérer les cookies directement depuis les paramètres de votre navigateur :
                 </p>
-                
+
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">Blocage des cookies</h4>
@@ -369,7 +369,7 @@ export default function CookiesPage() {
                       Configurez votre navigateur pour bloquer tous les cookies ou seulement les cookies tiers.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">Suppression des cookies</h4>
                     <p className="text-sm text-gray-600">
@@ -377,14 +377,14 @@ export default function CookiesPage() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                   <div className="flex items-start">
                     <AlertCircle className="h-5 w-5 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
                     <div>
                       <h4 className="font-medium text-yellow-800">Important</h4>
                       <p className="text-yellow-700 text-sm mt-1">
-                        La désactivation des cookies peut affecter votre expérience sur notre site et 
+                        La désactivation des cookies peut affecter votre expérience sur notre site et
                         certaines fonctionnalités peuvent ne plus être disponibles.
                       </p>
                     </div>
@@ -404,14 +404,14 @@ export default function CookiesPage() {
               Questions sur les Cookies ?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Si vous avez des questions concernant notre utilisation des cookies, 
+              Si vous avez des questions concernant notre utilisation des cookies,
               n'hésitez pas à nous contacter.
             </p>
-            
+
             <Button className="bg-white text-gray-900 hover:bg-gray-100">
               privacy@kitmed.ma
             </Button>
-            
+
             <div className="mt-8 pt-8 border-t border-gray-700">
               <p className="text-gray-400 text-sm">
                 Cette politique des cookies fait partie intégrante de notre politique de confidentialité.

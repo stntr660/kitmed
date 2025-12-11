@@ -2,9 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { 
-  CloudArrowUpIcon, 
-  DocumentIcon, 
+import {
+  CloudArrowUpIcon,
+  DocumentIcon,
   PhotoIcon,
   XMarkIcon,
   ExclamationTriangleIcon,
@@ -107,7 +107,7 @@ export function FileUpload({
 
   const onDrop = useCallback(async (acceptedFiles: File[], fileRejections: any[]) => {
     setErrors([]);
-    
+
     // Handle file rejections
     if (fileRejections.length > 0) {
       const rejectionErrors = fileRejections.map(rejection => {
@@ -148,7 +148,7 @@ export function FileUpload({
       }
 
       const data = await response.json();
-      
+
       if (data.success) {
         const newFiles = data.data.results;
         setUploadedFiles(prev => [...prev, ...newFiles]);
@@ -208,7 +208,7 @@ export function FileUpload({
               `}
             >
               <input {...getInputProps()} />
-              
+
               {uploading ? (
                 <LoadingSpinner text="Uploading..." />
               ) : (
@@ -264,7 +264,7 @@ export function FileUpload({
           <h4 className="text-sm font-medium text-gray-900">
             Uploaded Files ({uploadedFiles.length})
           </h4>
-          
+
           <div className={`grid gap-3 ${config.preview && isImage(uploadedFiles[0]?.mimeType) ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1'}`}>
             {uploadedFiles.map((file) => (
               <Card key={file.id} className="relative">
@@ -319,7 +319,7 @@ export function FileUpload({
                       </Button>
                     </div>
                   )}
-                  
+
                   {config.preview && isImage(file.mimeType) && (
                     <div className="mt-2">
                       <p className="text-xs text-gray-900 truncate">

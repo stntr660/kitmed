@@ -39,10 +39,10 @@ export const productCSV = {
   // Export products to CSV
   async export(products: any[], filename?: string): Promise<string> {
     await ensureCSVDir();
-    
+
     const exportFilename = filename || `products-export-${Date.now()}.csv`;
     const filePath = join(CSV_DIR, exportFilename);
-    
+
     const csvWriter = createObjectCsvWriter({
       path: filePath,
       header: this.headers,
@@ -79,12 +79,12 @@ export const productCSV = {
 
     return new Promise((resolve, reject) => {
       const stream = Readable.from(file.stream());
-      
+
       stream
         .pipe(parse({ headers: true }))
         .on('data', (row: any) => {
           rowNumber++;
-          
+
           try {
             // Validate required fields
             if (!row.sku || !row.name_en) {
@@ -205,10 +205,10 @@ export const partnerCSV = {
 
   async export(partners: any[], filename?: string): Promise<string> {
     await ensureCSVDir();
-    
+
     const exportFilename = filename || `partners-export-${Date.now()}.csv`;
     const filePath = join(CSV_DIR, exportFilename);
-    
+
     const csvWriter = createObjectCsvWriter({
       path: filePath,
       header: this.headers,
@@ -238,12 +238,12 @@ export const partnerCSV = {
 
     return new Promise((resolve, reject) => {
       const stream = Readable.from(file.stream());
-      
+
       stream
         .pipe(parse({ headers: true }))
         .on('data', (row: any) => {
           rowNumber++;
-          
+
           try {
             if (!row.name) {
               errors.push({
@@ -324,10 +324,10 @@ export const rfpCSV = {
 
   async export(rfpRequests: any[], filename?: string): Promise<string> {
     await ensureCSVDir();
-    
+
     const exportFilename = filename || `rfp-requests-export-${Date.now()}.csv`;
     const filePath = join(CSV_DIR, exportFilename);
-    
+
     const csvWriter = createObjectCsvWriter({
       path: filePath,
       header: this.headers,
@@ -371,10 +371,10 @@ export const categoryCSV = {
 
   async export(categories: any[], filename?: string): Promise<string> {
     await ensureCSVDir();
-    
+
     const exportFilename = filename || `categories-export-${Date.now()}.csv`;
     const filePath = join(CSV_DIR, exportFilename);
-    
+
     const csvWriter = createObjectCsvWriter({
       path: filePath,
       header: this.headers,
@@ -404,12 +404,12 @@ export const categoryCSV = {
 
     return new Promise((resolve, reject) => {
       const stream = Readable.from(file.stream());
-      
+
       stream
         .pipe(parse({ headers: true }))
         .on('data', (row: any) => {
           rowNumber++;
-          
+
           try {
             if (!row.name_en || !row.slug) {
               errors.push({
@@ -473,13 +473,13 @@ export const csvUtils = {
   // Generate sample CSV file
   async generateSample(type: 'products' | 'categories' | 'partners'): Promise<string> {
     await ensureCSVDir();
-    
+
     const filename = `${type}-sample-template.csv`;
     const filePath = join(CSV_DIR, filename);
-    
+
     let headers: any[] = [];
     let sampleData: any[] = [];
-    
+
     switch (type) {
       case 'products':
         headers = productCSV.headers;
@@ -514,7 +514,7 @@ export const csvUtils = {
         }];
         break;
     }
-    
+
     const csvWriter = createObjectCsvWriter({
       path: filePath,
       header: headers,
@@ -527,15 +527,15 @@ export const csvUtils = {
   // Clean up temporary CSV files
   async cleanup(maxAgeMs: number = 24 * 60 * 60 * 1000): Promise<void> {
     const { readdir, stat, unlink } = await import('fs/promises');
-    
+
     try {
       const files = await readdir(CSV_DIR);
       const now = Date.now();
-      
+
       for (const file of files) {
         const filePath = join(CSV_DIR, file);
         const stats = await stat(filePath);
-        
+
         if (stats.isFile() && (now - stats.mtime.getTime()) > maxAgeMs) {
           await unlink(filePath);
         }

@@ -16,12 +16,12 @@ export interface Product extends BaseEntity {
   status: 'active' | 'inactive' | 'discontinued';
   featured: boolean;
   pdfBrochureUrl?: string; // PDF brochure téléchargeable
-  
+
   // Multilingual fields via translations
   nom: Record<Locale, string>; // Nom du produit (FR / EN)
   description?: Record<Locale, string>; // Description (FR / EN)
   ficheTechnique?: Record<Locale, string>; // Fiche technique (FR / EN)
-  
+
   // Relations
   category: Category;
   images: ProductImage[];
@@ -29,7 +29,7 @@ export interface Product extends BaseEntity {
   translations: ProductTranslation[];
   media: ProductMedia[];
   attributes: ProductAttribute[];
-  
+
   seo?: SEOData;
 }
 
@@ -78,6 +78,7 @@ export interface Category extends BaseEntity {
   name: Record<Locale, string>;
   description?: Record<Locale, string>;
   slug: string;
+  type?: 'discipline' | 'category';
   parentId?: string;
   children?: Category[];
   image?: string;
@@ -162,6 +163,8 @@ export interface Partner {
   };
   websiteUrl?: string;
   logoUrl?: string;
+  defaultPdfUrl?: string;
+  type: 'manufacturer' | 'distributor' | 'service' | 'technology';
   status: 'active' | 'inactive';
   featured: boolean;
   sortOrder: number;
@@ -257,16 +260,16 @@ export interface User extends BaseEntity {
   email: string;
   firstName: string;
   lastName: string;
-  role: 'admin' | 'manager' | 'editor' | 'viewer';
+  role: 'admin' | 'editor';
   status: 'active' | 'inactive' | 'pending' | 'suspended';
   isActive: boolean;
   lastLoginAt?: Date;
-  
+
   // Contact information
   phone?: string;
   department?: string;
   avatarUrl?: string;
-  
+
   // Security features
   twoFactorEnabled: boolean;
   loginAttempts: number;
@@ -274,16 +277,16 @@ export interface User extends BaseEntity {
   accountLockedUntil?: Date;
   passwordLastChanged?: Date;
   mustChangePassword?: boolean;
-  
+
   // Activity tracking
   sessionCount?: number;
   totalLoginTime?: number; // in minutes
   lastActiveAt?: Date;
-  
+
   // Permissions
   permissions?: UserPermission[];
   customPermissions?: UserPermission[];
-  
+
   // Preferences
   preferences?: UserPreferences;
 }

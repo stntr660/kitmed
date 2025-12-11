@@ -21,12 +21,12 @@ interface HelpTooltipProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export function HelpTooltip({ 
-  content, 
-  title, 
-  children, 
+export function HelpTooltip({
+  content,
+  title,
+  children,
   position = 'top',
-  size = 'md' 
+  size = 'md'
 }: HelpTooltipProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -55,7 +55,7 @@ export function HelpTooltip({
       >
         {children}
       </div>
-      
+
       {isVisible && (
         <div className={`
           absolute z-50 ${sizeClasses[size]} ${positionClasses[position]}
@@ -66,7 +66,7 @@ export function HelpTooltip({
             <div className="font-medium mb-1">{title}</div>
           )}
           <div className="text-gray-200">{content}</div>
-          
+
           {/* Arrow */}
           <div className={`
             absolute w-2 h-2 bg-gray-900 transform rotate-45
@@ -153,8 +153,8 @@ export function QuickStartGuide({ open, onOpenChange }: QuickStartGuideProps) {
               </p>
             </div>
           </div>
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             onClick={() => onOpenChange(false)}
             className="text-gray-400 hover:text-gray-600"
@@ -171,8 +171,8 @@ export function QuickStartGuide({ open, onOpenChange }: QuickStartGuideProps) {
               <div key={index} className="flex items-center">
                 <div className={`
                   flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium
-                  ${index <= currentStep 
-                    ? 'bg-blue-600 text-white' 
+                  ${index <= currentStep
+                    ? 'bg-blue-600 text-white'
                     : 'bg-gray-200 text-gray-500'
                   }
                 `}>
@@ -229,8 +229,8 @@ export function QuickStartGuide({ open, onOpenChange }: QuickStartGuideProps) {
 
         {/* Footer */}
         <div className="border-t border-gray-200 p-6 flex justify-between items-center">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={prevStep}
             disabled={currentStep === 0}
           >
@@ -242,14 +242,14 @@ export function QuickStartGuide({ open, onOpenChange }: QuickStartGuideProps) {
           </span>
 
           {currentStep === steps.length - 1 ? (
-            <Button 
+            <Button
               onClick={() => onOpenChange(false)}
               className="bg-blue-600 hover:bg-blue-700"
             >
               {t('admin.categories.quickStart.getStarted')}
             </Button>
           ) : (
-            <Button 
+            <Button
               onClick={nextStep}
               className="bg-blue-600 hover:bg-blue-700"
             >
@@ -315,13 +315,13 @@ export function ExpandableHelp({ title, children, defaultExpanded = false }: Exp
           <InformationCircleIcon className="h-5 w-5 text-blue-600" />
           <span className="font-medium text-blue-900">{title}</span>
         </div>
-        <ChevronDownIcon 
+        <ChevronDownIcon
           className={`h-4 w-4 text-blue-600 transition-transform ${
             isExpanded ? 'rotate-180' : ''
-          }`} 
+          }`}
         />
       </button>
-      
+
       {isExpanded && (
         <div className="px-4 pb-4 text-sm text-blue-800 border-t border-blue-200">
           {children}

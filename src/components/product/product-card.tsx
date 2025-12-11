@@ -33,13 +33,13 @@ export function ProductCard({
 }: ProductCardProps) {
   const t = useTranslations('product');
   const { addItem, getItem } = useRFPStore();
-  
+
   const [isHovered, setIsHovered] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
-  
+
   const inCart = getItem(product.id);
   const primaryImage = product.images.find(img => img.isPrimary) || product.images[0];
-  
+
   const handleAddToRFP = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -78,12 +78,11 @@ export function ProductCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      <Card 
+      <Card
         className={cn(
-          'group relative overflow-hidden transition-shadow duration-200',
+          'group relative overflow-hidden transition-shadow duration-200 h-full flex flex-col',
           'hover:shadow-medical-lg',
           {
-            'h-full': variant === 'default',
             'max-w-sm': variant === 'compact',
             'border-2 border-accent/20': variant === 'featured',
           },
@@ -91,25 +90,25 @@ export function ProductCard({
         )}
         variant="medical"
       >
-        <Link 
+        <Link
           href={`/${locale}/products/${product.slug}`}
-          className="block"
+          className="flex-1 flex flex-col"
           aria-label={`${t('viewProduct')} ${product.nom ? product.nom[locale] : 'Product'}`}
         >
           {/* Image Section */}
-          <div className="relative aspect-square overflow-hidden bg-gray-50">
+          <div className="relative aspect-square overflow-hidden bg-white">
             {product.featured && (
-              <Badge 
-                variant="accent" 
+              <Badge
+                variant="accent"
                 className="absolute left-2 top-2 z-10"
               >
                 {t('featured')}
               </Badge>
             )}
-            
+
             {product.status === 'discontinued' && (
-              <Badge 
-                variant="discontinued" 
+              <Badge
+                variant="discontinued"
                 className="absolute right-2 top-2 z-10"
               >
                 {t('discontinued')}
@@ -119,20 +118,20 @@ export function ProductCard({
             {primaryImage && !imageError ? (
               <motion.div
                 variants={imageVariants}
-                className="h-full w-full"
+                className="h-full w-full bg-white p-4"
               >
                 <Image
                   src={primaryImage.url}
                   alt={primaryImage.alt ? primaryImage.alt[locale] : (product.nom ? product.nom[locale] : 'Product image')}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   onError={() => setImageError(true)}
                   loading="lazy"
                 />
               </motion.div>
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gray-100">
+              <div className="flex h-full w-full items-center justify-center bg-white">
                 <FileText className="h-12 w-12 text-gray-400" />
               </div>
             )}
@@ -165,7 +164,7 @@ export function ProductCard({
             </div>
           </div>
 
-          <CardContent className="p-4">
+          <CardContent className="p-4 flex-1 flex flex-col">
             {/* Category & Manufacturer */}
             <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-medical-text-muted">
               <span>{product.category?.name ? product.category.name[locale] : 'Category'}</span>
@@ -186,11 +185,11 @@ export function ProductCard({
             )}
 
             {/* Discipline */}
-            <Badge 
-              variant="medical" 
+            <Badge
+              variant="medical"
               size="sm"
               className="mb-3 flex items-center gap-2"
-              style={{ 
+              style={{
                 backgroundColor: `${product.discipline.color}20`,
                 color: product.discipline.color,
                 borderColor: `${product.discipline.color}40`
@@ -207,6 +206,9 @@ export function ProductCard({
               )}
               {product.discipline?.name ? product.discipline.name[locale] : 'Discipline'}
             </Badge>
+
+            {/* Spacer to push price to bottom */}
+            <div className="flex-1"></div>
 
             {/* Price */}
             {product.price && (

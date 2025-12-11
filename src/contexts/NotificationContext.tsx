@@ -101,7 +101,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
       params.append('limit', '50'); // Get more notifications
 
       const response = await fetch(`/api/admin/notifications?${params.toString()}`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch notifications');
       }
@@ -132,9 +132,9 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
       }
 
       // Update local state
-      setNotifications(prev => 
-        prev.map(notification => 
-          notification.id === notificationId 
+      setNotifications(prev =>
+        prev.map(notification =>
+          notification.id === notificationId
             ? { ...notification, read: true }
             : notification
         )
@@ -192,7 +192,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
       // Update local state
       const deletedNotification = notifications.find(n => n.id === notificationId);
       setNotifications(prev => prev.filter(n => n.id !== notificationId));
-      
+
       // Update stats
       if (deletedNotification) {
         setStats(prev => ({
@@ -229,10 +229,10 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
       }
 
       const newNotification = await response.json();
-      
+
       // Add to local state
       setNotifications(prev => [newNotification, ...prev]);
-      
+
       // Update stats
       setStats(prev => ({
         ...prev,
@@ -273,7 +273,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
     const simulateRealTimeNotifications = () => {
       // Randomly add new notifications to simulate real-time updates
       const shouldAddNotification = Math.random() < 0.1; // 10% chance every minute
-      
+
       if (shouldAddNotification && notifications.length < 20) {
         const notificationTypes = [
           {
@@ -300,7 +300,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
         ];
 
         const randomNotification = notificationTypes[Math.floor(Math.random() * notificationTypes.length)];
-        
+
         addNotification({
           ...randomNotification,
           read: false,

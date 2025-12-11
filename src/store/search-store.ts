@@ -8,12 +8,12 @@ interface SearchStore {
   results: SearchResult<Product> | null;
   isLoading: boolean;
   error: string | null;
-  
+
   // UI state
   isFiltersOpen: boolean;
   selectedView: 'grid' | 'list';
   sort: SortState;
-  
+
   // Actions
   setQuery: (query: string) => void;
   setFilters: (filters: Partial<SearchFilters>) => void;
@@ -21,12 +21,12 @@ interface SearchStore {
   setResults: (results: SearchResult<Product>) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
-  
+
   // UI actions
   toggleFilters: () => void;
   setView: (view: 'grid' | 'list') => void;
   setSort: (sort: SortState) => void;
-  
+
   // Computed
   hasActiveFilters: () => boolean;
   getFilterCount: () => number;
@@ -55,17 +55,17 @@ export const useSearchStore = create<SearchStore>((set, get) => ({
   results: null,
   isLoading: false,
   error: null,
-  
+
   // UI state
   isFiltersOpen: false,
   selectedView: 'grid',
   sort: initialSort,
-  
+
   // Search actions
   setQuery: (query: string) => {
     set({ query });
   },
-  
+
   setFilters: (newFilters: Partial<SearchFilters>) => {
     set((state) => ({
       filters: {
@@ -74,45 +74,45 @@ export const useSearchStore = create<SearchStore>((set, get) => ({
       },
     }));
   },
-  
+
   clearFilters: () => {
     set({
       filters: initialFilters,
       query: '',
     });
   },
-  
+
   setResults: (results: SearchResult<Product>) => {
     set({ results, isLoading: false, error: null });
   },
-  
+
   setLoading: (isLoading: boolean) => {
     set({ isLoading });
   },
-  
+
   setError: (error: string | null) => {
     set({ error, isLoading: false });
   },
-  
+
   // UI actions
   toggleFilters: () => {
     set((state) => ({
       isFiltersOpen: !state.isFiltersOpen,
     }));
   },
-  
+
   setView: (selectedView: 'grid' | 'list') => {
     set({ selectedView });
   },
-  
+
   setSort: (sort: SortState) => {
     set({ sort });
   },
-  
+
   // Computed properties
   hasActiveFilters: () => {
     const { filters, query } = get();
-    
+
     return !!(
       query ||
       filters.categories?.length ||
@@ -124,11 +124,11 @@ export const useSearchStore = create<SearchStore>((set, get) => ({
       filters.priceRange
     );
   },
-  
+
   getFilterCount: () => {
     const { filters } = get();
     let count = 0;
-    
+
     if (filters.categories?.length) count++;
     if (filters.manufacturers?.length) count++;
     if (filters.disciplines?.length) count++;
@@ -136,7 +136,7 @@ export const useSearchStore = create<SearchStore>((set, get) => ({
     if (filters.featured !== undefined) count++;
     if (filters.inStock !== undefined) count++;
     if (filters.priceRange) count++;
-    
+
     return count;
   },
 }));

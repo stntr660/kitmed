@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Test database connection
     await prisma.$queryRaw`SELECT 1`;
-    
+
     // Get basic table counts
     const [products, categories, partners] = await Promise.all([
       prisma.product.count(),
@@ -25,7 +25,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Health check failed:', error);
-    
+
     return NextResponse.json(
       {
         status: 'unhealthy',

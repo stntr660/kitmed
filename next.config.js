@@ -1,6 +1,5 @@
 const createNextIntlPlugin = require('next-intl/plugin');
-
-const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -28,13 +27,41 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'rumex.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'visionventions.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'visionventions.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'surgicon.ch',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ursapharm.com',
+      },
+      {
+        protocol: 'https',
         hostname: '**',
       },
     ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    imageSizes: [16, 32, 48, 64, 80, 96, 120, 128, 160, 200, 256, 384],
     minimumCacheTTL: 31536000, // 1 year
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: false,
+    loader: 'default',
   },
   // Performance optimizations
   compiler: {
@@ -89,11 +116,6 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
-  // Build configuration
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

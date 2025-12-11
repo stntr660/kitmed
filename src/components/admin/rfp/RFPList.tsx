@@ -36,7 +36,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
   const [rfpRequests, setRFPRequests] = useState<AdminSearchResult<RFPWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
     status: [],
@@ -68,7 +68,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
       });
 
       const response = await fetch(`/api/admin/rfp-requests?${params}`);
-      
+
       if (response.ok) {
         const data = await response.json();
         setRFPRequests(data.data);
@@ -90,7 +90,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -136,7 +136,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
 
   const getStatusIcon = (status: string) => {
     let IconComponent;
-    
+
     switch (status) {
       case 'pending':
         IconComponent = ClockIcon;
@@ -152,7 +152,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
         IconComponent = ClockIcon;
         break;
     }
-    
+
     return validateIconComponent(IconComponent, `StatusIcon-${status}`);
   };
 
@@ -291,7 +291,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center">
@@ -303,7 +303,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center">
@@ -315,7 +315,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center">
@@ -344,7 +344,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-2">
               {['pending', 'processing', 'responded', 'closed'].map((status) => (
                 <Button
@@ -377,7 +377,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('requestNumber')}
                     >
@@ -386,7 +386,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Customer
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('status')}
                     >
@@ -401,7 +401,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Est. Value
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -502,7 +502,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
             {Math.min(rfpRequests.page * rfpRequests.pageSize, rfpRequests.total)} of{' '}
             {rfpRequests.total} results
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -512,11 +512,11 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
             >
               Previous
             </Button>
-            
+
             {[...Array(Math.min(5, rfpRequests.totalPages))].map((_, i) => {
               const page = rfpRequests.page - 2 + i;
               if (page < 1 || page > rfpRequests.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -528,7 +528,7 @@ export function RFPList({ initialFilters = {} }: RFPListProps) {
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"

@@ -39,9 +39,9 @@ interface Category {
   createdAt: string;
   updatedAt: string;
   translations: CategoryTranslation[];
-  children?: Category[];
+  other_categories?: Category[];
   _count?: {
-    children: number;
+    other_categories: number;
     products: number;
   };
   nom?: {
@@ -71,8 +71,8 @@ export function CategoryQuickView({
 
   if (!category) return null;
 
-  const frTranslation = category.translations.find(t => t.languageCode === 'fr');
-  const enTranslation = category.translations.find(t => t.languageCode === 'en');
+  const frTranslation = category.category_translations?.find(t => t.language_code === 'fr');
+  const enTranslation = category.category_translations?.find(t => t.language_code === 'en');
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -117,7 +117,7 @@ export function CategoryQuickView({
                 <div className="flex items-center space-x-6 text-sm text-gray-600">
                   <span className="flex items-center space-x-1">
                     <RectangleGroupIcon className="h-4 w-4" />
-                    <span>{category._count?.children || 0} {t('admin.categories.subcategories')}</span>
+                    <span>{category._count?.other_categories || 0} {t('admin.categories.subcategories')}</span>
                   </span>
                   <span className="flex items-center space-x-1">
                     <DocumentIcon className="h-4 w-4" />
@@ -156,7 +156,7 @@ export function CategoryQuickView({
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">
                   {t('admin.categories.basicInformation')}
                 </h2>
-                
+
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-500 mb-1">
@@ -186,13 +186,13 @@ export function CategoryQuickView({
               </div>
 
               {/* SEO Information */}
-              {(frTranslation?.metaTitle || frTranslation?.metaDescription || 
+              {(frTranslation?.metaTitle || frTranslation?.metaDescription ||
                 enTranslation?.metaTitle || enTranslation?.metaDescription) && (
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900 mb-4">
                     {t('admin.categories.seoInformation')}
                   </h2>
-                  
+
                   {/* French SEO */}
                   {(frTranslation?.metaTitle || frTranslation?.metaDescription) && (
                     <div className="mb-4">
@@ -252,7 +252,7 @@ export function CategoryQuickView({
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">
                   {t('admin.categories.translations')}
                 </h2>
-                
+
                 <div className="space-y-6">
                   {/* French Content */}
                   <div>
@@ -317,7 +317,7 @@ export function CategoryQuickView({
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">
                   {t('admin.categories.systemInformation')}
                 </h2>
-                
+
                 <div className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-500 mb-1">
@@ -345,14 +345,14 @@ export function CategoryQuickView({
           </div>
 
           {/* Subcategories Preview */}
-          {category.children && category.children.length > 0 && (
+          {category.other_categories && category.other_categories.length > 0 && (
             <div className="border-t border-gray-200 pt-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                {t('admin.categories.subcategories')} ({category.children.length})
+                {t('admin.categories.subcategories')} ({category.other_categories.length})
               </h2>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {category.children.slice(0, 6).map((child) => (
+                {category.other_categories.slice(0, 6).map((child) => (
                   <div
                     key={child.id}
                     className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
@@ -378,11 +378,11 @@ export function CategoryQuickView({
                     </div>
                   </div>
                 ))}
-                
-                {category.children.length > 6 && (
+
+                {category.other_categories.length > 6 && (
                   <div className="flex items-center justify-center p-3 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                     <p className="text-sm text-gray-600">
-                      +{category.children.length - 6} {t('admin.categories.more')}
+                      +{category.other_categories.length - 6} {t('admin.categories.more')}
                     </p>
                   </div>
                 )}

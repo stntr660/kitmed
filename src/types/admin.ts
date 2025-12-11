@@ -13,13 +13,13 @@ export interface AdminPermission {
   actions: AdminAction[];
 }
 
-export type AdminResource = 
-  | 'products' 
-  | 'categories' 
-  | 'partners' 
-  | 'rfp_requests' 
-  | 'users' 
-  | 'content' 
+export type AdminResource =
+  | 'products'
+  | 'categories'
+  | 'partners'
+  | 'rfp_requests'
+  | 'users'
+  | 'content'
   | 'analytics'
   | 'settings';
 

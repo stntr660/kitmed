@@ -26,7 +26,7 @@ async function getProductMedia(request: NextRequest, { params }: { params: { id:
     });
   } catch (error) {
     console.error('Media fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -64,7 +64,7 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
 
     const formData = await request.formData();
     const files = formData.getAll('files') as File[];
-    
+
     if (!files || files.length === 0) {
       return NextResponse.json(
         {
@@ -86,7 +86,7 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      
+
       // Validate file type
       const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
       if (!allowedTypes.includes(file.type)) {
@@ -136,7 +136,7 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
     });
   } catch (error) {
     console.error('Media upload error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -170,7 +170,7 @@ async function deleteProductMedia(request: NextRequest, { params }: { params: { 
     });
   } catch (error) {
     console.error('Media deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

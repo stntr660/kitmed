@@ -47,21 +47,21 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant, 
-    size, 
-    asChild = false, 
+  ({
+    className,
+    variant,
+    size,
+    asChild = false,
     loading = false,
     loadingText,
     children,
     disabled,
-    ...props 
+    ...props
   }, ref) => {
     const Comp = asChild ? Slot : "button";
-    
+
     const isDisabled = disabled || loading;
-    
+
     // When asChild is true, we can't add loading indicators as they would create multiple children
     // The parent component should handle loading state
     if (asChild) {
@@ -77,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </Comp>
       );
     }
-    
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
@@ -87,8 +87,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && (
-          <Loader2 
-            className="mr-2 h-4 w-4 animate-spin" 
+          <Loader2
+            className="mr-2 h-4 w-4 animate-spin"
             aria-hidden="true"
           />
         )}

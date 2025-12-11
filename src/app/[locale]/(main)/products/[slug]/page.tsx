@@ -1,16 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeParams } from '@/hooks/useHydrationSafeParams';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
+import {
   ArrowLeft,
-  Download, 
+  Download,
   Heart,
   Share2,
   Star,
@@ -34,6 +34,7 @@ interface Product {
   constructeur: string;
   slug: string;
   pdfBrochureUrl: string | null;
+  pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
   createdAt: string;
@@ -41,6 +42,12 @@ interface Product {
     id: string;
     name: string;
     slug: string;
+  };
+  partner?: {
+    id: string;
+    name: string;
+    logoUrl: string | null;
+    websiteUrl: string | null;
   };
   translations: Array<{
     languageCode: string;
@@ -60,7 +67,7 @@ interface Product {
 }
 
 export default function ProductDetailPage() {
-  const params = useParams();
+  const params = useHydrationSafeParams();
   const slug = params.slug as string;
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -75,35 +82,20 @@ export default function ProductDetailPage() {
   const loadProduct = async () => {
     try {
       setLoading(true);
-      
-      // Try to fetch real product data by slug
-      const response = await fetch(`/api/admin/products?slug=${slug}&pageSize=1`);
+
+      // Try to fetch real product data by slug using the public API
+      const response = await fetch(`/api/products/${slug}`);
       if (response.ok) {
         const data = await response.json();
-        if (data.data && data.data.items && data.data.items.length > 0) {
-          // Find the product with matching slug
-          const productData = data.data.items.find(p => p.slug === slug) || data.data.items[0];
-          
-          // Transform the API data to match our interface
-          const transformedProduct: Product = {
-            id: productData.id,
-            referenceFournisseur: productData.referenceFournisseur,
-            constructeur: productData.constructeur,
-            slug: productData.slug,
-            pdfBrochureUrl: productData.pdfBrochureUrl,
-            status: productData.status,
-            isFeatured: productData.isFeatured || false,
-            createdAt: productData.createdAt,
-            category: productData.category,
-            translations: productData.translations || [],
-            media: productData.media || []
-          };
-          
-          setProduct(transformedProduct);
+        if (data.success && data.data) {
+          const productData = data.data;
+
+          // Use the API data directly since it's already properly formatted
+          setProduct(productData);
           return;
         }
       }
-      
+
       // Fallback to mock data if no real product found
       const mockProduct: Product = {
         id: '1',
@@ -148,7 +140,7 @@ export default function ProductDetailPage() {
           }
         ]
       };
-      
+
       setProduct(mockProduct);
     } catch (error) {
       console.error('Failed to load product:', error);
@@ -236,14 +228,14 @@ export default function ProductDetailPage() {
                       src={currentImage.url}
                       alt={currentImage.altText || getProductName(product)}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-slate-100 flex items-center justify-center">
                       <ImageIcon className="h-24 w-24 text-slate-400" />
                     </div>
                   )}
-                  
+
                   {/* Status Badges */}
                   <div className="absolute top-6 left-6 space-y-2">
                     {product.isFeatured && (
@@ -257,7 +249,7 @@ export default function ProductDetailPage() {
                       Disponible
                     </Badge>
                   </div>
-                  
+
                   {/* Actions */}
                   <div className="absolute top-6 right-6 space-y-2">
                     <Button size="sm" variant="secondary" className="h-10 w-10 p-0 shadow-lg">
@@ -269,7 +261,7 @@ export default function ProductDetailPage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Thumbnail Grid */}
               {images.length > 1 && (
                 <div className="grid grid-cols-4 gap-4">
@@ -278,8 +270,8 @@ export default function ProductDetailPage() {
                       key={image.id}
                       onClick={() => setSelectedImageIndex(index)}
                       className={`relative aspect-square bg-white rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                        selectedImageIndex === index 
-                          ? 'border-primary-500 ring-2 ring-primary-200' 
+                        selectedImageIndex === index
+                          ? 'border-primary-500 ring-2 ring-primary-200'
                           : 'border-slate-200 hover:border-primary-300'
                       }`}
                     >
@@ -287,7 +279,7 @@ export default function ProductDetailPage() {
                         src={image.url}
                         alt={image.altText || `Image ${index + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </button>
                   ))}
@@ -300,8 +292,18 @@ export default function ProductDetailPage() {
               {/* Header */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge variant="outline" className="text-slate-600">
-                    {product.constructeur}
+                  <Badge variant="outline" className="text-slate-600 flex items-center gap-2">
+                    {product.partner?.logoUrl && (
+                      <Image
+                        src={product.partner.logoUrl}
+                        alt={product.partner.name}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    )}
+                    <Building2 className="h-4 w-4" />
+                    {product.partner?.name || product.constructeur}
                   </Badge>
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -310,46 +312,24 @@ export default function ProductDetailPage() {
                     <span className="text-sm text-slate-600 ml-1">(4.8)</span>
                   </div>
                 </div>
-                
+
                 <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
                   {getProductName(product)}
                 </h1>
-                
+
                 <div className="text-sm text-slate-500 font-mono mb-6">
                   Référence: {product.referenceFournisseur}
                 </div>
-                
+
                 <p className="text-lg text-slate-700 leading-relaxed">
                   {getProductDescription(product)}
                 </p>
               </div>
 
-              {/* Specifications */}
-              {getProductSpecs(product) && (
-                <Card className="border-slate-200">
-                  <CardHeader>
-                    <CardTitle className="text-lg font-semibold text-slate-900 flex items-center">
-                      <FileText className="h-5 w-5 mr-2" />
-                      Caractéristiques Techniques
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-slate-700 leading-relaxed">
-                      {getProductSpecs(product)?.split(' • ').map((spec, index) => (
-                        <div key={index} className="flex items-center mb-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
-                          <span>{spec}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-
               {/* Actions */}
               <div className="space-y-4">
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <QuoteRequestForm 
+                  <QuoteRequestForm
                     product={{
                       id: product.id,
                       referenceFournisseur: product.referenceFournisseur,
@@ -363,19 +343,22 @@ export default function ProductDetailPage() {
                       </Button>
                     }
                   />
-                  
+
                   {product.pdfBrochureUrl && (
-                    <Button size="lg" variant="outline" className="h-14" asChild>
+                    <Button size="lg" variant="outline" className="h-14 relative" asChild>
                       <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
                         <Download className="h-5 w-5 mr-2" />
                         Télécharger Brochure
+                        {product.pdfSource === 'manufacturer' && (
+                          <span className="ml-2 text-xs text-slate-500">(Générale)</span>
+                        )}
                       </a>
                     </Button>
                   )}
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex items-center justify-center space-x-8 text-center">
                   <div className="flex flex-col items-center">
                     <Phone className="h-6 w-6 text-primary-600 mb-2" />
@@ -389,7 +372,7 @@ export default function ProductDetailPage() {
                       </a>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col items-center">
                     <Mail className="h-6 w-6 text-primary-600 mb-2" />
                     <span className="text-sm text-slate-600">Contact Email</span>
@@ -409,42 +392,6 @@ export default function ProductDetailPage() {
         </div>
       </section>
 
-      {/* Related Products */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Produits Similaires
-            </h2>
-            <p className="text-slate-600">
-              Découvrez d'autres équipements de la même catégorie
-            </p>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {/* This would be populated with related products */}
-            {[1, 2, 3, 4].map((i) => (
-              <Card key={i} className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                <div className="relative h-48 bg-slate-100">
-                  <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                    <Building2 className="h-12 w-12 text-slate-400" />
-                  </div>
-                </div>
-                <CardHeader className="p-4">
-                  <CardTitle className="text-lg font-bold text-slate-900">
-                    Produit Similaire {i}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <Button size="sm" variant="outline" className="w-full">
-                    Voir Détails
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

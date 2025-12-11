@@ -13,7 +13,7 @@ import type { Locale } from '@/types';
 export default function MaintenancePage() {
   const router = useRouter();
   const params = useParams();
-  const locale = (params?.locale as Locale) || 'fr';
+  const locale = (params?.locale as Locale) || 'en';
   const [dots, setDots] = useState('');
 
   // Animation des points
@@ -29,7 +29,7 @@ export default function MaintenancePage() {
     fr: [
       "Nous créons quelque chose d'extraordinaire",
       "Une nouvelle plateforme médicale naît",
-      "L'innovation prend forme dans l'ombre", 
+      "L'innovation prend forme dans l'ombre",
       "Notre site se métamorphose",
       "Bientôt, l'impossible deviendra possible"
     ],
@@ -54,14 +54,15 @@ export default function MaintenancePage() {
   };
 
   const [currentPhrase, setCurrentPhrase] = useState(0);
+  const currentLocale = (locale === 'fr' || locale === 'en') ? locale : 'en';
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentPhrase(prev => (prev + 1) % phrases[locale].length);
+      setCurrentPhrase(prev => (prev + 1) % phrases[currentLocale].length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [phrases, locale]);
+  }, [currentLocale]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950 flex items-center justify-center px-4 relative overflow-hidden">
@@ -81,12 +82,12 @@ export default function MaintenancePage() {
         <div className="space-y-8">
           <div className="space-y-6">
             <h1 className="text-6xl lg:text-8xl font-thin text-white/90 tracking-wider">
-              {content[locale].soon}<span className="text-primary-300">{dots}</span>
+              {content[currentLocale].soon}<span className="text-primary-300">{dots}</span>
             </h1>
-            
+
             <div className="h-20 flex items-center justify-center">
               <p className="text-2xl lg:text-3xl text-slate-300/80 font-light italic transition-all duration-1000 ease-in-out">
-                "{phrases[locale][currentPhrase]}"
+                "{phrases[currentLocale][currentPhrase]}"
               </p>
             </div>
           </div>
@@ -95,15 +96,15 @@ export default function MaintenancePage() {
 
         {/* Bouton de retour discret */}
         <div className="pt-8">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             className="text-slate-400/60 hover:text-white/80 transition-all duration-500"
             asChild
           >
             <Link href={`/${locale}`} className="flex items-center gap-2">
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm">{content[locale].back}</span>
+              <span className="text-sm">{content[currentLocale].back}</span>
             </Link>
           </Button>
         </div>

@@ -1,26 +1,45 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { PrismaClient } from '@prisma/client';
+import {
+  verifyPassword,
+  generateToken,
+  getAdminUser,
+  checkRateLimit,
+  resetRateLimit
+} from '@/lib/auth-utils';
+
+const prisma = new PrismaClient();
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(1, 'Password is required'),
 });
 
-// Mock user for testing purposes
-const MOCK_ADMIN = {
-  id: '1',
-  email: 'admin@kitmed.ma',
-  password: 'admin123', // In production, this should be hashed
-  firstName: 'Admin',
-  lastName: 'User',
-  role: 'ADMIN',
-  status: 'ACTIVE',
-};
-
 export async function POST(request: NextRequest) {
   try {
+    // Get client IP for rate limiting
+    const clientIP = request.headers.get('x-forwarded-for') ||
+                    request.headers.get('x-real-ip') ||
+                    'unknown';
+
+    // Check rate limiting
+    const rateLimit = checkRateLimit(clientIP);
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'RATE_LIMITED',
+            message: 'Too many login attempts. Please try again in 15 minutes.',
+          },
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
-    
+
     // Validate request body
     const validation = loginSchema.safeParse(body);
     if (!validation.success) {
@@ -39,62 +58,175 @@ export async function POST(request: NextRequest) {
 
     const { email, password } = validation.data;
 
-    // Rate limiting (simplified)
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Security delay to prevent timing attacks
+    await new Promise(resolve => setTimeout(resolve, 200));
 
-    // Check credentials against mock user
-    if (email === MOCK_ADMIN.email && password === MOCK_ADMIN.password) {
-      // Generate mock JWT token
-      const token = 'mock-jwt-token-' + Date.now();
-      
-      // Create response with user data
-      const user = {
-        id: MOCK_ADMIN.id,
-        email: MOCK_ADMIN.email,
-        firstName: MOCK_ADMIN.firstName,
-        lastName: MOCK_ADMIN.lastName,
-        role: MOCK_ADMIN.role,
-        status: MOCK_ADMIN.status,
-        lastLoginAt: new Date().toISOString(),
-      };
+    // First, check if user exists in database
+    const dbUser = await prisma.users.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        first_name: true,
+        last_name: true,
+        role: true,
+        is_active: true,
+        password_hash: true,
+      },
+    });
 
-      // Set HTTP-only cookie (mock implementation)
-      const response = NextResponse.json({
-        success: true,
-        data: {
-          user,
-          token,
-          message: 'Login successful',
-        },
-      });
+    if (dbUser && dbUser.is_active) {
+      // Verify database user password
+      const passwordMatch = await verifyPassword(password, dbUser.password_hash);
 
-      // Set mock auth cookie
-      response.cookies.set('admin-token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: 24 * 60 * 60, // 24 hours
-        path: '/',
-      });
+      if (passwordMatch) {
+        // Update last login
+        await prisma.users.update({
+          where: { id: dbUser.id },
+          data: { last_login: new Date() }
+        });
 
-      return response;
+        // Reset rate limit on successful login
+        resetRateLimit(clientIP);
+
+        // Convert database user to admin user format for token generation
+        const userForToken = {
+          id: dbUser.id,
+          email: dbUser.email,
+          firstName: dbUser.first_name,
+          lastName: dbUser.last_name,
+          role: dbUser.role.toUpperCase() as 'ADMIN' | 'EDITOR', // Use actual user role from database
+          status: 'ACTIVE' as const,
+        };
+
+        // Generate secure JWT token
+        const token = generateToken(userForToken);
+
+        // Create response with user data (excluding sensitive info)
+        const userResponse = {
+          id: dbUser.id,
+          email: dbUser.email,
+          firstName: dbUser.first_name,
+          lastName: dbUser.last_name,
+          role: dbUser.role,
+          status: dbUser.is_active ? 'ACTIVE' : 'INACTIVE',
+          lastLoginAt: new Date().toISOString(),
+        };
+
+        // For development, return token in response for localStorage
+        // For production, use HTTP-only cookies
+        if (process.env.NODE_ENV === 'development') {
+          return NextResponse.json({
+            success: true,
+            data: {
+              user: userResponse,
+              token,
+              message: 'Login successful',
+            },
+          });
+        } else {
+          const response = NextResponse.json({
+            success: true,
+            data: {
+              user: userResponse,
+              message: 'Login successful',
+            },
+          });
+
+          // Set secure HTTP-only cookie for production
+          response.cookies.set('admin-token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 24 * 60 * 60, // 24 hours
+            path: '/',
+          });
+
+          return response;
+        }
+      }
     }
 
-    // Invalid credentials
+    // Fallback to environment admin user if database user not found/valid
+    const adminUser = getAdminUser();
+    const storedPasswordHash = process.env.ADMIN_PASSWORD_HASH;
+
+    if (storedPasswordHash) {
+      // Verify credentials against environment admin
+      const emailMatch = email === adminUser.email;
+      const passwordMatch = await verifyPassword(password, storedPasswordHash);
+
+      if (emailMatch && passwordMatch) {
+        // Reset rate limit on successful login
+        resetRateLimit(clientIP);
+
+        // Generate secure JWT token
+        const token = generateToken(adminUser);
+
+        // Create response with user data (excluding sensitive info)
+        const userResponse = {
+          id: adminUser.id,
+          email: adminUser.email,
+          firstName: adminUser.firstName,
+          lastName: adminUser.lastName,
+          role: adminUser.role,
+          status: adminUser.status,
+          lastLoginAt: new Date().toISOString(),
+        };
+
+        // For development, return token in response for localStorage
+        // For production, use HTTP-only cookies
+        if (process.env.NODE_ENV === 'development') {
+          return NextResponse.json({
+            success: true,
+            data: {
+              user: userResponse,
+              token,
+              message: 'Login successful',
+            },
+          });
+        } else {
+          const response = NextResponse.json({
+            success: true,
+            data: {
+              user: userResponse,
+              message: 'Login successful',
+            },
+          });
+
+          // Set secure HTTP-only cookie for production
+          response.cookies.set('admin-token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            maxAge: 24 * 60 * 60, // 24 hours
+            path: '/',
+          });
+
+          return response;
+        }
+      }
+    }
+
+    // Invalid credentials - don't reveal which field was wrong
     return NextResponse.json(
       {
         success: false,
         error: {
           code: 'INVALID_CREDENTIALS',
           message: 'Invalid email or password',
+          remainingAttempts: rateLimit.remainingAttempts - 1,
         },
       },
       { status: 401 }
     );
 
   } catch (error) {
-    console.error('Login error:', error);
-    
+    // Log to proper logging service in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Login error:', error);
+    }
+
     return NextResponse.json(
       {
         success: false,
@@ -110,12 +242,17 @@ export async function POST(request: NextRequest) {
 
 // Handle preflight requests for CORS
 export async function OPTIONS() {
+  const allowedOrigins = process.env.NODE_ENV === 'production'
+    ? ['https://kitmed.ma', 'https://admin.kitmed.ma', 'https://www.kitmed.ma']
+    : ['http://localhost:3000', 'http://localhost:3001'];
+
   return new NextResponse(null, {
     status: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': allowedOrigins.join(','),
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
     },
   });
 }

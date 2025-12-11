@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { 
-  Search, 
-  Download, 
-  FileText, 
-  Video, 
-  Image, 
+import {
+  Search,
+  Download,
+  FileText,
+  Video,
+  Image,
   Wrench,
   Book,
   Monitor,
@@ -134,10 +134,10 @@ export default function DocumentationPage() {
               Documentation Technique
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Accédez à toute la documentation technique de nos équipements médicaux : 
+              Accédez à toute la documentation technique de nos équipements médicaux :
               manuels d'utilisation, guides d'installation, protocoles de maintenance et plus encore.
             </p>
-            
+
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
@@ -181,7 +181,7 @@ export default function DocumentationPage() {
                         <span className="text-sm">{category.name}</span>
                       </div>
                       <Badge variant="secondary" className="text-xs">
-                        {category.count}
+                        {category.productCount || 0}
                       </Badge>
                     </button>
                   ))}
@@ -224,7 +224,7 @@ export default function DocumentationPage() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-light text-gray-900">
-                  {selectedCategory === 'all' ? 'Tous les documents' : 
+                  {selectedCategory === 'all' ? 'Tous les documents' :
                    documentCategories.find(c => c.id === selectedCategory)?.name}
                 </h2>
                 <p className="text-gray-600 mt-1">
@@ -246,13 +246,13 @@ export default function DocumentationPage() {
                         {doc.format}
                       </Badge>
                     </div>
-                    
+
                     <div className="space-y-3">
                       <div>
                         <h3 className="font-medium text-gray-900 mb-1">{doc.title}</h3>
                         <p className="text-sm text-gray-600 line-clamp-2">{doc.description}</p>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs text-gray-500">
                           <span>Type</span>
@@ -271,7 +271,7 @@ export default function DocumentationPage() {
                           <span>{doc.version}</span>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center space-x-2 pt-2">
                         <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white flex-1">
                           <Download className="h-4 w-4 mr-2" />

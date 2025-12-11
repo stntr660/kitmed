@@ -24,11 +24,11 @@ const logoFiles = {
   white: '/images/logos/kitmed-logo-white.png',
 };
 
-export function Logo({ 
-  variant = 'original', 
-  size = 'md', 
+export function Logo({
+  variant = 'original',
+  size = 'md',
   className,
-  priority = false 
+  priority = false
 }: LogoProps) {
   const dimensions = logoSizes[size];
   const src = logoFiles[variant];
@@ -50,41 +50,41 @@ export function Logo({
 // Specialized logo components for common use cases
 export function HeaderLogo({ className }: { className?: string }) {
   return (
-    <Logo 
-      variant="original" 
-      size="md" 
-      priority 
-      className={cn('cursor-pointer', className)} 
+    <Logo
+      variant="original"
+      size="md"
+      priority
+      className={cn('cursor-pointer', className)}
     />
   );
 }
 
 export function FooterLogo({ className }: { className?: string }) {
   return (
-    <Logo 
-      variant="original" 
-      size="sm" 
-      className={className} 
+    <Logo
+      variant="original"
+      size="sm"
+      className={className}
     />
   );
 }
 
 export function AdminLogo({ className }: { className?: string }) {
   return (
-    <Logo 
-      variant="original" 
-      size="md" 
-      className={className} 
+    <Logo
+      variant="original"
+      size="md"
+      className={className}
     />
   );
 }
 
 export function LoginLogo({ className }: { className?: string }) {
   return (
-    <Logo 
-      variant="original" 
-      size="lg" 
-      className={cn('mx-auto', className)} 
+    <Logo
+      variant="original"
+      size="lg"
+      className={cn('mx-auto', className)}
     />
   );
 }

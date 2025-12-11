@@ -169,7 +169,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
           <p className="text-sm text-gray-600">
             {t('admin.partners.bulkImport.description')}
           </p>
-          
+
           <Button
             type="button"
             variant="outline"
@@ -235,7 +235,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
               <Upload className="h-4 w-4" />
               {t('admin.partners.bulkImport.selectFile')}
             </Button>
-            
+
             {file && (
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="flex items-center gap-2">
@@ -307,8 +307,8 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                     variant="ghost"
                     onClick={() => setShowErrors(!showErrors)}
                   >
-                    {showErrors 
-                      ? t('admin.partners.bulkImport.results.hideErrors') 
+                    {showErrors
+                      ? t('admin.partners.bulkImport.results.hideErrors')
                       : t('admin.partners.bulkImport.results.viewErrors')
                     }
                   </Button>
@@ -320,12 +320,12 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                       <div key={index} className="text-sm text-red-700 mb-2">
                         {error.row > 0 && (
                           <span className="font-medium">
-                            {t('admin.partners.bulkImport.results.rowError', { row: error.row })} 
+                            {t('admin.partners.bulkImport.results.rowError', { row: error.row })}
                           </span>
                         )}
                         {error.field && (
                           <span className="font-medium">
-                            {t('admin.partners.bulkImport.results.fieldError', { field: error.field })} 
+                            {t('admin.partners.bulkImport.results.fieldError', { field: error.field })}
                           </span>
                         )}
                         {error.message}
@@ -337,7 +337,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
             )}
 
             <Button
-              variant="outline" 
+              variant="outline"
               onClick={() => {
                 setResult(null);
                 setFile(null);

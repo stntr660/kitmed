@@ -29,7 +29,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: { mediaId
       const filePath = join(process.cwd(), 'public', media.url);
       await unlink(filePath);
     } catch (fileError) {
-      console.warn('File deletion failed:', fileError);
+
       // Continue with database deletion even if file deletion fails
     }
 
@@ -48,7 +48,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: { mediaId
     });
   } catch (error) {
     console.error('Media deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -90,7 +90,7 @@ async function updateMedia(request: NextRequest, { params }: { params: { mediaId
     // If setting as primary, unset other primary images for this product
     if (isPrimary === true) {
       await prisma.productMedia.updateMany({
-        where: { 
+        where: {
           productId: existingMedia.productId,
           id: { not: params.mediaId }
         },
@@ -119,7 +119,7 @@ async function updateMedia(request: NextRequest, { params }: { params: { mediaId
     });
   } catch (error) {
     console.error('Media update error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

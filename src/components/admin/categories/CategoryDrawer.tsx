@@ -41,9 +41,9 @@ interface Category {
   createdAt: string;
   updatedAt: string;
   translations: CategoryTranslation[];
-  children?: Category[];
+  other_categories?: Category[];
   _count?: {
-    children: number;
+    other_categories: number;
     products: number;
   };
   nom?: {
@@ -106,8 +106,8 @@ export function CategoryDrawer({
   useEffect(() => {
     if (open) {
       if (mode === 'edit' && category) {
-        const frTranslation = category.translations.find(t => t.languageCode === 'fr');
-        const enTranslation = category.translations.find(t => t.languageCode === 'en');
+        const frTranslation = category.category_translations?.find(t => t.language_code === 'fr');
+        const enTranslation = category.category_translations?.find(t => t.language_code === 'en');
 
         setFormData({
           translations: {
@@ -131,7 +131,7 @@ export function CategoryDrawer({
 
         // Show English fields if they have content
         setShowEnglishFields(!!(
-          enTranslation?.name || 
+          enTranslation?.name ||
           enTranslation?.description
         ));
 
@@ -211,7 +211,7 @@ export function CategoryDrawer({
 
   const getTitle = () => {
     if (mode === 'add') {
-      return parentCategory 
+      return parentCategory
         ? t('admin.categories.addSubcategory')
         : t('admin.categories.addCategory');
     }
@@ -220,7 +220,7 @@ export function CategoryDrawer({
 
   const getDescription = () => {
     if (mode === 'add') {
-      return parentCategory 
+      return parentCategory
         ? t('admin.categories.addSubcategoryDescription')
         : t('admin.categories.addDescription');
     }
@@ -246,9 +246,9 @@ export function CategoryDrawer({
                 </div>
               )}
             </div>
-            <Button 
-              type="button" 
-              variant="ghost" 
+            <Button
+              type="button"
+              variant="ghost"
               onClick={() => onOpenChange(false)}
               className="text-gray-400 hover:text-gray-600"
             >
@@ -367,10 +367,10 @@ export function CategoryDrawer({
                     </p>
                   </div>
                 </div>
-                <ChevronDownIcon 
+                <ChevronDownIcon
                   className={`h-5 w-5 text-gray-600 transition-transform ${
                     showEnglishFields ? 'rotate-180' : ''
-                  }`} 
+                  }`}
                 />
               </button>
 
@@ -426,10 +426,10 @@ export function CategoryDrawer({
                     </p>
                   </div>
                 </div>
-                <ChevronDownIcon 
+                <ChevronDownIcon
                   className={`h-5 w-5 text-gray-600 transition-transform ${
                     showSeoFields ? 'rotate-180' : ''
-                  }`} 
+                  }`}
                 />
               </button>
 
@@ -540,7 +540,7 @@ export function CategoryDrawer({
                     {formData.isActive ? t('admin.categories.makeVisible') : t('admin.categories.keepHidden')}
                   </label>
                   <p className="text-sm text-gray-600">
-                    {formData.isActive 
+                    {formData.isActive
                       ? t('admin.categories.makeVisibleDescription')
                       : t('admin.categories.keepHiddenDescription')
                     }
@@ -556,16 +556,16 @@ export function CategoryDrawer({
 
           {/* Footer */}
           <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 flex justify-end space-x-4">
-            <Button 
-              type="button" 
-              variant="outline" 
+            <Button
+              type="button"
+              variant="outline"
               onClick={() => onOpenChange(false)}
               disabled={saving}
             >
               {t('common.cancel')}
             </Button>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={saving || !formData.translations.fr.name.trim()}
               className="bg-primary-600 hover:bg-primary-700"
             >

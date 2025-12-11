@@ -12,17 +12,21 @@ import {
   BuildingOfficeIcon,
   XMarkIcon as X,
 } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { PartnerDrawer } from './PartnerDrawer';
+import { PartnerCreationWizard } from './PartnerCreationWizard';
 import { PartnerQuickView } from './PartnerQuickView';
 import { CSVUpload } from './CSVUpload';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { Partner } from '@/types';
-import { formatDate, truncate } from '@/lib/utils';
+import { cn, formatDate, truncate } from '@/lib/utils';
+import { ClientOnly } from '@/components/ui/client-only';
+import { useAdminPermissions } from '@/hooks/useAdminPermissions';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface PartnerWithDetails extends Partner {
   name: string; // Computed field for compatibility
@@ -34,20 +38,21 @@ interface UnifiedPartnerListProps {
 
 export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListProps) {
   const t = useTranslations();
-  
+  const { canCreate, canUpdate, canDelete, isAdmin } = useAdminPermissions();
+
   // Data state
   const [partners, setPartners] = useState<AdminSearchResult<PartnerWithDetails> | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedPartners, setSelectedPartners] = useState<string[]>([]);
-  
+
   // UI state
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerMode, setDrawerMode] = useState<'add' | 'edit' | 'view'>('add');
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [wizardMode, setWizardMode] = useState<'add' | 'edit'>('add');
   const [selectedPartner, setSelectedPartner] = useState<PartnerWithDetails | null>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [csvUploadOpen, setCsvUploadOpen] = useState(false);
-  
+
   // Filter state
   const [filters, setFilters] = useState<AdminSearchFilters>({
     query: '',
@@ -55,7 +60,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
     category: [],
     page: 1,
     pageSize: 10,
-    sortBy: 'createdAt',
+    sortBy: 'created_at',
     sortOrder: 'desc',
     ...initialFilters,
   });
@@ -80,13 +85,17 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
         }
       });
 
-      const response = await fetch(`/api/admin/partners?${params}`);
-      
+      const response = await fetch(`/api/admin/partners?${params}`, {
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
+      });
+
       if (response.ok) {
         const data = await response.json();
         setPartners(data.data);
       } else {
-        throw new Error('Failed to load partners');
+        throw new Error(t('admin.partners.failedToLoad'));
       }
     } catch (err) {
       setError(t('errors.serverError'));
@@ -98,14 +107,14 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
   // Unified action handlers
   const handleAddPartner = () => {
     setSelectedPartner(null);
-    setDrawerMode('add');
-    setDrawerOpen(true);
+    setWizardMode('add');
+    setWizardOpen(true);
   };
 
   const handleEditPartner = (partner: PartnerWithDetails) => {
     setSelectedPartner(partner);
-    setDrawerMode('edit');
-    setDrawerOpen(true);
+    setWizardMode('edit');
+    setWizardOpen(true);
   };
 
   const handleQuickView = (partner: PartnerWithDetails) => {
@@ -122,24 +131,27 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
 
   const handleSavePartner = async (partnerData: Partial<Partner>) => {
     try {
-      const url = drawerMode === 'add' 
-        ? '/api/admin/partners' 
+      const url = wizardMode === 'add'
+        ? '/api/admin/partners'
         : `/api/admin/partners/${selectedPartner?.id}`;
-      
-      const method = drawerMode === 'add' ? 'POST' : 'PUT';
+
+      const method = wizardMode === 'add' ? 'POST' : 'PUT';
 
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
         body: JSON.stringify(partnerData),
       });
 
       if (response.ok) {
         await loadPartners();
-        setDrawerOpen(false);
+        setWizardOpen(false);
         setSelectedPartner(null);
       } else {
-        throw new Error('Failed to save partner');
+        throw new Error(t('admin.partners.failedToSave'));
       }
     } catch (error) {
       throw error;
@@ -152,6 +164,30 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
     try {
       const response = await fetch(`/api/admin/partners/${partnerId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
+      });
+
+      if (response.ok) {
+        await loadPartners();
+      }
+    } catch (error) {
+      // Handle error silently
+    }
+  };
+
+  const handleToggleFeatured = async (partnerId: string, currentFeatured: boolean) => {
+    try {
+      const response = await fetch(`/api/admin/partners/${partnerId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
+        body: JSON.stringify({
+          isFeatured: !currentFeatured,
+        }),
       });
 
       if (response.ok) {
@@ -170,7 +206,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
   const handleStatusFilter = (status: string) => {
     setFilters(prev => ({
       ...prev,
-      status: prev.status?.includes(status) 
+      status: prev.status?.includes(status)
         ? prev.status.filter(s => s !== status)
         : [...(prev.status || []), status],
       page: 1,
@@ -201,11 +237,11 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
 
   const handleSelectAll = () => {
     if (!partners) return;
-    
-    const allSelected = partners.items.every(partner => 
+
+    const allSelected = partners.items.every(partner =>
       selectedPartners.includes(partner.id)
     );
-    
+
     if (allSelected) {
       setSelectedPartners([]);
     } else {
@@ -219,7 +255,10 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
     try {
       const response = await fetch('/api/admin/partners/bulk', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getAdminToken()}`,
+        },
         body: JSON.stringify({
           action,
           partnerIds: selectedPartners,
@@ -268,23 +307,27 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
           </p>
         </div>
         <div className="flex space-x-3">
-          <Button
-            variant="outline"
-            onClick={() => setCsvUploadOpen(true)}
-            className="flex items-center space-x-2"
-          >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-            </svg>
-            <span>Import CSV</span>
-          </Button>
-          <Button
-            onClick={handleAddPartner}
-            className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700"
-          >
-            <PlusIcon className="h-5 w-5" />
-            <span>{t('common.add')} {t('admin.sidebar.partners')}</span>
-          </Button>
+          {isAdmin && (
+            <Button
+              variant="outline"
+              onClick={() => setCsvUploadOpen(true)}
+              className="flex items-center space-x-2"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <span>{t('admin.partners.importCsv')}</span>
+            </Button>
+          )}
+          {canCreate('partners') && (
+            <Button
+              onClick={handleAddPartner}
+              className="flex items-center space-x-2 bg-primary-600 hover:bg-primary-700"
+            >
+              <PlusIcon className="h-5 w-5" />
+              <span>{t('common.add')} {t('admin.sidebar.partners')}</span>
+            </Button>
+          )}
         </div>
       </div>
 
@@ -303,7 +346,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {['active', 'inactive'].map((status) => (
                 <Button
@@ -312,14 +355,14 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                   onClick={() => handleStatusFilter(status)}
                   className="capitalize h-12 px-6"
                 >
-                  {t(`admin.${status}`)}
+                  {t(`admin.partners.status.${status}`, { defaultValue: status })}
                 </Button>
               ))}
             </div>
           </div>
 
           {/* Bulk Actions */}
-          {selectedPartners.length > 0 && (
+          {selectedPartners.length > 0 && isAdmin && (
             <div className="mt-6 p-4 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-primary-700">
@@ -375,21 +418,24 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
               </Button>
             </div>
           ) : partners?.items && partners.items.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
+            <ClientOnly fallback={<div className="p-8 text-center"><LoadingSpinner /></div>}>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-4 text-left">
-                      <input
-                        type="checkbox"
-                        checked={partners.items.every(partner => 
-                          selectedPartners.includes(partner.id)
-                        )}
-                        onChange={handleSelectAll}
-                        className="rounded border-gray-300 h-5 w-5"
-                      />
-                    </th>
-                    <th 
+                    {isAdmin && (
+                      <th className="px-6 py-4 text-left">
+                        <input
+                          type="checkbox"
+                          checked={partners.items.every(partner =>
+                            selectedPartners.includes(partner.id)
+                          )}
+                          onChange={handleSelectAll}
+                          className="rounded border-gray-300 h-5 w-5"
+                        />
+                      </th>
+                    )}
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('name')}
                     >
@@ -398,13 +444,13 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {t('admin.partners.website')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('status')}
                     >
                       {t('admin.status')}
                     </th>
-                    <th 
+                    <th
                       className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                       onClick={() => handleSort('createdAt')}
                     >
@@ -418,25 +464,29 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 <tbody className="bg-white divide-y divide-gray-200">
                   {partners.items.map((partner) => (
                     <tr key={partner.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
-                        <input
-                          type="checkbox"
-                          checked={selectedPartners.includes(partner.id)}
-                          onChange={() => handleSelectPartner(partner.id)}
-                          className="rounded border-gray-300 h-5 w-5"
-                        />
-                      </td>
+                      {isAdmin && (
+                        <td className="px-6 py-4">
+                          <input
+                            type="checkbox"
+                            checked={selectedPartners.includes(partner.id)}
+                            onChange={() => handleSelectPartner(partner.id)}
+                            className="rounded border-gray-300 h-5 w-5"
+                          />
+                        </td>
+                      )}
                       <td className="px-6 py-4">
                         <div className="flex items-center space-x-4">
-                          <div className="h-12 w-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                          <div className="h-16 w-16 flex items-center justify-center">
                             {partner.logoUrl ? (
                               <img
                                 src={partner.logoUrl}
                                 alt={partner.name}
-                                className="h-10 w-10 rounded-lg object-cover"
+                                className="h-14 w-14 rounded-lg object-contain"
                               />
                             ) : (
-                              <BuildingOfficeIcon className="h-6 w-6 text-primary-600" />
+                              <div className="h-16 w-16 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <BuildingOfficeIcon className="h-8 w-8 text-primary-600" />
+                              </div>
                             )}
                           </div>
                           <div className="min-w-0">
@@ -473,11 +523,13 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                       </td>
                       <td className="px-6 py-4">
                         <Badge variant={getStatusColor(partner.status)}>
-                          {t(`admin.${partner.status}`)}
+                          {t(`admin.partners.status.${partner.status}`, { defaultValue: partner.status })}
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-600">
-                        {formatDate(partner.createdAt)}
+                        <ClientOnly fallback={t('common.loading')}>
+                          {formatDate(partner.createdAt)}
+                        </ClientOnly>
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="flex justify-end space-x-2">
@@ -486,25 +538,49 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                             variant="ghost"
                             onClick={() => handleQuickView(partner)}
                             className="hover:bg-blue-50 hover:text-blue-700"
+                            title={t('admin.view')}
                           >
                             <EyeIcon className="h-4 w-4" />
                           </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleEditPartner(partner)}
-                            className="hover:bg-amber-50 hover:text-amber-700"
-                          >
-                            <PencilIcon className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => handleDeletePartner(partner.id)}
-                            className="text-gray-600 hover:text-gray-700"
-                          >
-                            <TrashIcon className="h-4 w-4" />
-                          </Button>
+                          {canUpdate('partners') && (
+                            <>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleToggleFeatured(partner.id, partner.isFeatured || false)}
+                                className={cn(
+                                  "hover:bg-amber-50 hover:text-amber-700",
+                                  partner.isFeatured ? "text-amber-600" : "text-gray-400"
+                                )}
+                                title={partner.isFeatured ? t('admin.partners.unfeature') : t('admin.partners.feature')}
+                              >
+                                <StarIcon className={cn(
+                                  "h-4 w-4",
+                                  partner.isFeatured ? "fill-current" : "stroke-current fill-none"
+                                )} />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleEditPartner(partner)}
+                                className="hover:bg-blue-50 hover:text-blue-700"
+                                title={t('admin.edit')}
+                              >
+                                <PencilIcon className="h-4 w-4" />
+                              </Button>
+                            </>
+                          )}
+                          {canDelete('partners') && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => handleDeletePartner(partner.id)}
+                              className="text-gray-600 hover:text-gray-700"
+                              title={t('common.delete')}
+                            >
+                              <TrashIcon className="h-4 w-4" />
+                            </Button>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -512,6 +588,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 </tbody>
               </table>
             </div>
+            </ClientOnly>
           ) : (
             <div className="p-12 text-center">
               <div className="h-16 w-16 bg-gray-100 rounded-xl mx-auto mb-6 flex items-center justify-center">
@@ -538,7 +615,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
               total: partners.total
             })}
           </p>
-          
+
           <div className="flex space-x-2">
             <Button
               variant="outline"
@@ -549,11 +626,11 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
             >
               {t('common.previous')}
             </Button>
-            
+
             {[...Array(Math.min(5, partners.totalPages))].map((_, i) => {
               const page = partners.page - 2 + i;
               if (page < 1 || page > partners.totalPages) return null;
-              
+
               return (
                 <Button
                   key={page}
@@ -566,7 +643,7 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
                 </Button>
               );
             })}
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -580,12 +657,12 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
         </div>
       )}
 
-      {/* Partner Drawer for Add/Edit */}
-      <PartnerDrawer
-        open={drawerOpen}
-        onOpenChange={setDrawerOpen}
+      {/* Partner Creation Wizard for Add/Edit */}
+      <PartnerCreationWizard
+        open={wizardOpen}
+        onOpenChange={setWizardOpen}
         partner={selectedPartner}
-        mode={drawerMode}
+        mode={wizardMode}
         onSave={handleSavePartner}
       />
 
@@ -607,8 +684,8 @@ export function UnifiedPartnerList({ initialFilters = {} }: UnifiedPartnerListPr
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">{t('admin.partners.bulkImport.title')}</h2>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   onClick={() => setCsvUploadOpen(false)}
                   className="text-gray-400 hover:text-gray-600"
                 >

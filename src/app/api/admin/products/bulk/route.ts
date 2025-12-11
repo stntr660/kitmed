@@ -12,7 +12,7 @@ const bulkOperationSchema = z.object({
 async function bulkOperations(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = bulkOperationSchema.safeParse(body);
     if (!validation.success) {
@@ -114,7 +114,7 @@ async function bulkOperations(request: NextRequest) {
     });
   } catch (error) {
     console.error('Bulk operation error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,

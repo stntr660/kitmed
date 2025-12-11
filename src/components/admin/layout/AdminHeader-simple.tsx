@@ -99,7 +99,7 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
         <div className="flex items-center gap-x-4 lg:gap-x-6">
           {/* Language Switcher */}
           <LanguageSwitcher currentLocale={currentLocale} />
-          
+
           {/* Notifications */}
           <div className="relative">
             <button
@@ -122,7 +122,7 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
                 </div>
                 <div className="max-h-96 overflow-y-auto">
                   {notifications.map((notification) => (
-                    <div 
+                    <div
                       key={notification.id}
                       className={cn(
                         'flex items-start px-4 py-3 transition-colors hover:bg-gray-50',
@@ -156,7 +156,7 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
 
           {/* Profile dropdown */}
           <div className="relative">
-            <button 
+            <button
               className="flex items-center gap-x-3 text-sm leading-6 text-gray-900 hover:bg-gray-50 rounded-xl px-3 py-2 transition-all duration-200"
               onClick={() => setProfileOpen(!profileOpen)}
             >

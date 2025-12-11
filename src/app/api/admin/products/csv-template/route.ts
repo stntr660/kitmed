@@ -17,7 +17,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const categoryNames = categories.map(c => c.name).join(' | ');
 
     let csvContent = '';
-    
+
     if (type === 'enhanced') {
       // Enhanced template with file download support
       csvContent = `referenceFournisseur,constructeur,categoryId,nom_fr,nom_en,description_fr,description_en,ficheTechnique_fr,ficheTechnique_en,pdfBrochureUrl,imageUrl,imageUrl2,imageUrl3,downloadFiles,status,featured
@@ -91,7 +91,7 @@ TEST002,GE Healthcare,${categories[0]?.id || 'category-id-here'},"Échographe","
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
-    const { 
+    const {
       includeExamples = true,
       categoryFilter = null,
       includeFileDownloads = false,
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Build header
     const baseFields = [
       'referenceFournisseur',
-      'constructeur', 
+      'constructeur',
       'categoryId',
       'nom_fr',
       'nom_en',
@@ -126,27 +126,27 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     const enhancedFields = includeFileDownloads ? [
       'imageUrl',
-      'imageUrl2', 
+      'imageUrl2',
       'imageUrl3',
       'downloadFiles'
     ] : [];
 
     const statusFields = ['status', 'featured'];
-    
+
     const allFields = [...baseFields, ...enhancedFields, ...customFields, ...statusFields];
-    
+
     let csvContent = allFields.join(',') + '\n';
-    
+
     // Add comments
     csvContent += `# Custom CSV Template Generated ${new Date().toISOString()}\n`;
     csvContent += `# Available Categories: ${categories.map(c => c.name).join(' | ')}\n`;
     csvContent += `# Category IDs: ${categories.map(c => c.id).join(' | ')}\n`;
     csvContent += '#\n';
-    
+
     // Add examples if requested
     if (includeExamples && categories.length > 0) {
       csvContent += '# Example rows:\n';
-      
+
       const exampleRow1 = [
         'TEST001',
         'Philips',
@@ -168,9 +168,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         '"active"',
         '"false"'
       ];
-      
+
       csvContent += exampleRow1.join(',') + '\n';
-      
+
       if (categories.length > 1) {
         const exampleRow2 = [
           'TEST002',
@@ -193,7 +193,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           '"active"',
           '"true"'
         ];
-        
+
         csvContent += exampleRow2.join(',') + '\n';
       }
     }

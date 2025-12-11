@@ -18,6 +18,7 @@ import {
   PhotoIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
+import { removeAdminToken } from '@/lib/auth-utils';
 import { AdminUser } from '@/types/admin';
 import { Badge } from '@/components/ui/badge';
 import { Logo } from '@/components/ui/logo';
@@ -139,13 +140,13 @@ function NavItem({ item, pathname, user }: { item: NavigationItem; pathname: str
       e.preventDefault();
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     // Navigate programmatically to have better control
     e.preventDefault();
     router.push(item.href);
-    
+
     // Fallback: Reset loading state after 5 seconds if navigation doesn't complete
     setTimeout(() => setIsLoading(false), 5000);
   };
@@ -167,8 +168,8 @@ function NavItem({ item, pathname, user }: { item: NavigationItem; pathname: str
             <item.icon
               className={cn(
                 'mr-4 h-7 w-7 flex-shrink-0 transition-all duration-300',
-                isActive 
-                  ? 'text-primary-600' 
+                isActive
+                  ? 'text-primary-600'
                   : isLoading
                   ? 'text-white animate-spin'
                   : 'text-white/80 group-hover:text-white group-hover:scale-110'
@@ -218,8 +219,12 @@ function SidebarContent({ user }: { user: AdminUser }) {
   const navigation = getNavigation(locale, t);
 
   const handleLogout = async () => {
-    document.cookie = 'admin-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    window.location.href = '/admin/login';
+    // Use hydration-safe logout
+    removeAdminToken();
+
+    if (typeof window !== 'undefined') {
+      window.location.href = '/admin/login';
+    }
   };
 
   return (

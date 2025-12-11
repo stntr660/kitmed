@@ -4,25 +4,36 @@ import { z } from 'zod';
 
 const categoryUpdateSchema = z.object({
   name: z.string().min(1, 'Category name is required').optional(),
-  description: z.string().optional(),
-  parentId: z.string().optional().nullable(),
+  description: z.string().nullable().optional(),
+  parentId: z.string().nullable().optional(),
   sortOrder: z.number().optional(),
   isActive: z.boolean().optional(),
-  imageUrl: z.string().url().optional().nullable(),
-  metaTitle: z.string().optional(),
-  metaDescription: z.string().optional(),
+  imageUrl: z.union([
+    z.string().refine(
+      (val) => {
+        if (!val || val.trim() === '') return true; // empty string is valid
+        // Allow relative URLs starting with / or full URLs
+        return val.startsWith('/') || /^https?:\/\//.test(val);
+      },
+      { message: 'Must be a valid URL or relative path starting with /' }
+    ),
+    z.null(),
+    z.literal('')
+  ]).optional(),
+  metaTitle: z.string().nullable().optional(),
+  metaDescription: z.string().nullable().optional(),
   translations: z.object({
     fr: z.object({
       name: z.string().min(1, 'French name is required'),
-      description: z.string().optional(),
-      metaTitle: z.string().optional(),
-      metaDescription: z.string().optional(),
+      description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }),
     en: z.object({
       name: z.string().optional(),
-      description: z.string().optional(),
-      metaTitle: z.string().optional(),
-      metaDescription: z.string().optional(),
+      description: z.string().nullable().optional(),
+      metaTitle: z.string().nullable().optional(),
+      metaDescription: z.string().nullable().optional(),
     }).optional(),
   }).optional(),
 });
@@ -40,30 +51,30 @@ export async function GET(
   try {
     const { id } = context.params;
 
-    const category = await prisma.category.findUnique({
+    const category = await prisma.categories.findUnique({
       where: { id },
       include: {
-        translations: true,
-        children: {
+        category_translations: true,
+        other_categories: {
           include: {
-            translations: true,
+            category_translations: true,
             _count: {
               select: {
-                children: true,
+                other_categories: true,
                 products: true,
               }
             }
           },
-          orderBy: { sortOrder: 'asc' }
+          orderBy: { sort_order: 'asc' }
         },
-        parent: {
+        categories: {
           include: {
-            translations: true,
+            category_translations: true,
           }
         },
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }
@@ -78,9 +89,9 @@ export async function GET(
     }
 
     // Process category to include computed fields
-    const frTranslation = category.translations.find(t => t.languageCode === 'fr');
-    const enTranslation = category.translations.find(t => t.languageCode === 'en');
-    
+    const frTranslation = category.category_translations.find(t => t.language_code === 'fr');
+    const enTranslation = category.category_translations.find(t => t.language_code === 'en');
+
     const processedCategory = {
       ...category,
       nom: {
@@ -117,9 +128,9 @@ export async function PUT(
     const categoryData = categoryUpdateSchema.parse(body);
 
     // Check if category exists
-    const existingCategory = await prisma.category.findUnique({
+    const existingCategory = await prisma.categories.findUnique({
       where: { id },
-      include: { translations: true }
+      include: { category_translations: true }
     });
 
     if (!existingCategory) {
@@ -140,10 +151,10 @@ export async function PUT(
       }
 
       // Check if parent exists
-      const parent = await prisma.category.findUnique({
+      const parent = await prisma.categories.findUnique({
         where: { id: categoryData.parentId }
       });
-      
+
       if (!parent) {
         return NextResponse.json(
           { error: 'Parent category not found' },
@@ -153,17 +164,17 @@ export async function PUT(
 
       // Prevent circular reference: check if the parent (or its ancestors) has this category as a parent
       const checkCircularReference = async (parentId: string, targetId: string): Promise<boolean> => {
-        const parent = await prisma.category.findUnique({
+        const parent = await prisma.categories.findUnique({
           where: { id: parentId },
-          select: { parentId: true }
+          select: { parent_id: true }
         });
-        
+
         if (!parent) return false;
-        if (parent.parentId === targetId) return true;
-        if (parent.parentId) {
-          return await checkCircularReference(parent.parentId, targetId);
+        if (parent.parent_id === targetId) return true;
+        if (parent.parent_id) {
+          return await checkCircularReference(parent.parent_id, targetId);
         }
-        
+
         return false;
       };
 
@@ -177,7 +188,7 @@ export async function PUT(
 
     // Generate new slug if name changed
     let slug = existingCategory.slug;
-    if (categoryData.translations?.fr?.name && 
+    if (categoryData.translations?.fr?.name &&
         categoryData.translations.fr.name !== existingCategory.name) {
       const newSlug = categoryData.translations.fr.name
         .toLowerCase()
@@ -188,8 +199,8 @@ export async function PUT(
       let finalSlug = newSlug;
       let counter = 1;
       while (true) {
-        const existing = await prisma.category.findUnique({ 
-          where: { slug: finalSlug } 
+        const existing = await prisma.categories.findUnique({
+          where: { slug: finalSlug }
         });
         if (!existing || existing.id === id) break;
         finalSlug = `${newSlug}-${counter}`;
@@ -199,7 +210,7 @@ export async function PUT(
     }
 
     // Update category
-    const updatedCategory = await prisma.category.update({
+    const updatedCategory = await prisma.categories.update({
       where: { id },
       data: {
         ...(categoryData.translations?.fr?.name && {
@@ -210,29 +221,29 @@ export async function PUT(
           description: categoryData.translations.fr.description
         }),
         ...(categoryData.parentId !== undefined && {
-          parentId: categoryData.parentId
+          parent_id: categoryData.parentId
         }),
         ...(categoryData.sortOrder !== undefined && {
-          sortOrder: categoryData.sortOrder
+          sort_order: categoryData.sortOrder
         }),
         ...(categoryData.isActive !== undefined && {
-          isActive: categoryData.isActive
+          is_active: categoryData.isActive
         }),
         ...(categoryData.imageUrl !== undefined && {
-          imageUrl: categoryData.imageUrl
+          image_url: categoryData.imageUrl
         }),
         ...(categoryData.translations?.fr?.metaTitle !== undefined && {
-          metaTitle: categoryData.translations.fr.metaTitle
+          meta_title: categoryData.translations.fr.metaTitle
         }),
         ...(categoryData.translations?.fr?.metaDescription !== undefined && {
-          metaDescription: categoryData.translations.fr.metaDescription
+          meta_description: categoryData.translations.fr.metaDescription
         }),
       },
       include: {
-        translations: true,
+        category_translations: true,
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }
@@ -243,65 +254,65 @@ export async function PUT(
     if (categoryData.translations) {
       // Update French translation
       if (categoryData.translations.fr) {
-        await prisma.categoryTranslation.upsert({
+        await prisma.category_translations.upsert({
           where: {
-            categoryId_languageCode: {
-              categoryId: id,
-              languageCode: 'fr'
+            category_id_language_code: {
+              category_id: id,
+              language_code: 'fr'
             }
           },
           update: {
             name: categoryData.translations.fr.name,
             description: categoryData.translations.fr.description || null,
-            metaTitle: categoryData.translations.fr.metaTitle || null,
-            metaDescription: categoryData.translations.fr.metaDescription || null,
+            meta_title: categoryData.translations.fr.metaTitle || null,
+            meta_description: categoryData.translations.fr.metaDescription || null,
           },
           create: {
-            categoryId: id,
-            languageCode: 'fr',
+            category_id: id,
+            language_code: 'fr',
             name: categoryData.translations.fr.name,
             description: categoryData.translations.fr.description || null,
-            metaTitle: categoryData.translations.fr.metaTitle || null,
-            metaDescription: categoryData.translations.fr.metaDescription || null,
+            meta_title: categoryData.translations.fr.metaTitle || null,
+            meta_description: categoryData.translations.fr.metaDescription || null,
           }
         });
       }
 
       // Update English translation if provided
       if (categoryData.translations.en?.name) {
-        await prisma.categoryTranslation.upsert({
+        await prisma.category_translations.upsert({
           where: {
-            categoryId_languageCode: {
-              categoryId: id,
-              languageCode: 'en'
+            category_id_language_code: {
+              category_id: id,
+              language_code: 'en'
             }
           },
           update: {
             name: categoryData.translations.en.name,
             description: categoryData.translations.en.description || null,
-            metaTitle: categoryData.translations.en.metaTitle || null,
-            metaDescription: categoryData.translations.en.metaDescription || null,
+            meta_title: categoryData.translations.en.metaTitle || null,
+            meta_description: categoryData.translations.en.metaDescription || null,
           },
           create: {
-            categoryId: id,
-            languageCode: 'en',
+            category_id: id,
+            language_code: 'en',
             name: categoryData.translations.en.name,
             description: categoryData.translations.en.description || null,
-            metaTitle: categoryData.translations.en.metaTitle || null,
-            metaDescription: categoryData.translations.en.metaDescription || null,
+            meta_title: categoryData.translations.en.metaTitle || null,
+            meta_description: categoryData.translations.en.metaDescription || null,
           }
         });
       }
     }
 
     // Fetch updated category with translations
-    const finalCategory = await prisma.category.findUnique({
+    const finalCategory = await prisma.categories.findUnique({
       where: { id },
       include: {
-        translations: true,
+        category_translations: true,
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }
@@ -337,14 +348,14 @@ export async function DELETE(
     const { id } = context.params;
 
     // Check if category exists
-    const category = await prisma.category.findUnique({
+    const category = await prisma.categories.findUnique({
       where: { id },
       include: {
-        children: true,
+        other_categories: true,
         products: true,
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }
@@ -359,11 +370,11 @@ export async function DELETE(
     }
 
     // Check if category has children
-    if (category._count.children > 0) {
+    if (category._count.other_categories > 0) {
       return NextResponse.json(
-        { 
+        {
           error: 'Cannot delete category with subcategories',
-          details: `This category has ${category._count.children} subcategories. Please move or delete them first.`
+          details: `This category has ${category._count.other_categories} subcategories. Please move or delete them first.`
         },
         { status: 400 }
       );
@@ -372,7 +383,7 @@ export async function DELETE(
     // Check if category has products
     if (category._count.products > 0) {
       return NextResponse.json(
-        { 
+        {
           error: 'Cannot delete category with products',
           details: `This category has ${category._count.products} products. Please move or delete them first.`
         },
@@ -381,7 +392,7 @@ export async function DELETE(
     }
 
     // Delete category (translations will be deleted automatically via CASCADE)
-    await prisma.category.delete({
+    await prisma.categories.delete({
       where: { id }
     });
 

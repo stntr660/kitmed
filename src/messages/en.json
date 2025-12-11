@@ -31,6 +31,17 @@
     "export": "Export",
     "goToHomepage": "Go to homepage",
     "searchPlaceholder": "Search products...",
+    "reference": "Reference",
+    "manufacturer": "Manufacturer",
+    "sku": "SKU",
+    "tags": "Tags",
+    "productWithoutName": "Unnamed Product",
+    "notSpecified": "Not Specified",
+    "french": "French",
+    "english": "English",
+    "specification": "Specification",
+    "value": "Value",
+    "unit": "Unit",
     "searchProducts": "Search products",
     "wishlist": "Wishlist",
     "rfpCart": "RFP Cart",
@@ -52,11 +63,14 @@
     "manufacturer": "Manufacturer",
     "quantity": "Quantity",
     "productImage": "Product image",
-    "name": "Name"
+    "name": "Name",
+    "viewDetails": "View Details",
+    "quote": "Quote",
+    "partners": "Partners",
+    "featured": "Featured"
   },
   "navigation": {
     "products": "Products",
-    "solutions": "Solutions",
     "partners": "Partners",
     "about": "About",
     "contact": "Contact",
@@ -64,9 +78,6 @@
     "byDiscipline": "By Discipline",
     "byManufacturer": "By Manufacturer",
     "featured": "Featured",
-    "hospitalSolutions": "Hospital Solutions",
-    "clinicSolutions": "Clinic Solutions",
-    "labSolutions": "Laboratory Solutions",
     "company": "Company",
     "team": "Team",
     "news": "News"
@@ -105,6 +116,7 @@
         "referenceFournisseur": "Internal or supplier reference code",
         "constructeur": "Manufacturer or brand name",
         "selectCategory": "Select a category",
+        "selectManufacturer": "Select a manufacturer",
         "descriptionFr": "Description courte et détaillée du produit en français",
         "descriptionEn": "Short and detailed product description in English",
         "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
@@ -116,6 +128,7 @@
         "nomEnRequired": "English name is required",
         "referenceFournisseurRequired": "Supplier reference is required",
         "constructeurRequired": "Manufacturer is required",
+        "manufacturerRequired": "Manufacturer is required",
         "categorieRequired": "Category is required",
         "statusRequired": "Status is required"
       },
@@ -205,8 +218,8 @@
       "byManufacturer": "By Manufacturer",
       "featured": "Featured Products",
       "about": "About Us",
-      "team": "Our Team",
-      "careers": "Careers",
+      "team": "Team",
+      "careers": "Careers", 
       "news": "News",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -255,7 +268,7 @@
   "rfp": {
     "title": "Request for Proposal",
     "cart": "RFP Cart",
-    "emptyCart": "Your RFP cart is empty",
+    "emptyCart": "Your RFP cart is empty", 
     "addProducts": "Add products to start building your request",
     "browseProducts": "Browse Products",
     "item": "item",
@@ -440,6 +453,24 @@
     "manageProducts": "Manage your medical equipment catalog with unified actions",
     "productSelected": "product selected",
     "productsSelected": "products selected",
+    "category": "Category",
+    "status": "Status",
+    "products": {
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued",
+        "draft": "Draft"
+      }
+    },
+    "media": "Media",
+    "created": "Created",
+    "actions": "Actions",
+    "files": "Files",
+    "documentation": "Documentation",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "addFirstProduct": "Add Your First Product",
     "getStartedProducts": "Get started by adding your first product to the catalog.",
     "addFirstProduct": "Add Your First Product",
     "header": {
@@ -516,6 +547,68 @@
       "addDescription": "Add new medical equipment to your catalog",
       "editDescription": "Update product information and specifications",
       "viewDescription": "View detailed product information",
+      
+      "essentialInfo": "Essential information",
+      "essentialInfoDescription": "Basic details needed to identify the product",
+      
+      "productName": "Product name",
+      "productNamePlaceholder": "Ex: Portable cardiac monitor X200",
+      "productNameHint": "Use the exact commercial product name",
+      
+      "brand": "Brand",
+      "brandPlaceholder": "Ex: Philips, Siemens, GE Healthcare",
+      "brandHint": "Manufacturer or brand name",
+      
+      "referenceCode": "Reference code",
+      "referenceCodePlaceholder": "Ex: PHI-X200-2024 or REF12345",
+      "referenceCodeHint": "Internal code or supplier reference",
+      
+      "medicalDiscipline": "Medical discipline",
+      "selectDiscipline": "Choose medical specialty",
+      "disciplineHint": "Primary medical field of use",
+      
+      "shortDescription": "Short description",
+      "shortDescriptionPlaceholder": "Briefly describe the product and its main features",
+      "shortDescriptionHint": "Simple presentation for sales team",
+      
+      "internationalVersion": "International version",
+      "internationalDescription": "English information for international clients",
+      
+      "technicalDetails": "Technical details",
+      "technicalDetailsDescription": "Advanced information for specialists",
+      
+      "specifications": "Technical specifications",
+      "specificationsPlaceholder": "Detail technical specifications, dimensions, performance, standards, etc.",
+      "specificationsHint": "For tenders and technical documentation",
+      "specificationsEnglish": "Technical specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications, dimensions, performance, standards, etc.",
+      
+      "brochureDocument": "Commercial document",
+      "brochureDocumentPlaceholder": "https://example.com/product-brochure.pdf",
+      "brochureDocumentHint": "Link to PDF brochure or technical sheet",
+      
+      "visibility": "Product visibility",
+      "visibilityDescription": "Control when and how the product appears",
+      
+      "makeVisible": "Make visible",
+      "makeVisibleDescription": "Product will be visible to your clients",
+      
+      "keepHidden": "Keep hidden",
+      "keepHiddenDescription": "Product will remain as draft",
+      
+      "highlightProduct": "Highlight this product",
+      "highlightProductDescription": "will appear in featured products",
+      
+      "statusOptions": {
+        "visible": "Visible",
+        "draft": "Draft"
+      },
+      
+      "productNameEnglish": "Product name (English)",
+      "productNameEnglishPlaceholder": "Product name in English",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Brief description in English",
+      
       "basicInformation": "Basic Information",
       "productNameFrench": "Product Name (French)",
       "productNameFrenchPlaceholder": "Product name in French",
@@ -524,6 +617,24 @@
       "supplierReference": "Supplier Reference (Ref)",
       "supplierReferencePlaceholder": "Internal or supplier reference code",
       "manufacturer": "Manufacturer",
+      "productInformation": "Product Information",
+      "shortDescriptionLabel": "Short Description",
+      "fullDescription": "Full Description",
+      "category": "Category",
+      "lastUpdated": "Last Updated",
+      "mediaFiles": "Media Files",
+      "rfpRequests": "RFP Requests",
+      "recentActivity": "Recent Activity",
+      "productCreated": "Product created",
+      "productUpdated": "Product updated",
+      "editProduct": "Edit Product",
+      "fullDetails": "Full Details",
+      "viewAllMedia": "View All Media",
+      "basicInformation": "Basic Information",
+      "description": "Description",
+      "specifications": "Specifications",
+      "metadata": "Metadata",
+      "createdAt": "Created At",
       "manufacturerPlaceholder": "Manufacturer or brand name",
       "category": "Category / Discipline",
       "selectCategory": "Select a category",
@@ -546,9 +657,21 @@
       "technicalSheetEnglishPlaceholder": "Technical specifications and functional details in English",
       "pdfBrochure": "Downloadable PDF Brochure",
       "pdfBrochurePlaceholder": "URL to technical documentation or downloadable brochure",
+      "brochureDocument": "Brochure Document",
+      "brochureDocumentPlaceholder": "https://example.com/product-brochure.pdf",
+      "brochureDocumentHint": "Link to PDF brochure or technical sheet",
+      "specificationsEnglish": "Technical Specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications and details in English",
+      "specificationsPlaceholder": "Technical specifications and details in French",
+      "specificationsHint": "Enter detailed technical information for this product",
       "statusVisibility": "Status & Visibility",
       "status": "Status",
       "statusOptions": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued"
+      },
+      "status": {
         "active": "Active",
         "inactive": "Inactive",
         "discontinued": "Discontinued"
@@ -562,17 +685,28 @@
       "uploading": "Uploading...",
       "uploadHint": "JPEG, PNG, WebP up to 5MB - First image will be primary",
       "primaryImage": "Primary Image",
+      "tempImage": "Temporary",
+      "tempImageDescription": "This image will be added when the product is created",
       "noImages": "No images uploaded",
+      "noManufacturersFound": "No manufacturers found",
+      "addNewManufacturer": "Add new manufacturer",
+      "newManufacturerName": "New manufacturer name",
+      "pressEnterToAdd": "Press Enter to add, Escape to cancel",
       "saveProductFirst": "Please save the product first to upload images"
     },
     "partners": {
       "manageDescription": "Manage your medical partner and supplier network",
       "searchPlaceholder": "Search partners...",
+      "importCsv": "Import CSV",
       "partnerSelected": "partner selected",
       "partnersSelected": "partners selected",
       "getStarted": "Start by adding your first partner to the network.",
       "addFirst": "Add Your First Partner",
+      "bulkImport": {
+        "title": "CSV Bulk Import"
+      },
       "feature": "Feature",
+      "unfeature": "Remove from featured",
       
       "addDescription": "Add a new partner to your medical network",
       "editDescription": "Update partner information",
@@ -625,16 +759,95 @@
         "visible": "Visible",
         "draft": "Draft"
       },
+
+      "type": "Partner Type",
+      "types": {
+        "manufacturer": {
+          "title": "Manufacturer",
+          "description": "Companies that manufacture and produce the medical equipment you sell",
+          "badge": "Product linked",
+          "note": "Manufacturers are automatically linked to products by name",
+          "helpTitle": "About manufacturers",
+          "helpDescription": "Manufacturers are automatically associated with products in your catalog. Make sure the name exactly matches the 'Manufacturer' field of your products."
+        },
+        "other": {
+          "title": "Other Partner",
+          "description": "Government, alliances, institutions and other strategic partners",
+          "badge": "Strategic partnership",
+          "examples": "Ministry of Health, Medical alliances, NGOs",
+          "helpTitle": "About other partners",
+          "helpDescription": "These partners include government institutions, strategic alliances and other important organizations."
+        }
+      },
       
       "contactInfo": "Contact information",
       "statusInfo": "Status information",
       "noWebsite": "No website provided",
       "lastUpdated": "Last updated",
       
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      
       "validation": {
         "nameRequired": "Partner name in French is required",
+        "typeRequired": "Partner type is required",
         "websiteInvalid": "Website URL is not valid",
         "logoInvalid": "Logo URL is not valid"
+      },
+      "failedToLoad": "Failed to load partners",
+      "failedToSave": "Failed to save partner",
+      
+      "selectType": "Select partner type",
+      "selectTypeDescription": "Choose the type that best describes the business relationship",
+      "manufacturerDescription": "Partners who manufacture and produce medical equipment",
+      "manufacturerBadge": "Manufacturer",
+      "generalDescription": "Business partners and service providers",
+      "addNew": "Add new partner",
+      "editPartner": "Edit partner",
+      "manufacturerName": "Manufacturer name",
+      "manufacturerNamePlaceholder": "Ex: Philips Healthcare, GE Medical",
+      "manufacturerNameHint": "This name will be used to automatically link products",
+      "manufacturerDescriptionPlaceholder": "Describe this manufacturer and their medical specializations",
+      "linkedProducts": "Linked products",
+      "linkedProductsDescription": "Products automatically associated with this manufacturer",
+      "loadingProducts": "Loading products...",
+      "noLinkedProducts": "No linked products found",
+      "moreProducts": "more products",
+      "nameEnglish": "Name (English)",
+      "nameEnglishPlaceholder": "Partner name in English",
+      
+      "types": {
+        "manufacturer": {
+          "title": "Manufacturer",
+          "description": "Companies that manufacture and produce medical equipment you sell",
+          "badge": "Linked to products",
+          "note": "Manufacturers are automatically linked to products by name",
+          "helpTitle": "About manufacturers",
+          "helpDescription": "Manufacturers are automatically associated with products in your catalog. Make sure the name matches exactly with the 'Constructor' field of your products."
+        },
+        "distributor": {
+          "title": "Distributor", 
+          "description": "Business partners who distribute and resell medical equipment in different regions",
+          "badge": "Commercial network",
+          "helpTitle": "About distributors",
+          "helpDescription": "Distributors help you extend your commercial reach across different regions and markets."
+        },
+        "service": {
+          "title": "Service",
+          "description": "Medical service providers, maintenance, training and specialized technical support",
+          "badge": "Technical support", 
+          "helpTitle": "About services",
+          "helpDescription": "Service partners provide technical support, maintenance and training for your equipment."
+        },
+        "technology": {
+          "title": "Technology",
+          "description": "Technology partners for integration, medical software and innovative digital solutions",
+          "badge": "Digital innovation",
+          "helpTitle": "About technology", 
+          "helpDescription": "Technology partners provide software and integration solutions to modernize your medical practice."
+        }
       },
       
       "bulkImport": {
@@ -682,6 +895,80 @@
           "fieldError": "Field {field}:",
           "retry": "Retry Import"
         }
+      },
+
+      "wizard": {
+        "step1": {
+          "title": "Partner Type",
+          "description": "Select the type of partner to add"
+        },
+        "step2": {
+          "title": "Basic Information",
+          "description": "Enter partner name and contact details"
+        },
+        "step3": {
+          "title": "Additional Details",
+          "description": "Logo, description and international information"
+        },
+        "step4": {
+          "title": "Visibility & Settings",
+          "description": "Configure visibility and partner settings"
+        },
+        "selectPartnerType": "What type of partner are you adding?",
+        "selectPartnerTypeDescription": "Choose the type that best describes this partner",
+        "basicPartnerInformation": "Basic Partner Information",
+        "basicPartnerInformationDescription": "Enter essential details for this partner",
+        "additionalDetails": "Additional Details",
+        "additionalDetailsDescription": "Add logo and international information (optional)",
+        "visibilitySettings": "Visibility & Settings",
+        "visibilitySettingsDescription": "Configure how this partner appears on your platform",
+        "partnerNameFrench": "Partner Name (French)",
+        "briefDescription": "Brief Description",
+        "briefDescriptionPlaceholder": "Brief description of the partner...",
+        "briefDescriptionHint": "A short description of what this partner does",
+        "partnerLogo": "Partner Logo",
+        "uploadPartnerLogo": "Upload partner logo",
+        "internationalVersion": "International Version",
+        "partnerNameEnglish": "Partner Name (English)",
+        "partnerNameEnglishPlaceholder": "Partner name in English",
+        "descriptionEnglish": "Description (English)",
+        "descriptionEnglishPlaceholder": "Brief description in English...",
+        "partnerVisibility": "Partner Visibility",
+        "makeVisible": "Make Visible",
+        "makeVisibleDescription": "Partner will appear on the public website",
+        "keepHidden": "Keep Hidden",
+        "keepHiddenDescription": "Partner will be saved as draft",
+        "specialSettings": "Special Settings",
+        "featuredPartner": "Featured Partner",
+        "highlightPartnerOnHomepage": "Highlight this partner on the homepage and partner listings",
+        "createPartner": "Create Partner",
+        "updatePartner": "Update Partner",
+        "saving": "Saving...",
+        "previous": "Previous",
+        "next": "Next",
+        "partnerType": "Partner Type",
+        "partnerNameFrench": "Partner Name (French)",
+        "partnerNameFrenchPlaceholder": "Enter partner name in French",
+        "partnerNameFrenchHint": "This will be the primary name displayed",
+        "primaryNameHint": "This will be the primary name displayed",
+        "websiteUrl": "Website URL",
+        "websiteUrlPlaceholder": "https://example.com",
+        "websiteUrlHint": "Official website of the partner (optional)",
+        "briefDescriptionFrench": "Brief Description (French)",
+        "briefDescriptionPlaceholder": "Brief description of the partner...",
+        "briefDescriptionHint": "A short description of what this partner does",
+        "partnerLogoDescription": "Upload the partner's official logo",
+        "logoFormatSupported": "Supports PNG, JPG formats",
+        "logoSizeLimit": "Maximum file size: 2MB",
+        "logoRecommendation": "Square format recommended",
+        "featuredPartnerDescription": "Highlight this partner on the homepage and partner listings",
+        "visible": "Visible",
+        "draft": "Draft",
+        "addNewPartner": "Add New Partner",
+        "editPartner": "Edit Partner",
+        "stepOf": "Step {current} of {total}",
+        "createPartner": "Create Partner",
+        "updatePartner": "Update Partner"
       }
     },
     "content": {
@@ -1095,7 +1382,28 @@
       "dataRetention": "Medical Data Retention",
       "dataRetentionDesc": "Years to retain medical equipment data",
       "auditLogs": "Audit Logs",
-      "auditLogsDesc": "Maintain detailed logs of all system activities"
+      "auditLogsDesc": "Maintain detailed logs of all system activities",
+      "general": "General",
+      "language": "Language",
+      "french": "French",
+      "english": "English",
+      "emailAddress": "Email Address",
+      "emailName": "Email Name",
+      "thirtyMinutes": "30 minutes",
+      "oneHour": "1 hour",
+      "twoHours": "2 hours",
+      "fourHours": "4 hours",
+      "emailNotificationsDesc": "Receive notifications for important events",
+      "saveSettings": "Save Settings",
+      "description": "Manage your platform settings and configuration",
+      "saveFailed": "Failed to save settings",
+      "saveSuccess": "Settings saved successfully!",
+      "emailAddress": "Email address",
+      "emailName": "Sender name",
+      "general": "General",
+      "french": "French",
+      "english": "English",
+      "language": "Language"
     },
     "categories": {
       "manageDescription": "Manage your medical category hierarchy and disciplines",
@@ -1144,6 +1452,14 @@
       "imageUrl": "Category image",
       "imageUrlPlaceholder": "https://example.com/image.jpg",
       "imageUrlHint": "URL of the image representing this category",
+      "categoryImage": "Category image",
+      "discipline": "Discipline",
+      "equipment": "Equipment",
+      "uploadImage": "Upload image",
+      "imageUploadDescription": "Add a representative image for this medical category.",
+      "imageFormatSupported": "Supported formats: JPEG, PNG, GIF",
+      "imageSizeLimit": "Maximum size: 2MB",
+      "imageRecommendation": "Recommended: 300x300px or larger",
       "slug": "Slug",
       "categoryId": "Category ID",
       "lastUpdated": "Last updated",
@@ -1205,7 +1521,23 @@
         "additionalDetails": "Additional Details",
         "additionalDetailsDescription": "Image, translations and SEO optimization",
         "previous": "Previous",
-        "next": "Next"
+        "next": "Next",
+        "selectMedicalDiscipline": "Select Medical Discipline",
+        "linkEquipmentToDiscipline": "Link this equipment category to a medical discipline",
+        "createTopLevelDiscipline": "This will create a new top-level discipline",
+        "selectDiscipline": "Select Discipline",
+        "noDisciplinesFound": "No Disciplines Found",
+        "noDisciplinesFoundDescription": "You need to create at least one medical discipline before adding equipment categories.",
+        "noDisciplinesFoundHint": "💡 Create a discipline first (like 'Cardiology', 'Radiology', 'Surgery') then come back to add equipment categories.",
+        "disciplineStep": {
+          "title": "Discipline Selection",
+          "description": "Select the medical discipline for this category"
+        },
+        "loadingDisciplines": "Loading disciplines...",
+        "selectADiscipline": "Select a discipline",
+        "equipmentCategoriesHint": "Equipment categories must be linked to a medical discipline for proper organization",
+        "creatingNewDiscipline": "Creating New Discipline",
+        "creatingNewDisciplineDescription": "This will create a new top-level medical discipline that can contain equipment categories"
       },
       
       "help": {
@@ -1273,6 +1605,7 @@
     "welcomeSubtitle": "Manage your medical equipment catalog with ease. Track products, RFP requests, and partner relationships all in one place.",
     "loading": "Loading dashboard...",
     "retry": "Retry",
+    "dashboardDataUnavailable": "Dashboard data is currently unavailable. Please check your connection.",
     "totalProducts": "Total Products",
     "pendingRfps": "Pending RFPs",
     "activePartners": "Active Partners",
@@ -1424,6 +1757,267 @@
       "exploreProducts": "Explore products",
       "viewAllProducts": "View All Products",
       "fallbackDescription": "Medical solutions for"
+    },
+    "partners": {
+      "title": "Our Trusted Partners",
+      "subtitle": "Global Leading Brands",
+      "description": "We collaborate with the most respected manufacturers in the medical industry",
+      "viewAll": "View All Our Partners"
+    },
+    "featuredProducts": {
+      "title": "Premium Selection",
+      "subtitle": "Featured Products",
+      "description": "Discover our selection of exceptional equipment chosen for their innovation, quality, and remarkable performance.",
+      "badge": "⭐ Featured",
+      "viewDetails": "View Details",
+      "viewAll": "View All Featured Products",
+      "noDescription": "Description available on request",
+      "noProducts": "No featured products at the moment",
+      "loading": "Loading featured products...",
+      "count": "{count} exceptional product{plural}",
+      "sectionTitle": "Our Premium Selection",
+      "noFeaturedTitle": "No Featured Products",
+      "noFeaturedDescription": "No products are currently selected as featured.",
+      "backToProducts": "View All Products"
+    },
+    "disciplines": {
+      "title": "Medical Specialties",
+      "subtitle": "Our Areas of Expertise",
+      "description": "Discover our specialized solutions for each medical discipline",
+      "viewRange": "Discover the range",
+      "viewAll": "View All Specialties",
+      "productsCount": "products",
+      "fallbackDescription": "Professional solutions for {name}"
+    },
+    "partnerDescriptions": {
+      "philips": "Advanced medical imaging solutions",
+      "ge": "Diagnostic and care equipment",
+      "siemens": "Innovative medical technologies",
+      "medtronic": "Therapeutic medical devices",
+      "abbott": "Diagnostic and monitoring solutions",
+      "jj": "Surgical devices and implants"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About KITMED",
+      "title": "Leading Medical Equipment Provider in Morocco",
+      "description": "Since our establishment, KITMED has been dedicated to importing, distributing, installing and maintaining high-performance medical equipment and consumables, meeting the needs of both public and private sector clients.",
+      "cta": {
+        "contact": "Contact Us",
+        "products": "Our Products"
+      }
+    },
+    "overview": {
+      "title": "Our Story",
+      "description1": "KITMED is a Moroccan company specialized in the import, distribution, installation, and maintenance of medical equipment and consumables for both public and private sectors.",
+      "description2": "Located at 20, rue Lalande, in Casablanca's hospital district, our company has established itself as a trusted partner for healthcare facilities throughout the kingdom and is expanding towards North African markets.",
+      "established": {
+        "title": "Established in Morocco",
+        "description": "Based in Casablanca's hospital district since our founding"
+      },
+      "expertise": {
+        "title": "Complete Medical Solutions",
+        "description": "Import, distribution, installation, and professional maintenance"
+      },
+      "reach": {
+        "title": "North African Expansion",
+        "description": "Serving Morocco and expanding strategically into North Africa"
+      }
+    },
+    "mission": {
+      "sectionTitle": "Our Mission & Vision",
+      "sectionDescription": "Supporting the development of the medical sector with high-performance equipment",
+      "title": "Our Mission",
+      "description": "To support the development of the medical sector by providing high-performance medical equipment and consumables, adapted to the needs of each client in both public and private sectors.",
+      "points": [
+        "Import, distribute and install cutting-edge medical equipment",
+        "Ensure professional maintenance and after-sales service",
+        "Guarantee professional and quality materials through our global partnerships",
+        "Accompany our clients throughout the process for continuous satisfaction"
+      ]
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "Maintain our strong position as a major player in the local market and continue our growth process by expanding towards the North African region.",
+      "points": [
+        "Consolidate our leadership in the Moroccan market",
+        "Strategic expansion towards North Africa",
+        "Develop partnerships with renowned global brands",
+        "Stay alert to new technological developments in medical equipment"
+      ]
+    },
+    "values": {
+      "title": "Our Values",
+      "description": "The fundamental principles that guide all our actions",
+      "items": {
+        "excellence": {
+          "title": "Performance Excellence",
+          "description": "We provide high-performance equipment that meets the strictest professional standards"
+        },
+        "integrity": {
+          "title": "Professional Integrity",
+          "description": "We maintain transparency and professionalism in all our partnerships and services"
+        },
+        "partnership": {
+          "title": "Global Partnership",
+          "description": "We develop strategic partnerships with renowned international brands"
+        },
+        "quality": {
+          "title": "Quality Assurance",
+          "description": "We guarantee professional and quality materials through rigorous selection"
+        },
+        "innovation": {
+          "title": "Technological Innovation",
+          "description": "We stay alert to new technological developments in the medical field"
+        },
+        "commitment": {
+          "title": "Client Commitment",
+          "description": "We accompany our clients throughout the process for continuous satisfaction"
+        }
+      }
+    },
+    "contact": {
+      "title": "Our Contact Information",
+      "description": "Contact us for all your medical equipment needs",
+      "cta": "Get in Touch"
+    }
+  },
+  "partners": {
+    "hero": {
+      "badge": "Our Partners",
+      "title": "Trusted Partners and Global Manufacturers",
+      "description": "KITMED collaborates with the most respected manufacturers in the medical industry to provide you with the highest quality equipment.",
+      "cta": {
+        "contact": "Contact Us",
+        "products": "Our Products"
+      }
+    },
+    "featured": {
+      "title": "Featured Partners",
+      "description": "Our strategic collaborations with global leaders in medical equipment",
+      "badge": "Featured Partner"
+    },
+    "all": {
+      "title": "All Our Partners",
+      "description": "A global network of renowned manufacturers and suppliers to meet all your medical needs"
+    },
+    "benefits": {
+      "title": "Benefits of Our Partnerships",
+      "description": "Why our partners make a difference in your medical practice",
+      "quality": {
+        "title": "Guaranteed Quality",
+        "description": "Equipment certified to the strictest international standards"
+      },
+      "trust": {
+        "title": "Established Trust",
+        "description": "Decades of experience and collaboration with the best manufacturers"
+      },
+      "innovation": {
+        "title": "Continuous Innovation",
+        "description": "Access to the latest medical technologies and innovations"
+      }
+    },
+    "cta": {
+      "title": "Interested in a Partnership?",
+      "description": "Join our trusted partner network and let's develop medical excellence together.",
+      "contact": "Contact Us",
+      "call": "Call Us"
+    },
+    "noPartners": {
+      "title": "No Partners Found",
+      "description": "We are constantly working to expand our partner network."
+    },
+    "visitWebsite": "Visit Website"
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contact Us",
+      "title": "Get in Touch",
+      "description": "Our team of experts is at your disposal to support you in all your medical equipment projects."
+    },
+    "info": {
+      "title": "Our Contact Information",
+      "description": "Contact us by the method that suits you best. We are here to answer all your questions."
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "placeholders": {
+        "firstName": "Your first name",
+        "lastName": "Your last name",
+        "email": "your.email@example.com",
+        "phone": "+212 6XX XXX XXX",
+        "company": "Your company name",
+        "subject": "Subject of your inquiry",
+        "message": "Describe your request in detail..."
+      }
+    },
+    "success": {
+      "title": "Message Sent Successfully!",
+      "message": "Thank you for your message. Our team will contact you shortly.",
+      "sendAnother": "Send Another Message"
+    }
+  },
+  "rfp": {
+    "hero": {
+      "badge": "Request for Quote",
+      "title": "Request Your Personalized Quote",
+      "description": "Get a quote quickly adapted to your specific needs for medical equipment. Our team of experts supports you to find the perfect solution.",
+      "cta": {
+        "browseProducts": "Browse Products",
+        "getHelp": "Get Help"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "A simple 3-step process to get your personalized quote",
+      "step1": {
+        "title": "1. Describe Your Needs",
+        "description": "Fill out our form with the details of your medical equipment needs"
+      },
+      "step2": {
+        "title": "2. Analysis and Study",
+        "description": "Our experts analyze your request and prepare a suitable proposal"
+      },
+      "step3": {
+        "title": "3. Receive Your Quote",
+        "description": "You receive a detailed quote with our personalized recommendations"
+      }
+    },
+    "form": {
+      "title": "Request Form",
+      "description": "Fill out the form below to receive your personalized quote"
+    },
+    "whyKitmed": {
+      "title": "Why Choose KITMED",
+      "description": "Decades of experience serving medical excellence",
+      "expertise": {
+        "title": "Technical Expertise",
+        "description": "Our experts advise you to choose equipment suited to your needs"
+      },
+      "support": {
+        "title": "Complete Support",
+        "description": "From installation to maintenance, we support you throughout"
+      },
+      "experience": {
+        "title": "Recognized Experience",
+        "description": "Over 500 facilities trust us for their equipment"
+      }
     }
   },
   "errors": {
@@ -1437,5 +2031,149 @@
     "loadFailed": "Failed to load settings",
     "saveFailed": "Failed to save settings",
     "retry": "Retry"
+  },
+  "search": {
+    "noResults": "No results found",
+    "showingResults": "Showing {start} to {end} of {total} results"
+  },
+  "partnerDetail": {
+    "loading": "Loading partner...",
+    "notFound": "Partner not found",
+    "notFoundDescription": "This partner does not exist or is not available.",
+    "backToPartners": "Back to Partners",
+    "featuredBadge": "Featured Partner",
+    "productsCount": "{count} products",
+    "visitWebsite": "Visit Website",
+    "viewProducts": "View Products",
+    "viewProductsShort": "View Products",
+    "productsTitle": "{partnerName} Products",
+    "productsDescription": "Discover our complete range of quality {partnerName} products",
+    "viewDetails": "View Details",
+    "noProductsTitle": "No Products Available",
+    "noProductsDescription": "This partner does not yet offer products in our catalog.",
+    "viewAllProducts": "View All Products",
+    "loadingError": "Loading error",
+    "productFallbackDescription": "Professional medical product from {partnerName}."
+  },
+  "categories": {
+    "hierarchy": {
+      "loading": "Loading...",
+      "notFound": "Category not found",
+      "notFoundDescription": "This category does not exist or is not available.",
+      "backToProducts": "Back to Products",
+      "subcategories": "Subcategories",
+      "subcategoriesDescription": "Explore specialized categories in {categoryName}",
+      "availableProducts": "Available products",
+      "availableProductsCount": "{count} product in this category",
+      "productSingular": "product",
+      "productPlural": "products",
+      "subcategorySingular": "subcategory", 
+      "subcategoryPlural": "subcategories",
+      "explore": "Explore",
+      "exploreFallback": "Discover our selection for {categoryName}",
+      "subcategoryFallback": "Specialized equipment for {categoryName}",
+      "emptyCategory": "Category under development",
+      "emptyCategoryDescription": "This category does not yet contain products or subcategories.",
+      "discipline": "Discipline",
+      "category": "Category"
+    }
+  },
+  "disciplines": {
+    "title": "Products by",
+    "titleSuffix": "Discipline",
+    "medicalSpecialties": "KITMED Medical Specialties",
+    "description": "Explore our medical equipment organized by specialty to find solutions perfectly adapted to your field of expertise.",
+    "loading": "Loading specialties...",
+    "disciplinesSectionTitle": "Medical Disciplines",
+    "disciplinesSectionDescription": "Choose your field of expertise from our {count} medical discipline{plural}",
+    "disciplineSingular": "discipline",
+    "disciplinePlural": "disciplines",
+    "medicalSingular": "medical",
+    "medicalPlural": "medical",
+    "exploreCategories": "Explore Categories",
+    "noSpecialtiesFound": "No Specialties Found",
+    "noSpecialtiesFoundDescription": "No medical specialties are currently available.",
+    "backToProducts": "Back to Products",
+    "fallbackDescription": "Professional solutions for {name}"
+  },
+  "disciplinesDetail": {
+    "loading": "Loading discipline...",
+    "notFound": "Discipline not found",
+    "notFoundDescription": "This medical discipline does not exist or is not available.",
+    "backToDisciplines": "Back to Disciplines",
+    "medicalDisciplines": "Medical Disciplines", 
+    "equipment": "Equipment",
+    "equipmentCategoriesTitle": "Equipment Categories",
+    "equipmentCategoriesDescription": "Choose the category that matches your specific needs in {disciplineName}",
+    "fallbackDescription": "Discover our complete range of equipment for {disciplineName}, selected for their exceptional quality and performance.",
+    "categoriesAvailable": "{count} categor{plural} available",
+    "categorySingular": "y",
+    "categoryPlural": "ies",
+    "availableSingular": "",
+    "availablePlural": "",
+    "productsBadge": "{count} products",
+    "equipmentBadge": "Equipment",
+    "categoryFallback": "Professional specialized solutions for {categoryName} in {disciplineName}.",
+    "productsAvailable": "Products available",
+    "exploreCategories": "Explore Categories",
+    "viewProducts": "View Products",
+    "noCategoriesTitle": "No Categories Available",
+    "noCategoriesDescription": "This discipline does not yet contain equipment categories.",
+    "viewAllProducts": "View All Products"
+  },
+  "products": {
+    "hero": {
+      "badge": "KITMED Premium Catalog",
+      "title": "Medical Equipment",
+      "subtitle": "of Excellence",
+      "description": "Discover our exclusive collection of cutting-edge medical equipment, selected for their exceptional innovation and reliability."
+    },
+    "search": {
+      "placeholder": "Search by name, reference or brand...",
+      "loading": "Loading products...",
+      "allCategories": "All",
+      "allManufacturers": "All Manufacturers", 
+      "onlyFeatured": "Featured Products Only",
+      "sortPrice": "Price",
+      "sortPopularity": "Popularity"
+    },
+    "listing": {
+      "title": "Premium Products",
+      "count": "{total} equipment{plural} available",
+      "loadMore": "View More Products",
+      "featured": "Featured",
+      "viewDetails": "View Details",
+      "quote": "Quote",
+      "reference": "Ref: {ref}",
+      "descriptionFallback": "Description available on request"
+    },
+    "noResults": {
+      "title": "No Products Found",
+      "description": "No equipment matches your search criteria. Try modifying your filters or search.",
+      "resetFilters": "Reset Filters"
+    },
+    "categories": {
+      "title": "Explore by",
+      "subtitle": "Specialty",
+      "description": "Specialized equipment for every medical field"
+    },
+    "manufacturers": {
+      "badge": "KITMED Partner Manufacturers",
+      "title": "Products by",
+      "titleSuffix": "Manufacturer",
+      "description": "Explore our catalog organized by manufacturer to discover innovations from each recognized medical partner brand.",
+      "sectionTitle": "Our Partner Manufacturers",
+      "sectionDescription": "{count} partner manufacturer{plural}",
+      "loading": "Loading manufacturers...",
+      "noManufacturers": {
+        "title": "No manufacturers available",
+        "description": "No manufacturers are currently available."
+      },
+      "viewProducts": "View Products",
+      "productCount": "{count} product{plural}",
+      "viewDetails": "View Details",
+      "websiteLink": "Official Website",
+      "backToProducts": "Back to Products"
+    }
   }
 }

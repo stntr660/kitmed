@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   FileText,
   Scale,
   AlertTriangle,
@@ -112,7 +112,7 @@ export default function TermsPage() {
               Conditions Générales d'Utilisation
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Ces conditions générales régissent l'utilisation de la plateforme KITMED et 
+              Ces conditions générales régissent l'utilisation de la plateforme KITMED et
               l'acquisition d'équipements médicaux professionnels.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
@@ -166,7 +166,7 @@ export default function TermsPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="space-y-12">
-              
+
               {/* Section 1: Definitions */}
               <div id="definitions" className="scroll-mt-24">
                 <Card className="border border-gray-200">
@@ -419,10 +419,10 @@ export default function TermsPage() {
               Questions sur nos Conditions ?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Notre équipe juridique et commerciale est à votre disposition pour 
+              Notre équipe juridique et commerciale est à votre disposition pour
               répondre à toutes vos questions concernant ces conditions générales.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Button className="bg-white text-gray-900 hover:bg-gray-100">
                 <Mail className="mr-2 h-5 w-5" />
@@ -433,10 +433,10 @@ export default function TermsPage() {
                 +212 522 86 03 66
               </Button>
             </div>
-            
+
             <div className="mt-8 pt-8 border-t border-gray-700">
               <p className="text-gray-400 text-sm">
-                En utilisant nos services, vous acceptez ces conditions générales d'utilisation. 
+                En utilisant nos services, vous acceptez ces conditions générales d'utilisation.
                 Nous vous recommandons de les consulter régulièrement.
               </p>
             </div>

@@ -53,7 +53,7 @@ export function PageTransition({ children }: PageTransitionProps) {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a[href^="/"]');
-      
+
       if (link && !link.getAttribute('href')?.includes('#')) {
         const href = link.getAttribute('href');
         if (href && href !== pathname) {
@@ -102,7 +102,7 @@ export function PageTransition({ children }: PageTransitionProps) {
                   />
                 </div>
                 <p className="text-sm text-gray-600 mt-2">
-                  {progress < 30 ? 'Initialisation...' : 
+                  {progress < 30 ? 'Initialisation...' :
                    progress < 60 ? 'Chargement des données...' :
                    progress < 90 ? 'Finalisation...' : 'Presque terminé...'}
                 </p>
@@ -131,7 +131,7 @@ export function useNavigationWithLoading() {
 
   const navigate = (href: string) => {
     setIsLoading(true);
-    
+
     startTransition(() => {
       router.push(href);
       // Auto-reset loading state

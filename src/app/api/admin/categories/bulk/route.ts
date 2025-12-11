@@ -66,12 +66,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         );
 
         if (blockedCategories.length > 0) {
-          const blockedNames = blockedCategories.map(cat => 
+          const blockedNames = blockedCategories.map(cat =>
             `${cat.name} (${cat._count.children} subcategories, ${cat._count.products} products)`
           );
-          
+
           return NextResponse.json(
-            { 
+            {
               error: 'Some categories cannot be deleted',
               details: `The following categories have dependencies: ${blockedNames.join(', ')}`
             },
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         // Delete categories that can be safely deleted
         const deletableIds = categoriesWithDependencies.map(cat => cat.id);
-        
+
         result = await prisma.category.deleteMany({
           where: {
             id: { in: deletableIds }
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         }
 
         // Update each category's order and parent
-        const updatePromises = newOrder.map(item => 
+        const updatePromises = newOrder.map(item =>
           prisma.category.update({
             where: { id: item.id },
             data: {

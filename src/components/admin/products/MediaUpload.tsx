@@ -12,7 +12,9 @@ import {
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { Dropzone, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone';
 import { cn } from '@/lib/utils';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface MediaFile {
   id: string;
@@ -29,22 +31,28 @@ interface MediaUploadProps {
   productId: string | null;
   disabled?: boolean;
   onMediaChange?: (media: MediaFile[]) => void;
+  onTempFilesChange?: (files: File[]) => void;
 }
 
-export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadProps) {
+export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesChange }: MediaUploadProps) {
   const t = useTranslations();
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [tempFiles, setTempFiles] = useState<File[]>([]);
 
   // Load existing media when productId changes
   const loadMedia = useCallback(async () => {
     if (!productId) return;
-    
+
     try {
       setLoading(true);
-      const response = await fetch(`/api/admin/products/${productId}/media`);
+      const token = getAdminToken();
+      const response = await fetch(`/api/admin/products/${productId}/media`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
       if (response.ok) {
         const result = await response.json();
         setMedia(result.data || []);
@@ -62,25 +70,31 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
     loadMedia();
   }, [loadMedia]);
 
-  const handleFileSelect = () => {
-    if (disabled) return;
-    fileInputRef.current?.click();
-  };
+  const handleFilesDrop = async (files: File[]) => {
+    if (disabled || files.length === 0) return;
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files || files.length === 0 || !productId) return;
+    // If no productId, store files temporarily
+    if (!productId) {
+      const newTempFiles = [...tempFiles, ...files];
+      setTempFiles(newTempFiles);
+      onTempFilesChange?.(newTempFiles);
+      return;
+    }
 
     try {
       setUploading(true);
-      
+
       const formData = new FormData();
-      Array.from(files).forEach(file => {
+      files.forEach(file => {
         formData.append('files', file);
       });
 
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/products/${productId}/media`, {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
         body: formData,
       });
 
@@ -97,19 +111,66 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
       console.error('Upload error:', error);
     } finally {
       setUploading(false);
-      // Clear the input so the same file can be selected again
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
     }
   };
 
+  // Handle removal of temp files
+  const handleRemoveTempFile = (index: number) => {
+    if (disabled) return;
+    const newTempFiles = tempFiles.filter((_, i) => i !== index);
+    setTempFiles(newTempFiles);
+    onTempFilesChange?.(newTempFiles);
+  };
+
+  // Upload temp files after product is created
+  const uploadTempFiles = async (newProductId: string) => {
+    if (tempFiles.length === 0) return;
+
+    try {
+      setUploading(true);
+
+      const formData = new FormData();
+      tempFiles.forEach(file => {
+        formData.append('files', file);
+      });
+
+      const token = getAdminToken();
+      const response = await fetch(`/api/admin/products/${newProductId}/media`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setMedia(result.data || []);
+        setTempFiles([]); // Clear temp files after successful upload
+        onMediaChange?.(result.data || []);
+      }
+    } catch (error) {
+      console.error('Temp files upload error:', error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Expose uploadTempFiles function
+  React.useEffect(() => {
+    (window as any).uploadTempFiles = uploadTempFiles;
+  }, [uploadTempFiles]);
+
   const handleDeleteMedia = async (mediaId: string) => {
     if (disabled) return;
-    
+
     try {
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
@@ -124,11 +185,15 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
 
   const handleSetPrimary = async (mediaId: string) => {
     if (disabled) return;
-    
+
     try {
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({ isPrimary: true }),
       });
 
@@ -147,16 +212,20 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
 
   const handleMoveMedia = async (mediaId: string, direction: 'up' | 'down') => {
     if (disabled) return;
-    
+
     const currentIndex = media.findIndex(m => m.id === mediaId);
     const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
-    
+
     if (newIndex < 0 || newIndex >= media.length) return;
 
     try {
+      const token = getAdminToken();
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({ sortOrder: newIndex }),
       });
 
@@ -173,76 +242,90 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
     }
   };
 
-  if (!productId) {
-    return (
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-        <PhotoIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-sm text-gray-600">
-          {t('admin.products.saveProductFirst')}
-        </p>
-      </div>
-    );
-  }
+  // Always render the upload interface - no need to block when productId is null
 
   return (
     <div className="space-y-4">
       {/* Upload Area */}
-      <div 
-        className={cn(
-          "border-2 border-dashed rounded-lg p-6 text-center transition-colors",
-          disabled 
-            ? "border-gray-200 bg-gray-50" 
-            : "border-gray-300 hover:border-primary-400 hover:bg-primary-50 cursor-pointer"
-        )}
-        onClick={handleFileSelect}
-      >
-        <PhotoIcon className="h-10 w-10 text-gray-400 mx-auto mb-3" />
-        <p className="text-sm text-gray-600 mb-2">
-          {uploading 
-            ? t('admin.products.uploading') 
-            : t('admin.products.mediaDescription')
-          }
-        </p>
-        <Button 
-          variant="outline" 
-          disabled={disabled || uploading}
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleFileSelect();
-          }}
-        >
-          {uploading ? (
-            <>
-              <LoadingSpinner size="sm" className="mr-2" />
-              {t('admin.products.uploading')}
-            </>
-          ) : (
-            t('admin.products.uploadMedia')
-          )}
-        </Button>
-        <p className="text-xs text-gray-500 mt-2">
-          {t('admin.products.uploadHint')}
-        </p>
-      </div>
-
-      {/* Hidden file input */}
-      <input
-        ref={fileInputRef}
-        type="file"
+      <Dropzone
+        onDrop={handleFilesDrop}
+        accept={{
+          'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp']
+        }}
         multiple
-        accept="image/*"
-        onChange={handleFileChange}
-        className="hidden"
-      />
+        disabled={disabled || uploading}
+        className={cn(
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+      >
+        <DropzoneEmptyState
+          title={uploading ? t('admin.products.uploading') : t('admin.products.uploadMedia')}
+          description={uploading ? undefined : t('admin.products.mediaDescription')}
+          icon={uploading ? <LoadingSpinner size="md" /> : <PhotoIcon className="h-full w-full" />}
+        />
+      </Dropzone>
+
+      {/* Temp Files Info Banner */}
+      {tempFiles.length > 0 && !productId && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="flex items-start space-x-3">
+            <PhotoIcon className="h-5 w-5 text-blue-600 mt-0.5" />
+            <div>
+              <p className="text-sm font-medium text-blue-900">
+                {tempFiles.length} {tempFiles.length === 1 ? t('admin.products.tempImage') : 'images temporaires'}
+              </p>
+              <p className="text-sm text-blue-700 mt-1">
+                {t('admin.products.tempImageDescription')}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Media Grid */}
       {loading ? (
         <div className="flex justify-center py-8">
           <LoadingSpinner size="lg" />
         </div>
-      ) : media.length > 0 ? (
+      ) : (media.length > 0 || tempFiles.length > 0) ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/* Show temp files for new products */}
+          {tempFiles.map((file, index) => (
+            <div key={`temp-${index}`} className="relative group">
+              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={`Temporary image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Overlay controls */}
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {/* Delete button */}
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
+                    onClick={() => handleRemoveTempFile(index)}
+                    disabled={disabled}
+                  >
+                    <XMarkIcon className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Temp indicator */}
+              <div className="absolute top-2 left-2">
+                <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                  {t('admin.products.tempImage')}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Show actual media */}
           {media.map((item, index) => (
             <div key={item.id} className="relative group">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
@@ -252,7 +335,7 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* Overlay controls */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
@@ -270,7 +353,7 @@ export function MediaUpload({ productId, disabled, onMediaChange }: MediaUploadP
                       <StarIcon className="h-4 w-4 text-gray-500" />
                     )}
                   </Button>
-                  
+
                   {/* Delete button */}
                   <Button
                     size="sm"

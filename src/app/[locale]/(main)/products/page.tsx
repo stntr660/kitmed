@@ -3,25 +3,28 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { 
-  Search, 
-  Filter, 
-  ArrowRight, 
+import {
+  Search,
+  Filter,
+  ArrowRight,
   Heart,
   Download,
   Eye,
   Building2,
   Award,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
+import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
   id: string;
@@ -29,6 +32,7 @@ interface Product {
   constructeur: string;
   slug: string;
   pdfBrochureUrl: string | null;
+  pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
   createdAt: string;
@@ -68,20 +72,27 @@ interface ProductsResponse {
 
 export default function ProductsPage() {
   const t = useTranslations('common');
+  const tProducts = useTranslations('products');
+  const locale = useHydrationSafeLocale('fr');
   const [products, setProducts] = useState<ProductsResponse | null>(null);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedManufacturer, setSelectedManufacturer] = useState('');
+  const [onlyFeatured, setOnlyFeatured] = useState(false);
+  const [manufacturers, setManufacturers] = useState<any[]>([]);
 
   useEffect(() => {
     loadProducts();
     loadCategories();
-  }, [searchQuery, selectedCategory]);
+    loadManufacturers();
+  }, [searchQuery, selectedCategory, selectedManufacturer, onlyFeatured, locale]);
 
   const loadCategories = async () => {
     try {
-      const response = await fetch('/api/categories?includeProductCount=true&locale=fr');
+      const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data || []);
@@ -91,17 +102,31 @@ export default function ProductsPage() {
     }
   };
 
+  const loadManufacturers = async () => {
+    try {
+      const response = await fetch('/api/partners?status=active');
+      if (response.ok) {
+        const data = await response.json();
+        setManufacturers(data.data || []);
+      }
+    } catch (error) {
+      console.error('Failed to load manufacturers:', error);
+    }
+  };
+
   const loadProducts = async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams();
       params.append('status', 'active');
       params.append('pageSize', '12');
-      
+
       if (searchQuery) params.append('query', searchQuery);
       if (selectedCategory) params.append('category', selectedCategory);
+      if (selectedManufacturer) params.append('manufacturer', selectedManufacturer);
+      if (onlyFeatured) params.append('featured', 'true');
 
-      const response = await fetch(`/api/products?${params}&locale=fr`);
+      const response = await fetch(`/api/products?${params}&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data.data);
@@ -125,30 +150,31 @@ export default function ProductsPage() {
     return product.media?.find(m => m.isPrimary && m.type === 'image');
   };
 
-
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Certifications Banner */}
+      <CertificationsBanner variant="compact" />
+
       {/* Hero Section */}
       <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              🏥 Catalogue Premium KITMED
+              🏥 {tProducts('hero.badge')}
             </Badge>
-            
+
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Équipements Médicaux
-              <span className="text-primary-300 block mt-2">d'Excellence</span>
+              {tProducts('hero.title')}
+              <span className="text-primary-300 block mt-2">{tProducts('hero.subtitle')}</span>
             </h1>
-            
+
             <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Découvrez notre collection exclusive d'équipements médicaux de pointe, 
-              sélectionnés pour leur innovation et leur fiabilité exceptionnelles.
+              {tProducts('hero.description')}
             </p>
           </div>
         </div>
@@ -163,13 +189,13 @@ export default function ProductsPage() {
               <div className="flex-1 relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
                 <Input
-                  placeholder="Rechercher par nom, référence ou marque..."
+                  placeholder={tProducts('search.placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 h-14 text-lg border-2 border-slate-200 focus:border-primary-500 shadow-sm"
                 />
               </div>
-              
+
               {/* Category Filter */}
               <div className="flex gap-3 flex-wrap">
                 <Button
@@ -177,7 +203,7 @@ export default function ProductsPage() {
                   onClick={() => setSelectedCategory('')}
                   className="h-14 px-6"
                 >
-                  Toutes
+                  {tProducts('search.allCategories')}
                 </Button>
                 {categories.slice(0, 3).map((category) => (
                   <Button
@@ -189,9 +215,78 @@ export default function ProductsPage() {
                     {category.name}
                   </Button>
                 ))}
-                <Button variant="outline" className="h-14 px-4">
-                  <Filter className="h-4 w-4" />
-                </Button>
+                <div className="relative">
+                  <Button 
+                    variant="outline" 
+                    className="h-14 px-4"
+                    onClick={() => setShowFilters(!showFilters)}
+                  >
+                    <Filter className="h-4 w-4" />
+                  </Button>
+                  
+                  {showFilters && (
+                    <div className="absolute right-0 top-16 bg-white border border-gray-200 rounded-lg shadow-lg p-6 w-80 z-50">
+                      <h3 className="font-semibold text-gray-900 mb-4">{t('filter')}</h3>
+                      
+                      {/* Manufacturer Filter */}
+                      <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {t('manufacturer')}
+                        </label>
+                        <select 
+                          value={selectedManufacturer}
+                          onChange={(e) => setSelectedManufacturer(e.target.value)}
+                          className="w-full border border-gray-300 rounded-md px-3 py-2"
+                        >
+                          <option value="">{tProducts('search.allManufacturers')}</option>
+                          {manufacturers.map((manufacturer) => (
+                            <option key={manufacturer.id} value={manufacturer.slug || manufacturer.id}>
+                              {typeof manufacturer.name === 'string' 
+                                ? manufacturer.name 
+                                : manufacturer.name?.[locale] || manufacturer.name?.fr || manufacturer.name?.en || 'Unknown Manufacturer'
+                              }
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      {/* Featured Only */}
+                      <div className="mb-4">
+                        <label className="flex items-center">
+                          <input
+                            type="checkbox"
+                            checked={onlyFeatured}
+                            onChange={(e) => setOnlyFeatured(e.target.checked)}
+                            className="rounded border-gray-300 text-primary-600 mr-2"
+                          />
+                          <span className="text-sm text-gray-700">{tProducts('search.onlyFeatured')}</span>
+                        </label>
+                      </div>
+                      
+                      {/* Clear Filters */}
+                      <div className="flex gap-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => {
+                            setSelectedManufacturer('');
+                            setOnlyFeatured(false);
+                          }}
+                          className="flex-1"
+                        >
+                          {t('clear')}
+                        </Button>
+                        <Button 
+                          size="sm"
+                          onClick={() => setShowFilters(false)}
+                          className="flex-1"
+                        >
+                          {t('close')}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -203,54 +298,44 @@ export default function ProductsPage() {
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <LoadingSpinner size="lg" text="Chargement des produits..." />
+              <LoadingSpinner size="lg" text={tProducts('search.loading')} />
             </div>
           ) : products && products.items.length > 0 ? (
             <>
               <div className="flex items-center justify-between mb-12">
                 <div>
                   <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                    Produits Premium
+                    {tProducts('listing.title')}
                   </h2>
                   <p className="text-slate-600">
-                    {products.total} équipement{products.total > 1 ? 's' : ''} disponible{products.total > 1 ? 's' : ''}
+                    {tProducts('listing.count', { total: products.total, plural: products.total > 1 ? 's' : '' })}
                   </p>
                 </div>
-                
-                <div className="flex gap-4">
-                  <Button variant="outline" size="sm">
-                    Prix
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    Popularité
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
+
               </div>
-              
+
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.items.map((product) => {
                   const primaryImage = getPrimaryImage(product);
                   const categoryInfo = product.category;
-                  
+
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
                       {/* Product Image */}
-                      <div className="relative h-64 bg-slate-100 overflow-hidden">
+                      <div className="relative h-64 bg-white overflow-hidden p-4">
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
                             alt={primaryImage.altText || getProductName(product)}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="object-contain group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                            <Building2 className="h-16 w-16 text-slate-400" />
+                          <div className="w-full h-full bg-white flex items-center justify-center">
+                            <Building2 className="h-16 w-16 text-gray-400" />
                           </div>
                         )}
-                        
+
                         {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
@@ -261,27 +346,36 @@ export default function ProductsPage() {
                             <Eye className="h-4 w-4" />
                           </Button>
                         </div>
-                        
+
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
                           {product.isFeatured && (
                             <Badge className="bg-accent-500 text-white border-0 text-xs">
                               <Sparkles className="h-3 w-3 mr-1" />
-                              Vedette
+                              {tProducts('listing.featured')}
                             </Badge>
                           )}
                           {categoryInfo && (
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className="text-xs border-0"
-                              style={{ backgroundColor: '#3B82F6' + '20', color: '#3B82F6' }}
+                              className="bg-primary-100 text-primary-600"
                             >
                               {categoryInfo.name || 'Category'}
                             </Badge>
                           )}
+                          {product.pdfBrochureUrl && (
+                            <Badge
+                              variant="secondary"
+                              className="text-xs border-0 bg-blue-100 text-blue-600"
+                            >
+                              <FileText className="h-3 w-3 mr-1" />
+                              PDF
+                            </Badge>
+                          )}
                         </div>
                       </div>
-                      
+
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
@@ -293,35 +387,35 @@ export default function ProductsPage() {
                             </CardTitle>
                           </div>
                           {product.isFeatured && (
-                            <Award className="h-5 w-5 text-amber-500 flex-shrink-0 ml-2" />
+                            <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
                           )}
                         </div>
-                        
+
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {getProductDescription(product) || 'Description disponible sur demande'}
+                          {getProductDescription(product) || tProducts('listing.descriptionFallback')}
                         </div>
                       </CardHeader>
-                      
+
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xs text-slate-500 font-mono">
-                            Réf: {product.referenceFournisseur}
+                            {tProducts('listing.reference', { ref: product.referenceFournisseur })}
                           </div>
                         </div>
-                        
+
                         <div className="space-y-2">
-                          <Button 
-                            size="sm" 
-                            className="w-full bg-primary text-white hover:bg-gray-600"
+                          <Button
+                            size="sm"
+                            className="w-full bg-primary text-white hover:bg-primary-600"
                             asChild
                           >
-                            <Link href={`/fr/products/${product.slug || product.id}`}>
-                              Voir Détails
+                            <Link href={`/${locale}/products/${product.slug || product.id}`}>
+                              {tProducts('listing.viewDetails')}
                             </Link>
                           </Button>
-                          
+
                           <div className="flex gap-2">
-                            <QuoteRequestForm 
+                            <QuoteRequestForm
                               product={{
                                 id: product.id,
                                 referenceFournisseur: product.referenceFournisseur,
@@ -334,26 +428,33 @@ export default function ProductsPage() {
                                 }]
                               }}
                               trigger={
-                                <Button 
-                                  size="sm" 
-                                  variant="outline" 
+                                <Button
+                                  size="sm"
+                                  variant="outline"
                                   className="flex-1"
                                 >
                                   <MessageSquare className="h-4 w-4 mr-1" />
-                                  Devis
+                                  {tProducts('listing.quote')}
                                 </Button>
                               }
                             />
-                            
+
                             {product.pdfBrochureUrl && (
-                              <Button 
-                                size="sm" 
-                                variant="outline" 
-                                className="px-3"
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="px-3 relative"
                                 asChild
                               >
-                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
+                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer" title={
+                                  product.pdfSource === 'manufacturer' 
+                                    ? tProducts('listing.manufacturerBrochure') 
+                                    : tProducts('listing.productBrochure')
+                                }>
                                   <Download className="h-4 w-4" />
+                                  {product.pdfSource === 'manufacturer' && (
+                                    <span className="absolute -top-1 -right-1 h-2 w-2 bg-blue-500 rounded-full"></span>
+                                  )}
                                 </a>
                               </Button>
                             )}
@@ -364,16 +465,39 @@ export default function ProductsPage() {
                   );
                 })}
               </div>
-              
+
               {/* Load More Button */}
               {products.totalPages > 1 && (
                 <div className="mt-16 text-center">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="min-w-[200px] h-12 border-2 border-gray-300 text-gray-600 hover:bg-gray-50"
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="min-w-[200px] h-12 border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
+                    onClick={() => {
+                      if (products.page < products.totalPages) {
+                        const params = new URLSearchParams();
+                        params.append('status', 'active');
+                        params.append('pageSize', '12');
+                        params.append('page', String(products.page + 1));
+
+                        if (searchQuery) params.append('query', searchQuery);
+                        if (selectedCategory) params.append('category', selectedCategory);
+
+                        fetch(`/api/products?${params}&locale=${locale}`)
+                          .then(res => res.json())
+                          .then(data => {
+                            if (data.success) {
+                              setProducts(prev => prev ? {
+                                ...data.data,
+                                items: [...prev.items, ...data.data.items]
+                              } : data.data);
+                            }
+                          })
+                          .catch(err => console.error('Failed to load more products:', err));
+                      }
+                    }}
                   >
-                    Voir Plus de Produits
+                    {tProducts('listing.loadMore')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -385,20 +509,19 @@ export default function ProductsPage() {
                 <Search className="h-12 w-12 text-slate-400" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                Aucun Produit Trouvé
+                {tProducts('noResults.title')}
               </h3>
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                Aucun équipement ne correspond à vos critères de recherche. 
-                Essayez de modifier vos filtres ou votre recherche.
+                {tProducts('noResults.description')}
               </p>
-              <Button 
+              <Button
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('');
                 }}
-                className="bg-primary text-white hover:bg-gray-600"
+                className="bg-primary text-white hover:bg-primary-600"
               >
-                Réinitialiser les Filtres
+                {tProducts('noResults.resetFilters')}
               </Button>
             </div>
           )}
@@ -410,14 +533,14 @@ export default function ProductsPage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Explorer par
-              <span className="text-primary-300"> Spécialité</span>
+              {tProducts('categories.title')}
+              <span className="text-primary-300"> {tProducts('categories.subtitle')}</span>
             </h2>
             <p className="text-xl text-slate-300 leading-relaxed">
-              Équipements spécialisés pour chaque domaine médical
+              {tProducts('categories.description')}
             </p>
           </div>
-          
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
               <Button
@@ -439,11 +562,11 @@ export default function ProductsPage() {
                       />
                     </div>
                   ) : (
-                    <div 
+                    <div
                       className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center"
-                      style={{ backgroundColor: '#3B82F6' }}
+                      className="bg-primary-500"
                     >
-                      <div className="w-5 h-5 bg-white/30 rounded-full"></div>
+                      <div className="w-5 h-5 bg-white/50 rounded-full"></div>
                     </div>
                   )}
                   <span className="text-lg font-semibold">{category.name}</span>

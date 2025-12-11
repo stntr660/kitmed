@@ -2,10 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
-import { existsSync } from 'fs';
+import {
+  downloadFileFromUrl,
+  downloadFilesFromUrls,
+  isValidUrl,
+  validateUrls,
+  type DownloadResult,
+  type DownloadError
+} from '@/lib/url-downloader';
+import { uploadPresets } from '@/lib/upload';
 
+// Enhanced CSV schema with URL fields
 const csvProductSchema = z.object({
   referenceFournisseur: z.string().min(1, 'Référence fournisseur is required'),
   constructeur: z.string().min(1, 'Constructeur is required'),
@@ -17,12 +24,21 @@ const csvProductSchema = z.object({
   ficheTechnique_fr: z.string().optional().default(''),
   ficheTechnique_en: z.string().optional().default(''),
   pdfBrochureUrl: z.string().optional().default(''),
-  imageUrls: z.string().optional().default(''), // Comma-separated URLs
+  imageUrl: z.string().optional().default(''), // New: Product image URL
+  imageUrl2: z.string().optional().default(''), // New: Additional image URL
+  imageUrl3: z.string().optional().default(''), // New: Additional image URL
+  downloadFiles: z.preprocess(
+    (val) => String(val || 'false'),
+    z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
+  ).default(false), // Whether to download files from URLs
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
-  featured: z.preprocess((val) => String(val || 'false'), z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')),
+  featured: z.preprocess(
+    (val) => String(val || 'false'),
+    z.string().transform((val) => val?.toLowerCase() === 'true' || val === '1')
+  ).default(false),
 });
 
-interface ImportResult {
+interface EnhancedImportResult {
   success: boolean;
   imported: number;
   errors: Array<{
@@ -30,48 +46,31 @@ interface ImportResult {
     field?: string;
     message: string;
   }>;
-  filesDownloaded?: number;
+  fileDownloads: {
+    attempted: number;
+    successful: number;
+    failed: number;
+    details: Array<{
+      row: number;
+      productRef: string;
+      downloads: DownloadResult[];
+      errors: DownloadError[];
+    }>;
+  };
   data?: any[];
+  totalProcessingTime: number;
 }
 
-// File download utility
-async function downloadAndSaveFile(url: string, fileName: string, subDir: string): Promise<string | null> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const buffer = await response.arrayBuffer();
-    const uint8Array = new Uint8Array(buffer);
-    
-    // Create uploads directory structure
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', subDir);
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true });
-    }
-    
-    const filePath = join(uploadsDir, fileName);
-    await writeFile(filePath, uint8Array);
-    
-    return `/uploads/${subDir}/${fileName}`;
-  } catch (error) {
-    console.error(`Failed to download ${url}:`, error);
-    return null;
-  }
+interface ProductFileDownload {
+  row: number;
+  productRef: string;
+  urls: Array<{ type: 'image' | 'pdf'; url: string; field: string }>;
 }
 
-// Generate unique filename
-function generateFileName(originalUrl: string, productRef: string, index: number = 0): string {
-  const urlParts = originalUrl.split('/');
-  const originalName = urlParts[urlParts.length - 1];
-  const extension = originalName.includes('.') ? originalName.split('.').pop() : 'jpg';
-  const timestamp = Date.now();
-  const suffix = index > 0 ? `-${index}` : '';
-  return `${productRef}-${timestamp}${suffix}.${extension}`;
-}
-
+// Renamed from bulk-import-enhanced to be the primary bulk import endpoint
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const startTime = Date.now();
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -91,10 +90,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
+    // Validate file size (max 10MB for enhanced import)
+    if (file.size > 10 * 1024 * 1024) {
       return NextResponse.json(
-        { error: 'File size must be less than 5MB' },
+        { error: 'File size must be less than 10MB' },
         { status: 400 }
       );
     }
@@ -126,23 +125,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    if (records.length > 1000) {
+    if (records.length > 500) { // Reduced limit for enhanced import
       return NextResponse.json(
-        { error: 'CSV file contains too many rows (max 1000)' },
+        { error: 'CSV file contains too many rows (max 500 for enhanced import)' },
         { status: 400 }
       );
     }
 
-    const result: ImportResult = {
+    const result: EnhancedImportResult = {
       success: false,
       imported: 0,
       errors: [],
-      filesDownloaded: 0,
+      fileDownloads: {
+        attempted: 0,
+        successful: 0,
+        failed: 0,
+        details: [],
+      },
+      totalProcessingTime: 0,
     };
 
     const validProducts = [];
-    
-    // Validate each row
+    const fileDownloads: ProductFileDownload[] = [];
+
+    // Validate each row and collect file URLs
     for (let i = 0; i < records.length; i++) {
       const rowNumber = i + 2; // +2 because CSV rows start at 1 and we have headers
       const record = records[i];
@@ -150,7 +156,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       try {
         // Validate the record
         const validatedProduct = csvProductSchema.parse(record);
-        
+
         // Check if reference already exists
         const existingProduct = await prisma.product.findUnique({
           where: { referenceFournisseur: validatedProduct.referenceFournisseur },
@@ -163,6 +169,35 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             message: `Product with reference ${validatedProduct.referenceFournisseur} already exists`,
           });
           continue;
+        }
+
+        // Collect file URLs for download if enabled
+        const urls: Array<{ type: 'image' | 'pdf'; url: string; field: string }> = [];
+
+        if (validatedProduct.downloadFiles) {
+          // Collect image URLs
+          if (validatedProduct.imageUrl && isValidUrl(validatedProduct.imageUrl)) {
+            urls.push({ type: 'image', url: validatedProduct.imageUrl, field: 'imageUrl' });
+          }
+          if (validatedProduct.imageUrl2 && isValidUrl(validatedProduct.imageUrl2)) {
+            urls.push({ type: 'image', url: validatedProduct.imageUrl2, field: 'imageUrl2' });
+          }
+          if (validatedProduct.imageUrl3 && isValidUrl(validatedProduct.imageUrl3)) {
+            urls.push({ type: 'image', url: validatedProduct.imageUrl3, field: 'imageUrl3' });
+          }
+
+          // Collect PDF URL
+          if (validatedProduct.pdfBrochureUrl && isValidUrl(validatedProduct.pdfBrochureUrl)) {
+            urls.push({ type: 'pdf', url: validatedProduct.pdfBrochureUrl, field: 'pdfBrochureUrl' });
+          }
+
+          if (urls.length > 0) {
+            fileDownloads.push({
+              row: rowNumber,
+              productRef: validatedProduct.referenceFournisseur,
+              urls,
+            });
+          }
         }
 
         validProducts.push({
@@ -199,40 +234,99 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       }
     }
 
-    // Import valid products
+    // Download files if any were found
+    if (fileDownloads.length > 0) {
+
+      for (const productDownload of fileDownloads) {
+        const downloads: DownloadResult[] = [];
+        const downloadErrors: DownloadError[] = [];
+
+        // Generate unique folder for this product
+        const productSlug = productDownload.productRef
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '');
+
+        result.fileDownloads.attempted += productDownload.urls.length;
+
+        for (const urlInfo of productDownload.urls) {
+          try {
+            const downloadOptions = urlInfo.type === 'image'
+              ? {
+                  ...uploadPresets.productImage,
+                  folder: `products/${productSlug}`,
+                }
+              : {
+                  ...uploadPresets.productDocument,
+                  folder: `documents/${productSlug}`,
+                };
+
+            const downloadResult = await downloadFileFromUrl(urlInfo.url, downloadOptions);
+            downloads.push(downloadResult);
+            result.fileDownloads.successful++;
+
+          } catch (error) {
+            const downloadError: DownloadError = {
+              url: urlInfo.url,
+              error: error instanceof Error ? error.message : 'Unknown download error',
+              code: 'DOWNLOAD_FAILED',
+            };
+            downloadErrors.push(downloadError);
+            result.fileDownloads.failed++;
+
+            console.error(`Failed to download ${urlInfo.type} for ${productDownload.productRef}:`, downloadError.error);
+          }
+        }
+
+        result.fileDownloads.details.push({
+          row: productDownload.row,
+          productRef: productDownload.productRef,
+          downloads,
+          errors: downloadErrors,
+        });
+      }
+    }
+
+    // Import valid products with downloaded files
     const createdProducts = [];
     for (const productData of validProducts) {
       try {
+        // Find downloaded files for this product
+        const productFileDownload = result.fileDownloads.details.find(
+          d => d.productRef === productData.referenceFournisseur
+        );
+
         // Generate slug from French name
         const slug = productData.nom.fr
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-|-$/g, '');
 
-        // Download PDF brochure if URL provided
-        let localPdfUrl = null;
-        if (productData.pdfBrochureUrl && productData.pdfBrochureUrl.startsWith('http')) {
-          const pdfFileName = generateFileName(productData.pdfBrochureUrl, productData.referenceFournisseur);
-          localPdfUrl = await downloadAndSaveFile(productData.pdfBrochureUrl, pdfFileName, 'brochures');
-          if (localPdfUrl) {
-            result.filesDownloaded!++;
-          } else {
-            result.errors.push({
-              row: productData.rowNumber,
-              field: 'pdfBrochureUrl',
-              message: `Failed to download PDF: ${productData.pdfBrochureUrl}`,
-            });
-          }
+        // Determine final URLs (use downloaded files if available, otherwise original URLs)
+        let finalPdfUrl = productData.pdfBrochureUrl || null;
+        const imageUrls: string[] = [];
+
+        if (productFileDownload) {
+          // Use downloaded file URLs
+          productFileDownload.downloads.forEach(download => {
+            const originalUrl = download.originalUrl;
+
+            if (originalUrl === productData.pdfBrochureUrl) {
+              finalPdfUrl = download.url;
+            } else if ([productData.imageUrl, productData.imageUrl2, productData.imageUrl3].includes(originalUrl)) {
+              imageUrls.push(download.url);
+            }
+          });
         }
 
-        // Create product first
+        // Create product in database
         const product = await prisma.product.create({
           data: {
             referenceFournisseur: productData.referenceFournisseur,
             constructeur: productData.constructeur,
             categoryId: productData.categoryId,
             slug,
-            pdfBrochureUrl: localPdfUrl || productData.pdfBrochureUrl || null,
+            pdfBrochureUrl: finalPdfUrl,
             status: productData.status,
             isFeatured: productData.featured,
             translations: {
@@ -251,55 +345,25 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
                 },
               ],
             },
+            // Create media records for downloaded images
+            ...(imageUrls.length > 0 && {
+              media: {
+                create: imageUrls.map((url, index) => ({
+                  type: 'image',
+                  url,
+                  altText: `Product image ${index + 1}`,
+                  title: `${productData.nom.fr} - Image ${index + 1}`,
+                  sortOrder: index,
+                  isPrimary: index === 0, // First image is primary
+                })),
+              },
+            }),
           },
           include: {
             translations: true,
+            media: true,
           },
         });
-
-        // Download and attach images if URLs provided
-        if (productData.imageUrls && productData.imageUrls.trim()) {
-          const imageUrlList = productData.imageUrls.split(',').map(url => url.trim()).filter(Boolean);
-          const mediaItems = [];
-          
-          for (let i = 0; i < imageUrlList.length; i++) {
-            const imageUrl = imageUrlList[i];
-            if (imageUrl.startsWith('http')) {
-              const imageFileName = generateFileName(imageUrl, productData.referenceFournisseur, i);
-              const localImageUrl = await downloadAndSaveFile(imageUrl, imageFileName, 'products');
-              
-              if (localImageUrl) {
-                try {
-                  const mediaItem = await prisma.media.create({
-                    data: {
-                      productId: product.id,
-                      type: 'image',
-                      url: localImageUrl,
-                      sortOrder: i,
-                      isPrimary: i === 0, // First image is primary
-                      altText: `${productData.nom.fr} - Image ${i + 1}`,
-                      title: productData.nom.fr,
-                    },
-                  });
-                  mediaItems.push(mediaItem);
-                  result.filesDownloaded!++;
-                } catch (mediaError) {
-                  result.errors.push({
-                    row: productData.rowNumber,
-                    field: 'imageUrls',
-                    message: `Failed to save image metadata for: ${imageUrl}`,
-                  });
-                }
-              } else {
-                result.errors.push({
-                  row: productData.rowNumber,
-                  field: 'imageUrls',
-                  message: `Failed to download image: ${imageUrl}`,
-                });
-              }
-            }
-          }
-        }
 
         createdProducts.push(product);
         result.imported++;
@@ -314,16 +378,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     result.success = result.imported > 0;
     result.data = createdProducts;
+    result.totalProcessingTime = Date.now() - startTime;
 
     return NextResponse.json({
-      message: `Successfully imported ${result.imported} products and downloaded ${result.filesDownloaded} files${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}`,
+      message: `Successfully imported ${result.imported} products${result.errors.length > 0 ? ` with ${result.errors.length} errors` : ''}. Downloaded ${result.fileDownloads.successful}/${result.fileDownloads.attempted} files.`,
       data: result,
     });
 
   } catch (error) {
-    console.error('Bulk import error:', error);
+    console.error('Enhanced bulk import error:', error);
     return NextResponse.json(
-      { error: 'Internal server error during import' },
+      { error: 'Internal server error during enhanced import' },
       { status: 500 }
     );
   }

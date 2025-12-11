@@ -1,0 +1,20 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="398" height="298" stroke="#dee2e6" stroke-width="2" stroke-dasharray="10,5"/>
+  
+  <!-- Medical cross icon -->
+  <g transform="translate(200, 150)">
+    <!-- Vertical bar -->
+    <rect x="-4" y="-30" width="8" height="60" fill="#6c757d"/>
+    <!-- Horizontal bar -->
+    <rect x="-30" y="-4" width="60" height="8" fill="#6c757d"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="200" text-anchor="middle" fill="#6c757d" font-family="Arial, sans-serif" font-size="14" font-weight="500">
+    KITMED Product
+  </text>
+  <text x="200" y="220" text-anchor="middle" fill="#adb5bd" font-family="Arial, sans-serif" font-size="12">
+    Image temporairement indisponible
+  </text>
+</svg>

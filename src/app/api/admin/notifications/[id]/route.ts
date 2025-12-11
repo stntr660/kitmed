@@ -34,14 +34,14 @@ export async function GET(
 ) {
   try {
     const notification = notifications.find(n => n.id === params.id);
-    
+
     if (!notification) {
       return NextResponse.json(
         { error: 'Notification not found' },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(notification);
   } catch (error) {
     console.error('Notification fetch error:', error);
@@ -59,36 +59,36 @@ export async function PUT(
   try {
     const body = await request.json();
     const validatedData = notificationUpdateSchema.parse(body);
-    
+
     const notificationIndex = notifications.findIndex(n => n.id === params.id);
-    
+
     if (notificationIndex === -1) {
       return NextResponse.json(
         { error: 'Notification not found' },
         { status: 404 }
       );
     }
-    
+
     // Update the notification
     const updatedNotification = {
       ...notifications[notificationIndex],
       ...validatedData,
       updatedAt: new Date().toISOString(),
     };
-    
+
     notifications[notificationIndex] = updatedNotification;
-    
+
     return NextResponse.json(updatedNotification);
   } catch (error) {
     console.error('Notification update error:', error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Invalid notification data', details: error.issues },
         { status: 400 }
       );
     }
-    
+
     return NextResponse.json(
       { error: 'Failed to update notification' },
       { status: 500 }
@@ -102,17 +102,17 @@ export async function DELETE(
 ) {
   try {
     const notificationIndex = notifications.findIndex(n => n.id === params.id);
-    
+
     if (notificationIndex === -1) {
       return NextResponse.json(
         { error: 'Notification not found' },
         { status: 404 }
       );
     }
-    
+
     // Remove the notification
     const deletedNotification = notifications.splice(notificationIndex, 1)[0];
-    
+
     return NextResponse.json(deletedNotification);
   } catch (error) {
     console.error('Notification deletion error:', error);

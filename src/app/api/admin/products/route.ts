@@ -8,7 +8,7 @@ import { z } from 'zod';
 async function getProducts(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    
+
     const filters = {
       query: searchParams.get('query') || undefined,
       slug: searchParams.get('slug') || undefined,
@@ -16,7 +16,7 @@ async function getProducts(request: NextRequest) {
       category: searchParams.getAll('category'),
       page: parseInt(searchParams.get('page') || '1'),
       pageSize: parseInt(searchParams.get('pageSize') || '10'),
-      sortBy: searchParams.get('sortBy') || 'createdAt',
+      sortBy: searchParams.get('sortBy') || 'created_at',
       sortOrder: (searchParams.get('sortOrder') as 'asc' | 'desc') || 'desc',
     };
 
@@ -34,17 +34,17 @@ async function getProducts(request: NextRequest) {
     // Text search in product translations
     if (filters.query) {
       where.OR = [
-        { referenceFournisseur: { contains: filters.query } },
+        { reference_fournisseur: { contains: filters.query } },
         { constructeur: { contains: filters.query } },
-        { 
-          translations: {
+        {
+          product_translations: {
             some: {
               nom: { contains: filters.query }
             }
           }
         },
         {
-          translations: {
+          product_translations: {
             some: {
               description: { contains: filters.query }
             }
@@ -60,43 +60,43 @@ async function getProducts(request: NextRequest) {
 
     // Category filter
     if (filters.category && filters.category.length > 0) {
-      where.categoryId = { in: filters.category };
+      where.category_id = { in: filters.category };
     }
 
     // Execute queries
     const [items, total] = await Promise.all([
-      prisma.product.findMany({
+      prisma.products.findMany({
         where,
         include: {
-          translations: true,
-          category: {
+          product_translations: true,
+          categories: {
             select: {
               id: true,
               slug: true,
-              imageUrl: true,
-              translations: {
+              image_url: true,
+              category_translations: {
                 select: {
                   name: true,
-                  languageCode: true
+                  language_code: true
                 }
               }
             }
           },
-          media: {
+          product_media: {
             orderBy: {
-              isPrimary: 'desc'
+              is_primary: 'desc'
             },
             take: 5, // Limit to first 5 media files
             select: {
               id: true,
               url: true,
               type: true,
-              isPrimary: true
+              is_primary: true
             }
           },
           _count: {
             select: {
-              media: true
+              product_media: true
             }
           }
         },
@@ -104,88 +104,88 @@ async function getProducts(request: NextRequest) {
         skip,
         take,
       }),
-      prisma.product.count({ where }),
+      prisma.products.count({ where }),
     ]);
 
     // Transform the data to match expected format
     const transformedItems = items.map(product => ({
       id: product.id,
-      referenceFournisseur: product.referenceFournisseur,
+      reference_fournisseur: product.reference_fournisseur,
       constructeur: product.constructeur,
       slug: product.slug,
-      categoryId: product.categoryId,
+      category_id: product.category_id,
       status: product.status,
-      featured: product.isFeatured,
-      pdfBrochureUrl: product.pdfBrochureUrl,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
+      featured: product.is_featured,
+      pdf_brochure_url: product.pdf_brochure_url,
+      created_at: product.created_at,
+      updated_at: product.updated_at,
       // Create a name field from French translation for compatibility
-      name: product.translations.find(t => t.languageCode === 'fr')?.nom || 
-            product.translations[0]?.nom || 
+      name: product.product_translations.find(t => t.language_code === 'fr')?.nom ||
+            product.product_translations[0]?.nom ||
             'Unnamed Product',
       // Add shortDescription for compatibility
       shortDescription: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.description?.substring(0, 150) || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.description?.substring(0, 150) || '',
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.description?.substring(0, 150) || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.description?.substring(0, 150) || '',
       },
-      // Add sku field for compatibility  
-      sku: product.referenceFournisseur,
+      // Add sku field for compatibility
+      sku: product.reference_fournisseur,
       // Create nom object for new structure
       nom: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.nom || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.nom || '',
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.nom || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.nom || '',
       },
       description: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      ficheTechnique: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.ficheTechnique || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.ficheTechnique || '',
+      fiche_technique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
       },
-      category: product.category ? {
-        id: product.category.id,
+      category: product.categories ? {
+        id: product.categories.id,
         name: {
-          fr: product.category.translations.find(t => t.languageCode === 'fr')?.name || 'Non catégorisé',
-          en: product.category.translations.find(t => t.languageCode === 'en')?.name || 'Uncategorized',
+          fr: product.categories.category_translations.find(t => t.language_code === 'fr')?.name || 'Non catégorisé',
+          en: product.categories.category_translations.find(t => t.language_code === 'en')?.name || 'Uncategorized',
         },
-        slug: product.category.slug,
-        imageUrl: product.category.imageUrl
+        slug: product.categories.slug,
+        image_url: product.categories.image_url
       } : null,
       // Add manufacturer object for compatibility
       manufacturer: {
         name: product.constructeur || 'Unknown Manufacturer'
       },
-      // Add discipline object based on category for compatibility 
-      discipline: product.category ? {
+      // Add discipline object based on category for compatibility
+      discipline: product.categories ? {
         name: {
-          fr: product.category.translations.find(t => t.languageCode === 'fr')?.name || 'Discipline',
-          en: product.category.translations.find(t => t.languageCode === 'en')?.name || 'Discipline',
+          fr: product.categories.category_translations.find(t => t.language_code === 'fr')?.name || 'Discipline',
+          en: product.categories.category_translations.find(t => t.language_code === 'en')?.name || 'Discipline',
         },
         color: '#3B82F6', // Default blue color
-        imageUrl: product.category.imageUrl
+        image_url: product.categories.image_url
       } : {
         name: { fr: 'Non spécifiée', en: 'Unspecified' },
         color: '#6B7280',
-        imageUrl: null
+        image_url: null
       },
       // Transform media to images format
-      images: product.media.map(media => ({
+      images: product.product_media.map(media => ({
         id: media.id,
         url: media.url,
         alt: {
-          fr: `Image de ${product.translations.find(t => t.languageCode === 'fr')?.nom || 'produit'}`,
-          en: `Image of ${product.translations.find(t => t.languageCode === 'en')?.nom || 'product'}`,
+          fr: `Image de ${product.product_translations.find(t => t.language_code === 'fr')?.nom || 'produit'}`,
+          en: `Image of ${product.product_translations.find(t => t.language_code === 'en')?.nom || 'product'}`,
         },
-        isPrimary: media.isPrimary
+        is_primary: media.is_primary
       })),
       // Add documents array for compatibility (empty for now)
       documents: [],
       // Add price field for compatibility
       price: null,
       _count: product._count,
-      media: product.media,
-      translations: product.translations,
+      media: product.product_media,
+      translations: product.product_translations,
     }));
 
     const result = {
@@ -207,7 +207,7 @@ async function getProducts(request: NextRequest) {
     });
   } catch (error) {
     console.error('Products list error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -224,9 +224,9 @@ async function getProducts(request: NextRequest) {
 
 // POST /api/admin/products - Create new product
 const createProductSchema = z.object({
-  referenceFournisseur: z.string().min(1, 'Référence fournisseur est requise'),
+  reference_fournisseur: z.string().min(1, 'Référence fournisseur est requise'),
   constructeur: z.string().min(1, 'Constructeur est requis'),
-  categoryId: z.string().min(1, 'Catégorie est requise'),
+  category_id: z.string().min(1, 'Catégorie est requise'),
   nom: z.object({
     fr: z.string().min(1, 'Nom en français est requis'),
     en: z.string().optional(), // English is optional for French-first approach
@@ -235,11 +235,11 @@ const createProductSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  ficheTechnique: z.object({
+  fiche_technique: z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  pdfBrochureUrl: z.string().url().optional().or(z.literal('')),
+  pdf_brochure_url: z.string().url().optional().or(z.literal('')),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
   seo: z.object({
@@ -255,7 +255,7 @@ async function createProduct(request: NextRequest) {
   try {
     const user = (request as any).user;
     const body = await request.json();
-    
+
     // Validate request body
     const validation = createProductSchema.safeParse(body);
     if (!validation.success) {
@@ -279,43 +279,43 @@ async function createProduct(request: NextRequest) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    
+
     // Add timestamp to ensure uniqueness
     const timestamp = Date.now().toString().slice(-6);
     const slug = `${baseSlug}-${timestamp}`;
 
     // Create product in database
-    const product = await prisma.product.create({
+    const product = await prisma.products.create({
       data: {
-        referenceFournisseur: productData.referenceFournisseur,
+        reference_fournisseur: productData.reference_fournisseur,
         constructeur: productData.constructeur,
-        categoryId: productData.categoryId,
+        category_id: productData.category_id,
         slug,
         status: productData.status,
-        isFeatured: productData.featured,
-        pdfBrochureUrl: productData.pdfBrochureUrl || null,
-        translations: {
+        is_featured: productData.featured,
+        pdf_brochure_url: productData.pdf_brochure_url || null,
+        product_translations: {
           create: [
             {
-              languageCode: 'fr',
+              language_code: 'fr',
               nom: productData.nom.fr,
               description: productData.description?.fr || null,
-              ficheTechnique: productData.ficheTechnique?.fr || null,
+              fiche_technique: productData.fiche_technique?.fr || null,
             },
             ...(productData.nom.en ? [{
-              languageCode: 'en',
+              language_code: 'en',
               nom: productData.nom.en,
               description: productData.description?.en || null,
-              ficheTechnique: productData.ficheTechnique?.en || null,
+              fiche_technique: productData.fiche_technique?.en || null,
             }] : []),
           ],
         },
       },
       include: {
-        translations: true,
+        product_translations: true,
         _count: {
           select: {
-            media: true
+            product_media: true
           }
         }
       },
@@ -324,28 +324,28 @@ async function createProduct(request: NextRequest) {
     // Transform the response to match expected format
     const transformedProduct = {
       id: product.id,
-      referenceFournisseur: product.referenceFournisseur,
+      reference_fournisseur: product.reference_fournisseur,
       constructeur: product.constructeur,
-      categoryId: product.categoryId,
+      category_id: product.category_id,
       status: product.status,
-      featured: product.isFeatured,
-      pdfBrochureUrl: product.pdfBrochureUrl,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
+      featured: product.is_featured,
+      pdf_brochure_url: product.pdf_brochure_url,
+      created_at: product.created_at,
+      updated_at: product.updated_at,
       nom: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.nom || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.nom || '',
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.nom || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.nom || '',
       },
       description: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      ficheTechnique: {
-        fr: product.translations.find(t => t.languageCode === 'fr')?.ficheTechnique || '',
-        en: product.translations.find(t => t.languageCode === 'en')?.ficheTechnique || '',
+      fiche_technique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
       },
       _count: product._count,
-      translations: product.translations,
+      translations: product.product_translations,
     };
 
     return NextResponse.json({
@@ -358,7 +358,7 @@ async function createProduct(request: NextRequest) {
     });
   } catch (error) {
     console.error('Product creation error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -373,6 +373,9 @@ async function createProduct(request: NextRequest) {
   }
 }
 
-// Export handlers (authentication temporarily disabled for testing)
-export const GET = getProducts;
-export const POST = createProduct;
+// Export handlers with authentication
+export const GET = withAuth(getProducts);
+export const POST = withAuth(createProduct, {
+  resource: 'products',
+  action: 'create',
+});

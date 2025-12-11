@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // GET /api/admin/partners/[id] - Get single partner
 async function getPartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const partner = await prisma.partner.findUnique({
+    const partner = await prisma.partners.findUnique({
       where: { id: params.id },
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -30,22 +31,24 @@ async function getPartner(request: NextRequest, { params }: { params: { id: stri
     const transformedPartner = {
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
+      type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({
@@ -58,7 +61,7 @@ async function getPartner(request: NextRequest, { params }: { params: { id: stri
     });
   } catch (error) {
     console.error('Partner fetch error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -83,8 +86,10 @@ const updatePartnerSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  websiteUrl: z.string().url().optional().or(z.literal('')),
-  logoUrl: z.string().url().optional().or(z.literal('')),
+  websiteUrl: z.string().optional(),
+  logoUrl: z.string().optional(),
+  defaultPdfUrl: z.string().optional(),
+  type: z.enum(['manufacturer', 'distributor', 'service', 'technology']).default('manufacturer'),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.boolean().default(false),
 });
@@ -92,7 +97,7 @@ const updatePartnerSchema = z.object({
 async function updatePartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const body = await request.json();
-    
+
     // Validate request body
     const validation = updatePartnerSchema.safeParse(body);
     if (!validation.success) {
@@ -112,9 +117,9 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     const partnerData = validation.data;
 
     // Check if partner exists
-    const existingPartner = await prisma.partner.findUnique({
+    const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
-      include: { translations: true },
+      include: { partner_translations: true },
     });
 
     if (!existingPartner) {
@@ -135,41 +140,45 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    
+
     // Only add timestamp if the slug would conflict
     let slug = baseSlug;
-    const existingWithSlug = await prisma.partner.findFirst({
-      where: { 
+    const existingWithSlug = await prisma.partners.findFirst({
+      where: {
         slug: baseSlug,
         id: { not: params.id }
       }
     });
-    
+
     if (existingWithSlug) {
       const timestamp = Date.now().toString().slice(-6);
       slug = `${baseSlug}-${timestamp}`;
     }
 
     // Update partner in database
-    const partner = await prisma.partner.update({
+    const partner = await prisma.partners.update({
       where: { id: params.id },
       data: {
         name: partnerData.nom.fr, // Use French name as primary
         slug,
-        websiteUrl: partnerData.websiteUrl || null,
-        logoUrl: partnerData.logoUrl || null,
+        website_url: partnerData.websiteUrl || null,
+        logo_url: partnerData.logoUrl || null,
+        default_pdf_url: partnerData.defaultPdfUrl || null,
+        type: partnerData.type,
         status: partnerData.status,
-        isFeatured: partnerData.featured,
-        translations: {
+        is_featured: partnerData.featured,
+        partner_translations: {
           deleteMany: {}, // Delete existing translations
           create: [
             {
-              languageCode: 'fr',
+              id: randomUUID(),
+              language_code: 'fr',
               name: partnerData.nom.fr,
               description: partnerData.description?.fr || null,
             },
             ...(partnerData.nom.en ? [{
-              languageCode: 'en',
+              id: randomUUID(),
+              language_code: 'en',
               name: partnerData.nom.en,
               description: partnerData.description?.en || null,
             }] : []),
@@ -177,7 +186,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         },
       },
       include: {
-        translations: true,
+        partner_translations: true,
       },
     });
 
@@ -185,22 +194,24 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     const transformedPartner = {
       id: partner.id,
       slug: partner.slug,
-      websiteUrl: partner.websiteUrl,
-      logoUrl: partner.logoUrl,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
+      type: partner.type,
       status: partner.status,
-      featured: partner.isFeatured,
-      sortOrder: partner.sortOrder,
-      createdAt: partner.createdAt,
-      updatedAt: partner.updatedAt,
+      featured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
       nom: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.name || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.name || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.name || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.name || '',
       },
       description: {
-        fr: partner.translations.find(t => t.languageCode === 'fr')?.description || '',
-        en: partner.translations.find(t => t.languageCode === 'en')?.description || '',
+        fr: partner.partner_translations.find(t => t.language_code === 'fr')?.description || '',
+        en: partner.partner_translations.find(t => t.language_code === 'en')?.description || '',
       },
-      translations: partner.translations,
+      translations: partner.partner_translations,
     };
 
     return NextResponse.json({
@@ -213,7 +224,111 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
     });
   } catch (error) {
     console.error('Partner update error:', error);
-    
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to update partner',
+          details: error instanceof Error ? error.message : 'Unknown error',
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH /api/admin/partners/[id] - Partial update partner (for quick updates like featured status)
+const patchPartnerSchema = z.object({
+  isFeatured: z.boolean().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+});
+
+async function patchPartner(request: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    const body = await request.json();
+
+    // Validate request body
+    const validation = patchPartnerSchema.safeParse(body);
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'VALIDATION_ERROR',
+            message: 'Invalid partner data',
+            details: validation.error.issues,
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    // Map field names to database columns
+    const updateData: any = {};
+    if (validation.data.isFeatured !== undefined) {
+      updateData.is_featured = validation.data.isFeatured;
+    }
+    if (validation.data.status !== undefined) {
+      updateData.status = validation.data.status;
+    }
+
+    // Check if partner exists
+    const existingPartner = await prisma.partners.findUnique({
+      where: { id: params.id },
+    });
+
+    if (!existingPartner) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Partner not found',
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    // Update partner with only provided fields
+    const partner = await prisma.partners.update({
+      where: { id: params.id },
+      data: updateData,
+      include: {
+        partner_translations: true,
+      },
+    });
+
+    // Transform the response to match expected format
+    const transformedPartner = {
+      id: partner.id,
+      slug: partner.slug,
+      name: partner.name,
+      websiteUrl: partner.website_url,
+      logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
+      type: partner.type,
+      status: partner.status,
+      isFeatured: partner.is_featured,
+      sortOrder: partner.sort_order,
+      createdAt: partner.created_at,
+      updatedAt: partner.updated_at,
+      translations: partner.partner_translations,
+    };
+
+    return NextResponse.json({
+      success: true,
+      data: transformedPartner,
+      meta: {
+        timestamp: new Date().toISOString(),
+        version: '1.0',
+      },
+    });
+  } catch (error) {
+    console.error('Partner patch error:', error);
+
     return NextResponse.json(
       {
         success: false,
@@ -232,7 +347,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
 async function deletePartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     // Check if partner exists
-    const existingPartner = await prisma.partner.findUnique({
+    const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
     });
 
@@ -250,7 +365,7 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
     }
 
     // Delete partner (cascading deletes will handle translations)
-    await prisma.partner.delete({
+    await prisma.partners.delete({
       where: { id: params.id },
     });
 
@@ -264,7 +379,7 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
     });
   } catch (error) {
     console.error('Partner deletion error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -280,6 +395,7 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
 }
 
 // Export handlers
-export const GET = getPartner;
-export const PUT = updatePartner;
-export const DELETE = deletePartner;
+export const GET = withAuth(getPartner);
+export const PUT = withAuth(updatePartner);
+export const PATCH = withAuth(patchPartner);
+export const DELETE = withAuth(deletePartner);

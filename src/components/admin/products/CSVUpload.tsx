@@ -20,6 +20,7 @@ export interface ImportResult {
   imported: number;
   errors: ImportError[];
   filesDownloaded?: number;
+  filesDeduplicationSaved?: number;
   data?: any[];
 }
 
@@ -112,7 +113,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
   const generateTemplate = () => {
     const headers = [
       'referenceFournisseur',
-      'constructeur', 
+      'constructeur',
       'categoryId',
       'nom_fr',
       'nom_en',
@@ -180,7 +181,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
           <p className="text-sm text-gray-600">
             {t('product.form.bulkImport.description')}
           </p>
-          
+
           <Button
             type="button"
             variant="outline"
@@ -224,8 +225,9 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
               </ul>
               <p className="text-xs text-blue-600 font-medium mt-2">📁 File Downloads:</p>
               <ul className="list-disc list-inside text-xs space-y-1">
-                <li><strong>pdfBrochureUrl:</strong> PDF brochure URL (will be downloaded to server)</li>
-                <li><strong>imageUrls:</strong> Comma-separated image URLs (will be downloaded to server)</li>
+                <li><strong>pdfBrochureUrl:</strong> PDF brochure URL (downloaded with deduplication)</li>
+                <li><strong>imageUrls:</strong> Comma-separated image URLs (downloaded with deduplication)</li>
+                <li className="text-blue-600">💡 <strong>Smart Deduplication:</strong> Identical files are automatically detected and reused to save storage</li>
               </ul>
             </div>
           </AlertDescription>
@@ -250,7 +252,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
               <Upload className="h-4 w-4" />
               {t('product.form.bulkImport.selectFile')}
             </Button>
-            
+
             {file && (
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="flex items-center gap-2">
@@ -300,7 +302,15 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                     <p className="font-medium">{t('product.form.bulkImport.success')}</p>
                     <p>{t('product.form.bulkImport.results.importedCount')} {result.imported}</p>
                     {result.filesDownloaded !== undefined && result.filesDownloaded > 0 && (
-                      <p className="text-sm">📁 Files downloaded and stored locally: {result.filesDownloaded}</p>
+                      <p className="text-sm">📁 New files downloaded: {result.filesDownloaded}</p>
+                    )}
+                    {result.filesDeduplicationSaved !== undefined && result.filesDeduplicationSaved > 0 && (
+                      <p className="text-sm text-blue-600">♻️ Files reused through deduplication: {result.filesDeduplicationSaved}</p>
+                    )}
+                    {((result.filesDownloaded || 0) + (result.filesDeduplicationSaved || 0)) > 0 && (
+                      <p className="text-xs text-gray-500">
+                        💾 Storage saved: {Math.round(((result.filesDeduplicationSaved || 0) / ((result.filesDownloaded || 0) + (result.filesDeduplicationSaved || 0))) * 100)}% efficient
+                      </p>
                     )}
                   </div>
                 </AlertDescription>
@@ -325,8 +335,8 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                     variant="ghost"
                     onClick={() => setShowErrors(!showErrors)}
                   >
-                    {showErrors 
-                      ? t('product.form.bulkImport.results.hideErrors') 
+                    {showErrors
+                      ? t('product.form.bulkImport.results.hideErrors')
                       : t('product.form.bulkImport.results.viewErrors')
                     }
                   </Button>
@@ -338,12 +348,12 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                       <div key={index} className="text-sm text-red-700 mb-2">
                         {error.row > 0 && (
                           <span className="font-medium">
-                            {t('product.form.bulkImport.results.rowError', { row: error.row })} 
+                            {t('product.form.bulkImport.results.rowError', { row: error.row })}
                           </span>
                         )}
                         {error.field && (
                           <span className="font-medium">
-                            {t('product.form.bulkImport.results.fieldError', { field: error.field })} 
+                            {t('product.form.bulkImport.results.fieldError', { field: error.field })}
                           </span>
                         )}
                         {error.message}
@@ -355,7 +365,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
             )}
 
             <Button
-              variant="outline" 
+              variant="outline"
               onClick={() => {
                 setResult(null);
                 setFile(null);

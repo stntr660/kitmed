@@ -1,0 +1,208 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hydration Validation Test</title>
+        <style>
+            body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+            .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+            .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+            .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+            .info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+            #test-frame { width: 100%; height: 600px; border: 1px solid #ccc; }
+            .results { margin: 20px 0; padding: 15px; background: white; border-radius: 5px; }
+        </style>
+    </head>
+    <body>
+        <h1>🚨 KITMED Hydration Validation</h1>
+        <div id="status" class="status info">Initializing test...</div>
+        
+        <div class="results">
+            <h3>Test Results:</h3>
+            <div id="results">No results yet...</div>
+        </div>
+        
+        <iframe id="test-frame" src="http://localhost:3001/en"></iframe>
+        
+        <script>
+            let testResults = {
+                hydrationErrors: 0,
+                consoleErrors: 0,
+                warnings: 0,
+                startTime: Date.now(),
+                endTime: null,
+                success: false,
+                errors: []
+            };
+            
+            function updateStatus(message, type = 'info') {
+                const status = document.getElementById('status');
+                status.textContent = message;
+                status.className = 'status ' + type;
+            }
+            
+            function updateResults() {
+                const resultsDiv = document.getElementById('results');
+                const duration = testResults.endTime ? 
+                    ((testResults.endTime - testResults.startTime) / 1000).toFixed(2) + 's' : 
+                    'Testing...';
+                    
+                resultsDiv.innerHTML = `
+                    <p><strong>Duration:</strong> ${duration}</p>
+                    <p><strong>Hydration Errors:</strong> ${testResults.hydrationErrors}</p>
+                    <p><strong>Console Errors:</strong> ${testResults.consoleErrors}</p>
+                    <p><strong>Warnings:</strong> ${testResults.warnings}</p>
+                    <p><strong>Status:</strong> ${testResults.success ? '✅ PASSED' : '❌ FAILED'}</p>
+                    ${testResults.errors.length > 0 ? '<p><strong>Errors:</strong><br>' + testResults.errors.join('<br>') + '</p>' : ''}
+                `;
+            }
+            
+            // Monitor iframe for hydration errors
+            const iframe = document.getElementById('test-frame');
+            
+            iframe.onload = function() {
+                updateStatus('Page loaded, monitoring for hydration errors...', 'info');
+                
+                try {
+                    // Inject monitoring script into iframe
+                    const iframeDoc = iframe.contentDocument;
+                    const script = iframeDoc.createElement('script');
+                    script.textContent = `
+                        // Enhanced error monitoring
+                        let errorCount = 0;
+                        let hydrationErrorCount = 0;
+                        let warningCount = 0;
+                        
+                        // Capture console errors
+                        const originalError = console.error;
+                        const originalWarn = console.warn;
+                        
+                        console.error = function(...args) {
+                            const message = args.join(' ');
+                            errorCount++;
+                            
+                            if (message.includes('Hydration') || 
+                                message.includes('hydrat') || 
+                                message.includes('Text content does not match') ||
+                                message.includes('Server HTML') ||
+                                message.includes('client-side')) {
+                                hydrationErrorCount++;
+                                parent.postMessage({
+                                    type: 'HYDRATION_ERROR',
+                                    message: message,
+                                    timestamp: Date.now()
+                                }, '*');
+                            } else {
+                                parent.postMessage({
+                                    type: 'CONSOLE_ERROR',
+                                    message: message,
+                                    timestamp: Date.now()
+                                }, '*');
+                            }
+                            
+                            originalError.apply(console, args);
+                        };
+                        
+                        console.warn = function(...args) {
+                            const message = args.join(' ');
+                            warningCount++;
+                            
+                            parent.postMessage({
+                                type: 'CONSOLE_WARN',
+                                message: message,
+                                timestamp: Date.now()
+                            }, '*');
+                            
+                            originalWarn.apply(console, args);
+                        };
+                        
+                        // Report final counts
+                        setTimeout(() => {
+                            parent.postMessage({
+                                type: 'TEST_COMPLETE',
+                                data: {
+                                    errorCount: errorCount,
+                                    hydrationErrorCount: hydrationErrorCount,
+                                    warningCount: warningCount
+                                }
+                            }, '*');
+                        }, 10000);
+                    `;
+                    
+                    iframeDoc.head.appendChild(script);
+                    updateStatus('Monitoring active, test running for 10 seconds...', 'info');
+                    
+                } catch (error) {
+                    updateStatus('Failed to inject monitoring script: ' + error.message, 'error');
+                    testResults.errors.push('Script injection failed: ' + error.message);
+                }
+            };
+            
+            // Listen for messages from iframe
+            window.addEventListener('message', function(event) {
+                const { type, message, data } = event.data;
+                
+                switch (type) {
+                    case 'HYDRATION_ERROR':
+                        testResults.hydrationErrors++;
+                        testResults.errors.push('HYDRATION: ' + message);
+                        updateStatus('❌ Hydration error detected!', 'error');
+                        updateResults();
+                        break;
+                        
+                    case 'CONSOLE_ERROR':
+                        testResults.consoleErrors++;
+                        if (!message.includes('favicon')) { // Ignore favicon errors
+                            testResults.errors.push('ERROR: ' + message);
+                        }
+                        updateResults();
+                        break;
+                        
+                    case 'CONSOLE_WARN':
+                        testResults.warnings++;
+                        updateResults();
+                        break;
+                        
+                    case 'TEST_COMPLETE':
+                        testResults.endTime = Date.now();
+                        testResults.hydrationErrors = data.hydrationErrorCount;
+                        testResults.consoleErrors = data.errorCount;
+                        testResults.warnings = data.warningCount;
+                        
+                        // Determine success
+                        testResults.success = (
+                            testResults.hydrationErrors === 0 && 
+                            testResults.consoleErrors <= 2
+                        );
+                        
+                        updateStatus(
+                            testResults.success ? 
+                                '✅ VALIDATION PASSED - No hydration errors detected!' : 
+                                '❌ VALIDATION FAILED - Hydration errors found',
+                            testResults.success ? 'success' : 'error'
+                        );
+                        
+                        updateResults();
+                        
+                        // Save results for Node.js script
+                        localStorage.setItem('hydrationTestResults', JSON.stringify(testResults));
+                        break;
+                }
+            });
+            
+            // Auto-refresh every 30 seconds to test multiple times
+            setTimeout(() => {
+                if (!testResults.endTime) {
+                    updateStatus('Test timed out', 'error');
+                    testResults.endTime = Date.now();
+                    testResults.success = false;
+                    updateResults();
+                }
+            }, 12000);
+            
+            updateResults();
+        </script>
+    </body>
+    </html>
+  

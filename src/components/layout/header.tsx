@@ -33,7 +33,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { useRFPStore } from '@/store/rfp-store';
 import { useSearchStore } from '@/store/search-store';
 import { cn, debounce } from '@/lib/utils';
 import type { Locale } from '@/types';
@@ -56,28 +55,12 @@ const getNavigation = (locale: string) => [
     ],
   },
   {
-    name: 'solutions',
-    href: `/${locale}/solutions`,
-    hasSubmenu: true,
-    submenu: [
-      { name: 'hospitalSolutions', href: `/${locale}/solutions/hospital` },
-      { name: 'clinicSolutions', href: `/${locale}/solutions/clinic` },
-      { name: 'labSolutions', href: `/${locale}/solutions/laboratory` },
-    ],
-  },
-  {
     name: 'partners',
     href: `/${locale}/partners`,
   },
   {
     name: 'about',
     href: `/${locale}/about`,
-    hasSubmenu: true,
-    submenu: [
-      { name: 'company', href: `/${locale}/about` },
-      { name: 'team', href: `/${locale}/about/team` },
-      { name: 'news', href: `/${locale}/about/news` },
-    ],
   },
   {
     name: 'contact',
@@ -90,15 +73,14 @@ export function Header({ locale, className }: HeaderProps) {
   const tCommon = useTranslations('common');
   const pathname = usePathname();
   const router = useRouter();
-  
+
   const navigation = getNavigation(locale);
-  
-  const { itemCount, toggleCart } = useRFPStore();
+
   const { query, setQuery } = useSearchStore();
-  
+
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [searchFocused, setSearchFocused] = React.useState(false);
-  
+
   // Debounced search handler
   const debouncedSearch = React.useMemo(
     () => debounce((searchQuery: string) => {
@@ -127,15 +109,14 @@ export function Header({ locale, className }: HeaderProps) {
     router.push(`/${newLocale}${currentPath}`);
   };
 
-  const cartItemCount = itemCount();
 
   return (
     <header className={cn('sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 shadow-sm', className)}>
       <div className="container flex h-16 items-center justify-between px-4 lg:px-8">
         {/* Logo */}
         <div className="flex items-center">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center"
             aria-label={tCommon('goToHomepage')}
           >
@@ -181,7 +162,7 @@ export function Header({ locale, className }: HeaderProps) {
                     </NavigationMenuContent>
                   </>
                 ) : (
-                  <Link 
+                  <Link
                     href={item.href}
                     className={cn(
                       'inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200 uppercase tracking-wide',
@@ -226,24 +207,11 @@ export function Header({ locale, className }: HeaderProps) {
             <Search className="h-5 w-5" />
           </button>
 
-          {/* RFP Cart */}
-          <button
-            onClick={toggleCart}
-            className="relative p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
-            aria-label={`${tCommon('rfpCart')}${cartItemCount > 0 ? ` (${cartItemCount} ${tCommon('items')})` : ''}`}
-          >
-            <ShoppingCart className="h-5 w-5" />
-            {cartItemCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 h-5 w-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium">
-                {cartItemCount > 99 ? '99+' : cartItemCount}
-              </span>
-            )}
-          </button>
 
           {/* Language Switcher */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button 
+              <button
                 className="hidden md:flex p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
                 aria-label={tCommon('changeLanguage')}
               >
@@ -253,7 +221,7 @@ export function Header({ locale, className }: HeaderProps) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="border-gray-200/50 shadow-lg">
-              <DropdownMenuItem 
+              <DropdownMenuItem
                 onClick={() => switchLocale('en')}
                 className={cn(
                   'text-sm cursor-pointer hover:bg-gray-50',
@@ -262,7 +230,7 @@ export function Header({ locale, className }: HeaderProps) {
               >
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem 
+              <DropdownMenuItem
                 onClick={() => switchLocale('fr')}
                 className={cn(
                   'text-sm cursor-pointer hover:bg-gray-50',
@@ -277,7 +245,7 @@ export function Header({ locale, className }: HeaderProps) {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button 
+              <button
                 className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors duration-200"
                 aria-label={tCommon('userMenu')}
               >
@@ -287,9 +255,6 @@ export function Header({ locale, className }: HeaderProps) {
             <DropdownMenuContent align="end" className="border-gray-200/50 shadow-lg w-48">
               <DropdownMenuItem asChild>
                 <Link href="/account" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('myAccount')}</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/rfp/history" className="text-sm cursor-pointer hover:bg-gray-50">{tCommon('rfpHistory')}</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
@@ -312,7 +277,7 @@ export function Header({ locale, className }: HeaderProps) {
               <SheetHeader>
                 <SheetTitle>KITMED</SheetTitle>
               </SheetHeader>
-              
+
               {/* Mobile Search */}
               <div className="mt-6">
                 <form onSubmit={handleSearchSubmit}>
@@ -344,7 +309,7 @@ export function Header({ locale, className }: HeaderProps) {
                       >
                         {t(item.name)}
                       </Link>
-                      
+
                       {item.submenu && (
                         <ul className="ml-4 mt-1 space-y-1">
                           {item.submenu.map((subItem) => (

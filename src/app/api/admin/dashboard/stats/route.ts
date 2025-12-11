@@ -34,7 +34,7 @@ async function getDashboardStats(request: NextRequest) {
     });
   } catch (error) {
     console.error('Dashboard stats error:', error);
-    
+
     return NextResponse.json(
       {
         success: false,
@@ -49,5 +49,5 @@ async function getDashboardStats(request: NextRequest) {
 }
 
 export const GET = withAuth(getDashboardStats, {
-  roles: ['admin', 'editor', 'viewer'],
+  roles: ['ADMIN', 'admin', 'editor', 'viewer', 'user'],
 });

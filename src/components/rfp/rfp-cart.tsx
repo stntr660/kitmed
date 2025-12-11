@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { X, Plus, Minus, ShoppingCart, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,9 +26,8 @@ import Link from 'next/link';
 export function RFPCart() {
   const t = useTranslations('rfp');
   const tCommon = useTranslations('common');
-  const params = useParams();
-  const locale = (params?.locale as string) || 'fr';
-  
+  const locale = useHydrationSafeLocale('fr');
+
   const {
     cart,
     isOpen,
@@ -72,7 +71,7 @@ export function RFPCart() {
               )}
             </div>
             <SheetDescription>
-              {hasItems() 
+              {hasItems()
                 ? `${totalItems} ${totalItems === 1 ? t('item') : t('items')}`
                 : t('emptyCart')
               }
@@ -103,7 +102,7 @@ export function RFPCart() {
                 <AnimatePresence>
                   {cart.items.map((item) => {
                     const primaryImage = item.product.images.find(img => img.isPrimary) || item.product.images[0];
-                    
+
                     return (
                       <motion.div
                         key={item.productId}
@@ -115,17 +114,17 @@ export function RFPCart() {
                       >
                         <div className="flex space-x-4">
                           {/* Product Image */}
-                          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+                          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-white p-2">
                             {primaryImage ? (
                               <Image
                                 src={primaryImage.url}
                                 alt={primaryImage.alt.en || item.product.name.en}
                                 fill
-                                className="object-cover"
+                                className="object-contain"
                                 sizes="64px"
                               />
                             ) : (
-                              <div className="flex h-full w-full items-center justify-center">
+                              <div className="flex h-full w-full items-center justify-center bg-white">
                                 <ShoppingCart className="h-6 w-6 text-gray-400" />
                               </div>
                             )}
@@ -136,13 +135,13 @@ export function RFPCart() {
                             <h4 className="text-sm font-medium text-medical-heading line-clamp-2">
                               {item.product.name.en}
                             </h4>
-                            
+
                             <p className="text-xs text-medical-text-muted mt-1">
                               {item.product.manufacturer.name}
                             </p>
 
-                            <Badge 
-                              variant="medical" 
+                            <Badge
+                              variant="medical"
                               size="sm"
                               className="mt-2"
                               style={{
@@ -164,7 +163,7 @@ export function RFPCart() {
                               >
                                 <Minus className="h-3 w-3" />
                               </Button>
-                              
+
                               <Input
                                 type="number"
                                 min="1"
@@ -172,7 +171,7 @@ export function RFPCart() {
                                 onChange={(e) => handleQuantityChange(item.productId, parseInt(e.target.value) || 1)}
                                 className="h-8 w-16 text-center text-sm"
                               />
-                              
+
                               <Button
                                 variant="outline"
                                 size="icon"
@@ -181,7 +180,7 @@ export function RFPCart() {
                               >
                                 <Plus className="h-3 w-3" />
                               </Button>
-                              
+
                               <Button
                                 variant="ghost"
                                 size="icon"
@@ -223,11 +222,11 @@ export function RFPCart() {
                     {totalItems} {totalItems === 1 ? t('item') : t('items')}
                   </span>
                 </div>
-                
+
                 <Separator />
-                
-                <Button 
-                  className="w-full" 
+
+                <Button
+                  className="w-full"
                   size="lg"
                   asChild
                   onClick={closeCart}
@@ -237,9 +236,9 @@ export function RFPCart() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                
-                <Button 
-                  variant="outline" 
+
+                <Button
+                  variant="outline"
                   className="w-full"
                   asChild
                   onClick={closeCart}

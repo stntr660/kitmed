@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   Shield,
   Award,
   FileCheck,
@@ -185,7 +185,7 @@ export default function CompliancePage() {
               Conformité & Certifications
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              KITMED s'engage à respecter toutes les réglementations en vigueur et 
+              KITMED s'engage à respecter toutes les réglementations en vigueur et
               maintient les plus hauts standards de qualité et de conformité.
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
@@ -204,7 +204,7 @@ export default function CompliancePage() {
               Nos Certifications et Autorisations
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Toutes nos activités sont encadrées par les autorités compétentes et 
+              Toutes nos activités sont encadrées par les autorités compétentes et
               respectent les normes internationales les plus strictes
             </p>
           </div>
@@ -217,10 +217,10 @@ export default function CompliancePage() {
                     <div className={`w-12 h-12 rounded-lg bg-${cert.color}-50 flex items-center justify-center`}>
                       <cert.icon className={`h-6 w-6 text-${cert.color}-600`} />
                     </div>
-                    <Badge 
+                    <Badge
                       variant={cert.status === 'Active' || cert.status === 'Conforme' ? 'default' : 'secondary'}
-                      className={`${getStatusColor(cert.status) === 'green' ? 'bg-green-50 text-green-700' : 
-                                  getStatusColor(cert.status) === 'orange' ? 'bg-orange-50 text-orange-700' : 
+                      className={`${getStatusColor(cert.status) === 'green' ? 'bg-green-50 text-green-700' :
+                                  getStatusColor(cert.status) === 'orange' ? 'bg-orange-50 text-orange-700' :
                                   'bg-gray-50 text-gray-700'}`}
                     >
                       {cert.status}
@@ -297,8 +297,8 @@ export default function CompliancePage() {
                               <h4 className="font-medium text-gray-900 text-sm">{item.name}</h4>
                               <p className="text-gray-600 text-xs mt-1">{item.description}</p>
                             </div>
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className={`ml-2 text-xs ${
                                 item.compliance.includes('Conforme') ? 'bg-green-50 text-green-700' :
                                 item.compliance.includes('En cours') ? 'bg-orange-50 text-orange-700' :
@@ -377,7 +377,7 @@ export default function CompliancePage() {
                 Transparence et Reporting
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Nous publions régulièrement nos rapports de conformité et mettons 
+                Nous publions régulièrement nos rapports de conformité et mettons
                 nos certifications à disposition de nos clients
               </p>
             </div>
@@ -448,10 +448,10 @@ export default function CompliancePage() {
               Questions de Conformité ?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Notre équipe qualité est à votre disposition pour toute question 
+              Notre équipe qualité est à votre disposition pour toute question
               concernant la conformité de nos produits et services.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Button className="bg-white text-gray-900 hover:bg-gray-100">
                 compliance@kitmed.ma
@@ -460,20 +460,20 @@ export default function CompliancePage() {
                 +212 522 86 03 66
               </Button>
             </div>
-            
+
             <div className="mt-12 grid gap-8 md:grid-cols-3 text-center">
               <div>
                 <h3 className="font-medium mb-2">Responsable Qualité</h3>
                 <p className="text-gray-300 text-sm">Aicha Berrada</p>
                 <p className="text-gray-300 text-sm">qualite@kitmed.ma</p>
               </div>
-              
+
               <div>
                 <h3 className="font-medium mb-2">Affaires Réglementaires</h3>
                 <p className="text-gray-300 text-sm">Service dédié</p>
                 <p className="text-gray-300 text-sm">reglementaire@kitmed.ma</p>
               </div>
-              
+
               <div>
                 <h3 className="font-medium mb-2">Direction</h3>
                 <p className="text-gray-300 text-sm">Dr. Hassan Benali</p>
@@ -483,7 +483,7 @@ export default function CompliancePage() {
 
             <div className="mt-8 pt-8 border-t border-gray-700">
               <p className="text-gray-400 text-sm">
-                La conformité et la qualité sont au cœur de notre engagement envers nos clients 
+                La conformité et la qualité sont au cœur de notre engagement envers nos clients
                 et la sécurité des patients.
               </p>
             </div>

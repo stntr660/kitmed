@@ -12,16 +12,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { 
-  PencilIcon, 
-  EyeIcon, 
+import {
+  PencilIcon,
+  EyeIcon,
   CalendarIcon,
   BuildingOfficeIcon,
   UserIcon,
   DocumentTextIcon,
   ClockIcon,
   CheckCircleIcon,
-  ExclamationCircleIcon 
+  ExclamationCircleIcon
 } from '@heroicons/react/24/outline';
 import { validateIconComponent } from '@/lib/component-utils';
 import { RFPRequest } from '@/types';
@@ -40,10 +40,10 @@ interface RFPQuickViewProps {
   onEdit?: () => void;
 }
 
-export function RFPQuickView({ 
-  open, 
-  onOpenChange, 
-  rfp, 
+export function RFPQuickView({
+  open,
+  onOpenChange,
+  rfp,
   onEdit
 }: RFPQuickViewProps) {
   const t = useTranslations();
@@ -80,7 +80,7 @@ export function RFPQuickView({
 
   const getStatusIcon = (status: string) => {
     let IconComponent;
-    
+
     switch (status) {
       case 'pending':
         IconComponent = ClockIcon;
@@ -96,7 +96,7 @@ export function RFPQuickView({
         IconComponent = ClockIcon;
         break;
     }
-    
+
     return validateIconComponent(IconComponent, `StatusIcon-${status}`);
   };
 
@@ -119,7 +119,7 @@ export function RFPQuickView({
                   <p className="text-sm text-gray-500">{rfp.companyName || rfp.customerName}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Badge className={getStatusColor(rfp.status)}>
                   {rfp.status}
@@ -186,7 +186,7 @@ export function RFPQuickView({
                   <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.emailAddress')}:</span>
                   <p className="text-gray-600">{rfp.customerEmail}</p>
                 </div>
-                
+
                 {rfp.customerPhone && (
                   <div>
                     <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.phoneNumber')}:</span>
@@ -214,8 +214,8 @@ export function RFPQuickView({
                         {/* Product Image */}
                         <div className="flex-shrink-0">
                           {item.product?.media?.[0]?.url ? (
-                            <img 
-                              src={item.product.media[0].url} 
+                            <img
+                              src={item.product.media[0].url}
                               alt={item.product?.translations?.find(t => t.languageCode === 'fr')?.nom || t('common.productWithoutName')}
                               className="w-16 h-16 rounded-lg object-cover border border-gray-200"
                               onError={(e) => {
@@ -224,18 +224,18 @@ export function RFPQuickView({
                               }}
                             />
                           ) : null}
-                          <div 
+                          <div
                             className={`w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                           >
                             <span className="text-gray-400 text-xs">📦</span>
                           </div>
                         </div>
-                        
+
                         {/* Product Details */}
                         <div className="flex-1 min-w-0">
                           <h4 className="font-medium text-gray-900">
-                            {item.product?.translations?.find(t => t.languageCode === 'fr')?.nom || 
-                             item.product?.translations?.[0]?.nom || 
+                            {item.product?.translations?.find(t => t.languageCode === 'fr')?.nom ||
+                             item.product?.translations?.[0]?.nom ||
                              t('common.productWithoutName')}
                           </h4>
                           <p className="text-sm text-gray-600 mt-1">
@@ -252,7 +252,7 @@ export function RFPQuickView({
                             </p>
                           )}
                         </div>
-                        
+
                         {/* Quantity and Price */}
                         <div className="flex-shrink-0 text-right">
                           <span className="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm font-medium">
@@ -288,14 +288,14 @@ export function RFPQuickView({
                   <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.requestNumber')}:</span>
                   <p className="text-gray-600 font-mono">{rfp.referenceNumber}</p>
                 </div>
-                
+
                 <div>
                   <span className="font-semibold text-gray-700">{t('admin.rfpRequests.table.priority')}:</span>
                   <Badge className={getUrgencyColor(rfp.urgencyLevel)} variant="outline">
                     {rfp.urgencyLevel}
                   </Badge>
                 </div>
-                
+
                 <div>
                   <span className="font-semibold text-gray-700">{t('admin.rfpRequests.drawer.fields.createdDate')}:</span>
                   <p className="text-gray-600 flex items-center">
@@ -329,7 +329,7 @@ export function RFPQuickView({
                     {formatDate(rfp.createdAt)}
                   </span>
                 </div>
-                
+
                 {rfp.updatedAt && rfp.updatedAt !== rfp.createdAt && (
                   <div className="flex items-center space-x-3 text-sm">
                     <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
@@ -353,7 +353,7 @@ export function RFPQuickView({
             <PencilIcon className="h-4 w-4" />
             <span>{t('admin.rfpRequests.drawer.titles.manage')}</span>
           </Button>
-          
+
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}

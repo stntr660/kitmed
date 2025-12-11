@@ -47,7 +47,7 @@ export function ImageUploadBox({
     if (!files || files.length === 0) return;
 
     const file = files[0];
-    
+
     // Validate file size
     if (file.size > maxSize * 1024 * 1024) {
       setError(`Fichier trop volumineux (max ${maxSize}MB)`);
@@ -78,7 +78,7 @@ export function ImageUploadBox({
       }
 
       const result = await response.json();
-      
+
       if (result.success && result.data.results.length > 0) {
         const uploadedFile = result.data.results[0];
         onChange(uploadedFile.url);
@@ -128,7 +128,7 @@ export function ImageUploadBox({
   }, [onChange]);
 
   const hasImage = value && value.trim() !== '';
-  
+
   const aspectRatioClasses = {
     square: 'aspect-square',
     video: 'aspect-video',
@@ -142,7 +142,7 @@ export function ImageUploadBox({
           {label}
         </label>
       )}
-      
+
       <div
         onClick={handleClick}
         onDragOver={handleDragOver}
@@ -186,7 +186,7 @@ export function ImageUploadBox({
               className="w-full h-full object-cover rounded-lg"
               onError={() => setError('Impossible de charger l\'image')}
             />
-            
+
             {/* Remove Button */}
             {!disabled && (
               <Button
@@ -209,7 +209,7 @@ export function ImageUploadBox({
             <div className="mb-3 p-3 rounded-full bg-orange-100 text-orange-400">
               <FileImage className="w-6 h-6" />
             </div>
-            
+
             <div className="space-y-1">
               <p className="text-sm font-medium text-orange-600">
                 {saveMessage}
@@ -236,7 +236,7 @@ export function ImageUploadBox({
                 <Upload className="w-6 h-6" />
               )}
             </div>
-            
+
             <div className="space-y-1">
               <p className={cn(
                 'text-sm font-medium',
@@ -248,7 +248,7 @@ export function ImageUploadBox({
               )}>
                 {error || placeholder}
               </p>
-              
+
               {!error && !disabled && (
                 <p className="text-xs text-gray-500">
                   {multiple ? 'Formats' : 'Format'}: JPG, PNG, WEBP (max {maxSize}MB)
@@ -299,7 +299,7 @@ export function MultipleImageUploadBox({
     if (!files || files.length === 0) return;
 
     const newFiles = Array.from(files).slice(0, maxFiles - value.length);
-    
+
     if (newFiles.length === 0) {
       setError(`Maximum ${maxFiles} fichiers autorisés`);
       return;
@@ -323,7 +323,7 @@ export function MultipleImageUploadBox({
       }
 
       const result = await response.json();
-      
+
       if (result.success && result.data.results.length > 0) {
         const newUrls = result.data.results.map((file: any) => file.url);
         onChange([...value, ...newUrls]);

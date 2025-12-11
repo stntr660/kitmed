@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
+import {
   GraduationCap,
   Users,
   Clock,
@@ -175,7 +175,7 @@ export default function TrainingPage() {
               Formations Professionnelles
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Développez l'expertise de vos équipes avec nos formations certifiantes 
+              Développez l'expertise de vos équipes avec nos formations certifiantes
               sur l'utilisation et la maintenance des équipements médicaux.
             </p>
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -368,7 +368,7 @@ export default function TrainingPage() {
               Besoin d'une Formation Personnalisée ?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Nous créons des programmes de formation sur mesure adaptés aux besoins 
+              Nous créons des programmes de formation sur mesure adaptés aux besoins
               spécifiques de votre établissement.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

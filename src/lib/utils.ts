@@ -21,33 +21,37 @@ export function formatCurrency(amount: number, currency = 'USD'): string {
 
 export function formatDate(date: Date | string | null | undefined, format: 'short' | 'long' | 'time' = 'short'): string {
   if (!date) return '-';
-  
+
   const d = typeof date === 'string' ? new Date(date) : date;
-  
+
   // Check if the date is valid
   if (isNaN(d.getTime())) return 'Invalid Date';
-  
+
+  // Use UTC formatting to prevent hydration mismatches between server and client
+  const options: Intl.DateTimeFormatOptions = {
+    timeZone: 'UTC'
+  };
+
   switch (format) {
     case 'long':
-      return d.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
+      options.year = 'numeric';
+      options.month = 'long';
+      options.day = 'numeric';
+      break;
     case 'time':
-      return d.toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-      });
+      options.month = 'short';
+      options.day = 'numeric';
+      options.hour = '2-digit';
+      options.minute = '2-digit';
+      break;
     default:
-      return d.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      });
+      options.year = 'numeric';
+      options.month = 'short';
+      options.day = 'numeric';
+      break;
   }
+
+  return new Intl.DateTimeFormat('en-US', options).format(d);
 }
 
 export function generateSlug(text: string): string {

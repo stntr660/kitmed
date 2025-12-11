@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Simple PostgreSQL for testing
+  postgres:
+    image: postgres:15-alpine
+    container_name: kitmed_postgres_simple
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kitmed_production
+      POSTGRES_USER: kitmed_admin
+      POSTGRES_PASSWORD: kitmed_secure_db_password_2024
+    ports:
+      - "5433:5432"  # Use different port to avoid Supabase conflict
+    volumes:
+      - postgres_simple_data:/var/lib/postgresql/data
+    command: >
+      postgres 
+      -c max_connections=100
+      -c shared_buffers=256MB
+      -c log_statement=none
+      -c log_min_duration_statement=1000
+    networks:
+      - kitmed_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kitmed_admin -d kitmed_production"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Simple Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: kitmed_redis_simple
+    restart: unless-stopped
+    command: >
+      redis-server 
+      --requirepass kitmed_redis_password_2024
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+    ports:
+      - "6380:6379"  # Use different port to avoid conflicts
+    volumes:
+      - redis_simple_data:/data
+    networks:
+      - kitmed_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_simple_data:
+    driver: local
+  redis_simple_data:
+    driver: local
+
+networks:
+  kitmed_network:
+    driver: bridge

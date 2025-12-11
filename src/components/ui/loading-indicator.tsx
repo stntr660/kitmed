@@ -47,7 +47,7 @@ export function NavigationLoadingBar({ className }: LoadingBarProps) {
 
     // Listen for Next.js router events
     const router = useRouter();
-    
+
     // Add listeners for link clicks
     const handleLinkClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -95,17 +95,17 @@ interface PageLoadingProps {
   className?: string;
 }
 
-export function PageLoading({ 
-  loading = true, 
-  size = 'md', 
+export function PageLoading({
+  loading = true,
+  size = 'md',
   text,
-  className 
+  className
 }: PageLoadingProps) {
   if (!loading) return null;
 
   const sizeClasses = {
     sm: 'h-4 w-4',
-    md: 'h-8 w-8', 
+    md: 'h-8 w-8',
     lg: 'h-12 w-12'
   };
 
@@ -136,11 +136,11 @@ export function PageLoading({
   );
 }
 
-export function ButtonLoading({ 
-  loading = false, 
-  children, 
+export function ButtonLoading({
+  loading = false,
+  children,
   className,
-  ...props 
+  ...props
 }: {
   loading?: boolean;
   children: React.ReactNode;
@@ -148,7 +148,7 @@ export function ButtonLoading({
   [key: string]: any;
 }) {
   return (
-    <button 
+    <button
       className={cn(
         'inline-flex items-center justify-center',
         loading && 'cursor-not-allowed opacity-75',
@@ -179,7 +179,7 @@ export function LinkWithLoading({ href, children, className, onClick }: LinkLoad
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       if (onClick) onClick();
       await router.push(href);

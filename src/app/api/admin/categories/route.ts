@@ -4,38 +4,50 @@ import { z } from 'zod';
 
 const categoryCreateSchema = z.object({
   name: z.string().min(1, 'Category name is required'),
+  type: z.enum(['discipline', 'equipment']),
+  parent_id: z.string().nullable().optional(),
+  sort_order: z.number().default(0),
+  is_active: z.boolean().default(true),
   description: z.string().nullable().optional(),
-  parentId: z.string().nullable().optional(),
-  sortOrder: z.number().default(0),
-  isActive: z.boolean().default(true),
-  imageUrl: z.string().url().nullable().optional().or(z.literal(null)),
-  metaTitle: z.string().nullable().optional(),
-  metaDescription: z.string().nullable().optional(),
+  meta_title: z.string().nullable().optional(),
+  meta_description: z.string().nullable().optional(),
+  image_url: z.union([
+    z.string().refine(
+      (val) => {
+        if (!val || val.trim() === '') return true; // empty string is valid
+        // Allow relative URLs starting with / or full URLs
+        return val.startsWith('/') || /^https?:\/\//.test(val);
+      },
+      { message: 'Must be a valid URL or relative path starting with /' }
+    ),
+    z.null(),
+    z.literal('')
+  ]).optional(),
   translations: z.object({
     fr: z.object({
       name: z.string().min(1, 'French name is required'),
       description: z.string().nullable().optional(),
-      metaTitle: z.string().nullable().optional(),
-      metaDescription: z.string().nullable().optional(),
+      meta_title: z.string().nullable().optional(),
+      meta_description: z.string().nullable().optional(),
     }),
     en: z.object({
       name: z.string().optional(),
       description: z.string().nullable().optional(),
-      metaTitle: z.string().nullable().optional(),
-      metaDescription: z.string().nullable().optional(),
+      meta_title: z.string().nullable().optional(),
+      meta_description: z.string().nullable().optional(),
     }).optional(),
   }),
 });
 
 const categoriesQuerySchema = z.object({
   query: z.string().optional(),
-  parentId: z.string().optional().nullable(),
-  isActive: z.string().optional().transform(val => val === 'true'),
+  parent_id: z.string().optional().nullable(),
+  is_active: z.string().optional().transform(val => val === 'true' ? true : val === 'false' ? false : undefined),
   hierarchical: z.string().optional().transform(val => val === 'true'),
   page: z.string().optional().transform(val => parseInt(val || '1')),
   pageSize: z.string().optional().transform(val => parseInt(val || '50')),
-  sortBy: z.string().optional().default('sortOrder'),
-  sortOrder: z.string().optional().default('asc'),
+  sortBy: z.string().optional().default('sort_order'),
+  sort_order: z.string().optional().default('asc'),
 });
 
 interface CategoryWithTranslations {
@@ -43,24 +55,25 @@ interface CategoryWithTranslations {
   name: string;
   slug: string;
   description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-  isActive: boolean;
-  imageUrl: string | null;
-  metaTitle: string | null;
-  metaDescription: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-  translations: Array<{
+  type: string;
+  parent_id: string | null;
+  sort_order: number;
+  is_active: boolean;
+  image_url: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  created_at: Date;
+  updated_at: Date;
+  category_translations: Array<{
     id: string;
-    languageCode: string;
+    language_code: string;
     name: string;
     description: string | null;
-    metaTitle: string | null;
-    metaDescription: string | null;
+    meta_title: string | null;
+    meta_description: string | null;
   }>;
   children?: CategoryWithTranslations[];
-  _count?: { children: number; products: number };
+  _count?: { other_categories: number; products: number };
 }
 
 // Helper function to build category hierarchy
@@ -76,9 +89,9 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
   // Second pass: build tree structure
   categories.forEach(category => {
     const categoryNode = categoryMap.get(category.id)!;
-    
-    if (category.parentId) {
-      const parent = categoryMap.get(category.parentId);
+
+    if (category.parent_id) {
+      const parent = categoryMap.get(category.parent_id);
       if (parent) {
         parent.children = parent.children || [];
         parent.children.push(categoryNode);
@@ -91,17 +104,17 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
     }
   });
 
-  // Sort children by sortOrder
+  // Sort children by sort_order
   const sortChildren = (cats: CategoryWithTranslations[]) => {
     cats.forEach(cat => {
       if (cat.children && cat.children.length > 0) {
-        cat.children.sort((a, b) => a.sortOrder - b.sortOrder);
+        cat.children.sort((a, b) => a.sort_order - b.sort_order);
         sortChildren(cat.children);
       }
     });
   };
 
-  rootCategories.sort((a, b) => a.sortOrder - b.sortOrder);
+  rootCategories.sort((a, b) => a.sort_order - b.sort_order);
   sortChildren(rootCategories);
 
   return rootCategories;
@@ -111,27 +124,27 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const params = Object.fromEntries(searchParams.entries());
-    
+
     const {
       query,
-      parentId,
-      isActive,
+      parent_id,
+      is_active,
       hierarchical,
       page,
       pageSize,
       sortBy,
-      sortOrder
+      sort_order
     } = categoriesQuerySchema.parse(params);
 
     // Build the where clause
     const where: any = {};
-    
+
     if (query) {
       where.OR = [
         { name: { contains: query } },
         { description: { contains: query } },
         {
-          translations: {
+          category_translations: {
             some: {
               OR: [
                 { name: { contains: query } },
@@ -143,47 +156,47 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       ];
     }
 
-    if (typeof isActive === 'boolean') {
-      where.isActive = isActive;
+    if (typeof is_active === 'boolean') {
+      where.is_active = is_active;
     }
 
-    if (parentId !== undefined) {
-      where.parentId = parentId;
+    if (parent_id !== undefined) {
+      where.parent_id = parent_id;
     }
 
-    // For hierarchical view, don't filter by parentId
-    const isHierarchicalView = hierarchical && parentId === undefined;
-    
+    // For hierarchical view, don't filter by parent_id
+    const isHierarchicalView = hierarchical && parent_id === undefined;
+
     if (isHierarchicalView) {
-      delete where.parentId;
+      delete where.parent_id;
     }
 
     // Get total count
-    const total = await prisma.category.count({ where });
+    const total = await prisma.categories.count({ where });
 
     // Build orderBy
     const orderBy: any = {};
     if (sortBy === 'name') {
-      orderBy.name = sortOrder;
-    } else if (sortBy === 'createdAt') {
-      orderBy.createdAt = sortOrder;
-    } else if (sortBy === 'updatedAt') {
-      orderBy.updatedAt = sortOrder;
+      orderBy.name = sort_order;
+    } else if (sortBy === 'created_at') {
+      orderBy.created_at = sort_order;
+    } else if (sortBy === 'updated_at') {
+      orderBy.updated_at = sort_order;
     } else {
-      orderBy.sortOrder = sortOrder;
+      orderBy.sort_order = sort_order;
     }
 
     // Get categories with translations and counts
-    const categories = await prisma.category.findMany({
+    const categories = await prisma.categories.findMany({
       where,
       orderBy,
       skip: isHierarchicalView ? 0 : (page - 1) * pageSize,
       take: isHierarchicalView ? undefined : pageSize,
       include: {
-        translations: true,
+        category_translations: true,
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }
@@ -193,9 +206,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Process categories to include computed fields
     const processedCategories = categories.map(category => {
       // Get French translation for primary name
-      const frTranslation = category.translations.find(t => t.languageCode === 'fr');
-      const enTranslation = category.translations.find(t => t.languageCode === 'en');
-      
+      const frTranslation = category.category_translations.find(t => t.language_code === 'fr');
+      const enTranslation = category.category_translations.find(t => t.language_code === 'en');
+
       return {
         ...category,
         name: frTranslation?.name || category.name,
@@ -243,6 +256,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
+    console.log('🔥 RAW REQUEST:', JSON.stringify(body, null, 2));
+
+    // Infer type if not provided: parent_id exists = equipment, otherwise = discipline
+    if (!body.type) {
+      body.type = body.parent_id ? 'equipment' : 'discipline';
+
+    }
+
     const categoryData = categoryCreateSchema.parse(body);
 
     // Generate slug from French name
@@ -254,17 +275,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Check if slug exists
     let finalSlug = slug;
     let counter = 1;
-    while (await prisma.category.findUnique({ where: { slug: finalSlug } })) {
+    while (await prisma.categories.findUnique({ where: { slug: finalSlug } })) {
       finalSlug = `${slug}-${counter}`;
       counter++;
     }
 
     // Validate parent exists if provided
-    if (categoryData.parentId) {
-      const parent = await prisma.category.findUnique({
-        where: { id: categoryData.parentId }
+    if (categoryData.parent_id) {
+      const parent = await prisma.categories.findUnique({
+        where: { id: categoryData.parent_id }
       });
-      
+
       if (!parent) {
         return NextResponse.json(
           { error: 'Parent category not found' },
@@ -274,41 +295,43 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Create category with translations
-    const category = await prisma.category.create({
+
+    const category = await prisma.categories.create({
       data: {
         name: categoryData.translations.fr.name,
         slug: finalSlug,
         description: categoryData.translations.fr.description || null,
-        parentId: categoryData.parentId,
-        sortOrder: categoryData.sortOrder,
-        isActive: categoryData.isActive,
-        imageUrl: categoryData.imageUrl,
-        metaTitle: categoryData.translations.fr.metaTitle || null,
-        metaDescription: categoryData.translations.fr.metaDescription || null,
-        translations: {
+        type: categoryData.type,
+        parent_id: categoryData.parent_id,
+        sort_order: categoryData.sort_order,
+        is_active: categoryData.is_active,
+        image_url: categoryData.image_url,
+        meta_title: null,
+        meta_description: null,
+        category_translations: {
           create: [
             {
-              languageCode: 'fr',
+              language_code: 'fr',
               name: categoryData.translations.fr.name,
               description: categoryData.translations.fr.description || null,
-              metaTitle: categoryData.translations.fr.metaTitle || null,
-              metaDescription: categoryData.translations.fr.metaDescription || null,
+              meta_title: null,
+              meta_description: null,
             },
             ...(categoryData.translations.en?.name ? [{
-              languageCode: 'en',
+              language_code: 'en',
               name: categoryData.translations.en.name,
               description: categoryData.translations.en.description || null,
-              metaTitle: categoryData.translations.en.metaTitle || null,
-              metaDescription: categoryData.translations.en.metaDescription || null,
+              meta_title: null,
+              meta_description: null,
             }] : [])
           ]
         }
       },
       include: {
-        translations: true,
+        category_translations: true,
         _count: {
           select: {
-            children: true,
+            other_categories: true,
             products: true,
           }
         }

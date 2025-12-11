@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    
+
     if (!file) {
       return NextResponse.json(
         { success: false, error: 'No file provided' },
@@ -36,14 +36,14 @@ export async function POST(request: NextRequest) {
     // Create unique filename
     const fileExtension = file.name.split('.').pop();
     const fileName = `${randomUUID()}.${fileExtension}`;
-    
+
     // Convert file to buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
     // Ensure upload directory exists
     const uploadDir = join(process.cwd(), 'public', 'uploads', 'banners');
-    
+
     try {
       // Create directory if it doesn't exist
       await writeFile(join(uploadDir, '.keep'), '');
@@ -71,8 +71,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { 
-        success: false, 
+      {
+        success: false,
         error: 'Upload failed',
         details: error instanceof Error ? error.message : 'Unknown error'
       },

@@ -32,6 +32,17 @@
     "no": "Non",
     "goToHomepage": "Aller à l'accueil",
     "searchPlaceholder": "Rechercher des produits...",
+    "reference": "Référence",
+    "manufacturer": "Fabricant",
+    "sku": "SKU",
+    "tags": "Étiquettes",
+    "productWithoutName": "Produit sans nom",
+    "notSpecified": "Non spécifié",
+    "french": "Français",
+    "english": "Anglais",
+    "specification": "Spécification",
+    "value": "Valeur",
+    "unit": "Unité",
     "searchProducts": "Rechercher des produits",
     "wishlist": "Liste de souhaits",
     "rfpCart": "Panier de devis",
@@ -57,11 +68,14 @@
     "manufacturer": "Constructeur",
     "quantity": "Quantité",
     "productImage": "Image du produit",
-    "name": "Nom"
+    "name": "Nom",
+    "viewDetails": "Voir Détails",
+    "quote": "Devis",
+    "partners": "Partenaires",
+    "featured": "En Vedette"
   },
   "navigation": {
     "products": "Produits",
-    "solutions": "Solutions",
     "partners": "Partenaires",
     "about": "À propos",
     "contact": "Contact",
@@ -69,9 +83,6 @@
     "byDiscipline": "Par Discipline",
     "byManufacturer": "Par Fabricant",
     "featured": "En Vedette",
-    "hospitalSolutions": "Solutions Hospitalières",
-    "clinicSolutions": "Solutions Cliniques",
-    "labSolutions": "Solutions de Laboratoire",
     "company": "Entreprise",
     "team": "Équipe",
     "news": "Actualités"
@@ -96,6 +107,24 @@
       "nomProduitEn": "Nom du produit (English)",
       "referenceFournisseur": "Référence fournisseur (Ref frs)",
       "constructeur": "Constructeur",
+      "productInformation": "Informations du Produit",
+      "shortDescriptionLabel": "Description Courte",
+      "fullDescription": "Description Complète",
+      "category": "Catégorie",
+      "lastUpdated": "Dernière Mise à Jour",
+      "mediaFiles": "Fichiers Média",
+      "rfpRequests": "Demandes de Devis",
+      "recentActivity": "Activité Récente",
+      "productCreated": "Produit créé",
+      "productUpdated": "Produit mis à jour",
+      "editProduct": "Modifier le Produit",
+      "fullDetails": "Détails Complets",
+      "viewAllMedia": "Voir Tous les Médias",
+      "basicInformation": "Informations de Base",
+      "description": "Description",
+      "specifications": "Spécifications",
+      "metadata": "Métadonnées",
+      "createdAt": "Créé le",
       "categorieDiscipline": "Catégorie / Discipline",
       "descriptionFr": "Description (Français)",
       "descriptionEn": "Description (English)",
@@ -110,6 +139,7 @@
         "referenceFournisseur": "Code de référence interne ou du fournisseur",
         "constructeur": "Nom du fabricant ou de la marque",
         "selectCategory": "Sélectionner une catégorie",
+        "selectManufacturer": "Sélectionner un constructeur",
         "descriptionFr": "Description courte et détaillée du produit en français",
         "descriptionEn": "Short and detailed product description in English",
         "ficheTechniqueFr": "Spécifications techniques et détails fonctionnels en français",
@@ -121,6 +151,7 @@
         "nomEnRequired": "English name is required",
         "referenceFournisseurRequired": "La référence fournisseur est requise",
         "constructeurRequired": "Le constructeur est requis",
+        "manufacturerRequired": "Le constructeur est requis",
         "categorieRequired": "La catégorie est requise",
         "statusRequired": "Le statut est requis"
       },
@@ -210,8 +241,6 @@
       "byManufacturer": "Par Fabricant",
       "featured": "Produits en Vedette",
       "about": "À Propos",
-      "team": "Notre Équipe",
-      "careers": "Carrières",
       "news": "Actualités",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -445,6 +474,24 @@
     "manageProducts": "Gérez votre catalogue d'équipement médical avec des actions unifiées",
     "productSelected": "produit sélectionné",
     "productsSelected": "produits sélectionnés",
+    "category": "Catégorie",
+    "status": "Statut",
+    "products": {
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif", 
+        "discontinued": "Arrêté",
+        "draft": "Brouillon"
+      }
+    },
+    "media": "Médias",
+    "created": "Créé",
+    "actions": "Actions",
+    "files": "Fichiers",
+    "documentation": "Documentation",
+    "activate": "Activer",
+    "deactivate": "Désactiver",
+    "addFirstProduct": "Ajouter votre premier produit",
     "getStartedProducts": "Commencez par ajouter votre premier produit au catalogue.",
     "addFirstProduct": "Ajoutez Votre Premier Produit",
     "header": {
@@ -521,6 +568,12 @@
       "addDescription": "Ajoutez un nouvel équipement médical à votre catalogue",
       "editDescription": "Mettre à jour les informations et spécifications du produit",
       "viewDescription": "Voir les informations détaillées du produit",
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "discontinued": "Arrêté",
+        "draft": "Brouillon"
+      },
       
       "essentialInfo": "Informations essentielles",
       "essentialInfoDescription": "Les détails de base nécessaires pour identifier le produit",
@@ -546,7 +599,7 @@
       "shortDescriptionHint": "Une présentation simple pour les commerciaux",
       
       "internationalVersion": "Version internationale",
-      "internationalDescription": "",
+      "internationalDescription": "Informations en anglais pour les clients internationaux",
       
       "technicalDetails": "Détails techniques",
       "technicalDetailsDescription": "Informations avancées pour les spécialistes",
@@ -612,6 +665,11 @@
         "visible": "Visible",
         "draft": "Brouillon"
       },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif",
+        "discontinued": "Discontinué"
+      },
       "featuredProduct": "Produit en vedette",
       "displayAsFeatured": "Afficher comme produit vedette",
       "media": "Médias",
@@ -621,17 +679,28 @@
       "uploading": "Téléchargement...",
       "uploadHint": "JPEG, PNG, WebP jusqu'à 5MB - Première image sera l'image principale",
       "primaryImage": "Image principale",
+      "tempImage": "Temporaire",
+      "tempImageDescription": "Cette image sera ajoutée lors de la création du produit",
       "noImages": "Aucune image téléchargée",
+      "noManufacturersFound": "Aucun fabricant trouvé",
+      "addNewManufacturer": "Ajouter un nouveau fabricant",
+      "newManufacturerName": "Nom du nouveau fabricant",
+      "pressEnterToAdd": "Appuyez sur Entrée pour ajouter, Échap pour annuler",
       "saveProductFirst": "Veuillez d'abord enregistrer le produit pour télécharger des images"
     },
     "partners": {
       "manageDescription": "Gérez votre réseau de partenaires et fournisseurs médicaux",
       "searchPlaceholder": "Rechercher des partenaires...",
+      "importCsv": "Importer CSV",
       "partnerSelected": "partenaire sélectionné",
       "partnersSelected": "partenaires sélectionnés",
       "getStarted": "Commencez par ajouter votre premier partenaire au réseau.",
       "addFirst": "Ajoutez Votre Premier Partenaire",
+      "bulkImport": {
+        "title": "Import en lot CSV"
+      },
       "feature": "Mettre en avant",
+      "unfeature": "Retirer de la vedette",
       
       "addDescription": "Ajoutez un nouveau partenaire à votre réseau médical",
       "editDescription": "Mettre à jour les informations du partenaire",
@@ -684,16 +753,85 @@
         "visible": "Visible",
         "draft": "Brouillon"
       },
+
+      "type": "Type de partenaire",
       
       "contactInfo": "Informations de contact",
       "statusInfo": "Informations de statut",
       "noWebsite": "Aucun site web renseigné",
       "lastUpdated": "Dernière mise à jour",
       
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      
       "validation": {
         "nameRequired": "Le nom du partenaire en français est requis",
+        "typeRequired": "Le type de partenaire est requis",
         "websiteInvalid": "L'URL du site web n'est pas valide",
         "logoInvalid": "L'URL du logo n'est pas valide"
+      },
+      "failedToLoad": "Échec du chargement des partenaires",
+      "failedToSave": "Échec de la sauvegarde du partenaire",
+      
+      "selectType": "Sélectionnez le type de partenaire",
+      "selectTypeDescription": "Choisissez le type qui décrit le mieux la relation commerciale",
+      "manufacturerDescription": "Partenaires qui fabriquent et produisent les équipements médicaux",
+      "manufacturerBadge": "Fabricant",
+      "generalDescription": "Partenaires commerciaux et fournisseurs de services",
+      "addNew": "Ajouter un nouveau partenaire",
+      "editPartner": "Modifier le partenaire",
+      "manufacturerName": "Nom du fabricant",
+      "manufacturerNamePlaceholder": "Ex: Philips Healthcare, GE Medical",
+      "manufacturerNameHint": "Ce nom sera utilisé pour lier automatiquement les produits",
+      "manufacturerDescriptionPlaceholder": "Décrivez ce fabricant et ses spécialisations médicales",
+      "linkedProducts": "Produits liés",
+      "linkedProductsDescription": "Produits automatiquement associés à ce fabricant",
+      "loadingProducts": "Chargement des produits...",
+      "noLinkedProducts": "Aucun produit lié trouvé",
+      "moreProducts": "autres produits",
+      "nameEnglish": "Nom (Anglais)",
+      "nameEnglishPlaceholder": "Nom du partenaire en anglais",
+      
+      "types": {
+        "manufacturer": {
+          "title": "Fabricant",
+          "description": "Entreprises qui fabriquent et produisent les équipements médicaux que vous vendez",
+          "badge": "Lié aux produits",
+          "note": "Les fabricants sont automatiquement liés aux produits par nom",
+          "helpTitle": "À propos des fabricants",
+          "helpDescription": "Les fabricants sont automatiquement associés aux produits dans votre catalogue. Assurez-vous que le nom correspond exactement au champ 'Constructeur' de vos produits."
+        },
+        "distributor": {
+          "title": "Distributeur",
+          "description": "Partenaires commerciaux qui distribuent et revendent les équipements médicaux dans différentes régions",
+          "badge": "Réseau commercial",
+          "helpTitle": "À propos des distributeurs",
+          "helpDescription": "Les distributeurs vous aident à étendre votre portée commerciale dans différentes régions et marchés."
+        },
+        "service": {
+          "title": "Service",
+          "description": "Prestataires de services médicaux, maintenance, formation et support technique spécialisé",
+          "badge": "Support technique",
+          "helpTitle": "À propos des services",
+          "helpDescription": "Les partenaires de service fournissent un support technique, une maintenance et une formation pour vos équipements."
+        },
+        "technology": {
+          "title": "Technologie",
+          "description": "Partenaires technologiques pour l'intégration, logiciels médicaux et solutions numériques innovantes",
+          "badge": "Innovation numérique",
+          "helpTitle": "À propos de la technologie",
+          "helpDescription": "Les partenaires technologiques fournissent des logiciels et des solutions d'intégration pour moderniser votre pratique médicale."
+        },
+        "other": {
+          "title": "Autre partenaire",
+          "description": "Gouvernements, alliances, institutions et autres partenaires stratégiques",
+          "badge": "Partenariat stratégique",
+          "examples": "Ministère de la santé, Alliances médicales, ONG",
+          "helpTitle": "À propos des autres partenaires",
+          "helpDescription": "Ces partenaires incluent les institutions gouvernementales, alliances stratégiques et autres organisations importantes."
+        }
       },
       
       "bulkImport": {
@@ -741,6 +879,80 @@
           "fieldError": "Champ {field}:",
           "retry": "Réessayer l'import"
         }
+      },
+
+      "wizard": {
+        "step1": {
+          "title": "Type de partenaire",
+          "description": "Sélectionnez le type de partenaire à ajouter"
+        },
+        "step2": {
+          "title": "Informations de base",
+          "description": "Entrez le nom du partenaire et les détails de contact"
+        },
+        "step3": {
+          "title": "Détails supplémentaires",
+          "description": "Logo, description et informations internationales"
+        },
+        "step4": {
+          "title": "Visibilité et paramètres",
+          "description": "Configurez la visibilité et les paramètres du partenaire"
+        },
+        "selectPartnerType": "Quel type de partenaire ajoutez-vous ?",
+        "selectPartnerTypeDescription": "Choisissez le type qui décrit le mieux ce partenaire",
+        "basicPartnerInformation": "Informations essentielles du partenaire",
+        "basicPartnerInformationDescription": "Entrez les détails essentiels pour ce partenaire",
+        "additionalDetails": "Détails supplémentaires",
+        "additionalDetailsDescription": "Ajoutez le logo et les informations internationales (optionnel)",
+        "visibilitySettings": "Visibilité et paramètres",
+        "visibilitySettingsDescription": "Configurez comment ce partenaire apparaît sur votre plateforme",
+        "partnerNameFrench": "Nom du partenaire (Français)",
+        "briefDescription": "Brève description",
+        "briefDescriptionPlaceholder": "Brève description du partenaire...",
+        "briefDescriptionHint": "Une courte description de ce que fait ce partenaire",
+        "partnerLogo": "Logo du partenaire",
+        "uploadPartnerLogo": "Télécharger le logo du partenaire",
+        "internationalVersion": "Version internationale",
+        "partnerNameEnglish": "Nom du partenaire (English)",
+        "partnerNameEnglishPlaceholder": "Nom du partenaire en anglais",
+        "descriptionEnglish": "Description (English)",
+        "descriptionEnglishPlaceholder": "Brève description en anglais...",
+        "partnerVisibility": "Visibilité du partenaire",
+        "makeVisible": "Rendre visible",
+        "makeVisibleDescription": "Le partenaire apparaîtra sur le site web public",
+        "keepHidden": "Garder masqué",
+        "keepHiddenDescription": "Le partenaire sera sauvegardé comme brouillon",
+        "specialSettings": "Paramètres spéciaux",
+        "featuredPartner": "Partenaire vedette",
+        "highlightPartnerOnHomepage": "Mettre en évidence ce partenaire sur la page d'accueil et dans les listes de partenaires",
+        "createPartner": "Créer le partenaire",
+        "updatePartner": "Mettre à jour le partenaire",
+        "saving": "Sauvegarde...",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "partnerType": "Type de partenaire",
+        "partnerNameFrench": "Nom du partenaire (Français)",
+        "partnerNameFrenchPlaceholder": "Entrez le nom du partenaire en français",
+        "partnerNameFrenchHint": "Ce sera le nom principal affiché",
+        "primaryNameHint": "Ce sera le nom principal affiché",
+        "websiteUrl": "URL du site web",
+        "websiteUrlPlaceholder": "https://example.com",
+        "websiteUrlHint": "Site web officiel du partenaire (optionnel)",
+        "briefDescriptionFrench": "Brève description (Français)",
+        "briefDescriptionPlaceholder": "Brève description du partenaire...",
+        "briefDescriptionHint": "Une courte description de ce que fait ce partenaire",
+        "partnerLogoDescription": "Téléchargez le logo officiel du partenaire",
+        "logoFormatSupported": "Formats PNG, JPG supportés",
+        "logoSizeLimit": "Taille maximale du fichier : 2MB",
+        "logoRecommendation": "Format carré recommandé",
+        "featuredPartnerDescription": "Mettre en évidence ce partenaire sur la page d'accueil et dans les listes de partenaires",
+        "visible": "Visible",
+        "draft": "Brouillon",
+        "addNewPartner": "Ajouter un nouveau partenaire",
+        "editPartner": "Modifier le partenaire",
+        "stepOf": "Étape {current} sur {total}",
+        "createPartner": "Créer le partenaire",
+        "updatePartner": "Mettre à jour le partenaire"
       }
     },
     "content": {
@@ -1170,7 +1382,28 @@
       "dataRetention": "Rétention des Données Médicales",
       "dataRetentionDesc": "Années de rétention des données équipement médical",
       "auditLogs": "Journaux d'Audit",
-      "auditLogsDesc": "Maintenir des journaux détaillés de toutes les activités système"
+      "auditLogsDesc": "Maintenir des journaux détaillés de toutes les activités système",
+      "general": "Général",
+      "language": "Langue",
+      "french": "Français",
+      "english": "Anglais",
+      "emailAddress": "Adresse Email",
+      "emailName": "Nom Email",
+      "thirtyMinutes": "30 minutes",
+      "oneHour": "1 heure",
+      "twoHours": "2 heures",
+      "fourHours": "4 heures",
+      "emailNotificationsDesc": "Recevoir des notifications pour les événements importants",
+      "saveSettings": "Enregistrer les Paramètres",
+      "description": "Gérer les paramètres et la configuration de votre plateforme",
+      "saveFailed": "Échec de l'enregistrement des paramètres",
+      "saveSuccess": "Paramètres enregistrés avec succès !",
+      "emailAddress": "Adresse email",
+      "emailName": "Nom de l'expéditeur",
+      "general": "Général",
+      "french": "Français",
+      "english": "Anglais",
+      "language": "Langue"
     },
     "categories": {
       "manageDescription": "Gérez votre hiérarchie de catégories et disciplines médicales",
@@ -1219,6 +1452,14 @@
       "imageUrl": "Image de la catégorie",
       "imageUrlPlaceholder": "https://exemple.com/image.jpg",
       "imageUrlHint": "URL de l'image représentant cette catégorie",
+      "categoryImage": "Image de la catégorie",
+      "discipline": "Discipline",
+      "equipment": "Équipement",
+      "uploadImage": "Télécharger une image",
+      "imageUploadDescription": "Ajoutez une image représentative pour cette catégorie médicale.",
+      "imageFormatSupported": "Formats supportés: JPEG, PNG, GIF",
+      "imageSizeLimit": "Taille maximum: 2MB",
+      "imageRecommendation": "Recommandé: 300x300px ou plus",
       "slug": "Slug",
       "categoryId": "ID de la catégorie",
       "lastUpdated": "Dernière mise à jour",
@@ -1280,7 +1521,23 @@
         "additionalDetails": "Détails supplémentaires",
         "additionalDetailsDescription": "Image, traductions et optimisation SEO",
         "previous": "Précédent",
-        "next": "Suivant"
+        "next": "Suivant",
+        "selectMedicalDiscipline": "Sélectionner la discipline médicale",
+        "linkEquipmentToDiscipline": "Lier cette catégorie d'équipement à une discipline médicale",
+        "createTopLevelDiscipline": "Ceci créera une nouvelle discipline de haut niveau",
+        "selectDiscipline": "Sélectionner la discipline",
+        "noDisciplinesFound": "Aucune discipline trouvée",
+        "noDisciplinesFoundDescription": "Vous devez créer au moins une discipline médicale avant d'ajouter des catégories d'équipement.",
+        "noDisciplinesFoundHint": "💡 Créez d'abord une discipline (comme 'Cardiologie', 'Radiologie', 'Chirurgie') puis revenez pour ajouter des catégories d'équipement.",
+        "disciplineStep": {
+          "title": "Sélection de Discipline",
+          "description": "Sélectionnez la discipline médicale pour cette catégorie"
+        },
+        "loadingDisciplines": "Chargement des disciplines...",
+        "selectADiscipline": "Sélectionner une discipline",
+        "equipmentCategoriesHint": "Les catégories d'équipement doivent être liées à une discipline médicale pour une organisation appropriée",
+        "creatingNewDiscipline": "Création d'une nouvelle discipline",
+        "creatingNewDisciplineDescription": "Ceci créera une nouvelle discipline médicale de haut niveau qui peut contenir des catégories d'équipement"
       },
       
       "help": {
@@ -1365,6 +1622,7 @@
     "welcomeSubtitle": "Gérez votre catalogue d'équipements médicaux facilement. Suivez les produits, demandes de devis et relations partenaires en un seul endroit.",
     "loading": "Chargement du tableau de bord...",
     "retry": "Réessayer",
+    "dashboardDataUnavailable": "Les données du tableau de bord ne sont pas disponibles actuellement. Veuillez vérifier votre connexion.",
     "totalProducts": "Total Produits",
     "pendingRfps": "Devis en attente",
     "activePartners": "Partenaires Actifs",
@@ -1516,6 +1774,305 @@
       "exploreProducts": "Explorer les produits",
       "viewAllProducts": "Voir Tous les Produits",
       "fallbackDescription": "Solutions médicales pour"
+    },
+    "partners": {
+      "title": "Nos Partenaires de Confiance",
+      "subtitle": "Marques Leaders Mondiales",
+      "description": "Nous collaborons avec les fabricants les plus respectés de l'industrie médicale",
+      "viewAll": "Voir Tous nos Partenaires"
+    },
+    "featuredProducts": {
+      "title": "Sélection Premium",
+      "subtitle": "Produits en Vedette",
+      "description": "Découvrez notre sélection exclusive d'équipements médicaux d'exception, choisis pour leur innovation, leur qualité et leur performance remarquable.",
+      "badge": "⭐ Vedette",
+      "viewDetails": "Voir Détails",
+      "viewAll": "Voir Tous les Produits en Vedette",
+      "noDescription": "Description disponible sur demande",
+      "noProducts": "Aucun produit en vedette pour le moment",
+      "loading": "Chargement des produits vedettes...",
+      "count": "{count} produit{plural} d'exception",
+      "sectionTitle": "Notre Sélection Premium",
+      "noFeaturedTitle": "Aucun Produit en Vedette",
+      "noFeaturedDescription": "Aucun produit n'est actuellement sélectionné comme produit vedette.",
+      "backToProducts": "Voir Tous les Produits"
+    },
+    "disciplines": {
+      "title": "Spécialités Médicales",
+      "subtitle": "Nos Domaines d'Expertise",
+      "description": "Découvrez nos solutions spécialisées pour chaque discipline médicale",
+      "viewRange": "Découvrir la gamme",
+      "viewAll": "Voir Toutes les Spécialités",
+      "productsCount": "produits",
+      "fallbackDescription": "Solutions professionnelles pour {name}"
+    },
+    "partnerDescriptions": {
+      "philips": "Solutions d'imagerie médicale avancée",
+      "ge": "Équipements de diagnostic et de soins",
+      "siemens": "Technologies médicales innovantes",
+      "medtronic": "Dispositifs médicaux thérapeutiques",
+      "abbott": "Solutions de diagnostic et surveillance",
+      "jj": "Dispositifs chirurgicaux et implants"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "À Propos de KITMED",
+      "title": "Leader en Équipements Médicaux au Maroc",
+      "description": "Dédiée à l'importation, la distribution, l'installation et la maintenance des équipements médicaux et consommables, KITMED accompagne le développement du secteur médical grâce à une stratégie bien étudiée et des partenariats mondiaux de référence.",
+      "cta": {
+        "contact": "Nous Contacter",
+        "products": "Nos Produits"
+      }
+    },
+    "overview": {
+      "title": "Notre Histoire",
+      "description1": "Dédiée à l'importation, la distribution, l'installation et la maintenance des équipements médicaux et consommables dans les secteurs public et privé, KITMED continue sa croissance grâce à des partenariats mondiaux, une vision claire et une stratégie bien étudiée.",
+      "description2": "Au-delà de la fourniture de matériels médicaux qui répondent à l'évolution des technologies médicales et aux besoins de chaque client, notre équipe dynamique s'engage à accompagner ses clients tout au long du processus pour assurer une satisfaction continue.",
+      "established": {
+        "title": "Établie au Maroc",
+        "description": "Basée à Casablanca, au cœur du quartier médical marocain"
+      },
+      "expertise": {
+        "title": "Expertise Médicale",
+        "description": "Spécialisés dans l'importation et distribution d'équipements médicaux de pointe"
+      },
+      "reach": {
+        "title": "Portée Régionale",
+        "description": "Desservant le Maroc et s'étendant vers les marchés africains"
+      }
+    },
+    "mission": {
+      "sectionTitle": "Notre Mission & Vision",
+      "sectionDescription": "Guidés par notre engagement envers l'excellence en soins de santé",
+      "title": "Notre Mission",
+      "description": "Accompagner le développement du secteur médical en fournissant des équipements et consommables médicaux de haute performance, adaptés aux besoins de chaque client des secteurs public et privé.",
+      "points": [
+        "Importer, distribuer et installer des équipements médicaux de pointe",
+        "Assurer la maintenance et le service après-vente professionnel",
+        "Garantir des matériaux professionnels et de qualité via nos partenariats mondiaux",
+        "Accompagner nos clients tout au long du processus pour une satisfaction continue"
+      ]
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "description": "Maintenir notre position forte d'acteur majeur sur le marché local et poursuivre notre processus de croissance en nous étendant vers la région d'Afrique du Nord.",
+      "points": [
+        "Consolider notre leadership sur le marché marocain",
+        "Expansion stratégique vers l'Afrique du Nord",
+        "Développer des partenariats avec des marques mondiales renommées",
+        "Rester en veille des nouvelles évolutions technologiques médicales"
+      ]
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "description": "Les principes qui guident notre action quotidienne",
+      "items": {
+        "performance": {
+          "title": "Performance",
+          "description": "Nous fournissons des matériaux haute performance et maniables"
+        },
+        "partnership": {
+          "title": "Partenariat",
+          "description": "Partenariats stratégiques avec des marques mondiales renommées"
+        },
+        "adaptation": {
+          "title": "Adaptation",
+          "description": "Services logistiques adaptés aux exigences d'expédition"
+        },
+        "quality": {
+          "title": "Qualité",
+          "description": "Garantie de matériaux professionnels et de qualité"
+        },
+        "vigilance": {
+          "title": "Veille Technologique",
+          "description": "Vigilance constante sur les nouvelles évolutions"
+        },
+        "satisfaction": {
+          "title": "Satisfaction Client",
+          "description": "Accompagnement continu pour la satisfaction de nos clients"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Recherche constante de l'excellence dans tous nos services et produits"
+        },
+        "integrity": {
+          "title": "Intégrité",
+          "description": "Transparence et honnêteté dans toutes nos relations d'affaires"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Adoption des technologies médicales les plus avancées"
+        },
+        "commitment": {
+          "title": "Engagement",
+          "description": "Dévouement total envers la santé et le bien-être de nos clients"
+        }
+      }
+    },
+    "contact": {
+      "title": "Nos Coordonnées",
+      "description": "Contactez-nous pour tous vos besoins en équipements médicaux",
+      "cta": "Prendre Contact"
+    }
+  },
+  "partners": {
+    "hero": {
+      "badge": "Nos Partenaires",
+      "title": "Partenaires de Confiance et Fabricants Mondiaux",
+      "description": "KITMED collabore avec les fabricants les plus respectés de l'industrie médicale pour vous offrir des équipements de la plus haute qualité.",
+      "cta": {
+        "contact": "Nous Contacter",
+        "products": "Nos Produits"
+      }
+    },
+    "featured": {
+      "title": "Partenaires Privilégiés",
+      "description": "Nos collaborations stratégiques avec les leaders mondiaux de l'équipement médical",
+      "badge": "Partenaire Privilégié"
+    },
+    "all": {
+      "title": "Tous Nos Partenaires",
+      "description": "Un réseau mondial de fabricants et fournisseurs de renom pour répondre à tous vos besoins médicaux"
+    },
+    "benefits": {
+      "title": "Avantages de Nos Partenariats",
+      "description": "Pourquoi nos partenaires font la différence dans votre pratique médicale",
+      "quality": {
+        "title": "Qualité Garantie",
+        "description": "Équipements certifiés aux normes internationales les plus strictes"
+      },
+      "trust": {
+        "title": "Confiance Établie",
+        "description": "Des décennies d'expérience et de collaboration avec les meilleurs fabricants"
+      },
+      "innovation": {
+        "title": "Innovation Continue",
+        "description": "Accès aux dernières technologies et innovations médicales"
+      }
+    },
+    "cta": {
+      "title": "Intéressé par un Partenariat ?",
+      "description": "Rejoignez notre réseau de partenaires de confiance et développons ensemble l'excellence médicale.",
+      "contact": "Nous Contacter",
+      "call": "Nous Appeler"
+    },
+    "noPartners": {
+      "title": "Aucun Partenaire Trouvé",
+      "description": "Nous travaillons constamment à élargir notre réseau de partenaires."
+    },
+    "visitWebsite": "Visiter le Site Web"
+  },
+  "contact": {
+    "hero": {
+      "badge": "Contactez-nous",
+      "title": "Entrons en Contact",
+      "description": "Notre équipe d'experts est à votre disposition pour vous accompagner dans tous vos projets d'équipements médicaux."
+    },
+    "info": {
+      "title": "Nos Coordonnées",
+      "description": "Contactez-nous par le moyen qui vous convient le mieux. Nous sommes là pour répondre à toutes vos questions."
+    },
+    "hours": {
+      "title": "Horaires d'Ouverture",
+      "weekdays": "Lundi - Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche",
+      "closed": "Fermé"
+    },
+    "form": {
+      "title": "Envoyez-nous un Message",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "company": "Société",
+      "subject": "Objet",
+      "message": "Message",
+      "submit": "Envoyer le Message",
+      "placeholders": {
+        "firstName": "Votre prénom",
+        "lastName": "Votre nom",
+        "email": "votre.email@exemple.com",
+        "phone": "+212 6XX XXX XXX",
+        "company": "Nom de votre société",
+        "subject": "Objet de votre demande",
+        "message": "Décrivez votre demande en détail..."
+      }
+    },
+    "success": {
+      "title": "Message Envoyé avec Succès !",
+      "message": "Merci pour votre message. Notre équipe vous contactera dans les plus brefs délais.",
+      "sendAnother": "Envoyer un Autre Message"
+    }
+  },
+  "rfp": {
+    "title": "Demande de Proposition",
+    "cart": "Panier de devis",
+    "emptyCart": "Votre panier de devis est vide",
+    "addProducts": "Ajoutez des produits pour commencer à construire votre demande",
+    "browseProducts": "Parcourir les Produits",
+    "item": "article",
+    "items": "articles",
+    "quantity": "Quantité",
+    "notes": "Notes",
+    "removeItem": "Retirer l'article",
+    "continueRequest": "Continuer la Demande",
+    "companyInfo": "Informations de l'Entreprise",
+    "contactInfo": "Informations de Contact",
+    "requirements": "Exigences",
+    "urgency": "Urgence",
+    "budget": "Budget",
+    "deliveryRequirements": "Exigences de Livraison",
+    "message": "Message Supplémentaire",
+    "submit": "Soumettre la demande",
+    "submitting": "Soumission...",
+    "success": "Demande de devis soumise avec succès",
+    "requestNumber": "Numéro de Demande",
+    "hero": {
+      "badge": "Demande de Devis",
+      "title": "Demandez Votre Devis Personnalisé",
+      "description": "Obtenez rapidement un devis adapté à vos besoins spécifiques en équipements médicaux. Notre équipe d'experts vous accompagne pour trouver la solution parfaite.",
+      "cta": {
+        "browseProducts": "Parcourir les Produits",
+        "getHelp": "Obtenir de l'Aide"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça Marche",
+      "description": "Un processus simple en 3 étapes pour obtenir votre devis personnalisé",
+      "step1": {
+        "title": "1. Décrivez vos Besoins",
+        "description": "Remplissez notre formulaire avec les détails de vos besoins en équipements médicaux"
+      },
+      "step2": {
+        "title": "2. Analyse et Étude",
+        "description": "Nos experts analysent votre demande et préparent une proposition adaptée"
+      },
+      "step3": {
+        "title": "3. Recevez votre Devis",
+        "description": "Vous recevez un devis détaillé avec nos recommandations personnalisées"
+      }
+    },
+    "form": {
+      "title": "Formulaire de Demande",
+      "description": "Remplissez le formulaire ci-dessous pour recevoir votre devis personnalisé"
+    },
+    "whyKitmed": {
+      "title": "Pourquoi Choisir KITMED",
+      "description": "Des décennies d'expérience au service de l'excellence médicale",
+      "expertise": {
+        "title": "Expertise Technique",
+        "description": "Nos experts vous conseillent pour choisir les équipements adaptés à vos besoins"
+      },
+      "support": {
+        "title": "Accompagnement Complet",
+        "description": "De l'installation à la maintenance, nous vous accompagnons tout au long"
+      },
+      "experience": {
+        "title": "Expérience Reconnue",
+        "description": "Plus de 500 établissements nous font confiance pour leurs équipements"
+      }
     }
   },
   "errors": {
@@ -1529,5 +2086,157 @@
     "loadFailed": "Échec du chargement des paramètres",
     "saveFailed": "Échec de l'enregistrement des paramètres",
     "retry": "Réessayer"
+  },
+  "search": {
+    "noResults": "Aucun résultat trouvé",
+    "showingResults": "Affichage de {start} à {end} sur {total} résultats"
+  },
+  "partnerDetail": {
+    "loading": "Chargement du partenaire...",
+    "notFound": "Partenaire non trouvé",
+    "notFoundDescription": "Ce partenaire n'existe pas ou n'est pas disponible.",
+    "backToPartners": "Retour aux Partenaires",
+    "featuredBadge": "Partenaire Vedette",
+    "productsCount": "{count} produits",
+    "visitWebsite": "Visiter le Site Web",
+    "viewProducts": "Voir les Produits",
+    "viewProductsShort": "Voir Produits",
+    "productsTitle": "Produits {partnerName}",
+    "productsDescription": "Découvrez notre gamme complète de produits de qualité {partnerName}",
+    "viewDetails": "Voir les Détails",
+    "noProductsTitle": "Aucun Produit Disponible",
+    "noProductsDescription": "Ce partenaire ne propose pas encore de produits dans notre catalogue.",
+    "viewAllProducts": "Voir Tous les Produits",
+    "loadingError": "Erreur lors du chargement",
+    "productFallbackDescription": "Produit médical professionnel de {partnerName}."
+  },
+  "categories": {
+    "hierarchy": {
+      "loading": "Chargement...",
+      "notFound": "Catégorie non trouvée",
+      "notFoundDescription": "Cette catégorie n'existe pas ou n'est pas disponible.",
+      "backToProducts": "Retour aux Produits",
+      "subcategories": "Sous-catégories",
+      "subcategoriesDescription": "Explorez les catégories spécialisées dans {categoryName}",
+      "availableProducts": "Produits disponibles",
+      "availableProductsCount": "{count} produit dans cette catégorie",
+      "productSingular": "produit",
+      "productPlural": "produits",
+      "subcategorySingular": "sous-catégorie",
+      "subcategoryPlural": "sous-catégories",
+      "explore": "Explorer",
+      "exploreFallback": "Découvrez notre sélection pour {categoryName}",
+      "subcategoryFallback": "Équipements spécialisés pour {categoryName}",
+      "emptyCategory": "Catégorie en cours de développement",
+      "emptyCategoryDescription": "Cette catégorie ne contient pas encore de produits ou sous-catégories.",
+      "discipline": "Discipline",
+      "category": "Catégorie",
+      "featured": "En Vedette",
+      "reference": "Référence",
+      "viewProduct": "Voir le Produit",
+      "downloadBrochure": "Télécharger la Brochure",
+      "sortByPrice": "Trier par Prix",
+      "sortByPopularity": "Trier par Popularité",
+      "quote": "Devis",
+      "productFallback": "Produit médical de qualité professionnelle"
+    }
+  },
+  "disciplines": {
+    "title": "Produits par",
+    "titleSuffix": "Discipline",
+    "medicalSpecialties": "Spécialités Médicales KITMED",
+    "description": "Explorez nos équipements médicaux organisés par spécialité pour trouver les solutions parfaitement adaptées à votre domaine d'expertise.",
+    "loading": "Chargement des spécialités...",
+    "disciplinesSectionTitle": "Disciplines Médicales",
+    "disciplinesSectionDescription": "Choisissez votre domaine d'expertise parmi nos {count} discipline{plural} médicale{plural}",
+    "disciplineSingular": "discipline",
+    "disciplinePlural": "disciplines",
+    "medicalSingular": "médicale",
+    "medicalPlural": "médicales",
+    "exploreCategories": "Explorer les Catégories",
+    "noSpecialtiesFound": "Aucune Spécialité Trouvée",
+    "noSpecialtiesFoundDescription": "Aucune spécialité médicale n'est actuellement disponible.",
+    "backToProducts": "Retour aux Produits",
+    "fallbackDescription": "Solutions professionnelles pour {name}"
+  },
+  "disciplinesDetail": {
+    "loading": "Chargement de la discipline...",
+    "notFound": "Discipline non trouvée",
+    "notFoundDescription": "Cette discipline médicale n'existe pas ou n'est pas disponible.",
+    "backToDisciplines": "Retour aux Disciplines",
+    "medicalDisciplines": "Disciplines Médicales",
+    "equipment": "Équipements",
+    "equipmentCategoriesTitle": "Catégories d'Équipements",
+    "equipmentCategoriesDescription": "Choisissez la catégorie qui correspond à vos besoins spécifiques en {disciplineName}",
+    "fallbackDescription": "Découvrez notre gamme complète d'équipements pour {disciplineName}, sélectionnés pour leur qualité et leur performance exceptionnelles.",
+    "categoriesAvailable": "{count} catégorie{plural} disponible{plural}",
+    "categorySingular": "",
+    "categoryPlural": "s",
+    "availableSingular": "",
+    "availablePlural": "s",
+    "productsBadge": "{count} produits",
+    "equipmentBadge": "Équipement",
+    "categoryFallback": "Solutions professionnelles spécialisées pour {categoryName} en {disciplineName}.",
+    "productsAvailable": "Produits disponibles",
+    "exploreCategories": "Explorer les Catégories",
+    "viewProducts": "Voir les Produits",
+    "noCategoriesTitle": "Aucune Catégorie Disponible",
+    "noCategoriesDescription": "Cette discipline ne contient pas encore de catégories d'équipements.",
+    "viewAllProducts": "Voir Tous les Produits"
+  },
+  "products": {
+    "hero": {
+      "badge": "Catalogue Premium KITMED",
+      "title": "Équipements Médicaux",
+      "subtitle": "d'Excellence",
+      "description": "Découvrez notre collection exclusive d'équipements médicaux de pointe, sélectionnés pour leur innovation et leur fiabilité exceptionnelles."
+    },
+    "search": {
+      "placeholder": "Rechercher par nom, référence ou marque...",
+      "loading": "Chargement des produits...",
+      "allCategories": "Toutes",
+      "allManufacturers": "Tous les fabricants",
+      "onlyFeatured": "Produits en vedette uniquement",
+      "sortPrice": "Prix",
+      "sortPopularity": "Popularité"
+    },
+    "listing": {
+      "title": "Produits Premium",
+      "count": "{total} équipement{plural} disponible{plural}",
+      "loadMore": "Voir Plus de Produits",
+      "featured": "Vedette",
+      "viewDetails": "Voir Détails",
+      "quote": "Devis",
+      "reference": "Réf: {ref}",
+      "descriptionFallback": "Description disponible sur demande"
+    },
+    "noResults": {
+      "title": "Aucun Produit Trouvé",
+      "description": "Aucun équipement ne correspond à vos critères de recherche. Essayez de modifier vos filtres ou votre recherche.",
+      "resetFilters": "Réinitialiser les Filtres"
+    },
+    "categories": {
+      "title": "Explorer par",
+      "subtitle": "Spécialité",
+      "description": "Équipements spécialisés pour chaque domaine médical"
+    },
+    "manufacturers": {
+      "badge": "Fabricants Partenaires KITMED",
+      "title": "Produits par",
+      "titleSuffix": "Fabricant",
+      "description": "Explorez notre catalogue organisé par fabricant pour découvrir les innovations de chaque marque partenaire reconnue dans le domaine médical.",
+      "sectionTitle": "Nos Fabricants Partenaires",
+      "sectionDescription": "{count} fabricant{plural} partenaire{plural}",
+      "loading": "Chargement des fabricants...",
+      "noManufacturers": {
+        "title": "Aucun fabricant disponible",
+        "description": "Aucun fabricant n'est actuellement disponible."
+      },
+      "viewProducts": "Voir les Produits",
+      "productCount": "{count} produit{plural}",
+      "viewDetails": "Voir Détails",
+      "websiteLink": "Site Web Officiel",
+      "backToProducts": "Retour aux Produits"
+    }
   }
 }

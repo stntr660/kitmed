@@ -16,21 +16,21 @@ export function NavigationLoader({ children, href, className, onClick }: Navigat
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  
+
   // Check if this is the current active page
   const isActive = pathname === href || (href !== '/' && pathname.startsWith(href));
 
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     // Don't navigate if already on this page
     if (isActive) return;
-    
+
     // Call external onClick if provided
     if (onClick) onClick();
-    
+
     setIsLoading(true);
-    
+
     try {
       // Use router.push for navigation
       await router.push(href);
@@ -68,7 +68,7 @@ export function NavigationLoader({ children, href, className, onClick }: Navigat
           </div>
         </div>
       )}
-      
+
       {/* Content with loading state */}
       <div className={cn(
         'transition-opacity duration-200',
@@ -120,7 +120,7 @@ export function GlobalPageLoader() {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const link = target.closest('a[href^="/"]');
-      
+
       if (link && !link.getAttribute('href')?.includes('#')) {
         const href = link.getAttribute('href');
         if (href && href !== pathname && !href.startsWith('http')) {

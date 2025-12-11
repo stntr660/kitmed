@@ -13,7 +13,7 @@ interface BreadcrumbItem {
 
 const routeLabels: Record<string, string> = {
   '/en/admin': 'Dashboard',
-  '/fr/admin': 'Dashboard', 
+  '/fr/admin': 'Dashboard',
   '/en/admin/products': 'Products',
   '/fr/admin/products': 'Produits',
   '/en/admin/products/new': 'New Product',
@@ -24,7 +24,7 @@ const routeLabels: Record<string, string> = {
   '/fr/admin/partners': 'Partenaires',
   '/en/admin/users': 'Users',
   '/fr/admin/users': 'Utilisateurs',
-  '/en/admin/analytics': 'Analytics', 
+  '/en/admin/analytics': 'Analytics',
   '/fr/admin/analytics': 'Analyses',
   '/en/admin/settings': 'Settings',
   '/fr/admin/settings': 'Paramètres',
@@ -33,7 +33,7 @@ const routeLabels: Record<string, string> = {
 function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
   const segments = pathname.split('/').filter(Boolean);
   const breadcrumbs: BreadcrumbItem[] = [];
-  
+
   // Extract locale from path
   const locale = segments[0]; // en or fr
   const adminPath = `/${locale}/admin`;
@@ -51,13 +51,13 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
   let currentPath = '';
   segments.forEach((segment, index) => {
     currentPath += `/${segment}`;
-    
+
     // Skip the locale and 'admin' segments as they're already handled
     if (segment === locale || segment === 'admin') return;
-    
+
     const isLast = index === segments.length - 1;
     const label = routeLabels[currentPath] || segment.charAt(0).toUpperCase() + segment.slice(1);
-    
+
     breadcrumbs.push({
       name: label,
       href: currentPath,
@@ -73,7 +73,7 @@ export function AdminBreadcrumb() {
   const segments = pathname.split('/').filter(Boolean);
   const locale = segments[0];
   const adminPath = `/${locale}/admin`;
-  
+
   // Don't show breadcrumbs on dashboard
   if (pathname === adminPath) {
     return null;
@@ -93,14 +93,14 @@ export function AdminBreadcrumb() {
             <span className="hidden sm:inline text-sm font-medium">Dashboard</span>
           </Link>
         </li>
-        
+
         {breadcrumbs.map((item) => (
           <li key={item.name} className="flex items-center">
             <ChevronRightIcon
               className="h-4 w-4 flex-shrink-0 text-medical-text-muted mx-2"
               aria-hidden="true"
             />
-            
+
             {item.current ? (
               <span className="px-3 py-2 text-sm font-semibold text-primary-600 bg-primary-50 rounded-lg">
                 {item.name}

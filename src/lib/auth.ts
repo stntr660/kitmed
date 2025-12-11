@@ -3,7 +3,11 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { AdminUser, AdminPermission, AdminResource, AdminAction } from '@/types/admin';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-change-in-production';
+// Use centralized JWT_SECRET validation
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required for production');
+}
+const JWT_SECRET = process.env.JWT_SECRET;
 const SALT_ROUNDS = 12;
 
 // Password utilities
@@ -45,7 +49,7 @@ export const verifyToken = (token: string): any => {
 export const authenticate = async (request: NextRequest): Promise<AdminUser | null> => {
   try {
     const authHeader = request.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '') || 
+    const token = authHeader?.replace('Bearer ', '') ||
                   request.cookies.get('admin-token')?.value;
 
     if (!token) {
@@ -53,7 +57,7 @@ export const authenticate = async (request: NextRequest): Promise<AdminUser | nu
     }
 
     const decoded = verifyToken(token);
-    
+
     // In a real implementation, you'd fetch the user from the database
     // For now, we'll return the decoded token data
     return {
@@ -80,8 +84,8 @@ export const hasPermission = (
   resource: AdminResource,
   action: AdminAction
 ): boolean => {
-  // Admin role has all permissions
-  if (user.role === 'admin') {
+  // Admin role has all permissions (case-insensitive check)
+  if (user.role?.toLowerCase() === 'admin') {
     return true;
   }
 
@@ -117,8 +121,8 @@ export const withAuth = (
       );
     }
 
-    // Check role if specified
-    if (options.roles && !options.roles.includes(user.role)) {
+    // Check role if specified (case-insensitive)
+    if (options.roles && !options.roles.map(r => r.toLowerCase()).includes(user.role?.toLowerCase())) {
       return Response.json(
         { success: false, error: { code: 'FORBIDDEN', message: 'Insufficient permissions' } },
         { status: 403 }
@@ -156,7 +160,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
         { resource: 'analytics', actions: ['read', 'export'] },
         { resource: 'settings', actions: ['read', 'update'] },
       ];
-    
+
     case 'editor':
       return [
         { resource: 'products', actions: ['create', 'read', 'update', 'export'] },
@@ -166,17 +170,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
         { resource: 'content', actions: ['create', 'read', 'update'] },
         { resource: 'analytics', actions: ['read'] },
       ];
-    
-    case 'viewer':
-      return [
-        { resource: 'products', actions: ['read', 'export'] },
-        { resource: 'categories', actions: ['read'] },
-        { resource: 'partners', actions: ['read'] },
-        { resource: 'rfp_requests', actions: ['read', 'export'] },
-        { resource: 'content', actions: ['read'] },
-        { resource: 'analytics', actions: ['read'] },
-      ];
-    
+
     default:
       return [];
   }
@@ -185,7 +179,7 @@ export const getDefaultPermissions = (role: string): AdminPermission[] => {
 // Session management
 export const createSession = async (user: AdminUser): Promise<string> => {
   const token = generateToken(user);
-  
+
   // In a real implementation, you'd store session in database
   // For now, we'll just return the token
   return token;
@@ -217,7 +211,7 @@ export const logActivity = async (
   };
 
   // In a real implementation, you'd save this to the database
-  console.log('Activity Log:', activityLog);
+  // TODO: Implement proper audit logging to database
 };
 
 // Password strength validation
