@@ -6,7 +6,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   
   // Default to 'fr' if locale is undefined or not in supported list
   const supportedLocales = ['en', 'fr'];
-  const validLocale = locale && supportedLocales.includes(locale) ? locale : 'fr';
+  const validLocale = locale && supportedLocales.includes(locale) ? locale : 'en';
   
   return {
     messages: (await import(`./src/messages/${validLocale}.json`)).default

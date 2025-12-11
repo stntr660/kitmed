@@ -6,7 +6,7 @@ import { maintenanceMiddleware } from './src/middleware/maintenance';
 
 // Supported locales
 const locales = ['en', 'fr'];
-const defaultLocale = 'fr';
+const defaultLocale = 'en';
 
 // Create internationalization middleware
 const intlMiddleware = createMiddleware({

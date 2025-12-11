@@ -23,7 +23,7 @@ function extractTokenFromRequest(request: NextRequest): string | null {
 // Create the intl middleware
 const intlMiddleware = createIntlMiddleware({
   locales: ['en', 'fr'],
-  defaultLocale: 'fr'
+  defaultLocale: 'en'
 });
 
 export async function middleware(request: NextRequest) {
