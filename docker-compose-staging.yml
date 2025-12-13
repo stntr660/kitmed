@@ -10,7 +10,7 @@ services:
       - "3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://kitmed_staging_user:KitMed_Staging_2024_SecurePass@10.0.1.3:5432/kitmed_staging
+      - DATABASE_URL=postgresql://kitmed_staging_user:KitMed_Staging_2024_SecurePass@kitmed-kitmeddbstaging-fkvyks:5432/kitmed_staging
       - NEXTAUTH_URL=https://kitmed-staging.zonemation.cloud
       - NEXTAUTH_SECRET=KitMed_Staging_NextAuth_Secret_2024_SecureKey
       - JWT_SECRET=KitMed_Staging_JWT_Secret_2024_SecureKey
