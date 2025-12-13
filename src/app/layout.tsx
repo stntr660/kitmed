@@ -1,5 +1,6 @@
 import { Toaster } from 'sonner';
 import { Poppins } from 'next/font/google';
+import type { Viewport } from 'next';
 import './globals.css';
 
 const poppins = Poppins({
@@ -7,6 +8,13 @@ const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-poppins',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
 
 export const metadata = {
   title: 'KITMED - Medical Equipment Platform',
