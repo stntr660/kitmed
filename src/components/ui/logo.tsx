@@ -12,10 +12,10 @@ interface LogoProps {
 }
 
 const logoSizes = {
-  sm: { width: 80, height: 32 },
-  md: { width: 110, height: 44 },
-  lg: { width: 150, height: 60 },
-  xl: { width: 190, height: 76 },
+  sm: { width: 100, height: 40 },
+  md: { width: 220, height: 88 },
+  lg: { width: 300, height: 120 },
+  xl: { width: 380, height: 152 },
 };
 
 const logoFiles = {
@@ -34,15 +34,15 @@ export function Logo({
   const src = logoFiles[variant];
 
   return (
-    <div className={cn('flex items-center', className)}>
+    <div className={cn('flex items-center py-2', className)}>
       <Image
         src={src}
         alt="KITMED - Medical Equipment Platform"
         width={dimensions.width}
         height={dimensions.height}
         priority={priority}
-        className="h-auto w-auto object-contain max-h-11"
-        style={{ maxHeight: '44px' }}
+        className="h-auto w-auto object-contain"
+        style={{ maxHeight: '48px' }}
       />
     </div>
   );
