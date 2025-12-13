@@ -236,10 +236,10 @@ function SidebarContent({ user }: { user: AdminUser }) {
       <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-400/10 rounded-full transform -translate-x-1/2 -translate-y-1/2" />
 
       {/* Logo Section */}
-      <div className="relative z-10 flex h-32 items-center justify-center px-6 py-4 border-b border-white/15 animate-in slide-in-from-top duration-500">
+      <div className="relative z-10 flex h-24 items-center justify-center px-6 py-3 border-b border-white/15 animate-in slide-in-from-top duration-500">
         <Link href={`/${locale}/admin`} className="group flex flex-col items-center justify-center transition-all duration-300 w-full h-full">
-          <div className="w-full flex justify-center hover:scale-105 transition-transform duration-300 mb-3">
-            <Logo variant="white" size="lg" />
+          <div className="w-full flex justify-center hover:scale-105 transition-transform duration-300 mb-2 max-h-12">
+            <Logo variant="white" size="md" />
           </div>
           <div className="text-center">
             <p className="text-sm text-white/90 font-medium">
