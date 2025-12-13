@@ -42,7 +42,7 @@ export function Logo({
         height={dimensions.height}
         priority={priority}
         className="h-auto w-auto object-contain"
-        style={{ maxHeight: '56px' }}
+        style={{ maxHeight: '72px' }}
       />
     </div>
   );
