@@ -15,6 +15,8 @@ services:
       - NEXTAUTH_SECRET=KitMed_Staging_NextAuth_Secret_2024_SecureKey
       - JWT_SECRET=KitMed_Staging_JWT_Secret_2024_SecureKey
       - MAINTENANCE_MODE=false
+    volumes:
+      - /root/docker-volumes/kitmed-staging/public/uploads:/app/public/uploads
     restart: unless-stopped
     networks:
       - dokploy-network
