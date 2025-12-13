@@ -120,6 +120,7 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
             width={logoSize}
             height={logoSize}
             className={`object-contain ${borderRadius}`}
+            unoptimized
           />
         ) : !imageError ? (
           <Image
@@ -128,6 +129,7 @@ function CertificationBadge({ certification, showLabels }: { certification: any;
             width={logoSize}
             height={logoSize}
             className={`object-contain ${borderRadius}`}
+            unoptimized
             onError={() => setImageError(true)}
           />
         ) : (
@@ -167,6 +169,7 @@ function InlineCertificationBadge({ certification, showLabels }: { certification
             width={logoSize}
             height={logoSize}
             className={`object-contain ${borderRadius}`}
+            unoptimized
           />
         ) : !imageError ? (
           <Image
@@ -175,6 +178,7 @@ function InlineCertificationBadge({ certification, showLabels }: { certification
             width={logoSize}
             height={logoSize}
             className={`object-contain ${borderRadius}`}
+            unoptimized
             onError={() => setImageError(true)}
           />
         ) : (

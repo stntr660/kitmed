@@ -236,6 +236,7 @@ function CertificationLogo({
               width={certification.id === 'onssa' ? currentSize.logo * (size === 'sm' ? 2.2 : 2.8) : currentSize.logo}
               height={certification.id === 'onssa' ? currentSize.logo * (size === 'sm' ? 2.2 : 2.8) : currentSize.logo}
               className="object-contain filter brightness-0 invert"
+              unoptimized
               style={{
                 maxHeight: certification.id === 'onssa' ? `${currentSize.logo * (size === 'sm' ? 1.8 : 2.2)}px` : `${currentSize.logo}px`,
                 maxWidth: certification.id === 'onssa' ? `${currentSize.logo * (size === 'sm' ? 1.8 : 2.2)}px` : `${currentSize.logo}px`
