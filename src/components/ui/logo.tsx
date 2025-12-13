@@ -12,10 +12,10 @@ interface LogoProps {
 }
 
 const logoSizes = {
-  sm: { width: 100, height: 40 },
-  md: { width: 220, height: 88 },
-  lg: { width: 300, height: 120 },
-  xl: { width: 380, height: 152 },
+  sm: { width: 160, height: 64 },
+  md: { width: 440, height: 176 },
+  lg: { width: 600, height: 240 },
+  xl: { width: 760, height: 304 },
 };
 
 const logoFiles = {
