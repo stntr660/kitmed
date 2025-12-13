@@ -90,13 +90,13 @@ RUN chown -R nextjs:nodejs /app/uploads /app/data
 # Create volume for persistent data
 VOLUME ["/app/uploads", "/app/data"]
 
-# Environment variables
+# Environment variables (runtime values override these defaults)
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Database will be in the persistent volume
-ENV DATABASE_URL="file:/app/data/production.db"
+# DATABASE_URL should be set at runtime via docker -e or compose
+# Do NOT hardcode here - allows Dokploy env vars to work
 
 # Switch to non-root user
 USER nextjs
