@@ -113,27 +113,18 @@ export async function POST(request: NextRequest) {
           lastLoginAt: new Date().toISOString(),
         };
 
-        // For development, return token in response for localStorage
-        // For production, use HTTP-only cookies
-        if (process.env.NODE_ENV === 'development') {
-          return NextResponse.json({
-            success: true,
-            data: {
-              user: userResponse,
-              token,
-              message: 'Login successful',
-            },
-          });
-        } else {
-          const response = NextResponse.json({
-            success: true,
-            data: {
-              user: userResponse,
-              message: 'Login successful',
-            },
-          });
+        // Return token in response for client-side storage
+        const response = NextResponse.json({
+          success: true,
+          data: {
+            user: userResponse,
+            token,
+            message: 'Login successful',
+          },
+        });
 
-          // Set secure HTTP-only cookie for production
+        // Also set secure HTTP-only cookie for production
+        if (process.env.NODE_ENV !== 'development') {
           response.cookies.set('admin-token', token, {
             httpOnly: true,
             secure: true,
@@ -141,9 +132,9 @@ export async function POST(request: NextRequest) {
             maxAge: 24 * 60 * 60, // 24 hours
             path: '/',
           });
-
-          return response;
         }
+
+        return response;
       }
     }
 
@@ -174,27 +165,18 @@ export async function POST(request: NextRequest) {
           lastLoginAt: new Date().toISOString(),
         };
 
-        // For development, return token in response for localStorage
-        // For production, use HTTP-only cookies
-        if (process.env.NODE_ENV === 'development') {
-          return NextResponse.json({
-            success: true,
-            data: {
-              user: userResponse,
-              token,
-              message: 'Login successful',
-            },
-          });
-        } else {
-          const response = NextResponse.json({
-            success: true,
-            data: {
-              user: userResponse,
-              message: 'Login successful',
-            },
-          });
+        // Return token in response for client-side storage
+        const response = NextResponse.json({
+          success: true,
+          data: {
+            user: userResponse,
+            token,
+            message: 'Login successful',
+          },
+        });
 
-          // Set secure HTTP-only cookie for production
+        // Also set secure HTTP-only cookie for production
+        if (process.env.NODE_ENV !== 'development') {
           response.cookies.set('admin-token', token, {
             httpOnly: true,
             secure: true,
@@ -202,9 +184,9 @@ export async function POST(request: NextRequest) {
             maxAge: 24 * 60 * 60, // 24 hours
             path: '/',
           });
-
-          return response;
         }
+
+        return response;
       }
     }
 
