@@ -80,8 +80,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 # Copy package.json for Prisma CLI
 COPY --from=builder /app/package.json ./
 
-# Install only production dependencies and Prisma
-RUN npm install --only=production prisma @prisma/client
+# Install only production dependencies, Prisma, and sharp for image processing
+RUN npm install --only=production prisma @prisma/client sharp
 
 # Create directories for uploads and database
 RUN mkdir -p /app/uploads /app/data
