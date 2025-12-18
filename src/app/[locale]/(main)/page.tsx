@@ -428,20 +428,6 @@ export default function HomePage() {
                           </Badge>
                         </div>
 
-                        {/* PDF Brochure Download */}
-                        {product.pdfBrochureUrl && (
-                          <div className="absolute top-4 right-4">
-                            <a
-                              href={product.pdfBrochureUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center justify-center w-8 h-8 bg-white/90 hover:bg-white rounded-full shadow-md hover:shadow-lg transition-all"
-                              title={t('featuredProducts.downloadBrochure')}
-                            >
-                              <Download className="h-4 w-4 text-primary-600" />
-                            </a>
-                          </div>
-                        )}
                       </div>
 
                       <CardContent className="p-4">
@@ -459,15 +445,34 @@ export default function HomePage() {
                             {product.category.name}
                           </p>
                         )}
-                        <Button
-                          size="sm"
-                          className="w-full bg-primary text-white hover:bg-primary-600"
-                          asChild
-                        >
-                          <Link href={`/${locale}/products/${product.slug}`}>
-                            {t('featuredProducts.viewDetails')}
-                          </Link>
-                        </Button>
+                        <div className="flex gap-2">
+                          {product.pdfBrochureUrl && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-shrink-0 border-primary-200 hover:bg-primary-50"
+                              asChild
+                            >
+                              <a
+                                href={product.pdfBrochureUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={t('featuredProducts.downloadBrochure')}
+                              >
+                                <Download className="h-4 w-4 text-primary-600" />
+                              </a>
+                            </Button>
+                          )}
+                          <Button
+                            size="sm"
+                            className="flex-1 bg-primary text-white hover:bg-primary-600"
+                            asChild
+                          >
+                            <Link href={`/${locale}/products/${product.slug}`}>
+                              {t('featuredProducts.viewDetails')}
+                            </Link>
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   );
