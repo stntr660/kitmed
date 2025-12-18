@@ -107,18 +107,23 @@ async function getProducts(request: NextRequest) {
       prisma.products.count({ where }),
     ]);
 
-    // Transform the data to match expected format
+    // Transform the data to match expected format (camelCase for frontend)
     const transformedItems = items.map(product => ({
       id: product.id,
-      reference_fournisseur: product.reference_fournisseur,
+      referenceFournisseur: product.reference_fournisseur,
+      reference_fournisseur: product.reference_fournisseur, // Keep snake_case for backwards compatibility
       constructeur: product.constructeur,
       slug: product.slug,
-      category_id: product.category_id,
+      categoryId: product.category_id,
+      category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
-      pdf_brochure_url: product.pdf_brochure_url,
-      created_at: product.created_at,
-      updated_at: product.updated_at,
+      pdfBrochureUrl: product.pdf_brochure_url,
+      pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
+      createdAt: product.created_at,
+      created_at: product.created_at, // Keep snake_case for backwards compatibility
+      updatedAt: product.updated_at,
+      updated_at: product.updated_at, // Keep snake_case for backwards compatibility
       // Create a name field from French translation for compatibility
       name: product.product_translations.find(t => t.language_code === 'fr')?.nom ||
             product.product_translations[0]?.nom ||
@@ -138,6 +143,10 @@ async function getProducts(request: NextRequest) {
       description: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
+      },
+      ficheTechnique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
       },
       fiche_technique: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
@@ -321,17 +330,22 @@ async function createProduct(request: NextRequest) {
       },
     });
 
-    // Transform the response to match expected format
+    // Transform the response to match expected format (camelCase for frontend)
     const transformedProduct = {
       id: product.id,
-      reference_fournisseur: product.reference_fournisseur,
+      referenceFournisseur: product.reference_fournisseur,
+      reference_fournisseur: product.reference_fournisseur, // Keep snake_case for backwards compatibility
       constructeur: product.constructeur,
-      category_id: product.category_id,
+      categoryId: product.category_id,
+      category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
-      pdf_brochure_url: product.pdf_brochure_url,
-      created_at: product.created_at,
-      updated_at: product.updated_at,
+      pdfBrochureUrl: product.pdf_brochure_url,
+      pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
+      createdAt: product.created_at,
+      created_at: product.created_at, // Keep snake_case for backwards compatibility
+      updatedAt: product.updated_at,
+      updated_at: product.updated_at, // Keep snake_case for backwards compatibility
       nom: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.nom || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.nom || '',
@@ -339,6 +353,10 @@ async function createProduct(request: NextRequest) {
       description: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
+      },
+      ficheTechnique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
       },
       fiche_technique: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
