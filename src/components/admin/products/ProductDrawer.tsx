@@ -110,7 +110,7 @@ export function ProductDrawer({
         const data = await response.json();
         const manufacturerList = (data.data?.items || []).map((partner: any) => ({
           id: partner.id,
-          name: partner.name || 'Unnamed Manufacturer'
+          name: partner.name || partner.nom?.fr || 'Unnamed Manufacturer'
         }));
         setManufacturers(manufacturerList);
       } else {
@@ -415,14 +415,20 @@ export function ProductDrawer({
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="__add_new__" className="font-semibold text-blue-600">
-                          ➕ {t('admin.products.addNewManufacturer')}
+                          + {t('admin.products.addNewManufacturer')}
                         </SelectItem>
+                        {/* Show current value if not in list */}
+                        {formData.constructeur && !manufacturers.some(m => m.name === formData.constructeur) && (
+                          <SelectItem key="current-value" value={formData.constructeur} className="font-medium text-gray-900">
+                            {formData.constructeur}
+                          </SelectItem>
+                        )}
                         {manufacturers.map((manufacturer) => (
                           <SelectItem key={manufacturer.id} value={manufacturer.name}>
                             {manufacturer.name}
                           </SelectItem>
                         ))}
-                        {manufacturers.length === 0 && !manufacturersLoading && (
+                        {manufacturers.length === 0 && !manufacturersLoading && !formData.constructeur && (
                           <SelectItem value="" disabled>
                             {t('admin.products.noManufacturersFound')}
                           </SelectItem>
