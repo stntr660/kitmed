@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown } from 'lucide-react';
+import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown, Download } from 'lucide-react';
 import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
@@ -424,14 +424,29 @@ export default function HomePage() {
                         <div className="absolute top-4 left-4">
                           <Badge className="bg-accent-500 text-white border-0 text-xs">
                             <Star className="h-3 w-3 mr-1" />
-                            {t('featured')}
+                            {t('featuredProducts.badge')}
                           </Badge>
                         </div>
+
+                        {/* PDF Brochure Download */}
+                        {product.pdfBrochureUrl && (
+                          <div className="absolute top-4 right-4">
+                            <a
+                              href={product.pdfBrochureUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center w-8 h-8 bg-white/90 hover:bg-white rounded-full shadow-md hover:shadow-lg transition-all"
+                              title={t('featuredProducts.downloadBrochure')}
+                            >
+                              <Download className="h-4 w-4 text-primary-600" />
+                            </a>
+                          </div>
+                        )}
                       </div>
 
                       <CardContent className="p-4">
                         <div className="mb-2">
-                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer.name}</p>
+                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer?.name || product.constructeur}</p>
                         </div>
                         <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
                           {product.name}
@@ -450,7 +465,7 @@ export default function HomePage() {
                           asChild
                         >
                           <Link href={`/${locale}/products/${product.slug}`}>
-                            {t('viewDetails')}
+                            {t('featuredProducts.viewDetails')}
                           </Link>
                         </Button>
                       </CardContent>
