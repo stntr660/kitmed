@@ -232,10 +232,14 @@ async function getProducts(request: NextRequest) {
 }
 
 // POST /api/admin/products - Create new product
+// Accept both camelCase (frontend) and snake_case (legacy) field names
 const createProductSchema = z.object({
-  reference_fournisseur: z.string().min(1, 'Référence fournisseur est requise'),
+  // Accept both naming conventions
+  referenceFournisseur: z.string().min(1, 'Référence fournisseur est requise').optional(),
+  reference_fournisseur: z.string().min(1, 'Référence fournisseur est requise').optional(),
   constructeur: z.string().min(1, 'Constructeur est requis'),
-  category_id: z.string().min(1, 'Catégorie est requise'),
+  categoryId: z.string().min(1, 'Catégorie est requise').optional(),
+  category_id: z.string().min(1, 'Catégorie est requise').optional(),
   nom: z.object({
     fr: z.string().min(1, 'Nom en français est requis'),
     en: z.string().optional(), // English is optional for French-first approach
@@ -244,11 +248,16 @@ const createProductSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
+  ficheTechnique: z.object({
+    fr: z.string().optional(),
+    en: z.string().optional(),
+  }).optional(),
   fiche_technique: z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  pdf_brochure_url: z.string().url().optional().or(z.literal('')),
+  pdfBrochureUrl: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
+  pdf_brochure_url: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
   seo: z.object({
@@ -258,6 +267,10 @@ const createProductSchema = z.object({
     canonical: z.string().url().optional(),
     noIndex: z.boolean().optional(),
   }).optional(),
+}).refine(data => data.referenceFournisseur || data.reference_fournisseur, {
+  message: 'Référence fournisseur est requise',
+}).refine(data => data.categoryId || data.category_id, {
+  message: 'Catégorie est requise',
 });
 
 async function createProduct(request: NextRequest) {
@@ -283,6 +296,12 @@ async function createProduct(request: NextRequest) {
 
     const productData = validation.data;
 
+    // Normalize field names (accept both camelCase and snake_case)
+    const referenceFournisseur = productData.referenceFournisseur || productData.reference_fournisseur;
+    const categoryId = productData.categoryId || productData.category_id;
+    const ficheTechnique = productData.ficheTechnique || productData.fiche_technique;
+    const pdfBrochureUrl = productData.pdfBrochureUrl || productData.pdf_brochure_url;
+
     // Generate unique slug from French name (primary language)
     const baseSlug = productData.nom.fr
       .toLowerCase()
@@ -296,26 +315,26 @@ async function createProduct(request: NextRequest) {
     // Create product in database
     const product = await prisma.products.create({
       data: {
-        reference_fournisseur: productData.reference_fournisseur,
+        reference_fournisseur: referenceFournisseur,
         constructeur: productData.constructeur,
-        category_id: productData.category_id,
+        category_id: categoryId,
         slug,
         status: productData.status,
         is_featured: productData.featured,
-        pdf_brochure_url: productData.pdf_brochure_url || null,
+        pdf_brochure_url: pdfBrochureUrl || null,
         product_translations: {
           create: [
             {
               language_code: 'fr',
               nom: productData.nom.fr,
               description: productData.description?.fr || null,
-              fiche_technique: productData.fiche_technique?.fr || null,
+              fiche_technique: ficheTechnique?.fr || null,
             },
             ...(productData.nom.en ? [{
               language_code: 'en',
               nom: productData.nom.en,
               description: productData.description?.en || null,
-              fiche_technique: productData.fiche_technique?.en || null,
+              fiche_technique: ficheTechnique?.en || null,
             }] : []),
           ],
         },
