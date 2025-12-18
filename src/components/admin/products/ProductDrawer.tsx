@@ -125,16 +125,18 @@ export function ProductDrawer({
 
   useEffect(() => {
     if (product && open) {
+      // Handle both camelCase and snake_case field names from API
+      const productAny = product as any;
       setFormData({
-        referenceFournisseur: product.referenceFournisseur || '',
+        referenceFournisseur: product.referenceFournisseur || productAny.reference_fournisseur || '',
         constructeur: product.constructeur || '',
-        categoryId: product.categoryId || '',
+        categoryId: product.categoryId || productAny.category_id || '',
         nom: product.nom || { en: '', fr: '' },
         description: product.description || { en: '', fr: '' },
-        ficheTechnique: product.ficheTechnique || { en: '', fr: '' },
-        pdfBrochureUrl: product.pdfBrochureUrl || '',
+        ficheTechnique: product.ficheTechnique || productAny.fiche_technique || { en: '', fr: '' },
+        pdfBrochureUrl: product.pdfBrochureUrl || productAny.pdf_brochure_url || '',
         status: product.status || 'active',
-        featured: product.featured || false,
+        featured: product.featured ?? productAny.is_featured ?? false,
       });
     } else if (mode === 'add') {
       setFormData({
