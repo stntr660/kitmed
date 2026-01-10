@@ -64,6 +64,7 @@ export function Footer({ locale, className }: FooterProps) {
   const t = useTranslations('footer');
   const tCommon = useTranslations('common');
   const footerLinks = getFooterLinks(locale);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={cn('bg-gray-50 border-t', className)}>
@@ -251,7 +252,7 @@ export function Footer({ locale, className }: FooterProps) {
         <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
           <div className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-4">
             <p className="text-xs text-medical-text-muted">
-              © 2024 KITMED. {t('rights')}
+              © {currentYear} KITMED. {t('rights')}
             </p>
 
             <div className="flex items-center space-x-4">

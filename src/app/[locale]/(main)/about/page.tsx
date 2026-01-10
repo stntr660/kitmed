@@ -26,6 +26,10 @@ export default function AboutPage() {
   const t = useTranslations('about');
   const locale = useHydrationSafeLocale('fr');
 
+  // Calculate years of experience from founding year (1997)
+  const foundingYear = 1997;
+  const yearsOfExpertise = new Date().getFullYear() - foundingYear;
+
   return (
     <div className="flex flex-col">
       {/* Certifications Banner */}
@@ -42,7 +46,7 @@ export default function AboutPage() {
               {t('hero.title')}
             </h1>
             <p className="text-2xl lg:text-3xl font-semibold text-primary-600 mb-8">
-              {t('hero.subtitle')}
+              {t('hero.subtitle', { years: yearsOfExpertise })}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>

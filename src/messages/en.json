@@ -1819,7 +1819,7 @@
     "hero": {
       "badge": "About Us",
       "title": "Who are we?",
-      "subtitle": "28 YEARS OF EXPERTISE SERVING THE HEALTHCARE SECTOR",
+      "subtitle": "{years} YEARS OF EXPERTISE SERVING THE HEALTHCARE SECTOR",
       "cta": {
         "contact": "Contact Us",
         "products": "Our Products"

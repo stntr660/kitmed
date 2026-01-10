@@ -1826,7 +1826,7 @@
     "hero": {
       "badge": "À propos",
       "title": "Qui sommes nous?",
-      "subtitle": "28 ANS D'EXPERTISE AU SERVICE DU SECTEUR MÉDICAL",
+      "subtitle": "{years} ANS D'EXPERTISE AU SERVICE DU SECTEUR MÉDICAL",
       "cta": {
         "contact": "Nous Contacter",
         "products": "Nos Produits"
