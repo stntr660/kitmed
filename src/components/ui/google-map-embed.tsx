@@ -12,7 +12,8 @@ interface GoogleMapEmbedProps {
 }
 
 const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/yitDE6uwadQe6jWz9';
-const EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.9!2d-7.6202967!3d33.5757043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7d2a5ceb4c25b%3A0xc8bd242104d6f954!2sKit%20Med!5e0!3m2!1sen!2sma!4v1704067200000!5m2!1sen!2sma';
+// Using the simple embed format with coordinates
+const EMBED_URL = 'https://www.google.com/maps?q=33.5757043,-7.6175684&z=17&output=embed';
 
 const variantStyles = {
   compact: {
