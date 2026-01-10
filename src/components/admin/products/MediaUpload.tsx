@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   PhotoIcon,
@@ -27,6 +27,11 @@ interface MediaFile {
   createdAt: string;
 }
 
+interface TempFileWithPreview {
+  file: File;
+  previewUrl: string;
+}
+
 interface MediaUploadProps {
   productId: string | null;
   disabled?: boolean;
@@ -39,7 +44,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [tempFiles, setTempFiles] = useState<File[]>([]);
+  const [tempFilesWithPreview, setTempFilesWithPreview] = useState<TempFileWithPreview[]>([]);
 
   // Load existing media when productId changes
   const loadMedia = useCallback(async () => {
@@ -70,14 +75,25 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     loadMedia();
   }, [loadMedia]);
 
+  // Cleanup preview URLs when component unmounts or temp files change
+  useEffect(() => {
+    return () => {
+      tempFilesWithPreview.forEach(item => URL.revokeObjectURL(item.previewUrl));
+    };
+  }, []);
+
   const handleFilesDrop = async (files: File[]) => {
     if (disabled || files.length === 0) return;
 
-    // If no productId, store files temporarily
+    // If no productId, store files temporarily with preview URLs
     if (!productId) {
-      const newTempFiles = [...tempFiles, ...files];
-      setTempFiles(newTempFiles);
-      onTempFilesChange?.(newTempFiles);
+      const newTempFilesWithPreview = files.map(file => ({
+        file,
+        previewUrl: URL.createObjectURL(file),
+      }));
+      const updatedTempFiles = [...tempFilesWithPreview, ...newTempFilesWithPreview];
+      setTempFilesWithPreview(updatedTempFiles);
+      onTempFilesChange?.(updatedTempFiles.map(item => item.file));
       return;
     }
 
@@ -117,21 +133,23 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   // Handle removal of temp files
   const handleRemoveTempFile = (index: number) => {
     if (disabled) return;
-    const newTempFiles = tempFiles.filter((_, i) => i !== index);
-    setTempFiles(newTempFiles);
-    onTempFilesChange?.(newTempFiles);
+    // Revoke the URL being removed
+    URL.revokeObjectURL(tempFilesWithPreview[index].previewUrl);
+    const newTempFiles = tempFilesWithPreview.filter((_, i) => i !== index);
+    setTempFilesWithPreview(newTempFiles);
+    onTempFilesChange?.(newTempFiles.map(item => item.file));
   };
 
   // Upload temp files after product is created
   const uploadTempFiles = async (newProductId: string) => {
-    if (tempFiles.length === 0) return;
+    if (tempFilesWithPreview.length === 0) return;
 
     try {
       setUploading(true);
 
       const formData = new FormData();
-      tempFiles.forEach(file => {
-        formData.append('files', file);
+      tempFilesWithPreview.forEach(item => {
+        formData.append('files', item.file);
       });
 
       const token = getAdminToken();
@@ -146,7 +164,9 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
       if (response.ok) {
         const result = await response.json();
         setMedia(result.data || []);
-        setTempFiles([]); // Clear temp files after successful upload
+        // Cleanup preview URLs
+        tempFilesWithPreview.forEach(item => URL.revokeObjectURL(item.previewUrl));
+        setTempFilesWithPreview([]); // Clear temp files after successful upload
         onMediaChange?.(result.data || []);
       }
     } catch (error) {
@@ -159,7 +179,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   // Expose uploadTempFiles function
   React.useEffect(() => {
     (window as any).uploadTempFiles = uploadTempFiles;
-  }, [uploadTempFiles]);
+  }, [tempFilesWithPreview]);
 
   const handleDeleteMedia = async (mediaId: string) => {
     if (disabled) return;
@@ -266,13 +286,13 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
       </Dropzone>
 
       {/* Temp Files Info Banner */}
-      {tempFiles.length > 0 && !productId && (
+      {tempFilesWithPreview.length > 0 && !productId && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <div className="flex items-start space-x-3">
             <PhotoIcon className="h-5 w-5 text-blue-600 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-blue-900">
-                {tempFiles.length} {tempFiles.length === 1 ? t('admin.products.tempImage') : 'images temporaires'}
+                {tempFilesWithPreview.length} {tempFilesWithPreview.length === 1 ? t('admin.products.tempImage') : 'images temporaires'}
               </p>
               <p className="text-sm text-blue-700 mt-1">
                 {t('admin.products.tempImageDescription')}
@@ -287,14 +307,14 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         <div className="flex justify-center py-8">
           <LoadingSpinner size="lg" />
         </div>
-      ) : (media.length > 0 || tempFiles.length > 0) ? (
+      ) : (media.length > 0 || tempFilesWithPreview.length > 0) ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Show temp files for new products */}
-          {tempFiles.map((file, index) => (
+          {tempFilesWithPreview.map((item, index) => (
             <div key={`temp-${index}`} className="relative group">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src={URL.createObjectURL(file)}
+                  src={item.previewUrl}
                   alt={`Temporary image ${index + 1}`}
                   className="w-full h-full object-cover"
                 />

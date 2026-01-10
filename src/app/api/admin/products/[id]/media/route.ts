@@ -1,24 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { z } from 'zod';
+
+// Transform snake_case to camelCase for frontend
+function transformMedia(media: any) {
+  return {
+    id: media.id,
+    productId: media.product_id,
+    type: media.type,
+    url: media.url,
+    altText: media.alt_text,
+    title: media.title,
+    sortOrder: media.sort_order,
+    isPrimary: media.is_primary,
+    createdAt: media.created_at,
+  };
+}
 
 // GET /api/admin/products/[id]/media - Get product media
 async function getProductMedia(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const media = await prisma.productMedia.findMany({
-      where: { productId: params.id },
+    const media = await prisma.product_media.findMany({
+      where: { product_id: params.id },
       orderBy: [
-        { isPrimary: 'desc' },
-        { sortOrder: 'asc' },
-        { createdAt: 'asc' }
+        { is_primary: 'desc' },
+        { sort_order: 'asc' },
+        { created_at: 'asc' }
       ],
     });
 
     return NextResponse.json({
       success: true,
-      data: media,
+      data: media.map(transformMedia),
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
@@ -45,7 +60,7 @@ async function getProductMedia(request: NextRequest, { params }: { params: { id:
 async function uploadProductMedia(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     // Check if product exists
-    const product = await prisma.product.findUnique({
+    const product = await prisma.products.findUnique({
       where: { id: params.id },
     });
 
@@ -84,6 +99,11 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
 
     const uploadedMedia = [];
 
+    // Check how many existing media to determine sort order
+    const existingMediaCount = await prisma.product_media.count({
+      where: { product_id: params.id },
+    });
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
 
@@ -110,15 +130,16 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
       await writeFile(filePath, buffer);
 
       // Create database record
-      const mediaRecord = await prisma.productMedia.create({
+      const mediaRecord = await prisma.product_media.create({
         data: {
-          productId: params.id,
+          id: crypto.randomUUID(),
+          product_id: params.id,
           type: 'image',
           url: `/uploads/products/${params.id}/${fileName}`,
-          altText: file.name.split('.')[0], // Use filename without extension as alt text
+          alt_text: file.name.split('.')[0], // Use filename without extension as alt text
           title: file.name,
-          sortOrder: i,
-          isPrimary: i === 0, // First image is primary
+          sort_order: existingMediaCount + i,
+          is_primary: existingMediaCount === 0 && i === 0, // First image is primary only if no existing media
         },
       });
 
@@ -127,7 +148,7 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
 
     return NextResponse.json({
       success: true,
-      data: uploadedMedia,
+      data: uploadedMedia.map(transformMedia),
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
@@ -155,8 +176,8 @@ async function uploadProductMedia(request: NextRequest, { params }: { params: { 
 async function deleteProductMedia(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     // Delete media records from database
-    const deletedMedia = await prisma.productMedia.deleteMany({
-      where: { productId: params.id },
+    const deletedMedia = await prisma.product_media.deleteMany({
+      where: { product_id: params.id },
     });
 
     return NextResponse.json({
@@ -185,7 +206,7 @@ async function deleteProductMedia(request: NextRequest, { params }: { params: { 
   }
 }
 
-// Export handlers
-export const GET = getProductMedia;
-export const POST = uploadProductMedia;
-export const DELETE = deleteProductMedia;
+// Export handlers with authentication
+export const GET = withAuth(getProductMedia);
+export const POST = withAuth(uploadProductMedia, { resource: 'products', action: 'update' });
+export const DELETE = withAuth(deleteProductMedia, { resource: 'products', action: 'delete' });
