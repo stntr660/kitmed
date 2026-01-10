@@ -167,6 +167,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         type: partnerData.type,
         status: partnerData.status,
         is_featured: partnerData.featured,
+        updated_at: new Date(),
         partner_translations: {
           deleteMany: {}, // Delete existing translations
           create: [
@@ -266,7 +267,9 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
     }
 
     // Map field names to database columns
-    const updateData: any = {};
+    const updateData: any = {
+      updated_at: new Date(),
+    };
     if (validation.data.isFeatured !== undefined) {
       updateData.is_featured = validation.data.isFeatured;
     }

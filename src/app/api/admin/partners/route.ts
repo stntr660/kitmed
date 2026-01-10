@@ -185,6 +185,7 @@ async function createPartner(request: NextRequest) {
     // Create partner in database
     const partner = await prisma.partners.create({
       data: {
+        id: randomUUID(),
         name: partnerData.nom.fr, // Use French name as primary
         slug,
         website_url: partnerData.websiteUrl || null,
@@ -192,6 +193,7 @@ async function createPartner(request: NextRequest) {
         type: partnerData.type,
         status: partnerData.status,
         is_featured: partnerData.featured,
+        updated_at: new Date(),
         partner_translations: {
           create: [
             {
