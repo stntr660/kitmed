@@ -853,11 +853,19 @@
           "title": "Technology",
           "description": "Technology partners for integration, medical software and innovative digital solutions",
           "badge": "Digital innovation",
-          "helpTitle": "About technology", 
+          "helpTitle": "About technology",
           "helpDescription": "Technology partners provide software and integration solutions to modernize your medical practice."
+        },
+        "other": {
+          "title": "Other Partner",
+          "description": "Government, alliances, institutions and other strategic partners",
+          "badge": "Strategic partnership",
+          "examples": "Ministry of Health, Medical alliances, NGOs",
+          "helpTitle": "About other partners",
+          "helpDescription": "These partners include government institutions, strategic alliances and other important organizations."
         }
       },
-      
+
       "bulkImport": {
         "title": "CSV Bulk Import",
         "description": "Import multiple partners at once from a CSV file",
