@@ -148,9 +148,6 @@ export function Footer({ locale, className }: FooterProps) {
                   </a>
                 </div>
               </div>
-
-              {/* Compact Map */}
-              <GoogleMapCompact className="mt-4" />
             </div>
           </div>
 
@@ -215,6 +212,11 @@ export function Footer({ locale, className }: FooterProps) {
             </div>
           </div>
 
+        </div>
+
+        {/* Full-width Map Section */}
+        <div className="mt-8">
+          <GoogleMapCompact className="w-full" />
         </div>
 
         <Separator className="my-8" />

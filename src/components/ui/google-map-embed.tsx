@@ -83,7 +83,7 @@ export function GoogleMapEmbed({
   );
 }
 
-// Compact clickable map for footer
+// Compact clickable map for footer (full-width)
 export function GoogleMapCompact({ className }: { className?: string }) {
   const t = useTranslations('common');
 
@@ -93,7 +93,7 @@ export function GoogleMapCompact({ className }: { className?: string }) {
         href={GOOGLE_MAPS_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="block relative w-full h-[120px] rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow group"
+        className="block relative w-full h-[180px] rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow group"
       >
         <iframe
           src={EMBED_URL}
