@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { FooterLogo } from '@/components/ui/logo';
 import { ComplianceBadges } from '@/components/ui/compliance-badges';
+import { GoogleMapCompact } from '@/components/ui/google-map-embed';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/types';
 
@@ -146,6 +147,9 @@ export function Footer({ locale, className }: FooterProps) {
                   </a>
                 </div>
               </div>
+
+              {/* Compact Map */}
+              <GoogleMapCompact className="mt-4" />
             </div>
           </div>
 

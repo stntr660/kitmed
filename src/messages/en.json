@@ -69,7 +69,12 @@
     "viewDetails": "View Details",
     "quote": "Quote",
     "partners": "Partners",
-    "featured": "Featured"
+    "featured": "Featured",
+    "map": {
+      "getDirections": "Get Directions",
+      "viewOnMaps": "View on Google Maps",
+      "ourLocation": "Our Location"
+    }
   },
   "navigation": {
     "products": "Products",

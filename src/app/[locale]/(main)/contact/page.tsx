@@ -19,6 +19,7 @@ import {
   Printer
 } from 'lucide-react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
+import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
 
 export default function ContactPage() {
   const t = useTranslations('contact');
@@ -360,6 +361,20 @@ export default function ContactPage() {
                 </Card>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-light text-gray-900 mb-4">
+                {tCommon('map.ourLocation')}
+              </h2>
+            </div>
+            <GoogleMapEmbed variant="full" showDirectionsButton />
           </div>
         </div>
       </section>

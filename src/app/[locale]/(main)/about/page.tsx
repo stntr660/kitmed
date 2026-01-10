@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationSection } from '@/components/ui/compliance-badges';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
+import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -235,6 +236,11 @@ export default function AboutPage() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Map */}
+            <div className="mt-8">
+              <GoogleMapEmbed variant="medium" showDirectionsButton />
             </div>
 
             <div className="text-center mt-12">

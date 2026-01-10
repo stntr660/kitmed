@@ -72,7 +72,12 @@
     "viewDetails": "Voir Détails",
     "quote": "Devis",
     "partners": "Partenaires",
-    "featured": "En Vedette"
+    "featured": "En Vedette",
+    "map": {
+      "getDirections": "Itinéraire",
+      "viewOnMaps": "Voir sur Google Maps",
+      "ourLocation": "Notre Emplacement"
+    }
   },
   "navigation": {
     "products": "Produits",
