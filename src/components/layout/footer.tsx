@@ -8,9 +8,8 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Twitter,
   Linkedin,
-  Youtube,
+  Instagram,
   ExternalLink,
   Building2,
   Shield,
@@ -55,10 +54,9 @@ const getFooterLinks = (locale: string) => ({
 });
 
 const socialLinks = [
-  { name: 'facebook', href: '#', icon: Facebook },
-  { name: 'twitter', href: '#', icon: Twitter },
-  { name: 'linkedin', href: '#', icon: Linkedin },
-  { name: 'youtube', href: '#', icon: Youtube },
+  { name: 'facebook', href: 'https://www.facebook.com/share/1E9mpRMbRD/?mibextid=wwXIfr', icon: Facebook },
+  { name: 'instagram', href: 'https://www.instagram.com/kitmed.maroc?igsh=MjluY25wMGc2N3Aw', icon: Instagram },
+  { name: 'linkedin', href: 'https://www.linkedin.com/company/kitmed/', icon: Linkedin },
 ];
 
 export function Footer({ locale, className }: FooterProps) {
