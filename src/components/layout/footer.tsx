@@ -77,7 +77,7 @@ export function Footer({ locale, className }: FooterProps) {
               <FooterLogo />
             </div>
             <p className="text-sm text-medical-text-secondary mb-6">
-              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique depuis 1997.
+              {t('tagline')}
             </p>
 
             {/* Social Links */}
@@ -225,7 +225,7 @@ export function Footer({ locale, className }: FooterProps) {
         <div className="mb-8">
           <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
             <Shield className="h-4 w-4 mr-2" />
-            Certifications et Normes
+            {t('certifications.title')}
           </h3>
 
           {/* Professional Certifications */}
@@ -237,11 +237,10 @@ export function Footer({ locale, className }: FooterProps) {
               <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
               <div className="space-y-1">
                 <p className="text-sm font-medium text-gray-900">
-                  Conformité Réglementaire Complète
+                  {t('compliance.title')}
                 </p>
                 <p className="text-sm text-gray-600">
-                  Autorisations officielles ONSSA et certifications ISO pour garantir la qualité
-                  et la sécurité de nos équipements médicaux au Maroc.
+                  {t('compliance.description')}
                 </p>
               </div>
             </div>
