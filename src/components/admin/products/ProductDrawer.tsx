@@ -34,7 +34,7 @@ interface ProductDrawerProps {
   onOpenChange: (open: boolean) => void;
   product?: Product | null;
   mode: 'add' | 'edit' | 'view';
-  onSave?: (product: Partial<Product>) => Promise<void>;
+  onSave?: (product: Partial<Product>) => Promise<Product | undefined>;
 }
 
 export function ProductDrawer({

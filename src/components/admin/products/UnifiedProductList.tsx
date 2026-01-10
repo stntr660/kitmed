@@ -157,8 +157,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
       if (response.ok) {
         const result = await response.json();
         await loadProducts();
-        setDrawerOpen(false);
-        setSelectedProduct(null);
+        // Don't close drawer here - let ProductDrawer handle closing after temp file upload
         return result.data; // Return the created/updated product
       } else {
         throw new Error('Failed to save product');
@@ -686,7 +685,12 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
       {/* Product Drawer for Add/Edit */}
       <ProductDrawer
         open={drawerOpen}
-        onOpenChange={setDrawerOpen}
+        onOpenChange={(open) => {
+          setDrawerOpen(open);
+          if (!open) {
+            setSelectedProduct(null);
+          }
+        }}
         product={selectedProduct}
         mode={drawerMode}
         onSave={handleSaveProduct}
