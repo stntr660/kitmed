@@ -243,16 +243,19 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
         status: productData.status,
         is_featured: productData.featured,
         pdf_brochure_url: pdfBrochureUrl || null,
+        updated_at: new Date(),
         product_translations: {
           deleteMany: {},
           create: [
             {
+              id: crypto.randomUUID(),
               language_code: 'fr',
               nom: productData.nom.fr,
               description: productData.description?.fr || null,
               fiche_technique: ficheTechnique?.fr || null,
             },
             ...(productData.nom.en ? [{
+              id: crypto.randomUUID(),
               language_code: 'en',
               nom: productData.nom.en,
               description: productData.description?.en || null,

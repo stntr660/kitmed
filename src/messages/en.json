@@ -23,6 +23,8 @@
     "confirm": "Confirm",
     "required": "Required",
     "optional": "Optional",
+    "show": "Show",
+    "hide": "Hide",
     "notSpecified": "Not specified",
     "uncategorized": "Uncategorized",
     "productWithoutName": "Product without name",
