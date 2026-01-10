@@ -93,6 +93,8 @@
     "addToRFP": "Add to RFP",
     "inRFP": "In RFP",
     "documents": "documents",
+    "mediaFiles": "Media Files",
+    "viewAllMedia": "View all media",
     "price": {
       "quote": "Quote required",
       "contact": "Contact us"

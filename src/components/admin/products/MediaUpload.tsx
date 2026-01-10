@@ -83,16 +83,19 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   }, []);
 
   const handleFilesDrop = async (files: File[]) => {
+    console.log('[MediaUpload] handleFilesDrop called with', files.length, 'files');
     if (disabled || files.length === 0) return;
 
     // If no productId, store files temporarily with preview URLs
     if (!productId) {
+      console.log('[MediaUpload] No productId - storing files temporarily');
       const newTempFilesWithPreview = files.map(file => ({
         file,
         previewUrl: URL.createObjectURL(file),
       }));
       const updatedTempFiles = [...tempFilesWithPreview, ...newTempFilesWithPreview];
       setTempFilesWithPreview(updatedTempFiles);
+      console.log('[MediaUpload] Calling onTempFilesChange with', updatedTempFiles.length, 'files');
       onTempFilesChange?.(updatedTempFiles.map(item => item.file));
       return;
     }
@@ -311,12 +314,18 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Show temp files for new products */}
           {tempFilesWithPreview.map((item, index) => (
-            <div key={`temp-${index}`} className="relative group">
+            <div key={`temp-${index}-${item.file.name}`} className="relative group">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                 <img
                   src={item.previewUrl}
-                  alt={`Temporary image ${index + 1}`}
+                  alt={item.file.name || `Temporary image ${index + 1}`}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    console.error('Image preview failed for:', item.file.name);
+                    // Try to recreate the blob URL
+                    const newUrl = URL.createObjectURL(item.file);
+                    (e.target as HTMLImageElement).src = newUrl;
+                  }}
                 />
               </div>
 

@@ -156,8 +156,7 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
 
       if (response.ok) {
         const result = await response.json();
-        await loadProducts();
-        // Don't close drawer here - let ProductDrawer handle closing after temp file upload
+        // Don't call loadProducts() here - will be called when drawer closes after image upload
         return result.data; // Return the created/updated product
       } else {
         throw new Error('Failed to save product');
@@ -689,6 +688,8 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
           setDrawerOpen(open);
           if (!open) {
             setSelectedProduct(null);
+            // Refresh product list after drawer closes (after images are uploaded)
+            loadProducts();
           }
         }}
         product={selectedProduct}
