@@ -4,21 +4,16 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
-  Heart,
-  Shield,
-  Award,
-  Users,
-  Globe,
-  Star,
-  CheckCircle,
-  Building2,
-  Stethoscope,
   Target,
   Eye,
+  Lightbulb,
+  Heart,
+  Zap,
   ArrowRight,
   MapPin,
   Phone,
-  Mail
+  Mail,
+  Building2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -28,7 +23,6 @@ import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 export default function AboutPage() {
   const t = useTranslations('about');
-  const tCommon = useTranslations('common');
   const locale = useHydrationSafeLocale('fr');
 
   return (
@@ -37,17 +31,17 @@ export default function AboutPage() {
       <CertificationsBanner variant="compact" />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6" variant="outline">
               {t('hero.badge')}
             </Badge>
-            <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-4 leading-tight">
               {t('hero.title')}
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              {t('hero.description')}
+            <p className="text-2xl lg:text-3xl font-semibold text-primary-600 mb-8">
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>
@@ -66,194 +60,101 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Overview */}
+      {/* Overview Section */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="grid gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                  {t('overview.title')}
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  {t('overview.description1')}
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  {t('overview.description2')}
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Building2 className="h-6 w-6 text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t('overview.established.title')}
-                    </h3>
-                    <p className="text-gray-600">
-                      {t('overview.established.description')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Stethoscope className="h-6 w-6 text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t('overview.expertise.title')}
-                    </h3>
-                    <p className="text-gray-600">
-                      {t('overview.expertise.description')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Globe className="h-6 w-6 text-primary-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t('overview.reach.title')}
-                    </h3>
-                    <p className="text-gray-600">
-                      {t('overview.reach.description')}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="prose prose-lg max-w-none text-center">
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                {t('overview.description1')}
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                {t('overview.description2')}
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                {t('overview.description3')}
+              </p>
+              <p className="text-xl font-semibold text-primary-600 italic">
+                {t('overview.tagline')}
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* Mission, Vision & Values */}
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                {t('mission.sectionTitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('mission.sectionDescription')}
-              </p>
-            </div>
-
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div className="grid gap-8 lg:grid-cols-3">
               {/* Mission */}
-              <Card className="border-0 shadow-lg h-full flex flex-col">
-                <CardContent className="p-8 flex-1 flex flex-col">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-                      <Target className="h-6 w-6 text-primary-600" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">
-                      {t('mission.title')}
-                    </h3>
+              <Card className="border-0 shadow-lg h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Target className="h-8 w-8 text-primary-600" />
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                    {t('mission.title')}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
                     {t('mission.description')}
                   </p>
-                  <ul className="space-y-3">
-                    {[
-                      t('mission.points.0'),
-                      t('mission.points.1'),
-                      t('mission.points.2'),
-                      t('mission.points.3')
-                    ].map((point, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </CardContent>
               </Card>
 
               {/* Vision */}
-              <Card className="border-0 shadow-lg h-full flex flex-col">
-                <CardContent className="p-8 flex-1 flex flex-col">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-                      <Eye className="h-6 w-6 text-primary-600" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">
-                      {t('vision.title')}
-                    </h3>
+              <Card className="border-0 shadow-lg h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Eye className="h-8 w-8 text-primary-600" />
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                    {t('vision.title')}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
                     {t('vision.description')}
                   </p>
-                  <ul className="space-y-3">
-                    {[
-                      t('vision.points.0'),
-                      t('vision.points.1'),
-                      t('vision.points.2'),
-                      t('vision.points.3')
-                    ].map((point, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <Star className="h-5 w-5 text-primary-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                {t('values.title')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('values.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                { icon: Heart, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'excellence' },
-                { icon: Shield, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'integrity' },
-                { icon: Users, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'partnership' },
-                { icon: Award, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'quality' },
-                { icon: Globe, bgShade: 'bg-primary-50', textShade: 'text-primary-600', key: 'innovation' },
-                { icon: CheckCircle, bgShade: 'bg-primary-100', textShade: 'text-primary-600', key: 'commitment' }
-              ].map((value, index) => (
-                <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <CardContent className="p-6 text-center flex-1 flex flex-col">
-                    <div className={`w-16 h-16 ${value.bgShade} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      <value.icon className={`h-8 w-8 ${value.textShade}`} />
+              {/* Values */}
+              <Card className="border-0 shadow-lg h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Heart className="h-8 w-8 text-primary-600" />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                    {t('values.title')}
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-center space-x-3">
+                      <Lightbulb className="h-5 w-5 text-primary-500" />
+                      <span className="text-gray-700 font-medium">
+                        {t('values.items.innovation.title')}
+                      </span>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      {t(`values.items.${value.key}.title`)}
-                    </h3>
-                    <div className="flex-1 flex items-center">
-                      <p className="text-gray-600 leading-relaxed">
-                        {t(`values.items.${value.key}.description`)}
-                      </p>
+                    <div className="flex items-center justify-center space-x-3">
+                      <Heart className="h-5 w-5 text-primary-500" />
+                      <span className="text-gray-700 font-medium">
+                        {t('values.items.satisfaction.title')}
+                      </span>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    <div className="flex items-center justify-center space-x-3">
+                      <Zap className="h-5 w-5 text-primary-500" />
+                      <span className="text-gray-700 font-medium">
+                        {t('values.items.responsiveness.title')}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
       {/* Certifications & Compliance */}
-      <section className="py-16 lg:py-20 bg-gray-50">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <CertificationSection />
@@ -262,7 +163,7 @@ export default function AboutPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -287,7 +188,7 @@ export default function AboutPage() {
                       <MapPin className="h-4 w-4 text-gray-500 mt-1" />
                       <div>
                         <p className="text-gray-700">20, rue Lalande</p>
-                        <p className="text-gray-700">Quartier des Hôpitaux</p>
+                        <p className="text-gray-700">Quartier des Hopitaux</p>
                         <p className="text-gray-700">Casablanca - Maroc</p>
                       </div>
                     </div>
@@ -320,7 +221,7 @@ export default function AboutPage() {
                       <MapPin className="h-4 w-4 text-gray-500 mt-1" />
                       <div>
                         <p className="text-gray-700">33, rue Lahcen El Aarjounen</p>
-                        <p className="text-gray-700">Quartier des Hôpitaux</p>
+                        <p className="text-gray-700">Quartier des Hopitaux</p>
                         <p className="text-gray-700">Casablanca - Maroc</p>
                       </div>
                     </div>

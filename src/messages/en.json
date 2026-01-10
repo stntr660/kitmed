@@ -1805,80 +1805,39 @@
   },
   "about": {
     "hero": {
-      "badge": "About KITMED",
-      "title": "Leading Medical Equipment Provider in Morocco",
-      "description": "Since our establishment, KITMED has been dedicated to importing, distributing, installing and maintaining high-performance medical equipment and consumables, meeting the needs of both public and private sector clients.",
+      "badge": "About Us",
+      "title": "Who are we?",
+      "subtitle": "28 YEARS OF EXPERTISE SERVING THE HEALTHCARE SECTOR",
       "cta": {
         "contact": "Contact Us",
         "products": "Our Products"
       }
     },
     "overview": {
-      "title": "Our Story",
-      "description1": "KITMED is a Moroccan company specialized in the import, distribution, installation, and maintenance of medical equipment and consumables for both public and private sectors.",
-      "description2": "Located at 20, rue Lalande, in Casablanca's hospital district, our company has established itself as a trusted partner for healthcare facilities throughout the kingdom and is expanding towards North African markets.",
-      "established": {
-        "title": "Established in Morocco",
-        "description": "Based in Casablanca's hospital district since our founding"
-      },
-      "expertise": {
-        "title": "Complete Medical Solutions",
-        "description": "Import, distribution, installation, and professional maintenance"
-      },
-      "reach": {
-        "title": "North African Expansion",
-        "description": "Serving Morocco and expanding strategically into North Africa"
-      }
+      "description1": "Founded in 1997, KITMED is a leading provider of high-tech medical equipment distribution and integration in Morocco. Through strategic partnerships with internationally renowned manufacturers, we deliver innovative and high-performance solutions to both public and private healthcare institutions.",
+      "description2": "Our expertise spans several specialties, including Ophthalmology, Cardiology, ENT, Intensive Care, and Medical Furnishings.",
+      "description3": "Committed to excellence and customer satisfaction, we ensure personalized support, a responsive after-sales service, and nationwide coverage to meet the highest standards of the healthcare industry.",
+      "tagline": "KITMED, your trusted partner for medical excellence."
     },
     "mission": {
-      "sectionTitle": "Our Mission & Vision",
-      "sectionDescription": "Supporting the development of the medical sector with high-performance equipment",
-      "title": "Our Mission",
-      "description": "To support the development of the medical sector by providing high-performance medical equipment and consumables, adapted to the needs of each client in both public and private sectors.",
-      "points": [
-        "Import, distribute and install cutting-edge medical equipment",
-        "Ensure professional maintenance and after-sales service",
-        "Guarantee professional and quality materials through our global partnerships",
-        "Accompany our clients throughout the process for continuous satisfaction"
-      ]
+      "title": "Mission",
+      "description": "To provide innovative medical equipment tailored to our clients needs, with personalized support to ensure their satisfaction."
     },
     "vision": {
-      "title": "Our Vision",
-      "description": "Maintain our strong position as a major player in the local market and continue our growth process by expanding towards the North African region.",
-      "points": [
-        "Consolidate our leadership in the Moroccan market",
-        "Strategic expansion towards North Africa",
-        "Develop partnerships with renowned global brands",
-        "Stay alert to new technological developments in medical equipment"
-      ]
+      "title": "Vision",
+      "description": "To strengthen our position as a leader in Morocco and expand our presence across North Africa."
     },
     "values": {
-      "title": "Our Values",
-      "description": "The fundamental principles that guide all our actions",
+      "title": "Values",
       "items": {
-        "excellence": {
-          "title": "Performance Excellence",
-          "description": "We provide high-performance equipment that meets the strictest professional standards"
-        },
-        "integrity": {
-          "title": "Professional Integrity",
-          "description": "We maintain transparency and professionalism in all our partnerships and services"
-        },
-        "partnership": {
-          "title": "Global Partnership",
-          "description": "We develop strategic partnerships with renowned international brands"
-        },
-        "quality": {
-          "title": "Quality Assurance",
-          "description": "We guarantee professional and quality materials through rigorous selection"
-        },
         "innovation": {
-          "title": "Technological Innovation",
-          "description": "We stay alert to new technological developments in the medical field"
+          "title": "Innovation"
         },
-        "commitment": {
-          "title": "Client Commitment",
-          "description": "We accompany our clients throughout the process for continuous satisfaction"
+        "satisfaction": {
+          "title": "Satisfaction"
+        },
+        "responsiveness": {
+          "title": "Responsiveness"
         }
       }
     },
