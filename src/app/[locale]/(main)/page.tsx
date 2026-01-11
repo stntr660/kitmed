@@ -500,68 +500,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* References Section */}
-        <section className="py-20 lg:py-24 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.references')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-                {t('sections.referencesTitle')}
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('sections.referencesDescription')}
-              </p>
-            </div>
-
-            {/* Statistics */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {[
-                {
-                  number: t('references.stats.0.number'),
-                  label: t('references.stats.0.label')
-                },
-                {
-                  number: t('references.stats.1.number'),
-                  label: t('references.stats.1.label')
-                },
-                {
-                  number: t('references.stats.2.number'),
-                  label: t('references.stats.2.label')
-                },
-                {
-                  number: t('references.stats.3.number'),
-                  label: t('references.stats.3.label')
-                }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl font-light text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Testimonial */}
-            <div className="max-w-4xl mx-auto">
-              <Card className="border-0 shadow-lg bg-white">
-                <CardContent className="p-8 lg:p-12">
-                  <div className="text-center">
-                    <blockquote className="text-2xl font-light text-gray-800 leading-relaxed mb-8 italic">
-                      "{t('references.testimonial.quote')}"
-                    </blockquote>
-                    <div className="space-y-1">
-                      <div className="font-medium text-gray-900">{t('references.testimonial.author')}</div>
-                      <div className="text-gray-600 text-sm">{t('references.testimonial.position')}</div>
-                      <div className="text-primary text-sm font-medium">{t('references.testimonial.organization')}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className="py-20 lg:py-24 bg-gray-900 text-white">
           <div className="container mx-auto px-4 lg:px-8">

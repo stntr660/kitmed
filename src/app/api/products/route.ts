@@ -116,7 +116,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           },
           partners: {
             select: {
-              default_pdf_url: true
+              id: true,
+              name: true,
+              default_pdf_url: true,
+              partner_translations: {
+                select: {
+                  name: true,
+                  language_code: true
+                }
+              }
             }
           }
         },
@@ -134,6 +142,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
       const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
       const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
+
+      // Get manufacturer name from partner translations or fallback to partner name
+      const partnerTranslation = product.partners?.partner_translations?.find(t => t.language_code === locale);
+      const partnerFallback = product.partners?.partner_translations?.find(t => t.language_code === 'fr');
+      const manufacturerName = partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || 'Unknown Manufacturer';
 
       // Determine effective PDF URL - check multiple sources
       const productPdfUrl = product.pdf_brochure_url;
@@ -167,7 +180,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           imageUrl: product.categories.image_url
         } : null,
         manufacturer: {
-          name: product.constructeur || 'Unknown Manufacturer'
+          name: manufacturerName
         },
         discipline: product.categories ? {
           name: categoryTranslation?.name || categoryFallback?.name || 'Discipline',

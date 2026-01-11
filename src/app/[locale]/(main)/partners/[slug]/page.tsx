@@ -316,7 +316,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                         </div>
 
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {product.description || product.shortDescription || tPartner('productFallbackDescription')}
+                          {product.description || product.shortDescription || `${locale === 'fr' ? 'Produit médical professionnel de' : 'Professional medical product from'} ${partner?.name || ''}.`}
                         </div>
                       </CardHeader>
 
