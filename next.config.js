@@ -79,10 +79,6 @@ const nextConfig = {
         destination: '/api/images/images/:path*',
       },
       {
-        source: '/uploads/:path*',
-        destination: '/api/images/uploads/:path*',
-      },
-      {
         source: '/pdfs/:path*',
         destination: '/api/images/pdfs/:path*',
       },
