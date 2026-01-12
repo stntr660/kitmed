@@ -51,6 +51,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'image.chukouplus.com',
+      },
+      {
+        protocol: 'https',
         hostname: '**',
       },
     ],
@@ -66,6 +70,23 @@ const nextConfig = {
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Rewrites to serve static files from API in standalone mode
+  async rewrites() {
+    return [
+      {
+        source: '/images/:path*',
+        destination: '/api/images/images/:path*',
+      },
+      {
+        source: '/uploads/:path*',
+        destination: '/api/images/uploads/:path*',
+      },
+      {
+        source: '/pdfs/:path*',
+        destination: '/api/images/pdfs/:path*',
+      },
+    ];
   },
   // Security headers
   async headers() {
