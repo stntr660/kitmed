@@ -80,7 +80,8 @@ export function ImageUploadBox({
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error?.message || 'Erreur lors du téléchargement');
+        console.error('Upload failed:', response.status, errorData);
+        throw new Error(errorData.error?.message || `Erreur ${response.status}: ${response.statusText}`);
       }
 
       const result = await response.json();
@@ -89,6 +90,7 @@ export function ImageUploadBox({
         const uploadedFile = result.data.results[0];
         onChange(uploadedFile.url);
       } else {
+        console.error('Upload result failed:', result);
         throw new Error(result.error?.message || 'Erreur lors du téléchargement');
       }
     } catch (error) {
