@@ -69,13 +69,13 @@ export function ProductDrawer({
   const [showInternationalFields, setShowInternationalFields] = useState(false);
   const [showAdvancedFields, setShowAdvancedFields] = useState(false);
 
-  // Fetch categories from API
+  // Fetch categories from API (hierarchical for proper display)
   const fetchCategories = async () => {
     try {
       setCategoriesLoading(true);
       const token = getAdminToken();
 
-      const response = await fetch('/api/admin/categories?isActive=true', {
+      const response = await fetch('/api/admin/categories?isActive=true&hierarchical=true', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -83,7 +83,31 @@ export function ProductDrawer({
 
       if (response.ok) {
         const data = await response.json();
-        setCategories(data.data?.items || []);
+        // Flatten hierarchy for dropdown but preserve parent info
+        const items = data.data?.items || [];
+        const flattenedCategories: any[] = [];
+
+        items.forEach((discipline: any) => {
+          // Add discipline itself
+          flattenedCategories.push({
+            ...discipline,
+            _isDiscipline: true,
+            _parentName: null
+          });
+          // Add child categories under this discipline
+          if (discipline.other_categories && discipline.other_categories.length > 0) {
+            discipline.other_categories.forEach((child: any) => {
+              const disciplineName = discipline.category_translations?.find((t: any) => t.language_code === 'fr')?.name || discipline.name;
+              flattenedCategories.push({
+                ...child,
+                _isDiscipline: false,
+                _parentName: disciplineName
+              });
+            });
+          }
+        });
+
+        setCategories(flattenedCategories);
       } else {
         console.error('Failed to fetch categories');
       }
@@ -464,7 +488,7 @@ export function ProductDrawer({
                 </div>
               </div>
 
-              {/* Category Selection */}
+              {/* Category Selection - Hierarchical */}
               <div className="space-y-2">
                 <label htmlFor="categoryId" className="text-sm font-semibold text-gray-700">
                   {t('admin.products.medicalDiscipline')} *
@@ -477,16 +501,25 @@ export function ProductDrawer({
                   className="flex h-12 w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="">{categoriesLoading ? t('common.loading') + '...' : t('admin.products.selectDiscipline')}</option>
-                  {categories.map(category => {
-                    const translatedName = category.category_translations?.find(t => t.language_code === 'fr')?.name || category.name;
+                  {categories.map((category: any) => {
+                    const translatedName = category.category_translations?.find((t: any) => t.language_code === 'fr')?.name || category.name;
+                    const isDiscipline = category._isDiscipline;
+                    const parentName = category._parentName;
+
                     return (
-                      <option key={category.id} value={category.id}>
-                        {translatedName}
+                      <option
+                        key={category.id}
+                        value={category.id}
+                        className={isDiscipline ? 'font-bold' : ''}
+                      >
+                        {isDiscipline ? `${translatedName}` : `  └ ${translatedName}`}
                       </option>
                     );
                   })}
                 </select>
-                <p className="text-xs text-gray-500">{t('admin.products.disciplineHint')}</p>
+                <p className="text-xs text-gray-500">
+                  {t('admin.products.disciplineHint')} - Sélectionnez une catégorie spécifique (└) pour un meilleur classement
+                </p>
               </div>
 
               {/* Simple Description */}
