@@ -144,6 +144,15 @@ function TreeView({
                   : 'border-l-4 border-green-300 bg-gradient-to-r from-green-50 to-transparent ml-4'
               }`}
               style={getIndentStyle(level)}
+              onClick={() => {
+                if (hasChildren) {
+                  if (isExpanded) {
+                    onCollapse(category.id);
+                  } else {
+                    onExpand(category.id);
+                  }
+                }
+              }}
             >
               {/* Expand/Collapse Button */}
               <div className="w-8 flex justify-center">

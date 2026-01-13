@@ -301,7 +301,7 @@ export default function HomePage() {
               ) : (
                 categories.map((category) => (
                   <div key={category.id} className="group cursor-pointer">
-                    <Link href={`/${locale}/products?category=${category.slug}`}>
+                    <Link href={`/${locale}/products/disciplines/${category.slug}`}>
                       <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
                         <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                           {category.imageUrl ? (

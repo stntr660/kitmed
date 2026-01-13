@@ -72,7 +72,7 @@ interface CategoryWithTranslations {
     meta_title: string | null;
     meta_description: string | null;
   }>;
-  children?: CategoryWithTranslations[];
+  other_categories?: CategoryWithTranslations[];
   _count?: { other_categories: number; products: number };
 }
 
@@ -83,7 +83,7 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
 
   // First pass: create map of all categories
   categories.forEach(category => {
-    categoryMap.set(category.id, { ...category, children: [] });
+    categoryMap.set(category.id, { ...category, other_categories: [] });
   });
 
   // Second pass: build tree structure
@@ -93,8 +93,8 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
     if (category.parent_id) {
       const parent = categoryMap.get(category.parent_id);
       if (parent) {
-        parent.children = parent.children || [];
-        parent.children.push(categoryNode);
+        parent.other_categories = parent.other_categories || [];
+        parent.other_categories.push(categoryNode);
       } else {
         // Parent not found, treat as root
         rootCategories.push(categoryNode);
@@ -107,9 +107,9 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
   // Sort children by sort_order
   const sortChildren = (cats: CategoryWithTranslations[]) => {
     cats.forEach(cat => {
-      if (cat.children && cat.children.length > 0) {
-        cat.children.sort((a, b) => a.sort_order - b.sort_order);
-        sortChildren(cat.children);
+      if (cat.other_categories && cat.other_categories.length > 0) {
+        cat.other_categories.sort((a, b) => a.sort_order - b.sort_order);
+        sortChildren(cat.other_categories);
       }
     });
   };
@@ -141,14 +141,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     if (query) {
       where.OR = [
-        { name: { contains: query } },
-        { description: { contains: query } },
+        { name: { contains: query, mode: 'insensitive' } },
+        { description: { contains: query, mode: 'insensitive' } },
         {
           category_translations: {
             some: {
               OR: [
-                { name: { contains: query } },
-                { description: { contains: query } }
+                { name: { contains: query, mode: 'insensitive' } },
+                { description: { contains: query, mode: 'insensitive' } }
               ]
             }
           }
@@ -211,6 +211,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
       return {
         ...category,
+        // Add camelCase versions for frontend compatibility
+        isActive: category.is_active,
+        sortOrder: category.sort_order,
+        parentId: category.parent_id,
+        imageUrl: category.image_url,
+        metaTitle: category.meta_title,
+        metaDescription: category.meta_description,
+        createdAt: category.created_at,
+        updatedAt: category.updated_at,
         name: frTranslation?.name || category.name,
         description: frTranslation?.description || category.description,
         nom: {
