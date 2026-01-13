@@ -329,25 +329,22 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 />
               </div>
 
-              {/* Overlay controls */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {/* Delete button */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
-                    onClick={() => handleRemoveTempFile(index)}
-                    disabled={disabled}
-                  >
-                    <XMarkIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+              {/* Delete button - always visible, high z-index */}
+              <div className="absolute top-1 right-1 z-20">
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  className="h-6 w-6 p-0 rounded-full shadow-md"
+                  onClick={() => handleRemoveTempFile(index)}
+                  disabled={disabled}
+                >
+                  <XMarkIcon className="h-3.5 w-3.5" />
+                </Button>
               </div>
 
-              {/* Temp indicator */}
-              <div className="absolute top-2 left-2">
-                <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+              {/* Temp indicator - bottom left to avoid delete button */}
+              <div className="absolute bottom-2 left-2 z-10">
+                <div className="bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded font-medium shadow-sm">
                   {t('admin.products.tempImage')}
                 </div>
               </div>
@@ -365,9 +362,22 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 />
               </div>
 
-              {/* Overlay controls */}
+              {/* Delete button - always visible, high z-index */}
+              <div className="absolute top-1 right-1 z-20">
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  className="h-6 w-6 p-0 rounded-full shadow-md"
+                  onClick={() => handleDeleteMedia(item.id)}
+                  disabled={disabled}
+                >
+                  <XMarkIcon className="h-3.5 w-3.5" />
+                </Button>
+              </div>
+
+              {/* Overlay controls on hover */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
+                <div className="absolute top-2 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
                   {/* Primary star */}
                   <Button
                     size="sm"
@@ -381,17 +391,6 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                     ) : (
                       <StarIcon className="h-4 w-4 text-gray-500" />
                     )}
-                  </Button>
-
-                  {/* Delete button */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
-                    onClick={() => handleDeleteMedia(item.id)}
-                    disabled={disabled}
-                  >
-                    <XMarkIcon className="h-4 w-4" />
                   </Button>
                 </div>
 
@@ -418,10 +417,10 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 </div>
               </div>
 
-              {/* Primary indicator */}
+              {/* Primary indicator - bottom left to avoid delete button */}
               {item.isPrimary && (
-                <div className="absolute top-2 left-2">
-                  <div className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                <div className="absolute bottom-2 left-2 z-10">
+                  <div className="bg-yellow-500 text-white text-[10px] px-1.5 py-0.5 rounded font-medium shadow-sm">
                     {t('admin.products.primaryImage')}
                   </div>
                 </div>
