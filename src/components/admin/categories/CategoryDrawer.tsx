@@ -341,7 +341,7 @@ export function CategoryDrawer({
                   label={t('admin.categories.categoryImage')}
                   value={formData.imageUrl}
                   onChange={(url) => handleInputChange('imageUrl', url)}
-                  preset="productImage"
+                  preset="categoryImage"
                   placeholder="Télécharger une image pour la catégorie"
                   maxSize={2}
                   aspectRatio="square"

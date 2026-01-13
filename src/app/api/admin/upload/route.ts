@@ -61,6 +61,6 @@ async function uploadFiles(request: NextRequest) {
 }
 
 export const POST = withAuth(uploadFiles, {
-  resource: 'partners', // Allow partner uploads since that's what we're mainly using
+  resource: 'products', // General upload permission for products, categories, etc.
   action: 'create',
 });
