@@ -179,8 +179,8 @@ export function ProductDrawer({
 
       const data = await response.json();
 
-      if (!data.success) {
-        throw new Error(data.error?.message || 'Failed to fetch categories');
+      if (data.error) {
+        throw new Error(data.error?.message || data.error || 'Failed to fetch categories');
       }
 
       // Flatten hierarchy for dropdown but preserve parent info

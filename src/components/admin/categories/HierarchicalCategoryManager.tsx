@@ -788,16 +788,44 @@ export function HierarchicalCategoryManager() {
         : `/api/admin/categories/${selectedCategory?.id}`;
 
       const method = wizardMode === 'add' ? 'POST' : 'PUT';
+      const isCreate = wizardMode === 'add';
 
-      // Format payload to match API schema
-      const payload = {
-        name: categoryData.translations.fr.name, // Root level name from French translation
+      // Format payload to match API schema - POST uses snake_case, PUT uses camelCase
+      const payload = isCreate ? {
+        // POST endpoint uses snake_case
+        name: categoryData.translations.fr.name,
+        description: categoryData.translations.fr.description?.trim() || null,
+        meta_title: categoryData.translations.fr.metaTitle?.trim() || null,
+        meta_description: categoryData.translations.fr.metaDescription?.trim() || null,
+        type: categoryData.type || 'discipline',
+        sort_order: categoryData.sortOrder || 0,
+        is_active: categoryData.isActive !== false,
+        image_url: categoryData.imageUrl && categoryData.imageUrl.trim() ? categoryData.imageUrl : null,
+        translations: {
+          fr: {
+            name: categoryData.translations.fr.name,
+            description: categoryData.translations.fr.description?.trim() || null,
+            meta_title: categoryData.translations.fr.metaTitle?.trim() || null,
+            meta_description: categoryData.translations.fr.metaDescription?.trim() || null,
+          },
+          ...(categoryData.translations.en?.name && {
+            en: {
+              name: categoryData.translations.en.name,
+              description: categoryData.translations.en.description?.trim() || null,
+              meta_title: categoryData.translations.en.metaTitle?.trim() || null,
+              meta_description: categoryData.translations.en.metaDescription?.trim() || null,
+            }
+          })
+        },
+        ...(categoryData.parentId ? { parent_id: categoryData.parentId } : parentCategory && { parent_id: parentCategory.id }),
+      } : {
+        // PUT endpoint uses camelCase
+        name: categoryData.translations.fr.name,
         description: categoryData.translations.fr.description?.trim() || null,
         metaTitle: categoryData.translations.fr.metaTitle?.trim() || null,
         metaDescription: categoryData.translations.fr.metaDescription?.trim() || null,
-        type: categoryData.type || 'discipline', // Include type field from wizard
         sortOrder: categoryData.sortOrder || 0,
-        isActive: categoryData.isActive !== false, // Default to true
+        isActive: categoryData.isActive !== false,
         imageUrl: categoryData.imageUrl && categoryData.imageUrl.trim() ? categoryData.imageUrl : null,
         translations: {
           fr: {
@@ -806,7 +834,6 @@ export function HierarchicalCategoryManager() {
             metaTitle: categoryData.translations.fr.metaTitle?.trim() || null,
             metaDescription: categoryData.translations.fr.metaDescription?.trim() || null,
           },
-          // Only include English if name is provided
           ...(categoryData.translations.en?.name && {
             en: {
               name: categoryData.translations.en.name,
@@ -816,11 +843,10 @@ export function HierarchicalCategoryManager() {
             }
           })
         },
-        // Priority: Use parentId from wizard data, fallback to parentCategory
         ...(categoryData.parentId ? { parentId: categoryData.parentId } : parentCategory && { parentId: parentCategory.id }),
       };
 
-      console.log('🔥 MANAGER SENDING PAYLOAD:', JSON.stringify(payload, null, 2));
+      console.log('MANAGER SENDING PAYLOAD:', JSON.stringify(payload, null, 2));
 
       const response = await fetch(url, {
         method,
