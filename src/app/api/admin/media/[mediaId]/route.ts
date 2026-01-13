@@ -9,7 +9,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: Promise<{
     const { mediaId } = await params;
 
     // Find the media record
-    const media = await prisma.productMedia.findUnique({
+    const media = await prisma.product_media.findUnique({
       where: { id: mediaId },
     });
 
@@ -36,7 +36,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: Promise<{
     }
 
     // Delete database record
-    await prisma.productMedia.delete({
+    await prisma.product_media.delete({
       where: { id: mediaId },
     });
 
@@ -73,7 +73,7 @@ async function updateMedia(request: NextRequest, { params }: { params: Promise<{
     const { altText, title, isPrimary, sortOrder } = body;
 
     // Find the media record
-    const existingMedia = await prisma.productMedia.findUnique({
+    const existingMedia = await prisma.product_media.findUnique({
       where: { id: mediaId },
     });
 
@@ -92,7 +92,7 @@ async function updateMedia(request: NextRequest, { params }: { params: Promise<{
 
     // If setting as primary, unset other primary images for this product
     if (isPrimary === true) {
-      await prisma.productMedia.updateMany({
+      await prisma.product_media.updateMany({
         where: {
           productId: existingMedia.productId,
           id: { not: mediaId }
@@ -102,7 +102,7 @@ async function updateMedia(request: NextRequest, { params }: { params: Promise<{
     }
 
     // Update media record
-    const updatedMedia = await prisma.productMedia.update({
+    const updatedMedia = await prisma.product_media.update({
       where: { id: mediaId },
       data: {
         altText: altText !== undefined ? altText : existingMedia.altText,
