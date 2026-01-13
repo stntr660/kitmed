@@ -4,11 +4,13 @@ import { unlink } from 'fs/promises';
 import { join } from 'path';
 
 // DELETE /api/admin/media/[mediaId] - Delete specific media file
-async function deleteMedia(request: NextRequest, { params }: { params: { mediaId: string } }) {
+async function deleteMedia(request: NextRequest, { params }: { params: Promise<{ mediaId: string }> }) {
   try {
+    const { mediaId } = await params;
+
     // Find the media record
     const media = await prisma.productMedia.findUnique({
-      where: { id: params.mediaId },
+      where: { id: mediaId },
     });
 
     if (!media) {
@@ -35,7 +37,7 @@ async function deleteMedia(request: NextRequest, { params }: { params: { mediaId
 
     // Delete database record
     await prisma.productMedia.delete({
-      where: { id: params.mediaId },
+      where: { id: mediaId },
     });
 
     return NextResponse.json({
@@ -64,14 +66,15 @@ async function deleteMedia(request: NextRequest, { params }: { params: { mediaId
 }
 
 // PUT /api/admin/media/[mediaId] - Update media properties
-async function updateMedia(request: NextRequest, { params }: { params: { mediaId: string } }) {
+async function updateMedia(request: NextRequest, { params }: { params: Promise<{ mediaId: string }> }) {
   try {
+    const { mediaId } = await params;
     const body = await request.json();
     const { altText, title, isPrimary, sortOrder } = body;
 
     // Find the media record
     const existingMedia = await prisma.productMedia.findUnique({
-      where: { id: params.mediaId },
+      where: { id: mediaId },
     });
 
     if (!existingMedia) {
@@ -92,7 +95,7 @@ async function updateMedia(request: NextRequest, { params }: { params: { mediaId
       await prisma.productMedia.updateMany({
         where: {
           productId: existingMedia.productId,
-          id: { not: params.mediaId }
+          id: { not: mediaId }
         },
         data: { isPrimary: false },
       });
@@ -100,7 +103,7 @@ async function updateMedia(request: NextRequest, { params }: { params: { mediaId
 
     // Update media record
     const updatedMedia = await prisma.productMedia.update({
-      where: { id: params.mediaId },
+      where: { id: mediaId },
       data: {
         altText: altText !== undefined ? altText : existingMedia.altText,
         title: title !== undefined ? title : existingMedia.title,
