@@ -2056,7 +2056,15 @@
       "emptyCategory": "Category under development",
       "emptyCategoryDescription": "This category does not yet contain products or subcategories.",
       "discipline": "Discipline",
-      "category": "Category"
+      "category": "Category",
+      "featured": "Featured",
+      "reference": "Reference",
+      "viewProduct": "View Product",
+      "downloadBrochure": "Download Brochure",
+      "sortByPrice": "Sort by Price",
+      "sortByPopularity": "Sort by Popularity",
+      "quote": "Quote",
+      "productFallback": "Professional quality medical product"
     }
   },
   "disciplines": {
