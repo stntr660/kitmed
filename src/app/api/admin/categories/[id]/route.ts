@@ -39,9 +39,9 @@ const categoryUpdateSchema = z.object({
 });
 
 interface RouteContext {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function GET(
@@ -49,7 +49,7 @@ export async function GET(
   context: RouteContext
 ): Promise<NextResponse> {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
 
     const category = await prisma.categories.findUnique({
       where: { id },
@@ -123,7 +123,7 @@ export async function PUT(
   context: RouteContext
 ): Promise<NextResponse> {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
     const body = await request.json();
     const categoryData = categoryUpdateSchema.parse(body);
 
@@ -345,7 +345,7 @@ export async function DELETE(
   context: RouteContext
 ): Promise<NextResponse> {
   try {
-    const { id } = context.params;
+    const { id } = await context.params;
 
     // Check if category exists
     const category = await prisma.categories.findUnique({
