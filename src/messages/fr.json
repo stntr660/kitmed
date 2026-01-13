@@ -1593,7 +1593,17 @@
       "validation": {
         "nameRequired": "Le nom de la catégorie en français est requis"
       },
-      
+
+      "errors": {
+        "loadFailed": "Échec du chargement des catégories",
+        "saveFailed": "Échec de l'enregistrement de la catégorie",
+        "deleteFailed": "Échec de la suppression de la catégorie",
+        "bulkOperationFailed": "Échec de l'opération groupée",
+        "validationError": "Erreur de validation: {details}",
+        "serverError": "Erreur serveur. Veuillez réessayer.",
+        "imageUploadFailed": "Échec du téléchargement de l'image"
+      },
+
       "wizard": {
         "step1": {
           "title": "Type de catégorie",

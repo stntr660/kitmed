@@ -506,10 +506,13 @@ export function HierarchicalCategoryManager() {
         const data = await response.json();
         setCategories(data.data.items);
       } else {
-        throw new Error('Failed to load categories');
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.loadFailed');
+        throw new Error(errorMessage);
       }
     } catch (err) {
-      setError(t('errors.serverError'));
+      const errorMessage = err instanceof Error ? err.message : t('admin.categories.errors.loadFailed');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -774,10 +777,12 @@ export function HierarchicalCategoryManager() {
         });
       } else {
         const errorData = await response.json();
-        setError(errorData.error || 'Failed to delete category');
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.deleteFailed');
+        setError(errorMessage);
       }
     } catch (error) {
-      setError('Failed to delete category');
+      const errorMessage = error instanceof Error ? error.message : t('admin.categories.errors.deleteFailed');
+      setError(errorMessage);
     }
   };
 
@@ -872,10 +877,12 @@ export function HierarchicalCategoryManager() {
           const validationErrors = errorData.details.map((err: any) =>
             `${err.path?.join('.')}: ${err.message}`
           ).join(', ');
-          throw new Error(`Validation errors: ${validationErrors}`);
+          throw new Error(t('admin.categories.errors.validationError', { details: validationErrors }));
         }
 
-        throw new Error(errorData.error || 'Failed to save category');
+        // Show the actual API error message
+        const apiError = errorData.error || errorData.message || t('admin.categories.errors.saveFailed');
+        throw new Error(apiError);
       }
     } catch (error) {
       throw error;
@@ -912,10 +919,12 @@ export function HierarchicalCategoryManager() {
         setSelectedIds(new Set());
       } else {
         const errorData = await response.json();
-        setError(errorData.error || 'Bulk operation failed');
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.bulkOperationFailed');
+        setError(errorMessage);
       }
     } catch (error) {
-      setError('Bulk operation failed');
+      const errorMessage = error instanceof Error ? error.message : t('admin.categories.errors.bulkOperationFailed');
+      setError(errorMessage);
     }
   };
 

@@ -1603,7 +1603,17 @@
       "validation": {
         "nameRequired": "Category name in French is required"
       },
-      
+
+      "errors": {
+        "loadFailed": "Failed to load categories",
+        "saveFailed": "Failed to save category",
+        "deleteFailed": "Failed to delete category",
+        "bulkOperationFailed": "Bulk operation failed",
+        "validationError": "Validation error: {details}",
+        "serverError": "Server error. Please try again.",
+        "imageUploadFailed": "Failed to upload image"
+      },
+
       "wizard": {
         "step1": {
           "title": "Category Type",
