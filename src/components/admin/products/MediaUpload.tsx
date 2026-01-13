@@ -330,13 +330,14 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
               </div>
 
               {/* Delete button - always visible, high z-index */}
-              <div className="absolute top-1 right-1 z-20">
+              <div className="absolute top-1 right-1 z-30">
                 <Button
                   size="sm"
                   variant="destructive"
                   className="h-6 w-6 p-0 rounded-full shadow-md"
-                  onClick={() => handleRemoveTempFile(index)}
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); handleRemoveTempFile(index); }}
                   disabled={disabled}
+                  type="button"
                 >
                   <XMarkIcon className="h-3.5 w-3.5" />
                 </Button>
@@ -363,27 +364,28 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
               </div>
 
               {/* Delete button - always visible, high z-index */}
-              <div className="absolute top-1 right-1 z-20">
+              <div className="absolute top-1 right-1 z-30">
                 <Button
                   size="sm"
                   variant="destructive"
                   className="h-6 w-6 p-0 rounded-full shadow-md"
-                  onClick={() => handleDeleteMedia(item.id)}
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); handleDeleteMedia(item.id); }}
                   disabled={disabled}
+                  type="button"
                 >
                   <XMarkIcon className="h-3.5 w-3.5" />
                 </Button>
               </div>
 
-              {/* Overlay controls on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
-                <div className="absolute top-2 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+              {/* Overlay controls on hover - pointer-events-none so it doesn't block delete button */}
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg pointer-events-none">
+                <div className="absolute top-2 right-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-auto">
                   {/* Primary star */}
                   <Button
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white hover:bg-yellow-50"
-                    onClick={() => handleSetPrimary(item.id)}
+                    onClick={(e) => { e.stopPropagation(); handleSetPrimary(item.id); }}
                     disabled={disabled}
                   >
                     {item.isPrimary ? (
@@ -395,12 +397,12 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 </div>
 
                 {/* Move buttons */}
-                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
+                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1 pointer-events-auto">
                   <Button
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white"
-                    onClick={() => handleMoveMedia(item.id, 'up')}
+                    onClick={(e) => { e.stopPropagation(); handleMoveMedia(item.id, 'up'); }}
                     disabled={disabled || index === 0}
                   >
                     <ArrowUpIcon className="h-4 w-4" />
@@ -409,7 +411,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white"
-                    onClick={() => handleMoveMedia(item.id, 'down')}
+                    onClick={(e) => { e.stopPropagation(); handleMoveMedia(item.id, 'down'); }}
                     disabled={disabled || index === media.length - 1}
                   >
                     <ArrowDownIcon className="h-4 w-4" />
