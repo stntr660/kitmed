@@ -76,7 +76,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       imageUrl: discipline.image_url,
       type: discipline.type,
       productCount: discipline._count.products,
-      children: discipline.other_categories.map((category: any) => {
+      other_categories: discipline.other_categories.map((category: any) => {
         const categoryTranslation = category.category_translations?.[0];
         return {
           id: category.id,
