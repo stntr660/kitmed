@@ -378,6 +378,14 @@ export const uploadPresets: Record<string, UploadOptions> = {
     folder: 'brochures',
   },
 
+  productBrochure: {
+    maxSize: 25 * 1024 * 1024, // 25MB
+    allowedTypes: ALLOWED_DOCUMENT_TYPES,
+    generateThumbnail: false,
+    optimizeImage: false,
+    folder: 'pdfs',
+  },
+
   document: {
     maxSize: 10 * 1024 * 1024, // 10MB
     allowedTypes: ALLOWED_DOCUMENT_TYPES,

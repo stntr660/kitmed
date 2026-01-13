@@ -155,8 +155,8 @@ const updateProductSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  pdfBrochureUrl: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
-  pdf_brochure_url: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
+  pdfBrochureUrl: z.string().optional().or(z.literal('')).or(z.literal(null)),
+  pdf_brochure_url: z.string().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
 }).refine(data => data.referenceFournisseur || data.reference_fournisseur, {

@@ -31,22 +31,38 @@ async function getProducts(request: NextRequest) {
       where.slug = filters.slug;
     }
 
-    // Text search in product translations
+    // Text search in product translations (case-insensitive)
     if (filters.query) {
       where.OR = [
-        { reference_fournisseur: { contains: filters.query } },
-        { constructeur: { contains: filters.query } },
+        { reference_fournisseur: { contains: filters.query, mode: 'insensitive' } },
+        { constructeur: { contains: filters.query, mode: 'insensitive' } },
         {
           product_translations: {
             some: {
-              nom: { contains: filters.query }
+              nom: { contains: filters.query, mode: 'insensitive' }
             }
           }
         },
         {
           product_translations: {
             some: {
-              description: { contains: filters.query }
+              description: { contains: filters.query, mode: 'insensitive' }
+            }
+          }
+        },
+        // Search by brand/manufacturer name via partner relation
+        {
+          partners: {
+            name: { contains: filters.query, mode: 'insensitive' }
+          }
+        },
+        // Search in partner translations (multilingual brand names)
+        {
+          partners: {
+            partner_translations: {
+              some: {
+                name: { contains: filters.query, mode: 'insensitive' }
+              }
             }
           }
         }
@@ -97,6 +113,20 @@ async function getProducts(request: NextRequest) {
           _count: {
             select: {
               product_media: true
+            }
+          },
+          partners: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              logo_url: true,
+              partner_translations: {
+                select: {
+                  name: true,
+                  language_code: true
+                }
+              }
             }
           }
         },
@@ -163,8 +193,15 @@ async function getProducts(request: NextRequest) {
       } : null,
       // Add manufacturer object for compatibility
       manufacturer: {
-        name: product.constructeur || 'Unknown Manufacturer'
+        id: product.partners?.id || null,
+        name: product.partners?.name || product.constructeur || 'Unknown Manufacturer',
+        slug: product.partners?.slug || null,
+        logo_url: product.partners?.logo_url || null,
+        translations: product.partners?.partner_translations || []
       },
+      // Add partner_id for brand association
+      partnerId: product.partner_id,
+      partner_id: product.partner_id,
       // Add discipline object based on category for compatibility
       discipline: product.categories ? {
         name: {
@@ -256,8 +293,8 @@ const createProductSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  pdfBrochureUrl: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
-  pdf_brochure_url: z.string().url().optional().or(z.literal('')).or(z.literal(null)),
+  pdfBrochureUrl: z.string().optional().or(z.literal('')).or(z.literal(null)),
+  pdf_brochure_url: z.string().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
   seo: z.object({

@@ -9,6 +9,16 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,12 +32,22 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { XMarkIcon, PhotoIcon, ChevronDownIcon, ChevronUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import {
+  XMarkIcon,
+  PhotoIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  GlobeAltIcon,
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon
+} from '@heroicons/react/24/outline';
 import { MediaUpload } from './MediaUpload';
 import { ClientOnly } from '@/components/ui/client-only';
 import { DocumentUpload } from '@/components/ui/document-upload';
 import { Product } from '@/types';
 import { getAdminToken } from '@/lib/auth-utils';
+import { toast } from 'sonner';
 
 interface ProductDrawerProps {
   open: boolean;
@@ -35,6 +55,19 @@ interface ProductDrawerProps {
   product?: Product | null;
   mode: 'add' | 'edit' | 'view';
   onSave?: (product: Partial<Product>) => Promise<Product | undefined>;
+}
+
+interface FieldError {
+  field: string;
+  message: string;
+}
+
+interface FormErrors {
+  nom?: string;
+  constructeur?: string;
+  referenceFournisseur?: string;
+  categoryId?: string;
+  general?: string;
 }
 
 export function ProductDrawer({
@@ -48,11 +81,20 @@ export function ProductDrawer({
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Array<{id: string; slug: string; name: string; category_translations: Array<{language_code: string; name: string}>}>>([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const [categoriesError, setCategoriesError] = useState<string | null>(null);
   const [manufacturers, setManufacturers] = useState<Array<{id: string; name: string}>>([]);
   const [manufacturersLoading, setManufacturersLoading] = useState(false);
+  const [manufacturersError, setManufacturersError] = useState<string | null>(null);
   const [showNewManufacturerInput, setShowNewManufacturerInput] = useState(false);
   const [newManufacturerName, setNewManufacturerName] = useState('');
   const [tempFiles, setTempFiles] = useState<File[]>([]);
+
+  // Error handling state
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [savedProductName, setSavedProductName] = useState<string>('');
+
   const [formData, setFormData] = useState<Partial<Product>>({
     referenceFournisseur: '',
     constructeur: '',
@@ -69,11 +111,56 @@ export function ProductDrawer({
   const [showInternationalFields, setShowInternationalFields] = useState(false);
   const [showAdvancedFields, setShowAdvancedFields] = useState(false);
 
+  // Confirmation dialog state
+  const [showCloseConfirmation, setShowCloseConfirmation] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  // Clear errors when form data changes
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      setErrors({});
+    }
+    if (submitError) {
+      setSubmitError(null);
+    }
+  }, [formData]);
+
+  // Validate form before submission
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.nom?.fr?.trim()) {
+      newErrors.nom = t('admin.products.errors.nameRequired');
+    }
+
+    if (!formData.constructeur?.trim()) {
+      newErrors.constructeur = t('admin.products.errors.brandRequired');
+    }
+
+    if (!formData.referenceFournisseur?.trim()) {
+      newErrors.referenceFournisseur = t('admin.products.errors.referenceRequired');
+    }
+
+    if (!formData.categoryId) {
+      newErrors.categoryId = t('admin.products.errors.categoryRequired');
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   // Fetch categories from API (hierarchical for proper display)
   const fetchCategories = async () => {
     try {
       setCategoriesLoading(true);
+      setCategoriesError(null);
       const token = getAdminToken();
+
+      if (!token) {
+        setCategoriesError(t('admin.products.errors.authRequired'));
+        toast.error(t('admin.products.errors.authRequired'));
+        return;
+      }
 
       const response = await fetch('/api/admin/categories?isActive=true&hierarchical=true', {
         headers: {
@@ -81,38 +168,55 @@ export function ProductDrawer({
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        // Flatten hierarchy for dropdown but preserve parent info
-        const items = data.data?.items || [];
-        const flattenedCategories: any[] = [];
+      if (!response.ok) {
+        if (response.status === 401) {
+          setCategoriesError(t('admin.products.errors.sessionExpired'));
+          toast.error(t('admin.products.errors.sessionExpired'));
+          return;
+        }
+        throw new Error(`HTTP ${response.status}`);
+      }
 
-        items.forEach((discipline: any) => {
-          // Add discipline itself
-          flattenedCategories.push({
-            ...discipline,
-            _isDiscipline: true,
-            _parentName: null
-          });
-          // Add child categories under this discipline
-          if (discipline.other_categories && discipline.other_categories.length > 0) {
-            discipline.other_categories.forEach((child: any) => {
-              const disciplineName = discipline.category_translations?.find((t: any) => t.language_code === 'fr')?.name || discipline.name;
-              flattenedCategories.push({
-                ...child,
-                _isDiscipline: false,
-                _parentName: disciplineName
-              });
-            });
-          }
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error?.message || 'Failed to fetch categories');
+      }
+
+      // Flatten hierarchy for dropdown but preserve parent info
+      const items = data.data?.items || [];
+      const flattenedCategories: any[] = [];
+
+      items.forEach((discipline: any) => {
+        // Add discipline itself
+        flattenedCategories.push({
+          ...discipline,
+          _isDiscipline: true,
+          _parentName: null
         });
+        // Add child categories under this discipline
+        if (discipline.other_categories && discipline.other_categories.length > 0) {
+          discipline.other_categories.forEach((child: any) => {
+            const disciplineName = discipline.category_translations?.find((t: any) => t.language_code === 'fr')?.name || discipline.name;
+            flattenedCategories.push({
+              ...child,
+              _isDiscipline: false,
+              _parentName: disciplineName
+            });
+          });
+        }
+      });
 
-        setCategories(flattenedCategories);
-      } else {
-        console.error('Failed to fetch categories');
+      setCategories(flattenedCategories);
+
+      if (flattenedCategories.length === 0) {
+        setCategoriesError(t('admin.products.errors.noCategoriesFound'));
       }
     } catch (error) {
       console.error('Error fetching categories:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setCategoriesError(t('admin.products.errors.fetchCategoriesFailed'));
+      toast.error(t('admin.products.errors.fetchCategoriesFailed'));
     } finally {
       setCategoriesLoading(false);
     }
@@ -122,7 +226,13 @@ export function ProductDrawer({
   const fetchManufacturers = async () => {
     try {
       setManufacturersLoading(true);
+      setManufacturersError(null);
       const token = getAdminToken();
+
+      if (!token) {
+        setManufacturersError(t('admin.products.errors.authRequired'));
+        return;
+      }
 
       const response = await fetch('/api/admin/partners?type=manufacturer', {
         headers: {
@@ -130,18 +240,28 @@ export function ProductDrawer({
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        const manufacturerList = (data.data?.items || []).map((partner: any) => ({
-          id: partner.id,
-          name: partner.name || partner.nom?.fr || 'Unnamed Manufacturer'
-        }));
-        setManufacturers(manufacturerList);
-      } else {
-        console.error('Failed to fetch manufacturers');
+      if (!response.ok) {
+        if (response.status === 401) {
+          setManufacturersError(t('admin.products.errors.sessionExpired'));
+          return;
+        }
+        throw new Error(`HTTP ${response.status}`);
       }
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.error?.message || 'Failed to fetch manufacturers');
+      }
+
+      const manufacturerList = (data.data?.items || []).map((partner: any) => ({
+        id: partner.id,
+        name: partner.name || partner.nom?.fr || 'Unnamed Manufacturer'
+      }));
+      setManufacturers(manufacturerList);
     } catch (error) {
       console.error('Error fetching manufacturers:', error);
+      setManufacturersError(t('admin.products.errors.fetchManufacturersFailed'));
     } finally {
       setManufacturersLoading(false);
     }
@@ -162,6 +282,7 @@ export function ProductDrawer({
         status: product.status || 'active',
         featured: product.featured ?? productAny.is_featured ?? false,
       });
+      setShowSuccess(false);
     } else if (mode === 'add') {
       setFormData({
         referenceFournisseur: '',
@@ -174,11 +295,17 @@ export function ProductDrawer({
         status: 'active',
         featured: false,
       });
+      setShowSuccess(false);
     }
 
-    // Clear temp files when drawer closes
+    // Clear temp files and errors when drawer closes
     if (!open) {
       setTempFiles([]);
+      setErrors({});
+      setSubmitError(null);
+      setShowSuccess(false);
+      setHasUnsavedChanges(false);
+      setShowCloseConfirmation(false);
     }
   }, [product, open, mode]);
 
@@ -193,18 +320,70 @@ export function ProductDrawer({
   const handleSave = async () => {
     if (!onSave) return;
 
+    // Validate form first
+    if (!validateForm()) {
+      toast.error(t('admin.products.errors.validationFailed'));
+      return;
+    }
+
     setLoading(true);
+    setSubmitError(null);
+
     try {
       const savedProduct = await onSave(formData);
 
-      // If we have temp files and a new product was created, upload them
-      if (tempFiles.length > 0 && savedProduct?.id && mode === 'add') {
-        await uploadTempFilesToProduct(savedProduct.id);
+      if (!savedProduct) {
+        throw new Error(t('admin.products.errors.saveFailed'));
       }
 
-      onOpenChange(false);
+      // If we have temp files and a new product was created, upload them
+      if (tempFiles.length > 0 && savedProduct?.id && mode === 'add') {
+        try {
+          await uploadTempFilesToProduct(savedProduct.id);
+        } catch (mediaError) {
+          // Product was saved but media upload failed
+          toast.warning(t('admin.products.warnings.mediaUploadFailed'));
+        }
+      }
+
+      // Show success
+      setSavedProductName(formData.nom?.fr || '');
+      setShowSuccess(true);
+      setHasUnsavedChanges(false);
+
+      toast.success(
+        mode === 'add'
+          ? t('admin.products.success.created', { name: formData.nom?.fr })
+          : t('admin.products.success.updated', { name: formData.nom?.fr })
+      );
+
+      // Close drawer after short delay to show success state
+      setTimeout(() => {
+        onOpenChange(false);
+      }, 1500);
+
     } catch (error) {
       console.error('Failed to save product:', error);
+
+      let errorMessage = t('admin.products.errors.saveFailed');
+
+      if (error instanceof Error) {
+        // Parse API error messages
+        if (error.message.includes('VALIDATION_ERROR')) {
+          errorMessage = t('admin.products.errors.validationFailed');
+        } else if (error.message.includes('DUPLICATE')) {
+          errorMessage = t('admin.products.errors.duplicateReference');
+        } else if (error.message.includes('UNAUTHORIZED') || error.message.includes('401')) {
+          errorMessage = t('admin.products.errors.sessionExpired');
+        } else if (error.message.includes('NETWORK') || error.message.includes('fetch')) {
+          errorMessage = t('admin.products.errors.networkError');
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      setSubmitError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -214,27 +393,31 @@ export function ProductDrawer({
   const uploadTempFilesToProduct = async (productId: string) => {
     if (tempFiles.length === 0) return;
 
-    try {
-      const formData = new FormData();
-      tempFiles.forEach(file => {
-        formData.append('files', file);
-      });
+    const formDataUpload = new FormData();
+    tempFiles.forEach(file => {
+      formDataUpload.append('files', file);
+    });
 
-      const token = getAdminToken();
-      const response = await fetch(`/api/admin/products/${productId}/media`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        body: formData,
-      });
+    const token = getAdminToken();
 
-      if (response.ok) {
-        setTempFiles([]); // Clear temp files after successful upload
-      }
-    } catch (error) {
-      console.error('Failed to upload temp files:', error);
+    if (!token) {
+      throw new Error(t('admin.products.errors.authRequired'));
     }
+
+    const response = await fetch(`/api/admin/products/${productId}/media`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body: formDataUpload,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error?.message || 'Media upload failed');
+    }
+
+    setTempFiles([]); // Clear temp files after successful upload
   };
 
   // Handle creating a new manufacturer
@@ -243,6 +426,12 @@ export function ProductDrawer({
 
     try {
       const token = getAdminToken();
+
+      if (!token) {
+        toast.error(t('admin.products.errors.authRequired'));
+        return;
+      }
+
       const response = await fetch('/api/admin/partners', {
         method: 'POST',
         headers: {
@@ -253,31 +442,35 @@ export function ProductDrawer({
           name: { fr: newManufacturerName.trim() },
           type: 'manufacturer',
           status: 'active',
-          description: { fr: `Fabricant créé depuis le formulaire produit` }
+          description: { fr: `Fabricant cree depuis le formulaire produit` }
         }),
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        const newManufacturer = {
-          id: result.data.id,
-          name: newManufacturerName.trim()
-        };
-
-        // Add to manufacturers list
-        setManufacturers(prev => [newManufacturer, ...prev]);
-
-        // Select the new manufacturer
-        handleInputChange('constructeur', newManufacturerName.trim());
-
-        // Reset states
-        setNewManufacturerName('');
-        setShowNewManufacturerInput(false);
-      } else {
-        console.error('Failed to create manufacturer');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || 'Failed to create manufacturer');
       }
+
+      const result = await response.json();
+      const newManufacturer = {
+        id: result.data.id,
+        name: newManufacturerName.trim()
+      };
+
+      // Add to manufacturers list
+      setManufacturers(prev => [newManufacturer, ...prev]);
+
+      // Select the new manufacturer
+      handleInputChange('constructeur', newManufacturerName.trim());
+
+      // Reset states
+      setNewManufacturerName('');
+      setShowNewManufacturerInput(false);
+
+      toast.success(t('admin.products.success.manufacturerCreated'));
     } catch (error) {
       console.error('Error creating manufacturer:', error);
+      toast.error(t('admin.products.errors.createManufacturerFailed'));
     }
   };
 
@@ -292,6 +485,12 @@ export function ProductDrawer({
   const handleInputChange = (field: keyof Product, value: any) => {
     if (mode === 'view') return;
     setFormData(prev => ({ ...prev, [field]: value }));
+    setHasUnsavedChanges(true);
+
+    // Clear field-specific error when user starts typing
+    if (errors[field as keyof FormErrors]) {
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
   };
 
   const handleNestedInputChange = (field: 'nom' | 'description' | 'ficheTechnique', lang: 'en' | 'fr', value: string) => {
@@ -303,6 +502,33 @@ export function ProductDrawer({
         [lang]: value
       }
     }));
+    setHasUnsavedChanges(true);
+
+    // Clear field-specific error when user starts typing
+    if (field === 'nom' && lang === 'fr' && errors.nom) {
+      setErrors(prev => ({ ...prev, nom: undefined }));
+    }
+  };
+
+  // Handle close attempt - show confirmation if there are unsaved changes
+  const handleCloseAttempt = () => {
+    if (mode === 'view') {
+      onOpenChange(false);
+      return;
+    }
+
+    if (hasUnsavedChanges && !showSuccess) {
+      setShowCloseConfirmation(true);
+    } else {
+      onOpenChange(false);
+    }
+  };
+
+  // Confirm close - discard changes
+  const handleConfirmClose = () => {
+    setShowCloseConfirmation(false);
+    setHasUnsavedChanges(false);
+    onOpenChange(false);
   };
 
   const getTitle = () => {
@@ -333,8 +559,16 @@ export function ProductDrawer({
 
   const isReadOnly = mode === 'view';
 
+  // Check if form has all required fields
+  const isFormValid = !!(formData.nom?.fr && formData.referenceFournisseur && formData.constructeur && formData.categoryId);
+
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+    <>
+    <Sheet open={open} onOpenChange={(isOpen) => {
+      if (!isOpen) {
+        handleCloseAttempt();
+      }
+    }}>
       <SheetContent side="right" className="w-full sm:max-w-2xl overflow-y-auto">
         <SheetHeader className="border-b pb-6 mb-6">
           <div className="flex items-start justify-between">
@@ -357,9 +591,39 @@ export function ProductDrawer({
           </div>
         </SheetHeader>
 
+        {/* Success Banner */}
+        {showSuccess && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="flex items-center gap-3">
+              <CheckCircleIcon className="h-6 w-6 text-green-600 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-green-800">
+                  {mode === 'add' ? t('admin.products.success.createdTitle') : t('admin.products.success.updatedTitle')}
+                </p>
+                <p className="text-sm text-green-700">
+                  {savedProductName} {t('admin.products.success.savedMessage')}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* General Error Banner */}
+        {submitError && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="flex items-center gap-3">
+              <ExclamationCircleIcon className="h-6 w-6 text-red-600 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-red-800">{t('admin.products.errors.errorTitle')}</p>
+                <p className="text-sm text-red-700">{submitError}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="space-y-6">
           {/* Primary Information - French First */}
-          <Card>
+          <Card className={errors.nom || errors.constructeur || errors.referenceFournisseur || errors.categoryId ? 'border-red-200' : ''}>
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900">{t('admin.products.essentialInfo')}</CardTitle>
               <p className="text-sm text-gray-600">{t('admin.products.essentialInfoDescription')}</p>
@@ -376,9 +640,16 @@ export function ProductDrawer({
                   onChange={(e) => handleNestedInputChange('nom', 'fr', e.target.value)}
                   placeholder={t('admin.products.productNamePlaceholder')}
                   disabled={isReadOnly}
-                  className="text-lg font-medium border-2 focus:border-blue-500"
+                  className={`text-lg font-medium border-2 focus:border-blue-500 ${errors.nom ? 'border-red-500 focus:border-red-500' : ''}`}
                 />
-                <p className="text-xs text-gray-500">{t('admin.products.productNameHint')}</p>
+                {errors.nom ? (
+                  <p className="text-xs text-red-600 flex items-center gap-1">
+                    <ExclamationCircleIcon className="h-3 w-3" />
+                    {errors.nom}
+                  </p>
+                ) : (
+                  <p className="text-xs text-gray-500">{t('admin.products.productNameHint')}</p>
+                )}
               </div>
 
               {/* Basic Details Grid */}
@@ -431,39 +702,54 @@ export function ProductDrawer({
                       <p className="text-xs text-gray-500">{t('admin.products.pressEnterToAdd')}</p>
                     </div>
                   ) : (
-                    <Select
-                      value={formData.constructeur || ''}
-                      onValueChange={handleSelectChange}
-                      disabled={isReadOnly || manufacturersLoading}
-                    >
-                      <SelectTrigger className="font-medium">
-                        <SelectValue placeholder={manufacturersLoading ? t('common.loading') : t('admin.products.brandPlaceholder')} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="__add_new__" className="font-semibold text-blue-600">
-                          + {t('admin.products.addNewManufacturer')}
-                        </SelectItem>
-                        {/* Show current value if not in list */}
-                        {formData.constructeur && !manufacturers.some(m => m.name === formData.constructeur) && (
-                          <SelectItem key="current-value" value={formData.constructeur} className="font-medium text-gray-900">
-                            {formData.constructeur}
+                    <>
+                      <Select
+                        value={formData.constructeur || ''}
+                        onValueChange={handleSelectChange}
+                        disabled={isReadOnly || manufacturersLoading}
+                      >
+                        <SelectTrigger className={`font-medium ${errors.constructeur ? 'border-red-500' : ''}`}>
+                          <SelectValue placeholder={manufacturersLoading ? t('common.loading') : t('admin.products.brandPlaceholder')} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="__add_new__" className="font-semibold text-blue-600">
+                            + {t('admin.products.addNewManufacturer')}
                           </SelectItem>
-                        )}
-                        {manufacturers.map((manufacturer) => (
-                          <SelectItem key={manufacturer.id} value={manufacturer.name}>
-                            {manufacturer.name}
-                          </SelectItem>
-                        ))}
-                        {manufacturers.length === 0 && !manufacturersLoading && !formData.constructeur && (
-                          <SelectItem value="" disabled>
-                            {t('admin.products.noManufacturersFound')}
-                          </SelectItem>
-                        )}
-                      </SelectContent>
-                    </Select>
+                          {/* Show current value if not in list */}
+                          {formData.constructeur && !manufacturers.some(m => m.name === formData.constructeur) && (
+                            <SelectItem key="current-value" value={formData.constructeur} className="font-medium text-gray-900">
+                              {formData.constructeur}
+                            </SelectItem>
+                          )}
+                          {manufacturers.map((manufacturer) => (
+                            <SelectItem key={manufacturer.id} value={manufacturer.name}>
+                              {manufacturer.name}
+                            </SelectItem>
+                          ))}
+                          {manufacturers.length === 0 && !manufacturersLoading && !formData.constructeur && (
+                            <SelectItem value="" disabled>
+                              {t('admin.products.noManufacturersFound')}
+                            </SelectItem>
+                          )}
+                        </SelectContent>
+                      </Select>
+                      {manufacturersError && (
+                        <p className="text-xs text-amber-600 flex items-center gap-1">
+                          <ExclamationTriangleIcon className="h-3 w-3" />
+                          {manufacturersError}
+                        </p>
+                      )}
+                    </>
                   )}
 
-                  <p className="text-xs text-gray-500">{t('admin.products.brandHint')}</p>
+                  {errors.constructeur ? (
+                    <p className="text-xs text-red-600 flex items-center gap-1">
+                      <ExclamationCircleIcon className="h-3 w-3" />
+                      {errors.constructeur}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-gray-500">{t('admin.products.brandHint')}</p>
+                  )}
                   {manufacturersLoading && (
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                       <LoadingSpinner size="sm" />
@@ -482,9 +768,16 @@ export function ProductDrawer({
                     onChange={(e) => handleInputChange('referenceFournisseur', e.target.value)}
                     placeholder={t('admin.products.referenceCodePlaceholder')}
                     disabled={isReadOnly}
-                    className="font-mono"
+                    className={`font-mono ${errors.referenceFournisseur ? 'border-red-500 focus:border-red-500' : ''}`}
                   />
-                  <p className="text-xs text-gray-500">{t('admin.products.referenceCodeHint')}</p>
+                  {errors.referenceFournisseur ? (
+                    <p className="text-xs text-red-600 flex items-center gap-1">
+                      <ExclamationCircleIcon className="h-3 w-3" />
+                      {errors.referenceFournisseur}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-gray-500">{t('admin.products.referenceCodeHint')}</p>
+                  )}
                 </div>
               </div>
 
@@ -498,13 +791,12 @@ export function ProductDrawer({
                   value={formData.categoryId || ''}
                   onChange={(e) => handleInputChange('categoryId', e.target.value)}
                   disabled={isReadOnly || categoriesLoading}
-                  className="flex h-12 w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                  className={`flex h-12 w-full rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50 ${errors.categoryId ? 'border-red-500' : ''}`}
                 >
                   <option value="">{categoriesLoading ? t('common.loading') + '...' : t('admin.products.selectDiscipline')}</option>
                   {categories.map((category: any) => {
                     const translatedName = category.category_translations?.find((t: any) => t.language_code === 'fr')?.name || category.name;
                     const isDiscipline = category._isDiscipline;
-                    const parentName = category._parentName;
 
                     return (
                       <option
@@ -512,14 +804,27 @@ export function ProductDrawer({
                         value={category.id}
                         className={isDiscipline ? 'font-bold' : ''}
                       >
-                        {isDiscipline ? `${translatedName}` : `  └ ${translatedName}`}
+                        {isDiscipline ? `${translatedName}` : `  - ${translatedName}`}
                       </option>
                     );
                   })}
                 </select>
-                <p className="text-xs text-gray-500">
-                  {t('admin.products.disciplineHint')} - Sélectionnez une catégorie spécifique (└) pour un meilleur classement
-                </p>
+                {categoriesError && (
+                  <p className="text-xs text-amber-600 flex items-center gap-1">
+                    <ExclamationTriangleIcon className="h-3 w-3" />
+                    {categoriesError}
+                  </p>
+                )}
+                {errors.categoryId ? (
+                  <p className="text-xs text-red-600 flex items-center gap-1">
+                    <ExclamationCircleIcon className="h-3 w-3" />
+                    {errors.categoryId}
+                  </p>
+                ) : (
+                  <p className="text-xs text-gray-500">
+                    {t('admin.products.disciplineHint')}
+                  </p>
+                )}
               </div>
 
               {/* Simple Description */}
@@ -790,8 +1095,9 @@ export function ProductDrawer({
         <div className="sticky bottom-0 bg-white border-t mt-8 pt-6 pb-6 flex justify-between space-x-4">
           <Button
             variant="outline"
-            onClick={() => onOpenChange(false)}
+            onClick={handleCloseAttempt}
             className="flex-1"
+            disabled={loading}
           >
             {mode === 'view' ? t('common.close') : t('common.cancel')}
           </Button>
@@ -799,15 +1105,42 @@ export function ProductDrawer({
           {mode !== 'view' && (
             <Button
               onClick={handleSave}
-              disabled={loading || !formData.nom?.fr || !formData.referenceFournisseur || !formData.constructeur || !formData.categoryId}
-              className="flex-1"
+              disabled={loading || !isFormValid || showSuccess}
+              className={`flex-1 ${showSuccess ? 'bg-green-600 hover:bg-green-600' : ''}`}
             >
               {loading && <LoadingSpinner size="sm" className="mr-2" />}
-              {mode === 'add' ? t('common.add') : t('common.save')}
+              {showSuccess && <CheckCircleIcon className="h-5 w-5 mr-2" />}
+              {showSuccess
+                ? t('admin.products.success.saved')
+                : mode === 'add'
+                  ? t('common.add')
+                  : t('common.save')
+              }
             </Button>
           )}
         </div>
       </SheetContent>
     </Sheet>
+
+    {/* Confirmation Dialog for unsaved changes */}
+    <AlertDialog open={showCloseConfirmation} onOpenChange={setShowCloseConfirmation}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{t('admin.products.closeConfirmation.title')}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {t('admin.products.closeConfirmation.description')}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={() => setShowCloseConfirmation(false)}>
+            {t('admin.products.closeConfirmation.cancel')}
+          </AlertDialogCancel>
+          <AlertDialogAction onClick={handleConfirmClose} className="bg-red-600 hover:bg-red-700">
+            {t('admin.products.closeConfirmation.confirm')}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+    </>
   );
 }
