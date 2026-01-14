@@ -22,22 +22,52 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       status: 'active', // Only active products for public API
     };
 
-    // Text search in product translations
+    // Smart fuzzy search - case-insensitive search across multiple fields
     if (query) {
       where.OR = [
-        { reference_fournisseur: { contains: query } },
-        { constructeur: { contains: query } },
+        // Search by reference (SKU)
+        { reference_fournisseur: { contains: query, mode: 'insensitive' } },
+        // Search by manufacturer/constructeur
+        { constructeur: { contains: query, mode: 'insensitive' } },
+        // Search in product name (all languages)
         {
           product_translations: {
             some: {
-              nom: { contains: query }
+              nom: { contains: query, mode: 'insensitive' }
             }
           }
         },
+        // Search in product description (all languages)
         {
           product_translations: {
             some: {
-              description: { contains: query }
+              description: { contains: query, mode: 'insensitive' }
+            }
+          }
+        },
+        // Search by brand/manufacturer name via partner relation
+        {
+          partners: {
+            name: { contains: query, mode: 'insensitive' }
+          }
+        },
+        // Search in partner translations (multilingual brand names)
+        {
+          partners: {
+            partner_translations: {
+              some: {
+                name: { contains: query, mode: 'insensitive' }
+              }
+            }
+          }
+        },
+        // Search in category name
+        {
+          categories: {
+            category_translations: {
+              some: {
+                name: { contains: query, mode: 'insensitive' }
+              }
             }
           }
         }
