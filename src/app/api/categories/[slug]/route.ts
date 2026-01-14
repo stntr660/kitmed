@@ -14,9 +14,37 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const includeChildren = searchParams.get('includeChildren') === 'true';
     const includeProducts = searchParams.get('includeProducts') === 'true';
 
-    // Find the category by slug
+    // First, check if the category has children
+    const categoryCheck = await prisma.categories.findFirst({
+      where: {
+        slug: params.slug,
+        is_active: true
+      },
+      include: {
+        other_categories: {
+          where: { is_active: true },
+          select: { id: true }
+        }
+      }
+    });
+
+    if (!categoryCheck) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Category not found'
+        },
+        { status: 404 }
+      );
+    }
+
+    const hasChildren = categoryCheck.other_categories && categoryCheck.other_categories.length > 0;
+    // Always include products if no children exist OR if explicitly requested
+    const shouldIncludeProducts = includeProducts || !hasChildren;
+
+    // Find the category by slug with full details
     const category = await prisma.categories.findFirst({
-      where: { 
+      where: {
         slug: params.slug,
         is_active: true
       },
@@ -45,61 +73,47 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             }
           }
         },
-        ...(includeChildren && {
-          other_categories: {
-            where: { is_active: true },
-            include: {
-              category_translations: {
-                where: { language_code: locale }
-              },
-              _count: {
-                select: { products: true }
-              }
+        other_categories: includeChildren ? {
+          where: { is_active: true },
+          include: {
+            category_translations: {
+              where: { language_code: locale }
             },
-            orderBy: { sort_order: 'asc' }
-          }
-        }),
-        ...(includeProducts && {
-          products: {
-            where: { status: 'active' },
-            include: {
-              product_translations: {
-                where: { language_code: locale }
-              },
-              product_media: {
-                where: { is_primary: true },
-                take: 1
-              },
-              partners: {
-                include: {
-                  partner_translations: {
-                    where: { language_code: locale }
-                  }
+            _count: {
+              select: { products: true }
+            }
+          },
+          orderBy: { sort_order: 'asc' }
+        } : undefined,
+        products: shouldIncludeProducts ? {
+          where: { status: 'active' },
+          include: {
+            product_translations: {
+              where: { language_code: locale }
+            },
+            product_media: {
+              where: { is_primary: true },
+              take: 1
+            },
+            partners: {
+              include: {
+                partner_translations: {
+                  where: { language_code: locale }
                 }
               }
-            },
-            take: 100,
-            orderBy: [
-              { is_featured: 'desc' },
-              { created_at: 'desc' }
-            ]
-          }
-        }),
+            }
+          },
+          take: 100,
+          orderBy: [
+            { is_featured: 'desc' },
+            { created_at: 'desc' }
+          ]
+        } : undefined,
         _count: {
           select: { products: true }
         }
       }
     });
-
-    if (!category) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Category not found' 
-        },
-        { status: 404 }
-      );
-    }
 
     // Transform the category data
     const transformCategory = (cat: any) => {
