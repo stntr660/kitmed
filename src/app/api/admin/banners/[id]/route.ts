@@ -268,16 +268,38 @@ async function updateBanner(request: NextRequest, { params }: { params: Promise<
         version: '1.0',
       },
     });
-  } catch (error) {
-    console.error('Banner update error:', error);
+  } catch (error: any) {
+    console.error('Banner update error:', {
+      message: error?.message,
+      code: error?.code,
+      meta: error?.meta,
+      stack: error?.stack,
+    });
+
+    // Extract detailed error info
+    let errorMessage = 'Failed to update banner';
+    let errorDetails = 'Unknown error';
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+      errorDetails = error.stack || error.message;
+    }
+
+    // Handle Prisma-specific errors
+    if (error?.code) {
+      errorDetails = `Prisma error ${error.code}: ${error.message}`;
+      if (error.meta) {
+        errorDetails += ` (${JSON.stringify(error.meta)})`;
+      }
+    }
 
     return NextResponse.json(
       {
         success: false,
         error: {
-          code: 'INTERNAL_ERROR',
-          message: 'Failed to update banner',
-          details: error instanceof Error ? error.message : 'Unknown error',
+          code: error?.code || 'INTERNAL_ERROR',
+          message: errorMessage,
+          details: errorDetails,
         },
       },
       { status: 500 }
