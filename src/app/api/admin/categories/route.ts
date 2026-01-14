@@ -265,7 +265,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
-    console.log('🔥 RAW REQUEST:', JSON.stringify(body, null, 2));
+    console.log('RAW REQUEST:', JSON.stringify(body, null, 2));
 
     // Infer type if not provided: parent_id exists = equipment, otherwise = discipline
     if (!body.type) {

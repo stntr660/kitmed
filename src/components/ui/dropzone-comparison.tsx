@@ -17,7 +17,7 @@ export function DropzoneComparison() {
       {/* New Shadcn Dropzone */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
-          <h3 className="text-lg font-semibold text-green-600">✨ NEW: Shadcn Dropzone</h3>
+          <h3 className="text-lg font-semibold text-green-600">NEW: Shadcn Dropzone</h3>
           <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">
             Visible & Interactive
           </span>
@@ -33,7 +33,7 @@ export function DropzoneComparison() {
           />
         </div>
         <div className="text-sm text-gray-600 bg-green-50 p-3 rounded">
-          <p className="font-medium text-green-800">✅ Benefits:</p>
+          <p className="font-medium text-green-800">Benefits:</p>
           <ul className="mt-2 space-y-1 text-green-700">
             <li>• Large, visible dropzone area</li>
             <li>• Clear drag & drop visual feedback</li>
@@ -48,7 +48,7 @@ export function DropzoneComparison() {
       {/* Old Compact Component */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
-          <h3 className="text-lg font-semibold text-orange-600">❌ OLD: Compact Upload</h3>
+          <h3 className="text-lg font-semibold text-orange-600">OLD: Compact Upload</h3>
           <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded">
             Too Small
           </span>
@@ -65,7 +65,7 @@ export function DropzoneComparison() {
           />
         </div>
         <div className="text-sm text-gray-600 bg-orange-50 p-3 rounded">
-          <p className="font-medium text-orange-800">❌ Problems:</p>
+          <p className="font-medium text-orange-800">Problems:</p>
           <ul className="mt-2 space-y-1 text-orange-700">
             <li>• Too small and hard to notice</li>
             <li>• Not obvious it's clickable</li>
@@ -77,7 +77,7 @@ export function DropzoneComparison() {
 
       {/* Usage in Partner Form */}
       <div className="space-y-4 border-t pt-6">
-        <h3 className="text-lg font-semibold text-blue-600">🎯 Perfect for Partner Forms</h3>
+        <h3 className="text-lg font-semibold text-blue-600">Perfect for Partner Forms</h3>
         <div className="bg-blue-50 p-4 rounded-lg">
           <p className="text-blue-800 font-medium mb-2">Why the shadcn dropzone is better for partners:</p>
           <ul className="space-y-2 text-blue-700 text-sm">

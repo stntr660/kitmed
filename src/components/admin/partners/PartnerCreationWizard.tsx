@@ -285,7 +285,7 @@ export function PartnerCreationWizard({
                     {t('admin.partners.types.manufacturer.description')}
                   </p>
                   <div className="mt-4 text-xs text-blue-600 font-medium">
-                    🔗 {t('admin.partners.types.manufacturer.badge')}
+                    {t('admin.partners.types.manufacturer.badge')}
                   </div>
                   <div className="mt-2 text-xs text-gray-500">
                     Ex: Philips Healthcare, Siemens Healthineers

@@ -21,8 +21,8 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'fr' as Locale, name: 'Français', flag: '🇫🇷' },
-    { code: 'en' as Locale, name: 'English', flag: '🇺🇸' }
+    { code: 'fr' as Locale, name: 'Français', flag: 'FR' },
+    { code: 'en' as Locale, name: 'English', flag: 'EN' }
   ];
 
   const currentLanguage = languages.find(lang => lang.code === currentLocale) || languages[0];

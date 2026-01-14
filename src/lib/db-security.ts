@@ -76,7 +76,7 @@ export class SecurePrismaClient {
   }
 
   private logError(event: any) {
-    console.error(`🚨 DATABASE ERROR: ${event.timestamp} - ${event.message}`);
+    console.error(`DATABASE ERROR: ${event.timestamp} - ${event.message}`);
   }
 
   // Input sanitization and validation

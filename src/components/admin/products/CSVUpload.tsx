@@ -223,11 +223,11 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                 <li>{t('product.form.bulkImport.columns.nom_en')}</li>
                 <li>{t('product.form.bulkImport.columns.status')}</li>
               </ul>
-              <p className="text-xs text-blue-600 font-medium mt-2">📁 File Downloads:</p>
+              <p className="text-xs text-blue-600 font-medium mt-2">File Downloads:</p>
               <ul className="list-disc list-inside text-xs space-y-1">
                 <li><strong>pdfBrochureUrl:</strong> PDF brochure URL (downloaded with deduplication)</li>
                 <li><strong>imageUrls:</strong> Comma-separated image URLs (downloaded with deduplication)</li>
-                <li className="text-blue-600">💡 <strong>Smart Deduplication:</strong> Identical files are automatically detected and reused to save storage</li>
+                <li className="text-blue-600"><strong>Smart Deduplication:</strong> Identical files are automatically detected and reused to save storage</li>
               </ul>
             </div>
           </AlertDescription>
@@ -302,14 +302,14 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
                     <p className="font-medium">{t('product.form.bulkImport.success')}</p>
                     <p>{t('product.form.bulkImport.results.importedCount')} {result.imported}</p>
                     {result.filesDownloaded !== undefined && result.filesDownloaded > 0 && (
-                      <p className="text-sm">📁 New files downloaded: {result.filesDownloaded}</p>
+                      <p className="text-sm">New files downloaded: {result.filesDownloaded}</p>
                     )}
                     {result.filesDeduplicationSaved !== undefined && result.filesDeduplicationSaved > 0 && (
-                      <p className="text-sm text-blue-600">♻️ Files reused through deduplication: {result.filesDeduplicationSaved}</p>
+                      <p className="text-sm text-blue-600">Files reused through deduplication: {result.filesDeduplicationSaved}</p>
                     )}
                     {((result.filesDownloaded || 0) + (result.filesDeduplicationSaved || 0)) > 0 && (
                       <p className="text-xs text-gray-500">
-                        💾 Storage saved: {Math.round(((result.filesDeduplicationSaved || 0) / ((result.filesDownloaded || 0) + (result.filesDeduplicationSaved || 0))) * 100)}% efficient
+                        Storage saved: {Math.round(((result.filesDeduplicationSaved || 0) / ((result.filesDownloaded || 0) + (result.filesDeduplicationSaved || 0))) * 100)}% efficient
                       </p>
                     )}
                   </div>

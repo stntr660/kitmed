@@ -245,7 +245,7 @@ export function BannerManagement() {
           <p className="text-gray-600 mt-1">Create and manage homepage banners</p>
           {isUsingFallback && (
             <div className="mt-2 p-2 bg-yellow-100 border border-yellow-300 rounded-md text-sm text-yellow-800">
-              ⚠️ Read-only mode: Please log in for all management features
+              Read-only mode: Please log in for all management features
             </div>
           )}
         </div>

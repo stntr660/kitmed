@@ -73,7 +73,7 @@ export default function ProductsByManufacturerPage() {
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              🏭 {t('manufacturers.badge')}
+              {t('manufacturers.badge')}
             </Badge>
 
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">

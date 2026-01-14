@@ -187,7 +187,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
             </nav>
 
             <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              🏥 {category.type === 'discipline' ? tCategories('discipline') : tCategories('category')}
+              {category.type === 'discipline' ? tCategories('discipline') : tCategories('category')}
             </Badge>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">

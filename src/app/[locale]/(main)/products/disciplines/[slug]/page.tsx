@@ -131,7 +131,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             </div>
 
             <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              🏥 {discipline.name}
+              {discipline.name}
             </Badge>
 
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">

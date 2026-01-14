@@ -62,7 +62,7 @@ export function validateEnvironment(): EnvironmentConfig {
 
   // Throw error if any validation failed
   if (errors.length > 0) {
-    const errorMessage = `❌ Environment validation failed:\n${errors.map(err => `  - ${err}`).join('\n')}`;
+    const errorMessage = `Environment validation failed:\n${errors.map(err => `  - ${err}`).join('\n')}`;
     throw new Error(errorMessage);
   }
 
@@ -88,12 +88,12 @@ export function initializeEnvironment(): void {
 
     if (process.env.NODE_ENV === 'development') {
 
-      console.log(`📊 Database: ${config.DATABASE_URL.includes('postgresql') ? 'PostgreSQL' : 'SQLite'}`);
+      console.log(`Database: ${config.DATABASE_URL.includes('postgresql') ? 'PostgreSQL' : 'SQLite'}`);
 
     }
 
   } catch (error) {
-    console.error('🚨 CRITICAL: Environment validation failed');
+    console.error('CRITICAL: Environment validation failed');
     console.error((error as Error).message);
 
     // In production, exit the process

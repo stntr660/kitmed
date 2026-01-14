@@ -185,10 +185,18 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   }, [tempFilesWithPreview]);
 
   const handleDeleteMedia = async (mediaId: string) => {
-    if (disabled) return;
+    console.log('[MediaUpload] handleDeleteMedia called with mediaId:', mediaId);
+    console.log('[MediaUpload] disabled:', disabled);
+
+    if (disabled) {
+      console.log('[MediaUpload] Disabled, returning early');
+      return;
+    }
 
     try {
       const token = getAdminToken();
+      console.log('[MediaUpload] Token:', token ? 'present' : 'missing');
+
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'DELETE',
         headers: {
@@ -196,13 +204,20 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         },
       });
 
+      console.log('[MediaUpload] Delete response status:', response.status);
+      const responseData = await response.json().catch(() => ({}));
+      console.log('[MediaUpload] Delete response data:', responseData);
+
       if (response.ok) {
         const newMedia = media.filter(m => m.id !== mediaId);
+        console.log('[MediaUpload] Updating media state, new count:', newMedia.length);
         setMedia(newMedia);
         onMediaChange?.(newMedia);
+      } else {
+        console.error('[MediaUpload] Delete failed:', responseData);
       }
     } catch (error) {
-      console.error('Delete error:', error);
+      console.error('[MediaUpload] Delete error:', error);
     }
   };
 

@@ -109,7 +109,7 @@ export function PartnerTypeSelector({ value, onChange, disabled }: PartnerTypeSe
                     {type.id === 'manufacturer' && (
                       <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                         <p className="text-xs text-blue-800 font-medium">
-                          💡 {t('admin.partners.types.manufacturer.note')}
+                          {t('admin.partners.types.manufacturer.note')}
                         </p>
                       </div>
                     )}

@@ -9,12 +9,12 @@ import { KITMED_TYPOGRAPHY, RESPONSIVE_TYPOGRAPHY, TYPOGRAPHY_PRESETS } from './
 
 /**
  * WCAG 2.1 AA Compliance Checklist
- * ✅ All text has sufficient contrast ratio (4.5:1 minimum for normal text, 3:1 for large text)
- * ✅ Font sizes meet minimum readability standards (16px base minimum)
- * ✅ Line height provides adequate spacing (1.5x font size minimum)
- * ✅ Font weights provide clear hierarchy without being overwhelming
- * ✅ Focus states are clearly visible and accessible
- * ✅ Text scaling works up to 200% without horizontal scrolling
+ * All text has sufficient contrast ratio (4.5:1 minimum for normal text, 3:1 for large text)
+ * Font sizes meet minimum readability standards (16px base minimum)
+ * Line height provides adequate spacing (1.5x font size minimum)
+ * Font weights provide clear hierarchy without being overwhelming
+ * Focus states are clearly visible and accessible
+ * Text scaling works up to 200% without horizontal scrolling
  */
 
 /**
