@@ -481,7 +481,7 @@ export function PartnerCreationWizard({
                   preset="partnerBrochure"
                   placeholder={t('admin.partners.brochurePlaceholder')}
                   label={t('admin.partners.brochure')}
-                  maxSize={25}
+                  maxSize={100}
                 />
                 <p className="text-sm text-gray-600">
                   {t('admin.partners.brochureDescription')}

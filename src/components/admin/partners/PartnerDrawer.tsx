@@ -303,7 +303,7 @@ export function PartnerDrawer({
                     onChange={(url) => handleInputChange('defaultPdfUrl', url)}
                     placeholder={t('admin.partners.brochurePlaceholder')}
                     description={t('admin.partners.brochureDescription')}
-                    maxSize={10}
+                    maxSize={100}
                     disabled={isReadOnly}
                   />
                 </div>
