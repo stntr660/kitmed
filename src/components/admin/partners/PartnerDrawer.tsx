@@ -18,6 +18,8 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ChevronDownIcon, ChevronUpIcon, GlobeAltIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import { Partner } from '@/types';
 import { ImageDropzone } from '@/components/ui/image-dropzone';
+import { PdfDropzone } from '@/components/ui/pdf-dropzone';
+import { PhotoIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 
 interface PartnerDrawerProps {
   open: boolean;
@@ -42,6 +44,7 @@ export function PartnerDrawer({
     description: { fr: '', en: '' },
     websiteUrl: '',
     logoUrl: '',
+    defaultPdfUrl: '',
     type: 'manufacturer',
     status: 'active',
     featured: false,
@@ -57,6 +60,7 @@ export function PartnerDrawer({
         description: partner.description || { fr: '', en: '' },
         websiteUrl: partner.websiteUrl || '',
         logoUrl: partner.logoUrl || '',
+        defaultPdfUrl: partner.defaultPdfUrl || '',
         type: partner.type || 'manufacturer',
         status: partner.status || 'active',
         featured: partner.featured || false,
@@ -67,6 +71,7 @@ export function PartnerDrawer({
         description: { fr: '', en: '' },
         websiteUrl: '',
         logoUrl: '',
+        defaultPdfUrl: '',
         type: 'manufacturer',
         status: 'active',
         featured: false,
@@ -254,20 +259,54 @@ export function PartnerDrawer({
                 </p>
               </div>
 
-              {/* Partner Logo */}
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">
-                  {t('admin.partners.logo')}
+              {/* Media & Documents Section */}
+              <div className="space-y-4">
+                <label className="text-sm font-semibold text-gray-900">
+                  {t('admin.partners.mediaAndDocuments')}
                 </label>
-                <ImageDropzone
-                  value={formData.logoUrl || ''}
-                  onChange={(url) => handleInputChange('logoUrl', url)}
-                  preset="partnerLogo"
-                  placeholder="Logo du partenaire"
-                  description="Glissez-déposez le logo ici, ou cliquez pour sélectionner un fichier (PNG, JPG - max 2MB)"
-                  maxSize={2}
-                  disabled={isReadOnly}
-                />
+
+                {/* Partner Logo - Blue theme */}
+                <div className="border-2 border-blue-100 rounded-lg p-4 bg-blue-50/30">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <PhotoIcon className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">{t('admin.partners.logo')}</h4>
+                      <p className="text-xs text-blue-600">{t('admin.partners.logoHint')}</p>
+                    </div>
+                  </div>
+                  <ImageDropzone
+                    value={formData.logoUrl || ''}
+                    onChange={(url) => handleInputChange('logoUrl', url)}
+                    preset="partnerLogo"
+                    placeholder={t('admin.partners.logoPlaceholder')}
+                    description={t('admin.partners.logoDescription')}
+                    maxSize={2}
+                    disabled={isReadOnly}
+                  />
+                </div>
+
+                {/* PDF Brochure - Amber/Orange theme */}
+                <div className="border-2 border-amber-100 rounded-lg p-4 bg-amber-50/30">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                      <DocumentTextIcon className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">{t('admin.partners.brochure')}</h4>
+                      <p className="text-xs text-amber-600">{t('admin.partners.brochureHint')}</p>
+                    </div>
+                  </div>
+                  <PdfDropzone
+                    value={formData.defaultPdfUrl || ''}
+                    onChange={(url) => handleInputChange('defaultPdfUrl', url)}
+                    placeholder={t('admin.partners.brochurePlaceholder')}
+                    description={t('admin.partners.brochureDescription')}
+                    maxSize={10}
+                    disabled={isReadOnly}
+                  />
+                </div>
               </div>
 
               {/* Simple Description */}

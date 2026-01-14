@@ -836,7 +836,18 @@
       "logoUrl": "Logo",
       "logoUrlPlaceholder": "https://example.com/logo.png",
       "logoUrlHint": "URL to partner logo",
-      
+
+      "mediaAndDocuments": "Media & Documents",
+      "logo": "Partner Logo",
+      "logoHint": "Image displayed on partner page (PNG, JPG)",
+      "logoPlaceholder": "Upload logo",
+      "logoDescription": "Drag & drop the logo here, or click to select (PNG, JPG - max 2MB)",
+
+      "brochure": "PDF Brochure / Catalogue",
+      "brochureHint": "Downloadable document for customers",
+      "brochurePlaceholder": "Upload PDF",
+      "brochureDescription": "Drag & drop the PDF here, or click to select (max 10MB)",
+
       "shortDescription": "Short description",
       "shortDescriptionPlaceholder": "Briefly describe the partner and their services",
       "shortDescriptionHint": "Simple presentation for the sales team",

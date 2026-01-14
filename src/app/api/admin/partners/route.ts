@@ -26,24 +26,25 @@ async function getPartners(request: NextRequest) {
     // Build where clause
     const where: any = {};
 
-    // Text search in partner translations
+    // Text search in partner translations (case-insensitive)
     if (filters.query) {
       where.OR = [
+        { name: { contains: filters.query, mode: 'insensitive' } },
         {
           partner_translations: {
             some: {
-              name: { contains: filters.query }
+              name: { contains: filters.query, mode: 'insensitive' }
             }
           }
         },
         {
           partner_translations: {
             some: {
-              description: { contains: filters.query }
+              description: { contains: filters.query, mode: 'insensitive' }
             }
           }
         },
-        { website_url: { contains: filters.query } },
+        { website_url: { contains: filters.query, mode: 'insensitive' } },
       ];
     }
 
@@ -77,6 +78,7 @@ async function getPartners(request: NextRequest) {
       slug: partner.slug,
       websiteUrl: partner.website_url,
       logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
       type: partner.type,
       status: partner.status,
       featured: partner.is_featured,
@@ -145,6 +147,7 @@ const createPartnerSchema = z.object({
   }).optional(),
   websiteUrl: z.string().optional(),
   logoUrl: z.string().optional(),
+  defaultPdfUrl: z.string().optional(),
   type: z.enum(['manufacturer', 'distributor', 'service', 'technology']).default('manufacturer'),
   status: z.enum(['active', 'inactive']).default('active'),
   featured: z.boolean().default(false),
@@ -190,6 +193,7 @@ async function createPartner(request: NextRequest) {
         slug,
         website_url: partnerData.websiteUrl || null,
         logo_url: partnerData.logoUrl || null,
+        default_pdf_url: partnerData.defaultPdfUrl || null,
         type: partnerData.type,
         status: partnerData.status,
         is_featured: partnerData.featured,
@@ -222,6 +226,7 @@ async function createPartner(request: NextRequest) {
       slug: partner.slug,
       websiteUrl: partner.website_url,
       logoUrl: partner.logo_url,
+      defaultPdfUrl: partner.default_pdf_url,
       type: partner.type,
       status: partner.status,
       featured: partner.is_featured,
