@@ -2293,7 +2293,9 @@
     "viewProducts": "Voir les Produits",
     "noCategoriesTitle": "Aucune Catégorie Disponible",
     "noCategoriesDescription": "Cette discipline ne contient pas encore de catégories d'équipements.",
-    "viewAllProducts": "Voir Tous les Produits"
+    "viewAllProducts": "Voir Tous les Produits",
+    "directProductsTitle": "{count} Produits Disponibles",
+    "directProductsDescription": "Parcourez tous les produits {disciplineName} directement dans notre catalogue."
   },
   "products": {
     "hero": {

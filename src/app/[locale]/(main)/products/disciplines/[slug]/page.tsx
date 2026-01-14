@@ -28,6 +28,7 @@ interface Discipline {
   slug: string;
   description: string;
   imageUrl: string | null;
+  productCount: number;
   other_categories: Category[];
 }
 
@@ -237,6 +238,33 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                 ))}
               </div>
             </>
+          ) : discipline.productCount > 0 ? (
+            // No subcategories but has direct products - show link to products
+            <div className="text-center py-16">
+              <div className="h-24 w-24 bg-primary-100 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <Building2 className="h-12 w-12 text-primary-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                {tDisciplines('directProductsTitle', { count: discipline.productCount })}
+              </h3>
+              <p className="text-slate-600 mb-8 max-w-md mx-auto">
+                {tDisciplines('directProductsDescription', { disciplineName: discipline.name })}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="outline" asChild>
+                  <Link href={`/${locale}/products/disciplines`}>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {tDisciplines('backToDisciplines')}
+                  </Link>
+                </Button>
+                <Button asChild>
+                  <Link href={`/${locale}/products/categories/${discipline.slug}`}>
+                    {tDisciplines('viewProducts')} ({discipline.productCount})
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           ) : (
             <div className="text-center py-20">
               <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">

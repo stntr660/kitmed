@@ -2267,7 +2267,9 @@
     "viewProducts": "View Products",
     "noCategoriesTitle": "No Categories Available",
     "noCategoriesDescription": "This discipline does not yet contain equipment categories.",
-    "viewAllProducts": "View All Products"
+    "viewAllProducts": "View All Products",
+    "directProductsTitle": "{count} Products Available",
+    "directProductsDescription": "Browse all {disciplineName} products directly in our catalog."
   },
   "products": {
     "hero": {
