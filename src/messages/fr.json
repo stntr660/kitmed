@@ -764,15 +764,55 @@
       "status": "Statut",
       "statusOptions": {
         "active": "Actif",
-        "inactive": "Inactif", 
+        "inactive": "Inactif",
         "discontinued": "Discontinué",
-        "visible": "Visible",
-        "draft": "Brouillon"
+        "visible": "Visible dans le catalogue",
+        "draft": "Brouillon - caché du catalogue"
       },
       "status": {
         "active": "Actif",
         "inactive": "Inactif",
         "discontinued": "Discontinué"
+      },
+      "errors": {
+        "nameRequired": "Le nom du produit en français est requis",
+        "brandRequired": "La marque/constructeur est requis",
+        "referenceRequired": "La référence fournisseur est requise",
+        "categoryRequired": "Au moins une catégorie est requise",
+        "authRequired": "Authentification requise. Veuillez vous reconnecter.",
+        "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+        "noCategoriesFound": "Aucune catégorie trouvée dans le système",
+        "fetchCategoriesFailed": "Échec du chargement des catégories. Veuillez réessayer.",
+        "fetchManufacturersFailed": "Échec du chargement des constructeurs. Veuillez réessayer.",
+        "validationFailed": "Veuillez corriger les erreurs indiquées",
+        "saveFailed": "Échec de la sauvegarde du produit. Veuillez réessayer.",
+        "duplicateReference": "Un produit avec ce code de référence existe déjà.",
+        "duplicateSlug": "Un produit avec ce nom existe déjà.",
+        "duplicateEntry": "Un produit avec ce {field} existe déjà",
+        "invalidReference": "Catégorie ou constructeur invalide.",
+        "categoryNotFound": "La catégorie sélectionnée n'existe plus.",
+        "networkError": "Erreur réseau. Veuillez vérifier votre connexion.",
+        "createManufacturerFailed": "Échec de la création du nouveau constructeur.",
+        "serverError": "Erreur serveur. Veuillez réessayer plus tard.",
+        "errorTitle": "Erreur"
+      },
+      "success": {
+        "created": "Produit \"{name}\" créé avec succès",
+        "updated": "Produit \"{name}\" mis à jour avec succès",
+        "createdTitle": "Produit Créé",
+        "updatedTitle": "Produit Mis à Jour",
+        "savedMessage": "Vos modifications ont été sauvegardées",
+        "saved": "Sauvegardé",
+        "manufacturerCreated": "Nouveau constructeur créé avec succès"
+      },
+      "warnings": {
+        "mediaUploadFailed": "Certains fichiers média n'ont pas pu être téléchargés"
+      },
+      "closeConfirmation": {
+        "title": "Abandonner les modifications?",
+        "description": "Vous avez des modifications non enregistrées qui seront perdues. Êtes-vous sûr de vouloir fermer?",
+        "cancel": "Continuer l'édition",
+        "confirm": "Abandonner"
       },
       "featuredProduct": "Produit en vedette",
       "displayAsFeatured": "Afficher comme produit vedette",
