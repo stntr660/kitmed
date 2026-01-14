@@ -199,6 +199,7 @@ async function updateBanner(request: NextRequest, { params }: { params: Promise<
       if (bannerData.translations) {
         // Update French translation
         if (bannerData.translations.fr) {
+          const frTitle = bannerData.translations.fr.title || existingBanner.title;
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
@@ -210,28 +211,23 @@ async function updateBanner(request: NextRequest, { params }: { params: Promise<
               id: randomUUID(),
               banner_id: bannerId,
               language_code: 'fr',
-              title: bannerData.translations.fr.title || existingBanner.title,
+              title: frTitle,
               subtitle: bannerData.translations.fr.subtitle || null,
               description: bannerData.translations.fr.description || null,
               cta_text: bannerData.translations.fr.ctaText || null,
             },
             update: {
-              ...(bannerData.translations.fr.title && { title: bannerData.translations.fr.title }),
-              ...(bannerData.translations.fr.subtitle !== undefined && {
-                subtitle: bannerData.translations.fr.subtitle || null
-              }),
-              ...(bannerData.translations.fr.description !== undefined && {
-                description: bannerData.translations.fr.description || null
-              }),
-              ...(bannerData.translations.fr.ctaText !== undefined && {
-                cta_text: bannerData.translations.fr.ctaText || null
-              }),
+              title: frTitle,
+              subtitle: bannerData.translations.fr.subtitle || null,
+              description: bannerData.translations.fr.description || null,
+              cta_text: bannerData.translations.fr.ctaText || null,
             },
           });
         }
 
         // Update English translation
         if (bannerData.translations.en) {
+          const enTitle = bannerData.translations.en.title || existingBanner.title;
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
@@ -243,22 +239,16 @@ async function updateBanner(request: NextRequest, { params }: { params: Promise<
               id: randomUUID(),
               banner_id: bannerId,
               language_code: 'en',
-              title: bannerData.translations.en.title || existingBanner.title,
+              title: enTitle,
               subtitle: bannerData.translations.en.subtitle || null,
               description: bannerData.translations.en.description || null,
               cta_text: bannerData.translations.en.ctaText || null,
             },
             update: {
-              ...(bannerData.translations.en.title && { title: bannerData.translations.en.title }),
-              ...(bannerData.translations.en.subtitle !== undefined && {
-                subtitle: bannerData.translations.en.subtitle || null
-              }),
-              ...(bannerData.translations.en.description !== undefined && {
-                description: bannerData.translations.en.description || null
-              }),
-              ...(bannerData.translations.en.ctaText !== undefined && {
-                cta_text: bannerData.translations.en.ctaText || null
-              }),
+              title: enTitle,
+              subtitle: bannerData.translations.en.subtitle || null,
+              description: bannerData.translations.en.description || null,
+              cta_text: bannerData.translations.en.ctaText || null,
             },
           });
         }
