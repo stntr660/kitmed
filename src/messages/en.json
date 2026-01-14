@@ -1,5 +1,6 @@
 {
   "common": {
+    "back": "Back",
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
@@ -2295,7 +2296,9 @@
       "viewDetails": "View Details",
       "quote": "Quote",
       "reference": "Ref: {ref}",
-      "descriptionFallback": "Description available on request"
+      "descriptionFallback": "Description available on request",
+      "manufacturerBrochure": "Manufacturer brochure",
+      "productBrochure": "Product brochure"
     },
     "noResults": {
       "title": "No Products Found",

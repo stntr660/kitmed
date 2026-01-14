@@ -358,8 +358,7 @@ export default function ProductsPage() {
                           {categoryInfo && (
                             <Badge
                               variant="secondary"
-                              className="text-xs border-0"
-                              className="bg-primary-100 text-primary-600"
+                              className="text-xs border-0 bg-primary-100 text-primary-600"
                             >
                               {categoryInfo.name || 'Category'}
                             </Badge>
@@ -563,8 +562,7 @@ export default function ProductsPage() {
                     </div>
                   ) : (
                     <div
-                      className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center"
-                      className="bg-primary-500"
+                      className="w-10 h-10 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg border border-white/20 flex items-center justify-center bg-primary-500"
                     >
                       <div className="w-5 h-5 bg-white/50 rounded-full"></div>
                     </div>

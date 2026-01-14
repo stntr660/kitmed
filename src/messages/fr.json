@@ -1,5 +1,6 @@
 {
   "common": {
+    "back": "Retour",
     "loading": "Chargement...",
     "error": "Erreur",
     "success": "Succès",
@@ -2321,7 +2322,9 @@
       "viewDetails": "Voir Détails",
       "quote": "Devis",
       "reference": "Réf: {ref}",
-      "descriptionFallback": "Description disponible sur demande"
+      "descriptionFallback": "Description disponible sur demande",
+      "manufacturerBrochure": "Brochure fabricant",
+      "productBrochure": "Brochure produit"
     },
     "noResults": {
       "title": "Aucun Produit Trouvé",
