@@ -1107,7 +1107,9 @@
         "editPartner": "Modifier le partenaire",
         "stepOf": "Étape {current} sur {total}",
         "createPartner": "Créer le partenaire",
-        "updatePartner": "Mettre à jour le partenaire"
+        "updatePartner": "Mettre à jour le partenaire",
+        "brochureFallbackHint": "Ce PDF sera affiche par defaut pour les produits sans PDF individuel",
+        "brochureAvailabilityHint": "Assure que tous les produits ont une documentation disponible"
       }
     },
     "content": {

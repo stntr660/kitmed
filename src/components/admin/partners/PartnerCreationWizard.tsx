@@ -26,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { CompactImageUpload } from '@/components/ui/compact-image-upload';
 import { DocumentUpload } from '@/components/ui/document-upload';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import { Partner } from '@/types';
 
 interface WizardStep {
@@ -420,11 +421,21 @@ export function PartnerCreationWizard({
               </p>
             </div>
 
-            {/* Partner Logo */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-4">
-                {t('admin.partners.wizard.partnerLogo')}
-              </label>
+            {/* Partner Logo - Blue Theme */}
+            <div className="border-2 border-blue-200 rounded-xl p-5 bg-blue-50/50">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <PhotoIcon className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    {t('admin.partners.wizard.partnerLogo')}
+                  </h4>
+                  <p className="text-xs text-blue-600">
+                    {t('admin.partners.logoHint')}
+                  </p>
+                </div>
+              </div>
               <div className="flex items-start space-x-4">
                 <CompactImageUpload
                   value={formData.logoUrl}
@@ -448,27 +459,36 @@ export function PartnerCreationWizard({
               </div>
             </div>
 
-            {/* Default PDF Brochure */}
-            <div className="border-t border-gray-200 pt-6">
-              <label className="block text-sm font-semibold text-gray-900 mb-4">
-                Default PDF Brochure
-              </label>
+            {/* Default PDF Brochure - Amber/Orange Theme */}
+            <div className="border-2 border-amber-200 rounded-xl p-5 bg-amber-50/50">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+                  <DocumentTextIcon className="w-6 h-6 text-amber-600" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-900">
+                    {t('admin.partners.brochure')}
+                  </h4>
+                  <p className="text-xs text-amber-600">
+                    {t('admin.partners.brochureHint')}
+                  </p>
+                </div>
+              </div>
               <div className="space-y-3">
                 <DocumentUpload
                   value={formData.defaultPdfUrl}
                   onChange={(url) => handleInputChange('defaultPdfUrl', url)}
                   preset="partnerBrochure"
-                  placeholder="Upload default PDF brochure"
-                  label="Default Manufacturer Brochure"
+                  placeholder={t('admin.partners.brochurePlaceholder')}
+                  label={t('admin.partners.brochure')}
                   maxSize={25}
                 />
                 <p className="text-sm text-gray-600">
-                  Upload a default PDF brochure that will be used for products without their own PDF.
+                  {t('admin.partners.brochureDescription')}
                 </p>
                 <ul className="text-xs text-gray-500 space-y-1">
-                  <li>• This PDF will be shown as a fallback for products without individual PDFs</li>
-                  <li>• Helps ensure all products have documentation available</li>
-                  <li>• Customers can download the manufacturer's general catalog when product-specific docs aren't available</li>
+                  <li>• {t('admin.partners.wizard.brochureFallbackHint')}</li>
+                  <li>• {t('admin.partners.wizard.brochureAvailabilityHint')}</li>
                 </ul>
               </div>
             </div>

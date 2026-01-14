@@ -1136,7 +1136,9 @@
         "editPartner": "Edit Partner",
         "stepOf": "Step {current} of {total}",
         "createPartner": "Create Partner",
-        "updatePartner": "Update Partner"
+        "updatePartner": "Update Partner",
+        "brochureFallbackHint": "This PDF will be shown as a fallback for products without individual PDFs",
+        "brochureAvailabilityHint": "Helps ensure all products have documentation available"
       }
     },
     "content": {
