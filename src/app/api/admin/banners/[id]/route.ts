@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // GET /api/admin/banners/[id] - Get single banner
 async function getBanner(request: NextRequest, { params }: { params: { id: string } }) {
@@ -204,6 +205,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
               },
             },
             create: {
+              id: randomUUID(),
               banner_id: params.id,
               language_code: 'fr',
               title: bannerData.translations.fr.title || existingBanner.title,
@@ -236,6 +238,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
               },
             },
             create: {
+              id: randomUUID(),
               banner_id: params.id,
               language_code: 'en',
               title: bannerData.translations.en.title || existingBanner.title,
