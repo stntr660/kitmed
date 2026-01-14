@@ -5,10 +5,11 @@ import { z } from 'zod';
 import { randomUUID } from 'crypto';
 
 // GET /api/admin/banners/[id] - Get single banner
-async function getBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function getBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const banner = await prisma.banners.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         banner_translations: true,
       },
@@ -100,8 +101,8 @@ const updateBannerSchema = z.object({
   overlayOpacity: z.number().min(0).max(1).optional(),
   sortOrder: z.number().int().min(0).optional(),
   isActive: z.boolean().optional(),
-  startDate: z.string().datetime().optional().nullable(),
-  endDate: z.string().datetime().optional().nullable(),
+  startDate: z.string().optional().nullable(),
+  endDate: z.string().optional().nullable(),
   translations: z.object({
     fr: z.object({
       title: z.string().min(1, 'French title is required').optional(),
@@ -118,15 +119,16 @@ const updateBannerSchema = z.object({
   }).optional(),
 });
 
-async function updateBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function updateBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id: bannerId } = await params;
     const body = await request.json();
 
     // Validate request body
     const validation = updateBannerSchema.safeParse(body);
     if (!validation.success) {
       console.error('Banner update validation error:', {
-        bannerId: params.id,
+        bannerId,
         body,
         errors: validation.error.issues
       });
@@ -147,7 +149,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 
     // Check if banner exists
     const existingBanner = await prisma.banners.findUnique({
-      where: { id: params.id },
+      where: { id: bannerId },
       include: { banner_translations: true },
     });
 
@@ -168,7 +170,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     const updatedBanner = await prisma.$transaction(async (tx) => {
       // Update main banner record
       const banner = await tx.banners.update({
-        where: { id: params.id },
+        where: { id: bannerId },
         data: {
           ...(bannerData.title && { title: bannerData.title }),
           ...(bannerData.subtitle !== undefined && { subtitle: bannerData.subtitle || null }),
@@ -200,13 +202,13 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
-                banner_id: params.id,
+                banner_id: bannerId,
                 language_code: 'fr',
               },
             },
             create: {
               id: randomUUID(),
-              banner_id: params.id,
+              banner_id: bannerId,
               language_code: 'fr',
               title: bannerData.translations.fr.title || existingBanner.title,
               subtitle: bannerData.translations.fr.subtitle || null,
@@ -233,13 +235,13 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
-                banner_id: params.id,
+                banner_id: bannerId,
                 language_code: 'en',
               },
             },
             create: {
               id: randomUUID(),
-              banner_id: params.id,
+              banner_id: bannerId,
               language_code: 'en',
               title: bannerData.translations.en.title || existingBanner.title,
               subtitle: bannerData.translations.en.subtitle || null,
@@ -263,7 +265,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
       }
 
       return tx.banners.findUnique({
-        where: { id: params.id },
+        where: { id: bannerId },
         include: { banner_translations: true },
       });
     });
@@ -294,11 +296,12 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 }
 
 // DELETE /api/admin/banners/[id] - Delete banner
-async function deleteBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function deleteBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id: bannerId } = await params;
     // Check if banner exists
     const existingBanner = await prisma.banners.findUnique({
-      where: { id: params.id },
+      where: { id: bannerId },
     });
 
     if (!existingBanner) {
@@ -316,12 +319,12 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
 
     // Delete banner (translations will be deleted automatically due to cascade)
     await prisma.banners.delete({
-      where: { id: params.id },
+      where: { id: bannerId },
     });
 
     return NextResponse.json({
       success: true,
-      data: { id: params.id },
+      data: { id: bannerId },
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
