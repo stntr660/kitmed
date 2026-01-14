@@ -362,28 +362,74 @@ export function ProductDrawer({
         onOpenChange(false);
       }, 1500);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save product:', error);
 
       let errorMessage = t('admin.products.errors.saveFailed');
+      let errorTitle = t('admin.products.errors.errorTitle');
 
-      if (error instanceof Error) {
-        // Parse API error messages
-        if (error.message.includes('VALIDATION_ERROR')) {
-          errorMessage = t('admin.products.errors.validationFailed');
-        } else if (error.message.includes('DUPLICATE')) {
+      // Try to parse structured API error
+      if (error?.response) {
+        try {
+          const apiError = error.response;
+          const errorCode = apiError.error?.code;
+          const errorField = apiError.error?.field;
+
+          switch (errorCode) {
+            case 'DUPLICATE_ENTRY':
+              if (errorField === 'reference_fournisseur') {
+                errorMessage = t('admin.products.errors.duplicateReference');
+              } else if (errorField === 'slug') {
+                errorMessage = t('admin.products.errors.duplicateSlug');
+              } else {
+                errorMessage = t('admin.products.errors.duplicateEntry', { field: errorField });
+              }
+              break;
+            case 'VALIDATION_ERROR':
+              errorMessage = t('admin.products.errors.validationFailed');
+              if (apiError.error?.details) {
+                const details = apiError.error.details;
+                if (Array.isArray(details) && details.length > 0) {
+                  errorMessage = details[0].message || errorMessage;
+                }
+              }
+              break;
+            case 'INVALID_REFERENCE':
+              errorMessage = t('admin.products.errors.invalidReference');
+              break;
+            case 'NOT_FOUND':
+              errorMessage = t('admin.products.errors.categoryNotFound');
+              break;
+            case 'UNAUTHORIZED':
+              errorMessage = t('admin.products.errors.sessionExpired');
+              break;
+            default:
+              errorMessage = apiError.error?.message || t('admin.products.errors.saveFailed');
+          }
+        } catch (parseError) {
+          console.error('Error parsing API response:', parseError);
+        }
+      } else if (error instanceof Error) {
+        // Fallback: Parse error message string
+        const msg = error.message.toLowerCase();
+        if (msg.includes('duplicate') || msg.includes('unique constraint') || msg.includes('already exists')) {
           errorMessage = t('admin.products.errors.duplicateReference');
-        } else if (error.message.includes('UNAUTHORIZED') || error.message.includes('401')) {
+        } else if (msg.includes('validation')) {
+          errorMessage = t('admin.products.errors.validationFailed');
+        } else if (msg.includes('unauthorized') || msg.includes('401')) {
           errorMessage = t('admin.products.errors.sessionExpired');
-        } else if (error.message.includes('NETWORK') || error.message.includes('fetch')) {
+        } else if (msg.includes('network') || msg.includes('fetch') || msg.includes('failed to fetch')) {
           errorMessage = t('admin.products.errors.networkError');
-        } else {
+        } else if (msg.includes('category') || msg.includes('foreign key')) {
+          errorMessage = t('admin.products.errors.invalidReference');
+        } else if (error.message && error.message !== '[object Object]') {
+          // Use the raw error message if it's meaningful
           errorMessage = error.message;
         }
       }
 
       setSubmitError(errorMessage);
-      toast.error(errorMessage);
+      toast.error(errorMessage, { description: errorTitle });
     } finally {
       setLoading(false);
     }

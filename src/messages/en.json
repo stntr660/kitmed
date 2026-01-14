@@ -540,9 +540,14 @@
         "fetchManufacturersFailed": "Failed to load manufacturers. Please try again.",
         "validationFailed": "Please correct the highlighted errors",
         "saveFailed": "Failed to save product. Please try again.",
-        "duplicateReference": "A product with this reference already exists",
-        "networkError": "Network error. Please check your connection.",
-        "createManufacturerFailed": "Failed to create new manufacturer",
+        "duplicateReference": "A product with this reference code already exists. Please use a different reference.",
+        "duplicateSlug": "A product with this name already exists. Please use a different name.",
+        "duplicateEntry": "A product with this {field} already exists",
+        "invalidReference": "Invalid category or manufacturer. Please select valid options.",
+        "categoryNotFound": "The selected category no longer exists. Please select another category.",
+        "networkError": "Network error. Please check your connection and try again.",
+        "createManufacturerFailed": "Failed to create new manufacturer. Please try again.",
+        "serverError": "Server error occurred. Please try again later.",
         "errorTitle": "Error"
       },
       "success": {

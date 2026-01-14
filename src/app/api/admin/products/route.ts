@@ -437,6 +437,58 @@ async function createProduct(request: NextRequest) {
   } catch (error) {
     console.error('Product creation error:', error);
 
+    // Handle Prisma-specific errors
+    if (error && typeof error === 'object' && 'code' in error) {
+      const prismaError = error as { code: string; meta?: { target?: string[] } };
+
+      // Unique constraint violation
+      if (prismaError.code === 'P2002') {
+        const field = prismaError.meta?.target?.[0] || 'field';
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'DUPLICATE_ENTRY',
+              message: `A product with this ${field} already exists`,
+              field: field,
+              details: `Duplicate value for ${field}`,
+            },
+          },
+          { status: 409 }
+        );
+      }
+
+      // Foreign key constraint failure
+      if (prismaError.code === 'P2003') {
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'INVALID_REFERENCE',
+              message: 'Invalid category or manufacturer reference',
+              details: 'The referenced category or manufacturer does not exist',
+            },
+          },
+          { status: 400 }
+        );
+      }
+
+      // Record not found
+      if (prismaError.code === 'P2025') {
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'NOT_FOUND',
+              message: 'Referenced record not found',
+              details: 'A required related record does not exist',
+            },
+          },
+          { status: 404 }
+        );
+      }
+    }
+
     return NextResponse.json(
       {
         success: false,

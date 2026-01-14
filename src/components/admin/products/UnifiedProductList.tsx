@@ -154,12 +154,16 @@ export function UnifiedProductList({ initialFilters = {} }: UnifiedProductListPr
         body: JSON.stringify(productData),
       });
 
-      if (response.ok) {
-        const result = await response.json();
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         // Don't call loadProducts() here - will be called when drawer closes after image upload
         return result.data; // Return the created/updated product
       } else {
-        throw new Error('Failed to save product');
+        // Create an error with the API response attached
+        const error = new Error(result.error?.message || 'Failed to save product') as Error & { response: any };
+        error.response = result;
+        throw error;
       }
     } catch (error) {
       throw error;
