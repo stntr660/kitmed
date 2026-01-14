@@ -147,7 +147,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     // Check if banner exists
     const existingBanner = await prisma.banners.findUnique({
       where: { id: params.id },
-      include: { translations: true },
+      include: { banner_translations: true },
     });
 
     if (!existingBanner) {
@@ -209,7 +209,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
               title: bannerData.translations.fr.title || existingBanner.title,
               subtitle: bannerData.translations.fr.subtitle || null,
               description: bannerData.translations.fr.description || null,
-              ctaText: bannerData.translations.fr.ctaText || null,
+              cta_text: bannerData.translations.fr.ctaText || null,
             },
             update: {
               ...(bannerData.translations.fr.title && { title: bannerData.translations.fr.title }),
@@ -220,7 +220,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
                 description: bannerData.translations.fr.description || null
               }),
               ...(bannerData.translations.fr.ctaText !== undefined && {
-                ctaText: bannerData.translations.fr.ctaText || null
+                cta_text: bannerData.translations.fr.ctaText || null
               }),
             },
           });
@@ -241,7 +241,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
               title: bannerData.translations.en.title || existingBanner.title,
               subtitle: bannerData.translations.en.subtitle || null,
               description: bannerData.translations.en.description || null,
-              ctaText: bannerData.translations.en.ctaText || null,
+              cta_text: bannerData.translations.en.ctaText || null,
             },
             update: {
               ...(bannerData.translations.en.title && { title: bannerData.translations.en.title }),
@@ -252,7 +252,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
                 description: bannerData.translations.en.description || null
               }),
               ...(bannerData.translations.en.ctaText !== undefined && {
-                ctaText: bannerData.translations.en.ctaText || null
+                cta_text: bannerData.translations.en.ctaText || null
               }),
             },
           });
@@ -261,7 +261,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 
       return tx.banners.findUnique({
         where: { id: params.id },
-        include: { translations: true },
+        include: { banner_translations: true },
       });
     });
 
