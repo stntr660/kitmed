@@ -260,9 +260,41 @@ async function updateBanner(request: NextRequest, { params }: { params: Promise<
       });
     });
 
+    // Transform response to camelCase for frontend compatibility
+    const transformedBanner = updatedBanner ? {
+      id: updatedBanner.id,
+      title: updatedBanner.title,
+      subtitle: updatedBanner.subtitle,
+      description: updatedBanner.description,
+      imageUrl: updatedBanner.image_url,
+      backgroundUrl: updatedBanner.background_url,
+      ctaText: updatedBanner.cta_text,
+      ctaUrl: updatedBanner.cta_url,
+      ctaStyle: updatedBanner.cta_style,
+      position: updatedBanner.position,
+      layout: updatedBanner.layout,
+      textAlign: updatedBanner.text_align,
+      overlayOpacity: updatedBanner.overlay_opacity,
+      sortOrder: updatedBanner.sort_order,
+      isActive: updatedBanner.is_active,
+      startDate: updatedBanner.start_date,
+      endDate: updatedBanner.end_date,
+      createdAt: updatedBanner.created_at,
+      updatedAt: updatedBanner.updated_at,
+      translations: updatedBanner.banner_translations?.map((t: any) => ({
+        id: t.id,
+        bannerId: t.banner_id,
+        languageCode: t.language_code,
+        title: t.title,
+        subtitle: t.subtitle,
+        description: t.description,
+        ctaText: t.cta_text,
+      })) || [],
+    } : null;
+
     return NextResponse.json({
       success: true,
-      data: updatedBanner,
+      data: transformedBanner,
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
