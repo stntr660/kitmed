@@ -8,6 +8,8 @@ export async function GET(request: NextRequest) {
 
     const featured = searchParams.get('featured') === 'true';
     const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined;
+    const categoryId = searchParams.get('category');
+    const categorySlug = searchParams.get('categorySlug');
 
     // Build where clause - only active partners for public view
     const where: any = {
@@ -16,6 +18,49 @@ export async function GET(request: NextRequest) {
 
     if (featured) {
       where.is_featured = true;
+    }
+
+    // If filtering by category, find partners that have products in that category
+    if (categoryId || categorySlug) {
+      let targetCategoryId = categoryId;
+
+      // If slug provided, look up the category ID
+      if (categorySlug && !categoryId) {
+        const category = await prisma.categories.findUnique({
+          where: { slug: categorySlug },
+          select: { id: true },
+        });
+        if (category) {
+          targetCategoryId = category.id;
+        }
+      }
+
+      if (targetCategoryId) {
+        // Get all child categories as well (for parent categories)
+        const childCategories = await prisma.categories.findMany({
+          where: { parent_id: targetCategoryId },
+          select: { id: true },
+        });
+
+        const categoryIds = [targetCategoryId, ...childCategories.map(c => c.id)];
+
+        // Find partner IDs that have products in these categories
+        const partnersWithProducts = await prisma.products.findMany({
+          where: {
+            category_id: { in: categoryIds },
+            partner_id: { not: null },
+            status: 'active',
+          },
+          select: { partner_id: true },
+          distinct: ['partner_id'],
+        });
+
+        const partnerIds = partnersWithProducts
+          .map(p => p.partner_id)
+          .filter((id): id is string => id !== null);
+
+        where.id = { in: partnerIds };
+      }
     }
 
     // Fetch partners with translations

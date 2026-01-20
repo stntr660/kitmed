@@ -1,5 +1,6 @@
 {
   "common": {
+    "all": "Tous",
     "back": "Retour",
     "loading": "Chargement...",
     "error": "Erreur",
@@ -2083,6 +2084,9 @@
       "title": "Aucun Partenaire Trouvé",
       "description": "Nous travaillons constamment à élargir notre réseau de partenaires."
     },
+    "noPartnersInCategory": "Aucun Partenaire dans cette Catégorie",
+    "noPartnersInCategoryDescription": "Il n'y a pas encore de partenaires avec des produits dans cette catégorie.",
+    "viewAllPartners": "Voir Tous les Partenaires",
     "visitWebsite": "Visiter le Site Web"
   },
   "contact": {
@@ -2230,7 +2234,11 @@
     "noProductsDescription": "Ce partenaire ne propose pas encore de produits dans notre catalogue.",
     "viewAllProducts": "Voir Tous les Produits",
     "loadingError": "Erreur lors du chargement",
-    "productFallbackDescription": "Produit médical professionnel de {partnerName}."
+    "productFallbackDescription": "Produit médical professionnel de {partnerName}.",
+    "filteredByCategory": "Filtré: {categoryName}",
+    "filteredProductsTitle": "{partnerName} - {categoryName}",
+    "filteredProductsDescription": "Affichage des produits {partnerName} dans la catégorie {categoryName}",
+    "clearCategoryFilter": "Voir Tous les Produits"
   },
   "categories": {
     "hierarchy": {
@@ -2307,7 +2315,8 @@
     "noCategoriesDescription": "Cette discipline ne contient pas encore de catégories d'équipements.",
     "viewAllProducts": "Voir Tous les Produits",
     "directProductsTitle": "{count} Produits Disponibles",
-    "directProductsDescription": "Parcourez tous les produits {disciplineName} directement dans notre catalogue."
+    "directProductsDescription": "Parcourez tous les produits {disciplineName} directement dans notre catalogue.",
+    "partnersInDiscipline": "Nos Partenaires dans cette Discipline"
   },
   "products": {
     "hero": {

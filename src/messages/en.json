@@ -1,5 +1,6 @@
 {
   "common": {
+    "all": "All",
     "back": "Back",
     "loading": "Loading...",
     "error": "Error",
@@ -2079,6 +2080,9 @@
       "title": "No Partners Found",
       "description": "We are constantly working to expand our partner network."
     },
+    "noPartnersInCategory": "No Partners in this Category",
+    "noPartnersInCategoryDescription": "There are no partners with products in this category yet.",
+    "viewAllPartners": "View All Partners",
     "visitWebsite": "Visit Website"
   },
   "contact": {
@@ -2204,7 +2208,11 @@
     "noProductsDescription": "This partner does not yet offer products in our catalog.",
     "viewAllProducts": "View All Products",
     "loadingError": "Loading error",
-    "productFallbackDescription": "Professional medical product from {partnerName}."
+    "productFallbackDescription": "Professional medical product from {partnerName}.",
+    "filteredByCategory": "Filtered: {categoryName}",
+    "filteredProductsTitle": "{partnerName} - {categoryName}",
+    "filteredProductsDescription": "Showing {partnerName} products in the {categoryName} category",
+    "clearCategoryFilter": "View All Products"
   },
   "categories": {
     "hierarchy": {
@@ -2281,7 +2289,8 @@
     "noCategoriesDescription": "This discipline does not yet contain equipment categories.",
     "viewAllProducts": "View All Products",
     "directProductsTitle": "{count} Products Available",
-    "directProductsDescription": "Browse all {disciplineName} products directly in our catalog."
+    "directProductsDescription": "Browse all {disciplineName} products directly in our catalog.",
+    "partnersInDiscipline": "Our Partners in this Discipline"
   },
   "products": {
     "hero": {

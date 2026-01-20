@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowLeft, Building2, ExternalLink, Package, Star, FileText, Heart, Eye, Award, Sparkles, Download, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Building2, Package, Star, Heart, Eye, Award, Sparkles, Download, MessageSquare, X, Filter } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
@@ -67,17 +68,41 @@ interface PageProps {
 export default function PartnerProductsPage({ params }: PageProps) {
   const t = useTranslations('common');
   const tPartner = useTranslations('partnerDetail');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const categoryFilter = searchParams.get('category');
+
   const [partner, setPartner] = useState<Partner | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [categoryName, setCategoryName] = useState<string | null>(null);
   const locale = useHydrationSafeLocale('fr');
+
+  // Fetch category name when filter is active
+  useEffect(() => {
+    if (categoryFilter) {
+      fetch(`/api/categories?locale=${locale}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            const category = data.data.find((c: { slug: string; name: string }) => c.slug === categoryFilter);
+            if (category) {
+              setCategoryName(category.name);
+            }
+          }
+        })
+        .catch(console.error);
+    } else {
+      setCategoryName(null);
+    }
+  }, [categoryFilter, locale]);
 
   useEffect(() => {
     loadPartnerData();
-  }, [params.slug, locale, page]);
+  }, [params.slug, locale, page, categoryFilter]);
 
   const loadPartnerData = async () => {
     try {
@@ -94,10 +119,9 @@ export default function PartnerProductsPage({ params }: PageProps) {
       const partnerData = await partnerResponse.json();
       setPartner(partnerData.data);
 
-      // Load partner products
-      const productsResponse = await fetch(
-        `/api/products?partner=${partnerData.data.id}&locale=${locale}&page=${page}&pageSize=12`
-      );
+      // Load partner products (with optional category filter)
+      const productsUrl = `/api/products?partner=${partnerData.data.id}&locale=${locale}&page=${page}&pageSize=12${categoryFilter ? `&categorySlug=${categoryFilter}` : ''}`;
+      const productsResponse = await fetch(productsUrl);
 
       if (productsResponse.ok) {
         const productsData = await productsResponse.json();
@@ -204,6 +228,12 @@ export default function PartnerProductsPage({ params }: PageProps) {
                     <Package className="mr-1 h-3 w-3" />
                     {tPartner('productsCount', { count: partner.productCount || products.length })}
                   </Badge>
+                  {categoryFilter && categoryName && (
+                    <Badge className="bg-accent-500 text-white border-0 shadow-xl">
+                      <Filter className="mr-1 h-3 w-3" />
+                      {tPartner('filteredByCategory', { categoryName })}
+                    </Badge>
+                  )}
                 </div>
 
                 <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
@@ -216,19 +246,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
                   </p>
                 )}
 
-                {partner.websiteUrl && (
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button
-                      className="bg-white text-primary-600 hover:bg-primary-50 transition-colors"
-                      asChild
-                    >
-                      <a href={partner.websiteUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        {tPartner('visitWebsite')}
-                      </a>
-                    </Button>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -242,11 +259,25 @@ export default function PartnerProductsPage({ params }: PageProps) {
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  {tPartner('productsTitle', { partnerName: partner.name })}
+                  {categoryFilter && categoryName
+                    ? tPartner('filteredProductsTitle', { partnerName: partner.name, categoryName })
+                    : tPartner('productsTitle', { partnerName: partner.name })}
                 </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {tPartner('productsDescription', { partnerName: partner.name })}
+                <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
+                  {categoryFilter && categoryName
+                    ? tPartner('filteredProductsDescription', { partnerName: partner.name, categoryName })
+                    : tPartner('productsDescription', { partnerName: partner.name })}
                 </p>
+                {categoryFilter && (
+                  <Button
+                    variant="outline"
+                    onClick={() => router.push(`/${locale}/partners/${params.slug}`)}
+                    className="gap-2"
+                  >
+                    <X className="h-4 w-4" />
+                    {tPartner('clearCategoryFilter')}
+                  </Button>
+                )}
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
