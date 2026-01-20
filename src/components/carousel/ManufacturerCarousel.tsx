@@ -173,7 +173,7 @@ export function ManufacturerCarousel({
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-24 max-w-44 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="max-h-24 max-w-44 object-contain transition-all duration-300 group-hover:scale-110"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
