@@ -334,3 +334,18 @@ model users {
   notifications notifications[]
   user_sessions user_sessions[]
 }
+
+model contact_submissions {
+  id         String   @id @default(uuid())
+  first_name String
+  last_name  String
+  email      String
+  phone      String?
+  company    String?
+  subject    String
+  message    String
+  status     String   @default("new") // new, read, replied, archived
+  notes      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

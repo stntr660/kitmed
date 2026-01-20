@@ -2116,6 +2116,7 @@
       "subject": "Objet",
       "message": "Message",
       "submit": "Envoyer le Message",
+      "error": "Une erreur est survenue. Veuillez reessayer.",
       "placeholders": {
         "firstName": "Votre prénom",
         "lastName": "Votre nom",

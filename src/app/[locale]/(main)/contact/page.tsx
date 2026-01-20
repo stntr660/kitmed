@@ -38,6 +38,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -47,12 +48,39 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setError(result.error || t('form.error'));
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError(t('form.error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -229,6 +257,11 @@ export default function ContactPage() {
                       {t('form.title')}
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                          {error}
+                        </div>
+                      )}
                       <div className="grid gap-4 md:grid-cols-2">
                         <div>
                           <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">

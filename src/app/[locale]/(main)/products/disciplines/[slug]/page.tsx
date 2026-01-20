@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
+import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Product {
   id: string;
@@ -183,6 +184,18 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Partner Logos Carousel */}
+      <section className="bg-white border-b">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="text-center pt-8 pb-4">
+            <h3 className="text-lg font-semibold text-slate-600">
+              {tDisciplines('partnersInDiscipline')}
+            </h3>
+          </div>
+          <PartnerLogosCarousel categorySlug={params.slug} locale={locale} />
         </div>
       </section>
 

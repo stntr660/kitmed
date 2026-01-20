@@ -2112,6 +2112,7 @@
       "subject": "Subject",
       "message": "Message",
       "submit": "Send Message",
+      "error": "An error occurred. Please try again.",
       "placeholders": {
         "firstName": "Your first name",
         "lastName": "Your last name",
