@@ -74,9 +74,27 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       ];
     }
 
-    // Category filter
+    // Category filter - handle both UUID and slug
     if (category) {
-      where.category_id = category;
+      const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(category);
+
+      if (isUUID) {
+        where.category_id = category;
+      } else {
+        // It's a slug, find the category first
+        const categoryRecord = await prisma.categories.findFirst({
+          where: { slug: category, is_active: true }
+        });
+        if (categoryRecord) {
+          // Also include products from subcategories
+          const subcategories = await prisma.categories.findMany({
+            where: { parent_id: categoryRecord.id, is_active: true },
+            select: { id: true }
+          });
+          const categoryIds = [categoryRecord.id, ...subcategories.map(s => s.id)];
+          where.category_id = { in: categoryIds };
+        }
+      }
     }
 
     // Manufacturer filter - handle both UUID and slug

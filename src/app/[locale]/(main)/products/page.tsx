@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { Badge } from '@/components/ui/badge';
@@ -18,12 +19,10 @@ import {
   Building2,
   Award,
   Sparkles,
-  MessageSquare,
   FileText
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
@@ -74,6 +73,7 @@ export default function ProductsPage() {
   const t = useTranslations('common');
   const tProducts = useTranslations('products');
   const locale = useHydrationSafeLocale('fr');
+  const searchParams = useSearchParams();
   const [products, setProducts] = useState<ProductsResponse | null>(null);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -83,12 +83,27 @@ export default function ProductsPage() {
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
   const [onlyFeatured, setOnlyFeatured] = useState(false);
   const [manufacturers, setManufacturers] = useState<any[]>([]);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
+
+  // Read URL params on initial load
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    const queryParam = searchParams.get('q');
+    const manufacturerParam = searchParams.get('manufacturer');
+
+    if (categoryParam) setSelectedCategory(categoryParam);
+    if (queryParam) setSearchQuery(queryParam);
+    if (manufacturerParam) setSelectedManufacturer(manufacturerParam);
+
+    setInitialLoadDone(true);
+  }, [searchParams]);
 
   useEffect(() => {
+    if (!initialLoadDone) return;
     loadProducts();
     loadCategories();
     loadManufacturers();
-  }, [searchQuery, selectedCategory, selectedManufacturer, onlyFeatured, locale]);
+  }, [searchQuery, selectedCategory, selectedManufacturer, onlyFeatured, locale, initialLoadDone]);
 
   const loadCategories = async () => {
     try {
@@ -397,7 +412,7 @@ export default function ProductsPage() {
 
                       <CardContent className="p-6 pt-0 mt-auto">
                         <div className="flex items-center justify-between mb-4">
-                          <div className="text-xs text-slate-500 font-mono">
+                          <div className="text-xs text-slate-500 font-mono truncate max-w-full" title={product.referenceFournisseur}>
                             {tProducts('listing.reference', { ref: product.referenceFournisseur })}
                           </div>
                         </div>
@@ -413,51 +428,23 @@ export default function ProductsPage() {
                             </Link>
                           </Button>
 
-                          <div className="flex gap-2">
-                            <QuoteRequestForm
-                              product={{
-                                id: product.id,
-                                referenceFournisseur: product.referenceFournisseur,
-                                constructeur: product.manufacturer.name,
-                                translations: [{
-                                  languageCode: 'fr',
-                                  nom: product.name,
-                                  description: product.description,
-                                  ficheTechnique: null
-                                }]
-                              }}
-                              trigger={
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="flex-1"
-                                >
-                                  <MessageSquare className="h-4 w-4 mr-1" />
-                                  {tProducts('listing.quote')}
-                                </Button>
-                              }
-                            />
-
-                            {product.pdfBrochureUrl && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="px-3 relative"
-                                asChild
-                              >
-                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer" title={
-                                  product.pdfSource === 'manufacturer' 
-                                    ? tProducts('listing.manufacturerBrochure') 
-                                    : tProducts('listing.productBrochure')
-                                }>
-                                  <Download className="h-4 w-4" />
-                                  {product.pdfSource === 'manufacturer' && (
-                                    <span className="absolute -top-1 -right-1 h-2 w-2 bg-blue-500 rounded-full"></span>
-                                  )}
-                                </a>
-                              </Button>
-                            )}
-                          </div>
+                          {product.pdfBrochureUrl && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="w-full mt-2"
+                              asChild
+                            >
+                              <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer" title={
+                                product.pdfSource === 'manufacturer'
+                                  ? tProducts('listing.manufacturerBrochure')
+                                  : tProducts('listing.productBrochure')
+                              }>
+                                <Download className="h-4 w-4 mr-2" />
+                                PDF
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </CardContent>
                     </Card>

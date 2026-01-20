@@ -1,7 +1,5 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { RFPCart } from '@/components/rfp/rfp-cart';
-import { ClientOnly } from '@/components/ui/client-only';
 import type { Locale } from '@/types';
 import type { Metadata } from 'next';
 
@@ -62,11 +60,6 @@ export default async function MainLayout({ children, params }: MainLayoutProps) 
       </main>
 
       <Footer locale={locale as Locale} />
-
-      {/* Global Components */}
-      <ClientOnly>
-        <RFPCart />
-      </ClientOnly>
     </div>
   );
 }

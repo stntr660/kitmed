@@ -147,7 +147,7 @@ export default function HomePage() {
     const fetchFeaturedProducts = async () => {
       try {
         setProductsLoading(true);
-        const response = await fetch(`/api/products?status=active&featured=true&pageSize=6&locale=${locale}`);
+        const response = await fetch(`/api/products?status=active&featured=true&pageSize=4&locale=${locale}`);
         const result = await response.json();
 
         if (result.success && result.data) {
@@ -201,8 +201,147 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Featured Products Section */}
+        <section className="py-16 lg:py-20 bg-gray-50">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+                {t('featuredProducts.title')}
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+                {t('featuredProducts.subtitle')}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                {t('featuredProducts.description')}
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {!isHydrated || productsLoading ? (
+                // Loading skeleton - same structure as actual content
+                Array.from({ length: 4 }).map((_, index) => (
+                  <Card key={index} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
+                    <div className="relative h-48 bg-slate-100 overflow-hidden">
+                      <div className="animate-pulse bg-gray-200 w-full h-full"></div>
+                      <div className="absolute top-3 left-3">
+                        <div className="animate-pulse bg-gray-200 h-6 w-16 rounded"></div>
+                      </div>
+                    </div>
+
+                    <CardContent className="p-4">
+                      <div className="animate-pulse">
+                        <div className="h-3 bg-gray-200 rounded mb-2 w-1/2"></div>
+                        <div className="h-4 bg-gray-200 rounded mb-2 w-3/4"></div>
+                        <div className="h-3 bg-gray-200 rounded mb-3 w-full"></div>
+                        <div className="h-3 bg-gray-200 rounded mb-3 w-1/3"></div>
+                        <div className="h-8 bg-gray-200 rounded w-full"></div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : featuredProducts.length > 0 ? (
+                featuredProducts.map((product) => {
+                  const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
+
+                  return (
+                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
+                      <div className="relative h-48 bg-white overflow-hidden p-4">
+                        {primaryImage ? (
+                          <img
+                            src={primaryImage.url}
+                            alt={primaryImage.altText || product.name}
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-white flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                              <span className="text-gray-500 text-xs">IMG</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Featured Badge */}
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-accent-500 text-white border-0 text-xs">
+                            <Star className="h-3 w-3 mr-1" />
+                            {t('featuredProducts.badge')}
+                          </Badge>
+                        </div>
+
+                      </div>
+
+                      <CardContent className="p-4">
+                        <div className="mb-2">
+                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer?.name || product.constructeur}</p>
+                        </div>
+                        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+                          {product.shortDescription || t('featuredProducts.noDescription')}
+                        </p>
+                        {product.category && (
+                          <p className="text-xs text-primary-600 font-medium mb-3">
+                            {product.category.name}
+                          </p>
+                        )}
+                        <div className="flex gap-2">
+                          {product.pdfBrochureUrl && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-shrink-0 border-primary-200 hover:bg-primary-50"
+                              asChild
+                            >
+                              <a
+                                href={product.pdfBrochureUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={t('featuredProducts.downloadBrochure')}
+                              >
+                                <Download className="h-4 w-4 text-primary-600" />
+                              </a>
+                            </Button>
+                          )}
+                          <Button
+                            size="sm"
+                            className="flex-1 bg-primary text-white hover:bg-primary-600"
+                            asChild
+                          >
+                            <Link href={`/${locale}/products/${product.slug}`}>
+                              {t('featuredProducts.viewDetails')}
+                            </Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })
+              ) : (
+                <div className="col-span-full text-center py-12">
+                  <p className="text-gray-500">{t('featuredProducts.noProducts')}</p>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
+                asChild
+              >
+                <Link href={`/${locale}/products?featured=true`}>
+                  {t('featuredProducts.viewAll')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Features Section */}
-        <section className="py-20 lg:py-24 bg-gray-50">
+        <section className="py-20 lg:py-24 bg-white">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
@@ -361,145 +500,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured Products Section */}
-        <section className="py-16 lg:py-20 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('featuredProducts.title')}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                {t('featuredProducts.subtitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                {t('featuredProducts.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {!isHydrated || productsLoading ? (
-                // Loading skeleton - same structure as actual content
-                Array.from({ length: 6 }).map((_, index) => (
-                  <Card key={index} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
-                    <div className="relative h-48 bg-slate-100 overflow-hidden">
-                      <div className="animate-pulse bg-gray-200 w-full h-full"></div>
-                      <div className="absolute top-3 left-3">
-                        <div className="animate-pulse bg-gray-200 h-6 w-16 rounded"></div>
-                      </div>
-                    </div>
-
-                    <CardContent className="p-4">
-                      <div className="animate-pulse">
-                        <div className="h-3 bg-gray-200 rounded mb-2 w-1/2"></div>
-                        <div className="h-4 bg-gray-200 rounded mb-2 w-3/4"></div>
-                        <div className="h-3 bg-gray-200 rounded mb-3 w-full"></div>
-                        <div className="h-3 bg-gray-200 rounded mb-3 w-1/3"></div>
-                        <div className="h-8 bg-gray-200 rounded w-full"></div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : featuredProducts.length > 0 ? (
-                featuredProducts.map((product) => {
-                  const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
-
-                  return (
-                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      <div className="relative h-48 bg-white overflow-hidden p-4">
-                        {primaryImage ? (
-                          <img
-                            src={primaryImage.url}
-                            alt={primaryImage.altText || product.name}
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-white flex items-center justify-center">
-                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                              <span className="text-gray-500 text-xs">IMG</span>
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Featured Badge */}
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-accent-500 text-white border-0 text-xs">
-                            <Star className="h-3 w-3 mr-1" />
-                            {t('featuredProducts.badge')}
-                          </Badge>
-                        </div>
-
-                      </div>
-
-                      <CardContent className="p-4">
-                        <div className="mb-2">
-                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer?.name || product.constructeur}</p>
-                        </div>
-                        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
-                          {product.name}
-                        </h3>
-                        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
-                          {product.shortDescription || t('featuredProducts.noDescription')}
-                        </p>
-                        {product.category && (
-                          <p className="text-xs text-primary-600 font-medium mb-3">
-                            {product.category.name}
-                          </p>
-                        )}
-                        <div className="flex gap-2">
-                          {product.pdfBrochureUrl && (
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-shrink-0 border-primary-200 hover:bg-primary-50"
-                              asChild
-                            >
-                              <a
-                                href={product.pdfBrochureUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                title={t('featuredProducts.downloadBrochure')}
-                              >
-                                <Download className="h-4 w-4 text-primary-600" />
-                              </a>
-                            </Button>
-                          )}
-                          <Button
-                            size="sm"
-                            className="flex-1 bg-primary text-white hover:bg-primary-600"
-                            asChild
-                          >
-                            <Link href={`/${locale}/products/${product.slug}`}>
-                              {t('featuredProducts.viewDetails')}
-                            </Link>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })
-              ) : (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">{t('featuredProducts.noProducts')}</p>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
-                asChild
-              >
-                <Link href={`/${locale}/products/featured`}>
-                  {t('featuredProducts.viewAll')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className="py-20 lg:py-24 bg-gray-900 text-white">
           <div className="container mx-auto px-4 lg:px-8">
@@ -532,8 +532,8 @@ export default function HomePage() {
                   className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
                   asChild
                 >
-                  <Link href="/rfp/new" className="flex items-center">
-                    {t('cta.requestQuote')}
+                  <Link href={`/${locale}/products`} className="flex items-center">
+                    {t('cta.viewProducts')}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

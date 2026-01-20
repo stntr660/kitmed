@@ -69,15 +69,18 @@
     "name": "Name",
     "viewDetails": "View Details",
     "quote": "Quote",
+    "moreDetails": "More Details",
     "partners": "Partners",
     "featured": "Featured",
     "map": {
       "getDirections": "Get Directions",
       "viewOnMaps": "View on Google Maps",
       "ourLocation": "Our Location"
-    }
+    },
+    "language": "Language"
   },
   "navigation": {
+    "home": "Home",
     "products": "Products",
     "partners": "Partners",
     "about": "About",
@@ -85,10 +88,15 @@
     "allProducts": "All Products",
     "byDiscipline": "By Discipline",
     "byManufacturer": "By Manufacturer",
-    "featured": "Featured",
+    "featured": "Featured Products",
     "company": "Company",
     "team": "Team",
-    "news": "News"
+    "news": "News",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "browseCategories": "Browse Categories",
+    "quoteRequest": "Request Quote",
+    "language": "Language"
   },
   "product": {
     "viewProduct": "View product",
@@ -98,6 +106,7 @@
     "addToWishlist": "Add to Wishlist",
     "addToRFP": "Add to RFP",
     "inRFP": "In RFP",
+    "moreDetails": "More Details",
     "documents": "documents",
     "mediaFiles": "Media Files",
     "viewAllMedia": "View all media",
@@ -1932,7 +1941,8 @@
     },
     "cta": {
       "contact": "Get in Touch",
-      "requestQuote": "Request Quote"
+      "requestQuote": "Request Quote",
+      "viewProducts": "View Products"
     },
     "categories": {
       "exploreProducts": "Explore products",
@@ -2224,6 +2234,7 @@
       "sortByPrice": "Sort by Price",
       "sortByPopularity": "Sort by Popularity",
       "quote": "Quote",
+      "moreDetails": "More Details",
       "productFallback": "Professional quality medical product"
     }
   },

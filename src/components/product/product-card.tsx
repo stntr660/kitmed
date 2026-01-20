@@ -4,13 +4,12 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { ShoppingCart, Eye, Heart, FileText } from 'lucide-react';
+import { ArrowRight, Eye, Heart, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useRFPStore } from '@/store/rfp-store';
 import { cn, formatCurrency } from '@/lib/utils';
 import type { Product, Locale } from '@/types';
 
@@ -32,19 +31,11 @@ export function ProductCard({
   onAddToWishlist,
 }: ProductCardProps) {
   const t = useTranslations('product');
-  const { addItem, getItem } = useRFPStore();
 
   const [isHovered, setIsHovered] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
 
-  const inCart = getItem(product.id);
   const primaryImage = product.images.find(img => img.isPrimary) || product.images[0];
-
-  const handleAddToRFP = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem(product);
-  };
 
   const handleQuickView = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -239,16 +230,14 @@ export function ProductCard({
 
             <Button
               size="sm"
-              variant={inCart ? "outline" : "medical"}
-              onClick={handleAddToRFP}
+              variant="medical"
               className="min-w-[100px]"
+              asChild
             >
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              {inCart ? (
-                `${t('inRFP')} (${inCart.quantity})`
-              ) : (
-                t('addToRFP')
-              )}
+              <Link href={`/${locale}/contact`}>
+                {t('moreDetails')}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </CardFooter>

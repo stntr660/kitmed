@@ -20,7 +20,6 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -224,29 +223,17 @@ export default function FeaturedProductsPage() {
                           </Button>
 
                           <div className="flex gap-2">
-                            <QuoteRequestForm
-                              product={{
-                                id: product.id,
-                                referenceFournisseur: product.referenceFournisseur,
-                                constructeur: product.manufacturer.name,
-                                translations: [{
-                                  languageCode: 'fr',
-                                  nom: product.name,
-                                  description: product.description,
-                                  ficheTechnique: null
-                                }]
-                              }}
-                              trigger={
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="flex-1"
-                                >
-                                  <MessageSquare className="h-4 w-4 mr-1" />
-                                  {t('quote')}
-                                </Button>
-                              }
-                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                              asChild
+                            >
+                              <Link href={`/${locale}/contact`}>
+                                <MessageSquare className="h-4 w-4 mr-1" />
+                                {t('moreDetails')}
+                              </Link>
+                            </Button>
 
                             {product.pdfBrochureUrl && (
                               <Button

@@ -72,15 +72,18 @@
     "name": "Nom",
     "viewDetails": "Voir Détails",
     "quote": "Devis",
+    "moreDetails": "Plus de détails",
     "partners": "Partenaires",
-    "featured": "En Vedette",
+    "featured": "Produits Phares",
     "map": {
       "getDirections": "Itinéraire",
       "viewOnMaps": "Voir sur Google Maps",
       "ourLocation": "Notre Emplacement"
-    }
+    },
+    "language": "Langue"
   },
   "navigation": {
+    "home": "Accueil",
     "products": "Produits",
     "partners": "Partenaires",
     "about": "À propos",
@@ -88,19 +91,25 @@
     "allProducts": "Tous les Produits",
     "byDiscipline": "Par Discipline",
     "byManufacturer": "Par Fabricant",
-    "featured": "En Vedette",
+    "featured": "Produits Phares",
     "company": "Entreprise",
     "team": "Équipe",
-    "news": "Actualités"
+    "news": "Actualités",
+    "categories": "Catégories",
+    "allCategories": "Toutes les Catégories",
+    "browseCategories": "Parcourir les catégories",
+    "quoteRequest": "Devis en ligne",
+    "language": "Langue"
   },
   "product": {
     "viewProduct": "Voir le produit",
-    "featured": "En vedette",
+    "featured": "Phare",
     "discontinued": "Arrêté",
     "quickView": "Aperçu Rapide",
     "addToWishlist": "Ajouter aux Favoris",
     "addToRFP": "Ajouter au devis",
     "inRFP": "Dans le devis",
+    "moreDetails": "Plus de détails",
     "documents": "documents",
     "mediaFiles": "Fichiers média",
     "viewAllMedia": "Voir tous les médias",
@@ -140,7 +149,7 @@
       "ficheTechniqueEn": "Fiche technique (English)",
       "pdfBrochure": "PDF brochure téléchargeable",
       "status": "Statut",
-      "featured": "Produit en vedette",
+      "featured": "Produit Phare",
       "placeholders": {
         "nomProduitFr": "Nom du produit en français",
         "nomProduitEn": "Product name in English",
@@ -247,7 +256,7 @@
       "allProducts": "Tous les Produits",
       "byDiscipline": "Par Discipline",
       "byManufacturer": "Par Fabricant",
-      "featured": "Produits en Vedette",
+      "featured": "Produits Phares",
       "about": "À Propos",
       "news": "Actualités",
       "contact": "Contact",
@@ -296,7 +305,7 @@
     "priceRange": "Gamme de Prix",
     "availability": "Disponibilité",
     "inStock": "En Stock",
-    "featured": "En Vedette Seulement"
+    "featured": "Phare Seulement"
   },
   "rfp": {
     "title": "Demande de Proposition",
@@ -729,7 +738,7 @@
       "keepHiddenDescription": "Le produit restera en brouillon",
       
       "highlightProduct": "Mettre en avant ce produit",
-      "highlightProductDescription": "apparaîtra dans les produits vedettes",
+      "highlightProductDescription": "apparaîtra dans les produits phares",
       
       "basicInformation": "Informations de base",
       "productNameFrench": "Nom du produit (Français)",
@@ -815,8 +824,8 @@
         "cancel": "Continuer l'édition",
         "confirm": "Abandonner"
       },
-      "featuredProduct": "Produit en vedette",
-      "displayAsFeatured": "Afficher comme produit vedette",
+      "featuredProduct": "Produit Phare",
+      "displayAsFeatured": "Afficher comme produit phare",
       "media": "Médias",
       "mediaDescription": "Glissez-déposez des images ici ou cliquez pour sélectionner",
       "mediaManagementDescription": "Gérez les images et fichiers du produit",
@@ -1315,7 +1324,7 @@
       "itemsSelected": "éléments sélectionnés",
       "publish": "Publier",
       "archive": "Archiver",
-      "featured": "En vedette",
+      "featured": "Phare",
       "saving": "Enregistrement...",
       
       "basicInfo": "Informations de base",
@@ -1380,7 +1389,7 @@
       "refresh": "Actualiser",
       "liveActivity": "Activité en direct",
       "recentActivity": "Activité récente",
-      "topProductsPerformance": "Performance des produits vedettes",
+      "topProductsPerformance": "Performance des produits phares",
       "geographicDistribution": "Répartition géographique",
       "categoryPerformance": "Performance des catégories médicales",
       "trafficTrends": "Tendances du trafic et conversions",
@@ -1794,7 +1803,7 @@
     "totalProducts": "Total Produits",
     "pendingRfps": "Devis en attente",
     "activePartners": "Partenaires Actifs",
-    "featuredProducts": "Produits Vedettes",
+    "featuredProducts": "Produits Phares",
     "recentActivity": "Activité Récente",
     "quickActions": "Actions Rapides",
     "quickActionsSubtitle": "Tâches courantes pour commencer rapidement",
@@ -1936,7 +1945,8 @@
     },
     "cta": {
       "contact": "Prendre Contact",
-      "requestQuote": "Demande de Devis"
+      "requestQuote": "Demande de Devis",
+      "viewProducts": "Voir les Produits"
     },
     "categories": {
       "exploreProducts": "Explorer les produits",
@@ -1951,19 +1961,19 @@
     },
     "featuredProducts": {
       "title": "Sélection Premium",
-      "subtitle": "Produits en Vedette",
+      "subtitle": "Produits Phares",
       "description": "Découvrez notre sélection exclusive d'équipements médicaux d'exception, choisis pour leur innovation, leur qualité et leur performance remarquable.",
-      "badge": "Vedette",
+      "badge": "Phare",
       "viewDetails": "Voir Détails",
       "downloadBrochure": "Télécharger la Brochure PDF",
-      "viewAll": "Voir Tous les Produits en Vedette",
+      "viewAll": "Voir Tous les Produits Phares",
       "noDescription": "Description disponible sur demande",
-      "noProducts": "Aucun produit en vedette pour le moment",
-      "loading": "Chargement des produits vedettes...",
+      "noProducts": "Aucun produit phare pour le moment",
+      "loading": "Chargement des produits phares...",
       "count": "{count} produit{plural} d'exception",
       "sectionTitle": "Notre Sélection Premium",
-      "noFeaturedTitle": "Aucun Produit en Vedette",
-      "noFeaturedDescription": "Aucun produit n'est actuellement sélectionné comme produit vedette.",
+      "noFeaturedTitle": "Aucun Produit Phare",
+      "noFeaturedDescription": "Aucun produit n'est actuellement sélectionné comme produit phare.",
       "backToProducts": "Voir Tous les Produits"
     },
     "disciplines": {
@@ -2243,13 +2253,14 @@
       "emptyCategoryDescription": "Cette catégorie ne contient pas encore de produits ou sous-catégories.",
       "discipline": "Discipline",
       "category": "Catégorie",
-      "featured": "En Vedette",
+      "featured": "Produits Phares",
       "reference": "Référence",
       "viewProduct": "Voir le Produit",
       "downloadBrochure": "Télécharger la Brochure",
       "sortByPrice": "Trier par Prix",
       "sortByPopularity": "Trier par Popularité",
       "quote": "Devis",
+      "moreDetails": "Plus de détails",
       "productFallback": "Produit médical de qualité professionnelle"
     }
   },
@@ -2310,7 +2321,7 @@
       "loading": "Chargement des produits...",
       "allCategories": "Toutes",
       "allManufacturers": "Tous les fabricants",
-      "onlyFeatured": "Produits en vedette uniquement",
+      "onlyFeatured": "Produits Phares uniquement",
       "sortPrice": "Prix",
       "sortPopularity": "Popularité"
     },

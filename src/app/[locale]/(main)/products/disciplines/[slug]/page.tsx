@@ -11,7 +11,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -364,24 +363,17 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                           </Button>
 
                           <div className="flex gap-2">
-                            <QuoteRequestForm
-                              product={{
-                                id: product.id,
-                                referenceFournisseur: product.referenceFournisseur,
-                                constructeur: product.constructeur,
-                                translations: product.translations
-                              }}
-                              trigger={
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="flex-1"
-                                >
-                                  <MessageSquare className="h-4 w-4 mr-1" />
-                                  {tCategories('quote')}
-                                </Button>
-                              }
-                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                              asChild
+                            >
+                              <Link href={`/${locale}/contact`}>
+                                <MessageSquare className="h-4 w-4 mr-1" />
+                                {tCategories('moreDetails')}
+                              </Link>
+                            </Button>
 
                             {product.pdfBrochureUrl && (
                               <Button

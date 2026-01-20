@@ -15,7 +15,6 @@ import {
   Share2,
   Star,
   Building2,
-  Award,
   FileText,
   Image as ImageIcon,
   CheckCircle,
@@ -26,7 +25,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -69,6 +67,7 @@ interface Product {
 export default function ProductDetailPage() {
   const params = useHydrationSafeParams();
   const slug = params.slug as string;
+  const locale = (params.locale as string) || 'fr';
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -329,20 +328,12 @@ export default function ProductDetailPage() {
               {/* Actions */}
               <div className="space-y-4">
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <QuoteRequestForm
-                    product={{
-                      id: product.id,
-                      referenceFournisseur: product.referenceFournisseur,
-                      constructeur: product.constructeur,
-                      translations: product.translations
-                    }}
-                    trigger={
-                      <Button size="lg" className="bg-primary text-white hover:bg-gray-600 h-14">
-                        <MessageSquare className="h-5 w-5 mr-2" />
-                        Demander un Devis
-                      </Button>
-                    }
-                  />
+                  <Button size="lg" className="bg-primary text-white hover:bg-gray-600 h-14" asChild>
+                    <Link href={`/${locale}/contact`}>
+                      <MessageSquare className="h-5 w-5 mr-2" />
+                      {locale === 'fr' ? 'Plus de détails' : 'More Details'}
+                    </Link>
+                  </Button>
 
                   {product.pdfBrochureUrl && (
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>

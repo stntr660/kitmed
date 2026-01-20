@@ -7,22 +7,24 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const locale = searchParams.get('locale') || 'fr';
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
     const excludeZeroProducts = searchParams.get('excludeZeroProducts') === 'true';
+    const includeHierarchy = searchParams.get('hierarchy') === 'true';
 
     // Get active categories with translations, product count, and child categories
     const categories = await prisma.categories.findMany({
       where: {
         is_active: true,
-        parent_id: null, // Only root categories for homepage
+        parent_id: null, // Only root categories
       },
       orderBy: {
         sort_order: 'asc',
       },
       include: {
         category_translations: true,
-        // Include child categories to count their products too
         other_categories: {
           where: { is_active: true },
+          orderBy: { sort_order: 'asc' },
           include: {
+            category_translations: true,
             _count: {
               select: {
                 products: {
@@ -55,6 +57,18 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       );
       const totalProductCount = directProducts + childProducts;
 
+      // Process subcategories if hierarchy requested
+      const subcategories = includeHierarchy ? (category.other_categories || []).map(sub => {
+        const subTranslation = sub.category_translations.find(t => t.language_code === locale);
+        const subFallback = sub.category_translations.find(t => t.language_code === 'fr');
+        return {
+          id: sub.id,
+          name: subTranslation?.name || subFallback?.name || sub.name,
+          slug: sub.slug,
+          productCount: sub._count?.products || 0
+        };
+      }).filter(sub => !excludeZeroProducts || sub.productCount > 0) : undefined;
+
       return {
         id: category.id,
         name: translation?.name || fallbackTranslation?.name || category.name,
@@ -62,13 +76,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         description: translation?.description || fallbackTranslation?.description || category.description,
         imageUrl: category.image_url,
         sortOrder: category.sort_order,
-        count: String(totalProductCount), // For backward compatibility
+        count: String(totalProductCount),
         ...(includeProductCount && {
           productCount: totalProductCount
+        }),
+        ...(includeHierarchy && {
+          subcategories
         })
       };
     }).filter(category => {
-      // Filter out categories with zero products if requested
       if (excludeZeroProducts && includeProductCount) {
         return (category as any).productCount > 0;
       }
