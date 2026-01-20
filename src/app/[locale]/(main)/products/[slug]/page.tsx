@@ -68,6 +68,7 @@ export default function ProductDetailPage() {
   const params = useHydrationSafeParams();
   const slug = params.slug as string;
   const locale = (params.locale as string) || 'fr';
+  const t = useTranslations('products.catalog');
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -331,7 +332,7 @@ export default function ProductDetailPage() {
                   <Button size="lg" className="bg-primary text-white hover:bg-gray-600 h-14" asChild>
                     <Link href={`/${locale}/contact`}>
                       <MessageSquare className="h-5 w-5 mr-2" />
-                      {locale === 'fr' ? 'Plus de détails' : 'More Details'}
+                      {t('moreDetails')}
                     </Link>
                   </Button>
 
@@ -339,9 +340,9 @@ export default function ProductDetailPage() {
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>
                       <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
                         <Download className="h-5 w-5 mr-2" />
-                        Télécharger Brochure
+                        {t('downloadBrochure')}
                         {product.pdfSource === 'manufacturer' && (
-                          <span className="ml-2 text-xs text-slate-500">(Générale)</span>
+                          <span className="ml-2 text-xs text-slate-500">{t('generalBrochure')}</span>
                         )}
                       </a>
                     </Button>
@@ -353,7 +354,7 @@ export default function ProductDetailPage() {
                 <div className="flex items-center justify-center space-x-8 text-center">
                   <div className="flex flex-col items-center">
                     <Phone className="h-6 w-6 text-primary-600 mb-2" />
-                    <span className="text-sm text-slate-600">Support Téléphone</span>
+                    <span className="text-sm text-slate-600">{t('phoneSupport')}</span>
                     <div className="space-y-1">
                       <a href="tel:+212522860366" className="block text-sm font-semibold text-slate-900 hover:text-gray-600 transition-colors">
                         +212 522 86 03 66
