@@ -73,11 +73,19 @@ export default function ContactPage() {
           message: '',
         });
       } else {
-        setError(result.error || t('form.error'));
+        // Translate error codes
+        const errorKey = result.error;
+        if (errorKey === 'MISSING_REQUIRED_FIELDS') {
+          setError(t('form.errors.missingFields'));
+        } else if (errorKey === 'INVALID_EMAIL') {
+          setError(t('form.errors.invalidEmail'));
+        } else {
+          setError(t('form.errors.general'));
+        }
       }
     } catch (err) {
       console.error('Error submitting form:', err);
-      setError(t('form.error'));
+      setError(t('form.errors.general'));
     } finally {
       setIsSubmitting(false);
     }
@@ -319,6 +327,7 @@ export default function ContactPage() {
                             id="phone"
                             name="phone"
                             type="tel"
+                            required
                             value={formData.phone}
                             onChange={handleInputChange}
                             className="w-full"
@@ -350,7 +359,6 @@ export default function ContactPage() {
                           id="subject"
                           name="subject"
                           type="text"
-                          required
                           value={formData.subject}
                           onChange={handleInputChange}
                           className="w-full"
@@ -366,7 +374,6 @@ export default function ContactPage() {
                           id="message"
                           name="message"
                           rows={6}
-                          required
                           value={formData.message}
                           onChange={handleInputChange}
                           className="w-full resize-none"

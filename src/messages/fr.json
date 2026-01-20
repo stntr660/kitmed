@@ -2116,7 +2116,11 @@
       "subject": "Objet",
       "message": "Message",
       "submit": "Envoyer le Message",
-      "error": "Une erreur est survenue. Veuillez reessayer.",
+      "errors": {
+        "missingFields": "Veuillez remplir tous les champs obligatoires (nom, email, telephone).",
+        "invalidEmail": "Veuillez entrer une adresse email valide.",
+        "general": "Une erreur est survenue. Veuillez reessayer."
+      },
       "placeholders": {
         "firstName": "Votre prénom",
         "lastName": "Votre nom",

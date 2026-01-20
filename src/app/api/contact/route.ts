@@ -80,10 +80,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { firstName, lastName, email, phone, company, subject, message } = body;
 
-    // Validate required fields
-    if (!firstName || !lastName || !email || !subject || !message) {
+    // Validate required fields (name, email, phone)
+    if (!firstName || !lastName || !email || !phone) {
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'MISSING_REQUIRED_FIELDS' },
         { status: 400 }
       );
     }
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { success: false, error: 'Invalid email format' },
+        { success: false, error: 'INVALID_EMAIL' },
         { status: 400 }
       );
     }
@@ -103,10 +103,10 @@ export async function POST(request: NextRequest) {
         first_name: firstName,
         last_name: lastName,
         email,
-        phone: phone || null,
+        phone,
         company: company || null,
-        subject,
-        message,
+        subject: subject || '',
+        message: message || '',
         status: 'new',
       },
     });

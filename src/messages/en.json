@@ -2112,7 +2112,11 @@
       "subject": "Subject",
       "message": "Message",
       "submit": "Send Message",
-      "error": "An error occurred. Please try again.",
+      "errors": {
+        "missingFields": "Please fill in all required fields (name, email, phone).",
+        "invalidEmail": "Please enter a valid email address.",
+        "general": "An error occurred. Please try again."
+      },
       "placeholders": {
         "firstName": "Your first name",
         "lastName": "Your last name",
