@@ -340,62 +340,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-20 lg:py-24 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.concepts')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-                {t('sections.innovation')}
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('sections.innovationDescription')}
-              </p>
-            </div>
-
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  number: "01",
-                  title: t('features.0.title'),
-                  description: t('features.0.description')
-                },
-                {
-                  number: "02",
-                  title: t('features.1.title'),
-                  description: t('features.1.description')
-                },
-                {
-                  number: "03",
-                  title: t('features.2.title'),
-                  description: t('features.2.description')
-                }
-              ].map((feature, index) => (
-                <div key={index} className="group text-center">
-                  <div className="relative mb-8">
-                    <div className="w-20 h-20 mx-auto border border-gray-300 rounded-full flex items-center justify-center group-hover:border-primary transition-colors duration-300">
-                      <span className="text-2xl font-light text-gray-400 group-hover:text-primary transition-colors duration-300">
-                        {feature.number}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl font-light text-gray-900 mb-4">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
         {/* Medical Disciplines Section */}
         <section className="py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4 lg:px-8">
@@ -500,47 +444,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 lg:py-24 bg-gray-900 text-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-gray-400 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.service')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                {t('sections.consultation')}
-              </h2>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
-                {t('sections.consultationDescription')}
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <Button
-                  size="lg"
-                  className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
-                  asChild
-                >
-                  <Link href="/contact" className="flex items-center">
-                    {t('cta.contact')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
-                  asChild
-                >
-                  <Link href={`/${locale}/products`} className="flex items-center">
-                    {t('cta.viewProducts')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </HydrationErrorBoundary>
   );
