@@ -1854,7 +1854,10 @@
       "specs": {
         "premium": "Premium Series",
         "technology": "Advanced Technology"
-      }
+      },
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "goToSlide": "Go to slide {number}"
     },
     "getConsultation": "Get Expert Consultation",
     "whyChooseUs": "Why Choose KITMED?",

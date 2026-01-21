@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -34,6 +34,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   const [banners, setBanners] = useState<Banner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const isHydrated = useIsHydrated();
   const locale = useHydrationSafeLocale('fr');
   const t = useTranslations('home.banner');
@@ -68,14 +70,36 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     }
   }, [position, locale, isHydrated]);
 
+  // Auto-advance slider every 5 seconds
+  useEffect(() => {
+    if (banners.length <= 1 || isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % banners.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [banners.length, isPaused]);
+
+  // Navigation handlers
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % banners.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   // Static fallback component - consistent across SSR and client
   const StaticFallback = () => (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <section className="relative min-h-[60vh] overflow-hidden bg-gradient-to-br from-gray-50 to-white">
       <div className="relative container mx-auto px-4 lg:px-8 py-8">
-        <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
+        <div className="flex items-center justify-center min-h-[calc(60vh-4rem)]">
           <div className="text-center space-y-6">
-            <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
-              kit<span className="text-blue-600">Med</span>
+            <h1 className="text-6xl lg:text-7xl font-light text-primary-500 leading-none">
+              kit<span className="text-primary-600">Med</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
               Medical equipment solutions
@@ -94,9 +118,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   // Loading state after hydration - same structure as fallback
   if (loading) {
     return (
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+      <section className="relative min-h-[60vh] overflow-hidden bg-gradient-to-br from-gray-50 to-white">
         <div className="relative container mx-auto px-4 lg:px-8 py-8">
-          <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
+          <div className="flex items-center justify-center min-h-[calc(60vh-4rem)]">
             <div className="text-center space-y-6">
               <div className="animate-pulse">
                 <div className="h-20 bg-gray-200 rounded mb-6 w-80 mx-auto"></div>
@@ -117,8 +141,8 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     return <StaticFallback />;
   }
 
-  // Render the first active banner
-  const banner = banners[0];
+  // Get current banner for display
+  const banner = banners[currentIndex];
 
   // CTA Button styles
   const getCtaStyles = () => {
@@ -126,9 +150,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       case 'secondary':
         return 'bg-gray-600 hover:bg-gray-700 text-white';
       case 'outline':
-        return 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent';
+        return 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white bg-transparent';
       default:
-        return 'bg-blue-600 hover:bg-blue-700 text-white';
+        return 'bg-primary-600 hover:bg-primary-700 text-white';
     }
   };
 
@@ -138,7 +162,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       return (
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="space-y-4">
-            <h1 className="text-4xl lg:text-6xl font-light text-blue-500 leading-none">
+            <h1 className="text-4xl lg:text-6xl font-light text-primary-500 leading-none">
               {banner.title}
             </h1>
             {banner.subtitle && (
@@ -190,7 +214,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
-            <h1 className="text-5xl lg:text-7xl font-light text-blue-500 leading-none">
+            <h1 className="text-5xl lg:text-7xl font-light text-primary-500 leading-none">
               {banner.title}
             </h1>
             {banner.subtitle && (
@@ -226,7 +250,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
     // Default: Split layout
     return (
-      <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-6rem)]">
+      <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(60vh-4rem)]">
         {/* Left Content - Text Section */}
         <div className={cn(
           'space-y-8 lg:pr-8',
@@ -235,9 +259,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         )}>
           <div className="space-y-6">
             <div className="space-y-4">
-              <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
+              <h1 className="text-6xl lg:text-7xl font-light text-primary-500 leading-none">
                 {banner.title === 'kitMed' ? (
-                  <>kit<span className="text-blue-600">Med</span></>
+                  <>kit<span className="text-primary-600">Med</span></>
                 ) : (
                   banner.title
                 )}
@@ -295,11 +319,15 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section
+      className="relative min-h-[60vh] overflow-hidden group"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background Image */}
       {banner.backgroundUrl ? (
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500"
           style={{ backgroundImage: `url(${banner.backgroundUrl})` }}
         >
           <div
@@ -311,8 +339,49 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
       )}
 
-      <div className="relative container mx-auto px-4 lg:px-8 py-8">
-        {renderBannerContent()}
+      {/* Navigation Arrows - positioned outside content area */}
+      {banners.length > 1 && (
+        <>
+          <button
+            onClick={goToPrevious}
+            className="absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            aria-label={t('previousSlide')}
+          >
+            <ChevronLeft className="h-6 w-6 text-gray-700" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            aria-label={t('nextSlide')}
+          >
+            <ChevronRight className="h-6 w-6 text-gray-700" />
+          </button>
+        </>
+      )}
+
+      <div className="relative container mx-auto px-12 lg:px-20 py-8">
+        <div className="transition-opacity duration-500">
+          {renderBannerContent()}
+        </div>
+
+        {/* Navigation Dots */}
+        {banners.length > 1 && (
+          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            {banners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={cn(
+                  'w-3 h-3 rounded-full transition-all duration-300',
+                  index === currentIndex
+                    ? 'bg-primary-600 w-8'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                )}
+                aria-label={t('goToSlide', { number: index + 1 })}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
