@@ -171,24 +171,24 @@ export default function ProductsPage() {
       <CertificationsBanner variant="compact" />
 
       {/* Hero Section */}
-      <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
+            <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
               {tProducts('hero.badge')}
             </Badge>
 
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               {tProducts('hero.title')}
-              <span className="text-primary-300 block mt-2">{tProducts('hero.subtitle')}</span>
+              <span className="text-primary-100 block mt-2">{tProducts('hero.subtitle')}</span>
             </h1>
 
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
               {tProducts('hero.description')}
             </p>
           </div>

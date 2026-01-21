@@ -342,7 +342,10 @@ export function Header({ locale, className }: HeaderProps) {
 
       {/* Bottom Row - Navigation */}
       <div className="hidden lg:block bg-gray-50 border-b border-gray-200">
-        <div className="container flex h-14 items-center justify-center px-6 lg:px-12">
+        <div className="container flex h-14 items-center justify-between px-6 lg:px-12">
+          {/* Spacer for layout balance */}
+          <div className="w-32"></div>
+
           {/* Main Navigation */}
           <nav className="flex items-center gap-10">
             {navigation.map((item) => (
