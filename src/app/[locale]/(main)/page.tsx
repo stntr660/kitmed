@@ -202,16 +202,20 @@ export default function HomePage() {
         </section>
 
         {/* Featured Products Section */}
-        <section className="py-16 lg:py-20 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
+        <section className="py-16 lg:py-24 relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </div>
+          <div className="relative container mx-auto px-4 lg:px-8">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+              <p className="text-primary-100 uppercase tracking-wider text-sm font-medium mb-4">
                 {t('featuredProducts.title')}
               </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+              <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
                 {t('featuredProducts.subtitle')}
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-lg text-primary-100 leading-relaxed max-w-2xl mx-auto">
                 {t('featuredProducts.description')}
               </p>
             </div>
@@ -327,8 +331,7 @@ export default function HomePage() {
             <div className="mt-12 text-center">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
+                className="bg-white text-primary-600 hover:bg-primary-50 border-0 shadow-xl"
                 asChild
               >
                 <Link href={`/${locale}/products?featured=true`}>

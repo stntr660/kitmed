@@ -68,7 +68,6 @@ export function Header({ locale, className }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = React.useState<string>('');
-  const [categoriesOpen, setCategoriesOpen] = React.useState(false);
 
   // Fetch categories with hierarchy, excluding those with zero products
   React.useEffect(() => {
@@ -343,59 +342,7 @@ export function Header({ locale, className }: HeaderProps) {
 
       {/* Bottom Row - Navigation */}
       <div className="hidden lg:block bg-gray-50 border-b border-gray-200">
-        <div className="container flex h-14 items-center justify-between px-6 lg:px-12">
-          {/* Browse Categories Dropdown */}
-          <DropdownMenu open={categoriesOpen} onOpenChange={setCategoriesOpen}>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2.5 py-2 px-1 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-                <Menu className="h-4 w-4" />
-                <span>{t('browseCategories')}</span>
-                <ChevronDown className={cn('h-4 w-4 transition-transform duration-200', categoriesOpen && 'rotate-180')} />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-72 max-h-[500px] overflow-y-auto p-2">
-              {categories.map((cat) => (
-                cat.subcategories && cat.subcategories.length > 0 ? (
-                  <DropdownMenuSub key={cat.id}>
-                    <DropdownMenuSubTrigger className="py-2.5 px-3 rounded-md font-medium">
-                      {cat.name}
-                    </DropdownMenuSubTrigger>
-                    <DropdownMenuSubContent className="w-64 p-2 max-h-80 overflow-y-auto">
-                      <DropdownMenuItem asChild>
-                        <Link
-                          href={`/${locale}/products?category=${cat.slug}`}
-                          className="cursor-pointer py-2 px-3 rounded-md font-medium text-primary"
-                        >
-                          Voir tout
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator className="my-1" />
-                      {cat.subcategories.map((sub) => (
-                        <DropdownMenuItem key={sub.id} asChild>
-                          <Link
-                            href={`/${locale}/products?category=${sub.slug}`}
-                            className="cursor-pointer py-2 px-3 rounded-md text-sm"
-                          >
-                            {sub.name}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuSubContent>
-                  </DropdownMenuSub>
-                ) : (
-                  <DropdownMenuItem key={cat.id} asChild>
-                    <Link
-                      href={`/${locale}/products?category=${cat.slug}`}
-                      className="cursor-pointer py-2.5 px-3 rounded-md"
-                    >
-                      {cat.name}
-                    </Link>
-                  </DropdownMenuItem>
-                )
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
+        <div className="container flex h-14 items-center justify-center px-6 lg:px-12">
           {/* Main Navigation */}
           <nav className="flex items-center gap-10">
             {navigation.map((item) => (

@@ -13,7 +13,6 @@ import {
   Download,
   Heart,
   Share2,
-  Star,
   Building2,
   FileText,
   Image as ImageIcon,
@@ -305,12 +304,6 @@ export default function ProductDetailPage() {
                     <Building2 className="h-4 w-4" />
                     {product.partner?.name || product.constructeur}
                   </Badge>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-300 text-amber-300" />
-                    ))}
-                    <span className="text-sm text-slate-600 ml-1">(4.8)</span>
-                  </div>
                 </div>
 
                 <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">

@@ -91,9 +91,44 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       return true;
     });
 
+    // Custom priority ordering for medical specialties
+    const specialtyPriority: Record<string, number> = {
+      'ophtalmologie': 1,
+      'ophthalmology': 1,
+      'orl': 2,
+      'ent': 2,
+      'hopital': 3,
+      'hospital': 3,
+      'hospitalier': 3,
+      'orthopedie': 4,
+      'orthopedic': 4,
+      'orthopedics': 4,
+    };
+
+    const sortedCategories = processedCategories.sort((a, b) => {
+      const aSlug = a.slug.toLowerCase();
+      const bSlug = b.slug.toLowerCase();
+      const aName = a.name.toLowerCase();
+      const bName = b.name.toLowerCase();
+
+      // Check both slug and name for priority matching
+      const aPriority = specialtyPriority[aSlug] || specialtyPriority[aName] || 999;
+      const bPriority = specialtyPriority[bSlug] || specialtyPriority[bName] || 999;
+
+      if (aPriority !== bPriority) {
+        return aPriority - bPriority;
+      }
+
+      // Fall back to sort_order then alphabetical
+      if (a.sortOrder !== b.sortOrder) {
+        return (a.sortOrder || 0) - (b.sortOrder || 0);
+      }
+      return a.name.localeCompare(b.name);
+    });
+
     return NextResponse.json({
       success: true,
-      data: processedCategories
+      data: sortedCategories
     });
 
   } catch (error) {
