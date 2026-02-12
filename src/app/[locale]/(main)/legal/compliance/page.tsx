@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -21,7 +20,6 @@ import {
 } from 'lucide-react';
 
 export default function CompliancePage() {
-  const t = useTranslations('compliance');
 
   const certifications = [
     {
