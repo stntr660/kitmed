@@ -367,6 +367,12 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
       );
     }
 
+    // Unlink products from this partner before deleting
+    await prisma.products.updateMany({
+      where: { partner_id: params.id },
+      data: { partner_id: null },
+    });
+
     // Delete partner (cascading deletes will handle translations)
     await prisma.partners.delete({
       where: { id: params.id },
