@@ -50,6 +50,7 @@ interface PageProps {
 
 export default function CategoryHierarchyPage({ params }: PageProps) {
   const t = useTranslations('common');
+  const tNav = useTranslations('navigation');
   const tCategories = useTranslations('categories.hierarchy');
   const [category, setCategory] = useState<Category | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -164,7 +165,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                     href={`/${locale}/products`}
                     className="text-white/70 hover:text-white transition-colors"
                   >
-                    {t('navigation.products')}
+                    {tNav('products')}
                   </Link>
                 </li>
                 {breadcrumbs.map((crumb, index) => (
