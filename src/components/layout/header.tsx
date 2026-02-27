@@ -101,7 +101,7 @@ export function Header({ locale, className }: HeaderProps) {
 
   // Get selected category name
   const getSelectedCategoryName = () => {
-    if (!selectedCategory) return t('categories');
+    if (!selectedCategory) return t('allProducts');
     for (const cat of categories) {
       if (cat.id === selectedCategory) return cat.name;
       if (cat.subcategories) {
@@ -157,7 +157,7 @@ export function Header({ locale, className }: HeaderProps) {
                             onClick={() => setSelectedCategory(cat.id)}
                             className={cn('cursor-pointer py-2 px-3 rounded-md', selectedCategory === cat.id && 'bg-primary/10 text-primary')}
                           >
-                            Tous les {cat.name}
+                            {t('viewAll')} {cat.name}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator className="my-1" />
                           {cat.subcategories.map((sub) => (
@@ -302,7 +302,10 @@ export function Header({ locale, className }: HeaderProps) {
                     {categories.map((cat) => (
                       <li key={cat.id}>
                         <Link
-                          href={`/${locale}/products?category=${cat.slug}`}
+                          href={cat.subcategories && cat.subcategories.length > 0
+                            ? `/${locale}/products/categories/${cat.slug}`
+                            : `/${locale}/products?category=${cat.slug}`
+                          }
                           className="flex items-center justify-between px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                           onClick={() => setMobileMenuOpen(false)}
                         >
@@ -381,10 +384,10 @@ export function Header({ locale, className }: HeaderProps) {
                           <DropdownMenuSubContent className="w-64 p-2 max-h-80 overflow-y-auto">
                             <DropdownMenuItem asChild>
                               <Link
-                                href={`/${locale}/products?category=${cat.slug}`}
+                                href={`/${locale}/products/categories/${cat.slug}`}
                                 className="cursor-pointer py-2 px-3 rounded-md font-medium text-primary"
                               >
-                                Voir tout
+                                {t('viewAll')}
                               </Link>
                             </DropdownMenuItem>
                             <DropdownMenuSeparator className="my-1" />
