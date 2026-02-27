@@ -157,7 +157,7 @@ export function Header({ locale, className }: HeaderProps) {
                             onClick={() => setSelectedCategory(cat.id)}
                             className={cn('cursor-pointer py-2 px-3 rounded-md', selectedCategory === cat.id && 'bg-primary/10 text-primary')}
                           >
-                            {t('viewAll')} {cat.name}
+                            {t('allProducts')}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator className="my-1" />
                           {cat.subcategories.map((sub) => (
