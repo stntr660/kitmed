@@ -24,6 +24,7 @@ import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
 
 export default function AboutPage() {
   const t = useTranslations('about');
+  const tCommon = useTranslations('common');
   const locale = useHydrationSafeLocale('fr');
 
   // Calculate years of experience from founding year (1997)
@@ -186,7 +187,7 @@ export default function AboutPage() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                     <Building2 className="h-5 w-5 mr-2" />
-                    Direction
+                    {tCommon('direction')}
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start space-x-3">
@@ -219,7 +220,7 @@ export default function AboutPage() {
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    ShowRoom
+                    {tCommon('showRoom')}
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start space-x-3">

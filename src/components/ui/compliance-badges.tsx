@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Shield, CheckCircle, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsHydrated } from '@/components/ui/hydration-safe';
+import { useTranslations } from 'next-intl';
 
 interface ComplianceBadgesProps {
   variant?: 'grid' | 'inline' | 'compact';
@@ -201,18 +202,18 @@ function InlineCertificationBadge({ certification, showLabels }: { certification
 
 // Professional certification section component
 export function CertificationSection({ className }: { className?: string }) {
+  const t = useTranslations('certifications');
   return (
     <div className={cn("space-y-4", className)}>
       <div className="flex items-center space-x-2">
         <Award className="h-5 w-5 text-primary" />
         <h3 className="text-lg font-semibold text-gray-900">
-          Certifications & Normes
+          {t('title')}
         </h3>
       </div>
 
       <p className="text-sm text-gray-600">
-        KITMED est certifié et autorisé par les organismes de réglementation pour
-        garantir la qualité et la sécurité de nos équipements médicaux.
+        {t('description')}
       </p>
 
       <ComplianceBadges variant="grid" />
@@ -222,12 +223,10 @@ export function CertificationSection({ className }: { className?: string }) {
           <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
           <div className="space-y-1">
             <p className="text-sm font-medium text-gray-900">
-              Conformité Réglementaire Complète
+              {t('complianceTitle')}
             </p>
             <p className="text-sm text-gray-600">
-              Tous nos produits respectent les standards internationaux de qualité et
-              de sécurité pour les équipements médicaux, avec autorisation officielle
-              du Ministère de la Santé du Maroc.
+              {t('complianceDescription')}
             </p>
           </div>
         </div>

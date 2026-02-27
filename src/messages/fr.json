@@ -30,6 +30,8 @@
     "notSpecified": "Non spécifié",
     "uncategorized": "Non catégorisé",
     "productWithoutName": "Produit sans nom",
+    "direction": "Direction",
+    "showRoom": "ShowRoom",
     "yes": "Oui",
     "no": "Non",
     "goToHomepage": "Aller à l'accueil",
@@ -260,6 +262,8 @@
       "byManufacturer": "Par Fabricant",
       "featured": "Produits Phares",
       "about": "À Propos",
+      "team": "Équipe",
+      "careers": "Carrières",
       "news": "Actualités",
       "contact": "Contact",
       "documentation": "Documentation",
@@ -331,7 +335,41 @@
     "submit": "Soumettre la demande",
     "submitting": "Soumission...",
     "success": "Demande de devis soumise avec succès",
-    "requestNumber": "Numéro de Demande"
+    "requestNumber": "Numéro de Demande",
+    "quoteForm": {
+      "title": "Demande de Devis",
+      "description": "Remplissez les informations essentielles pour recevoir un devis personnalisé.",
+      "requestQuote": "Demander un Devis",
+      "addProduct": "Ajouter un produit",
+      "selectProduct": "Sélectionner un produit",
+      "searchPlaceholder": "Rechercher dans la liste...",
+      "loadingProducts": "Chargement des produits...",
+      "noProductsFound": "Aucun produit trouvé",
+      "noProductsAvailable": "Aucun produit disponible",
+      "noProductsSelected": "Aucun produit sélectionné. Cliquez sur \"Ajouter un produit\" pour commencer.",
+      "ref": "Réf",
+      "manufacturer": "Constructeur",
+      "qty": "Qté",
+      "fullName": "Nom Complet",
+      "fullNamePlaceholder": "Votre nom et prénom",
+      "email": "Email",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+212 6XX XXX XXX",
+      "company": "Entreprise",
+      "companyPlaceholder": "Nom de votre entreprise",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez vos besoins spécifiques...",
+      "cancel": "Annuler",
+      "sending": "Envoi...",
+      "submitRequest": "Envoyer la Demande",
+      "nameEmailRequired": "Nom et email sont requis",
+      "sendError": "Erreur lors de l'envoi de la demande",
+      "unexpectedError": "Erreur inattendue",
+      "successTitle": "Demande Envoyée !",
+      "successMessage": "Votre demande de devis a été transmise avec succès.",
+      "successFollowUp": "Nous vous recontacterons dans les plus brefs délais."
+    }
   },
   "form": {
     "firstName": "Prénom",
@@ -2384,6 +2422,415 @@
       "viewDetails": "Voir Détails",
       "websiteLink": "Site Web Officiel",
       "backToProducts": "Retour aux Produits"
+    },
+    "detail": {
+      "loading": "Chargement du produit...",
+      "notFound": "Produit non trouvé",
+      "backToCatalog": "Retour au catalogue",
+      "breadcrumbProducts": "Produits",
+      "featuredBadge": "Produit Vedette",
+      "available": "Disponible",
+      "reference": "Référence",
+      "contactEmail": "Email de contact",
+      "moreDetails": "Plus de détails",
+      "downloadBrochure": "Télécharger la Brochure",
+      "generalBrochure": "(Générale)",
+      "phoneSupport": "Support Téléphone"
+    }
+  },
+  "certifications": {
+    "title": "Certifications & Normes",
+    "description": "KITMED est certifié et autorisé par les organismes de réglementation pour garantir la qualité et la sécurité de nos équipements médicaux.",
+    "complianceTitle": "Conformité Réglementaire Complète",
+    "complianceDescription": "Tous nos produits respectent les standards internationaux de qualité et de sécurité pour les équipements médicaux, avec autorisation officielle du Ministère de la Santé du Maroc.",
+    "bannerTitle": "Certifications & Normes Internationales",
+    "bannerSubtitle": "Confiance garantie par nos certifications officielles",
+    "compliant": "Conforme",
+    "certifiedLabel": "Certifié ONSSA - ISO 9001/13485/22716",
+    "verified": "Vérifié"
+  },
+  "support": {
+    "maintenance": {
+      "hero": {
+        "title": "Maintenance & Support Technique",
+        "description": "Services de maintenance professionnels pour assurer le bon fonctionnement et la longévité de vos équipements médicaux.",
+        "urgentRequest": "Demande d'Intervention Urgente",
+        "scheduleMaintenance": "Planifier une Maintenance"
+      },
+      "stats": {
+        "uptime": "Temps de fonctionnement",
+        "responseTime": "Temps de réponse moyen",
+        "equipmentUnderContract": "Équipements sous contrat",
+        "supportAvailable": "Support disponible"
+      },
+      "servicesSection": {
+        "title": "Nos Services de Maintenance",
+        "description": "Solutions complètes adaptées à tous types d'équipements médicaux",
+        "includedServices": "Services inclus :",
+        "requestQuote": "Demander un Devis"
+      },
+      "services": {
+        "preventive": {
+          "title": "Maintenance Préventive",
+          "description": "Programmes de maintenance planifiée pour éviter les pannes et prolonger la durée de vie",
+          "features": {
+            "inspection": "Inspection régulière",
+            "calibration": "Calibration et tests",
+            "replacement": "Remplacement préventif",
+            "report": "Rapport détaillé"
+          },
+          "pricing": "À partir de 800 DH/visite"
+        },
+        "corrective": {
+          "title": "Maintenance Corrective",
+          "description": "Intervention rapide pour la réparation et le dépannage d'urgence",
+          "features": {
+            "intervention": "Intervention 24h/7j",
+            "diagnostic": "Diagnostic complet",
+            "onSiteRepair": "Réparation sur site",
+            "warranty": "Garantie pièces et main d'œuvre"
+          },
+          "pricing": "Devis sur mesure"
+        },
+        "contracts": {
+          "title": "Contrats de Maintenance",
+          "description": "Contrats annuels pour une couverture complète et des coûts prévisibles",
+          "features": {
+            "preventiveIncluded": "Maintenance préventive incluse",
+            "priority": "Priorité sur les interventions",
+            "spareParts": "Pièces de rechange garanties",
+            "unlimitedSupport": "Support technique illimité"
+          },
+          "pricing": "À partir de 12,000 DH/an"
+        },
+        "training": {
+          "title": "Formation Technique",
+          "description": "Formation de vos équipes pour la maintenance de premier niveau",
+          "features": {
+            "certified": "Formation certifiante",
+            "manual": "Manuel technique inclus",
+            "continuousSupport": "Support continu",
+            "procedureUpdates": "Mise à jour des procédures"
+          },
+          "pricing": "1,500 DH/jour de formation"
+        }
+      },
+      "equipmentSection": {
+        "title": "Équipements Pris en Charge",
+        "description": "Expertise technique sur toutes les catégories d'équipements médicaux",
+        "maintenanceLabel": "Maintenance"
+      },
+      "equipment": {
+        "imaging": {
+          "name": "Imagerie Médicale",
+          "items": {
+            "ultrasound": "Échographes",
+            "radiology": "Radiologie",
+            "mri": "IRM",
+            "ctScan": "Scanner"
+          },
+          "interval": "Trimestrielle"
+        },
+        "cardio": {
+          "name": "Équipements Cardio",
+          "items": {
+            "ecg": "ECG",
+            "holter": "Holter",
+            "defibrillators": "Défibrillateurs",
+            "monitoring": "Monitoring"
+          },
+          "interval": "Bimestrielle"
+        },
+        "monitoring": {
+          "name": "Systèmes de Monitoring",
+          "items": {
+            "multiparameter": "Multiparamètres",
+            "telemetry": "Télémétrie",
+            "oximetry": "Oxymétrie",
+            "capnography": "Capnographie"
+          },
+          "interval": "Mensuelle"
+        },
+        "laboratory": {
+          "name": "Équipements de Laboratoire",
+          "items": {
+            "analyzers": "Analyseurs",
+            "centrifuges": "Centrifugeuses",
+            "microscopes": "Microscopes",
+            "automatedSystems": "Automates"
+          },
+          "interval": "Mensuelle"
+        }
+      },
+      "form": {
+        "title": "Demande de Maintenance",
+        "description": "Remplissez le formulaire ci-dessous pour une demande d'intervention",
+        "equipmentType": {
+          "label": "Type d'Équipement *",
+          "placeholder": "Sélectionner un type",
+          "options": {
+            "imaging": "Imagerie Médicale",
+            "cardio": "Équipements Cardio",
+            "monitoring": "Systèmes de Monitoring",
+            "laboratory": "Équipements de Laboratoire",
+            "other": "Autre"
+          }
+        },
+        "serialNumber": {
+          "label": "Numéro de Série",
+          "placeholder": "Ex: KM2024-001"
+        },
+        "urgency": {
+          "label": "Niveau d'Urgence *",
+          "options": {
+            "low": "Faible - Maintenance préventive",
+            "normal": "Normal - Dans la semaine",
+            "high": "Élevé - Sous 24h",
+            "urgent": "Urgent - Intervention immédiate"
+          }
+        },
+        "location": {
+          "label": "Localisation *",
+          "placeholder": "Adresse de l'équipement"
+        },
+        "issueDescription": {
+          "label": "Description du Problème *",
+          "placeholder": "Décrivez le problème en détail..."
+        },
+        "contactName": {
+          "label": "Nom du Contact *",
+          "placeholder": "Nom et prénom"
+        },
+        "contactPhone": {
+          "label": "Téléphone *"
+        },
+        "contactEmail": {
+          "label": "Email *"
+        },
+        "requiredFields": "* Champs obligatoires",
+        "submit": "Envoyer la Demande"
+      },
+      "contact": {
+        "title": "Contact Maintenance d'Urgence",
+        "description": "Pour les urgences, contactez notre équipe technique 24h/24, 7j/7",
+        "emergency": {
+          "title": "Urgences 24/7",
+          "availability": "Disponible en permanence"
+        },
+        "email": {
+          "title": "Email Technique",
+          "responseTime": "Réponse sous 2h"
+        },
+        "intervention": {
+          "title": "Intervention",
+          "coverage": "Maroc & Afrique",
+          "serviceType": "Service national"
+        }
+      }
+    },
+    "training": {
+      "hero": {
+        "title": "Formations Professionnelles",
+        "description": "Développez l'expertise de vos équipes avec nos formations certifiantes sur l'utilisation et la maintenance des équipements médicaux.",
+        "bookButton": "Réserver une Formation"
+      },
+      "stats": {
+        "professionalsTrainedLabel": "Professionnels formés",
+        "satisfactionRateLabel": "Taux de satisfaction",
+        "postTrainingSupportLabel": "Support post-formation",
+        "availableProgramsLabel": "Programmes disponibles"
+      },
+      "programsSection": {
+        "title": "Programmes de Formation",
+        "description": "Formations adaptées à tous les niveaux, de l'initiation à la spécialisation avancée",
+        "includedLabel": "Inclus dans la formation :",
+        "nextSessionsLabel": "Prochaines sessions :",
+        "perPerson": "/personne",
+        "bookButton": "Réserver"
+      },
+      "programs": {
+        "ultrasound": {
+          "title": "Formation Échographie Avancée",
+          "description": "Formation complète sur l'utilisation des équipements d'échographie haute résolution",
+          "duration": "3 jours",
+          "level": "Avancé",
+          "participants": "6-12 personnes",
+          "location": "Centre de formation KITMED",
+          "category": "Imagerie",
+          "features": {
+            "0": "Théorie et pratique",
+            "1": "Certification incluse",
+            "2": "Support technique 6 mois",
+            "3": "Documentation complète"
+          }
+        },
+        "cardio": {
+          "title": "Maintenance Préventive - Équipements Cardio",
+          "description": "Protocoles de maintenance et dépannage pour équipements cardiovasculaires",
+          "duration": "2 jours",
+          "level": "Intermédiaire",
+          "participants": "4-8 personnes",
+          "location": "Site client ou centre KITMED",
+          "category": "Maintenance",
+          "features": {
+            "0": "Maintenance préventive",
+            "1": "Diagnostic de pannes",
+            "2": "Pièces de rechange",
+            "3": "Manuel technique"
+          }
+        },
+        "monitoring": {
+          "title": "Formation Monitoring Avancé",
+          "description": "Utilisation optimale des systèmes de monitoring multiparamètres",
+          "duration": "2 jours",
+          "level": "Intermédiaire",
+          "participants": "8-15 personnes",
+          "location": "Centre de formation ou site client",
+          "category": "Monitoring",
+          "features": {
+            "0": "Configuration systèmes",
+            "1": "Alarmes et alertes",
+            "2": "Analyse des données",
+            "3": "Certification utilisateur"
+          }
+        },
+        "laboratory": {
+          "title": "Utilisation Équipements de Laboratoire",
+          "description": "Formation pratique sur les analyseurs et équipements de laboratoire",
+          "duration": "1 jour",
+          "level": "Débutant",
+          "participants": "6-10 personnes",
+          "location": "Laboratoire partenaire",
+          "category": "Laboratoire",
+          "features": {
+            "0": "Utilisation de base",
+            "1": "Calibration",
+            "2": "Maintenance quotidienne",
+            "3": "Guide utilisateur"
+          }
+        }
+      },
+      "benefitsSection": {
+        "title": "Pourquoi Choisir Nos Formations ?"
+      },
+      "benefits": {
+        "certified": {
+          "title": "Formation Certifiante",
+          "description": "Certificats reconnus par les autorités de santé"
+        },
+        "experts": {
+          "title": "Formateurs Experts",
+          "description": "Ingénieurs biomédicaux certifiés et expérimentés"
+        },
+        "continuousSupport": {
+          "title": "Support Continu",
+          "description": "Assistance technique 6 mois après formation"
+        },
+        "documentation": {
+          "title": "Documentation Complète",
+          "description": "Manuels et guides techniques inclus"
+        }
+      },
+      "testimonialsSection": {
+        "title": "Témoignages"
+      },
+      "testimonials": {
+        "0": {
+          "quote": "Formation excellente avec une approche très pratique. Les formateurs sont des experts dans leur domaine.",
+          "position": "Chef du service cardiologie"
+        },
+        "1": {
+          "quote": "Grâce à cette formation, notre équipe maîtrise parfaitement les nouveaux équipements. Service après-vente exceptionnel.",
+          "position": "Responsable technique"
+        }
+      },
+      "cta": {
+        "title": "Besoin d'une Formation Personnalisée ?",
+        "description": "Nous créons des programmes de formation sur mesure adaptés aux besoins spécifiques de votre établissement."
+      }
+    },
+    "documentation": {
+      "hero": {
+        "title": "Documentation Technique",
+        "description": "Accédez à toute la documentation technique de nos équipements médicaux : manuels d'utilisation, guides d'installation, protocoles de maintenance et plus encore.",
+        "searchPlaceholder": "Rechercher dans la documentation..."
+      },
+      "sidebar": {
+        "categoriesTitle": "Catégories",
+        "quickAccessTitle": "Accès Rapide"
+      },
+      "categories": {
+        "all": "Tous les documents",
+        "userManuals": "Manuels d'utilisation",
+        "technical": "Documentation technique",
+        "installation": "Guides d'installation",
+        "maintenance": "Maintenance"
+      },
+      "documents": {
+        "ultrasound": {
+          "title": "Manuel d'Utilisation - Échographe Portable",
+          "description": "Guide complet d'utilisation pour échographe portable haute résolution",
+          "type": "Manuel utilisateur",
+          "language": "Français"
+        },
+        "monitoring": {
+          "title": "Installation - Système de Monitoring",
+          "description": "Procédure d'installation et configuration du système de monitoring",
+          "type": "Guide d'installation",
+          "language": "Français/Anglais"
+        },
+        "cardio": {
+          "title": "Maintenance Préventive - Équipement Cardio",
+          "description": "Protocoles de maintenance pour équipements cardiovasculaires",
+          "type": "Manuel maintenance",
+          "language": "Français"
+        },
+        "imaging": {
+          "title": "Spécifications Techniques - Imagerie Médicale",
+          "description": "Spécifications complètes pour équipements d'imagerie médicale",
+          "type": "Documentation technique",
+          "language": "Français/Anglais"
+        }
+      },
+      "quickLinks": {
+        "ceCertificates": {
+          "title": "Certificats CE",
+          "description": "Tous les certificats de conformité européenne"
+        },
+        "safetySheets": {
+          "title": "Fiches de Sécurité",
+          "description": "Fiches de données de sécurité pour tous les produits"
+        },
+        "videoTraining": {
+          "title": "Formations Vidéo",
+          "description": "Bibliothèque de vidéos de formation"
+        },
+        "technicalSupport": {
+          "title": "Support Technique",
+          "description": "Accès direct au support technique"
+        }
+      },
+      "documentCard": {
+        "type": "Type",
+        "size": "Taille",
+        "language": "Langue",
+        "version": "Version",
+        "download": "Télécharger"
+      },
+      "results": {
+        "documentsFound": "{count, plural, =0 {Aucun document trouvé} =1 {1 document trouvé} other {# documents trouvés}}"
+      },
+      "noResults": {
+        "title": "Aucun document trouvé",
+        "description": "Essayez de modifier vos critères de recherche ou contactez notre support.",
+        "contactSupport": "Contacter le Support"
+      },
+      "helpSection": {
+        "title": "Besoin d'Aide Supplémentaire ?",
+        "description": "Notre équipe technique est disponible pour vous accompagner dans l'utilisation de nos équipements.",
+        "contactSupport": "Contacter le Support",
+        "requestTraining": "Demander une Formation"
+      }
     }
   }
 }

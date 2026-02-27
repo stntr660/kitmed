@@ -67,7 +67,7 @@ export default function ProductDetailPage() {
   const params = useHydrationSafeParams();
   const slug = params.slug as string;
   const locale = (params.locale as string) || 'fr';
-  const t = useTranslations('products.catalog');
+  const t = useTranslations('products.detail');
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -76,14 +76,14 @@ export default function ProductDetailPage() {
     if (slug) {
       loadProduct();
     }
-  }, [slug]);
+  }, [slug, locale]);
 
   const loadProduct = async () => {
     try {
       setLoading(true);
 
       // Try to fetch real product data by slug using the public API
-      const response = await fetch(`/api/products/${slug}`);
+      const response = await fetch(`/api/products/${slug}?locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         if (data.success && data.data) {
@@ -148,25 +148,28 @@ export default function ProductDetailPage() {
     }
   };
 
-  const getProductName = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductName = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.nom || product.referenceFournisseur;
   };
 
-  const getProductDescription = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductDescription = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.description;
   };
 
-  const getProductSpecs = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductSpecs = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.ficheTechnique;
   };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <LoadingSpinner size="lg" text="Chargement du produit..." />
+        <LoadingSpinner size="lg" text={t('loading')} />
       </div>
     );
   }
@@ -175,11 +178,11 @@ export default function ProductDetailPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-4">Produit non trouvé</h1>
+          <h1 className="text-2xl font-bold text-slate-900 mb-4">{t('notFound')}</h1>
           <Button asChild>
-            <Link href="/products">
+            <Link href={`/${locale}/products`}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour au catalogue
+              {t('backToCatalog')}
             </Link>
           </Button>
         </div>
@@ -196,14 +199,14 @@ export default function ProductDetailPage() {
       <nav className="bg-white border-b border-slate-200 py-4">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center text-sm text-slate-600">
-            <Link href="/products" className="hover:text-gray-600 transition-colors">
-              Produits
+            <Link href={`/${locale}/products`} className="hover:text-gray-600 transition-colors">
+              {t('breadcrumbProducts')}
             </Link>
             <span className="mx-2">/</span>
             {product.category && (
               <>
-                <Link href={`/products?category=${product.category.slug}`} className="hover:text-gray-600 transition-colors">
-                  {product.category.name?.fr || product.category.name?.en || 'Category'}
+                <Link href={`/${locale}/products?category=${product.category.slug}`} className="hover:text-gray-600 transition-colors">
+                  {product.category.name}
                 </Link>
                 <span className="mx-2">/</span>
               </>
@@ -240,12 +243,12 @@ export default function ProductDetailPage() {
                     {product.isFeatured && (
                       <Badge className="bg-accent-500 text-white border-0">
                         <Sparkles className="h-3 w-3 mr-1" />
-                        Produit Vedette
+                        {t('featuredBadge')}
                       </Badge>
                     )}
                     <Badge variant="secondary" className="bg-green-100 text-green-800">
                       <CheckCircle className="h-3 w-3 mr-1" />
-                      Disponible
+                      {t('available')}
                     </Badge>
                   </div>
 
@@ -311,7 +314,7 @@ export default function ProductDetailPage() {
                 </h1>
 
                 <div className="text-sm text-slate-500 font-mono mb-6">
-                  Référence: {product.referenceFournisseur}
+                  {t('reference')}: {product.referenceFournisseur}
                 </div>
 
                 <p className="text-lg text-slate-700 leading-relaxed">
@@ -360,7 +363,7 @@ export default function ProductDetailPage() {
 
                   <div className="flex flex-col items-center">
                     <Mail className="h-6 w-6 text-primary-600 mb-2" />
-                    <span className="text-sm text-slate-600">Contact Email</span>
+                    <span className="text-sm text-slate-600">{t('contactEmail')}</span>
                     <div className="space-y-1">
                       <a href="mailto:INFO@KITMED.MA" className="block text-sm font-semibold text-slate-900 hover:text-gray-600 transition-colors">
                         INFO@KITMED.MA

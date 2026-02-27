@@ -30,6 +30,8 @@
     "notSpecified": "Not specified",
     "uncategorized": "Uncategorized",
     "productWithoutName": "Product without name",
+    "direction": "Head Office",
+    "showRoom": "ShowRoom",
     "yes": "Yes",
     "no": "No",
     "export": "Export",
@@ -63,6 +65,9 @@
     "yourProfile": "Your Profile",
     "settings": "Settings",
     "signOut": "Sign Out",
+    "retry": "Retry",
+    "saveSettings": "Save Settings",
+    "saving": "Saving...",
     "reference": "Reference",
     "manufacturer": "Manufacturer",
     "quantity": "Quantity",
@@ -312,7 +317,41 @@
     "submit": "Submit RFP",
     "submitting": "Submitting...",
     "success": "RFP submitted successfully",
-    "requestNumber": "Request Number"
+    "requestNumber": "Request Number",
+    "quoteForm": {
+      "title": "Quote Request",
+      "description": "Fill in the essential information to receive a personalized quote.",
+      "requestQuote": "Request a Quote",
+      "addProduct": "Add a product",
+      "selectProduct": "Select a product",
+      "searchPlaceholder": "Search in the list...",
+      "loadingProducts": "Loading products...",
+      "noProductsFound": "No products found",
+      "noProductsAvailable": "No products available",
+      "noProductsSelected": "No products selected. Click \"Add a product\" to get started.",
+      "ref": "Ref",
+      "manufacturer": "Manufacturer",
+      "qty": "Qty",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your first and last name",
+      "email": "Email",
+      "emailPlaceholder": "your.email@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+212 6XX XXX XXX",
+      "company": "Company",
+      "companyPlaceholder": "Your company name",
+      "message": "Message",
+      "messagePlaceholder": "Describe your specific needs...",
+      "cancel": "Cancel",
+      "sending": "Sending...",
+      "submitRequest": "Send Request",
+      "nameEmailRequired": "Name and email are required",
+      "sendError": "Error sending the request",
+      "unexpectedError": "Unexpected error",
+      "successTitle": "Request Sent!",
+      "successMessage": "Your quote request has been successfully submitted.",
+      "successFollowUp": "We will get back to you as soon as possible."
+    }
   },
   "form": {
     "firstName": "First Name",
@@ -1533,6 +1572,20 @@
       "sendTest": "Send Test Email",
       "emailTestSuccess": "Test email sent successfully! Check your inbox.",
       "emailTestFailed": "Failed to send test email. Please check your SMTP configuration.",
+      "siteConfiguration": "Site Configuration",
+      "enableEmailNotifications": "Enable email notifications",
+      "testEmailConfiguration": "Test Email Configuration",
+      "sendTestEmailDesc": "Send a test email to verify settings",
+      "securityBasics": "Security Settings",
+      "twoFactorAuthentication": "Two-factor authentication",
+      "systemMaintenance": "System Maintenance",
+      "automaticUpdates": "Automatic updates",
+      "dataBackupFrequency": "Data backup frequency",
+      "minutes30": "30 minutes",
+      "hour1": "1 hour",
+      "hours2": "2 hours",
+      "hours4": "4 hours",
+      "attempts": "attempts",
       "enableBackup": "Enable Automated Backups",
       "backupDesc": "Automatically backup your data at scheduled intervals",
       "backupFrequency": "Backup Frequency",
@@ -1788,6 +1841,23 @@
         "tapToExpand": "Tap to expand",
         "longPressForActions": "Long press for actions"
       }
+    },
+    "banners": {
+      "title": "Banner Management",
+      "subtitle": "Create and manage homepage banners",
+      "createBanner": "Create Banner",
+      "noBanners": "No banners yet",
+      "noBannersDescription": "Create your first banner to get started",
+      "readOnlyMode": "Read-only mode: Please log in for full management features",
+      "loading": "Loading banners...",
+      "position": "Position",
+      "layout": "Layout",
+      "sortOrder": "Sort Order",
+      "preview": "Preview",
+      "active": "Active",
+      "inactive": "Inactive",
+      "scheduled": "Scheduled",
+      "expired": "Expired"
     }
   },
   "dashboard": {
@@ -2358,6 +2428,415 @@
       "viewDetails": "View Details",
       "websiteLink": "Official Website",
       "backToProducts": "Back to Products"
+    },
+    "detail": {
+      "loading": "Loading product...",
+      "notFound": "Product not found",
+      "backToCatalog": "Back to catalog",
+      "breadcrumbProducts": "Products",
+      "featuredBadge": "Featured Product",
+      "available": "Available",
+      "reference": "Reference",
+      "contactEmail": "Contact Email",
+      "moreDetails": "More Details",
+      "downloadBrochure": "Download Brochure",
+      "generalBrochure": "(General)",
+      "phoneSupport": "Phone Support"
+    }
+  },
+  "certifications": {
+    "title": "Certifications & Standards",
+    "description": "KITMED is certified and authorized by regulatory bodies to guarantee the quality and safety of our medical equipment.",
+    "complianceTitle": "Full Regulatory Compliance",
+    "complianceDescription": "All our products comply with international quality and safety standards for medical equipment, with official authorization from the Moroccan Ministry of Health.",
+    "bannerTitle": "International Certifications & Standards",
+    "bannerSubtitle": "Trust guaranteed by our official certifications",
+    "compliant": "Compliant",
+    "certifiedLabel": "Certified ONSSA - ISO 9001/13485/22716",
+    "verified": "Verified"
+  },
+  "support": {
+    "maintenance": {
+      "hero": {
+        "title": "Maintenance & Technical Support",
+        "description": "Professional maintenance services to ensure the proper operation and longevity of your medical equipment.",
+        "urgentRequest": "Urgent Intervention Request",
+        "scheduleMaintenance": "Schedule Maintenance"
+      },
+      "stats": {
+        "uptime": "Uptime",
+        "responseTime": "Average response time",
+        "equipmentUnderContract": "Equipment under contract",
+        "supportAvailable": "Support available"
+      },
+      "servicesSection": {
+        "title": "Our Maintenance Services",
+        "description": "Comprehensive solutions for all types of medical equipment",
+        "includedServices": "Included services:",
+        "requestQuote": "Request a Quote"
+      },
+      "services": {
+        "preventive": {
+          "title": "Preventive Maintenance",
+          "description": "Scheduled maintenance programs to prevent breakdowns and extend equipment lifespan",
+          "features": {
+            "inspection": "Regular inspection",
+            "calibration": "Calibration and testing",
+            "replacement": "Preventive replacement",
+            "report": "Detailed report"
+          },
+          "pricing": "Starting from 800 DH/visit"
+        },
+        "corrective": {
+          "title": "Corrective Maintenance",
+          "description": "Rapid intervention for emergency repair and troubleshooting",
+          "features": {
+            "intervention": "24/7 intervention",
+            "diagnostic": "Complete diagnostic",
+            "onSiteRepair": "On-site repair",
+            "warranty": "Parts and labor warranty"
+          },
+          "pricing": "Custom quote"
+        },
+        "contracts": {
+          "title": "Maintenance Contracts",
+          "description": "Annual contracts for comprehensive coverage and predictable costs",
+          "features": {
+            "preventiveIncluded": "Preventive maintenance included",
+            "priority": "Priority on interventions",
+            "spareParts": "Guaranteed spare parts",
+            "unlimitedSupport": "Unlimited technical support"
+          },
+          "pricing": "Starting from 12,000 DH/year"
+        },
+        "training": {
+          "title": "Technical Training",
+          "description": "Training your teams for first-level maintenance",
+          "features": {
+            "certified": "Certified training",
+            "manual": "Technical manual included",
+            "continuousSupport": "Continuous support",
+            "procedureUpdates": "Procedure updates"
+          },
+          "pricing": "1,500 DH/training day"
+        }
+      },
+      "equipmentSection": {
+        "title": "Supported Equipment",
+        "description": "Technical expertise across all medical equipment categories",
+        "maintenanceLabel": "Maintenance"
+      },
+      "equipment": {
+        "imaging": {
+          "name": "Medical Imaging",
+          "items": {
+            "ultrasound": "Ultrasound",
+            "radiology": "Radiology",
+            "mri": "MRI",
+            "ctScan": "CT Scanner"
+          },
+          "interval": "Quarterly"
+        },
+        "cardio": {
+          "name": "Cardio Equipment",
+          "items": {
+            "ecg": "ECG",
+            "holter": "Holter",
+            "defibrillators": "Defibrillators",
+            "monitoring": "Monitoring"
+          },
+          "interval": "Bimonthly"
+        },
+        "monitoring": {
+          "name": "Monitoring Systems",
+          "items": {
+            "multiparameter": "Multiparameter",
+            "telemetry": "Telemetry",
+            "oximetry": "Oximetry",
+            "capnography": "Capnography"
+          },
+          "interval": "Monthly"
+        },
+        "laboratory": {
+          "name": "Laboratory Equipment",
+          "items": {
+            "analyzers": "Analyzers",
+            "centrifuges": "Centrifuges",
+            "microscopes": "Microscopes",
+            "automatedSystems": "Automated systems"
+          },
+          "interval": "Monthly"
+        }
+      },
+      "form": {
+        "title": "Maintenance Request",
+        "description": "Fill out the form below to request an intervention",
+        "equipmentType": {
+          "label": "Equipment Type *",
+          "placeholder": "Select a type",
+          "options": {
+            "imaging": "Medical Imaging",
+            "cardio": "Cardio Equipment",
+            "monitoring": "Monitoring Systems",
+            "laboratory": "Laboratory Equipment",
+            "other": "Other"
+          }
+        },
+        "serialNumber": {
+          "label": "Serial Number",
+          "placeholder": "E.g.: KM2024-001"
+        },
+        "urgency": {
+          "label": "Urgency Level *",
+          "options": {
+            "low": "Low - Preventive maintenance",
+            "normal": "Normal - Within the week",
+            "high": "High - Within 24 hours",
+            "urgent": "Urgent - Immediate intervention"
+          }
+        },
+        "location": {
+          "label": "Location *",
+          "placeholder": "Equipment address"
+        },
+        "issueDescription": {
+          "label": "Problem Description *",
+          "placeholder": "Describe the issue in detail..."
+        },
+        "contactName": {
+          "label": "Contact Name *",
+          "placeholder": "Full name"
+        },
+        "contactPhone": {
+          "label": "Phone *"
+        },
+        "contactEmail": {
+          "label": "Email *"
+        },
+        "requiredFields": "* Required fields",
+        "submit": "Submit Request"
+      },
+      "contact": {
+        "title": "Emergency Maintenance Contact",
+        "description": "For emergencies, contact our technical team 24/7",
+        "emergency": {
+          "title": "24/7 Emergency",
+          "availability": "Available at all times"
+        },
+        "email": {
+          "title": "Technical Email",
+          "responseTime": "Response within 2 hours"
+        },
+        "intervention": {
+          "title": "Intervention",
+          "coverage": "Morocco & Africa",
+          "serviceType": "National service"
+        }
+      }
+    },
+    "training": {
+      "hero": {
+        "title": "Professional Training",
+        "description": "Develop your team's expertise with our certified training programs on the use and maintenance of medical equipment.",
+        "bookButton": "Book a Training"
+      },
+      "stats": {
+        "professionalsTrainedLabel": "Professionals trained",
+        "satisfactionRateLabel": "Satisfaction rate",
+        "postTrainingSupportLabel": "Post-training support",
+        "availableProgramsLabel": "Programs available"
+      },
+      "programsSection": {
+        "title": "Training Programs",
+        "description": "Training adapted to all levels, from introductory to advanced specialization",
+        "includedLabel": "Included in the training:",
+        "nextSessionsLabel": "Upcoming sessions:",
+        "perPerson": "/person",
+        "bookButton": "Book"
+      },
+      "programs": {
+        "ultrasound": {
+          "title": "Advanced Ultrasound Training",
+          "description": "Comprehensive training on the use of high-resolution ultrasound equipment",
+          "duration": "3 days",
+          "level": "Advanced",
+          "participants": "6-12 people",
+          "location": "KITMED Training Center",
+          "category": "Imaging",
+          "features": {
+            "0": "Theory and practice",
+            "1": "Certification included",
+            "2": "6-month technical support",
+            "3": "Complete documentation"
+          }
+        },
+        "cardio": {
+          "title": "Preventive Maintenance - Cardio Equipment",
+          "description": "Maintenance protocols and troubleshooting for cardiovascular equipment",
+          "duration": "2 days",
+          "level": "Intermediate",
+          "participants": "4-8 people",
+          "location": "Client site or KITMED center",
+          "category": "Maintenance",
+          "features": {
+            "0": "Preventive maintenance",
+            "1": "Fault diagnosis",
+            "2": "Spare parts",
+            "3": "Technical manual"
+          }
+        },
+        "monitoring": {
+          "title": "Advanced Monitoring Training",
+          "description": "Optimal use of multi-parameter monitoring systems",
+          "duration": "2 days",
+          "level": "Intermediate",
+          "participants": "8-15 people",
+          "location": "Training center or client site",
+          "category": "Monitoring",
+          "features": {
+            "0": "System configuration",
+            "1": "Alarms and alerts",
+            "2": "Data analysis",
+            "3": "User certification"
+          }
+        },
+        "laboratory": {
+          "title": "Laboratory Equipment Operation",
+          "description": "Hands-on training on analyzers and laboratory equipment",
+          "duration": "1 day",
+          "level": "Beginner",
+          "participants": "6-10 people",
+          "location": "Partner laboratory",
+          "category": "Laboratory",
+          "features": {
+            "0": "Basic operation",
+            "1": "Calibration",
+            "2": "Daily maintenance",
+            "3": "User guide"
+          }
+        }
+      },
+      "benefitsSection": {
+        "title": "Why Choose Our Training?"
+      },
+      "benefits": {
+        "certified": {
+          "title": "Certified Training",
+          "description": "Certificates recognized by health authorities"
+        },
+        "experts": {
+          "title": "Expert Trainers",
+          "description": "Certified and experienced biomedical engineers"
+        },
+        "continuousSupport": {
+          "title": "Continuous Support",
+          "description": "6-month technical assistance after training"
+        },
+        "documentation": {
+          "title": "Complete Documentation",
+          "description": "Technical manuals and guides included"
+        }
+      },
+      "testimonialsSection": {
+        "title": "Testimonials"
+      },
+      "testimonials": {
+        "0": {
+          "quote": "Excellent training with a very hands-on approach. The trainers are experts in their field.",
+          "position": "Head of Cardiology Department"
+        },
+        "1": {
+          "quote": "Thanks to this training, our team has fully mastered the new equipment. Exceptional after-sales service.",
+          "position": "Technical Manager"
+        }
+      },
+      "cta": {
+        "title": "Need Customized Training?",
+        "description": "We create tailored training programs adapted to the specific needs of your facility."
+      }
+    },
+    "documentation": {
+      "hero": {
+        "title": "Technical Documentation",
+        "description": "Access all technical documentation for our medical equipment: user manuals, installation guides, maintenance protocols and more.",
+        "searchPlaceholder": "Search documentation..."
+      },
+      "sidebar": {
+        "categoriesTitle": "Categories",
+        "quickAccessTitle": "Quick Access"
+      },
+      "categories": {
+        "all": "All documents",
+        "userManuals": "User manuals",
+        "technical": "Technical documentation",
+        "installation": "Installation guides",
+        "maintenance": "Maintenance"
+      },
+      "documents": {
+        "ultrasound": {
+          "title": "User Manual - Portable Ultrasound",
+          "description": "Complete user guide for high-resolution portable ultrasound",
+          "type": "User manual",
+          "language": "French"
+        },
+        "monitoring": {
+          "title": "Installation - Monitoring System",
+          "description": "Installation procedure and configuration of the monitoring system",
+          "type": "Installation guide",
+          "language": "French/English"
+        },
+        "cardio": {
+          "title": "Preventive Maintenance - Cardio Equipment",
+          "description": "Maintenance protocols for cardiovascular equipment",
+          "type": "Maintenance manual",
+          "language": "French"
+        },
+        "imaging": {
+          "title": "Technical Specifications - Medical Imaging",
+          "description": "Complete specifications for medical imaging equipment",
+          "type": "Technical documentation",
+          "language": "French/English"
+        }
+      },
+      "quickLinks": {
+        "ceCertificates": {
+          "title": "CE Certificates",
+          "description": "All European conformity certificates"
+        },
+        "safetySheets": {
+          "title": "Safety Data Sheets",
+          "description": "Safety data sheets for all products"
+        },
+        "videoTraining": {
+          "title": "Video Training",
+          "description": "Training video library"
+        },
+        "technicalSupport": {
+          "title": "Technical Support",
+          "description": "Direct access to technical support"
+        }
+      },
+      "documentCard": {
+        "type": "Type",
+        "size": "Size",
+        "language": "Language",
+        "version": "Version",
+        "download": "Download"
+      },
+      "results": {
+        "documentsFound": "{count, plural, =0 {No documents found} =1 {1 document found} other {# documents found}}"
+      },
+      "noResults": {
+        "title": "No documents found",
+        "description": "Try modifying your search criteria or contact our support team.",
+        "contactSupport": "Contact Support"
+      },
+      "helpSection": {
+        "title": "Need Additional Help?",
+        "description": "Our technical team is available to assist you with the use of our equipment.",
+        "contactSupport": "Contact Support",
+        "requestTraining": "Request Training"
+      }
     }
   }
 }

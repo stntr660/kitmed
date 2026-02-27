@@ -107,7 +107,7 @@ export function Footer({ locale, className }: FooterProps) {
           <div className="lg:col-span-1">
             <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
               <Building2 className="h-4 w-4 mr-2" />
-              Direction
+              {tCommon('direction')}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-2">
@@ -154,7 +154,7 @@ export function Footer({ locale, className }: FooterProps) {
           {/* ShowRoom */}
           <div className="lg:col-span-1">
             <h3 className="text-sm font-semibold text-medical-heading mb-4">
-              ShowRoom
+              {tCommon('showRoom')}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-2">
