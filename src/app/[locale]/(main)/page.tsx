@@ -324,19 +324,6 @@ export default function HomePage() {
               )}
             </div>
 
-            <div className="mt-12 text-center">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
-                asChild
-              >
-                <Link href={`/${locale}/products?featured=true`}>
-                  {t('featuredProducts.viewAll')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
 
