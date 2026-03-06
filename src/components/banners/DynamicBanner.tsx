@@ -312,7 +312,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
               <img
                 src={banner.imageUrl}
                 alt={banner.title}
-                className="w-full max-h-[55vh] object-contain hover:scale-105 transition-transform duration-500"
+                className="w-full object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
@@ -323,7 +323,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
   return (
     <section
-      className="relative min-h-[60vh] overflow-hidden group"
+      className="relative min-h-[60vh] group"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
