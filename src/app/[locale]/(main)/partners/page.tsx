@@ -186,7 +186,7 @@ export default function PartnersPage() {
                         )} />
                       )}
                     </div>
-                    <span className="text-base font-semibold text-center leading-tight max-w-[110px] line-clamp-2">
+                    <span className="text-xs font-semibold text-center leading-tight max-w-[120px]">
                       {category.name}
                     </span>
                   </button>
