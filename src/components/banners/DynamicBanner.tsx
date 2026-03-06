@@ -144,6 +144,11 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   // Get current banner for display
   const banner = banners[currentIndex];
 
+  // Make CTA URL locale-aware (replace /fr/ or /en/ prefix with current locale)
+  const getLocalizedCtaUrl = (url: string) => {
+    return url.replace(/^\/(fr|en)\//, `/${locale}/`);
+  };
+
   // CTA Button styles
   const getCtaStyles = () => {
     switch (banner.ctaStyle) {
@@ -182,14 +187,14 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
               <img
                 src={banner.imageUrl}
                 alt={banner.title}
-                className="w-full h-auto hover:scale-105 transition-transform duration-500"
+                className="w-full max-h-[55vh] object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           )}
 
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-4">
-              <a href={banner.ctaUrl}>
+              <a href={getLocalizedCtaUrl(banner.ctaUrl)}>
                 <Button
                   className={cn(
                     'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
@@ -231,7 +236,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-6">
-              <a href={banner.ctaUrl}>
+              <a href={getLocalizedCtaUrl(banner.ctaUrl)}>
                 <Button
                   className={cn(
                     'px-12 py-4 rounded-lg font-semibold text-lg transition-all duration-200 inline-flex items-center space-x-3',
@@ -291,7 +296,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 )}
                 asChild
               >
-                <Link href={banner.ctaUrl} className="flex items-center">
+                <Link href={getLocalizedCtaUrl(banner.ctaUrl)} className="flex items-center">
                   {banner.ctaText}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -302,15 +307,13 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
         {/* Right Content - Product Image */}
         {banner.imageUrl && (
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <div className="relative max-w-2xl mx-auto">
-              <div className="relative">
-                <img
-                  src={banner.imageUrl}
-                  alt={banner.title}
-                  className="w-full h-auto hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+              <img
+                src={banner.imageUrl}
+                alt={banner.title}
+                className="w-full max-h-[55vh] object-contain hover:scale-105 transition-transform duration-500"
+              />
             </div>
           </div>
         )}
