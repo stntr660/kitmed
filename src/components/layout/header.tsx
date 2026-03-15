@@ -116,7 +116,7 @@ export function Header({ locale, className }: HeaderProps) {
     <header className={cn('sticky top-0 z-50 w-full bg-white shadow-sm', className)}>
       {/* Top Row - Logo, Search, Social */}
       <div className="border-b border-gray-100">
-        <div className="container flex h-20 items-center justify-between px-6 lg:px-12">
+        <div className="container flex h-28 items-center justify-between px-6 lg:px-12">
           {/* Logo */}
           <div className="flex-shrink-0 mr-8">
             <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')}>
