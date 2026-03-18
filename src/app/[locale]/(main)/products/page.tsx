@@ -200,143 +200,260 @@ export default function ProductsPage() {
       </section>
 
       {/* Search and Filters */}
-      <section className="py-12 bg-white border-b border-slate-200">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-6 items-center">
-              {/* Search */}
+      <section className="py-6 sm:py-8 lg:py-10 bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto space-y-4">
+
+            {/* Row 1: Search bar + Filter button */}
+            <div className="flex gap-3 items-center">
+              {/* Search input - full width */}
               <div className="flex-1 relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 h-5 w-5 pointer-events-none" />
                 <Input
                   placeholder={tProducts('search.placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 h-14 text-lg border-2 border-slate-200 focus:border-primary-500 shadow-sm"
+                  className="pl-12 pr-11 h-11 sm:h-12 text-sm sm:text-base border-2 border-slate-200 focus:border-primary-500 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-xl shadow-sm w-full transition-colors"
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    aria-label="Clear search"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center h-7 w-7 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
               </div>
 
-              {/* Category Filter */}
-              <div className="flex gap-3 flex-wrap">
+              {/* Advanced filter button with active dot */}
+              <div className="relative flex-shrink-0">
                 <Button
-                  variant={selectedDiscipline === '' ? 'default' : 'outline'}
-                  onClick={() => { setSelectedDiscipline(''); setSelectedCategory(''); }}
-                  className="h-14 px-6"
+                  type="button"
+                  variant={showFilters ? 'default' : 'outline'}
+                  className="h-11 sm:h-12 px-3 sm:px-4 rounded-xl gap-1.5 border-2 border-slate-200 text-slate-600 hover:border-primary-400 hover:text-primary-600 transition-colors"
+                  onClick={() => setShowFilters(!showFilters)}
+                  aria-expanded={showFilters}
+                  aria-label="Toggle advanced filters"
                 >
-                  {tProducts('search.allCategories')}
+                  <Filter className="h-4 w-4 flex-shrink-0" />
+                  <span className="hidden sm:inline text-sm font-medium">{t('filter')}</span>
                 </Button>
-                {categories.map((category) => (
-                  <Button
-                    key={category.id}
-                    variant={selectedDiscipline === category.id ? 'default' : 'outline'}
-                    onClick={() => { setSelectedDiscipline(category.id); setSelectedCategory(category.id); }}
-                    className="h-14 px-6"
-                  >
-                    {category.name}
-                  </Button>
-                ))}
-                <div className="relative">
-                  <Button 
-                    variant="outline" 
-                    className="h-14 px-4"
-                    onClick={() => setShowFilters(!showFilters)}
-                  >
-                    <Filter className="h-4 w-4" />
-                  </Button>
-                  
-                  {showFilters && (
-                    <div className="absolute right-0 top-16 bg-white border border-gray-200 rounded-lg shadow-lg p-6 w-80 z-50">
-                      <h3 className="font-semibold text-gray-900 mb-4">{t('filter')}</h3>
-                      
-                      {/* Manufacturer Filter */}
-                      <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          {t('manufacturer')}
-                        </label>
-                        <select 
-                          value={selectedManufacturer}
-                          onChange={(e) => setSelectedManufacturer(e.target.value)}
-                          className="w-full border border-gray-300 rounded-md px-3 py-2"
-                        >
-                          <option value="">{tProducts('search.allManufacturers')}</option>
-                          {manufacturers.map((manufacturer) => (
-                            <option key={manufacturer.id} value={manufacturer.slug || manufacturer.id}>
-                              {typeof manufacturer.name === 'string' 
-                                ? manufacturer.name 
-                                : manufacturer.name?.[locale] || manufacturer.name?.fr || manufacturer.name?.en || 'Unknown Manufacturer'
-                              }
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      
-                      {/* Featured Only */}
-                      <div className="mb-4">
-                        <label className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={onlyFeatured}
-                            onChange={(e) => setOnlyFeatured(e.target.checked)}
-                            className="rounded border-gray-300 text-primary-600 mr-2"
-                          />
-                          <span className="text-sm text-gray-700">{tProducts('search.onlyFeatured')}</span>
-                        </label>
-                      </div>
-                      
-                      {/* Clear Filters */}
-                      <div className="flex gap-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => {
-                            setSelectedManufacturer('');
-                            setOnlyFeatured(false);
-                          }}
-                          className="flex-1"
-                        >
-                          {t('clear')}
-                        </Button>
-                        <Button 
-                          size="sm"
-                          onClick={() => setShowFilters(false)}
-                          className="flex-1"
-                        >
-                          {t('close')}
-                        </Button>
-                      </div>
+                {(selectedManufacturer || onlyFeatured) && (
+                  <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-primary-500 border-2 border-white" aria-hidden="true" />
+                )}
+
+                {/* Dropdown panel */}
+                {showFilters && (
+                  <div className="absolute right-0 top-[calc(100%+8px)] bg-white border border-slate-200 rounded-xl shadow-2xl p-5 w-72 sm:w-80 z-50">
+                    <h3 className="font-semibold text-slate-900 mb-4 text-sm">{t('filter')}</h3>
+                    <div className="mb-4">
+                      <label className="block text-xs font-medium text-slate-500 uppercase tracking-wide mb-2">
+                        {t('manufacturer')}
+                      </label>
+                      <select
+                        value={selectedManufacturer}
+                        onChange={(e) => setSelectedManufacturer(e.target.value)}
+                        className="w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none bg-white"
+                      >
+                        <option value="">{tProducts('search.allManufacturers')}</option>
+                        {manufacturers.map((manufacturer) => (
+                          <option key={manufacturer.id} value={manufacturer.slug || manufacturer.id}>
+                            {typeof manufacturer.name === 'string'
+                              ? manufacturer.name
+                              : manufacturer.name?.[locale] || manufacturer.name?.fr || manufacturer.name?.en || 'Unknown'}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                  )}
-                </div>
+                    <div className="mb-5">
+                      <label className="flex items-center gap-2.5 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={onlyFeatured}
+                          onChange={(e) => setOnlyFeatured(e.target.checked)}
+                          className="rounded border-slate-300 text-primary-600 focus:ring-primary-500"
+                        />
+                        <span className="text-sm text-slate-700">{tProducts('search.onlyFeatured')}</span>
+                      </label>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => { setSelectedManufacturer(''); setOnlyFeatured(false); }}
+                        className="flex-1 rounded-lg text-xs"
+                      >
+                        {t('clear')}
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        onClick={() => setShowFilters(false)}
+                        className="flex-1 rounded-lg text-xs"
+                      >
+                        {t('close')}
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
-            {/* Subcategory chips */}
+            </div>
+
+            {/* Row 2: Discipline pills - horizontally scrollable */}
+            <div
+              className="flex gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="group"
+              aria-label="Filter by discipline"
+            >
+              <button
+                type="button"
+                onClick={() => { setSelectedDiscipline(''); setSelectedCategory(''); }}
+                className={[
+                  'flex-shrink-0 h-9 px-4 rounded-full text-xs sm:text-sm font-medium border-2 transition-colors whitespace-nowrap',
+                  selectedDiscipline === ''
+                    ? 'bg-primary-600 border-primary-600 text-white shadow-sm'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-primary-300 hover:text-primary-600'
+                ].join(' ')}
+                aria-pressed={selectedDiscipline === ''}
+              >
+                {tProducts('search.allCategories')}
+              </button>
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => { setSelectedDiscipline(category.id); setSelectedCategory(category.id); }}
+                  className={[
+                    'flex-shrink-0 h-9 px-4 rounded-full text-xs sm:text-sm font-medium border-2 transition-colors whitespace-nowrap',
+                    selectedDiscipline === category.id
+                      ? 'bg-primary-600 border-primary-600 text-white shadow-sm'
+                      : 'bg-white border-slate-200 text-slate-600 hover:border-primary-300 hover:text-primary-600'
+                  ].join(' ')}
+                  aria-pressed={selectedDiscipline === category.id}
+                >
+                  {category.name}
+                  {category.productCount != null && (
+                    <span className={[
+                      'ml-1.5 text-[10px] font-normal',
+                      selectedDiscipline === category.id ? 'text-white/70' : 'text-slate-400'
+                    ].join(' ')}>
+                      ({category.productCount})
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Row 3: Subcategory chips - shown when discipline selected and has subcategories */}
             {(() => {
               const selectedParent = categories.find((c: any) => c.id === selectedDiscipline);
               const subs = selectedParent?.subcategories;
               if (!subs || subs.length === 0) return null;
               return (
-                <div className="flex gap-2 flex-wrap mt-4">
-                  <Button
-                    variant={selectedCategory === selectedParent.id ? 'default' : 'outline'}
-                    size="sm"
+                <div
+                  className="flex gap-1.5 overflow-x-auto pb-0.5 pl-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  role="group"
+                  aria-label="Filter by subcategory"
+                >
+                  {/* "All {discipline}" chip */}
+                  <button
+                    type="button"
                     onClick={() => setSelectedCategory(selectedParent.id)}
-                    className="h-9 px-4 text-sm"
+                    className={[
+                      'flex-shrink-0 h-7 px-3 rounded-full text-xs font-medium border transition-colors whitespace-nowrap',
+                      selectedCategory === selectedParent.id
+                        ? 'bg-primary-100 border-primary-300 text-primary-700'
+                        : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-primary-200 hover:text-primary-600 hover:bg-primary-50'
+                    ].join(' ')}
+                    aria-pressed={selectedCategory === selectedParent.id}
                   >
-                    {tProducts('search.allCategories')} ({selectedParent.productCount})
-                  </Button>
+                    {tProducts('search.allCategories')}
+                    {selectedParent.productCount != null && (
+                      <span className="ml-1 opacity-60">({selectedParent.productCount})</span>
+                    )}
+                  </button>
                   {subs.map((sub: any) => (
-                    <Button
+                    <button
                       key={sub.id}
-                      variant={selectedCategory === sub.id ? 'default' : 'outline'}
-                      size="sm"
+                      type="button"
                       onClick={() => setSelectedCategory(sub.id)}
-                      className="h-9 px-4 text-sm"
+                      className={[
+                        'flex-shrink-0 h-7 px-3 rounded-full text-xs font-medium border transition-colors whitespace-nowrap',
+                        selectedCategory === sub.id
+                          ? 'bg-primary-100 border-primary-300 text-primary-700'
+                          : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-primary-200 hover:text-primary-600 hover:bg-primary-50'
+                      ].join(' ')}
+                      aria-pressed={selectedCategory === sub.id}
                     >
-                      {sub.name} ({sub.productCount})
-                    </Button>
+                      {sub.name}
+                      {sub.productCount != null && (
+                        <span className="ml-1 opacity-60">({sub.productCount})</span>
+                      )}
+                    </button>
                   ))}
                 </div>
               );
             })()}
-            </div>
+
+            {/* Row 4: Active filter badges - only when filters are set */}
+            {(searchQuery || selectedManufacturer || onlyFeatured) && (
+              <div className="flex items-center gap-2 flex-wrap" role="status" aria-label="Active filters">
+                <span className="text-xs font-medium text-slate-500 flex-shrink-0">{t('filter')}:</span>
+                {searchQuery && (
+                  <span className="inline-flex items-center gap-1 h-6 pl-2.5 pr-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200">
+                    &ldquo;{searchQuery}&rdquo;
+                    <button
+                      type="button"
+                      aria-label={`Remove search filter: ${searchQuery}`}
+                      onClick={() => setSearchQuery('')}
+                      className="flex items-center justify-center h-4 w-4 rounded-full hover:bg-slate-300 text-slate-500 hover:text-slate-800 transition-colors"
+                    >
+                      <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                )}
+                {selectedManufacturer && (
+                  <span className="inline-flex items-center gap-1 h-6 pl-2.5 pr-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200">
+                    {typeof manufacturers.find((m: any) => (m.slug || m.id) === selectedManufacturer)?.name === 'string'
+                      ? manufacturers.find((m: any) => (m.slug || m.id) === selectedManufacturer)?.name
+                      : selectedManufacturer}
+                    <button
+                      type="button"
+                      aria-label="Remove manufacturer filter"
+                      onClick={() => setSelectedManufacturer('')}
+                      className="flex items-center justify-center h-4 w-4 rounded-full hover:bg-slate-300 text-slate-500 hover:text-slate-800 transition-colors"
+                    >
+                      <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                )}
+                {onlyFeatured && (
+                  <span className="inline-flex items-center gap-1 h-6 pl-2.5 pr-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200">
+                    {tProducts('search.onlyFeatured')}
+                    <button
+                      type="button"
+                      aria-label="Remove featured filter"
+                      onClick={() => setOnlyFeatured(false)}
+                      className="flex items-center justify-center h-4 w-4 rounded-full hover:bg-slate-300 text-slate-500 hover:text-slate-800 transition-colors"
+                    >
+                      <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
       </section>
