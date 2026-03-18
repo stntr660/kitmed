@@ -81,9 +81,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       if (isUUID) {
         where.category_id = category;
       } else {
-        // It's a slug, find the category first
+        // Try slug first, then fall back to ID match
         const categoryRecord = await prisma.categories.findFirst({
-          where: { slug: category, is_active: true }
+          where: {
+            OR: [
+              { slug: category, is_active: true },
+              { id: category, is_active: true }
+            ]
+          }
         });
         if (categoryRecord) {
           // Also include products from subcategories
