@@ -79,6 +79,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedDiscipline, setSelectedDiscipline] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedManufacturer, setSelectedManufacturer] = useState('');
   const [onlyFeatured, setOnlyFeatured] = useState(false);
@@ -91,7 +92,10 @@ export default function ProductsPage() {
     const queryParam = searchParams.get('q');
     const manufacturerParam = searchParams.get('manufacturer');
 
-    if (categoryParam) setSelectedCategory(categoryParam);
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+      setSelectedDiscipline(categoryParam);
+    }
     if (queryParam) setSearchQuery(queryParam);
     if (manufacturerParam) setSelectedManufacturer(manufacturerParam);
 
@@ -107,7 +111,7 @@ export default function ProductsPage() {
 
   const loadCategories = async () => {
     try {
-      const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
+      const response = await fetch(`/api/categories?includeProductCount=true&hierarchy=true&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setCategories(data.data || []);
@@ -214,8 +218,8 @@ export default function ProductsPage() {
               {/* Category Filter */}
               <div className="flex gap-3 flex-wrap">
                 <Button
-                  variant={selectedCategory === '' ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory('')}
+                  variant={selectedDiscipline === '' ? 'default' : 'outline'}
+                  onClick={() => { setSelectedDiscipline(''); setSelectedCategory(''); }}
                   className="h-14 px-6"
                 >
                   {tProducts('search.allCategories')}
@@ -223,8 +227,8 @@ export default function ProductsPage() {
                 {categories.map((category) => (
                   <Button
                     key={category.id}
-                    variant={selectedCategory === category.id ? 'default' : 'outline'}
-                    onClick={() => setSelectedCategory(category.id)}
+                    variant={selectedDiscipline === category.id ? 'default' : 'outline'}
+                    onClick={() => { setSelectedDiscipline(category.id); setSelectedCategory(category.id); }}
                     className="h-14 px-6"
                   >
                     {category.name}
@@ -303,6 +307,35 @@ export default function ProductsPage() {
                   )}
                 </div>
               </div>
+            {/* Subcategory chips */}
+            {(() => {
+              const selectedParent = categories.find((c: any) => c.id === selectedDiscipline);
+              const subs = selectedParent?.subcategories;
+              if (!subs || subs.length === 0) return null;
+              return (
+                <div className="flex gap-2 flex-wrap mt-4">
+                  <Button
+                    variant={selectedCategory === selectedParent.id ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedCategory(selectedParent.id)}
+                    className="h-9 px-4 text-sm"
+                  >
+                    {tProducts('search.allCategories')} ({selectedParent.productCount})
+                  </Button>
+                  {subs.map((sub: any) => (
+                    <Button
+                      key={sub.id}
+                      variant={selectedCategory === sub.id ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSelectedCategory(sub.id)}
+                      className="h-9 px-4 text-sm"
+                    >
+                      {sub.name} ({sub.productCount})
+                    </Button>
+                  ))}
+                </div>
+              );
+            })()}
             </div>
           </div>
         </div>
