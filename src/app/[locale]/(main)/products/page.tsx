@@ -220,7 +220,7 @@ export default function ProductsPage() {
                 >
                   {tProducts('search.allCategories')}
                 </Button>
-                {categories.slice(0, 3).map((category) => (
+                {categories.map((category) => (
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.id ? 'default' : 'outline'}
