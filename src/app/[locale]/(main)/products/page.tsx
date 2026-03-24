@@ -164,20 +164,19 @@ export default function ProductsPage() {
       if (response.ok) {
         const data = await response.json();
         const PRIORITY_BRANDS = ['nidek', 'haag-streit'];
-        const items = data.data?.items || data.data || [];
-        const sortedProducts = items.sort((a: any, b: any) => {
-          const aName = (a.manufacturer?.name || a.constructeur || '').toLowerCase();
-          const bName = (b.manufacturer?.name || b.constructeur || '').toLowerCase();
-          const aIdx = PRIORITY_BRANDS.findIndex(brand => aName.includes(brand));
-          const bIdx = PRIORITY_BRANDS.findIndex(brand => bName.includes(brand));
-          const aIsPriority = aIdx !== -1;
-          const bIsPriority = bIdx !== -1;
-          if (aIsPriority && !bIsPriority) return -1;
-          if (!aIsPriority && bIsPriority) return 1;
-          if (aIsPriority && bIsPriority) return aIdx - bIdx;
-          return 0;
-        });
-        setProducts(sortedProducts);
+        if (data.data?.items) {
+          data.data.items.sort((a: any, b: any) => {
+            const aName = (a.manufacturer?.name || a.constructeur || '').toLowerCase();
+            const bName = (b.manufacturer?.name || b.constructeur || '').toLowerCase();
+            const aIdx = PRIORITY_BRANDS.findIndex(brand => aName.includes(brand));
+            const bIdx = PRIORITY_BRANDS.findIndex(brand => bName.includes(brand));
+            if (aIdx !== -1 && bIdx === -1) return -1;
+            if (aIdx === -1 && bIdx !== -1) return 1;
+            if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+            return 0;
+          });
+        }
+        setProducts(data.data);
       }
     } catch (error) {
       console.error('Failed to load products:', error);
