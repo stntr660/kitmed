@@ -164,7 +164,8 @@ export default function ProductsPage() {
       if (response.ok) {
         const data = await response.json();
         const PRIORITY_BRANDS = ['nidek', 'haag-streit'];
-        const sortedProducts = (data.data || []).sort((a: any, b: any) => {
+        const items = data.data?.items || data.data || [];
+        const sortedProducts = items.sort((a: any, b: any) => {
           const aName = (a.manufacturer?.name || a.constructeur || '').toLowerCase();
           const bName = (b.manufacturer?.name || b.constructeur || '').toLowerCase();
           const aIdx = PRIORITY_BRANDS.findIndex(brand => aName.includes(brand));
