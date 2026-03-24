@@ -126,7 +126,22 @@ export default function ProductsPage() {
       const response = await fetch('/api/partners?status=active');
       if (response.ok) {
         const data = await response.json();
-        setManufacturers(data.data || []);
+        const PRIORITY_SLUGS = ['nidek', 'haag-streit'];
+        const sorted = (data.data || []).sort((a: any, b: any) => {
+          const aName = (typeof a.name === 'string' ? a.name : a.name?.fr || a.name?.en || '').toLowerCase();
+          const bName = (typeof b.name === 'string' ? b.name : b.name?.fr || b.name?.en || '').toLowerCase();
+          const aSlug = (a.slug || '').toLowerCase();
+          const bSlug = (b.slug || '').toLowerCase();
+          const aPriority = PRIORITY_SLUGS.findIndex(s => aSlug.includes(s) || aName.includes(s));
+          const bPriority = PRIORITY_SLUGS.findIndex(s => bSlug.includes(s) || bName.includes(s));
+          const aIsPriority = aPriority !== -1;
+          const bIsPriority = bPriority !== -1;
+          if (aIsPriority && !bIsPriority) return -1;
+          if (!aIsPriority && bIsPriority) return 1;
+          if (aIsPriority && bIsPriority) return aPriority - bPriority;
+          return aName.localeCompare(bName);
+        });
+        setManufacturers(sorted);
       }
     } catch (error) {
       console.error('Failed to load manufacturers:', error);
