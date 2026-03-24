@@ -135,8 +135,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       where.status = { in: status };
     }
 
-    // Execute queries
-    const [items, total] = await Promise.all([
+    // Priority brands to show first
+    const PRIORITY_SLUGS = ['nidek', 'haag-streit'];
+
+    // Execute queries - fetch all matching products for priority sorting, then paginate in JS
+    const [allItems, total] = await Promise.all([
       prisma.products.findMany({
         where,
         include: {
@@ -171,6 +174,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
             select: {
               id: true,
               name: true,
+              slug: true,
               default_pdf_url: true,
               partner_translations: {
                 select: {
@@ -182,11 +186,24 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           }
         },
         orderBy: { created_at: 'desc' },
-        skip,
-        take,
       }),
       prisma.products.count({ where }),
     ]);
+
+    // Sort: priority brands first, then by created_at desc (already sorted by DB)
+    allItems.sort((a, b) => {
+      const aSlug = (a.partners?.slug || '').toLowerCase();
+      const bSlug = (b.partners?.slug || '').toLowerCase();
+      const aIdx = PRIORITY_SLUGS.findIndex(s => aSlug.includes(s));
+      const bIdx = PRIORITY_SLUGS.findIndex(s => bSlug.includes(s));
+      if (aIdx !== -1 && bIdx === -1) return -1;
+      if (aIdx === -1 && bIdx !== -1) return 1;
+      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+      return 0;
+    });
+
+    // Paginate after sorting
+    const items = allItems.slice(skip, skip + take);
 
     // Transform the data to return localized strings
     const transformedItems = items.map(product => {

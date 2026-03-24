@@ -163,19 +163,6 @@ export default function ProductsPage() {
       const response = await fetch(`/api/products?${params}&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
-        const PRIORITY_BRANDS = ['nidek', 'haag-streit'];
-        if (data.data?.items) {
-          data.data.items.sort((a: any, b: any) => {
-            const aName = (a.manufacturer?.name || a.constructeur || '').toLowerCase();
-            const bName = (b.manufacturer?.name || b.constructeur || '').toLowerCase();
-            const aIdx = PRIORITY_BRANDS.findIndex(brand => aName.includes(brand));
-            const bIdx = PRIORITY_BRANDS.findIndex(brand => bName.includes(brand));
-            if (aIdx !== -1 && bIdx === -1) return -1;
-            if (aIdx === -1 && bIdx !== -1) return 1;
-            if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
-            return 0;
-          });
-        }
         setProducts(data.data);
       }
     } catch (error) {
