@@ -186,7 +186,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
           {discipline.other_categories && discipline.other_categories.length > 0 ? (
             <>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {discipline.other_categories.filter((category: Category) => category.productCount > 0).map((category) => (
+                {discipline.other_categories.map((category) => (
                   <Card key={category.id} className="group h-full border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
                     <div className="relative h-36 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                       {category.imageUrl ? (

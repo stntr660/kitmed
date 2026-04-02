@@ -24,20 +24,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           where: { language_code: locale }
         },
         other_categories: {
-          where: { 
-            is_active: true,
-            products: {
-              some: {
-                status: 'active'
-              }
-            }
+          where: {
+            is_active: true
           },
           include: {
             category_translations: {
               where: { language_code: locale }
             },
+            other_categories: {
+              where: { is_active: true },
+              include: {
+                _count: {
+                  select: { products: { where: { status: 'active' } } }
+                }
+              }
+            },
             _count: {
-              select: { 
+              select: {
                 products: {
                   where: { status: 'active' }
                 }
@@ -76,19 +79,26 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       imageUrl: discipline.image_url,
       type: discipline.type,
       productCount: discipline._count.products,
-      other_categories: discipline.other_categories.map((category: any) => {
-        const categoryTranslation = category.category_translations?.[0];
-        return {
-          id: category.id,
-          name: categoryTranslation?.name || category.name,
-          slug: category.slug,
-          description: categoryTranslation?.description || category.description,
-          imageUrl: category.image_url,
-          type: category.type,
-          productCount: category._count.products,
-          children: [] // Will be loaded dynamically when needed
-        };
-      })
+      other_categories: discipline.other_categories
+        .map((category: any) => {
+          const categoryTranslation = category.category_translations?.[0];
+          const directProducts = category._count.products;
+          const childrenProducts = (category.other_categories || []).reduce(
+            (sum: number, child: any) => sum + (child._count?.products || 0), 0
+          );
+          const totalProducts = directProducts + childrenProducts;
+          return {
+            id: category.id,
+            name: categoryTranslation?.name || category.name,
+            slug: category.slug,
+            description: categoryTranslation?.description || category.description,
+            imageUrl: category.image_url,
+            type: category.type,
+            productCount: totalProducts,
+            childCount: (category.other_categories || []).length
+          };
+        })
+        .filter((cat: any) => cat.productCount > 0 || cat.childCount > 0)
     };
 
     return NextResponse.json({
