@@ -457,10 +457,12 @@ export default function ProductsPage() {
             </div>
           ) : products && products.items.length > 0 ? (
             <>
-              <div className="flex items-center justify-between mb-12">
+              <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                    {tProducts('listing.title')}
+                  <h2 className="text-2xl font-bold text-slate-900 mb-1">
+                    {selectedDiscipline
+                      ? categories.find((c: any) => c.id === selectedDiscipline)?.name || tProducts('listing.title')
+                      : tProducts('listing.title')}
                   </h2>
                   <p className="text-slate-600">
                     {tProducts('listing.count', { total: products.total, plural: products.total > 1 ? 's' : '' })}
