@@ -4,7 +4,8 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Search, ChevronDown, ChevronRight, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { Menu, Search, ChevronDown, ChevronRight, Facebook, Linkedin, Instagram, Shield } from 'lucide-react';
+import Image from 'next/image';
 
 import { HeaderLogo } from '@/components/ui/logo';
 import {
@@ -117,11 +118,26 @@ export function Header({ locale, className }: HeaderProps) {
       {/* Top Row - Logo, Search, Social */}
       <div className="border-b border-gray-100">
         <div className="container flex h-28 items-center justify-between px-6 lg:px-12">
-          {/* Logo */}
-          <div className="flex-shrink-0 mr-8">
+          {/* Logo + Certifications */}
+          <div className="flex items-center flex-shrink-0 mr-8">
             <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')}>
               <HeaderLogo />
             </Link>
+            <div className="hidden lg:flex items-center ml-6 pl-6 border-l border-gray-200 gap-3">
+              <Image src="/images/compliance/onssa-logo.svg" alt="ONSSA" width={64} height={64} className="object-contain" />
+              <div className="flex flex-col items-center gap-0.5">
+                <Image src="/images/compliance/iso-logo.png" alt="ISO 9001" width={48} height={48} className="object-contain rounded-full" />
+                <span className="text-[10px] font-semibold text-primary-600">9001</span>
+              </div>
+              <div className="flex flex-col items-center gap-0.5">
+                <Image src="/images/compliance/iso-logo.png" alt="ISO 13485" width={48} height={48} className="object-contain rounded-full" />
+                <span className="text-[10px] font-semibold text-primary-600">13485</span>
+              </div>
+              <div className="flex flex-col items-center gap-0.5">
+                <Image src="/images/compliance/iso-logo.png" alt="ISO 22716" width={48} height={48} className="object-contain rounded-full" />
+                <span className="text-[10px] font-semibold text-primary-600">22716</span>
+              </div>
+            </div>
           </div>
 
           {/* Search Bar with Category Dropdown - Desktop */}

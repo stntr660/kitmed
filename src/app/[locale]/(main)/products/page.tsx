@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
   id: string;
@@ -126,14 +125,18 @@ export default function ProductsPage() {
       const response = await fetch('/api/partners?status=active');
       if (response.ok) {
         const data = await response.json();
-        const PRIORITY_SLUGS = ['nidek', 'haag-streit'];
+        const OPHTHALMOLOGY_PRIORITY_SLUGS = [
+          'nidek', 'haag-streit', 'moria', 'fci', 'keeler',
+          'medicontur', 'medicontour', 'ophtec', 'rheon',
+          'mediworks', 'espansione', 'espansionne', 'omni', 'omnilens'
+        ];
         const sorted = (data.data || []).sort((a: any, b: any) => {
           const aName = (typeof a.name === 'string' ? a.name : a.name?.fr || a.name?.en || '').toLowerCase();
           const bName = (typeof b.name === 'string' ? b.name : b.name?.fr || b.name?.en || '').toLowerCase();
           const aSlug = (a.slug || '').toLowerCase();
           const bSlug = (b.slug || '').toLowerCase();
-          const aPriority = PRIORITY_SLUGS.findIndex(s => aSlug.includes(s) || aName.includes(s));
-          const bPriority = PRIORITY_SLUGS.findIndex(s => bSlug.includes(s) || bName.includes(s));
+          const aPriority = OPHTHALMOLOGY_PRIORITY_SLUGS.findIndex(s => aSlug.includes(s) || aName.includes(s));
+          const bPriority = OPHTHALMOLOGY_PRIORITY_SLUGS.findIndex(s => bSlug.includes(s) || bName.includes(s));
           const aIsPriority = aPriority !== -1;
           const bIsPriority = bPriority !== -1;
           if (aIsPriority && !bIsPriority) return -1;
@@ -186,36 +189,8 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              {tProducts('hero.badge')}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              {tProducts('hero.title')}
-              <span className="text-primary-100 block mt-2">{tProducts('hero.subtitle')}</span>
-            </h1>
-
-            <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-              {tProducts('hero.description')}
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Search and Filters */}
-      <section className="py-6 sm:py-8 lg:py-10 bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      <section className="py-3 sm:py-4 bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto space-y-4">
 
@@ -474,7 +449,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="py-6 lg:py-8">
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">

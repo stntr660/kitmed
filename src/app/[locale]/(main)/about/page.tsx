@@ -19,7 +19,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { CertificationSection } from '@/components/ui/compliance-badges';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
 
 export default function AboutPage() {
@@ -33,8 +32,6 @@ export default function AboutPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-24">

@@ -135,8 +135,36 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       where.status = { in: status };
     }
 
-    // Priority brands to show first
-    const PRIORITY_SLUGS = ['nidek', 'haag-streit'];
+    // Ophthalmology-specific brand ordering
+    const OPHTHALMOLOGY_PRIORITY_SLUGS = [
+      'nidek', 'haag-streit', 'moria', 'fci', 'keeler',
+      'medicontur', 'medicontour', 'ophtec', 'rheon',
+      'mediworks', 'espansione', 'espansionne', 'omni', 'omnilens'
+    ];
+    const OPHTHALMOLOGY_SLUGS = ['ophtalmologie', 'ophthalmology'];
+
+    // Determine if filtering by ophthalmology category
+    let isOphthalmologyFilter = false;
+    if (category) {
+      const resolvedSlug = typeof where.category_id === 'string'
+        ? (await prisma.categories.findUnique({ where: { id: where.category_id }, select: { slug: true, parent_id: true } }))
+        : null;
+      const categoryIds = where.category_id?.in as string[] | undefined;
+      if (resolvedSlug) {
+        isOphthalmologyFilter = OPHTHALMOLOGY_SLUGS.includes(resolvedSlug.slug);
+        if (!isOphthalmologyFilter && resolvedSlug.parent_id) {
+          const parent = await prisma.categories.findUnique({ where: { id: resolvedSlug.parent_id }, select: { slug: true, parent_id: true } });
+          isOphthalmologyFilter = !!parent && OPHTHALMOLOGY_SLUGS.includes(parent.slug);
+          if (!isOphthalmologyFilter && parent?.parent_id) {
+            const grandparent = await prisma.categories.findUnique({ where: { id: parent.parent_id }, select: { slug: true } });
+            isOphthalmologyFilter = !!grandparent && OPHTHALMOLOGY_SLUGS.includes(grandparent.slug);
+          }
+        }
+      } else if (categoryIds) {
+        const cats = await prisma.categories.findMany({ where: { id: { in: categoryIds } }, select: { slug: true } });
+        isOphthalmologyFilter = cats.some(c => OPHTHALMOLOGY_SLUGS.includes(c.slug));
+      }
+    }
 
     // Execute queries - fetch all matching products for priority sorting, then paginate in JS
     const [allItems, total] = await Promise.all([
@@ -190,17 +218,19 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       prisma.products.count({ where }),
     ]);
 
-    // Sort: priority brands first, then by created_at desc (already sorted by DB)
-    allItems.sort((a, b) => {
-      const aSlug = (a.partners?.slug || '').toLowerCase();
-      const bSlug = (b.partners?.slug || '').toLowerCase();
-      const aIdx = PRIORITY_SLUGS.findIndex(s => aSlug.includes(s));
-      const bIdx = PRIORITY_SLUGS.findIndex(s => bSlug.includes(s));
-      if (aIdx !== -1 && bIdx === -1) return -1;
-      if (aIdx === -1 && bIdx !== -1) return 1;
-      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
-      return 0;
-    });
+    // Sort: for ophthalmology categories, sort by brand priority; otherwise keep DB order
+    if (isOphthalmologyFilter) {
+      allItems.sort((a, b) => {
+        const aSlug = (a.partners?.slug || '').toLowerCase();
+        const bSlug = (b.partners?.slug || '').toLowerCase();
+        const aIdx = OPHTHALMOLOGY_PRIORITY_SLUGS.findIndex(s => aSlug.includes(s));
+        const bIdx = OPHTHALMOLOGY_PRIORITY_SLUGS.findIndex(s => bSlug.includes(s));
+        if (aIdx !== -1 && bIdx === -1) return -1;
+        if (aIdx === -1 && bIdx !== -1) return 1;
+        if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+        return 0;
+      });
+    }
 
     // Paginate after sorting
     const items = allItems.slice(skip, skip + take);

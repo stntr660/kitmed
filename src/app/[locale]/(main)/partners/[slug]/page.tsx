@@ -11,7 +11,6 @@ import { ArrowLeft, Building2, Package, Star, Heart, Eye, Award, Sparkles, Downl
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
   id: string;
@@ -147,7 +146,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
   if (error || !partner) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <CertificationsBanner variant="compact" />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -173,9 +171,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
       {/* Partner Header */}
       <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0">

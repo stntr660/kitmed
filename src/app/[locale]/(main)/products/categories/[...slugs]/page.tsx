@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowRight, ArrowLeft, Building2, ChevronRight, Package, Eye, Heart, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Building2, Package, Eye, Heart, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
+import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Category {
   id: string;
@@ -50,7 +50,6 @@ interface PageProps {
 
 export default function CategoryHierarchyPage({ params }: PageProps) {
   const t = useTranslations('common');
-  const tNav = useTranslations('navigation');
   const tCategories = useTranslations('categories.hierarchy');
   const [category, setCategory] = useState<Category | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -119,7 +118,6 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
   if (error || !category) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <CertificationsBanner variant="compact" />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -145,61 +143,20 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Breadcrumb Navigation */}
-            <nav className="mb-6">
-              <ol className="flex items-center justify-center space-x-2 text-sm">
-                <li>
-                  <Link 
-                    href={`/${locale}/products`}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    {tNav('products')}
-                  </Link>
-                </li>
-                {breadcrumbs.map((crumb, index) => (
-                  <li key={crumb.id} className="flex items-center">
-                    <ChevronRight className="h-4 w-4 text-white/50 mx-2" />
-                    {index < breadcrumbs.length - 1 ? (
-                      <Link 
-                        href={`/${locale}/products/categories/${breadcrumbs.slice(0, index + 1).map(b => b.slug).join('/')}`}
-                        className="text-white/70 hover:text-white transition-colors"
-                      >
-                        {crumb.name}
-                      </Link>
-                    ) : (
-                      <span className="text-white font-medium">{crumb.name}</span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              {category.type === 'discipline' ? tCategories('discipline') : tCategories('category')}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
               {category.name}
             </h1>
 
-            <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {category.description ||
                tCategories('exploreFallback', { categoryName: category.name.toLowerCase() })}
             </p>
 
-            <div className="flex items-center justify-center space-x-6 text-primary-100">
+            <div className="flex items-center justify-center space-x-6 text-slate-500 mt-4">
               {hasSubcategories && (
                 <div className="flex items-center">
                   <Building2 className="h-5 w-5 mr-2" />
@@ -217,23 +174,21 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Partner Logos Carousel */}
+      <section className="bg-white border-b">
+        <div className="container mx-auto px-6 lg:px-8">
+          <PartnerLogosCarousel locale={locale} />
+        </div>
+      </section>
+
       {/* Subcategories Section */}
       {hasSubcategories && (
-        <section className="py-16 lg:py-24">
+        <section className="py-6 lg:py-8">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                {tCategories('subcategories')}
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                {tCategories('subcategoriesDescription', { categoryName: category.name.toLowerCase() })}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {category.children.map((subCategory) => (
-                <Card key={subCategory.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                  <div className="relative h-56 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                <Card key={subCategory.id} className="group h-full border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
+                  <div className="relative h-36 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                     {subCategory.imageUrl ? (
                       <Image
                         src={subCategory.imageUrl}
@@ -253,21 +208,19 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
 
                     {/* Count Badge */}
                     <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                      {subCategory.productCount || 0} {tCategories('productPlural')}
+                      {subCategory.children && subCategory.children.length > 0
+                        ? `${subCategory.children.length} ${tCategories('subcategoryPlural')}`
+                        : `${subCategory.productCount || 0} ${tCategories('productPlural')}`}
                     </div>
                   </div>
 
-                  <CardHeader className="p-6 pb-4">
-                    <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                  <CardHeader className="p-4 pb-2">
+                    <CardTitle className="text-base font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
                       {subCategory.name}
                     </CardTitle>
-                    <p className="text-slate-600 leading-relaxed line-clamp-3">
-                      {subCategory.description ||
-                       tCategories('subcategoryFallback', { categoryName: subCategory.name.toLowerCase() })}
-                    </p>
                   </CardHeader>
 
-                  <CardContent className="p-6 pt-0">
+                  <CardContent className="p-4 pt-0">
                     <Button
                       className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
                       asChild

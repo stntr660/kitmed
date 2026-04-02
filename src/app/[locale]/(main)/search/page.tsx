@@ -25,7 +25,6 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
 
 interface Product {
   id: string;
@@ -121,7 +120,6 @@ function SearchPageContent() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <CertificationsBanner variant="compact" />
 
       {/* Search Header */}
       <section className="py-12 bg-white border-b border-slate-200">

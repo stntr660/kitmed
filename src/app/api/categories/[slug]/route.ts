@@ -79,6 +79,26 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             category_translations: {
               where: { language_code: locale }
             },
+            other_categories: {
+              where: { is_active: true },
+              include: {
+                category_translations: {
+                  where: { language_code: locale }
+                },
+                other_categories: {
+                  where: { is_active: true },
+                  include: {
+                    category_translations: {
+                      where: { language_code: locale }
+                    },
+                    _count: { select: { products: true } }
+                  },
+                  orderBy: { sort_order: 'asc' }
+                },
+                _count: { select: { products: true } }
+              },
+              orderBy: { sort_order: 'asc' }
+            },
             _count: {
               select: { products: true }
             }
@@ -136,7 +156,35 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
               description: childTranslation?.description || child.description,
               imageUrl: child.image_url,
               type: child.type,
-              productCount: child._count?.products || 0
+              productCount: child._count?.products || 0,
+              ...(child.other_categories && child.other_categories.length > 0 && {
+                children: child.other_categories.map((grandchild: any) => {
+                  const gcTranslation = grandchild.category_translations?.[0];
+                  return {
+                    id: grandchild.id,
+                    name: gcTranslation?.name || grandchild.name,
+                    slug: grandchild.slug,
+                    description: gcTranslation?.description || grandchild.description,
+                    imageUrl: grandchild.image_url,
+                    type: grandchild.type,
+                    productCount: grandchild._count?.products || 0,
+                    ...(grandchild.other_categories && grandchild.other_categories.length > 0 && {
+                      children: grandchild.other_categories.map((ggchild: any) => {
+                        const ggTranslation = ggchild.category_translations?.[0];
+                        return {
+                          id: ggchild.id,
+                          name: ggTranslation?.name || ggchild.name,
+                          slug: ggchild.slug,
+                          description: ggTranslation?.description || ggchild.description,
+                          imageUrl: ggchild.image_url,
+                          type: ggchild.type,
+                          productCount: ggchild._count?.products || 0
+                        };
+                      })
+                    })
+                  };
+                })
+              })
             };
           })
         }),

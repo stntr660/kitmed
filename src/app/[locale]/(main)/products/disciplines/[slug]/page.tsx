@@ -10,7 +10,6 @@ import { ArrowRight, ArrowLeft, Building2, Heart, Eye, Sparkles, Award, Download
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Product {
@@ -113,7 +112,6 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
   if (error || !discipline) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <CertificationsBanner variant="compact" />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -139,21 +137,13 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             {/* Breadcrumb */}
-            <div className="mb-6">
-              <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10" asChild>
+            <div className="mb-4">
+              <Button variant="ghost" size="sm" className="text-slate-500 hover:text-slate-900 hover:bg-slate-100" asChild>
                 <Link href={`/${locale}/products/disciplines`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   {tDisciplines('medicalDisciplines')}
@@ -161,23 +151,19 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               </Button>
             </div>
 
-            <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              {discipline.name}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
               {tDisciplines('equipment')}
-              <span className="text-primary-100 block mt-2">{discipline.name}</span>
+              <span className="text-primary-600 block mt-1">{discipline.name}</span>
             </h1>
 
-            <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {discipline.description ||
                tDisciplines('fallbackDescription', { disciplineName: discipline.name.toLowerCase() })}
             </p>
 
             {discipline.other_categories && discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length > 0 && (
-              <div className="text-primary-100">
-                {tDisciplines('categoriesAvailable', { 
+              <div className="text-slate-500 mt-4">
+                {tDisciplines('categoriesAvailable', {
                   count: discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length,
                   plural: discipline.other_categories.filter((cat: Category) => cat.productCount > 0).length > 1 ? tDisciplines('categoryPlural') : tDisciplines('categorySingular')
                 })}
@@ -188,35 +174,21 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
       </section>
 
       {/* Partner Logos Carousel */}
-      <section className="bg-white border-b">
+      <section className="bg-white border-b py-2">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="text-center pt-8 pb-4">
-            <h3 className="text-lg font-semibold text-slate-600">
-              {tDisciplines('partnersInDiscipline')}
-            </h3>
-          </div>
-          <PartnerLogosCarousel categorySlug={params.slug} locale={locale} />
+          <PartnerLogosCarousel locale={locale} />
         </div>
       </section>
 
       {/* Categories Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="py-6 lg:py-8">
         <div className="container mx-auto px-6 lg:px-8">
           {discipline.other_categories && discipline.other_categories.length > 0 ? (
             <>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  {tDisciplines('equipmentCategoriesTitle')}
-                </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {tDisciplines('equipmentCategoriesDescription', { disciplineName: discipline.name.toLowerCase() })}
-                </p>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {discipline.other_categories.filter((category: Category) => category.productCount > 0).map((category) => (
-                  <Card key={category.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    <div className="relative h-56 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                  <Card key={category.id} className="group h-full border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
+                    <div className="relative h-36 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                       {category.imageUrl ? (
                         <Image
                           src={category.imageUrl}
@@ -245,21 +217,14 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                       </div>
                     </div>
 
-                    <CardHeader className="p-6 pb-4">
-                      <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                    <CardHeader className="p-4 pb-2">
+                      <CardTitle className="text-base font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
                         {category.name}
                       </CardTitle>
-                      <p className="text-slate-600 leading-relaxed line-clamp-3">
-                        {category.description ||
-                         tDisciplines('categoryFallback', { 
-                           categoryName: category.name.toLowerCase(),
-                           disciplineName: discipline.name.toLowerCase()
-                         })}
-                      </p>
                     </CardHeader>
 
-                    <CardContent className="p-6 pt-0">
-                      <div className="space-y-3">
+                    <CardContent className="p-4 pt-0">
+                      <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm text-slate-500">
                           <span>{tDisciplines('productsAvailable')}</span>
                           <span className="font-semibold">{category.productCount || 0}</span>
