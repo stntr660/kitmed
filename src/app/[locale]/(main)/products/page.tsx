@@ -532,29 +532,18 @@ export default function ProductsPage() {
                         </div>
                       </div>
 
-                      <CardHeader className="p-6 pb-4">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex-1">
-                            <div className="text-sm text-slate-500 font-medium mb-1">
-                              {product.manufacturer.name}
-                            </div>
-                            <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
-                              {getProductName(product)}
-                            </CardTitle>
-                          </div>
-                          {product.isFeatured && (
-                            <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
-                          )}
+                      <CardHeader className="p-4 pb-2">
+                        <div className="text-xs text-slate-500 font-medium mb-1">
+                          {product.manufacturer.name}
                         </div>
-
-                        <div className="text-sm text-slate-600 line-clamp-2">
-                          {getProductDescription(product) || tProducts('listing.descriptionFallback')}
-                        </div>
+                        <CardTitle className="text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors h-10">
+                          {getProductName(product)}
+                        </CardTitle>
                       </CardHeader>
 
-                      <CardContent className="p-6 pt-0 mt-auto">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="text-xs text-slate-500 font-mono truncate max-w-full" title={product.referenceFournisseur}>
+                      <CardContent className="p-4 pt-0 mt-auto">
+                        <div className="mb-3">
+                          <div className="text-xs text-slate-500 font-mono truncate" title={product.referenceFournisseur}>
                             {tProducts('listing.reference', { ref: product.referenceFournisseur })}
                           </div>
                         </div>
