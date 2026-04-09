@@ -125,6 +125,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           },
           take: 100,
           orderBy: [
+            { sort_order: 'asc' },
             { is_featured: 'desc' },
             { created_at: 'desc' }
           ]
