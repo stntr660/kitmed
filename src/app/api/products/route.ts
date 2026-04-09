@@ -74,14 +74,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       ];
     }
 
-    // Category filter - handle both UUID and slug
+    // Category filter - handle both UUID and slug, include all descendant categories
     if (category) {
       const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(category);
 
+      let rootCategoryId: string | null = null;
+
       if (isUUID) {
-        where.category_id = category;
+        rootCategoryId = category;
       } else {
-        // Try slug first, then fall back to ID match
         const categoryRecord = await prisma.categories.findFirst({
           where: {
             OR: [
@@ -91,14 +92,32 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           }
         });
         if (categoryRecord) {
-          // Also include products from subcategories
-          const subcategories = await prisma.categories.findMany({
-            where: { parent_id: categoryRecord.id, is_active: true },
-            select: { id: true }
-          });
-          const categoryIds = [categoryRecord.id, ...subcategories.map(s => s.id)];
-          where.category_id = { in: categoryIds };
+          rootCategoryId = categoryRecord.id;
         }
+      }
+
+      if (rootCategoryId) {
+        // Collect all descendant category IDs (3 levels deep)
+        const level1 = await prisma.categories.findMany({
+          where: { parent_id: rootCategoryId, is_active: true },
+          select: { id: true }
+        });
+        const level1Ids = level1.map(c => c.id);
+
+        const level2 = level1Ids.length > 0 ? await prisma.categories.findMany({
+          where: { parent_id: { in: level1Ids }, is_active: true },
+          select: { id: true }
+        }) : [];
+        const level2Ids = level2.map(c => c.id);
+
+        const level3 = level2Ids.length > 0 ? await prisma.categories.findMany({
+          where: { parent_id: { in: level2Ids }, is_active: true },
+          select: { id: true }
+        }) : [];
+        const level3Ids = level3.map(c => c.id);
+
+        const allCategoryIds = [rootCategoryId, ...level1Ids, ...level2Ids, ...level3Ids];
+        where.category_id = { in: allCategoryIds };
       }
     }
 
@@ -146,23 +165,25 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Determine if filtering by ophthalmology category
     let isOphthalmologyFilter = false;
     if (category) {
-      const resolvedSlug = typeof where.category_id === 'string'
-        ? (await prisma.categories.findUnique({ where: { id: where.category_id }, select: { slug: true, parent_id: true } }))
-        : null;
       const categoryIds = where.category_id?.in as string[] | undefined;
-      if (resolvedSlug) {
-        isOphthalmologyFilter = OPHTHALMOLOGY_SLUGS.includes(resolvedSlug.slug);
-        if (!isOphthalmologyFilter && resolvedSlug.parent_id) {
-          const parent = await prisma.categories.findUnique({ where: { id: resolvedSlug.parent_id }, select: { slug: true, parent_id: true } });
-          isOphthalmologyFilter = !!parent && OPHTHALMOLOGY_SLUGS.includes(parent.slug);
-          if (!isOphthalmologyFilter && parent?.parent_id) {
-            const grandparent = await prisma.categories.findUnique({ where: { id: parent.parent_id }, select: { slug: true } });
-            isOphthalmologyFilter = !!grandparent && OPHTHALMOLOGY_SLUGS.includes(grandparent.slug);
+      if (categoryIds) {
+        const cats = await prisma.categories.findMany({ where: { id: { in: categoryIds.slice(0, 5) } }, select: { slug: true, parent_id: true } });
+        isOphthalmologyFilter = cats.some(c => OPHTHALMOLOGY_SLUGS.includes(c.slug));
+        if (!isOphthalmologyFilter) {
+          // Check parents
+          const parentIds = cats.map(c => c.parent_id).filter(Boolean) as string[];
+          if (parentIds.length > 0) {
+            const parents = await prisma.categories.findMany({ where: { id: { in: parentIds } }, select: { slug: true, parent_id: true } });
+            isOphthalmologyFilter = parents.some(c => OPHTHALMOLOGY_SLUGS.includes(c.slug));
+            if (!isOphthalmologyFilter) {
+              const gpIds = parents.map(c => c.parent_id).filter(Boolean) as string[];
+              if (gpIds.length > 0) {
+                const gps = await prisma.categories.findMany({ where: { id: { in: gpIds } }, select: { slug: true } });
+                isOphthalmologyFilter = gps.some(c => OPHTHALMOLOGY_SLUGS.includes(c.slug));
+              }
+            }
           }
         }
-      } else if (categoryIds) {
-        const cats = await prisma.categories.findMany({ where: { id: { in: categoryIds } }, select: { slug: true } });
-        isOphthalmologyFilter = cats.some(c => OPHTHALMOLOGY_SLUGS.includes(c.slug));
       }
     }
 
