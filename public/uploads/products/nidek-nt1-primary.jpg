@@ -1,0 +1,1403 @@
+<!doctype html>
+<html lang="fr-FR">
+<head>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<meta name='robots' content='noindex, follow' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v27.3 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Page non trouvée - NIDEK France</title>
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:title" content="Page non trouvée - NIDEK France" />
+	<meta property="og:site_name" content="NIDEK France" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebSite","@id":"https:\/\/www.nidek.fr\/#website","url":"https:\/\/www.nidek.fr\/","name":"NIDEK France","description":"The Art of Eye Care","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.nidek.fr\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"fr-FR"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel="alternate" type="application/rss+xml" title="NIDEK France &raquo; Flux" href="https://www.nidek.fr/feed/" />
+<link rel="alternate" type="application/rss+xml" title="NIDEK France &raquo; Flux des commentaires" href="https://www.nidek.fr/comments/feed/" />
+    <script>
+        function cmplzCallClarity(method, params) {
+            if (typeof window.clarity === 'function') {
+                try {
+                    window.clarity(method, params);
+                } catch (e) {
+                    console.warn('Clarity API error:', e);
+                }
+            }
+        }
+
+        function cmplzGetConsentFromEvent(e) {
+            var d = e && e.detail && e.detail.categories ? e.detail.categories : [];
+            var categories = Array.isArray(d) ? d : [];
+
+            return {
+                analyticsAllowed: categories.indexOf('statistics') !== -1,
+                adsAllowed: categories.indexOf('marketing') !== -1
+            };
+        }
+
+        function cmplzSendClarityConsent(analyticsAllowed, adsAllowed) {
+            var status = function (b) { return b ? "granted" : "denied"; };
+            cmplzCallClarity('consentv2', {
+                analytics_Storage: status(!!analyticsAllowed),
+                ad_Storage: status(!!adsAllowed)
+            });
+        }
+
+        function cmplzEraseClarityCookies() {
+            cmplzCallClarity('consent', false);
+        }
+
+        document.addEventListener('cmplz_fire_categories', function (e) {
+            var consent = cmplzGetConsentFromEvent(e);
+            cmplzSendClarityConsent(consent.analyticsAllowed, consent.adsAllowed);
+        });
+
+        document.addEventListener('cmplz_revoke', function (e) {
+            var consent = cmplzGetConsentFromEvent(e);
+            cmplzSendClarityConsent(consent.analyticsAllowed, consent.adsAllowed);
+            if (!consent.analyticsAllowed && !consent.adsAllowed) {
+                cmplzEraseClarityCookies();
+            }
+        });
+
+    </script>
+    <style id='wp-img-auto-sizes-contain-inline-css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel='stylesheet' id='dce-animations-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/animations.css?ver=3.3.25' media='all' />
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.nidek.fr/wp-includes/css/dist/block-library/style.min.css' media='all' />
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1200px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: underline;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link rel='stylesheet' id='ae-pro-css-css' href='https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro/includes/assets/css/ae-pro.min.css?ver=2.29.3' media='all' />
+<link rel='stylesheet' id='trp-language-switcher-style-css' href='https://www.nidek.fr/wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css?ver=3.0.7' media='all' />
+<link rel='stylesheet' id='cmplz-general-css' href='https://www.nidek.fr/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css?ver=1773755281' media='all' />
+<link rel='stylesheet' id='dce-style-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/style.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-hidden-label-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/hidden-label.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-dynamic-visibility-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/dynamic-visibility.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-tooltip-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/tooltip.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-pageScroll-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/page-scroll.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-reveal-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/css/reveal.min.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='dce-plyr-css' href='https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/plyr/plyr.css?ver=3.3.25' media='all' />
+<link rel='stylesheet' id='megamenu-css' href='https://www.nidek.fr/wp-content/uploads/maxmegamenu/style.css?ver=bf0d93' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://www.nidek.fr/wp-includes/css/dashicons.min.css' media='all' />
+<link rel='stylesheet' id='wpm-hello-elementor-style-css' href='https://www.nidek.fr/wp-content/themes/hello-elementor/style.css' media='all' />
+<link rel='stylesheet' id='custom-css' href='https://www.nidek.fr/wp-content/themes/child-theme/style.css' media='all' />
+<link rel='stylesheet' id='hello-elementor-css' href='https://www.nidek.fr/wp-content/themes/hello-elementor/assets/css/reset.css?ver=3.4.6' media='all' />
+<link rel='stylesheet' id='hello-elementor-theme-style-css' href='https://www.nidek.fr/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.4.6' media='all' />
+<link rel='stylesheet' id='hello-elementor-header-footer-css' href='https://www.nidek.fr/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=3.4.6' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='widget-icon-list-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='widget-search-form-css' href='https://www.nidek.fr/wp-content/plugins/elementor-pro/assets/css/widget-search-form.min.css?ver=3.34.1' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-0-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-solid-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='widget-image-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='widget-icon-box-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/widget-icon-box.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='swiper-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5' media='all' />
+<link rel='stylesheet' id='e-swiper-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='widget-heading-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='e-animation-slideInUp-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/animations/styles/slideInUp.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='widget-social-icons-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='e-apple-webkit-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.34.2' media='all' />
+<link rel='stylesheet' id='eael-general-css' href='https://www.nidek.fr/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=6.5.8' media='all' />
+<link rel='stylesheet' id='eael-10445-css' href='https://www.nidek.fr/wp-content/uploads/essential-addons-elementor/eael-10445.css?ver=1765981626' media='all' />
+<link rel='stylesheet' id='e-popup-css' href='https://www.nidek.fr/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css?ver=3.34.1' media='all' />
+<link rel='stylesheet' id='elementor-icons-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.46.0' media='all' />
+<style id='elementor-icons-inline-css'>
+
+		.elementor-add-new-section .elementor-add-templately-promo-button{
+            background-color: #5d4fff !important;
+            background-image: url(https://www.nidek.fr/wp-content/plugins/essential-addons-for-elementor-lite/assets/admin/images/templately/logo-icon.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: relative;
+        }
+        
+		.elementor-add-new-section .elementor-add-templately-promo-button > i{
+            height: 12px;
+        }
+        
+        body .elementor-add-new-section .elementor-add-section-area-button {
+            margin-left: 0;
+        }
+
+		.elementor-add-new-section .elementor-add-templately-promo-button{
+            background-color: #5d4fff !important;
+            background-image: url(https://www.nidek.fr/wp-content/plugins/essential-addons-for-elementor-lite/assets/admin/images/templately/logo-icon.svg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: relative;
+        }
+        
+		.elementor-add-new-section .elementor-add-templately-promo-button > i{
+            height: 12px;
+        }
+        
+        body .elementor-add-new-section .elementor-add-section-area-button {
+            margin-left: 0;
+        }
+/*# sourceURL=elementor-icons-inline-css */
+</style>
+<link rel='stylesheet' id='elementor-post-7-css' href='https://www.nidek.fr/wp-content/uploads/elementor/css/post-7.css?ver=1775176214' media='all' />
+<link rel='stylesheet' id='elementor-post-581-css' href='https://www.nidek.fr/wp-content/uploads/elementor/css/post-581.css?ver=1775176215' media='all' />
+<link rel='stylesheet' id='elementor-post-313-css' href='https://www.nidek.fr/wp-content/uploads/elementor/css/post-313.css?ver=1775176215' media='all' />
+<link rel='stylesheet' id='elementor-post-10445-css' href='https://www.nidek.fr/wp-content/uploads/elementor/css/post-10445.css?ver=1775176217' media='all' />
+<link rel='stylesheet' id='vegas-css-css' href='https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro/includes/assets/lib/vegas/vegas.min.css?ver=2.4.0' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-roboto-css' href='https://funny-keldysh.20-19-33-234.plesk.page/wp-content/uploads/elementor/google-fonts/css/roboto.css?ver=1746437660' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-robotoslab-css' href='https://funny-keldysh.20-19-33-234.plesk.page/wp-content/uploads/elementor/google-fonts/css/robotoslab.css?ver=1746437670' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-worksans-css' href='https://funny-keldysh.20-19-33-234.plesk.page/wp-content/uploads/elementor/google-fonts/css/worksans.css?ver=1746437685' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-montserrat-css' href='https://funny-keldysh.20-19-33-234.plesk.page/wp-content/uploads/elementor/google-fonts/css/montserrat.css?ver=1746437681' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-regular-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-brands-css' href='https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css?ver=5.15.3' media='all' />
+<script src="https://www.nidek.fr/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://www.nidek.fr/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://www.nidek.fr/wp-content/themes/child-theme/js/custom.js" id="custom-js"></script>
+
+<!-- Extrait de code de la balise Google (gtag.js) ajouté par Site Kit -->
+<!-- Extrait Google Analytics ajouté par Site Kit -->
+<script src="https://www.googletagmanager.com/gtag/js?id=GT-PBSCGPF" id="google_gtagjs-js" async></script>
+<script id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["www.nidek.fr"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-PBSCGPF");
+ window._googlesitekit = window._googlesitekit || {}; window._googlesitekit.throttledEvents = []; window._googlesitekit.gtagEvent = (name, data) => { var key = JSON.stringify( { name, data } ); if ( !! window._googlesitekit.throttledEvents[ key ] ) { return; } window._googlesitekit.throttledEvents[ key ] = true; setTimeout( () => { delete window._googlesitekit.throttledEvents[ key ]; }, 5 ); gtag( "event", name, { ...data, event_source: "site-kit" } ); }; 
+//# sourceURL=google_gtagjs-js-after
+</script>
+<link rel="https://api.w.org/" href="https://www.nidek.fr/wp-json/" /><meta name="generator" content="Site Kit by Google 1.170.0" />		<script type="text/javascript">
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;
+					t.src="https://www.clarity.ms/tag/"+i+"?ref=wordpress";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "g0sa20f5tn");
+		</script>
+		<link rel="alternate" hreflang="fr-FR" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"/>
+<link rel="alternate" hreflang="en-GB" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"/>
+<link rel="alternate" hreflang="fr" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"/>
+<link rel="alternate" hreflang="en" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"/>
+			<style>.cmplz-hidden {
+					display: none !important;
+				}</style><meta name="generator" content="Elementor 3.34.2; features: additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			
+<!-- Extrait Google Tag Manager ajouté par Site Kit -->
+<script>
+			( function( w, d, s, l, i ) {
+				w[l] = w[l] || [];
+				w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+				var f = d.getElementsByTagName( s )[0],
+					j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore( j, f );
+			} )( window, document, 'script', 'dataLayer', 'GTM-5LGMF6J' );
+			
+</script>
+
+<!-- End Google Tag Manager snippet added by Site Kit -->
+<link rel="icon" href="https://www.nidek.fr/wp-content/uploads/2021/07/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.nidek.fr/wp-content/uploads/2021/07/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.nidek.fr/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.nidek.fr/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
+		<style id="wp-custom-css">
+			body > div.elementor.elementor-11671.dce-elementor-post-11671 > div > div > section.has_ae_slider.elementor-section.elementor-top-section.elementor-element.elementor-element-62d9520.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.ae-bg-gallery-type-default > div > div > div.has_ae_slider.elementor-column.elementor-col-50.elementor-top-column.elementor-element.elementor-element-b13a8fb.ae-bg-gallery-type-default > div > div > div.elementor-element.elementor-element-386ef9b4.elementor-button-align-stretch.elementor-widget.elementor-widget-form > div > form > div > div.elementor-field-type-select.elementor-field-group.elementor-column.elementor-field-group-field_a4d4d55.elementor-col-50.elementor-field-required {
+	display: none;
+}
+/* temp 
+#custom-contact-form > div > form > div > div.elementor-field-type-select.elementor-field-group.elementor-column.elementor-field-group-field_17e7032.elementor-col-50, #custom-contact-form > div > form > div > div.elementor-field-type-select.elementor-field-group.elementor-column.elementor-field-group-field_a29ff63.elementor-col-50.elementor-field-required {
+	display: none;
+}*/
+/* temp
+#custom-contact-form > div > form > div > div.elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-field_5dd10e1.elementor-col-50.elementor-field-required, #custom-contact-form > div > form > div > div.elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-field_1582f47.elementor-col-50 {
+	display: none;
+}*/
+/* temp 
+#custom-contact-form > div > form > div > div.elementor-field-type-select.elementor-field-group.elementor-column.elementor-field-group-field_3a76c9c.elementor-col-50.elementor-field-required {
+	display: none;
+}*/
+
+body > div.elementor.elementor-11671.dce-elementor-post-11671 > div > div > section.has_ae_slider.elementor-section.elementor-top-section.elementor-element.elementor-element-62d9520.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default.ae-bg-gallery-type-default > div > div > div.has_ae_slider.elementor-column.elementor-col-50.elementor-top-column.elementor-element.elementor-element-b13a8fb.ae-bg-gallery-type-default > div > div > div.elementor-element.elementor-element-386ef9b4.elementor-button-align-stretch.elementor-widget.elementor-widget-form > div > form > div > div.elementor-field-type-select.elementor-field-group.elementor-column.elementor-field-group-field_17e7032.elementor-col-50 {
+	display: none;
+}
+.elementor-field-type-text.elementor-field-group.elementor-column.elementor-field-group-field_e6f5e07.elementor-col-100 {
+	opacity: 0;
+	height: 0;
+	width: 0;
+	visibility: hidden;
+	margin: 0;
+}
+
+.dialog-message .elementor-field-group-field_38e5564 {
+	display: none;
+}
+
+.dialog-message .elementor-field-group-field_aef6742 {
+	display: none;
+}		</style>
+		<style type="text/css">/** Mega Menu CSS: fs **/</style>
+</head>
+<body data-cmplz=1 class="error404 wp-embed-responsive wp-theme-hello-elementor wp-child-theme-child-theme translatepress-fr_FR mega-menu-menu-1 hello-elementor-default elementor-default elementor-kit-7">
+
+<div class="document-referrer" style="display: none; opacity: 0; visibility: hidden;"></div>
+<div class="document-referrer-modal" style="display: none; opacity: 0; visibility: hidden;"></div>
+
+		<!-- Extrait Google Tag Manager (noscript) ajouté par Site Kit -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LGMF6J" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- Arrêter l&#039;extrait Google Tag Manager (noscript) ajouté par Site Kit -->
+				<header data-elementor-type="header" data-elementor-id="581" class="elementor elementor-581 elementor-location-header" data-elementor-post-type="elementor_library">
+					<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-top-section elementor-element elementor-element-308bb860 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="308bb860" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-2b877fba ae-bg-gallery-type-default" data-id="2b877fba" data-element_type="column">
+			<div class="elementor-widget-wrap">
+							</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-10268e8e ae-bg-gallery-type-default" data-id="10268e8e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-4a9c1f66 elementor-icon-list--layout-inline elementor-align-end elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="4a9c1f66" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="tel:0149809797">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone-alt"></i>						</span>
+										<span class="elementor-icon-list-text">01 49 80 97 97</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="/nous-contacter/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-envelope"></i>						</span>
+										<span class="elementor-icon-list-text">Nous contacter</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="/boutique/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-shopping-bag"></i>						</span>
+										<span class="elementor-icon-list-text">Boutique NIDEK</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-eaf2bb0 ae-bg-gallery-type-default" data-id="eaf2bb0" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-f5bdcf4 elementor-search-form--skin-full_screen elementor-widget elementor-widget-search-form" data-id="f5bdcf4" data-element_type="widget" data-settings="{&quot;skin&quot;:&quot;full_screen&quot;}" data-widget_type="search-form.default">
+				<div class="elementor-widget-container">
+							<search role="search">
+			<form class="elementor-search-form" action="https://www.nidek.fr" method="get">
+												<div class="elementor-search-form__toggle" role="button" tabindex="0" aria-label="Rechercher ">
+					<i aria-hidden="true" class="fas fa-search"></i>				</div>
+								<div class="elementor-search-form__container">
+					<label class="elementor-screen-only" for="elementor-search-form-f5bdcf4">Rechercher </label>
+
+					
+					<input id="elementor-search-form-f5bdcf4" placeholder="Rechercher ..." class="elementor-search-form__input" type="search" name="s" value="">
+					
+					
+										<div class="dialog-lightbox-close-button dialog-close-button" role="button" tabindex="0" aria-label="Fermer ce champ de recherche.">
+						<i aria-hidden="true" class="eicon-close"></i>					</div>
+									</div>
+			</form>
+		</search>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section data-particle_enable="false" data-particle-mobile-disabled="false" data-dce-background-color="#FFFFFF" class="has_ae_slider elementor-section elementor-top-section elementor-element elementor-element-220502ff elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="220502ff" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-65a6f42c ae-bg-gallery-type-default" data-id="65a6f42c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-inner-section elementor-element elementor-element-659112a1 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="659112a1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-1a58c16c ae-bg-gallery-type-default" data-id="1a58c16c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-15ac0214 dce_masking-none elementor-widget elementor-widget-image" data-id="15ac0214" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://www.nidek.fr">
+							<img fetchpriority="high" width="2344" height="405" src="https://www.nidek.fr/wp-content/uploads/2020/11/logo_new_nidek.png" class="attachment-full size-full wp-image-8621" alt="" srcset="https://www.nidek.fr/wp-content/uploads/2020/11/logo_new_nidek.png 2344w, https://www.nidek.fr/wp-content/uploads/2020/11/logo_new_nidek-1536x265.png 1536w, https://www.nidek.fr/wp-content/uploads/2020/11/logo_new_nidek-2048x354.png 2048w" sizes="(max-width: 2344px) 100vw, 2344px" />								</a>
+															</div>
+				</div>
+					</div>
+		</div>
+				<div data-dce-background-hover-color="#FFFFFF14" class="has_ae_slider elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-5c7afff7 elementor-hidden-tablet elementor-hidden-phone ae-bg-gallery-type-default" data-id="5c7afff7" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-3adcec25 elementor-position-inline-start elementor-view-default elementor-mobile-position-block-start elementor-widget elementor-widget-icon-box" data-id="3adcec25" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon">
+				<i aria-hidden="true" class="far fa-clock"></i>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<p class="elementor-icon-box-title">
+						<span  >
+							SAV Performant						</span>
+					</p>
+				
+									<p class="elementor-icon-box-description">
+						À votre écoute en toutes situations					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div data-dce-background-hover-color="#FFFFFF14" class="has_ae_slider elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-372502f9 elementor-hidden-tablet elementor-hidden-phone ae-bg-gallery-type-default" data-id="372502f9" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-44b57a5b elementor-position-inline-start elementor-view-default elementor-mobile-position-block-start elementor-widget elementor-widget-icon-box" data-id="44b57a5b" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon">
+				<i aria-hidden="true" class="far fa-map"></i>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<p class="elementor-icon-box-title">
+						<span  >
+							Fabrication française						</span>
+					</p>
+				
+									<p class="elementor-icon-box-description">
+						De nos unités de consultation					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div data-dce-background-hover-color="#FFFFFF14" class="has_ae_slider elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-3f5dbc16 elementor-hidden-tablet elementor-hidden-phone ae-bg-gallery-type-default" data-id="3f5dbc16" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-741e0b7a elementor-position-inline-start elementor-view-default elementor-mobile-position-block-start elementor-widget elementor-widget-icon-box" data-id="741e0b7a" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon">
+				<i aria-hidden="true" class="far fa-comment-dots"></i>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<p class="elementor-icon-box-title">
+						<span  >
+							Des experts à votre écoute						</span>
+					</p>
+				
+									<p class="elementor-icon-box-description">
+						60 intervenants sur le territoire					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-inner-section elementor-element elementor-element-6fb70b1 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="6fb70b1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-b4c5448 ae-bg-gallery-type-default" data-id="b4c5448" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-82dbf9a menu_perso elementor-widget elementor-widget-wp-widget-maxmegamenu" data-id="82dbf9a" data-element_type="widget" data-widget_type="wp-widget-maxmegamenu.default">
+				<div class="elementor-widget-container">
+					<div id="mega-menu-wrap-menu-1" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0' id='mega-toggle-block-0'><button aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="mega-menu-menu-1">
+                  <span class="mega-toggle-animated-box">
+                    <span class="mega-toggle-animated-inner"></span>
+                  </span>
+                </button></div></div></div><ul id="mega-menu-menu-1" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover_intent" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="1024" data-unbind="true" data-mobile-state="collapse_all" data-mobile-direction="vertical" data-hover-intent-timeout="300" data-hover-intent-interval="100"><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-14799" id="mega-menu-item-14799"><a class="mega-menu-link" href="https://www.nidek.fr/solution-de-teleconsultation/">Solution de téléconsultation</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8640" id="mega-menu-item-8640"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8640">Lasers<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8640'>
+<li class="mega-menu-row" id="mega-menu-8640-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8640-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9495" id="mega-menu-item-9495"><a class="mega-menu-link" href="https://www.nidek.fr/lasers-yag-et-slt/">Lasers YAG et SLT<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9495'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9493" id="mega-menu-item-9493"><a class="mega-menu-link" href="https://www.nidek.fr/lasers-yag-et-slt/yc-200-s-plus/">YC-200 S Plus (YAG/SLT)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9494" id="mega-menu-item-9494"><a class="mega-menu-link" href="https://www.nidek.fr/lasers-yag-et-slt/yc-200-yag-seul/">YC-200 (YAG)</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8640-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9496" id="mega-menu-item-9496"><a class="mega-menu-link" href="https://www.nidek.fr/laser-photocoagulateur/">Lasers photocoagulateurs<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9496'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9498" id="mega-menu-item-9498"><a class="mega-menu-link" href="https://www.nidek.fr/laser-photocoagulateur/ylc-500-500-vixi-577nm/">YLC-500 / YLC 500 VIXI</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9499" id="mega-menu-item-9499"><a class="mega-menu-link" href="https://www.nidek.fr/laser-photocoagulateur/gyc-500-500-vixi-532nm/">GYC-500 / GYC 500 VIXI</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8640-0-2"></li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8638" id="mega-menu-item-8638"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8638">Diagnostic rétine<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8638'>
+<li class="mega-menu-row" id="mega-menu-8638-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8638-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9514" id="mega-menu-item-9514"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/">Lampes à fente<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9514'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9517" id="mega-menu-item-9517"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/sl-9900-9900-zoom/">SL-9900 / 9900 Zoom</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9516" id="mega-menu-item-9516"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/sl-9800/">SL-9800</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9537" id="mega-menu-item-9537"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/">Plateformes multimodales<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9537'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9542" id="mega-menu-item-9542"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-complet-imagerie-slo-et-oct-act-a/">Mirante  (SLO/OCT)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9541" id="mega-menu-item-9541"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-slo-imagerie-slo-sans-oct/">Mirante SLO (SLO)</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8638-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9519" id="mega-menu-item-9519"><a class="mega-menu-link" href="https://www.nidek.fr/retinographes/">Rétinographes<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9519'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9522" id="mega-menu-item-9522"><a class="mega-menu-link" href="https://www.nidek.fr/retinographes/afc-330/">AFC-330</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-11842" id="mega-menu-item-11842"><a class="mega-menu-link" href="https://www.nidek.fr/oct-angiographie/retina-scan-duo-2/">Retina Scan Duo 2</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9526" id="mega-menu-item-9526"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-slo-imagerie-slo-sans-oct/">Mirante SLO (SLO)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9527" id="mega-menu-item-9527"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-complet-imagerie-slo-et-oct-act-a/">Mirante (SLO/OCT)</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9543" id="mega-menu-item-9543"><a class="mega-menu-link" href="https://www.nidek.fr/microperimetres/">Micropérimètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9543'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9547" id="mega-menu-item-9547"><a class="mega-menu-link" href="https://www.nidek.fr/microperimetres/mp-3/">MP-3</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9548" id="mega-menu-item-9548"><a class="mega-menu-link" href="https://www.nidek.fr/microperimetres/mp-3s/">MP-3S</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8638-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9528" id="mega-menu-item-9528"><a class="mega-menu-link" href="https://www.nidek.fr/angiographe/">Angiographes<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9528'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9531" id="mega-menu-item-9531"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-complet-imagerie-slo-et-oct-act-a/">Mirante (SLO/OCT)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9530" id="mega-menu-item-9530"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-slo-imagerie-slo-sans-oct/">Mirante SLO (SLO)</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-9551" id="mega-menu-item-9551"><a class="mega-menu-link" href="/logiciel-navis-ex/">Logiciels<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9551'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9966" id="mega-menu-item-9966"><a class="mega-menu-link" href="https://www.nidek.fr/logiciel-navis-ex/logiciel-navis-ex-2/">Logiciel NAVIS-EX</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8638-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9532" id="mega-menu-item-9532"><a class="mega-menu-link" href="https://www.nidek.fr/oct-angiographie/">OCT et OCT-A<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9532'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13937" id="mega-menu-item-13937"><a class="mega-menu-link" href="https://www.nidek.fr/oct-angiographie/rs-1/">RS-1</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-11841" id="mega-menu-item-11841"><a class="mega-menu-link" href="https://www.nidek.fr/oct-angiographie/retina-scan-duo-2/">Retina Scan Duo 2</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9536" id="mega-menu-item-9536"><a class="mega-menu-link" href="https://www.nidek.fr/plateforme-multimodale/mirante-modele-complet-imagerie-slo-et-oct-act-a/">Mirante (SLO/OCT)</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9552" id="mega-menu-item-9552"><a class="mega-menu-link" href="https://www.nidek.fr/echographes/">Échographes<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9552'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9553" id="mega-menu-item-9553"><a class="mega-menu-link" href="https://www.nidek.fr/echographes/us-4000-4000-p-echo-a-b/">US-4000 / 4000-P (Echo A + B)</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9554" id="mega-menu-item-9554"><a class="mega-menu-link" href="https://www.nidek.fr/echographes/us-500-500-p-echo-a/">US-500 / 500-P (Echo A)</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8641" id="mega-menu-item-8641"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8641">Segment antérieur<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8641'>
+<li class="mega-menu-row" id="mega-menu-8641-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8641-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9559" id="mega-menu-item-9559"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/">Lampes à fente<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9559'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9562" id="mega-menu-item-9562"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/sl-9900-9900-zoom/">SL-9900 / 9900 Zoom</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9561" id="mega-menu-item-9561"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/sl-9800/">SL-9800</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9560" id="mega-menu-item-9560"><a class="mega-menu-link" href="https://www.nidek.fr/lampes-a-fente/sl-250/">SL-250</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9569" id="mega-menu-item-9569"><a class="mega-menu-link" href="https://www.nidek.fr/aberrometres-topographes/">Aberromètres - Topographes<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9569'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9570" id="mega-menu-item-9570"><a class="mega-menu-link" href="https://www.nidek.fr/aberrometres-topographes/opd-scan-iii/">OPD-Scan III</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8641-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9563" id="mega-menu-item-9563"><a class="mega-menu-link" href="https://www.nidek.fr/biometre-optique/">Biomètres optiques<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9563'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9564" id="mega-menu-item-9564"><a class="mega-menu-link" href="https://www.nidek.fr/biometre-optique/al-scan/">AL-Scan</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13428" id="mega-menu-item-13428"><a class="mega-menu-link" href="https://www.nidek.fr/biometre-optique/al-scan-m/">AL-Scan M</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9572" id="mega-menu-item-9572"><a class="mega-menu-link" href="https://www.nidek.fr/tonometres/">Tonomètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9572'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9576" id="mega-menu-item-9576"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/tonoref-iii/">TONOREF III</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13429" id="mega-menu-item-13429"><a class="mega-menu-link" href="https://www.nidek.fr/tonometres/nt-1e-nt-1-nt-1p/">NT-1e / NT-1 / NT-1p</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-4-of-12" style="--columns:12; --span:4" id="mega-menu-8641-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9566" id="mega-menu-item-9566"><a class="mega-menu-link" href="https://www.nidek.fr/microscopes-speculaires/">Microscopes spéculaires<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9566'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9567" id="mega-menu-item-9567"><a class="mega-menu-link" href="https://www.nidek.fr/microscopes-speculaires/cem-530/">CEM-530</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8642" id="mega-menu-item-8642"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8642">Réfraction<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8642'>
+<li class="mega-menu-row" id="mega-menu-8642-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8642-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9581" id="mega-menu-item-9581"><a class="mega-menu-link" href="https://www.nidek.fr/pupillometres/">Pupillomètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9581'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9582" id="mega-menu-item-9582"><a class="mega-menu-link" href="https://www.nidek.fr/pupillometres/pm-700/">PM-700</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9601" id="mega-menu-item-9601"><a class="mega-menu-link" href="https://www.nidek.fr/projecteurs-de-test/">Afficheurs de tests<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9601'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9602" id="mega-menu-item-9602"><a class="mega-menu-link" href="https://www.nidek.fr/projecteurs-de-test/cp-9/">CP-9</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9603" id="mega-menu-item-9603"><a class="mega-menu-link" href="https://www.nidek.fr/projecteurs-de-test/sc-1600-pola-sc-1600/">SC-1600 Pola / SC-1600</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9877" id="mega-menu-item-9877"><a class="mega-menu-link" href="https://www.nidek.fr/gamme-valise-opticien-itinerant/">Valise opticien itinérant<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9877'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9878" id="mega-menu-item-9878"><a class="mega-menu-link" href="https://www.nidek.fr/gamme-valise-opticien-itinerant/valise-opticien-itinerant/">Valise opticien itinérant</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8642-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9583" id="mega-menu-item-9583"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/">Frontofocomètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9583'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9584" id="mega-menu-item-9584"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/lm-1800-p-pd/">LM 1800 P – PD</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9585" id="mega-menu-item-9585"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/lm-7-7p/">LM7 – 7P</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8642-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9586" id="mega-menu-item-9586"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/">Auto-réfractomètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9586'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9590" id="mega-menu-item-9590"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/ar-1-ark-1/">AR-1 / ARK-1</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9589" id="mega-menu-item-9589"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/ar-1a-ark-1a/">AR-1a / ARK-1a</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9588" id="mega-menu-item-9588"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/ar-1s-ark-1s/">AR-1s / ARK-1s</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9587" id="mega-menu-item-9587"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/ar-f-ark-f/">AR-F / ARK-F</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9591" id="mega-menu-item-9591"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/handyref-handyref-k/">HandyRef / HandyRef-K</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-12925" id="mega-menu-item-12925"><a class="mega-menu-link" href="https://www.nidek.fr/auto-refractometres/tonoref-iii/">TONOREF III</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8642-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9595" id="mega-menu-item-9595"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/">Réfracteurs<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9595'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9598" id="mega-menu-item-9598"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/rt-3100/">RT-3100</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9597" id="mega-menu-item-9597"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/ts-310/">TS-310</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9600" id="mega-menu-item-9600"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/rt-6100/">RT-6100</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9599" id="mega-menu-item-9599"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/ts-610/">TS-610</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-12887" id="mega-menu-item-12887"><a class="mega-menu-link" href="https://www.nidek.fr/refracteurs/logiciel-rt-connect/">Logiciel RT-Connect</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8639" id="mega-menu-item-8639"><a class="mega-menu-link" href="/unites-de-consultation/" aria-expanded="false" aria-controls="mega-sub-menu-8639">Unités de consultation<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8639'>
+<li class="mega-menu-row" id="mega-menu-8639-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8639-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9605" id="mega-menu-item-9605"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/unites-excellence/">Unités « d’Excellence »<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9605'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9880" id="mega-menu-item-9880"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/synetic/">Synetic</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9879" id="mega-menu-item-9879"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/ot-6400/">OT-6400</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8639-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9604" id="mega-menu-item-9604"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/unites-performances/">Unités « Performances »<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9604'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9881" id="mega-menu-item-9881"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/affinity/">Affinity</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9882" id="mega-menu-item-9882"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/ot-4200/">OT-4200</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8639-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9606" id="mega-menu-item-9606"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/unites-compactes/">Unités « Compactes »<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9606'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-14354" id="mega-menu-item-14354"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/unite-one-i/">Unité ONE-i</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9884" id="mega-menu-item-9884"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/lypop/">LyPop</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9885" id="mega-menu-item-9885"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/unites-compactes/cos-6100/">COS-6100</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8639-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9842" id="mega-menu-item-9842"><a class="mega-menu-link" href="https://www.nidek.fr/?page_id=9741">Tables à élévation et fauteuils d’examen<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9842'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9887" id="mega-menu-item-9887"><a class="mega-menu-link" href="https://www.nidek.fr/fauteuils-de-consultation-et-tabourets/">Fauteuils de consultation et tabourets</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-12269" id="mega-menu-item-12269"><a class="mega-menu-link" href="https://www.nidek.fr/unites-de-consultation/tables-a-elevation-up/">Tables à élévation Up</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8643" id="mega-menu-item-8643"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8643">Atelier d'optique<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8643'>
+<li class="mega-menu-row" id="mega-menu-8643-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8643-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9607" id="mega-menu-item-9607"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/">Meuleuses automatiques<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9607'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9608" id="mega-menu-item-9608"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/me-1500/">ME-1500</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9612" id="mega-menu-item-9612"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/lexce-trend-8d/">LEXCE Trend 8D</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9611" id="mega-menu-item-9611"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/lexce-trend-d/">LEXCE Trend D</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9610" id="mega-menu-item-9610"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/lexce-trend-dbt/">LEXCE Trend DBT</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9609" id="mega-menu-item-9609"><a class="mega-menu-link" href="https://www.nidek.fr/meuleuses-automatiques/se9090-supra/">SE9090 Supra</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9622" id="mega-menu-item-9622"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/">Frontofocomètres<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9622'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9623" id="mega-menu-item-9623"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/lm-1800-p-pd/">LM 1800 P – PD</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9624" id="mega-menu-item-9624"><a class="mega-menu-link" href="https://www.nidek.fr/frontofocometres/lm-7-7p/">LM7 – 7P</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8643-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9613" id="mega-menu-item-9613"><a class="mega-menu-link" href="https://www.nidek.fr/centreurs-bloqueurs/">Centreurs-bloqueurs<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9613'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9614" id="mega-menu-item-9614"><a class="mega-menu-link" href="https://www.nidek.fr/centreurs-bloqueurs/ice-1500/">ICE-1500</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9615" id="mega-menu-item-9615"><a class="mega-menu-link" href="https://www.nidek.fr/centreurs-bloqueurs/ice-1/">ICE-1</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8643-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9616" id="mega-menu-item-9616"><a class="mega-menu-link" href="https://www.nidek.fr/traceurs-de-forme/">Traceurs de forme<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9616'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9617" id="mega-menu-item-9617"><a class="mega-menu-link" href="https://www.nidek.fr/traceurs-de-forme/lt-980/">LT-980</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9618" id="mega-menu-item-9618"><a class="mega-menu-link" href="https://www.nidek.fr/traceurs-de-forme/letr-3-traceur-lexce-trend/">LETR-3 Traceur LEXCE Trend</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8643-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-9619" id="mega-menu-item-9619"><a class="mega-menu-link" href="https://www.nidek.fr/produits-ecologiques/">Produits écologiques<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9619'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9620" id="mega-menu-item-9620"><a class="mega-menu-link" href="https://www.nidek.fr/produits-ecologiques/lfu-220/">LFU-220</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-9621" id="mega-menu-item-9621"><a class="mega-menu-link" href="https://www.nidek.fr/produits-ecologiques/led-200-plus/">LED-200 Plus</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-grid mega-menu-item-8657" id="mega-menu-item-8657"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-8657">NIDEK<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-8657'>
+<li class="mega-menu-row" id="mega-menu-8657-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8657-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-9625" id="mega-menu-item-9625"><a class="mega-menu-link" href="/nos-services/">Nos services<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9625'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9626" id="mega-menu-item-9626"><a class="mega-menu-link" href="/nos-services#bureau">Bureau d'études</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9627" id="mega-menu-item-9627"><a class="mega-menu-link" href="/nos-services#installation">Installation & mise en service</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9628" id="mega-menu-item-9628"><a class="mega-menu-link" href="/nos-services#formation">Formations</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9629" id="mega-menu-item-9629"><a class="mega-menu-link" href="/nos-services#sav">SAV & dépannage</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-13050" id="mega-menu-item-13050"><a class="mega-menu-link" href="https://www.nidek.fr/showroom/">Showroom NIDEK</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8657-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-9630" id="mega-menu-item-9630"><a class="mega-menu-link" href="#">Nos solutions<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9630'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9631" id="mega-menu-item-9631"><a class="mega-menu-link" href="/optique/">Optique</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9632" id="mega-menu-item-9632"><a class="mega-menu-link" href="/ophtalmologie/">Ophtalmologie</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9633" id="mega-menu-item-9633"><a class="mega-menu-link" href="/orthoptie/">Orthoptie</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9634" id="mega-menu-item-9634"><a class="mega-menu-link" href="/etablissements-de-sante/">Établissements de santé</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8657-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-9635" id="mega-menu-item-9635"><a class="mega-menu-link" href="/a-propos/">À propos<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9635'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9636" id="mega-menu-item-9636"><a class="mega-menu-link" href="/a-propos#expertise">Expertise & savoir-faire</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9637" id="mega-menu-item-9637"><a class="mega-menu-link" href="/a-propos#certifications">Certifications</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9638" id="mega-menu-item-9638"><a class="mega-menu-link" href="/a-propos#nidekmonde">NIDEK en France</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9639" id="mega-menu-item-9639"><a class="mega-menu-link" href="/a-propos#nidekmonde">NIDEK à l'international</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-9640" id="mega-menu-item-9640"><a class="mega-menu-link" href="/a-propos#recrutement">Emploi</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-8657-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-9641" id="mega-menu-item-9641"><a class="mega-menu-link" href="/categorie/blog/">Actualités<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-9641'>
+<li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-12490" id="mega-menu-item-12490"><a class="mega-menu-link" href="https://www.nidek.fr/categorie/blog/">Blog</a></li><li class="mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-menu-item-12491" id="mega-menu-item-12491"><a class="mega-menu-link" href="https://www.nidek.fr/categorie/evenements/">Évènements</a></li>			</ul>
+</li>		</ul>
+</li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout mega-menu-item-9910" id="mega-menu-item-9910"><a target="_blank" class="mega-menu-link" href="/boutique/">La Boutique</a></li><li class="mega-trp-language-switcher-container mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-language_switcher mega-current-language-menu-item mega-align-bottom-left mega-menu-flyout mega-menu-item-9957 trp-language-switcher-container" id="mega-menu-item-9957"><a class="mega-menu-link" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"><span data-no-translation><img class="trp-flag-image" src="https://www.nidek.fr/wp-content/plugins/translatepress-multilingual/assets/images/flags/fr_FR.png" width="18" height="12" alt="fr_FR" title="Français"></span></a></li><li class="mega-trp-language-switcher-container mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-language_switcher mega-current-language-menu-item mega-align-bottom-left mega-menu-flyout mega-menu-item-9956 trp-language-switcher-container" id="mega-menu-item-9956"><a class="mega-menu-link" href="https://www.nidek.fr/wp-content/uploads/2021/02/NT-1-1.jpg"><span data-no-translation><img class="trp-flag-image" src="https://www.nidek.fr/wp-content/plugins/translatepress-multilingual/assets/images/flags/en_GB.png" width="18" height="12" alt="en_GB" title="English (UK)"></span></a></li></ul></div>				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+					</div>
+		</div>
+					</div>
+		</section>
+				</header>
+		<main id="content" class="site-main">
+
+			<div class="page-header">
+			<h1 class="entry-title">La page ne peut pas être trouvée.</h1>
+		</div>
+	
+	<div class="page-content">
+		<p>Il semble que rien n’a été trouvé à cet emplacement.</p>
+	</div>
+
+</main>
+		<footer data-elementor-type="footer" data-elementor-id="313" class="elementor elementor-313 elementor-location-footer" data-elementor-post-type="elementor_library">
+					<section data-particle_enable="false" data-particle-mobile-disabled="false" data-dce-background-overlay-image-url="https://www.nidek.fr/wp-content/uploads/2020/11/Fichier-2PNG4.png" class="has_ae_slider elementor-section elementor-top-section elementor-element elementor-element-5b11eae elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="5b11eae" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9998534 ae-bg-gallery-type-default" data-id="9998534" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<section data-particle_enable="false" data-particle-mobile-disabled="false" data-dce-background-hover-color="#5EAEF929" class="has_ae_slider elementor-section elementor-inner-section elementor-element elementor-element-53dd097 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="53dd097" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-461d0e8 ae-bg-gallery-type-default" data-id="461d0e8" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-6cef907 elementor-view-default elementor-widget elementor-widget-icon" data-id="6cef907" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-comment-dots"></i>			</div>
+		</div>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-bb39ee4 ae-bg-gallery-type-default" data-id="bb39ee4" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div data-dce-title-color="#FFFFFF" class="elementor-element elementor-element-9989058 elementor-widget elementor-widget-heading" data-id="9989058" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">Prendre contact avec NIDEK</p>				</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-b8350f3 ae-bg-gallery-type-default" data-id="b8350f3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-ab9b5b5 btn_outline elementor-align-center elementor-invisible elementor-widget elementor-widget-button" data-id="ab9b5b5" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInUp&quot;,&quot;_animation_delay&quot;:100}" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/nous-contacter/">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon">
+				<i aria-hidden="true" class="far fa-envelope"></i>			</span>
+									<span class="elementor-button-text">Nous contacter</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-inner-section elementor-element elementor-element-4edb8ea elementor-section-content-top elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="4edb8ea" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-wide">
+					<div class="has_ae_slider elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-d8de532 ae-bg-gallery-type-default" data-id="d8de532" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-87d672d dce_masking-none elementor-widget elementor-widget-image" data-id="87d672d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img loading="lazy" width="200" height="35" src="https://www.nidek.fr/wp-content/uploads/2020/11/nidek_white_200.png" class="attachment-full size-full wp-image-8926" alt="" />															</div>
+				</div>
+				<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-7773fe3 elementor-widget elementor-widget-text-editor" data-id="7773fe3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>Spécialiste des équipements et technologies au service de la santé visuelle, NIDEK SA accompagne et équipe les ophtalmologistes, orthoptistes, professionnels de l’optique et les établissements de santé.</p>								</div>
+				</div>
+				<div class="elementor-element elementor-element-035cbca elementor-shape-circle elementor-grid-5 e-grid-align-left elementor-widget elementor-widget-social-icons" data-id="035cbca" data-element_type="widget" data-widget_type="social-icons.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-social-icons-wrapper elementor-grid" role="list">
+							<span class="elementor-grid-item" role="listitem">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-repeater-item-8066261" href="https://www.facebook.com/NIDEK.SA" target="_blank">
+						<span class="elementor-screen-only">Facebook</span>
+						<i aria-hidden="true" class="fab fa-facebook"></i>					</a>
+				</span>
+							<span class="elementor-grid-item" role="listitem">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin elementor-repeater-item-98c7b46" href="https://www.linkedin.com/company/nidek-sa-france/" target="_blank">
+						<span class="elementor-screen-only">Linkedin</span>
+						<i aria-hidden="true" class="fab fa-linkedin"></i>					</a>
+				</span>
+							<span class="elementor-grid-item" role="listitem">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-youtube elementor-repeater-item-98f3b82" href="https://www.youtube.com/channel/UCQ8cmDcSGrQ-R7qh81UX5EQ" target="_blank">
+						<span class="elementor-screen-only">Youtube</span>
+						<i aria-hidden="true" class="fab fa-youtube"></i>					</a>
+				</span>
+					</div>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-1ecdfbe ae-bg-gallery-type-default" data-id="1ecdfbe" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-67be8aa elementor-widget elementor-widget-heading" data-id="67be8aa" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">Produits phares</p>				</div>
+				</div>
+				<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-e9d9d48 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e9d9d48" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="/angiographie/mirante-modele-complet-imagerie-slo-et-oct-act-a/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Mirante</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/refracteurs/ts-610/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">TS 610</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://www.nidek.fr/refracteurs/logiciel-rt-connect/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">RT-Connect</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/unites-de-consultation/synetic/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Synetic</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-2552b89 ae-bg-gallery-type-default" data-id="2552b89" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-4e5f1d8 elementor-widget elementor-widget-heading" data-id="4e5f1d8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">Services</p>				</div>
+				</div>
+				<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-2c36f3e elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="2c36f3e" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="/nos-services#bureau">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Bureau d'études</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/nos-services#installation">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Installation et mise en service</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/nos-services#formation">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Formations</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/nos-services#sav">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">SAV &amp; dépannage</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-7d0e53e ae-bg-gallery-type-default" data-id="7d0e53e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-9958579 elementor-widget elementor-widget-heading" data-id="9958579" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">Solutions</p>				</div>
+				</div>
+				<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-ef6a8d4 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="ef6a8d4" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="/optique/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Optique</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/ophtalmologie/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Ophtalmologie</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/orthoptie/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Orthoptie</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/etablissements-de-sante/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Établissements de santé</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-87ae78f ae-bg-gallery-type-default" data-id="87ae78f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-39ed754 elementor-widget elementor-widget-heading" data-id="39ed754" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">À propos</p>				</div>
+				</div>
+				<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-5eeeb2c elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="5eeeb2c" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="/a-propos#expertise">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Expertise et savoir-faire</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/a-propos#dates">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Nos dates clés</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/a-propos#certifications">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Certifications</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/a-propos#nidekmonde">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">NIDEK en France et dans le monde</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="/a-propos/#recrutement">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-arrow-right"></i>						</span>
+										<span class="elementor-icon-list-text">Recrutement</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section data-particle_enable="false" data-particle-mobile-disabled="false" data-dce-background-color="#232323" class="has_ae_slider elementor-section elementor-top-section elementor-element elementor-element-5480a01 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="5480a01" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-86daf60 ae-bg-gallery-type-default" data-id="86daf60" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-375d8d1 elementor-widget elementor-widget-text-editor" data-id="375d8d1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p style="margin: 0;">© 2021 • NIDEK SA &#8211; Tous droits réservés</p>								</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-9b4809a ae-bg-gallery-type-default" data-id="9b4809a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div data-dce-text-color="#FFFFFF" class="elementor-element elementor-element-237cfa0 elementor-icon-list--layout-inline elementor-align-end elementor-tablet-align-center elementor-mobile-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="237cfa0" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.nidek.fr/cgv/">
+
+											<span class="elementor-icon-list-text">CGV</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.nidek.fr/politique-de-confidentialite/">
+
+											<span class="elementor-icon-list-text">Protection des données personnelles</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.nidek.fr/mentions-legales/">
+
+											<span class="elementor-icon-list-text">Mentions légales</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</footer>
+		
+<template id="tp-language" data-tp-language="fr_FR"></template><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/child-theme/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container"><div class="cmplz-cookiebanner cmplz-hidden banner-1 bottom-right-minimal optin cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Gérer le consentement aux cookies</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="Fermer la boîte de dialogue">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">Nous utilisons des cookies pour optimiser notre site web et notre service.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<details class="cmplz-category cmplz-functional" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Fonctionnel</span>
+							<span class='cmplz-always-active'>
+								<span class="cmplz-banner-checkbox">
+									<input type="checkbox"
+										   id="cmplz-functional-optin"
+										   data-category="cmplz_functional"
+										   class="cmplz-consent-checkbox cmplz-functional"
+										   size="40"
+										   value="1"/>
+									<label class="cmplz-label" for="cmplz-functional-optin"><span class="screen-reader-text">Fonctionnel</span></label>
+								</span>
+								Toujours active							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-functional">Le stockage ou l’accès technique est strictement nécessaire dans la finalité d’intérêt légitime de permettre l’utilisation d’un service spécifique explicitement demandé par l’abonné ou l’utilisateur, ou dans le seul but d’effectuer la transmission d’une communication sur un réseau de communications électroniques.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-preferences" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Préférences</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-preferences-optin"
+									   data-category="cmplz_preferences"
+									   class="cmplz-consent-checkbox cmplz-preferences"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-preferences-optin"><span class="screen-reader-text">Préférences</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-preferences">Le stockage ou l’accès technique est nécessaire dans la finalité d’intérêt légitime de stocker des préférences qui ne sont pas demandées par l’abonné ou l’utilisateur.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-statistics" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Statistiques</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-statistics-optin"
+									   data-category="cmplz_statistics"
+									   class="cmplz-consent-checkbox cmplz-statistics"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-statistics-optin"><span class="screen-reader-text">Statistiques</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-statistics">Le stockage ou l’accès technique qui est utilisé exclusivement à des fins statistiques.</span>
+					<span class="cmplz-description-statistics-anonymous">Le stockage ou l’accès technique qui est utilisé exclusivement dans des finalités statistiques anonymes. En l’absence d’une assignation à comparaître, d’une conformité volontaire de la part de votre fournisseur d’accès à internet ou d’enregistrements supplémentaires provenant d’une tierce partie, les informations stockées ou extraites à cette seule fin ne peuvent généralement pas être utilisées pour vous identifier.</span>
+				</div>
+			</details>
+			<details class="cmplz-category cmplz-marketing" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Marketing</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-marketing-optin"
+									   data-category="cmplz_marketing"
+									   class="cmplz-consent-checkbox cmplz-marketing"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-marketing-optin"><span class="screen-reader-text">Marketing</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-marketing">Le stockage ou l’accès technique est nécessaire pour créer des profils d’utilisateurs afin d’envoyer des publicités, ou pour suivre l’utilisateur sur un site web ou sur plusieurs sites web ayant des finalités marketing similaires.</span>
+				</div>
+			</details>
+		</div><!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<ul>
+			<li><a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Gérer les options</a></li>
+			<li><a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Gérer les services</a></li>
+			<li><a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Gérer {vendor_count} fournisseurs</a></li>
+			<li><a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/" aria-label="En savoir plus sur les finalités de TCF de la base de données de cookies">En savoir plus sur ces finalités</a></li>
+		</ul>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Accepter</button>
+		<button class="cmplz-btn cmplz-deny">Refuser</button>
+		<button class="cmplz-btn cmplz-view-preferences">Préférences</button>
+		<button class="cmplz-btn cmplz-save-preferences">Enregistrer les préférences</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Préférences</a>
+			</div>
+
+	
+	<div class="cmplz-documents cmplz-links">
+		<ul>
+			<li><a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a></li>
+		</ul>
+			</div>
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true"><button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1">Gérer le consentement</button>
+
+</div>		<div data-elementor-type="popup" data-elementor-id="10445" class="elementor elementor-10445 elementor-location-popup" data-elementor-settings="{&quot;a11y_navigation&quot;:&quot;yes&quot;,&quot;triggers&quot;:{&quot;page_load&quot;:&quot;yes&quot;,&quot;page_load_delay&quot;:0},&quot;timing&quot;:{&quot;times_times&quot;:1,&quot;times&quot;:&quot;yes&quot;,&quot;logged_in&quot;:&quot;yes&quot;,&quot;logged_in_users&quot;:&quot;all&quot;}}" data-elementor-post-type="elementor_library">
+					<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-top-section elementor-element elementor-element-8d0aa30 elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="8d0aa30" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e73341a ae-bg-gallery-type-default" data-id="e73341a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-894b202 elementor-widget elementor-widget-heading" data-id="894b202" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<p class="elementor-heading-title elementor-size-default">Ce site est réservé aux professionnels de santé</p>				</div>
+				</div>
+				<section data-particle_enable="false" data-particle-mobile-disabled="false" class="has_ae_slider elementor-section elementor-inner-section elementor-element elementor-element-af79a64 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default ae-bg-gallery-type-default" data-id="af79a64" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="has_ae_slider elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-e405680 ae-bg-gallery-type-default" data-id="e405680" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-9b354fd elementor-align-center elementor-widget elementor-widget-button" data-id="9b354fd" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="https://www.google.fr">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon">
+				<i aria-hidden="true" class="far fa-window-close"></i>			</span>
+									<span class="elementor-button-text">Sortir</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+		</div>
+				<div class="has_ae_slider elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2673036 ae-bg-gallery-type-default" data-id="2673036" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-3dd1313 elementor-invisible elementor-widget elementor-widget-eael-creative-button" data-id="3dd1313" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInUp&quot;}" data-widget_type="eael-creative-button.default">
+				<div class="elementor-widget-container">
+					        <div class="eael-creative-button-wrapper">
+
+            <a class="eael-creative-button eael-creative-button--wave" href="#elementor-action%3Aaction%3Dpopup%3Aclose%26settings%3DeyJkb19ub3Rfc2hvd19hZ2FpbiI6InllcyJ9" data-text="Go!">
+            	    
+                <div class="creative-button-inner">
+
+                    
+                    <span class="cretive-button-text">Je suis professionnel de santé</span>
+
+                                    </div>
+	                        </a>
+        </div>
+        				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+					<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<script src="https://www.nidek.fr/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+<script id="ae-pro-js-js-extra">
+var aepro = {"ajaxurl":"https://www.nidek.fr/wp-admin/admin-ajax.php","current_url":"https%3A%2F%2Fwww.nidek.fr%2Fwp-content%2Fuploads%2F2021%2F02%2FNT-1-1.jpg%2F","plugin_url":"https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro","queried_page":[],"access_level":"2","aep_nonce":"3f1c492387"};
+//# sourceURL=ae-pro-js-js-extra
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro/includes/assets/js/ae-pro.min.js?ver=2.29.3" id="ae-pro-js-js"></script>
+<script id="aep-build-js-extra">
+var aepro = {"ajaxurl":"https://www.nidek.fr/wp-admin/admin-ajax.php","current_url":"https%3A%2F%2Fwww.nidek.fr%2Fwp-content%2Fuploads%2F2021%2F02%2FNT-1-1.jpg%2F","plugin_url":"https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro","queried_page":[],"access_level":"2","aep_nonce":"3f1c492387"};
+//# sourceURL=aep-build-js-extra
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro/build/index.min.js?ver=2.29.3" id="aep-build-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamicconditions/Public/js/dynamic-conditions-public.js?ver=1.7.5" id="dynamic-conditions-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/fix-background-loop.min.js?ver=3.3.25" id="dce-fix-background-loop-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/settings.min.js?ver=3.3.25" id="dce-settings-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/dynamic-countdown.min.js?ver=3.3.25" id="dce-dynamic-countdown-js"></script>
+<script id="dce-js-field-js-extra">
+var jsFieldLocale = {"syntaxError":"Your JS Field code contains errors, check the browser console!","returnError":"Your JS Field code should return a function."};
+//# sourceURL=dce-js-field-js-extra
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/js-field.min.js?ver=3.3.25" id="dce-js-field-js"></script>
+<script id="dce-amount-field-js-extra">
+var amountFieldLocale = {"syntaxError":"Your formula in Amount Field contains errors. Check the field and correct the errors. You can find the errors in the console of your browser"};
+//# sourceURL=dce-amount-field-js-extra
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/amount-field.min.js?ver=3.3.25" id="dce-amount-field-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/range.min.js?ver=3.3.25" id="dce-range-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/mustache/mustache.min.js?ver=3.3.25" id="dce-mustache-js-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/live-html.min.js?ver=3.3.25" id="dce-live-html-js"></script>
+<script src="https://js.stripe.com/v3" id="dce-stripe-js-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/stripe.min.js?ver=3.3.25" id="dce-stripe-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/dynamic-select.min.js?ver=3.3.25" id="dce-dynamic-select-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/hidden-label.min.js?ver=3.3.25" id="dce-hidden-label-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/rellax.min.js?ver=3.3.25" id="dce-rellax-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/reveal.min.js?ver=3.3.25" id="dce-reveal-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/scrolling.min.js?ver=3.3.25" id="dce-scrolling-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/plyr/plyr.polyfilled.min.js?ver=3.3.25" id="dce-plyr-js-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/advanced-video.min.js?ver=3.3.25" id="dce-advanced-video-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/signature.min.js?ver=3.3.25" id="dce-signature-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/tooltip.min.js?ver=3.3.25" id="dce-tooltip-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/js/inline-align-form.min.js?ver=3.3.25" id="dce-inline-align-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/dayjs/dayjs.min.js?ver=3.3.25" id="dce-dayjs-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/velocity-animate/velocity.min.js?ver=3.3.25" id="dce-velocity-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/jquery.easing/jquery-easing.min.js?ver=3.3.25" id="jquery-easing-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/animejs/anime.min.js?ver=3.3.25" id="dce-anime-lib-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/signature_pad/signature_pad.umd.min.js?ver=3.3.25" id="dce-signature-lib-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/rellax/rellax.min.js?ver=3.3.25" id="dce-rellaxjs-lib-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/revealfx/revealFx.js?ver=3.3.25" id="dce-revealFx-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/jquery-scrollify/jquery.scrollify.js?ver=3.3.25" id="dce-scrollify-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/jquery-inertia-scroll/jquery-inertiaScroll.js?ver=3.3.25" id="dce-inertia-scroll-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/lax.js/lax.min.js?ver=3.3.25" id="dce-lax-lib-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/popperjs/popper.min.js?ver=3.3.25" id="dce-popper-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/dynamic-content-for-elementor/assets/node/tippy.js/tippy-bundle.umd.min.js?ver=3.3.25" id="dce-tippy-js"></script>
+<script id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+//# sourceURL=rocket-browser-checker-js-after
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"/my-account/|/wp-admin/|/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/(index.php/)?(.*)wp-json(/.*|$)|/refer/|/go/|/recommend/|/recommends/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https://www.nidek.fr","onHoverDelay":"100","rateThrottle":"3"};
+//# sourceURL=rocket-preload-links-js-extra
+</script>
+<script id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+
+//# sourceURL=rocket-preload-links-js-after
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.34.2" id="elementor-webpack-runtime-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.34.2" id="elementor-frontend-modules-js"></script>
+<script src="https://www.nidek.fr/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="elementor-frontend-js-extra">
+var EAELImageMaskingConfig = {"svg_dir_url":"https://www.nidek.fr/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/img/image-masking/svg-shapes/"};
+//# sourceURL=elementor-frontend-js-extra
+</script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Partager sur Facebook","shareOnTwitter":"Partager sur Twitter","pinIt":"L\u2019\u00e9pingler","download":"T\u00e9l\u00e9charger","downloadImage":"T\u00e9l\u00e9charger une image","fullscreen":"Plein \u00e9cran","zoom":"Zoom","share":"Partager","playVideo":"Lire la vid\u00e9o","previous":"Pr\u00e9c\u00e9dent","next":"Suivant","close":"Fermer","a11yCarouselPrevSlideMessage":"Diapositive pr\u00e9c\u00e9dente","a11yCarouselNextSlideMessage":"Diapositive suivante","a11yCarouselFirstSlideMessage":"Ceci est la premi\u00e8re diapositive","a11yCarouselLastSlideMessage":"Ceci est la derni\u00e8re diapositive","a11yCarouselPaginationBulletMessage":"Aller \u00e0 la diapositive"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Portrait mobile","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Paysage","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablette en mode portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablette en mode paysage","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Portable","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"\u00c9cran large","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.34.2","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"theme_builder_v2":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true,"e_interactions":true,"e_editor_one":true,"import-export-customization":true,"e_pro_variables":true},"urls":{"assets":"https:\/\/www.nidek.fr\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/www.nidek.fr\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/www.nidek.fr\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"6dca87d5d7"},"swiperClass":"swiper","settings":{"editorPreferences":[],"dynamicooo":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":0,"title":"Page non trouv\u00e9e - NIDEK France","excerpt":""}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.34.2" id="elementor-frontend-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5" id="swiper-js"></script>
+<script id="eael-general-js-extra">
+var localize = {"ajaxurl":"https://www.nidek.fr/wp-admin/admin-ajax.php","nonce":"d56093e3a1","i18n":{"added":"Added ","compare":"Compare","loading":"Loading..."},"eael_translate_text":{"required_text":"is a required field","invalid_text":"Invalid","billing_text":"Billing","shipping_text":"Shipping","fg_mfp_counter_text":"of"},"page_permalink":"https://www.nidek.fr/nidek-lance-pour-la-premiere-fois-des-offres-promotionnelles-sur-le-marche-ugap/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Portrait mobile","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Paysage","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablette en mode portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablette en mode paysage","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Portable","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"\u00c9cran large","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"ParticleThemesData":{"default":"{\"particles\":{\"number\":{\"value\":160,\"density\":{\"enable\":true,\"value_area\":800}},\"color\":{\"value\":\"#ffffff\"},\"shape\":{\"type\":\"circle\",\"stroke\":{\"width\":0,\"color\":\"#000000\"},\"polygon\":{\"nb_sides\":5},\"image\":{\"src\":\"img/github.svg\",\"width\":100,\"height\":100}},\"opacity\":{\"value\":0.5,\"random\":false,\"anim\":{\"enable\":false,\"speed\":1,\"opacity_min\":0.1,\"sync\":false}},\"size\":{\"value\":3,\"random\":true,\"anim\":{\"enable\":false,\"speed\":40,\"size_min\":0.1,\"sync\":false}},\"line_linked\":{\"enable\":true,\"distance\":150,\"color\":\"#ffffff\",\"opacity\":0.4,\"width\":1},\"move\":{\"enable\":true,\"speed\":6,\"direction\":\"none\",\"random\":false,\"straight\":false,\"out_mode\":\"out\",\"bounce\":false,\"attract\":{\"enable\":false,\"rotateX\":600,\"rotateY\":1200}}},\"interactivity\":{\"detect_on\":\"canvas\",\"events\":{\"onhover\":{\"enable\":true,\"mode\":\"repulse\"},\"onclick\":{\"enable\":true,\"mode\":\"push\"},\"resize\":true},\"modes\":{\"grab\":{\"distance\":400,\"line_linked\":{\"opacity\":1}},\"bubble\":{\"distance\":400,\"size\":40,\"duration\":2,\"opacity\":8,\"speed\":3},\"repulse\":{\"distance\":200,\"duration\":0.4},\"push\":{\"particles_nb\":4},\"remove\":{\"particles_nb\":2}}},\"retina_detect\":true}","nasa":"{\"particles\":{\"number\":{\"value\":250,\"density\":{\"enable\":true,\"value_area\":800}},\"color\":{\"value\":\"#ffffff\"},\"shape\":{\"type\":\"circle\",\"stroke\":{\"width\":0,\"color\":\"#000000\"},\"polygon\":{\"nb_sides\":5},\"image\":{\"src\":\"img/github.svg\",\"width\":100,\"height\":100}},\"opacity\":{\"value\":1,\"random\":true,\"anim\":{\"enable\":true,\"speed\":1,\"opacity_min\":0,\"sync\":false}},\"size\":{\"value\":3,\"random\":true,\"anim\":{\"enable\":false,\"speed\":4,\"size_min\":0.3,\"sync\":false}},\"line_linked\":{\"enable\":false,\"distance\":150,\"color\":\"#ffffff\",\"opacity\":0.4,\"width\":1},\"move\":{\"enable\":true,\"speed\":1,\"direction\":\"none\",\"random\":true,\"straight\":false,\"out_mode\":\"out\",\"bounce\":false,\"attract\":{\"enable\":false,\"rotateX\":600,\"rotateY\":600}}},\"interactivity\":{\"detect_on\":\"canvas\",\"events\":{\"onhover\":{\"enable\":true,\"mode\":\"bubble\"},\"onclick\":{\"enable\":true,\"mode\":\"repulse\"},\"resize\":true},\"modes\":{\"grab\":{\"distance\":400,\"line_linked\":{\"opacity\":1}},\"bubble\":{\"distance\":250,\"size\":0,\"duration\":2,\"opacity\":0,\"speed\":3},\"repulse\":{\"distance\":400,\"duration\":0.4},\"push\":{\"particles_nb\":4},\"remove\":{\"particles_nb\":2}}},\"retina_detect\":true}","bubble":"{\"particles\":{\"number\":{\"value\":15,\"density\":{\"enable\":true,\"value_area\":800}},\"color\":{\"value\":\"#1b1e34\"},\"shape\":{\"type\":\"polygon\",\"stroke\":{\"width\":0,\"color\":\"#000\"},\"polygon\":{\"nb_sides\":6},\"image\":{\"src\":\"img/github.svg\",\"width\":100,\"height\":100}},\"opacity\":{\"value\":0.3,\"random\":true,\"anim\":{\"enable\":false,\"speed\":1,\"opacity_min\":0.1,\"sync\":false}},\"size\":{\"value\":50,\"random\":false,\"anim\":{\"enable\":true,\"speed\":10,\"size_min\":40,\"sync\":false}},\"line_linked\":{\"enable\":false,\"distance\":200,\"color\":\"#ffffff\",\"opacity\":1,\"width\":2},\"move\":{\"enable\":true,\"speed\":8,\"direction\":\"none\",\"random\":false,\"straight\":false,\"out_mode\":\"out\",\"bounce\":false,\"attract\":{\"enable\":false,\"rotateX\":600,\"rotateY\":1200}}},\"interactivity\":{\"detect_on\":\"canvas\",\"events\":{\"onhover\":{\"enable\":false,\"mode\":\"grab\"},\"onclick\":{\"enable\":false,\"mode\":\"push\"},\"resize\":true},\"modes\":{\"grab\":{\"distance\":400,\"line_linked\":{\"opacity\":1}},\"bubble\":{\"distance\":400,\"size\":40,\"duration\":2,\"opacity\":8,\"speed\":3},\"repulse\":{\"distance\":200,\"duration\":0.4},\"push\":{\"particles_nb\":4},\"remove\":{\"particles_nb\":2}}},\"retina_detect\":true}","snow":"{\"particles\":{\"number\":{\"value\":450,\"density\":{\"enable\":true,\"value_area\":800}},\"color\":{\"value\":\"#fff\"},\"shape\":{\"type\":\"circle\",\"stroke\":{\"width\":0,\"color\":\"#000000\"},\"polygon\":{\"nb_sides\":5},\"image\":{\"src\":\"img/github.svg\",\"width\":100,\"height\":100}},\"opacity\":{\"value\":0.5,\"random\":true,\"anim\":{\"enable\":false,\"speed\":1,\"opacity_min\":0.1,\"sync\":false}},\"size\":{\"value\":5,\"random\":true,\"anim\":{\"enable\":false,\"speed\":40,\"size_min\":0.1,\"sync\":false}},\"line_linked\":{\"enable\":false,\"distance\":500,\"color\":\"#ffffff\",\"opacity\":0.4,\"width\":2},\"move\":{\"enable\":true,\"speed\":6,\"direction\":\"bottom\",\"random\":false,\"straight\":false,\"out_mode\":\"out\",\"bounce\":false,\"attract\":{\"enable\":false,\"rotateX\":600,\"rotateY\":1200}}},\"interactivity\":{\"detect_on\":\"canvas\",\"events\":{\"onhover\":{\"enable\":true,\"mode\":\"bubble\"},\"onclick\":{\"enable\":true,\"mode\":\"repulse\"},\"resize\":true},\"modes\":{\"grab\":{\"distance\":400,\"line_linked\":{\"opacity\":0.5}},\"bubble\":{\"distance\":400,\"size\":4,\"duration\":0.3,\"opacity\":1,\"speed\":3},\"repulse\":{\"distance\":200,\"duration\":0.4},\"push\":{\"particles_nb\":4},\"remove\":{\"particles_nb\":2}}},\"retina_detect\":true}","nyan_cat":"{\"particles\":{\"number\":{\"value\":150,\"density\":{\"enable\":false,\"value_area\":800}},\"color\":{\"value\":\"#ffffff\"},\"shape\":{\"type\":\"star\",\"stroke\":{\"width\":0,\"color\":\"#000000\"},\"polygon\":{\"nb_sides\":5},\"image\":{\"src\":\"http://wiki.lexisnexis.com/academic/images/f/fb/Itunes_podcast_icon_300.jpg\",\"width\":100,\"height\":100}},\"opacity\":{\"value\":0.5,\"random\":false,\"anim\":{\"enable\":false,\"speed\":1,\"opacity_min\":0.1,\"sync\":false}},\"size\":{\"value\":4,\"random\":true,\"anim\":{\"enable\":false,\"speed\":40,\"size_min\":0.1,\"sync\":false}},\"line_linked\":{\"enable\":false,\"distance\":150,\"color\":\"#ffffff\",\"opacity\":0.4,\"width\":1},\"move\":{\"enable\":true,\"speed\":14,\"direction\":\"left\",\"random\":false,\"straight\":true,\"out_mode\":\"out\",\"bounce\":false,\"attract\":{\"enable\":false,\"rotateX\":600,\"rotateY\":1200}}},\"interactivity\":{\"detect_on\":\"canvas\",\"events\":{\"onhover\":{\"enable\":false,\"mode\":\"grab\"},\"onclick\":{\"enable\":true,\"mode\":\"repulse\"},\"resize\":true},\"modes\":{\"grab\":{\"distance\":200,\"line_linked\":{\"opacity\":1}},\"bubble\":{\"distance\":400,\"size\":40,\"duration\":2,\"opacity\":8,\"speed\":3},\"repulse\":{\"distance\":200,\"duration\":0.4},\"push\":{\"particles_nb\":4},\"remove\":{\"particles_nb\":2}}},\"retina_detect\":true}"},"eael_login_nonce":"3ea347c933","eael_register_nonce":"b24eee5171","eael_lostpassword_nonce":"24ac048482","eael_resetpassword_nonce":"d383c80cfe"};
+//# sourceURL=eael-general-js-extra
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.5.8" id="eael-general-js"></script>
+<script src="https://www.nidek.fr/wp-content/uploads/essential-addons-elementor/eael-10445.js?ver=1765981626" id="eael-10445-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/anywhere-elementor-pro/includes/assets/lib/vegas/vegas.min.js?ver=2.4.0" id="vegas-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-events-provider-wpforms-ed443a3a3d45126a22ce.js" id="googlesitekit-events-provider-wpforms-js" defer></script>
+<script src="https://www.nidek.fr/wp-includes/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/megamenu/js/maxmegamenu.js?ver=3.8.1" id="megamenu-js"></script>
+<script id="cmplz-cookiebanner-js-extra">
+var complianz = {"prefix":"cmplz_","user_banner_id":"1","set_cookies":[],"block_ajax_content":"","banner_version":"5290","version":"7.4.5","store_consent":"","do_not_track_enabled":"","consenttype":"optin","region":"eu","geoip":"","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"https://www.nidek.fr/wp-json/complianz/v1/","locale":"lang=fr&locale=fr_FR","set_cookies_on_root":"","cookie_domain":"","current_policy_id":"15","cookie_path":"/","categories":{"statistics":"statistiques","marketing":"marketing"},"tcf_active":"","placeholdertext":"Cliquez pour accepter les cookies {category} et activer ce contenu","css_file":"https://www.nidek.fr/wp-content/uploads/complianz/css/banner-{banner_id}-{type}.css?v=5290","page_links":{"eu":{"cookie-statement":{"title":"Protection des donn\u00e9es personnelles","url":"https://www.nidek.fr/politique-de-confidentialite/"},"privacy-statement":{"title":"Protection des donn\u00e9es personnelles","url":"https://www.nidek.fr/politique-de-confidentialite/"}}},"tm_categories":"","forceEnableStats":"","preview":"","clean_cookies":"","aria_label":"Cliquez pour accepter les cookies {category} et activer ce contenu"};
+//# sourceURL=cmplz-cookiebanner-js-extra
+</script>
+<script defer src="https://www.nidek.fr/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1773755281" id="cmplz-cookiebanner-js"></script>
+<script id="cmplz-cookiebanner-js-after">
+		if ('undefined' != typeof window.jQuery) {
+			jQuery(document).ready(function ($) {
+				$(document).on('elementor/popup/show', () => {
+					let rev_cats = cmplz_categories.reverse();
+					for (let key in rev_cats) {
+						if (rev_cats.hasOwnProperty(key)) {
+							let category = cmplz_categories[key];
+							if (cmplz_has_consent(category)) {
+								document.querySelectorAll('[data-category="' + category + '"]').forEach(obj => {
+									cmplz_remove_placeholder(obj);
+								});
+							}
+						}
+					}
+
+					let services = cmplz_get_services_on_page();
+					for (let key in services) {
+						if (services.hasOwnProperty(key)) {
+							let service = services[key].service;
+							let category = services[key].category;
+							if (cmplz_has_service_consent(service, category)) {
+								document.querySelectorAll('[data-service="' + service + '"]').forEach(obj => {
+									cmplz_remove_placeholder(obj);
+								});
+							}
+						}
+					}
+				});
+			});
+		}
+    
+    
+//# sourceURL=cmplz-cookiebanner-js-after
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.34.1" id="elementor-pro-webpack-runtime-js"></script>
+<script src="https://www.nidek.fr/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
+<script src="https://www.nidek.fr/wp-includes/js/dist/i18n.min.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/www.nidek.fr\/wp-admin\/admin-ajax.php","nonce":"106cc55778","urls":{"assets":"https:\/\/www.nidek.fr\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/www.nidek.fr\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"fr_FR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/www.nidek.fr\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+//# sourceURL=elementor-pro-frontend-js-before
+</script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.34.1" id="elementor-pro-frontend-js"></script>
+<script src="https://www.nidek.fr/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.34.1" id="pro-elements-handlers-js"></script>
+
+</body>
+</html>
