@@ -205,7 +205,7 @@ export default function ProductDetailPage() {
             <span className="mx-2">/</span>
             {product.category && (
               <>
-                <Link href={`/${locale}/products?category=${product.category.slug}`} className="hover:text-gray-600 transition-colors">
+                <Link href={`/${locale}/products/categories/${product.category.slug}`} className="hover:text-gray-600 transition-colors">
                   {product.category.name}
                 </Link>
                 <span className="mx-2">/</span>

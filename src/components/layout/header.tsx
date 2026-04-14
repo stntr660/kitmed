@@ -318,10 +318,7 @@ export function Header({ locale, className }: HeaderProps) {
                     {categories.map((cat) => (
                       <li key={cat.id}>
                         <Link
-                          href={cat.subcategories && cat.subcategories.length > 0
-                            ? `/${locale}/products/categories/${cat.slug}`
-                            : `/${locale}/products?category=${cat.slug}`
-                          }
+                          href={`/${locale}/products/categories/${cat.slug}`}
                           className="flex items-center justify-between px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                           onClick={() => setMobileMenuOpen(false)}
                         >
@@ -410,7 +407,7 @@ export function Header({ locale, className }: HeaderProps) {
                             {cat.subcategories.map((sub) => (
                               <DropdownMenuItem key={sub.id} asChild>
                                 <Link
-                                  href={`/${locale}/products?category=${sub.slug}`}
+                                  href={`/${locale}/products/categories/${cat.slug}/${sub.slug}`}
                                   className="cursor-pointer py-2 px-3 rounded-md text-sm"
                                 >
                                   {sub.name}
@@ -422,7 +419,7 @@ export function Header({ locale, className }: HeaderProps) {
                       ) : (
                         <DropdownMenuItem key={cat.id} asChild>
                           <Link
-                            href={`/${locale}/products?category=${cat.slug}`}
+                            href={`/${locale}/products/categories/${cat.slug}`}
                             className="cursor-pointer py-2.5 px-3 rounded-md"
                           >
                             {cat.name}
