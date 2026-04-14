@@ -91,16 +91,16 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
                     category_translations: {
                       where: { language_code: locale }
                     },
-                    _count: { select: { products: true } }
+                    _count: { select: { products: { where: { status: 'active' } } } }
                   },
                   orderBy: { sort_order: 'asc' }
                 },
-                _count: { select: { products: true } }
+                _count: { select: { products: { where: { status: 'active' } } } }
               },
               orderBy: { sort_order: 'asc' }
             },
             _count: {
-              select: { products: true }
+              select: { products: { where: { status: 'active' } } }
             }
           },
           orderBy: { sort_order: 'asc' }
@@ -131,7 +131,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           ]
         } : undefined,
         _count: {
-          select: { products: true }
+          select: { products: { where: { status: 'active' } } }
         }
       }
     });
