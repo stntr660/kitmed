@@ -187,17 +187,17 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             <>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {discipline.other_categories.map((category) => (
-                  <Card key={category.id} className="group h-full border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
-                    <div className="relative h-36 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                  <Card key={category.id} className="group aspect-square flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
+                    <div className="relative flex-1 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                       {category.imageUrl ? (
                         <Image
                           src={category.imageUrl}
                           alt={category.name}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                        <div className="w-full h-full flex items-center justify-center">
                           <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
                             <span className="text-primary-600 font-bold text-xl">{category.name.charAt(0)}</span>
                           </div>
@@ -205,42 +205,33 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                       )}
 
                       {/* Product Count Badge */}
-                      <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                      <div className="absolute top-3 right-3 bg-primary-600 text-white px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
                         {tDisciplines('productsBadge', { count: category.productCount || 0 })}
                       </div>
 
                       {/* Category Type Badge */}
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute top-3 left-3">
                         <Badge variant="secondary" className="bg-white/90 text-primary-700 border-0 text-xs">
                           {tDisciplines('equipmentBadge')}
                         </Badge>
                       </div>
                     </div>
 
-                    <CardHeader className="p-4 pb-2">
-                      <CardTitle className="text-base font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                    <div className="p-3 pt-2 space-y-2">
+                      <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
                         {category.name}
                       </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="p-4 pt-0">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm text-slate-500">
-                          <span>{tDisciplines('productsAvailable')}</span>
-                          <span className="font-semibold">{category.productCount || 0}</span>
-                        </div>
-
-                        <Button
-                          className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
-                          asChild
-                        >
-                          <Link href={`/${locale}/products/categories/${category.slug}`} className="flex items-center justify-center">
-                            {category.children && category.children.length > 0 ? tDisciplines('exploreCategories') : tDisciplines('viewProducts')}
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardContent>
+                      <Button
+                        size="sm"
+                        className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors h-8 text-xs"
+                        asChild
+                      >
+                        <Link href={`/${locale}/products/categories/${category.slug}`} className="flex items-center justify-center">
+                          {category.children && category.children.length > 0 ? tDisciplines('exploreCategories') : tDisciplines('viewProducts')}
+                          <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                        </Link>
+                      </Button>
+                    </div>
                   </Card>
                 ))}
               </div>
