@@ -1,0 +1,120 @@
+{
+  "notes": {
+    "library": "lucide-react (installed v0.294.0)",
+    "field_storage": "categories.icon_name (lucide slug or custom slug), categories.icon_modifier (optional composed icon)",
+    "brand_subcategories": "Use partner logo_url, NOT a lucide icon — already handled in UI for lampe-a-fente brand children. Omitted from this map.",
+    "custom_required": "Slugs starting with 'custom:' need a bespoke SVG drawn in the lucide stroke style. ~10 icons.",
+    "composition": "When icon_modifier is set, UI stacks the modifier in the bottom-right corner at 50% scale."
+  },
+
+  "root_disciplines": {
+    "ophtalmologie": { "icon_name": "eye" },
+    "orl-oto-rhino-laryngologie": { "icon_name": "ear" },
+    "mobilier-et-literie-hospitaliers": { "icon_name": "bed-double" },
+    "orthopedics": { "icon_name": "bone" },
+    "oph-pharmaceutics": { "icon_name": "pill" },
+    "autres": { "icon_name": "more-horizontal" }
+  },
+
+  "ophtalmologie_l2": {
+    "consultation": { "icon_name": "stethoscope" },
+    "exploration": { "icon_name": "scan-search" },
+    "bloc-operatoire": { "icon_name": "custom:scalpel" },
+    "consommable": { "icon_name": "package" },
+    "oph-contactology": { "icon_name": "custom:contact-lens" },
+    "traitement-et-diagnostique-secheresse-oculaire": { "icon_name": "eye", "icon_modifier": "droplet" },
+    "schirmer-fluorescein-et-bleu-vision": { "icon_name": "test-tube" },
+    "simulateur": { "icon_name": "monitor-play" }
+  },
+
+  "consultation_l3": {
+    "table-de-consultation": { "icon_name": "armchair" },
+    "materiel-de-refraction": { "icon_name": "glasses" },
+    "tonometres-pachymetres": { "icon_name": "eye", "icon_modifier": "gauge" },
+    "frontofocometre": { "icon_name": "custom:lensmeter" },
+    "lampe-a-fente": { "icon_name": "custom:slit-lamp" },
+    "ecran-optotype": { "icon_name": "monitor" },
+    "table-motorisee": { "icon_name": "move-vertical" },
+    "verres-ophtalmoscope-et-skeepens": { "icon_name": "glasses", "icon_modifier": "eye" }
+  },
+
+  "exploration_l3": {
+    "oct-et-imagerie": { "icon_name": "eye", "icon_modifier": "scan-line" },
+    "laser-yag-et-slt": { "icon_name": "eye", "icon_modifier": "zap" },
+    "laser-photocoagulateurs": { "icon_name": "eye", "icon_modifier": "flame" },
+    "biometrie-contact-sans-contact-et-echographie": { "icon_name": "eye", "icon_modifier": "ruler" },
+    "topographie": { "icon_name": "eye", "icon_modifier": "map" },
+    "microscopie-speculaire": { "icon_name": "microscope" },
+    "champ-visuel-electrophysiologie": { "icon_name": "eye", "icon_modifier": "radar" }
+  },
+
+  "consommable_l3": {
+    "implant-et-visco": { "icon_name": "custom:iol-lens" },
+    "couteaux": { "icon_name": "custom:scalpel" },
+    "valves": { "icon_name": "custom:glaucoma-valve" },
+    "oculoplastie-fci": { "icon_name": "scissors", "icon_modifier": "eye" }
+  },
+
+  "bloc_operatoire_l3": {
+    "phaco": { "icon_name": "custom:phaco-tip" },
+    "microscope-operatoire": { "icon_name": "microscope" },
+    "instrumentation": { "icon_name": "wrench" }
+  },
+
+  "verres_sub_l3": {
+    "ophtalmoscope": { "icon_name": "custom:ophthalmoscope" },
+    "verres": { "icon_name": "glasses" },
+    "skeepens": { "icon_name": "custom:binoculars" }
+  },
+
+  "orthopedics_l2": {
+    "attelles-immobilisation": { "icon_name": "custom:splint" },
+    "ortho-consumable": { "icon_name": "package" },
+    "ortheses-articulaires": { "icon_name": "custom:joint-brace" },
+    "ceintures-lombaires": { "icon_name": "custom:lumbar-belt" },
+    "genouilleres-chevillieres": { "icon_name": "custom:knee-ankle-brace" },
+    "chaussures-protections": { "icon_name": "footprints" },
+    "coussins-anti-escarres": { "icon_name": "square-dashed-bottom" },
+    "ortheses-cervicales": { "icon_name": "custom:cervical-collar" }
+  },
+
+  "mobilier_l2": {
+    "literie-hospitaliere": { "icon_name": "bed-double" },
+    "brancards": { "icon_name": "custom:stretcher" },
+    "fauteuils-patients": { "icon_name": "armchair" },
+    "tables-medicales": { "icon_name": "layout-dashboard" },
+    "chariots": { "icon_name": "shopping-cart" },
+    "armoires-et-rangement": { "icon_name": "archive" },
+    "equipement-pediatrique": { "icon_name": "baby" },
+    "mobilite-et-soutien": { "icon_name": "life-buoy" }
+  },
+
+  "orl_l2": {
+    "ent-exploration": { "icon_name": "ear" }
+  },
+
+  "brand_subcategories_use_logo": [
+    "medicontur",
+    "caregroupe",
+    "haag-streit",
+    "keeler",
+    "mediworks"
+  ],
+
+  "custom_svgs_needed": [
+    "scalpel",
+    "contact-lens",
+    "lensmeter",
+    "slit-lamp",
+    "iol-lens",
+    "glaucoma-valve",
+    "phaco-tip",
+    "ophthalmoscope",
+    "splint",
+    "joint-brace",
+    "lumbar-belt",
+    "knee-ankle-brace",
+    "cervical-collar",
+    "stretcher"
+  ]
+}
