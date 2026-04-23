@@ -151,7 +151,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
               </Button>
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {tDisciplines('equipment')}
               <span className="text-primary-600 block mt-1">{discipline.name}</span>
             </h1>

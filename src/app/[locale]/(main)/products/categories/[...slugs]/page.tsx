@@ -147,7 +147,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
       <section className="bg-white border-b py-4 lg:py-6">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {category.name}
             </h1>
 
