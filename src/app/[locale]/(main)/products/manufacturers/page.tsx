@@ -63,25 +63,15 @@ export default function ProductsByManufacturerPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      {/* Header (matches category pages) */}
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              {t('manufacturers.badge')}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              {t('manufacturers.title')}
-              <span className="text-primary-300 block mt-2">{t('manufacturers.titleSuffix')}</span>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
+              {t('manufacturers.title')} {t('manufacturers.titleSuffix')}
             </h1>
 
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {t('manufacturers.description')}
             </p>
           </div>

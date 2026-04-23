@@ -113,14 +113,14 @@ export default function PartnersPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-12">
+      {/* Header (matches category pages) */}
+      <section className="bg-white border-b py-4 lg:py-6">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-4 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {t('hero.title')}
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-6">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {t('hero.description')}
             </p>
           </div>
