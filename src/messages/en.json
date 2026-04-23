@@ -2302,7 +2302,7 @@
       "subcategories": "Subcategories",
       "subcategoriesDescription": "Explore specialized categories in {categoryName}",
       "availableProducts": "Available products",
-      "availableProductsCount": "{count} product in this category",
+      "availableProductsCount": "{count, plural, =0 {no products} one {# product} other {# products}} in this category",
       "productSingular": "product",
       "productPlural": "products",
       "subcategorySingular": "subcategory", 
