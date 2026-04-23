@@ -171,18 +171,13 @@ export default function PartnerProductsPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Partner Header */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+      {/* Partner Header (matches category page style) */}
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
             {/* Breadcrumb */}
-            <div className="mb-6">
-              <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10" asChild>
+            <div className="mb-4 flex justify-center">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-primary-600" asChild>
                 <Link href={`/${locale}/partners`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   {t('partners')}
@@ -190,58 +185,52 @@ export default function PartnerProductsPage({ params }: PageProps) {
               </Button>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="flex flex-col items-center gap-4">
               {/* Partner Logo */}
-              <div className="flex-shrink-0">
-                {partner.logoUrl ? (
-                  <div className="w-32 h-32 bg-white rounded-xl p-4 flex items-center justify-center shadow-xl">
-                    <Image
-                      src={partner.logoUrl}
-                      alt={partner.name}
-                      width={120}
-                      height={120}
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-32 h-32 bg-white rounded-xl flex items-center justify-center shadow-xl">
-                    <Building2 className="h-16 w-16 text-slate-400" />
-                  </div>
-                )}
-              </div>
-
-              {/* Partner Info */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-4">
-                  {partner.isFeatured && (
-                    <Badge className="bg-white/20 text-white border-0 shadow-xl">
-                      <Star className="mr-1 h-3 w-3" />
-                      {tPartner('featuredBadge')}
-                    </Badge>
-                  )}
-                  <Badge className="bg-white/20 text-white border-0 shadow-xl">
-                    <Package className="mr-1 h-3 w-3" />
-                    {tPartner('productsCount', { count: partner.productCount || products.length })}
-                  </Badge>
-                  {categoryFilter && categoryName && (
-                    <Badge className="bg-accent-500 text-white border-0 shadow-xl">
-                      <Filter className="mr-1 h-3 w-3" />
-                      {tPartner('filteredByCategory', { categoryName })}
-                    </Badge>
-                  )}
+              {partner.logoUrl ? (
+                <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center shadow-sm border border-slate-200">
+                  <Image
+                    src={partner.logoUrl}
+                    alt={partner.name}
+                    width={72}
+                    height={72}
+                    className="object-contain"
+                  />
                 </div>
+              ) : (
+                <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center">
+                  <Building2 className="h-10 w-10 text-slate-400" />
+                </div>
+              )}
 
-                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                  {partner.name}
-                </h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight break-words">
+                {partner.name}
+              </h1>
 
-                {partner.description && (
-                  <p className="text-xl text-primary-100 mb-6 leading-relaxed max-w-3xl">
-                    {partner.description}
-                  </p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {partner.isFeatured && (
+                  <Badge variant="secondary" className="bg-primary-50 text-primary-700 border-0">
+                    <Star className="mr-1 h-3 w-3" />
+                    {tPartner('featuredBadge')}
+                  </Badge>
                 )}
-
+                <Badge variant="secondary" className="bg-slate-100 text-slate-700 border-0">
+                  <Package className="mr-1 h-3 w-3" />
+                  {tPartner('productsCount', { count: partner.productCount || products.length })}
+                </Badge>
+                {categoryFilter && categoryName && (
+                  <Badge className="bg-primary-600 text-white border-0">
+                    <Filter className="mr-1 h-3 w-3" />
+                    {tPartner('filteredByCategory', { categoryName })}
+                  </Badge>
+                )}
               </div>
+
+              {partner.description && (
+                <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                  {partner.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
