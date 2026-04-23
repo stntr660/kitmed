@@ -187,7 +187,12 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {category.children.map((subCategory) => (
-                <Card key={subCategory.id} className="group aspect-square flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden">
+                <Link
+                  key={subCategory.id}
+                  href={`/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`}
+                  className="block group"
+                >
+                <Card className="aspect-square flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
                   <div className="relative flex-1 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                     {subCategory.imageUrl ? (
                       <Image
@@ -218,21 +223,13 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                     <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
                       {subCategory.name}
                     </CardTitle>
-                    <Button
-                      size="sm"
-                      className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors h-8 text-xs"
-                      asChild
-                    >
-                      <Link
-                        href={`/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`}
-                        className="flex items-center justify-center"
-                      >
-                        {tCategories('explore')}
-                        <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-                      </Link>
-                    </Button>
+                    <div className="w-full inline-flex items-center justify-center gap-1.5 bg-primary-600 text-white group-hover:bg-primary-700 transition-colors h-8 text-xs font-medium rounded-md">
+                      {tCategories('explore')}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </Card>
+                </Link>
               ))}
             </div>
           </div>
