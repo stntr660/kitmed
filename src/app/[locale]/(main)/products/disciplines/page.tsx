@@ -94,14 +94,14 @@ export default function ProductsByDisciplinePage() {
                     href={`/${locale}/products/disciplines/${category.slug}`}
                     className="block group"
                   >
-                    <Card className="aspect-square flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
-                      <div className="relative flex-1 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                    <Card className="flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
+                      <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                         {category.imageUrl ? (
                           <Image
                             src={category.imageUrl}
                             alt={category.name}
                             fill
-                            className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
