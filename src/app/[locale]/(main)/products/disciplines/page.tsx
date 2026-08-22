@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ArrowRight, Building2 } from 'lucide-react';
@@ -52,24 +51,15 @@ export default function ProductsByDisciplinePage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 px-6 py-3 bg-primary-500 text-white border-0 shadow-xl">
-              {tDisciplines('medicalSpecialties')}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {tDisciplines('title')}
-              <span className="text-primary-300 block mt-2">{tDisciplines('titleSuffix')}</span>
+              <span className="text-primary-600 block mt-1">{tDisciplines('titleSuffix')}</span>
             </h1>
 
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {tDisciplines('description')}
             </p>
           </div>
@@ -97,46 +87,45 @@ export default function ProductsByDisciplinePage() {
                 </p>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {categories.map((category) => (
-                  <Card key={category.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    <div className="relative h-64 bg-gradient-to-br from-blue-50 to-white overflow-hidden">
-                      {category.imageUrl ? (
-                        <Image
-                          src={category.imageUrl}
-                          alt={category.name}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-slate-200 flex items-center justify-center">
-                          <Building2 className="h-16 w-16 text-slate-400" />
-                        </div>
-                      )}
+                  <Link
+                    key={category.id}
+                    href={`/${locale}/products/disciplines/${category.slug}`}
+                    className="block group"
+                  >
+                    <Card className="aspect-square flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
+                      <div className="relative flex-1 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                        {category.imageUrl ? (
+                          <Image
+                            src={category.imageUrl}
+                            alt={category.name}
+                            fill
+                            className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
+                              <Building2 className="h-8 w-8 text-primary-600" />
+                            </div>
+                          </div>
+                        )}
+                      </div>
 
-                    </div>
+                      <CardHeader className="p-3 pb-2">
+                        <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
+                          {category.name}
+                        </CardTitle>
+                      </CardHeader>
 
-                    <CardHeader className="p-6 pb-4">
-                      <CardTitle className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                        {category.name}
-                      </CardTitle>
-                      <p className="text-slate-600 leading-relaxed">
-                        {category.description || tDisciplines('fallbackDescription', { name: category.name.toLowerCase() })}
-                      </p>
-                    </CardHeader>
-
-                    <CardContent className="p-6 pt-0">
-                      <Button
-                        className="w-full bg-primary text-white hover:bg-primary-700"
-                        asChild
-                      >
-                        <Link href={`/${locale}/products/disciplines/${category.slug}`} className="flex items-center justify-center">
+                      <CardContent className="p-3 pt-0">
+                        <div className="w-full inline-flex items-center justify-center gap-1.5 bg-primary-600 text-white group-hover:bg-primary-700 transition-colors h-8 text-xs font-medium rounded-md">
                           {tDisciplines('exploreCategories')}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             </>
