@@ -10,6 +10,7 @@ import { ArrowRight, ArrowLeft, Building2, Heart, Eye, Sparkles, Award, Download
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
+import { useScrollRestore } from '@/hooks/useScrollRestore';
 import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Product {
@@ -65,6 +66,9 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const locale = useHydrationSafeLocale('fr');
+
+  // Back from a product or sub-category lands where the user left, not at the footer
+  useScrollRestore(!loading);
 
   useEffect(() => {
     loadDiscipline();

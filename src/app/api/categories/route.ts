@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get('locale') || 'fr';
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
-    const excludeZeroProducts = searchParams.get('excludeZeroProducts') === 'true';
     const includeHierarchy = searchParams.get('hierarchy') === 'true';
+
+    const counts = await getRecursiveProductCounts();
 
     // Get active categories with translations, product count, and child categories
     const categories = await prisma.categories.findMany({
@@ -25,22 +27,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           orderBy: { sort_order: 'asc' },
           include: {
             category_translations: true,
-            _count: {
-              select: {
-                products: {
-                  where: { status: 'active' }
-                }
-              }
-            }
           }
         },
-        _count: {
-          select: {
-            products: {
-              where: { status: 'active' }
-            }
-          }
-        }
       }
     });
 
@@ -49,13 +37,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       const translation = category.category_translations.find(t => t.language_code === locale);
       const fallbackTranslation = category.category_translations.find(t => t.language_code === 'fr');
 
-      // Count direct products plus all products in child categories
-      const directProducts = category._count?.products || 0;
-      const childProducts = (category.other_categories || []).reduce(
-        (sum, child) => sum + (child._count?.products || 0),
-        0
-      );
-      const totalProductCount = directProducts + childProducts;
+      // Products anywhere below this category, not just one level down
+      const totalProductCount = counts.get(category.id) || 0;
 
       // Process subcategories if hierarchy requested
       const subcategories = includeHierarchy ? (category.other_categories || []).map(sub => {
@@ -65,9 +48,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           id: sub.id,
           name: subTranslation?.name || subFallback?.name || sub.name,
           slug: sub.slug,
-          productCount: sub._count?.products || 0
+          productCount: counts.get(sub.id) || 0
         };
-      }).filter(sub => !excludeZeroProducts || sub.productCount > 0) : undefined;
+      }).filter(sub => sub.productCount > 0) : undefined;
 
       return {
         id: category.id,
@@ -84,51 +67,16 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           subcategories
         })
       };
-    }).filter(category => {
-      if (excludeZeroProducts && includeProductCount) {
-        return (category as any).productCount > 0;
-      }
-      return true;
-    });
-
-    // Custom priority ordering for medical specialties
-    const specialtyPriority: Record<string, number> = {
-      'ophtalmologie': 1,
-      'ophthalmology': 1,
-      'orl': 2,
-      'ent': 2,
-      'hopital': 3,
-      'hospital': 3,
-      'hospitalier': 3,
-      'orthopedie': 4,
-      'orthopedic': 4,
-      'orthopedics': 4,
-    };
-
-    const sortedCategories = processedCategories.sort((a, b) => {
-      const aSlug = a.slug.toLowerCase();
-      const bSlug = b.slug.toLowerCase();
-      const aName = a.name.toLowerCase();
-      const bName = b.name.toLowerCase();
-
-      // Check both slug and name for priority matching
-      const aPriority = specialtyPriority[aSlug] || specialtyPriority[aName] || 999;
-      const bPriority = specialtyPriority[bSlug] || specialtyPriority[bName] || 999;
-
-      if (aPriority !== bPriority) {
-        return aPriority - bPriority;
-      }
-
-      // Fall back to sort_order then alphabetical
-      if (a.sortOrder !== b.sortOrder) {
-        return (a.sortOrder || 0) - (b.sortOrder || 0);
-      }
-      return a.name.localeCompare(b.name);
-    });
+    })
+      // An empty category is an unfinished page ("catégorie en cours de
+      // développement"); the public site never links to one.
+      // Order is categories.sort_order (see orderBy above), which the catalogue
+      // scripts own -- no hardcoded specialty priority.
+      .filter(category => category.count !== '0');
 
     return NextResponse.json({
       success: true,
-      data: sortedCategories
+      data: processedCategories
     });
 
   } catch (error) {

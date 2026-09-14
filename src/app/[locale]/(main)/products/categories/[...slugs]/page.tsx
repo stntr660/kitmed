@@ -10,6 +10,7 @@ import { ArrowRight, ArrowLeft, Building2, Package, Eye, Heart, Sparkles, Award,
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
+import { useScrollRestore } from '@/hooks/useScrollRestore';
 import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Category {
@@ -59,6 +60,9 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
   const locale = useHydrationSafeLocale('fr');
 
   const currentSlug = params.slugs[params.slugs.length - 1];
+
+  // Back from a product or sub-category lands where the user left, not at the footer
+  useScrollRestore(!loading);
 
   useEffect(() => {
     loadCategoryData();

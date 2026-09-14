@@ -9,6 +9,7 @@ import { ArrowRight, Building2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
+import { useScrollRestore } from '@/hooks/useScrollRestore';
 
 interface Category {
   id: string;
@@ -25,6 +26,7 @@ export default function ProductsByDisciplinePage() {
   const tDisciplines = useTranslations('disciplines');
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  useScrollRestore(!loading);
   const locale = useHydrationSafeLocale('fr');
 
   useEffect(() => {

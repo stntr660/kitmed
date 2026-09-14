@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
 
 interface RouteParams {
   params: {
@@ -136,6 +137,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       }
     });
 
+    // Totals include every descendant; a child with nothing below it is hidden
+    const counts = await getRecursiveProductCounts();
+    const countOf = (cat: any) => counts.get(cat.id) || 0;
+    const nonEmpty = (list: any[]) => list.filter((c: any) => countOf(c) > 0);
+
     // Transform the category data
     const transformCategory = (cat: any) => {
       const translation = cat.category_translations?.[0];
@@ -146,9 +152,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         description: translation?.description || cat.description,
         imageUrl: cat.image_url,
         type: cat.type,
-        productCount: cat._count?.products || 0,
+        productCount: countOf(cat),
         ...(cat.other_categories && {
-          children: cat.other_categories.map((child: any) => {
+          children: nonEmpty(cat.other_categories).map((child: any) => {
             const childTranslation = child.category_translations?.[0];
             return {
               id: child.id,
@@ -157,9 +163,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
               description: childTranslation?.description || child.description,
               imageUrl: child.image_url,
               type: child.type,
-              productCount: child._count?.products || 0,
-              ...(child.other_categories && child.other_categories.length > 0 && {
-                children: child.other_categories.map((grandchild: any) => {
+              productCount: countOf(child),
+              ...(nonEmpty(child.other_categories || []).length > 0 && {
+                children: nonEmpty(child.other_categories).map((grandchild: any) => {
                   const gcTranslation = grandchild.category_translations?.[0];
                   return {
                     id: grandchild.id,
@@ -168,9 +174,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
                     description: gcTranslation?.description || grandchild.description,
                     imageUrl: grandchild.image_url,
                     type: grandchild.type,
-                    productCount: grandchild._count?.products || 0,
-                    ...(grandchild.other_categories && grandchild.other_categories.length > 0 && {
-                      children: grandchild.other_categories.map((ggchild: any) => {
+                    productCount: countOf(grandchild),
+                    ...(nonEmpty(grandchild.other_categories || []).length > 0 && {
+                      children: nonEmpty(grandchild.other_categories).map((ggchild: any) => {
                         const ggTranslation = ggchild.category_translations?.[0];
                         return {
                           id: ggchild.id,
@@ -179,7 +185,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
                           description: ggTranslation?.description || ggchild.description,
                           imageUrl: ggchild.image_url,
                           type: ggchild.type,
-                          productCount: ggchild._count?.products || 0
+                          productCount: countOf(ggchild)
                         };
                       })
                     })

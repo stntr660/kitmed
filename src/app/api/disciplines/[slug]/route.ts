@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
 
 interface RouteParams {
   params: {
@@ -69,6 +70,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
 
+    const counts = await getRecursiveProductCounts();
+
     // Transform the discipline data
     const translation = discipline.category_translations?.[0];
     const transformedDiscipline = {
@@ -78,15 +81,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       description: translation?.description || discipline.description,
       imageUrl: discipline.image_url,
       type: discipline.type,
-      productCount: discipline._count.products,
+      productCount: counts.get(discipline.id) || 0,
       other_categories: discipline.other_categories
         .map((category: any) => {
           const categoryTranslation = category.category_translations?.[0];
-          const directProducts = category._count.products;
-          const childrenProducts = (category.other_categories || []).reduce(
-            (sum: number, child: any) => sum + (child._count?.products || 0), 0
-          );
-          const totalProducts = directProducts + childrenProducts;
+          // Products anywhere below this category, not just one level down
+          const totalProducts = counts.get(category.id) || 0;
           return {
             id: category.id,
             name: categoryTranslation?.name || category.name,
@@ -95,10 +95,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             imageUrl: category.image_url,
             type: category.type,
             productCount: totalProducts,
-            childCount: (category.other_categories || []).length
+            childCount: (category.other_categories || [])
+              .filter((child: any) => (counts.get(child.id) || 0) > 0).length
           };
         })
-        .filter((cat: any) => cat.productCount > 0 || cat.childCount > 0)
+        // A category with no product anywhere below it is never shown
+        .filter((cat: any) => cat.productCount > 0)
     };
 
     return NextResponse.json({
