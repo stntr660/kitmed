@@ -242,11 +242,11 @@ export default function ContactPage() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.weekdays')}</span>
-                        <span className="text-gray-900 font-medium">08:00 - 18:00</span>
+                        <span className="text-gray-900 font-medium">08:30 - 17:30</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.saturday')}</span>
-                        <span className="text-gray-900 font-medium">08:00 - 13:00</span>
+                        <span className="text-gray-900 font-medium">08:30 - 12:30</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.sunday')}</span>
