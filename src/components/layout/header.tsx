@@ -191,7 +191,7 @@ export function Header({ locale, className }: HeaderProps) {
                       <DropdownMenuItem
                         key={cat.id}
                         onClick={() => setSelectedCategory(cat.id)}
-                        className={cn('cursor-pointer py-2.5 px-3 rounded-md', selectedCategory === cat.id && 'bg-primary/10 text-primary')}
+                        className={cn('cursor-pointer py-2.5 px-3 rounded-md font-medium', selectedCategory === cat.id && 'bg-primary/10 text-primary')}
                       >
                         {cat.name}
                       </DropdownMenuItem>
@@ -420,7 +420,7 @@ export function Header({ locale, className }: HeaderProps) {
                         <DropdownMenuItem key={cat.id} asChild>
                           <Link
                             href={`/${locale}/products/categories/${cat.slug}`}
-                            className="cursor-pointer py-2.5 px-3 rounded-md"
+                            className="cursor-pointer py-2.5 px-3 rounded-md font-medium"
                           >
                             {cat.name}
                           </Link>
