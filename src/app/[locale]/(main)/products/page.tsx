@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useScrollRestore } from '@/hooks/useScrollRestore';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -84,6 +85,10 @@ export default function ProductsPage() {
   const [onlyFeatured, setOnlyFeatured] = useState(false);
   const [manufacturers, setManufacturers] = useState<any[]>([]);
   const [initialLoadDone, setInitialLoadDone] = useState(false);
+  const [firstProductsLoadComplete, setFirstProductsLoadComplete] = useState(false);
+
+  // Reset each arrival, without jumping when search or filters reload products.
+  useScrollRestore(firstProductsLoadComplete);
 
   // Read URL params on initial load
   useEffect(() => {
@@ -172,6 +177,7 @@ export default function ProductsPage() {
       console.error('Failed to load products:', error);
     } finally {
       setLoading(false);
+      setFirstProductsLoadComplete(true);
     }
   };
 

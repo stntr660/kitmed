@@ -67,7 +67,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const locale = useHydrationSafeLocale('fr');
 
-  // Back from a product or sub-category lands where the user left, not at the footer
+  // Start at the top after catalogue content loads, including browser Back
   useScrollRestore(!loading);
 
   useEffect(() => {

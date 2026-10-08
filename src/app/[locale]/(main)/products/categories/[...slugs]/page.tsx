@@ -61,7 +61,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
 
   const currentSlug = params.slugs[params.slugs.length - 1];
 
-  // Back from a product or sub-category lands where the user left, not at the footer
+  // Start at the top after catalogue content loads, including browser Back
   useScrollRestore(!loading);
 
   useEffect(() => {
