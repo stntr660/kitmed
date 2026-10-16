@@ -11,8 +11,8 @@ const prisma = new PrismaClient();
  *    Tables motorisées last
  * B) sub-family order: Matériel de réfraction (Réfractomètres / Kératomètres
  *    first, renamed), Diagnostic rétine (OCT first, Micropérimètres last)
- * C) product order inside Lampes à fente: Haag-Streit, then Keeler, then
- *    Mediworks
+ * C) product order by brand inside Lampes à fente (Haag-Streit, Keeler,
+ *    Mediworks) and Verres et ophtalmoscopes (Ocular, Ray Vision, HEINE)
  * D) removals, ARCHIVED (status only): FCI knives, and in Instrumentation
  *    everything except "Instruments FCI" and "Instruments Moria" (one of them
  *    linked a "bon de commande" instead of a sales brochure)
@@ -90,6 +90,16 @@ const PRODUCT_ORDER = {
     "Nouveau 2025", "BQ-900", "BM-900", "BI-900", "-", "7220531", // Haag-Streit (Elara, lamps, IM modules, AT 900)
     "SYMPHONY-Q", "3020-P-2139", "3010-P-2000",                    // Keeler
     "S390I",                                                       // Mediworks
+  ],
+  // « Verre ophta » -- one category, sorted by brand: lenses first, then
+  // trial sets and frames, then ophthalmoscopes
+  "verres-ophtalmoscope-et-skeepens": [
+    "OCU-MKBIIKV0", "OCU-MKBIIKN1", "OACF-15",                     // Ocular exam / laser lenses + accessories
+    "TL-R60", "TL-S30", "TL-L15", "TL-G40", "TL-E80", "TL-V20",    // Ray Vision trial lens sets
+    "TF-P50", "TF-K30", "TF-K65", "TF-E40",                        // Ray Vision trial frames
+    "HEINE-OMEGA-600", "slug:ophtalmoscope-indirect-binoculaire-omega-500-led", // HEINE indirect
+    "HEINE-BETA-200S-LED", "slug:ophtalmoscope-beta-200-led",                    // HEINE direct
+    "slug:ensemble-diagnostique-beta-200-led-ophtalmoscope-otoscope", "slug:ophtalmoscope-mini-3000-led",
   ],
 };
 
@@ -231,7 +241,9 @@ async function main() {
       say(`  ${String(sort).padStart(3)} ${p.constructeur.padEnd(16)} ${frName(p).slice(0, 50)}${p.sort_order !== sort ? `  (${p.sort_order} -> ${sort})` : ""}`);
       if (APPLY && p.sort_order !== sort) await prisma.products.update({ where: { id: p.id }, data: { sort_order: sort, updated_at: now() } });
     }
-    const others = await prisma.products.findMany({ where: { category_id: cat.id, status: "active", reference_fournisseur: { notIn: refs } } });
+    const listed = [];
+    for (const ref of refs) { const p = await product(ref); if (p) listed.push(p.id); }
+    const others = await prisma.products.findMany({ where: { category_id: cat.id, status: "active", id: { notIn: listed } } });
     for (const o of others) {
       say(`  [NON LISTÉ] ${o.reference_fournisseur} -> 999`);
       if (APPLY) await prisma.products.update({ where: { id: o.id }, data: { sort_order: 999, updated_at: now() } });
