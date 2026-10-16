@@ -23,9 +23,12 @@ const prisma = new PrismaClient();
  *
  * Run INSIDE the staging app container: /app/public/uploads is the mounted
  * volume, so the file checks see what the site serves.
- *   docker cp 59-client-feedback-2026-10-16.js <app>:/app/scripts/
- *   docker exec <app> node scripts/59-client-feedback-2026-10-16.js          # dry-run
- *   docker exec <app> node scripts/59-client-feedback-2026-10-16.js --apply
+ * /app is not writable, so the script runs from /tmp against /app's modules:
+ *   docker cp 59-client-feedback-2026-10-16.js <app>:/tmp/59.js
+ *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/59.js          # dry-run
+ *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/59.js --apply
+ * The new brochures and photos (kitmed-2026-10-*.pdf, affinity-2-3.jpg,
+ * phantom-slider.png) were copied to the volume first.
  *
  * Rollback: pg_dump taken first,
  *   backups/kitmed_staging_before_client_feedback_2026-10-16.dump
@@ -101,18 +104,44 @@ const ARCHIVE = {
 
 // ------------------------------------------------------- E. brochures
 // reference -> URL under /uploads (null = remove a wrong brochure)
+const B = (slug) => `/uploads/pdfs/kitmed-2026-10-${slug}-brochure.pdf`;
 const BROCHURES = {
-  "Nouveau 2025": "/uploads/pdfs/hs-elara900-fl-xxx-en-web-1772807575593-6660a630.pdf", // Elara 900, already on the volume
-  "RS-330-DUO2":  "/uploads/products/rs-330-gallery-2.pdf",                             // Retina Scan Duo 2 brochure, already on the volume
-  "ARTISAN APHAKIA": null, // linked a surgical procedure, not a brochure
+  "Nouveau 2025":     "/uploads/pdfs/hs-elara900-fl-xxx-en-web-1772807575593-6660a630.pdf", // Elara 900, already on the volume
+  "LYPOP":            B("lypop"),          // nidek.fr, FR, 4 p.
+  "TONOREF-III":      B("tonoref-iii"),    // nidek.fr, FR, 6 p.
+  "YC-200":           B("yc-200"),         // nidek.fr, FR, YC-200 + YC-200 S Plus
+  "YLC-500":          B("ylc-500"),        // nidek.fr, FR, GYC / YLC / MC-500 range brochure (only one offered)
+  "HAAG-OCTOPUS-900": B("octopus-900"),    // haag-streit.com, EN -- replaces the clinical compendium
+  "7220001":          B("octopus-600"),    // haag-streit.com, EN -- replaces the clinical compendium
+  "RS-1":             B("rs-1"),           // nidek.fr, FR, 2 p. leaflet
+  "CV-9000":          B("cv-9000"),        // nidek-intl.com, EN, Cube α
+  "RS-330-DUO2":      B("rs-330-duo2"),    // nidek.fr, FR (the volume only had the EN spec sheet)
+  "ARTISAN APHAKIA":  B("artisan-aphakia"),// ophtec.com factsheet -- was the surgical procedure
+  "Biovis-1.6":       B("biovis"),         // medicontur.com, FR, BioVis family infosheet
+  "Biovis-1.8":       B("biovis"),
+  "Biovis-3.0":       B("biovis"),
+  "VISCO-MC":         B("visco-mc"),       // medicontur.com, FR infosheet
+  "PHANTOM":          B("phantom"),        // nidek.fr, FR, 12 p., Sept 2026
+  // DUOVISC-HILURON and the ACUVUE lenses: the makers publish no brochure
 };
 
 // ---------------------------------------------------------- F. photos
 // reference -> file under public/uploads/products (becomes the primary image)
-const PRIMARY_IMAGES = {};
+const PRIMARY_IMAGES = {
+  "OT-2200": "affinity-2-3.jpg", // « Affinity 2/3 should have a clearer photo » -- nidek.fr original, 1600 px
+};
 
 // « Nidek Phantom should be added on slider »
-const BANNERS = [];
+const BANNERS = [
+  {
+    title: "Phantom", file: "phantom-slider.png", sort: 4,
+    cta_url: "/fr/products/phantom-open-field-refraction-system-phantom",
+    fr: { title: "Phantom", subtitle: "La réfraction en champ ouvert", cta: "Découvrir",
+          description: "Système de réfraction binoculaire NIDEK en champ ouvert : le patient regarde au loin, sans réfracteur devant les yeux." },
+    en: { title: "Phantom", subtitle: "Open-field refraction", cta: "Discover",
+          description: "NIDEK binocular open-field refraction system: the patient looks into the distance, with no phoropter in front of the eyes." },
+  },
+];
 
 // ============================================================================
 
