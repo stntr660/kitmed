@@ -245,7 +245,12 @@ export default function HomePage() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      <div className="relative h-48 bg-white overflow-hidden p-4">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug}`}
+                        aria-label={product.name}
+                        className="relative block h-48 bg-white overflow-hidden p-4"
+                      >
                         {primaryImage ? (
                           <img
                             src={primaryImage.url}
@@ -268,7 +273,7 @@ export default function HomePage() {
                           </Badge>
                         </div>
 
-                      </div>
+                      </Link>
 
                       <CardContent className="p-4">
                         <div className="mb-2">

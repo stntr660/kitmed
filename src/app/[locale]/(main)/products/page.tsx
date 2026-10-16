@@ -14,9 +14,7 @@ import {
   Search,
   Filter,
   ArrowRight,
-  Heart,
   Download,
-  Eye,
   Building2,
   Award,
   Sparkles,
@@ -87,7 +85,7 @@ export default function ProductsPage() {
   const [initialLoadDone, setInitialLoadDone] = useState(false);
   const [firstProductsLoadComplete, setFirstProductsLoadComplete] = useState(false);
 
-  // Reset each arrival, without jumping when search or filters reload products.
+  // Top on arrival, saved offset on Back; search and filter reloads never jump.
   useScrollRestore(firstProductsLoadComplete);
 
   // Read URL params on initial load
@@ -484,8 +482,12 @@ export default function ProductsPage() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      {/* Product Image */}
-                      <div className="relative h-64 bg-white overflow-hidden p-4">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug || product.id}`}
+                        aria-label={getProductName(product)}
+                        className="relative block h-64 bg-white overflow-hidden p-4"
+                      >
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
@@ -499,16 +501,7 @@ export default function ProductsPage() {
                           </div>
                         )}
 
-                        {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
 
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
@@ -536,7 +529,7 @@ export default function ProductsPage() {
                             </Badge>
                           )}
                         </div>
-                      </div>
+                      </Link>
 
                       <CardHeader className="p-4 pb-2">
                         <div className="text-xs text-slate-500 font-medium mb-1">

@@ -12,8 +12,6 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
   Search,
   ArrowRight,
-  Heart,
-  Eye,
   Building2,
   Award,
   Sparkles,
@@ -182,7 +180,12 @@ function SearchPageContent() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      <div className="relative h-64 bg-white overflow-hidden p-4">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug || product.id}`}
+                        aria-label={getProductName(product)}
+                        className="relative block h-64 bg-white overflow-hidden p-4"
+                      >
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
@@ -197,14 +200,6 @@ function SearchPageContent() {
                         )}
 
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
 
                         <div className="absolute top-4 left-4 space-y-2">
                           {product.isFeatured && (
@@ -231,7 +226,7 @@ function SearchPageContent() {
                             </Badge>
                           )}
                         </div>
-                      </div>
+                      </Link>
 
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
