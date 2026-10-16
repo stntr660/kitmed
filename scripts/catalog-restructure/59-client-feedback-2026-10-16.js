@@ -132,9 +132,6 @@ const BROCHURES = {
   "Biovis-3.0":       B("biovis"),
   "VISCO-MC":         B("visco-mc"),       // medicontur.com, FR infosheet
   "PHANTOM":          B("phantom"),        // nidek.fr, FR, 12 p., Sept 2026
-  // the client's « all brochures commercial? » check: two older links were not
-  "BI-900":           B("bi-900"),         // haag-streit.com sales sheet -- was the 28 p. instructions for use
-  "OACF-15":          "/uploads/pdfs/ocular-product-catalog.pdf", // Ocular sales catalogue -- was a 1 p. technical sheet
   // DUOVISC-HILURON and the ACUVUE lenses: the makers publish no brochure
 };
 
