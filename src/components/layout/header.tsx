@@ -123,11 +123,11 @@ export function Header({ locale, className }: HeaderProps) {
             <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-col items-center">
               <HeaderLogo className="py-0 [&_img]:!max-h-[70px]" />
               <span className="mt-0.5 flex items-center gap-2 text-primary-600 italic whitespace-nowrap">
-                <span className="h-px w-8 bg-current" aria-hidden="true" />
-                <span className="text-[12px] leading-none">{tCommon('logoTagline')}</span>
-                <span className="h-px w-8 bg-current" aria-hidden="true" />
+                <span className="h-px w-6 bg-current" aria-hidden="true" />
+                <span className="text-[9px] leading-none">{tCommon('logoTagline')}</span>
+                <span className="h-px w-6 bg-current" aria-hidden="true" />
               </span>
-              <span className="mt-0.5 text-[12px] font-bold italic leading-none text-primary-600">
+              <span className="mt-0.5 text-[9px] font-bold italic leading-none text-primary-600">
                 {tCommon('logoSince')}
               </span>
             </Link>
