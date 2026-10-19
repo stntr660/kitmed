@@ -121,9 +121,14 @@ export function Header({ locale, className }: HeaderProps) {
           {/* Logo + Certifications */}
           <div className="flex items-center flex-shrink-0 mr-8">
             <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-col items-center">
-              <HeaderLogo className="py-0 [&_img]:!max-h-[76px]" />
-              <span className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-600 whitespace-nowrap">
-                {tCommon('logoTagline')}
+              <HeaderLogo className="py-0 [&_img]:!max-h-[70px]" />
+              <span className="mt-0.5 flex items-center gap-2 text-primary-600 italic whitespace-nowrap">
+                <span className="h-px w-8 bg-current" aria-hidden="true" />
+                <span className="text-[12px] leading-none">{tCommon('logoTagline')}</span>
+                <span className="h-px w-8 bg-current" aria-hidden="true" />
+              </span>
+              <span className="mt-0.5 text-[12px] font-bold italic leading-none text-primary-600">
+                {tCommon('logoSince')}
               </span>
             </Link>
             <div className="hidden lg:flex items-center ml-6 pl-6 border-l border-gray-200 gap-3">
