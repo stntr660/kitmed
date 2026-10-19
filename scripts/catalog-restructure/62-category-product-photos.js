@@ -11,7 +11,8 @@ const prisma = new PrismaClient();
  * photo, squared on white so the square card does not crop it. Scansys, the
  * 877PA IOL and Eyesi were cut out of their brochure page, Oculoplastie is the
  * FCI catalogue cover, Matériel de réfraction puts Tonoref III and RT-6100
- * side by side. Categories the client left blank are not touched.
+ * side by side. Categories the client left blank are not touched. The five
+ * homepage disciplines show three of their own products (no people in them).
  *
  * REVERT POINT: `before` is what each category showed on 2026-10-19 (the AI
  * artwork). Those files are kept, so --revert puts every card back exactly.
@@ -53,6 +54,12 @@ const CATEGORIES = {
   "oculoplastie-fci":                                  { before: "/uploads/categories/oculoplastie-fci.png", from: "catalogue FCI Oculoplastie" },
   "valves":                                            { before: "/uploads/categories/valves.png", from: "eyeWatch Rheon" },
   "simulateur":                                        { before: "/uploads/categories/simulateur.png", from: "Eyesi (Haag-Streit)" },
+  // homepage discipline cards (added the same day): three real products each
+  "ophtalmologie":                                     { before: "/uploads/categories/ophtalmologie.png", from: "ELARA 900 + Tonoref III + RS-1" },
+  "orl-oto-rhino-laryngologie":                        { before: "/uploads/categories/orl-oto-rhino-laryngologie.png", from: "stroboscopie + lampe frontale + tympanomètre" },
+  "mobilier-et-literie-hospitaliers":                  { before: "/uploads/categories/mobilier-et-literie-hospitaliers.png", from: "chariot F-50 + fauteuil roulant + déambulateur" },
+  "orthopedics":                                       { before: "/uploads/categories/orthopedics.png", from: "genouillère + chevillière + ceinture" },
+  "dispositifs-medicaux":                              { before: "/uploads/categories/oph-pharmaceutics.png", from: "ISOMAR + HYLO DUAL + HYLO COMOD" },
 };
 
 async function main() {
