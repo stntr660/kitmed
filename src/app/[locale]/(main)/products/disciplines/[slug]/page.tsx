@@ -371,11 +371,6 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
                     {tDisciplines('backToDisciplines')}
                   </Link>
                 </Button>
-                <Button asChild>
-                  <Link href={`/${locale}/products`}>
-                    {tDisciplines('viewAllProducts')}
-                  </Link>
-                </Button>
               </div>
             </div>
           )}

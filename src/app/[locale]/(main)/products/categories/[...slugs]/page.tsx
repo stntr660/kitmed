@@ -135,7 +135,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
               {tCategories('notFoundDescription')}
             </p>
             <Button asChild>
-              <Link href={`/${locale}/products`}>
+              <Link href={`/${locale}/products/disciplines`}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 {tCategories('backToProducts')}
               </Link>
@@ -385,7 +385,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                 {tCategories('emptyCategoryDescription')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   {tCategories('backToProducts')}
                 </Link>

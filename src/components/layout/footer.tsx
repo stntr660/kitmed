@@ -32,7 +32,6 @@ interface FooterProps {
 
 const getFooterLinks = (locale: string) => ({
   products: [
-    { name: 'allProducts', href: `/${locale}/products` },
     { name: 'byDiscipline', href: `/${locale}/products/disciplines` },
     { name: 'byManufacturer', href: `/${locale}/products/manufacturers` },
     { name: 'featured', href: `/${locale}/products/featured` },

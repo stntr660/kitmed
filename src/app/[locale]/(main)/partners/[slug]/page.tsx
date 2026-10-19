@@ -415,11 +415,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
                     {tPartner('backToPartners')}
                   </Link>
                 </Button>
-                <Button asChild>
-                  <Link href={`/${locale}/products`}>
-                    {tPartner('viewAllProducts')}
-                  </Link>
-                </Button>
               </div>
             </div>
           )}

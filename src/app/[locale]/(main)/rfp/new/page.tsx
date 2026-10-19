@@ -39,7 +39,7 @@ export default function NewRFPPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   {t('hero.cta.browseProducts')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

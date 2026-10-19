@@ -253,7 +253,7 @@ export default function FeaturedProductsPage() {
                 {tFeatured('noFeaturedDescription')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   {tFeatured('backToProducts')}
                 </Link>
               </Button>

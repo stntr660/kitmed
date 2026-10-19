@@ -143,7 +143,7 @@ export default function ProductsByDisciplinePage() {
                 {tDisciplines('noSpecialtiesFoundDescription')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}`}>
                   {tDisciplines('backToProducts')}
                 </Link>
               </Button>

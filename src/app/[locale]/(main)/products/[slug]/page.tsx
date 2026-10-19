@@ -183,7 +183,7 @@ export default function ProductDetailPage() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-slate-900 mb-4">{t('notFound')}</h1>
           <Button asChild>
-            <Link href={`/${locale}/products`}>
+            <Link href={`/${locale}/products/disciplines`}>
               <ArrowLeft className="h-4 w-4 mr-2" />
               {t('backToCatalog')}
             </Link>
@@ -202,7 +202,7 @@ export default function ProductDetailPage() {
       <nav className="bg-white border-b border-slate-200 py-4">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center text-sm text-slate-600">
-            <Link href={`/${locale}/products`} className="hover:text-gray-600 transition-colors">
+            <Link href={`/${locale}/products/disciplines`} className="hover:text-gray-600 transition-colors">
               {t('breadcrumbProducts')}
             </Link>
             <span className="mx-2">/</span>

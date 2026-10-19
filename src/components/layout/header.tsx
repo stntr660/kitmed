@@ -52,7 +52,7 @@ interface Category {
 const getNavigation = (locale: string) => [
   { name: 'home', href: `/${locale}` },
   { name: 'about', href: `/${locale}/about` },
-  { name: 'products', href: `/${locale}/products` },
+  { name: 'products', href: `/${locale}/products/disciplines` },
   { name: 'partners', href: `/${locale}/partners` },
   { name: 'contact', href: `/${locale}/contact` },
 ];
@@ -387,15 +387,6 @@ export function Header({ locale, className }: HeaderProps) {
                     </button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="center" className="w-72 max-h-[500px] overflow-y-auto p-2">
-                    <DropdownMenuItem asChild>
-                      <Link
-                        href={`/${locale}/products`}
-                        className="cursor-pointer py-2.5 px-3 rounded-md font-medium text-primary"
-                      >
-                        {t('allProducts')}
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator className="my-2" />
                     {categories.map((cat) => (
                       cat.subcategories && cat.subcategories.length > 0 ? (
                         <DropdownMenuSub key={cat.id}>

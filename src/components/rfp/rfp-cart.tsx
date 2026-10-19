@@ -91,7 +91,7 @@ export function RFPCart() {
                   {t('addProducts')}
                 </p>
                 <Button asChild onClick={closeCart}>
-                  <Link href={`/${locale}/products`}>
+                  <Link href={`/${locale}/products/disciplines`}>
                     {t('browseProducts')}
                   </Link>
                 </Button>
@@ -243,7 +243,7 @@ export function RFPCart() {
                   asChild
                   onClick={closeCart}
                 >
-                  <Link href={`/${locale}/products`}>
+                  <Link href={`/${locale}/products/disciplines`}>
                     {t('browseProducts')}
                   </Link>
                 </Button>

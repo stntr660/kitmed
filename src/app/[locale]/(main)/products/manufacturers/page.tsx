@@ -168,7 +168,7 @@ export default function ProductsByManufacturerPage() {
                 {t('manufacturers.noManufacturers.description')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   {t('manufacturers.backToProducts')}
                 </Link>
               </Button>

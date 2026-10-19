@@ -127,7 +127,7 @@ function SearchPageContent() {
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   {t('back')}
                 </Link>
@@ -324,11 +324,6 @@ function SearchPageContent() {
               <p className="text-slate-600 mb-8 max-w-md mx-auto">
                 {tProducts('noResults.description')}
               </p>
-              <Button asChild>
-                <Link href={`/${locale}/products`}>
-                  {locale === 'fr' ? 'Voir tous les produits' : 'View all products'}
-                </Link>
-              </Button>
             </div>
           )}
         </div>
