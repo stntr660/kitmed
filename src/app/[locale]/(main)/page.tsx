@@ -4,11 +4,12 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown, Download } from 'lucide-react';
+import { ExternalLink, ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown, Download } from 'lucide-react';
 import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useIsHydrated } from '@/components/ui/hydration-safe';
@@ -304,7 +305,7 @@ export default function HomePage() {
                                 rel="noopener noreferrer"
                                 title={t('featuredProducts.downloadBrochure')}
                               >
-                                <Download className="h-4 w-4 text-primary-600" />
+                                {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4 text-primary-600" /> : <Download className="h-4 w-4 text-primary-600" />}
                               </a>
                             </Button>
                           )}

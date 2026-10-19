@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
+  ExternalLink,
   ArrowLeft,
   Download,
   Heart,
@@ -23,6 +24,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 
 interface Product {
@@ -68,6 +70,7 @@ export default function ProductDetailPage() {
   const slug = params.slug as string;
   const locale = (params.locale as string) || 'fr';
   const t = useTranslations('products.detail');
+  const tCommon = useTranslations('common');
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -335,8 +338,8 @@ export default function ProductDetailPage() {
                   {product.pdfBrochureUrl && (
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>
                       <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                        <Download className="h-5 w-5 mr-2" />
-                        {t('downloadBrochure')}
+                        {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-5 w-5 mr-2" /> : <Download className="h-5 w-5 mr-2" />}
+                        {isWebPageLink(product.pdfBrochureUrl) ? tCommon('officialSite') : t('downloadBrochure')}
                         {product.pdfSource === 'manufacturer' && (
                           <span className="ml-2 text-xs text-slate-500">{t('generalBrochure')}</span>
                         )}

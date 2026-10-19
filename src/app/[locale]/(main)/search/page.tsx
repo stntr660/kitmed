@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
+  ExternalLink,
   Search,
   ArrowRight,
   Building2,
@@ -21,6 +22,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
@@ -222,7 +224,7 @@ function SearchPageContent() {
                               className="text-xs border-0 bg-blue-100 text-blue-600"
                             >
                               <FileText className="h-3 w-3 mr-1" />
-                              PDF
+                              {isWebPageLink(product.pdfBrochureUrl) ? t('officialSite') : 'PDF'}
                             </Badge>
                           )}
                         </div>
@@ -299,7 +301,7 @@ function SearchPageContent() {
                                 asChild
                               >
                                 <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                  <Download className="h-4 w-4" />
+                                  {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>
                             )}

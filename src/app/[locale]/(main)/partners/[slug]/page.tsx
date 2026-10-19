@@ -7,8 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowLeft, Building2, Package, Star, Award, Sparkles, Download, MessageSquare, X, Filter } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Building2, Package, Star, Award, Sparkles, Download, MessageSquare, X, Filter } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 
@@ -368,7 +369,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                                 asChild
                               >
                                 <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                  <Download className="h-4 w-4" />
+                                  {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>
                             )}

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
+  ExternalLink,
   ArrowRight,
   Download,
   Building2,
@@ -16,6 +17,7 @@ import {
   Star
 } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 
@@ -227,7 +229,7 @@ export default function FeaturedProductsPage() {
                                 asChild
                               >
                                 <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                  <Download className="h-4 w-4" />
+                                  {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>
                             )}
