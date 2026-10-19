@@ -5,7 +5,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 /**
- * 2026-10-19 -- « Instruments Rumex », one general product in Instrumentation
+ * 2026-10-19 -- « Instruments vitreoretinal Rumex », one general product in Instrumentation
  * like « Instruments FCI » and « Instruments Moria », with Rumex's 2026
  * vitreoretinal brochure. The 157 single Rumex instruments stay archived.
  *
@@ -32,11 +32,11 @@ const IMAGE = "/uploads/products/rumex-instruments-2026.jpg";
 const PDF = "/uploads/pdfs/kitmed-2026-10-rumex-vitreoretinal-brochure.pdf";
 const TEXT = {
   fr: {
-    nom: "Instruments Rumex",
+    nom: "Instruments vitreoretinal Rumex",
     description: "Gamme complète d'instruments chirurgicaux ophtalmiques Rumex. Instrumentation de précision pour la chirurgie vitréo-rétinienne : pinces ILM et ERM, ciseaux, poignées, trocarts, canules et consommables.",
   },
   en: {
-    nom: "Rumex Instruments",
+    nom: "Rumex Vitreoretinal Instruments",
     description: "Complete range of Rumex ophthalmic surgical instruments. Precision instrumentation for vitreoretinal surgery: ILM and ERM forceps, scissors, handles, trocars, cannulas and consumables.",
   },
 };
@@ -60,7 +60,7 @@ async function main() {
     await prisma.products.create({
       data: {
         id, reference_fournisseur: REF, category_id: category.id, constructeur: "rumex",
-        partner_id: partner ? partner.id : null, slug: "instruments-rumex-rumex-instruments",
+        partner_id: partner ? partner.id : null, slug: "instruments-vitreoretinal-rumex",
         status: "active", sort_order: fci.sort_order, pdf_brochure_url: PDF, updated_at: new Date(),
         product_translations: { create: Object.entries(TEXT).map(([language_code, t]) => ({ id: randomUUID(), language_code, ...t })) },
         product_media: { create: [{ id: randomUUID(), type: "image", url: IMAGE, alt_text: TEXT.fr.nom, is_primary: true, sort_order: 0 }] },
