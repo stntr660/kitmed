@@ -120,8 +120,11 @@ export function Header({ locale, className }: HeaderProps) {
         <div className="container flex h-28 items-center justify-between px-6 lg:px-12">
           {/* Logo + Certifications */}
           <div className="flex items-center flex-shrink-0 mr-8">
-            <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')}>
-              <HeaderLogo />
+            <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-col items-center">
+              <HeaderLogo className="py-0 [&_img]:!max-h-[76px]" />
+              <span className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-600 whitespace-nowrap">
+                {tCommon('logoTagline')}
+              </span>
             </Link>
             <div className="hidden lg:flex items-center ml-6 pl-6 border-l border-gray-200 gap-3">
               <Image src="/images/compliance/onssa-logo.svg" alt="ONSSA" width={64} height={64} className="object-contain" />
