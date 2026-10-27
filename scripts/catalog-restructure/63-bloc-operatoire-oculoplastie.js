@@ -13,6 +13,9 @@ const prisma = new PrismaClient();
  *    File: oph-contactology-photo.jpg
  * C) Exploration ORL card shows an Otopront ENT workstation, photo sent by
  *    the client. File: ent-exploration-photo.jpg
+ *    Oculoplastie card shows the FCI implants and probes the client sent
+ *    (oculoplastie-fci-photo2.jpg); Phaco card loses its « Cube α CV-9000 »
+ *    caption too (phaco-photo-clean.jpg).
  * D) Oculoplastie becomes a sub-family of Bloc opératoire, after
  *    Instrumentation. Its products stay attached to it.
  *
@@ -35,6 +38,8 @@ const IMAGES = {
   "bloc-operatoire":  { before: "/uploads/categories/bloc-operatoire.jpg",  after: "/uploads/categories/bloc-operatoire-photo.jpg" },
   "oph-contactology": { before: "/uploads/categories/oph-contactology.png", after: "/uploads/categories/oph-contactology-photo.jpg" },
   "ent-exploration":  { before: "/uploads/categories/ent-exploration.png",  after: "/uploads/categories/ent-exploration-photo.jpg" },
+  "oculoplastie-fci": { before: "/uploads/categories/oculoplastie-fci-photo.jpg", after: "/uploads/categories/oculoplastie-fci-photo2.jpg" },
+  "phaco":            { before: "/uploads/categories/phaco-photo.jpg",      after: "/uploads/categories/phaco-photo-clean.jpg" },
 };
 
 const MOVE = {
