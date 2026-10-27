@@ -69,9 +69,11 @@ export async function GET(request: NextRequest) {
       include: {
         partner_translations: true,
       },
+      // Same order as the homepage carousel: featured first, then sort_order, then name
       orderBy: [
+        { is_featured: 'desc' },
         { sort_order: 'asc' },
-        { created_at: 'desc' },
+        { name: 'asc' },
       ],
       take: limit,
     });
