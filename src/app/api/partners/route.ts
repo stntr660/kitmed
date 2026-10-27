@@ -69,10 +69,10 @@ export async function GET(request: NextRequest) {
       include: {
         partner_translations: true,
       },
-      // Same order as the homepage carousel: featured first, then sort_order, then name
+      // Client order first (sort_order), then featured, then name
       orderBy: [
-        { is_featured: 'desc' },
         { sort_order: 'asc' },
+        { is_featured: 'desc' },
         { name: 'asc' },
       ],
       take: limit,

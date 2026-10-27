@@ -218,10 +218,10 @@ export default function PartnersPage() {
                           <img
                             src={partner.logoUrl}
                             alt={getPartnerName(partner)}
-                            className="h-12 w-12 object-contain flex-shrink-0"
+                            className="h-12 w-24 object-contain flex-shrink-0"
                           />
                         ) : (
-                          <div className="h-12 w-12 bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
+                          <div className="h-12 w-24 bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
                             <Building2 className="h-6 w-6 text-gray-400" />
                           </div>
                         )}
