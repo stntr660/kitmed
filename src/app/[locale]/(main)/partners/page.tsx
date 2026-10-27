@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight, Grid } from 'lucide-react';
+import { Star, Building2, ArrowRight, Grid, Eye, Ear, BedDouble, Bone, Stethoscope, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -32,6 +32,16 @@ interface Category {
   imageUrl?: string | null;
   productCount?: number;
 }
+
+// The partners strip shows a speciality icon per discipline (client request),
+// not the category photo used on the catalogue pages.
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  ophtalmologie: Eye,
+  'orl-oto-rhino-laryngologie': Ear,
+  'mobilier-et-literie-hospitaliers': BedDouble,
+  orthopedics: Bone,
+  'dispositifs-medicaux': Stethoscope,
+};
 
 export default function PartnersPage() {
   const t = useTranslations('partners');
@@ -170,21 +180,22 @@ export default function PartnersPage() {
                     )}
                   >
                     <div className={cn(
-                      'w-28 h-28 rounded-xl overflow-hidden flex items-center justify-center',
-                      selectedCategory === category.slug ? 'bg-white p-2' : 'bg-white shadow-md'
+                      'w-28 h-28 rounded-xl flex items-center justify-center',
+                      selectedCategory === category.slug ? 'bg-white/20' : 'bg-white shadow-md'
                     )}>
-                      {category.imageUrl ? (
-                        <img
-                          src={category.imageUrl}
-                          alt={category.name}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <Building2 className={cn(
-                          'h-14 w-14',
-                          selectedCategory === category.slug ? 'text-primary' : 'text-gray-400'
-                        )} />
-                      )}
+                      {(() => {
+                        const Icon = CATEGORY_ICONS[category.slug] ?? Building2;
+                        return (
+                          <Icon
+                            aria-hidden
+                            strokeWidth={1.75}
+                            className={cn(
+                              'h-14 w-14',
+                              selectedCategory === category.slug ? 'text-white' : 'text-primary'
+                            )}
+                          />
+                        );
+                      })()}
                     </div>
                     <span className="text-xs font-semibold text-center leading-tight max-w-[120px]">
                       {category.name}
