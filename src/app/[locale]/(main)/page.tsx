@@ -171,6 +171,9 @@ export default function HomePage() {
   return (
     <HydrationErrorBoundary>
       <div className="flex flex-col">
+        {/* Dynamic Banner - always render the same component structure */}
+        <DynamicBanner position="homepage" />
+
         {/* Medical Disciplines Section */}
         <section className="py-16 lg:py-20 bg-white">
           <div className="container mx-auto px-4 lg:px-8">
@@ -274,9 +277,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Dynamic Banner - always render the same component structure */}
-        <DynamicBanner position="homepage" />
 
         {/* Certifications Banner */}
         <CertificationsBanner variant="hero" />
