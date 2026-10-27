@@ -19,3 +19,17 @@ export const EyeDrops = createLucideIcon('EyeDrops', [
   ['path', { d: 'M6.6 14.4c1.2 1.4 1.9 2.4 1.9 3.3a1.9 1.9 0 0 1-3.8 0c0-.9.7-1.9 1.9-3.3Z', key: 'drop' }],
   ['path', { d: 'M3.6 20c.7.8 1.1 1.4 1.1 1.9a1.1 1.1 0 0 1-2.2 0c0-.5.4-1.1 1.1-1.9Z', key: 'drop-small' }],
 ]);
+
+export const HospitalBed = createLucideIcon('HospitalBed', [
+  ['path', { d: 'M3 5v12', key: 'headboard' }],
+  ['path', { d: 'M21 10v7', key: 'footboard' }],
+  ['path', { d: 'M3 15h18', key: 'frame' }],
+  ['path', { d: 'M21 12h-10l-4-4', key: 'backrest' }],
+  ['path', { d: 'M11 12v-1.5h7V12', key: 'rail' }],
+  ['path', { d: 'M6 15v3', key: 'leg-head' }],
+  ['path', { d: 'M18 15v3', key: 'leg-foot' }],
+  ['circle', { cx: '6', cy: '19.5', r: '1.5', key: 'wheel-head' }],
+  ['circle', { cx: '18', cy: '19.5', r: '1.5', key: 'wheel-foot' }],
+  ['path', { d: 'M16 2.5v4', key: 'cross-v' }],
+  ['path', { d: 'M14 4.5h4', key: 'cross-h' }],
+]);

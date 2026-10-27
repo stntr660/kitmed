@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight, Grid, Eye, Ear, BedDouble, type LucideIcon } from 'lucide-react';
-import { KneeSupport, EyeDrops } from '@/components/icons/speciality-icons';
+import { Star, Building2, ArrowRight, Grid, Eye, Ear, type LucideIcon } from 'lucide-react';
+import { KneeSupport, EyeDrops, HospitalBed } from '@/components/icons/speciality-icons';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -39,7 +39,7 @@ interface Category {
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   ophtalmologie: Eye,
   'orl-oto-rhino-laryngologie': Ear,
-  'mobilier-et-literie-hospitaliers': BedDouble,
+  'mobilier-et-literie-hospitaliers': HospitalBed,
   orthopedics: KneeSupport,
   'dispositifs-medicaux': EyeDrops,
 };
