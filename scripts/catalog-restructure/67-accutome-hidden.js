@@ -4,23 +4,21 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 /**
- * 2026-10-27 -- client feedback, fourth batch of the day.
+ * 2026-10-27 -- ACCUTOME is no longer shown as a partner
+ * (status -> inactive, no active product).
  *
- * A) ACCUTOME is no longer shown as a partner (status -> inactive, no active product).
- * B) Homepage discipline cards:
- *    drawn icons instead of product photos, sources in ./icons/*.svg
- *    - Orthopédie: a knee support (orthopedics-icon.jpg)
- *    - Dispositifs médicaux: an eye-drop bottle over an eye
- *      (dispositifs-medicaux-icon.jpg), no more ISOMAR nasal spray
+ * A first version also put drawn icons on the Orthopédie and Dispositifs
+ * médicaux homepage cards; the client meant the partners page strip
+ * (KneeSupport / EyeDrops in src/components/icons), so those two cards were
+ * put back to orthopedics-photo.jpg / dispositifs-medicaux-photo.jpg.
  *
- * REVERT POINT: `before` is each row's value on 2026-10-27; --revert puts it back.
+ * REVERT POINT: --revert sets ACCUTOME back to active.
  *
  * Run INSIDE the staging app container, from /tmp against /app's modules:
- *   docker cp 66-accutome-and-discipline-photos.js <app>:/tmp/66.js
- *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/66.js            # dry-run
- *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/66.js --apply
- *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/66.js --revert
- * The *-photo2.jpg files are copied to the uploads volume first.
+ *   docker cp 67-accutome-hidden.js <app>:/tmp/67.js
+ *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/67.js            # dry-run
+ *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/67.js --apply
+ *   docker exec -w /app -e NODE_PATH=/app/node_modules <app> node /tmp/67.js --revert
  */
 
 const APPLY = process.argv.includes("--apply");
@@ -30,10 +28,7 @@ const UPLOADS = process.env.UPLOADS_DIR || path.join(process.cwd(), "public", "u
 const PARTNERS = {
   "accutome": { before: "active", after: "inactive" },
 };
-const IMAGES = {
-  "orthopedics":          { before: "/uploads/categories/orthopedics-photo.jpg",          after: "/uploads/categories/orthopedics-icon.jpg" },
-  "dispositifs-medicaux": { before: "/uploads/categories/dispositifs-medicaux-photo.jpg", after: "/uploads/categories/dispositifs-medicaux-icon.jpg" },
-};
+const IMAGES = {};
 
 async function main() {
   for (const [slug, { before, after }] of Object.entries(PARTNERS)) {

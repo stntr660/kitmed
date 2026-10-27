@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight, Grid, Eye, Ear, BedDouble, Bone, Stethoscope, type LucideIcon } from 'lucide-react';
+import { Star, Building2, ArrowRight, Grid, Eye, Ear, BedDouble, type LucideIcon } from 'lucide-react';
+import { KneeSupport, EyeDrops } from '@/components/icons/speciality-icons';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -39,8 +40,8 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   ophtalmologie: Eye,
   'orl-oto-rhino-laryngologie': Ear,
   'mobilier-et-literie-hospitaliers': BedDouble,
-  orthopedics: Bone,
-  'dispositifs-medicaux': Stethoscope,
+  orthopedics: KneeSupport,
+  'dispositifs-medicaux': EyeDrops,
 };
 
 export default function PartnersPage() {
