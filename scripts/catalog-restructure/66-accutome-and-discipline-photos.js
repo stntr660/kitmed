@@ -8,9 +8,10 @@ const prisma = new PrismaClient();
  *
  * A) ACCUTOME is no longer shown as a partner (status -> inactive, no active product).
  * B) Homepage discipline cards:
- *    - Orthopédie: the PRIM P700 elastic knee support alone (orthopedics-photo2.jpg)
- *    - Dispositifs médicaux: eye drops only, HYLO Comod + Dual + Fresh
- *      (dispositifs-medicaux-photo2.jpg), no more ISOMAR nasal spray
+ *    drawn icons instead of product photos, sources in ./icons/*.svg
+ *    - Orthopédie: a knee support (orthopedics-icon.jpg)
+ *    - Dispositifs médicaux: an eye-drop bottle over an eye
+ *      (dispositifs-medicaux-icon.jpg), no more ISOMAR nasal spray
  *
  * REVERT POINT: `before` is each row's value on 2026-10-27; --revert puts it back.
  *
@@ -30,8 +31,8 @@ const PARTNERS = {
   "accutome": { before: "active", after: "inactive" },
 };
 const IMAGES = {
-  "orthopedics":          { before: "/uploads/categories/orthopedics-photo.jpg",          after: "/uploads/categories/orthopedics-photo2.jpg" },
-  "dispositifs-medicaux": { before: "/uploads/categories/dispositifs-medicaux-photo.jpg", after: "/uploads/categories/dispositifs-medicaux-photo2.jpg" },
+  "orthopedics":          { before: "/uploads/categories/orthopedics-photo.jpg",          after: "/uploads/categories/orthopedics-icon.jpg" },
+  "dispositifs-medicaux": { before: "/uploads/categories/dispositifs-medicaux-photo.jpg", after: "/uploads/categories/dispositifs-medicaux-icon.jpg" },
 };
 
 async function main() {
