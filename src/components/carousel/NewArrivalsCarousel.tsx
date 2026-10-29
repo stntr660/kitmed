@@ -78,7 +78,7 @@ export function NewArrivalsCarousel({
     return (
       <div className={cn("flex justify-center gap-6 overflow-hidden py-6", className)}>
         {Array.from({ length: 3 }).map((_, index) => (
-          <div key={index} className="flex-none w-72 h-80 rounded-xl bg-gray-200 animate-pulse" />
+          <div key={index} className="flex-none w-72 h-96 rounded-xl bg-gray-200 animate-pulse" />
         ))}
       </div>
     );
@@ -99,7 +99,7 @@ export function NewArrivalsCarousel({
         href={`/${locale}/products/${product.slug}`}
         className="group flex-none w-72 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
       >
-        <div className="relative h-56 bg-white p-6">
+        <div className="relative h-72 bg-white p-4">
           {image ? (
             <img
               src={image.url}
