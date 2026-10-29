@@ -55,6 +55,9 @@ interface Product {
   }>;
 }
 
+// « Nouveaux arrivages » carousel hidden on request (2026-10-29); set to true to show it again
+const SHOW_NEW_ARRIVALS = false;
+
 export default function HomePage() {
   const t = useTranslations('home');
   const tCommon = useTranslations('common');
@@ -184,7 +187,7 @@ export default function HomePage() {
       fetchCategories();
       fetchPartners();
       fetchFeaturedProducts();
-      fetchNewArrivals();
+      if (SHOW_NEW_ARRIVALS) fetchNewArrivals();
     }
   }, [locale, isHydrated]);
 
@@ -327,7 +330,7 @@ export default function HomePage() {
         </section>
 
         {/* New Arrivals Section -- hidden when no product is flagged */}
-        {(!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
+        {SHOW_NEW_ARRIVALS && (!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
           <section className="py-12 lg:py-16 bg-white border-t border-gray-100">
             <div className="container mx-auto px-4 lg:px-8">
               <div className="max-w-4xl mx-auto text-center mb-8">
