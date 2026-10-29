@@ -301,31 +301,6 @@ export default function HomePage() {
         {/* Certifications Banner */}
         <CertificationsBanner variant="hero" />
 
-        {/* New Arrivals Section -- hidden when no product is flagged */}
-        {(!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
-          <section className="py-12 lg:py-16 bg-gray-50">
-            <div className="container mx-auto px-4 lg:px-8">
-              <div className="max-w-4xl mx-auto text-center mb-8">
-                <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                  {t('newArrivals.title')}
-                </p>
-                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                  {t('newArrivals.subtitle')}
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                  {t('newArrivals.description')}
-                </p>
-              </div>
-
-              <NewArrivalsCarousel
-                products={newArrivals}
-                isLoading={!isHydrated || newArrivalsLoading}
-                locale={locale}
-              />
-            </div>
-          </section>
-        )}
-
         {/* Partners Section */}
         <section className="py-12 lg:py-16 bg-white">
           <div className="container mx-auto px-4 lg:px-8">
@@ -350,6 +325,31 @@ export default function HomePage() {
 
           </div>
         </section>
+
+        {/* New Arrivals Section -- hidden when no product is flagged */}
+        {(!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
+          <section className="py-12 lg:py-16 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-4 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center mb-8">
+                <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+                  {t('newArrivals.title')}
+                </p>
+                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+                  {t('newArrivals.subtitle')}
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                  {t('newArrivals.description')}
+                </p>
+              </div>
+
+              <NewArrivalsCarousel
+                products={newArrivals}
+                isLoading={!isHydrated || newArrivalsLoading}
+                locale={locale}
+              />
+            </div>
+          </section>
+        )}
 
         {/* Featured Products Section */}
         <section className="py-16 lg:py-20 bg-gray-50">
