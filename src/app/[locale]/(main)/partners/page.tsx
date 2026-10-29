@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight, Grid, Eye, Ear, type LucideIcon } from 'lucide-react';
-import { KneeSupport, EyeDrops, HospitalBed } from '@/components/icons/speciality-icons';
+import { Star, Building2, ArrowRight, Grid } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -34,14 +33,14 @@ interface Category {
   productCount?: number;
 }
 
-// The partners strip shows a speciality icon per discipline (client request),
-// not the category photo used on the catalogue pages.
-const CATEGORY_ICONS: Record<string, LucideIcon> = {
-  ophtalmologie: Eye,
-  'orl-oto-rhino-laryngologie': Ear,
-  'mobilier-et-literie-hospitaliers': HospitalBed,
-  orthopedics: KneeSupport,
-  'dispositifs-medicaux': EyeDrops,
+// The partners strip shows a photo per discipline chosen by the client,
+// cropped square around the subject; the catalogue pages keep their own photos.
+const CATEGORY_PHOTOS: Record<string, string> = {
+  ophtalmologie: '/images/partners/ophtalmologie.jpg',
+  'orl-oto-rhino-laryngologie': '/images/partners/orl-oto-rhino-laryngologie.jpg',
+  'mobilier-et-literie-hospitaliers': '/images/partners/mobilier-et-literie-hospitaliers.jpg',
+  orthopedics: '/images/partners/orthopedics.jpg',
+  'dispositifs-medicaux': '/images/partners/dispositifs-medicaux.jpg',
 };
 
 export default function PartnersPage() {
@@ -181,22 +180,25 @@ export default function PartnersPage() {
                     )}
                   >
                     <div className={cn(
-                      'w-28 h-28 rounded-xl flex items-center justify-center',
-                      selectedCategory === category.slug ? 'bg-white/20' : 'bg-white shadow-md'
+                      'w-28 h-28 rounded-xl overflow-hidden flex items-center justify-center',
+                      selectedCategory === category.slug ? 'bg-white/20 ring-2 ring-white' : 'bg-white shadow-md'
                     )}>
-                      {(() => {
-                        const Icon = CATEGORY_ICONS[category.slug] ?? Building2;
-                        return (
-                          <Icon
-                            aria-hidden
-                            strokeWidth={1.75}
-                            className={cn(
-                              'h-14 w-14',
-                              selectedCategory === category.slug ? 'text-white' : 'text-primary'
-                            )}
-                          />
-                        );
-                      })()}
+                      {CATEGORY_PHOTOS[category.slug] ? (
+                        <img
+                          src={CATEGORY_PHOTOS[category.slug]}
+                          alt=""
+                          aria-hidden
+                          className="w-full h-full object-cover object-center"
+                        />
+                      ) : (
+                        <Building2
+                          aria-hidden
+                          className={cn(
+                            'h-14 w-14',
+                            selectedCategory === category.slug ? 'text-white' : 'text-primary'
+                          )}
+                        />
+                      )}
                     </div>
                     <span className="text-xs font-semibold text-center leading-tight max-w-[120px]">
                       {category.name}
