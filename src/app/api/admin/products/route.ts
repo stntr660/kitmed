@@ -148,6 +148,7 @@ async function getProducts(request: NextRequest) {
       category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
+      newArrival: product.is_new_arrival,
       pdfBrochureUrl: product.pdf_brochure_url,
       pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
       createdAt: product.created_at,
@@ -297,6 +298,7 @@ const createProductSchema = z.object({
   pdf_brochure_url: z.string().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
+  newArrival: z.boolean().default(false),
   seo: z.object({
     title: z.record(z.string(), z.string()).optional(),
     description: z.record(z.string(), z.string()).optional(),
@@ -359,6 +361,7 @@ async function createProduct(request: NextRequest) {
         slug,
         status: productData.status,
         is_featured: productData.featured,
+        is_new_arrival: productData.newArrival,
         pdf_brochure_url: pdfBrochureUrl || null,
         updated_at: new Date(),
         product_translations: {
@@ -400,6 +403,7 @@ async function createProduct(request: NextRequest) {
       category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
+      newArrival: product.is_new_arrival,
       pdfBrochureUrl: product.pdf_brochure_url,
       pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
       createdAt: product.created_at,

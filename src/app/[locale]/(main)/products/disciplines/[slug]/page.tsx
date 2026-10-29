@@ -21,6 +21,7 @@ interface Product {
   slug: string;
   status: string;
   isFeatured: boolean;
+  isNewArrival?: boolean;
   pdfBrochureUrl?: string;
   primaryImage?: string;
   translations: Array<{
@@ -284,6 +285,12 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
 
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
+                          {product.isNewArrival && (
+                            <Badge className="bg-primary text-white border-0 text-xs">
+                              <Sparkles className="h-3 w-3 mr-1" />
+                              {t('newArrival')}
+                            </Badge>
+                          )}
                           {product.isFeatured && (
                             <Badge className="bg-accent-500 text-white border-0 text-xs">
                               <Sparkles className="h-3 w-3 mr-1" />

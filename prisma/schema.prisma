@@ -260,6 +260,7 @@ model products {
   slug                  String                 @unique
   status                String                 @default("active")
   is_featured           Boolean                @default(false)
+  is_new_arrival        Boolean                @default(false)
   sort_order            Int                    @default(0)
   meta_title            String?
   meta_description      String?

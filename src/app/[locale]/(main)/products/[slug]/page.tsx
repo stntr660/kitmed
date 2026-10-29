@@ -36,6 +36,7 @@ interface Product {
   pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
+  isNewArrival?: boolean;
   createdAt: string;
   category?: {
     id: string;
@@ -243,6 +244,12 @@ export default function ProductDetailPage() {
 
                   {/* Status Badges */}
                   <div className="absolute top-6 left-6 space-y-2">
+                    {product.isNewArrival && (
+                      <Badge className="bg-primary text-white border-0">
+                        <Sparkles className="h-3 w-3 mr-1" />
+                        {tCommon('newArrival')}
+                      </Badge>
+                    )}
                     {product.isFeatured && (
                       <Badge className="bg-accent-500 text-white border-0">
                         <Sparkles className="h-3 w-3 mr-1" />

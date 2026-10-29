@@ -56,6 +56,7 @@ async function getProduct(request: NextRequest, { params }: { params: { id: stri
       category_id: product.category_id,
       status: product.status,
       featured: product.is_featured,
+      newArrival: product.is_new_arrival,
       pdfBrochureUrl: product.pdf_brochure_url,
       pdf_brochure_url: product.pdf_brochure_url,
       createdAt: product.created_at,
@@ -159,6 +160,7 @@ const updateProductSchema = z.object({
   pdf_brochure_url: z.string().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
+  newArrival: z.boolean().optional(),
 }).refine(data => data.referenceFournisseur || data.reference_fournisseur, {
   message: 'Référence fournisseur est requise',
 }).refine(data => data.categoryId || data.category_id, {
@@ -242,6 +244,7 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
         slug,
         status: productData.status,
         is_featured: productData.featured,
+        is_new_arrival: productData.newArrival,
         pdf_brochure_url: pdfBrochureUrl || null,
         updated_at: new Date(),
         product_translations: {
@@ -287,6 +290,7 @@ async function updateProduct(request: NextRequest, { params }: { params: { id: s
       category_id: product.category_id,
       status: product.status,
       featured: product.is_featured,
+      newArrival: product.is_new_arrival,
       pdfBrochureUrl: product.pdf_brochure_url,
       pdf_brochure_url: product.pdf_brochure_url,
       createdAt: product.created_at,

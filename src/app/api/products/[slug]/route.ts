@@ -105,6 +105,7 @@ export async function GET(
       constructeur: product.constructeur,
       status: product.status,
       isFeatured: product.is_featured,
+      isNewArrival: product.is_new_arrival,
       pdfBrochureUrl: effectivePdfUrl,
       pdfSource: productPdfUrl ? 'product' : 
                  mediaPdfUrl ? 'product' : 

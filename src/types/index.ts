@@ -15,6 +15,7 @@ export interface Product extends BaseEntity {
   categoryId: string;
   status: 'active' | 'inactive' | 'discontinued';
   featured: boolean;
+  newArrival?: boolean;
   pdfBrochureUrl?: string; // PDF brochure téléchargeable
 
   // Multilingual fields via translations

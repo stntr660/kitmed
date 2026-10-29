@@ -105,6 +105,7 @@ export function ProductDrawer({
     pdfBrochureUrl: '',
     status: 'active',
     featured: false,
+    newArrival: false,
   });
 
   // Progressive disclosure state
@@ -281,6 +282,7 @@ export function ProductDrawer({
         pdfBrochureUrl: product.pdfBrochureUrl || productAny.pdf_brochure_url || '',
         status: product.status || 'active',
         featured: product.featured ?? productAny.is_featured ?? false,
+        newArrival: product.newArrival ?? productAny.is_new_arrival ?? false,
       });
       setShowSuccess(false);
     } else if (mode === 'add') {
@@ -294,6 +296,7 @@ export function ProductDrawer({
         pdfBrochureUrl: '',
         status: 'active',
         featured: false,
+        newArrival: false,
       });
       setShowSuccess(false);
     }
@@ -1114,6 +1117,21 @@ export function ProductDrawer({
                     {t('admin.products.highlightProduct')}
                   </label>
                   <p className="text-xs text-gray-500">({t('admin.products.highlightProductDescription')})</p>
+                </div>
+
+                <div className="flex items-center space-x-3 pt-2">
+                  <input
+                    type="checkbox"
+                    id="newArrival"
+                    checked={formData.newArrival || false}
+                    onChange={(e) => handleInputChange('newArrival', e.target.checked)}
+                    disabled={isReadOnly}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="newArrival" className="text-sm font-medium text-gray-700">
+                    {t('admin.products.newArrival')}
+                  </label>
+                  <p className="text-xs text-gray-500">({t('admin.products.newArrivalDescription')})</p>
                 </div>
               </div>
             </CardContent>

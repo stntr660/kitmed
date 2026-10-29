@@ -35,6 +35,7 @@ interface Product {
   pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
+  isNewArrival?: boolean;
   createdAt: string;
   name: string;
   description: string;
@@ -204,6 +205,12 @@ function SearchPageContent() {
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
 
                         <div className="absolute top-4 left-4 space-y-2">
+                          {product.isNewArrival && (
+                            <Badge className="bg-primary text-white border-0 text-xs">
+                              <Sparkles className="h-3 w-3 mr-1" />
+                              {t('newArrival')}
+                            </Badge>
+                          )}
                           {product.isFeatured && (
                             <Badge className="bg-accent-500 text-white border-0 text-xs">
                               <Sparkles className="h-3 w-3 mr-1" />

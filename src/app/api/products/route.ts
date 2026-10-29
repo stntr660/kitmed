@@ -10,6 +10,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const manufacturer = searchParams.get('manufacturer');
     const partner = searchParams.get('partner');
     const featured = searchParams.get('featured');
+    const newArrival = searchParams.get('newArrival');
     const page = parseInt(searchParams.get('page') || '1');
     const pageSize = parseInt(searchParams.get('pageSize') || '12');
     const status = searchParams.getAll('status');
@@ -149,6 +150,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       where.is_featured = true;
     }
 
+    // New arrivals filter (homepage carousel)
+    if (newArrival === 'true') {
+      where.is_new_arrival = true;
+    }
+
     // Status filter (for potential future use)
     if (status && status.length > 0) {
       where.status = { in: status };
@@ -286,6 +292,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         constructeur: product.constructeur,
         status: product.status,
         isFeatured: product.is_featured,
+        isNewArrival: product.is_new_arrival,
         pdfBrochureUrl: effectivePdfUrl,
         pdfSource: pdfSource,
         createdAt: product.created_at,

@@ -206,6 +206,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
               slug: product.slug,
               status: product.status,
               isFeatured: product.is_featured,
+              isNewArrival: product.is_new_arrival,
               pdfBrochureUrl: product.pdf_brochure_url,
               primaryImage: product.product_media?.[0]?.url,
               translations: [{

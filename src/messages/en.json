@@ -1,5 +1,6 @@
 {
   "common": {
+    "newArrival": "New arrival",
     "logoTagline": "Medical Equipment",
     "logoSince": "Since 1997",
     "officialSite": "Official website",
@@ -757,6 +758,8 @@
       "keepHiddenDescription": "Product will remain as draft",
       
       "highlightProduct": "Highlight this product",
+      "newArrival": "New arrival",
+      "newArrivalDescription": "shows the “New arrival” badge and the homepage carousel",
       "highlightProductDescription": "will appear in featured products",
       
       "statusOptions": {
@@ -2032,6 +2035,12 @@
       "subtitle": "Global Leading Brands",
       "description": "We collaborate with the most respected manufacturers in the medical industry",
       "viewAll": "View All Our Partners"
+    },
+    "newArrivals": {
+      "title": "New arrivals",
+      "subtitle": "The latest additions to our catalogue",
+      "description": "Discover the equipment that has just joined the KITMED range.",
+      "viewDetails": "View product"
     },
     "featuredProducts": {
       "title": "Premium Selection",

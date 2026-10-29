@@ -70,6 +70,7 @@ export interface ProductFormData {
   pdfBrochureUrl?: string; // PDF brochure téléchargeable
   status: 'active' | 'inactive' | 'discontinued';
   featured: boolean;
+  newArrival?: boolean;
   seo?: SEOFormData;
 }
 
