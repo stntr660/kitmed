@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight, Grid } from 'lucide-react';
+import { Star, Building2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -143,35 +143,12 @@ export default function PartnersPage() {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="py-8 overflow-x-auto scrollbar-hide">
               <div className="flex gap-5 justify-center min-w-max">
-                {/* All Categories Chip */}
-                <button
-                  onClick={() => setSelectedCategory(null)}
-                  className={cn(
-                    'flex flex-col items-center gap-4 p-5 rounded-2xl transition-all duration-200 min-w-[120px]',
-                    selectedCategory === null
-                      ? 'bg-primary text-white shadow-xl scale-105'
-                      : 'bg-gray-50 hover:bg-gray-100 text-gray-700 hover:shadow-lg'
-                  )}
-                >
-                  <div className={cn(
-                    'w-28 h-28 rounded-xl flex items-center justify-center',
-                    selectedCategory === null ? 'bg-white/20' : 'bg-white shadow-md'
-                  )}>
-                    <Grid className={cn(
-                      'h-14 w-14',
-                      selectedCategory === null ? 'text-white' : 'text-primary'
-                    )} />
-                  </div>
-                  <span className="text-base font-semibold text-center leading-tight">
-                    {tCommon('all')}
-                  </span>
-                </button>
-
                 {/* Category Chips */}
                 {categories.map((category) => (
                   <button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.slug)}
+                    // no « Tous » chip: clicking the selected category again shows all partners
+                    onClick={() => setSelectedCategory((prev) => (prev === category.slug ? null : category.slug))}
                     className={cn(
                       'flex flex-col items-center gap-4 p-5 rounded-2xl transition-all duration-200 min-w-[120px]',
                       selectedCategory === category.slug

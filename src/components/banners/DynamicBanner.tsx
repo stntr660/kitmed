@@ -70,12 +70,12 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     }
   }, [position, locale, isHydrated]);
 
-  // Auto-advance slider every 5 seconds
+  // Auto-advance slider every 3.5 seconds
   useEffect(() => {
     if (banners.length <= 1 || isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % banners.length);
-    }, 5000);
+    }, 3500);
     return () => clearInterval(interval);
   }, [banners.length, isPaused]);
 
