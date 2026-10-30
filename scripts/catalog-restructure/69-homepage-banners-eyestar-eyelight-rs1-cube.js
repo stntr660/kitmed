@@ -10,8 +10,10 @@ const prisma = new PrismaClient();
  * Images (public/uploads/banners/, also copied to the uploads volume first):
  *   eyestar-900-slider.png  product photo, beams/icons/« Swiss made » badge removed
  *   eye-light-slider.png    cut out of the Espansione brochure, page 24
- *   rs-1-slider.png         product photo cut out of its white background
- *   cube-alpha-slider.png   product photo cut out of its white background
+ *   rs-1-slider-wide.png    product photo cut out of its white background
+ *   cube-alpha-slider-wide.png  idem
+ *   (both are tall products: centred on a 1.2:1 transparent canvas so the
+ *   slider keeps the same height as the other banners)
  *
  * REVERT POINT: --revert deletes these four banners (fixed ids below);
  * the existing banners are not touched.
@@ -48,7 +50,7 @@ const BANNERS = [
           cta: "Discover" },
   },
   {
-    id: "b69a0001-0000-4000-8000-000000000003", sort: 7, file: "rs-1-slider.png",
+    id: "b69a0001-0000-4000-8000-000000000003", sort: 7, file: "rs-1-slider-wide.png",
     cta_url: "/fr/products/rs-1-rs-1",
     fr: { title: "RS-1", subtitle: "L'OCT à 250 000 A-scans/s",
           description: "Tomographe NIDEK OCT-SLO : coupes larges et profondes, OCT-Angiographie haute résolution et analyses assistées par intelligence artificielle, avec une acquisition rapide et automatisée.",
@@ -58,7 +60,7 @@ const BANNERS = [
           cta: "Discover" },
   },
   {
-    id: "b69a0001-0000-4000-8000-000000000004", sort: 8, file: "cube-alpha-slider.png",
+    id: "b69a0001-0000-4000-8000-000000000004", sort: 8, file: "cube-alpha-slider-wide.png",
     cta_url: "/fr/products/nidek-cube-alpha-cv-9000-cv-9000",
     fr: { title: "Cube α", subtitle: "Compact et complet, puissant mais pratique",
           description: "Système NIDEK de chirurgie de la cataracte avec technologie de torsion Gyro : énergie ultrasonore efficace, chambre antérieure stable et console détachable de son support.",
@@ -79,7 +81,13 @@ async function main() {
       await prisma.banners.delete({ where: { id: b.id } }); // translations cascade
       continue;
     }
-    if (row) { console.log(`  [SKIP] ${b.fr.title} exists`); continue; }
+    if (row) {
+      const url = `/uploads/banners/${b.file}`;
+      if (row.image_url === url) { console.log(`  [SKIP] ${b.fr.title} exists`); continue; }
+      console.log(`  image ${b.fr.title}: ${row.image_url} -> ${url}`);
+      if (APPLY) await prisma.banners.update({ where: { id: b.id }, data: { image_url: url, updated_at: new Date() } });
+      continue;
+    }
     console.log(`  create ${b.fr.title.padEnd(12)} sort ${b.sort}  /uploads/banners/${b.file}  -> ${b.cta_url}`);
     if (!APPLY) continue;
     await prisma.banners.create({
