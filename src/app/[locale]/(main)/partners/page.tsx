@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Building2, ArrowRight } from 'lucide-react';
+import { Building2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
@@ -221,9 +221,6 @@ export default function PartnersPage() {
                             <h3 className="font-medium text-gray-900 truncate">
                               {getPartnerName(partner)}
                             </h3>
-                            {partner.isFeatured && (
-                              <Star className="h-4 w-4 text-amber-500 fill-amber-500 flex-shrink-0" />
-                            )}
                           </div>
                         </div>
                         <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 flex-shrink-0" />
