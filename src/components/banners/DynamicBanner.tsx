@@ -30,12 +30,19 @@ interface DynamicBannerProps {
   fallbackComponent?: React.ReactNode;
 }
 
+// Length of the slide animation between two banners
+const SLIDE_MS = 700;
+
 export function DynamicBanner({ position = 'homepage', fallbackComponent }: DynamicBannerProps) {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  // false for one frame while the track jumps between the cloned first slide and the real one
+  const [animate, setAnimate] = useState(true);
+  // set when « previous » is pressed on slide 0: slide back to the last banner after the jump
+  const pendingPrevious = React.useRef(false);
   const isHydrated = useIsHydrated();
   const locale = useHydrationSafeLocale('fr');
   const t = useTranslations('home.banner');
@@ -74,21 +81,60 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   useEffect(() => {
     if (banners.length <= 1 || isPaused) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % banners.length);
+      setAnimate(true);
+      setCurrentIndex((prev) => Math.min(prev + 1, banners.length));
     }, 2500);
     return () => clearInterval(interval);
   }, [banners.length, isPaused]);
 
+  // Slides sit in one horizontal track followed by a clone of the first slide:
+  // once the slide onto the clone is over (700 ms, the transition length), jump back
+  // to the real first slide without animation. A timer rather than transitionend,
+  // which background tabs may never fire.
+  useEffect(() => {
+    if (!animate || banners.length <= 1 || currentIndex !== banners.length) return;
+    const timeout = setTimeout(() => {
+      setAnimate(false);
+      setCurrentIndex(0);
+    }, SLIDE_MS);
+    return () => clearTimeout(timeout);
+  }, [animate, currentIndex, banners.length]);
+
+  // Re-enable the transition once the jump has been painted
+  useEffect(() => {
+    if (animate) return;
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (pendingPrevious.current) {
+        pendingPrevious.current = false;
+        setAnimate(true);
+        setCurrentIndex(banners.length - 1);
+      } else {
+        setAnimate(true);
+      }
+    }));
+    return () => cancelAnimationFrame(frame);
+  }, [animate, banners.length]);
+
   // Navigation handlers
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + banners.length) % banners.length);
+    if (currentIndex === 0) {
+      // jump onto the clone (same picture as slide 0), then slide back to the last banner
+      pendingPrevious.current = true;
+      setAnimate(false);
+      setCurrentIndex(banners.length);
+      return;
+    }
+    setAnimate(true);
+    setCurrentIndex((prev) => prev - 1);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % banners.length);
+    setAnimate(true);
+    setCurrentIndex((prev) => Math.min(prev + 1, banners.length));
   };
 
   const goToSlide = (index: number) => {
+    setAnimate(true);
     setCurrentIndex(index);
   };
 
@@ -141,8 +187,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     return <StaticFallback />;
   }
 
-  // Get current banner for display
-  const banner = banners[currentIndex];
+  // Banner shown (the clone at index banners.length is slide 0)
+  const activeIndex = currentIndex % banners.length;
+  const banner = banners[activeIndex];
 
   // Make CTA URL locale-aware (replace /fr/ or /en/ prefix with current locale)
   const getLocalizedCtaUrl = (url: string) => {
@@ -150,7 +197,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   };
 
   // CTA Button styles
-  const getCtaStyles = () => {
+  const getCtaStyles = (banner: Banner) => {
     switch (banner.ctaStyle) {
       case 'secondary':
         return 'bg-gray-600 hover:bg-gray-700 text-white';
@@ -162,7 +209,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   };
 
   // Render banner content based on layout
-  const renderBannerContent = () => {
+  const renderBannerContent = (banner: Banner) => {
     if (banner.layout === 'centered') {
       return (
         <div className="text-center space-y-6 max-w-3xl mx-auto">
@@ -198,7 +245,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 <Button
                   className={cn(
                     'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
-                    getCtaStyles()
+                    getCtaStyles(banner)
                   )}
                 >
                   <span>{banner.ctaText}</span>
@@ -240,7 +287,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 <Button
                   className={cn(
                     'px-12 py-4 rounded-lg font-semibold text-lg transition-all duration-200 inline-flex items-center space-x-3',
-                    getCtaStyles()
+                    getCtaStyles(banner)
                   )}
                 >
                   <span>{banner.ctaText}</span>
@@ -292,7 +339,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 size="lg"
                 className={cn(
                   'px-8 py-4 text-lg font-medium transition-all duration-300',
-                  getCtaStyles()
+                  getCtaStyles(banner)
                 )}
                 asChild
               >
@@ -363,8 +410,22 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
       )}
 
       <div className="relative container mx-auto px-12 lg:px-20 py-8">
-        <div className="transition-opacity duration-500">
-          {renderBannerContent()}
+        {/* Sliding track: every banner side by side, plus a clone of the first one for a seamless loop */}
+        <div className="overflow-hidden">
+          <div
+            className={cn('flex', animate && 'transition-transform ease-in-out')}
+            style={{ transform: `translateX(-${currentIndex * 100}%)`, transitionDuration: animate ? `${SLIDE_MS}ms` : undefined }}
+          >
+            {(banners.length > 1 ? [...banners, banners[0]] : banners).map((slide, index) => (
+              <div
+                key={`${slide.id}-${index}`}
+                className="w-full flex-none"
+                aria-hidden={index % banners.length !== activeIndex || index === banners.length}
+              >
+                {renderBannerContent(slide)}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Navigation Dots */}
@@ -376,7 +437,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 onClick={() => goToSlide(index)}
                 className={cn(
                   'w-3 h-3 rounded-full transition-all duration-300',
-                  index === currentIndex
+                  index === activeIndex
                     ? 'bg-primary-600 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 )}
