@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
  *     (Opério Mobile, Opério Ceiling, SteriStay instrument table).
  *
  * Creates:
- *   - partners « SurgiCube International » and « Toul Meditech » (logos cut
+ *   - partners « SurgiCube » (SurgiCube International) and « Toul Meditech » (logos cut
  *     from the brochures, brochure as default PDF);
  *   - sub-category « Flux d'air laminaire » under Ophtalmologie > Bloc opératoire
  *     (the SurgiCube brochure shows cataract surgery);
@@ -40,7 +40,7 @@ const REVERT = process.argv.includes("--revert");
 const PARTNERS = [
   {
     id: "a70a0001-0000-4000-8000-000000000001", slug: "surgicube-international",
-    name: "SurgiCube International", website: "https://www.surgicube.com",
+    name: "SurgiCube", website: "https://www.surgicube.com", // « SurgiCube International » was cut off on the partner card
     logo: "/uploads/partners/surgicube-logo.png", pdf: "/uploads/pdfs/kitmed-2026-11-surgicube-brochure.pdf",
     fr: "Fabricant néerlandais du SurgiCube®, cube opératoire à flux d'air laminaire pour la microchirurgie ambulatoire, développé avec le Netherlands Institute for Innovative Ocular Surgery.",
     en: "Dutch manufacturer of the SurgiCube®, a laminar-airflow operating cube for ambulatory microsurgery, developed with the Netherlands Institute for Innovative Ocular Surgery.",
@@ -178,7 +178,16 @@ async function main() {
   const now = new Date();
 
   for (const p of PARTNERS) {
-    if (await prisma.partners.findUnique({ where: { id: p.id } })) { console.log(`  [SKIP] partner ${p.slug}`); continue; }
+    const existing = await prisma.partners.findUnique({ where: { id: p.id } });
+    if (existing) {
+      if (existing.name === p.name) { console.log(`  [SKIP] partner ${p.slug}`); continue; }
+      console.log(`  rename partner ${p.slug}: ${existing.name} -> ${p.name}`);
+      if (APPLY) {
+        await prisma.partners.update({ where: { id: p.id }, data: { name: p.name, updated_at: now } });
+        await prisma.partner_translations.updateMany({ where: { partner_id: p.id }, data: { name: p.name } });
+      }
+      continue;
+    }
     console.log(`  create partner ${p.slug}`);
     if (APPLY) await prisma.partners.create({ data: {
       id: p.id, name: p.name, slug: p.slug, website_url: p.website, logo_url: p.logo, default_pdf_url: p.pdf,
