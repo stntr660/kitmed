@@ -3,22 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Star,
-  ExternalLink,
-  Building2,
-  Users,
-  Award,
-  Target,
-  ArrowRight,
-  Mail,
-  Phone
-} from 'lucide-react';
+import { Building2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-// import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 interface Partner {
   id: string;
@@ -36,38 +25,72 @@ interface Partner {
   };
 }
 
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  imageUrl?: string | null;
+  productCount?: number;
+}
+
+// The partners strip shows a photo per discipline chosen by the client,
+// cropped square around the subject; the catalogue pages keep their own photos.
+const CATEGORY_PHOTOS: Record<string, string> = {
+  ophtalmologie: '/images/partners/ophtalmologie.jpg',
+  'orl-oto-rhino-laryngologie': '/images/partners/orl-oto-rhino-laryngologie.jpg',
+  'mobilier-et-literie-hospitaliers': '/images/partners/mobilier-et-literie-hospitaliers.jpg',
+  orthopedics: '/images/partners/orthopedics.jpg',
+  'dispositifs-medicaux': '/images/partners/dispositifs-medicaux.jpg',
+};
+
 export default function PartnersPage() {
   const t = useTranslations('partners');
   const tCommon = useTranslations('common');
-  const tPartner = useTranslations('partnerDetail');
   const locale = useHydrationSafeLocale('fr');
 
   const [partners, setPartners] = useState<Partner[]>([]);
-  const [featuredPartners, setFeaturedPartners] = useState<Partner[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch categories on mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`/api/categories?locale=${locale}&includeProductCount=true&excludeZeroProducts=true`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setCategories(data.data);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch categories:', err);
+      }
+    };
+
+    fetchCategories();
+  }, [locale]);
+
+  // Fetch partners when category changes
   useEffect(() => {
     const fetchPartners = async () => {
       try {
         setLoading(true);
-        const [allResponse, featuredResponse] = await Promise.all([
-          fetch('/api/partners'),
-          fetch('/api/partners?featured=true'),
-        ]);
+        const url = selectedCategory
+          ? `/api/partners?categorySlug=${selectedCategory}`
+          : '/api/partners';
+        const response = await fetch(url);
 
-        if (!allResponse.ok || !featuredResponse.ok) {
+        if (!response.ok) {
           throw new Error('Failed to fetch partners');
         }
 
-        const [allData, featuredData] = await Promise.all([
-          allResponse.json(),
-          featuredResponse.json(),
-        ]);
+        const data = await response.json();
 
-        if (allData.success && featuredData.success) {
-          setPartners(allData.data);
-          setFeaturedPartners(featuredData.data);
+        if (data.success) {
+          setPartners(data.data);
         } else {
           throw new Error('Invalid response format');
         }
@@ -79,30 +102,11 @@ export default function PartnersPage() {
     };
 
     fetchPartners();
-  }, []);
+  }, [selectedCategory]);
 
   const getPartnerName = (partner: Partner) => {
     return partner.name[locale as keyof typeof partner.name] || partner.name.fr || partner.name.en;
   };
-
-  const getPartnerDescription = (partner: Partner) => {
-    return partner.description[locale as keyof typeof partner.description] || partner.description.fr || partner.description.en;
-  };
-
-  if (loading) {
-    return (
-      <div className="flex flex-col">
-        <div className="container mx-auto px-4 lg:px-8 py-16">
-          <div className="text-center">
-            <div className="animate-pulse space-y-4">
-              <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -119,119 +123,64 @@ export default function PartnersPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-16 lg:py-20">
+      {/* Header (matches category pages) */}
+      <section className="bg-white border-b py-4 lg:py-6">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6" variant="outline">
-              {t('hero.badge')}
-            </Badge>
-            <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {t('hero.title')}
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {t('hero.description')}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href={`/${locale}/contact`}>
-                  {t('hero.cta.contact')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href={`/${locale}/products`}>
-                  {t('hero.cta.products')}
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Partners Section */}
-      {featuredPartners.length > 0 && (
-        <section className="py-16 lg:py-20 bg-white">
+      {/* Category Filter Chips */}
+      {categories.length > 0 && (
+        <section className="bg-white border-b sticky top-0 z-10 shadow-sm">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                  {t('featured.title')}
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                  {t('featured.description')}
-                </p>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {featuredPartners.map((partner) => (
-                  <Card key={partner.id} className="border-0 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col">
-                    <CardContent className="p-6 flex-1 flex flex-col text-center">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center">
-                          <Star className="h-4 w-4 text-primary-500 mr-2" />
-                          <Badge variant="secondary" className="text-xs">
-                            {t('featured.badge')}
-                          </Badge>
-                        </div>
-                        {partner.websiteUrl && (
-                          <a
-                            href={partner.websiteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-gray-600 transition-colors"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                          </a>
-                        )}
-                      </div>
-
-                      {partner.logoUrl && (
-                        <div className="w-full h-20 mb-4 flex items-center justify-center">
-                          <img
-                            src={partner.logoUrl}
-                            alt={getPartnerName(partner)}
-                            className="max-h-16 w-auto object-contain"
-                          />
-                        </div>
+            <div className="py-8 overflow-x-auto scrollbar-hide">
+              <div className="flex gap-5 justify-center min-w-max">
+                {/* Category Chips */}
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    // no « Tous » chip: clicking the selected category again shows all partners
+                    onClick={() => setSelectedCategory((prev) => (prev === category.slug ? null : category.slug))}
+                    className={cn(
+                      'flex flex-col items-center gap-4 p-5 rounded-2xl transition-all duration-200 min-w-[120px]',
+                      selectedCategory === category.slug
+                        ? 'bg-primary text-white shadow-xl scale-105'
+                        : 'bg-gray-50 hover:bg-gray-100 text-gray-700 hover:shadow-lg'
+                    )}
+                  >
+                    <div className={cn(
+                      'w-28 h-28 rounded-xl overflow-hidden flex items-center justify-center',
+                      selectedCategory === category.slug ? 'bg-white/20 ring-2 ring-white' : 'bg-white shadow-md'
+                    )}>
+                      {CATEGORY_PHOTOS[category.slug] ? (
+                        <img
+                          src={CATEGORY_PHOTOS[category.slug]}
+                          alt=""
+                          aria-hidden
+                          className="w-full h-full object-cover object-center"
+                        />
+                      ) : (
+                        <Building2
+                          aria-hidden
+                          className={cn(
+                            'h-14 w-14',
+                            selectedCategory === category.slug ? 'text-white' : 'text-primary'
+                          )}
+                        />
                       )}
-
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
-                        {getPartnerName(partner)}
-                      </h3>
-
-                      {getPartnerDescription(partner) && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">
-                          {getPartnerDescription(partner)}
-                        </p>
-                      )}
-
-                      {/* Spacer to push button to bottom */}
-                      <div className="flex-1"></div>
-
-                      <div className="space-y-2">
-                        <Button size="sm" className="w-full" asChild>
-                          <Link href={`/${locale}/partners/${partner.slug}`}>
-                            {tPartner('viewProducts')}
-                            <ArrowRight className="ml-2 h-3 w-3" />
-                          </Link>
-                        </Button>
-
-                        {partner.websiteUrl && (
-                          <Button variant="outline" size="sm" className="w-full" asChild>
-                            <a
-                              href={partner.websiteUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {t('visitWebsite')}
-                              <ExternalLink className="ml-2 h-3 w-3" />
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                    <span className="text-xs font-semibold text-center leading-tight max-w-[120px]">
+                      {category.name}
+                    </span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -239,179 +188,67 @@ export default function PartnersPage() {
         </section>
       )}
 
-      {/* All Partners Section */}
-      <section className="py-16 lg:py-20 bg-gray-50">
+      {/* Partners Grid */}
+      <section id="partners-grid" className="py-12 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                {t('all.title')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('all.description')}
-              </p>
-            </div>
-
-            {partners.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="max-w-5xl mx-auto">
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="animate-pulse space-y-4">
+                  <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+                </div>
+              </div>
+            ) : partners.length > 0 ? (
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {partners.map((partner) => (
-                  <Card key={partner.id} className="border-0 shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
-                    <CardContent className="p-4 flex-1 flex flex-col text-center">
-                      <div className="flex items-center justify-between mb-3">
-                        {partner.isFeatured && (
-                          <Badge variant="secondary" className="text-xs">
-                            <Star className="h-3 w-3 mr-1 text-primary-500" />
-                            {t('featured.badge')}
-                          </Badge>
-                        )}
-                        {partner.websiteUrl && (
-                          <a
-                            href={partner.websiteUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-400 hover:text-gray-600 transition-colors"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                          </a>
-                        )}
-                      </div>
-
-                      {partner.logoUrl && (
-                        <div className="w-full h-16 mb-3 flex items-center justify-center">
+                  <Link key={partner.id} href={`/${locale}/partners/${partner.slug}${selectedCategory ? `?category=${selectedCategory}` : ''}`}>
+                    <Card className="hover:shadow-md transition-shadow cursor-pointer group h-full">
+                      <CardContent className="p-5 flex items-center gap-4">
+                        {partner.logoUrl ? (
                           <img
                             src={partner.logoUrl}
                             alt={getPartnerName(partner)}
-                            className="max-h-12 w-auto object-contain"
+                            className="h-12 w-24 object-contain flex-shrink-0"
                           />
+                        ) : (
+                          <div className="h-12 w-24 bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
+                            <Building2 className="h-6 w-6 text-gray-400" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-medium text-gray-900 truncate">
+                              {getPartnerName(partner)}
+                            </h3>
+                          </div>
                         </div>
-                      )}
-
-                      <h3 className="text-sm font-semibold text-gray-900 mb-2 text-center">
-                        {getPartnerName(partner)}
-                      </h3>
-
-                      {getPartnerDescription(partner) && (
-                        <p className="text-gray-600 text-xs leading-relaxed text-center mb-3">
-                          {getPartnerDescription(partner)}
-                        </p>
-                      )}
-
-                      {/* Spacer for consistent height */}
-                      <div className="flex-1"></div>
-
-                      <Button size="sm" variant="outline" className="w-full mt-3" asChild>
-                        <Link href={`/${locale}/partners/${partner.slug}`}>
-                          {tPartner('viewProductsShort')}
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+                        <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 flex-shrink-0" />
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             ) : (
               <div className="text-center py-12">
                 <Building2 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  {t('noPartners.title')}
+                  {selectedCategory ? t('noPartnersInCategory') : t('noPartners.title')}
                 </h3>
                 <p className="text-gray-600">
-                  {t('noPartners.description')}
+                  {selectedCategory ? t('noPartnersInCategoryDescription') : t('noPartners.description')}
                 </p>
+                {selectedCategory && (
+                  <Button
+                    variant="outline"
+                    className="mt-4"
+                    onClick={() => setSelectedCategory(null)}
+                  >
+                    {t('viewAllPartners')}
+                  </Button>
+                )}
               </div>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Benefits Section */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                {t('benefits.title')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('benefits.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-primary-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {t('benefits.quality.title')}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('benefits.quality.description')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-primary-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {t('benefits.trust.title')}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('benefits.trust.description')}
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-8 w-8 text-primary-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {t('benefits.innovation.title')}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {t('benefits.innovation.description')}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA Section */}
-      <section className="py-16 lg:py-20 bg-gray-900 text-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-light mb-6 leading-tight">
-              {t('cta.title')}
-            </h2>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
-              {t('cta.description')}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button
-                size="lg"
-                className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
-                asChild
-              >
-                <Link href={`/${locale}/contact`} className="flex items-center">
-                  <Mail className="mr-2 h-5 w-5" />
-                  {t('cta.contact')}
-                </Link>
-              </Button>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
-                asChild
-              >
-                <Link href="tel:+212522860366" className="flex items-center">
-                  <Phone className="mr-2 h-5 w-5" />
-                  {t('cta.call')}
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>

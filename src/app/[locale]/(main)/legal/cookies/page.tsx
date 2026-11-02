@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -20,6 +21,7 @@ import {
 import { useState } from 'react';
 
 export default function CookiesPage() {
+  const t = useTranslations('cookies');
 
   const [cookieSettings, setCookieSettings] = useState({
     necessary: true, // Always enabled

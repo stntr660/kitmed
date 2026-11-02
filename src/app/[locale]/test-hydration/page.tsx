@@ -59,11 +59,11 @@ export default function TestHydrationPage() {
         <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
           <h3 className="text-green-800 font-medium">Success Criteria</h3>
           <ul className="text-green-700 text-sm mt-2 space-y-1">
-            <li>✓ Page loads without hydration errors in console</li>
-            <li>✓ Images render correctly with fallbacks</li>
-            <li>✓ Animation states don't cause mismatches</li>
-            <li>✓ Locale detection works consistently</li>
-            <li>✓ No "Text content does not match" errors</li>
+            <li>- Page loads without hydration errors in console</li>
+            <li>- Images render correctly with fallbacks</li>
+            <li>- Animation states don't cause mismatches</li>
+            <li>- Locale detection works consistently</li>
+            <li>- No "Text content does not match" errors</li>
           </ul>
         </div>
       </div>

@@ -70,13 +70,13 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
   useEffect(() => {
     const fetchManufacturers = async () => {
       setLoadingManufacturers(true);
-      console.group('🔍 ProductForm: Manufacturer Loading Debug');
+      console.group('ProductForm: Manufacturer Loading Debug');
 
       try {
         const token = getAdminToken();
 
         if (!token) {
-          console.error('❌ No authentication token available - please login first');
+          console.error('No authentication token available - please login first');
           console.groupEnd();
           return;
         }
@@ -90,14 +90,14 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
           },
         });
 
-        console.log('📋 Response headers:', Object.fromEntries(response.headers));
+        console.log('Response headers:', Object.fromEntries(response.headers));
 
         if (response.ok) {
           const result = await response.json();
 
           // Access the items array from the paginated response
           const manufacturersList = result.data?.items || [];
-          console.log(`✅ Raw manufacturers list (${manufacturersList.length} items):`, manufacturersList);
+          console.log(`Raw manufacturers list (${manufacturersList.length} items):`, manufacturersList);
 
           if (manufacturersList.length < 49) {
 
@@ -108,7 +108,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
           // Debug each manufacturer structure
           if (manufacturersList.length > 0) {
 
-            console.log('🔬 Available fields:', Object.keys(manufacturersList[0]));
+            console.log('Available fields:', Object.keys(manufacturersList[0]));
 
             // Check for name field variations
             const firstManufacturer = manufacturersList[0];
@@ -119,19 +119,19 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
 
         } else {
           const errorData = await response.json().catch(() => ({}));
-          console.error('❌ Failed to fetch manufacturers:', {
+          console.error('Failed to fetch manufacturers:', {
             status: response.status,
             statusText: response.statusText,
             errorData,
           });
 
           if (response.status === 401) {
-            console.error('🔒 Authentication failed - please login to admin panel first');
+            console.error('Authentication failed - please login to admin panel first');
           }
         }
       } catch (error) {
-        console.error('💥 Network error fetching manufacturers:', error);
-        console.error('📋 Error details:', {
+        console.error('Network error fetching manufacturers:', error);
+        console.error('Error details:', {
           name: error.name,
           message: error.message,
           stack: error.stack,
@@ -252,7 +252,7 @@ export function ProductForm({ product, onSave, onCancel }: ProductFormProps) {
                   }
                 </option>
                 {(() => {
-                  console.group('🎨 ProductForm: Rendering Dropdown Options');
+                  console.group('ProductForm: Rendering Dropdown Options');
 
                   const options = manufacturers.map((manufacturer, index) => {
                     // Debug each manufacturer during render

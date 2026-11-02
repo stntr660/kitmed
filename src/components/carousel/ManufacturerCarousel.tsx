@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -22,12 +23,13 @@ interface ManufacturerCarouselProps {
   locale?: string;
 }
 
-export function ManufacturerCarousel({ 
-  partners, 
-  isLoading, 
+export function ManufacturerCarousel({
+  partners,
+  isLoading,
   className,
   locale = 'fr'
 }: ManufacturerCarouselProps) {
+  const t = useTranslations('home');
   const [translateX, setTranslateX] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -171,7 +173,7 @@ export function ManufacturerCarousel({
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-24 max-w-44 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="max-h-24 max-w-44 object-contain transition-all duration-300 group-hover:scale-110"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -205,7 +207,7 @@ export function ManufacturerCarousel({
           asChild
         >
           <Link href={`/${locale}/partners`}>
-            Voir tous les partenaires
+            {t('partners.viewAll')}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </Button>

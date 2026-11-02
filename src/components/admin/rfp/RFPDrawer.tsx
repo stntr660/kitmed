@@ -226,7 +226,7 @@ export function RFPDrawer({
               <Card>
                 <CardHeader>
                   <CardTitle className="text-base font-medium flex items-center">
-                    📦 {t('admin.rfpRequests.drawer.fields.requestedItems')} ({rfp.items?.length || 0})
+                    {t('admin.rfpRequests.drawer.fields.requestedItems')} ({rfp.items?.length || 0})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -251,7 +251,7 @@ export function RFPDrawer({
                               <div
                                 className={`w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                               >
-                                <span className="text-gray-400 text-xs">📦</span>
+                                <span className="text-gray-400 text-xs"></span>
                               </div>
                             </div>
 
@@ -320,7 +320,7 @@ export function RFPDrawer({
                   <Card>
                     <CardHeader>
                       <CardTitle className="text-lg font-medium text-gray-900 flex items-center">
-                        <div className="h-5 w-5 mr-2">📦</div>
+                        <div className="h-5 w-5 mr-2"></div>
                         {t('admin.rfpRequests.drawer.fields.requestedItems')} ({rfp.items?.length || 0})
                       </CardTitle>
                     </CardHeader>
@@ -346,7 +346,7 @@ export function RFPDrawer({
                                   <div
                                     className={`w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                                   >
-                                    <span className="text-gray-400 text-xs">📦</span>
+                                    <span className="text-gray-400 text-xs"></span>
                                   </div>
                                 </div>
 
@@ -455,7 +455,7 @@ export function RFPDrawer({
                 className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white"
               >
                 {loading && <LoadingSpinner size="sm" />}
-                <span>✓ {t('admin.rfpRequests.drawer.actions.markAsSent')}</span>
+                <span>{t('admin.rfpRequests.drawer.actions.markAsSent')}</span>
               </Button>
 
               <Button

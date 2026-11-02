@@ -167,6 +167,7 @@ async function updatePartner(request: NextRequest, { params }: { params: { id: s
         type: partnerData.type,
         status: partnerData.status,
         is_featured: partnerData.featured,
+        updated_at: new Date(),
         partner_translations: {
           deleteMany: {}, // Delete existing translations
           create: [
@@ -266,7 +267,9 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
     }
 
     // Map field names to database columns
-    const updateData: any = {};
+    const updateData: any = {
+      updated_at: new Date(),
+    };
     if (validation.data.isFeatured !== undefined) {
       updateData.is_featured = validation.data.isFeatured;
     }
@@ -343,10 +346,9 @@ async function patchPartner(request: NextRequest, { params }: { params: { id: st
   }
 }
 
-// DELETE /api/admin/partners/[id] - Delete partner
+// DELETE /api/admin/partners/[id] - Soft delete: hide partner and all its products
 async function deletePartner(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    // Check if partner exists
     const existingPartner = await prisma.partners.findUnique({
       where: { id: params.id },
     });
@@ -364,14 +366,21 @@ async function deletePartner(request: NextRequest, { params }: { params: { id: s
       );
     }
 
-    // Delete partner (cascading deletes will handle translations)
-    await prisma.partners.delete({
-      where: { id: params.id },
-    });
+    // Deactivate partner and all associated products
+    const [updatedPartner, updatedProducts] = await prisma.$transaction([
+      prisma.partners.update({
+        where: { id: params.id },
+        data: { status: 'inactive', updated_at: new Date() },
+      }),
+      prisma.products.updateMany({
+        where: { partner_id: params.id },
+        data: { status: 'inactive' },
+      }),
+    ]);
 
     return NextResponse.json({
       success: true,
-      message: 'Partner deleted successfully',
+      message: `Partner hidden along with ${updatedProducts.count} associated products`,
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',

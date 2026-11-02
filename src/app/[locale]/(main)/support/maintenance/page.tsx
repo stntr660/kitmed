@@ -29,7 +29,7 @@ import {
 import { useState } from 'react';
 
 export default function MaintenancePage() {
-  const t = useTranslations('maintenance');
+  const t = useTranslations('support.maintenance');
   const [formData, setFormData] = useState({
     equipmentType: '',
     serialNumber: '',
@@ -43,105 +43,125 @@ export default function MaintenancePage() {
 
   const maintenanceServices = [
     {
-      title: "Maintenance Préventive",
-      description: "Programmes de maintenance planifiée pour éviter les pannes et prolonger la durée de vie",
+      titleKey: "services.preventive.title" as const,
+      descriptionKey: "services.preventive.description" as const,
       icon: Calendar,
       color: "green",
-      features: [
-        "Inspection régulière",
-        "Calibration et tests",
-        "Remplacement préventif",
-        "Rapport détaillé"
-      ],
-      pricing: "À partir de 800 DH/visite"
+      featureKeys: [
+        "services.preventive.features.inspection",
+        "services.preventive.features.calibration",
+        "services.preventive.features.replacement",
+        "services.preventive.features.report"
+      ] as const,
+      pricingKey: "services.preventive.pricing" as const
     },
     {
-      title: "Maintenance Corrective",
-      description: "Intervention rapide pour la réparation et le dépannage d'urgence",
+      titleKey: "services.corrective.title" as const,
+      descriptionKey: "services.corrective.description" as const,
       icon: Wrench,
       color: "red",
-      features: [
-        "Intervention 24h/7j",
-        "Diagnostic complet",
-        "Réparation sur site",
-        "Garantie pièces et main d'œuvre"
-      ],
-      pricing: "Devis sur mesure"
+      featureKeys: [
+        "services.corrective.features.intervention",
+        "services.corrective.features.diagnostic",
+        "services.corrective.features.onSiteRepair",
+        "services.corrective.features.warranty"
+      ] as const,
+      pricingKey: "services.corrective.pricing" as const
     },
     {
-      title: "Contrats de Maintenance",
-      description: "Contrats annuels pour une couverture complète et des coûts prévisibles",
+      titleKey: "services.contracts.title" as const,
+      descriptionKey: "services.contracts.description" as const,
       icon: Shield,
       color: "blue",
-      features: [
-        "Maintenance préventive incluse",
-        "Priorité sur les interventions",
-        "Pièces de rechange garanties",
-        "Support technique illimité"
-      ],
-      pricing: "À partir de 12,000 DH/an"
+      featureKeys: [
+        "services.contracts.features.preventiveIncluded",
+        "services.contracts.features.priority",
+        "services.contracts.features.spareParts",
+        "services.contracts.features.unlimitedSupport"
+      ] as const,
+      pricingKey: "services.contracts.pricing" as const
     },
     {
-      title: "Formation Technique",
-      description: "Formation de vos équipes pour la maintenance de premier niveau",
+      titleKey: "services.training.title" as const,
+      descriptionKey: "services.training.description" as const,
       icon: Users,
       color: "purple",
-      features: [
-        "Formation certifiante",
-        "Manuel technique inclus",
-        "Support continu",
-        "Mise à jour des procédures"
-      ],
-      pricing: "1,500 DH/jour de formation"
+      featureKeys: [
+        "services.training.features.certified",
+        "services.training.features.manual",
+        "services.training.features.continuousSupport",
+        "services.training.features.procedureUpdates"
+      ] as const,
+      pricingKey: "services.training.pricing" as const
     }
   ];
 
   const equipmentCategories = [
     {
-      name: "Imagerie Médicale",
+      nameKey: "equipment.imaging.name" as const,
       icon: Camera,
-      items: ["Échographes", "Radiologie", "IRM", "Scanner"],
-      maintenanceInterval: "Trimestrielle"
+      itemKeys: [
+        "equipment.imaging.items.ultrasound",
+        "equipment.imaging.items.radiology",
+        "equipment.imaging.items.mri",
+        "equipment.imaging.items.ctScan"
+      ] as const,
+      intervalKey: "equipment.imaging.interval" as const
     },
     {
-      name: "Équipements Cardio",
+      nameKey: "equipment.cardio.name" as const,
       icon: Heart,
-      items: ["ECG", "Holter", "Défibrillateurs", "Monitoring"],
-      maintenanceInterval: "Bimestrielle"
+      itemKeys: [
+        "equipment.cardio.items.ecg",
+        "equipment.cardio.items.holter",
+        "equipment.cardio.items.defibrillators",
+        "equipment.cardio.items.monitoring"
+      ] as const,
+      intervalKey: "equipment.cardio.interval" as const
     },
     {
-      name: "Systèmes de Monitoring",
+      nameKey: "equipment.monitoring.name" as const,
       icon: Monitor,
-      items: ["Multiparamètres", "Télémétrie", "Oxymétrie", "Capnographie"],
-      maintenanceInterval: "Mensuelle"
+      itemKeys: [
+        "equipment.monitoring.items.multiparameter",
+        "equipment.monitoring.items.telemetry",
+        "equipment.monitoring.items.oximetry",
+        "equipment.monitoring.items.capnography"
+      ] as const,
+      intervalKey: "equipment.monitoring.interval" as const
     },
     {
-      name: "Équipements de Laboratoire",
+      nameKey: "equipment.laboratory.name" as const,
       icon: Activity,
-      items: ["Analyseurs", "Centrifugeuses", "Microscopes", "Automates"],
-      maintenanceInterval: "Mensuelle"
+      itemKeys: [
+        "equipment.laboratory.items.analyzers",
+        "equipment.laboratory.items.centrifuges",
+        "equipment.laboratory.items.microscopes",
+        "equipment.laboratory.items.automatedSystems"
+      ] as const,
+      intervalKey: "equipment.laboratory.interval" as const
     }
   ];
 
   const maintenanceStats = [
     {
       number: "98%",
-      label: "Temps de fonctionnement",
+      labelKey: "stats.uptime" as const,
       icon: CheckCircle
     },
     {
       number: "2h",
-      label: "Temps de réponse moyen",
+      labelKey: "stats.responseTime" as const,
       icon: Clock
     },
     {
       number: "500+",
-      label: "Équipements sous contrat",
+      labelKey: "stats.equipmentUnderContract" as const,
       icon: Settings
     },
     {
       number: "24/7",
-      label: "Support disponible",
+      labelKey: "stats.supportAvailable" as const,
       icon: Phone
     }
   ];
@@ -158,20 +178,19 @@ export default function MaintenancePage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-              Maintenance & Support Technique
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Services de maintenance professionnels pour assurer le bon fonctionnement
-              et la longévité de vos équipements médicaux.
+              {t('hero.description')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
                 <AlertCircle className="mr-2 h-5 w-5" />
-                Demande d'Intervention Urgente
+                {t('hero.urgentRequest')}
               </Button>
               <Button size="lg" variant="outline">
                 <Calendar className="mr-2 h-5 w-5" />
-                Planifier une Maintenance
+                {t('hero.scheduleMaintenance')}
               </Button>
             </div>
           </div>
@@ -188,7 +207,7 @@ export default function MaintenancePage() {
                   <stat.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <div className="text-3xl font-light text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600 text-sm">{stat.label}</div>
+                <div className="text-gray-600 text-sm">{t(stat.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -200,10 +219,10 @@ export default function MaintenancePage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Nos Services de Maintenance
+              {t('servicesSection.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Solutions complètes adaptées à tous types d'équipements médicaux
+              {t('servicesSection.description')}
             </p>
           </div>
 
@@ -217,21 +236,21 @@ export default function MaintenancePage() {
                     </div>
                     <div>
                       <CardTitle className="text-xl font-medium text-gray-900">
-                        {service.title}
+                        {t(service.titleKey)}
                       </CardTitle>
                     </div>
                   </div>
-                  <p className="text-gray-600">{service.description}</p>
+                  <p className="text-gray-600">{t(service.descriptionKey)}</p>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-3">Services inclus :</h4>
+                      <h4 className="font-medium text-gray-900 mb-3">{t('servicesSection.includedServices')}</h4>
                       <ul className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
+                        {service.featureKeys.map((featureKey, featureIndex) => (
                           <li key={featureIndex} className="flex items-start text-sm text-gray-600">
                             <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                            {feature}
+                            {t(featureKey)}
                           </li>
                         ))}
                       </ul>
@@ -239,10 +258,10 @@ export default function MaintenancePage() {
 
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div>
-                        <div className="text-lg font-semibold text-gray-900">{service.pricing}</div>
+                        <div className="text-lg font-semibold text-gray-900">{t(service.pricingKey)}</div>
                       </div>
                       <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                        Demander un Devis
+                        {t('servicesSection.requestQuote')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
@@ -259,10 +278,10 @@ export default function MaintenancePage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Équipements Pris en Charge
+              {t('equipmentSection.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Expertise technique sur toutes les catégories d'équipements médicaux
+              {t('equipmentSection.description')}
             </p>
           </div>
 
@@ -273,14 +292,14 @@ export default function MaintenancePage() {
                   <div className="w-16 h-16 mx-auto mb-4 bg-blue-50 rounded-full flex items-center justify-center">
                     <category.icon className="h-8 w-8 text-blue-600" />
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-3">{category.name}</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-3">{t(category.nameKey)}</h3>
                   <ul className="space-y-1 text-sm text-gray-600 mb-4">
-                    {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>{item}</li>
+                    {category.itemKeys.map((itemKey, itemIndex) => (
+                      <li key={itemIndex}>{t(itemKey)}</li>
                     ))}
                   </ul>
                   <Badge variant="outline" className="text-xs">
-                    Maintenance {category.maintenanceInterval}
+                    {t('equipmentSection.maintenanceLabel')} {t(category.intervalKey)}
                   </Badge>
                 </CardContent>
               </Card>
@@ -295,10 +314,10 @@ export default function MaintenancePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-light text-gray-900 mb-4">
-                Demande de Maintenance
+                {t('form.title')}
               </h2>
               <p className="text-gray-600">
-                Remplissez le formulaire ci-dessous pour une demande d'intervention
+                {t('form.description')}
               </p>
             </div>
 
@@ -308,7 +327,7 @@ export default function MaintenancePage() {
                   <div className="grid gap-6 md:grid-cols-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Type d'Équipement *
+                        {t('form.equipmentType.label')}
                       </label>
                       <select
                         name="equipmentType"
@@ -317,31 +336,31 @@ export default function MaintenancePage() {
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       >
-                        <option value="">Sélectionner un type</option>
-                        <option value="imagerie">Imagerie Médicale</option>
-                        <option value="cardio">Équipements Cardio</option>
-                        <option value="monitoring">Systèmes de Monitoring</option>
-                        <option value="laboratoire">Équipements de Laboratoire</option>
-                        <option value="autre">Autre</option>
+                        <option value="">{t('form.equipmentType.placeholder')}</option>
+                        <option value="imagerie">{t('form.equipmentType.options.imaging')}</option>
+                        <option value="cardio">{t('form.equipmentType.options.cardio')}</option>
+                        <option value="monitoring">{t('form.equipmentType.options.monitoring')}</option>
+                        <option value="laboratoire">{t('form.equipmentType.options.laboratory')}</option>
+                        <option value="autre">{t('form.equipmentType.options.other')}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Numéro de Série
+                        {t('form.serialNumber.label')}
                       </label>
                       <Input
                         name="serialNumber"
                         value={formData.serialNumber}
                         onChange={handleInputChange}
-                        placeholder="Ex: KM2024-001"
+                        placeholder={t('form.serialNumber.placeholder')}
                         className="w-full"
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Niveau d'Urgence *
+                        {t('form.urgency.label')}
                       </label>
                       <select
                         name="urgency"
@@ -350,22 +369,22 @@ export default function MaintenancePage() {
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         required
                       >
-                        <option value="low">Faible - Maintenance préventive</option>
-                        <option value="normal">Normal - Dans la semaine</option>
-                        <option value="high">Élevé - Sous 24h</option>
-                        <option value="urgent">Urgent - Intervention immédiate</option>
+                        <option value="low">{t('form.urgency.options.low')}</option>
+                        <option value="normal">{t('form.urgency.options.normal')}</option>
+                        <option value="high">{t('form.urgency.options.high')}</option>
+                        <option value="urgent">{t('form.urgency.options.urgent')}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Localisation *
+                        {t('form.location.label')}
                       </label>
                       <Input
                         name="location"
                         value={formData.location}
                         onChange={handleInputChange}
-                        placeholder="Adresse de l'équipement"
+                        placeholder={t('form.location.placeholder')}
                         className="w-full"
                         required
                       />
@@ -374,13 +393,13 @@ export default function MaintenancePage() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Description du Problème *
+                      {t('form.issueDescription.label')}
                     </label>
                     <Textarea
                       name="issueDescription"
                       value={formData.issueDescription}
                       onChange={handleInputChange}
-                      placeholder="Décrivez le problème en détail..."
+                      placeholder={t('form.issueDescription.placeholder')}
                       rows={4}
                       className="w-full"
                       required
@@ -390,13 +409,13 @@ export default function MaintenancePage() {
                   <div className="grid gap-6 md:grid-cols-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Nom du Contact *
+                        {t('form.contactName.label')}
                       </label>
                       <Input
                         name="contactName"
                         value={formData.contactName}
                         onChange={handleInputChange}
-                        placeholder="Nom et prénom"
+                        placeholder={t('form.contactName.placeholder')}
                         className="w-full"
                         required
                       />
@@ -404,7 +423,7 @@ export default function MaintenancePage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Téléphone *
+                        {t('form.contactPhone.label')}
                       </label>
                       <Input
                         name="contactPhone"
@@ -418,7 +437,7 @@ export default function MaintenancePage() {
 
                     <div>
                       <label className="block text-sm font-medium text-gray-900 mb-2">
-                        Email *
+                        {t('form.contactEmail.label')}
                       </label>
                       <Input
                         name="contactEmail"
@@ -434,10 +453,10 @@ export default function MaintenancePage() {
 
                   <div className="flex items-center justify-between pt-6 border-t">
                     <p className="text-sm text-gray-600">
-                      * Champs obligatoires
+                      {t('form.requiredFields')}
                     </p>
                     <Button type="submit" size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                      Envoyer la Demande
+                      {t('form.submit')}
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </div>
@@ -454,10 +473,10 @@ export default function MaintenancePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-light mb-4">
-                Contact Maintenance d'Urgence
+                {t('contact.title')}
               </h2>
               <p className="text-gray-300">
-                Pour les urgences, contactez notre équipe technique 24h/24, 7j/7
+                {t('contact.description')}
               </p>
             </div>
 
@@ -466,27 +485,27 @@ export default function MaintenancePage() {
                 <div className="w-16 h-16 mx-auto mb-4 bg-red-600 rounded-full flex items-center justify-center">
                   <Phone className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-medium mb-2">Urgences 24/7</h3>
+                <h3 className="text-lg font-medium mb-2">{t('contact.emergency.title')}</h3>
                 <p className="text-gray-300 mb-2">+212 522 86 03 66</p>
-                <p className="text-gray-300 text-sm">Disponible en permanence</p>
+                <p className="text-gray-300 text-sm">{t('contact.emergency.availability')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
                   <Mail className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-medium mb-2">Email Technique</h3>
+                <h3 className="text-lg font-medium mb-2">{t('contact.email.title')}</h3>
                 <p className="text-gray-300 mb-2">maintenance@kitmed.ma</p>
-                <p className="text-gray-300 text-sm">Réponse sous 2h</p>
+                <p className="text-gray-300 text-sm">{t('contact.email.responseTime')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
                   <MapPin className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-medium mb-2">Intervention</h3>
-                <p className="text-gray-300 mb-2">Maroc & Afrique</p>
-                <p className="text-gray-300 text-sm">Service national</p>
+                <h3 className="text-lg font-medium mb-2">{t('contact.intervention.title')}</h3>
+                <p className="text-gray-300 mb-2">{t('contact.intervention.coverage')}</p>
+                <p className="text-gray-300 text-sm">{t('contact.intervention.serviceType')}</p>
               </div>
             </div>
           </div>

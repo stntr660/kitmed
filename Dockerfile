@@ -77,6 +77,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copy Prisma files
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
+# Copy i18n messages for next-intl (required for dynamic imports)
+COPY --from=builder --chown=nextjs:nodejs /app/src/messages ./src/messages
+
 # Copy package.json for Prisma CLI
 COPY --from=builder /app/package.json ./
 

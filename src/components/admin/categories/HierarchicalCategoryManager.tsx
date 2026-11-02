@@ -144,6 +144,15 @@ function TreeView({
                   : 'border-l-4 border-green-300 bg-gradient-to-r from-green-50 to-transparent ml-4'
               }`}
               style={getIndentStyle(level)}
+              onClick={() => {
+                if (hasChildren) {
+                  if (isExpanded) {
+                    onCollapse(category.id);
+                  } else {
+                    onExpand(category.id);
+                  }
+                }
+              }}
             >
               {/* Expand/Collapse Button */}
               <div className="w-8 flex justify-center">
@@ -497,10 +506,13 @@ export function HierarchicalCategoryManager() {
         const data = await response.json();
         setCategories(data.data.items);
       } else {
-        throw new Error('Failed to load categories');
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.loadFailed');
+        throw new Error(errorMessage);
       }
     } catch (err) {
-      setError(t('errors.serverError'));
+      const errorMessage = err instanceof Error ? err.message : t('admin.categories.errors.loadFailed');
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -765,10 +777,12 @@ export function HierarchicalCategoryManager() {
         });
       } else {
         const errorData = await response.json();
-        setError(errorData.error || 'Failed to delete category');
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.deleteFailed');
+        setError(errorMessage);
       }
     } catch (error) {
-      setError('Failed to delete category');
+      const errorMessage = error instanceof Error ? error.message : t('admin.categories.errors.deleteFailed');
+      setError(errorMessage);
     }
   };
 
@@ -779,16 +793,44 @@ export function HierarchicalCategoryManager() {
         : `/api/admin/categories/${selectedCategory?.id}`;
 
       const method = wizardMode === 'add' ? 'POST' : 'PUT';
+      const isCreate = wizardMode === 'add';
 
-      // Format payload to match API schema
-      const payload = {
-        name: categoryData.translations.fr.name, // Root level name from French translation
+      // Format payload to match API schema - POST uses snake_case, PUT uses camelCase
+      const payload = isCreate ? {
+        // POST endpoint uses snake_case
+        name: categoryData.translations.fr.name,
+        description: categoryData.translations.fr.description?.trim() || null,
+        meta_title: categoryData.translations.fr.metaTitle?.trim() || null,
+        meta_description: categoryData.translations.fr.metaDescription?.trim() || null,
+        type: categoryData.type || 'discipline',
+        sort_order: categoryData.sortOrder || 0,
+        is_active: categoryData.isActive !== false,
+        image_url: categoryData.imageUrl && categoryData.imageUrl.trim() ? categoryData.imageUrl : null,
+        translations: {
+          fr: {
+            name: categoryData.translations.fr.name,
+            description: categoryData.translations.fr.description?.trim() || null,
+            meta_title: categoryData.translations.fr.metaTitle?.trim() || null,
+            meta_description: categoryData.translations.fr.metaDescription?.trim() || null,
+          },
+          ...(categoryData.translations.en?.name && {
+            en: {
+              name: categoryData.translations.en.name,
+              description: categoryData.translations.en.description?.trim() || null,
+              meta_title: categoryData.translations.en.metaTitle?.trim() || null,
+              meta_description: categoryData.translations.en.metaDescription?.trim() || null,
+            }
+          })
+        },
+        ...(categoryData.parentId ? { parent_id: categoryData.parentId } : parentCategory && { parent_id: parentCategory.id }),
+      } : {
+        // PUT endpoint uses camelCase
+        name: categoryData.translations.fr.name,
         description: categoryData.translations.fr.description?.trim() || null,
         metaTitle: categoryData.translations.fr.metaTitle?.trim() || null,
         metaDescription: categoryData.translations.fr.metaDescription?.trim() || null,
-        type: categoryData.type || 'discipline', // Include type field from wizard
         sortOrder: categoryData.sortOrder || 0,
-        isActive: categoryData.isActive !== false, // Default to true
+        isActive: categoryData.isActive !== false,
         imageUrl: categoryData.imageUrl && categoryData.imageUrl.trim() ? categoryData.imageUrl : null,
         translations: {
           fr: {
@@ -797,7 +839,6 @@ export function HierarchicalCategoryManager() {
             metaTitle: categoryData.translations.fr.metaTitle?.trim() || null,
             metaDescription: categoryData.translations.fr.metaDescription?.trim() || null,
           },
-          // Only include English if name is provided
           ...(categoryData.translations.en?.name && {
             en: {
               name: categoryData.translations.en.name,
@@ -807,11 +848,10 @@ export function HierarchicalCategoryManager() {
             }
           })
         },
-        // Priority: Use parentId from wizard data, fallback to parentCategory
         ...(categoryData.parentId ? { parentId: categoryData.parentId } : parentCategory && { parentId: parentCategory.id }),
       };
 
-      console.log('🔥 MANAGER SENDING PAYLOAD:', JSON.stringify(payload, null, 2));
+      console.log('MANAGER SENDING PAYLOAD:', JSON.stringify(payload, null, 2));
 
       const response = await fetch(url, {
         method,
@@ -837,10 +877,12 @@ export function HierarchicalCategoryManager() {
           const validationErrors = errorData.details.map((err: any) =>
             `${err.path?.join('.')}: ${err.message}`
           ).join(', ');
-          throw new Error(`Validation errors: ${validationErrors}`);
+          throw new Error(t('admin.categories.errors.validationError', { details: validationErrors }));
         }
 
-        throw new Error(errorData.error || 'Failed to save category');
+        // Show the actual API error message
+        const apiError = errorData.error || errorData.message || t('admin.categories.errors.saveFailed');
+        throw new Error(apiError);
       }
     } catch (error) {
       throw error;
@@ -877,10 +919,12 @@ export function HierarchicalCategoryManager() {
         setSelectedIds(new Set());
       } else {
         const errorData = await response.json();
-        setError(errorData.error || 'Bulk operation failed');
+        const errorMessage = errorData.error || errorData.message || t('admin.categories.errors.bulkOperationFailed');
+        setError(errorMessage);
       }
     } catch (error) {
-      setError('Bulk operation failed');
+      const errorMessage = error instanceof Error ? error.message : t('admin.categories.errors.bulkOperationFailed');
+      setError(errorMessage);
     }
   };
 

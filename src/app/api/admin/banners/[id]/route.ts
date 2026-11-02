@@ -2,12 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { randomUUID } from 'crypto';
 
 // GET /api/admin/banners/[id] - Get single banner
-async function getBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function getBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const banner = await prisma.banners.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         banner_translations: true,
       },
@@ -99,8 +101,8 @@ const updateBannerSchema = z.object({
   overlayOpacity: z.number().min(0).max(1).optional(),
   sortOrder: z.number().int().min(0).optional(),
   isActive: z.boolean().optional(),
-  startDate: z.string().datetime().optional().nullable(),
-  endDate: z.string().datetime().optional().nullable(),
+  startDate: z.string().optional().nullable(),
+  endDate: z.string().optional().nullable(),
   translations: z.object({
     fr: z.object({
       title: z.string().min(1, 'French title is required').optional(),
@@ -117,15 +119,16 @@ const updateBannerSchema = z.object({
   }).optional(),
 });
 
-async function updateBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function updateBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id: bannerId } = await params;
     const body = await request.json();
 
     // Validate request body
     const validation = updateBannerSchema.safeParse(body);
     if (!validation.success) {
       console.error('Banner update validation error:', {
-        bannerId: params.id,
+        bannerId,
         body,
         errors: validation.error.issues
       });
@@ -146,8 +149,8 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 
     // Check if banner exists
     const existingBanner = await prisma.banners.findUnique({
-      where: { id: params.id },
-      include: { translations: true },
+      where: { id: bannerId },
+      include: { banner_translations: true },
     });
 
     if (!existingBanner) {
@@ -167,7 +170,7 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
     const updatedBanner = await prisma.$transaction(async (tx) => {
       // Update main banner record
       const banner = await tx.banners.update({
-        where: { id: params.id },
+        where: { id: bannerId },
         data: {
           ...(bannerData.title && { title: bannerData.title }),
           ...(bannerData.subtitle !== undefined && { subtitle: bannerData.subtitle || null }),
@@ -196,93 +199,139 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
       if (bannerData.translations) {
         // Update French translation
         if (bannerData.translations.fr) {
+          const frTitle = bannerData.translations.fr.title || existingBanner.title;
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
-                banner_id: params.id,
+                banner_id: bannerId,
                 language_code: 'fr',
               },
             },
             create: {
-              banner_id: params.id,
+              id: randomUUID(),
+              banner_id: bannerId,
               language_code: 'fr',
-              title: bannerData.translations.fr.title || existingBanner.title,
+              title: frTitle,
               subtitle: bannerData.translations.fr.subtitle || null,
               description: bannerData.translations.fr.description || null,
-              ctaText: bannerData.translations.fr.ctaText || null,
+              cta_text: bannerData.translations.fr.ctaText || null,
             },
             update: {
-              ...(bannerData.translations.fr.title && { title: bannerData.translations.fr.title }),
-              ...(bannerData.translations.fr.subtitle !== undefined && {
-                subtitle: bannerData.translations.fr.subtitle || null
-              }),
-              ...(bannerData.translations.fr.description !== undefined && {
-                description: bannerData.translations.fr.description || null
-              }),
-              ...(bannerData.translations.fr.ctaText !== undefined && {
-                ctaText: bannerData.translations.fr.ctaText || null
-              }),
+              title: frTitle,
+              subtitle: bannerData.translations.fr.subtitle || null,
+              description: bannerData.translations.fr.description || null,
+              cta_text: bannerData.translations.fr.ctaText || null,
             },
           });
         }
 
         // Update English translation
         if (bannerData.translations.en) {
+          const enTitle = bannerData.translations.en.title || existingBanner.title;
           await tx.banner_translations.upsert({
             where: {
               banner_id_language_code: {
-                banner_id: params.id,
+                banner_id: bannerId,
                 language_code: 'en',
               },
             },
             create: {
-              banner_id: params.id,
+              id: randomUUID(),
+              banner_id: bannerId,
               language_code: 'en',
-              title: bannerData.translations.en.title || existingBanner.title,
+              title: enTitle,
               subtitle: bannerData.translations.en.subtitle || null,
               description: bannerData.translations.en.description || null,
-              ctaText: bannerData.translations.en.ctaText || null,
+              cta_text: bannerData.translations.en.ctaText || null,
             },
             update: {
-              ...(bannerData.translations.en.title && { title: bannerData.translations.en.title }),
-              ...(bannerData.translations.en.subtitle !== undefined && {
-                subtitle: bannerData.translations.en.subtitle || null
-              }),
-              ...(bannerData.translations.en.description !== undefined && {
-                description: bannerData.translations.en.description || null
-              }),
-              ...(bannerData.translations.en.ctaText !== undefined && {
-                ctaText: bannerData.translations.en.ctaText || null
-              }),
+              title: enTitle,
+              subtitle: bannerData.translations.en.subtitle || null,
+              description: bannerData.translations.en.description || null,
+              cta_text: bannerData.translations.en.ctaText || null,
             },
           });
         }
       }
 
       return tx.banners.findUnique({
-        where: { id: params.id },
-        include: { translations: true },
+        where: { id: bannerId },
+        include: { banner_translations: true },
       });
     });
 
+    // Transform response to camelCase for frontend compatibility
+    const transformedBanner = updatedBanner ? {
+      id: updatedBanner.id,
+      title: updatedBanner.title,
+      subtitle: updatedBanner.subtitle,
+      description: updatedBanner.description,
+      imageUrl: updatedBanner.image_url,
+      backgroundUrl: updatedBanner.background_url,
+      ctaText: updatedBanner.cta_text,
+      ctaUrl: updatedBanner.cta_url,
+      ctaStyle: updatedBanner.cta_style,
+      position: updatedBanner.position,
+      layout: updatedBanner.layout,
+      textAlign: updatedBanner.text_align,
+      overlayOpacity: updatedBanner.overlay_opacity,
+      sortOrder: updatedBanner.sort_order,
+      isActive: updatedBanner.is_active,
+      startDate: updatedBanner.start_date,
+      endDate: updatedBanner.end_date,
+      createdAt: updatedBanner.created_at,
+      updatedAt: updatedBanner.updated_at,
+      translations: updatedBanner.banner_translations?.map((t: any) => ({
+        id: t.id,
+        bannerId: t.banner_id,
+        languageCode: t.language_code,
+        title: t.title,
+        subtitle: t.subtitle,
+        description: t.description,
+        ctaText: t.cta_text,
+      })) || [],
+    } : null;
+
     return NextResponse.json({
       success: true,
-      data: updatedBanner,
+      data: transformedBanner,
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',
       },
     });
-  } catch (error) {
-    console.error('Banner update error:', error);
+  } catch (error: any) {
+    console.error('Banner update error:', {
+      message: error?.message,
+      code: error?.code,
+      meta: error?.meta,
+      stack: error?.stack,
+    });
+
+    // Extract detailed error info
+    let errorMessage = 'Failed to update banner';
+    let errorDetails = 'Unknown error';
+
+    if (error instanceof Error) {
+      errorMessage = error.message;
+      errorDetails = error.stack || error.message;
+    }
+
+    // Handle Prisma-specific errors
+    if (error?.code) {
+      errorDetails = `Prisma error ${error.code}: ${error.message}`;
+      if (error.meta) {
+        errorDetails += ` (${JSON.stringify(error.meta)})`;
+      }
+    }
 
     return NextResponse.json(
       {
         success: false,
         error: {
-          code: 'INTERNAL_ERROR',
-          message: 'Failed to update banner',
-          details: error instanceof Error ? error.message : 'Unknown error',
+          code: error?.code || 'INTERNAL_ERROR',
+          message: errorMessage,
+          details: errorDetails,
         },
       },
       { status: 500 }
@@ -291,11 +340,12 @@ async function updateBanner(request: NextRequest, { params }: { params: { id: st
 }
 
 // DELETE /api/admin/banners/[id] - Delete banner
-async function deleteBanner(request: NextRequest, { params }: { params: { id: string } }) {
+async function deleteBanner(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id: bannerId } = await params;
     // Check if banner exists
     const existingBanner = await prisma.banners.findUnique({
-      where: { id: params.id },
+      where: { id: bannerId },
     });
 
     if (!existingBanner) {
@@ -313,12 +363,12 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
 
     // Delete banner (translations will be deleted automatically due to cascade)
     await prisma.banners.delete({
-      where: { id: params.id },
+      where: { id: bannerId },
     });
 
     return NextResponse.json({
       success: true,
-      data: { id: params.id },
+      data: { id: bannerId },
       meta: {
         timestamp: new Date().toISOString(),
         version: '1.0',

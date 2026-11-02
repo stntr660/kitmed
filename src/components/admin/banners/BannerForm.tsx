@@ -318,11 +318,12 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="title_fr">Title *</Label>
+                  <Label htmlFor="title_fr">Title * <span className="text-xs text-gray-400">(max 80)</span></Label>
                   <Input
                     id="title_fr"
                     {...register('title_fr')}
                     placeholder="Enter French title"
+                    maxLength={80}
                   />
                   {errors.title_fr && (
                     <p className="text-sm text-red-600 mt-1">{errors.title_fr.message}</p>
@@ -330,30 +331,33 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
                 </div>
 
                 <div>
-                  <Label htmlFor="subtitle_fr">Subtitle</Label>
+                  <Label htmlFor="subtitle_fr">Subtitle <span className="text-xs text-gray-400">(max 120)</span></Label>
                   <Input
                     id="subtitle_fr"
                     {...register('subtitle_fr')}
                     placeholder="Enter French subtitle"
+                    maxLength={120}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="description_fr">Description</Label>
+                  <Label htmlFor="description_fr">Description <span className="text-xs text-gray-400">(max 250)</span></Label>
                   <Textarea
                     id="description_fr"
                     {...register('description_fr')}
                     placeholder="Enter French description"
-                    rows={3}
+                    rows={2}
+                    maxLength={250}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="ctaText_fr">CTA Text</Label>
+                  <Label htmlFor="ctaText_fr">CTA Text <span className="text-xs text-gray-400">(max 30)</span></Label>
                   <Input
                     id="ctaText_fr"
                     {...register('ctaText_fr')}
-                    placeholder="e.g., Découvrir les Produits"
+                    placeholder="e.g., Découvrir"
+                    maxLength={30}
                   />
                 </div>
               </CardContent>
@@ -366,39 +370,43 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="title_en">Title</Label>
+                  <Label htmlFor="title_en">Title <span className="text-xs text-gray-400">(max 80)</span></Label>
                   <Input
                     id="title_en"
                     {...register('title_en')}
                     placeholder="Enter English title"
+                    maxLength={80}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="subtitle_en">Subtitle</Label>
+                  <Label htmlFor="subtitle_en">Subtitle <span className="text-xs text-gray-400">(max 120)</span></Label>
                   <Input
                     id="subtitle_en"
                     {...register('subtitle_en')}
                     placeholder="Enter English subtitle"
+                    maxLength={120}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="description_en">Description</Label>
+                  <Label htmlFor="description_en">Description <span className="text-xs text-gray-400">(max 250)</span></Label>
                   <Textarea
                     id="description_en"
                     {...register('description_en')}
                     placeholder="Enter English description"
-                    rows={3}
+                    rows={2}
+                    maxLength={250}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="ctaText_en">CTA Text</Label>
+                  <Label htmlFor="ctaText_en">CTA Text <span className="text-xs text-gray-400">(max 30)</span></Label>
                   <Input
                     id="ctaText_en"
                     {...register('ctaText_en')}
-                    placeholder="e.g., Discover Products"
+                    placeholder="e.g., Discover"
+                    maxLength={30}
                   />
                 </div>
               </CardContent>

@@ -201,7 +201,7 @@ export function RFPQuickView({
           <Card>
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center">
-                <div className="h-5 w-5 mr-2">📦</div>
+                <div className="h-5 w-5 mr-2"></div>
                 {t('admin.rfpRequests.drawer.fields.requestedItems')} ({rfp.items?.length || 0})
               </CardTitle>
             </CardHeader>
@@ -227,7 +227,7 @@ export function RFPQuickView({
                           <div
                             className={`w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center ${item.product?.media?.[0]?.url ? 'hidden' : 'flex'}`}
                           >
-                            <span className="text-gray-400 text-xs">📦</span>
+                            <span className="text-gray-400 text-xs"></span>
                           </div>
                         </div>
 

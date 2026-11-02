@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Shield, CheckCircle, Award, Star, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsHydrated } from '@/components/ui/hydration-safe';
+import { useTranslations } from 'next-intl';
 
 interface CertificationsBannerProps {
   variant?: 'hero' | 'compact' | 'floating';
@@ -71,6 +72,7 @@ export function CertificationsBanner({ variant = 'hero', className }: Certificat
 
 // Hero version - full banner with animation
 function HeroCertificationsBanner({ className }: { className?: string }) {
+  const t = useTranslations('certifications');
   return (
     <section className={cn("relative py-4 bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 overflow-hidden", className)}>
       {/* Animated background elements */}
@@ -86,10 +88,10 @@ function HeroCertificationsBanner({ className }: { className?: string }) {
           {/* Left side - Title and trust message */}
           <div className="text-center lg:text-left lg:flex-1">
             <h2 className="text-white font-bold text-lg lg:text-xl mb-1">
-              Certifications & Normes Internationales
+              {t('bannerTitle')}
             </h2>
             <p className="text-primary-100 text-sm lg:text-base">
-              Confiance garantie par nos certifications officielles
+              {t('bannerSubtitle')}
             </p>
           </div>
 
@@ -110,7 +112,7 @@ function HeroCertificationsBanner({ className }: { className?: string }) {
                 <Zap className="h-4 w-4 text-primary-100" />
                 <span className="text-white font-semibold text-sm">100%</span>
               </div>
-              <span className="text-primary-100 text-xs">Conforme</span>
+              <span className="text-primary-100 text-xs">{t('compliant')}</span>
             </div>
           </div>
         </div>
@@ -121,6 +123,7 @@ function HeroCertificationsBanner({ className }: { className?: string }) {
 
 // Compact version - small top bar
 function CompactCertificationsBanner({ className }: { className?: string }) {
+  const t = useTranslations('certifications');
   return (
     <div className={cn("bg-white border-b border-primary-100 py-2", className)}>
       <div className="container mx-auto px-4 lg:px-8">
@@ -128,7 +131,7 @@ function CompactCertificationsBanner({ className }: { className?: string }) {
           <div className="flex items-center gap-3">
             <Shield className="h-4 w-4 text-primary-600" />
             <span className="text-sm font-medium text-gray-700">
-              Certifié ONSSA • ISO 9001/13485/22716
+              {t('certifiedLabel')}
             </span>
           </div>
 
@@ -150,13 +153,14 @@ function CompactCertificationsBanner({ className }: { className?: string }) {
 
 // Floating version - overlaid on content
 function FloatingCertificationsBanner({ className }: { className?: string }) {
+  const t = useTranslations('certifications');
   return (
     <div className={cn("fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-primary-200 shadow-sm", className)}>
       <div className="container mx-auto px-4 lg:px-8 py-1.5">
         <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6">
           <div className="flex items-center gap-2">
             <Award className="h-4 w-4 text-primary-600" />
-            <span className="text-sm font-medium text-gray-800">Certifications</span>
+            <span className="text-sm font-medium text-gray-800">{t('title')}</span>
           </div>
 
           {certifications.map((cert, index) => (
@@ -170,7 +174,7 @@ function FloatingCertificationsBanner({ className }: { className?: string }) {
 
           <div className="flex items-center gap-1">
             <CheckCircle className="h-4 w-4 text-primary-500" />
-            <span className="text-xs font-medium text-primary-700">Vérifié</span>
+            <span className="text-xs font-medium text-primary-700">{t('verified')}</span>
           </div>
         </div>
       </div>

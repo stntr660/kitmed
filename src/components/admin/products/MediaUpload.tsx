@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   PhotoIcon,
@@ -27,6 +27,11 @@ interface MediaFile {
   createdAt: string;
 }
 
+interface TempFileWithPreview {
+  file: File;
+  previewUrl: string;
+}
+
 interface MediaUploadProps {
   productId: string | null;
   disabled?: boolean;
@@ -39,7 +44,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [tempFiles, setTempFiles] = useState<File[]>([]);
+  const [tempFilesWithPreview, setTempFilesWithPreview] = useState<TempFileWithPreview[]>([]);
 
   // Load existing media when productId changes
   const loadMedia = useCallback(async () => {
@@ -70,14 +75,28 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
     loadMedia();
   }, [loadMedia]);
 
+  // Cleanup preview URLs when component unmounts or temp files change
+  useEffect(() => {
+    return () => {
+      tempFilesWithPreview.forEach(item => URL.revokeObjectURL(item.previewUrl));
+    };
+  }, []);
+
   const handleFilesDrop = async (files: File[]) => {
+    console.log('[MediaUpload] handleFilesDrop called with', files.length, 'files');
     if (disabled || files.length === 0) return;
 
-    // If no productId, store files temporarily
+    // If no productId, store files temporarily with preview URLs
     if (!productId) {
-      const newTempFiles = [...tempFiles, ...files];
-      setTempFiles(newTempFiles);
-      onTempFilesChange?.(newTempFiles);
+      console.log('[MediaUpload] No productId - storing files temporarily');
+      const newTempFilesWithPreview = files.map(file => ({
+        file,
+        previewUrl: URL.createObjectURL(file),
+      }));
+      const updatedTempFiles = [...tempFilesWithPreview, ...newTempFilesWithPreview];
+      setTempFilesWithPreview(updatedTempFiles);
+      console.log('[MediaUpload] Calling onTempFilesChange with', updatedTempFiles.length, 'files');
+      onTempFilesChange?.(updatedTempFiles.map(item => item.file));
       return;
     }
 
@@ -117,21 +136,23 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   // Handle removal of temp files
   const handleRemoveTempFile = (index: number) => {
     if (disabled) return;
-    const newTempFiles = tempFiles.filter((_, i) => i !== index);
-    setTempFiles(newTempFiles);
-    onTempFilesChange?.(newTempFiles);
+    // Revoke the URL being removed
+    URL.revokeObjectURL(tempFilesWithPreview[index].previewUrl);
+    const newTempFiles = tempFilesWithPreview.filter((_, i) => i !== index);
+    setTempFilesWithPreview(newTempFiles);
+    onTempFilesChange?.(newTempFiles.map(item => item.file));
   };
 
   // Upload temp files after product is created
   const uploadTempFiles = async (newProductId: string) => {
-    if (tempFiles.length === 0) return;
+    if (tempFilesWithPreview.length === 0) return;
 
     try {
       setUploading(true);
 
       const formData = new FormData();
-      tempFiles.forEach(file => {
-        formData.append('files', file);
+      tempFilesWithPreview.forEach(item => {
+        formData.append('files', item.file);
       });
 
       const token = getAdminToken();
@@ -146,7 +167,9 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
       if (response.ok) {
         const result = await response.json();
         setMedia(result.data || []);
-        setTempFiles([]); // Clear temp files after successful upload
+        // Cleanup preview URLs
+        tempFilesWithPreview.forEach(item => URL.revokeObjectURL(item.previewUrl));
+        setTempFilesWithPreview([]); // Clear temp files after successful upload
         onMediaChange?.(result.data || []);
       }
     } catch (error) {
@@ -159,13 +182,21 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
   // Expose uploadTempFiles function
   React.useEffect(() => {
     (window as any).uploadTempFiles = uploadTempFiles;
-  }, [uploadTempFiles]);
+  }, [tempFilesWithPreview]);
 
   const handleDeleteMedia = async (mediaId: string) => {
-    if (disabled) return;
+    console.log('[MediaUpload] handleDeleteMedia called with mediaId:', mediaId);
+    console.log('[MediaUpload] disabled:', disabled);
+
+    if (disabled) {
+      console.log('[MediaUpload] Disabled, returning early');
+      return;
+    }
 
     try {
       const token = getAdminToken();
+      console.log('[MediaUpload] Token:', token ? 'present' : 'missing');
+
       const response = await fetch(`/api/admin/media/${mediaId}`, {
         method: 'DELETE',
         headers: {
@@ -173,13 +204,20 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         },
       });
 
+      console.log('[MediaUpload] Delete response status:', response.status);
+      const responseData = await response.json().catch(() => ({}));
+      console.log('[MediaUpload] Delete response data:', responseData);
+
       if (response.ok) {
         const newMedia = media.filter(m => m.id !== mediaId);
+        console.log('[MediaUpload] Updating media state, new count:', newMedia.length);
         setMedia(newMedia);
         onMediaChange?.(newMedia);
+      } else {
+        console.error('[MediaUpload] Delete failed:', responseData);
       }
     } catch (error) {
-      console.error('Delete error:', error);
+      console.error('[MediaUpload] Delete error:', error);
     }
   };
 
@@ -266,13 +304,13 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
       </Dropzone>
 
       {/* Temp Files Info Banner */}
-      {tempFiles.length > 0 && !productId && (
+      {tempFilesWithPreview.length > 0 && !productId && (
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <div className="flex items-start space-x-3">
             <PhotoIcon className="h-5 w-5 text-blue-600 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-blue-900">
-                {tempFiles.length} {tempFiles.length === 1 ? t('admin.products.tempImage') : 'images temporaires'}
+                {tempFilesWithPreview.length} {tempFilesWithPreview.length === 1 ? t('admin.products.tempImage') : 'images temporaires'}
               </p>
               <p className="text-sm text-blue-700 mt-1">
                 {t('admin.products.tempImageDescription')}
@@ -287,38 +325,42 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
         <div className="flex justify-center py-8">
           <LoadingSpinner size="lg" />
         </div>
-      ) : (media.length > 0 || tempFiles.length > 0) ? (
+      ) : (media.length > 0 || tempFilesWithPreview.length > 0) ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* Show temp files for new products */}
-          {tempFiles.map((file, index) => (
-            <div key={`temp-${index}`} className="relative group">
+          {tempFilesWithPreview.map((item, index) => (
+            <div key={`temp-${index}-${item.file.name}`} className="relative group">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                 <img
-                  src={URL.createObjectURL(file)}
-                  alt={`Temporary image ${index + 1}`}
+                  src={item.previewUrl}
+                  alt={item.file.name || `Temporary image ${index + 1}`}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    console.error('Image preview failed for:', item.file.name);
+                    // Try to recreate the blob URL
+                    const newUrl = URL.createObjectURL(item.file);
+                    (e.target as HTMLImageElement).src = newUrl;
+                  }}
                 />
               </div>
 
-              {/* Overlay controls */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {/* Delete button */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
-                    onClick={() => handleRemoveTempFile(index)}
-                    disabled={disabled}
-                  >
-                    <XMarkIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+              {/* Delete button - always visible, high z-index */}
+              <div className="absolute top-1 right-1 z-30">
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  className="h-6 w-6 p-0 rounded-full shadow-md"
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); handleRemoveTempFile(index); }}
+                  disabled={disabled}
+                  type="button"
+                >
+                  <XMarkIcon className="h-3.5 w-3.5" />
+                </Button>
               </div>
 
-              {/* Temp indicator */}
-              <div className="absolute top-2 left-2">
-                <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+              {/* Temp indicator - bottom left to avoid delete button */}
+              <div className="absolute bottom-2 left-2 z-10">
+                <div className="bg-blue-500 text-white text-[10px] px-1.5 py-0.5 rounded font-medium shadow-sm">
                   {t('admin.products.tempImage')}
                 </div>
               </div>
@@ -336,15 +378,29 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 />
               </div>
 
-              {/* Overlay controls */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg">
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
+              {/* Delete button - always visible, high z-index */}
+              <div className="absolute top-1 right-1 z-30">
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  className="h-6 w-6 p-0 rounded-full shadow-md"
+                  onClick={(e) => { e.stopPropagation(); e.preventDefault(); handleDeleteMedia(item.id); }}
+                  disabled={disabled}
+                  type="button"
+                >
+                  <XMarkIcon className="h-3.5 w-3.5" />
+                </Button>
+              </div>
+
+              {/* Overlay controls on hover - pointer-events-none so it doesn't block delete button */}
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity rounded-lg pointer-events-none">
+                <div className="absolute top-2 right-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-auto">
                   {/* Primary star */}
                   <Button
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white hover:bg-yellow-50"
-                    onClick={() => handleSetPrimary(item.id)}
+                    onClick={(e) => { e.stopPropagation(); handleSetPrimary(item.id); }}
                     disabled={disabled}
                   >
                     {item.isPrimary ? (
@@ -353,26 +409,15 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                       <StarIcon className="h-4 w-4 text-gray-500" />
                     )}
                   </Button>
-
-                  {/* Delete button */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-8 w-8 p-0 bg-white hover:bg-gray-50 text-gray-600"
-                    onClick={() => handleDeleteMedia(item.id)}
-                    disabled={disabled}
-                  >
-                    <XMarkIcon className="h-4 w-4" />
-                  </Button>
                 </div>
 
                 {/* Move buttons */}
-                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1">
+                <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity space-x-1 pointer-events-auto">
                   <Button
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white"
-                    onClick={() => handleMoveMedia(item.id, 'up')}
+                    onClick={(e) => { e.stopPropagation(); handleMoveMedia(item.id, 'up'); }}
                     disabled={disabled || index === 0}
                   >
                     <ArrowUpIcon className="h-4 w-4" />
@@ -381,7 +426,7 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                     size="sm"
                     variant="outline"
                     className="h-8 w-8 p-0 bg-white"
-                    onClick={() => handleMoveMedia(item.id, 'down')}
+                    onClick={(e) => { e.stopPropagation(); handleMoveMedia(item.id, 'down'); }}
                     disabled={disabled || index === media.length - 1}
                   >
                     <ArrowDownIcon className="h-4 w-4" />
@@ -389,10 +434,10 @@ export function MediaUpload({ productId, disabled, onMediaChange, onTempFilesCha
                 </div>
               </div>
 
-              {/* Primary indicator */}
+              {/* Primary indicator - bottom left to avoid delete button */}
               {item.isPrimary && (
-                <div className="absolute top-2 left-2">
-                  <div className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                <div className="absolute bottom-2 left-2 z-10">
+                  <div className="bg-yellow-500 text-white text-[10px] px-1.5 py-0.5 rounded font-medium shadow-sm">
                     {t('admin.products.primaryImage')}
                   </div>
                 </div>

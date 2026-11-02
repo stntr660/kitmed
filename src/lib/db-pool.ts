@@ -48,7 +48,7 @@ export class DatabasePool {
     });
 
     this.pool.on('error', (err) => {
-      console.error('🚨 PostgreSQL pool error:', err);
+      console.error('PostgreSQL pool error:', err);
     });
 
     this.pool.on('acquire', () => {
@@ -167,7 +167,7 @@ export class DatabasePool {
       await this.pool.end();
 
     } catch (error) {
-      console.error('❌ Error closing PostgreSQL pool:', error);
+      console.error('Error closing PostgreSQL pool:', error);
     }
 
     if (this.redis) {
@@ -175,7 +175,7 @@ export class DatabasePool {
         this.redis.disconnect();
 
       } catch (error) {
-        console.error('❌ Error closing Redis connection:', error);
+        console.error('Error closing Redis connection:', error);
       }
     }
   }

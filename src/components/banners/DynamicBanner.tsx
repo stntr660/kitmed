@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -30,10 +30,19 @@ interface DynamicBannerProps {
   fallbackComponent?: React.ReactNode;
 }
 
+// Length of the slide animation between two banners
+const SLIDE_MS = 700;
+
 export function DynamicBanner({ position = 'homepage', fallbackComponent }: DynamicBannerProps) {
   const [banners, setBanners] = useState<Banner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  // false for one frame while the track jumps between the cloned first slide and the real one
+  const [animate, setAnimate] = useState(true);
+  // set when « previous » is pressed on slide 0: slide back to the last banner after the jump
+  const pendingPrevious = React.useRef(false);
   const isHydrated = useIsHydrated();
   const locale = useHydrationSafeLocale('fr');
   const t = useTranslations('home.banner');
@@ -68,14 +77,75 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     }
   }, [position, locale, isHydrated]);
 
+  // Auto-advance slider every 2.5 seconds
+  useEffect(() => {
+    if (banners.length <= 1 || isPaused) return;
+    const interval = setInterval(() => {
+      setAnimate(true);
+      setCurrentIndex((prev) => Math.min(prev + 1, banners.length));
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [banners.length, isPaused]);
+
+  // Slides sit in one horizontal track followed by a clone of the first slide:
+  // once the slide onto the clone is over (700 ms, the transition length), jump back
+  // to the real first slide without animation. A timer rather than transitionend,
+  // which background tabs may never fire.
+  useEffect(() => {
+    if (!animate || banners.length <= 1 || currentIndex !== banners.length) return;
+    const timeout = setTimeout(() => {
+      setAnimate(false);
+      setCurrentIndex(0);
+    }, SLIDE_MS);
+    return () => clearTimeout(timeout);
+  }, [animate, currentIndex, banners.length]);
+
+  // Re-enable the transition once the jump has been painted
+  useEffect(() => {
+    if (animate) return;
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (pendingPrevious.current) {
+        pendingPrevious.current = false;
+        setAnimate(true);
+        setCurrentIndex(banners.length - 1);
+      } else {
+        setAnimate(true);
+      }
+    }));
+    return () => cancelAnimationFrame(frame);
+  }, [animate, banners.length]);
+
+  // Navigation handlers
+  const goToPrevious = () => {
+    if (currentIndex === 0) {
+      // jump onto the clone (same picture as slide 0), then slide back to the last banner
+      pendingPrevious.current = true;
+      setAnimate(false);
+      setCurrentIndex(banners.length);
+      return;
+    }
+    setAnimate(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const goToNext = () => {
+    setAnimate(true);
+    setCurrentIndex((prev) => Math.min(prev + 1, banners.length));
+  };
+
+  const goToSlide = (index: number) => {
+    setAnimate(true);
+    setCurrentIndex(index);
+  };
+
   // Static fallback component - consistent across SSR and client
   const StaticFallback = () => (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <section className="relative min-h-[60vh] overflow-hidden bg-gradient-to-br from-gray-50 to-white">
       <div className="relative container mx-auto px-4 lg:px-8 py-8">
-        <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
+        <div className="flex items-center justify-center min-h-[calc(60vh-4rem)]">
           <div className="text-center space-y-6">
-            <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
-              kit<span className="text-blue-600">Med</span>
+            <h1 className="text-6xl lg:text-7xl font-light text-primary-500 leading-none">
+              kit<span className="text-primary-600">Med</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
               Medical equipment solutions
@@ -94,9 +164,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   // Loading state after hydration - same structure as fallback
   if (loading) {
     return (
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+      <section className="relative min-h-[60vh] overflow-hidden bg-gradient-to-br from-gray-50 to-white">
         <div className="relative container mx-auto px-4 lg:px-8 py-8">
-          <div className="flex items-center justify-center min-h-[calc(100vh-6rem)]">
+          <div className="flex items-center justify-center min-h-[calc(60vh-4rem)]">
             <div className="text-center space-y-6">
               <div className="animate-pulse">
                 <div className="h-20 bg-gray-200 rounded mb-6 w-80 mx-auto"></div>
@@ -117,28 +187,34 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
     return <StaticFallback />;
   }
 
-  // Render the first active banner
-  const banner = banners[0];
+  // Banner shown (the clone at index banners.length is slide 0)
+  const activeIndex = currentIndex % banners.length;
+  const banner = banners[activeIndex];
+
+  // Make CTA URL locale-aware (replace /fr/ or /en/ prefix with current locale)
+  const getLocalizedCtaUrl = (url: string) => {
+    return url.replace(/^\/(fr|en)\//, `/${locale}/`);
+  };
 
   // CTA Button styles
-  const getCtaStyles = () => {
+  const getCtaStyles = (banner: Banner) => {
     switch (banner.ctaStyle) {
       case 'secondary':
         return 'bg-gray-600 hover:bg-gray-700 text-white';
       case 'outline':
-        return 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white bg-transparent';
+        return 'border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white bg-transparent';
       default:
-        return 'bg-blue-600 hover:bg-blue-700 text-white';
+        return 'bg-primary-600 hover:bg-primary-700 text-white';
     }
   };
 
   // Render banner content based on layout
-  const renderBannerContent = () => {
+  const renderBannerContent = (banner: Banner) => {
     if (banner.layout === 'centered') {
       return (
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="space-y-4">
-            <h1 className="text-4xl lg:text-6xl font-light text-blue-500 leading-none">
+            <h1 className="text-4xl lg:text-6xl font-light text-primary-500 leading-none">
               {banner.title}
             </h1>
             {banner.subtitle && (
@@ -158,18 +234,18 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
               <img
                 src={banner.imageUrl}
                 alt={banner.title}
-                className="w-full h-auto hover:scale-105 transition-transform duration-500"
+                className="w-full max-h-[55vh] object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           )}
 
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-4">
-              <a href={banner.ctaUrl}>
+              <a href={getLocalizedCtaUrl(banner.ctaUrl)}>
                 <Button
                   className={cn(
                     'px-8 py-3 rounded-lg font-semibold transition-all duration-200 inline-flex items-center space-x-2',
-                    getCtaStyles()
+                    getCtaStyles(banner)
                   )}
                 >
                   <span>{banner.ctaText}</span>
@@ -190,7 +266,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
           banner.textAlign === 'right' ? 'text-right' : 'text-center'
         )}>
           <div className="space-y-6">
-            <h1 className="text-5xl lg:text-7xl font-light text-blue-500 leading-none">
+            <h1 className="text-5xl lg:text-7xl font-light text-primary-500 leading-none">
               {banner.title}
             </h1>
             {banner.subtitle && (
@@ -207,11 +283,11 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
           {banner.ctaText && banner.ctaUrl && (
             <div className="pt-6">
-              <a href={banner.ctaUrl}>
+              <a href={getLocalizedCtaUrl(banner.ctaUrl)}>
                 <Button
                   className={cn(
                     'px-12 py-4 rounded-lg font-semibold text-lg transition-all duration-200 inline-flex items-center space-x-3',
-                    getCtaStyles()
+                    getCtaStyles(banner)
                   )}
                 >
                   <span>{banner.ctaText}</span>
@@ -226,7 +302,7 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
     // Default: Split layout
     return (
-      <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-6rem)]">
+      <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(60vh-4rem)]">
         {/* Left Content - Text Section */}
         <div className={cn(
           'space-y-8 lg:pr-8',
@@ -235,9 +311,9 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         )}>
           <div className="space-y-6">
             <div className="space-y-4">
-              <h1 className="text-6xl lg:text-7xl font-light text-blue-500 leading-none">
+              <h1 className="text-6xl lg:text-7xl font-light text-primary-500 leading-none">
                 {banner.title === 'kitMed' ? (
-                  <>kit<span className="text-blue-600">Med</span></>
+                  <>kit<span className="text-primary-600">Med</span></>
                 ) : (
                   banner.title
                 )}
@@ -263,11 +339,11 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
                 size="lg"
                 className={cn(
                   'px-8 py-4 text-lg font-medium transition-all duration-300',
-                  getCtaStyles()
+                  getCtaStyles(banner)
                 )}
                 asChild
               >
-                <Link href={banner.ctaUrl} className="flex items-center">
+                <Link href={getLocalizedCtaUrl(banner.ctaUrl)} className="flex items-center">
                   {banner.ctaText}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -278,15 +354,13 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
 
         {/* Right Content - Product Image */}
         {banner.imageUrl && (
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <div className="relative max-w-2xl mx-auto">
-              <div className="relative">
-                <img
-                  src={banner.imageUrl}
-                  alt={banner.title}
-                  className="w-full h-auto hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+              <img
+                src={banner.imageUrl}
+                alt={banner.title}
+                className="w-full object-contain hover:scale-105 transition-transform duration-500"
+              />
             </div>
           </div>
         )}
@@ -295,11 +369,15 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section
+      className="relative min-h-[60vh] group"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background Image */}
       {banner.backgroundUrl ? (
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500"
           style={{ backgroundImage: `url(${banner.backgroundUrl})` }}
         >
           <div
@@ -311,8 +389,63 @@ export function DynamicBanner({ position = 'homepage', fallbackComponent }: Dyna
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white" />
       )}
 
-      <div className="relative container mx-auto px-4 lg:px-8 py-8">
-        {renderBannerContent()}
+      {/* Navigation Arrows - positioned outside content area */}
+      {banners.length > 1 && (
+        <>
+          <button
+            onClick={goToPrevious}
+            className="absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            aria-label={t('previousSlide')}
+          >
+            <ChevronLeft className="h-6 w-6 text-gray-700" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+            aria-label={t('nextSlide')}
+          >
+            <ChevronRight className="h-6 w-6 text-gray-700" />
+          </button>
+        </>
+      )}
+
+      <div className="relative container mx-auto px-12 lg:px-20 py-8">
+        {/* Sliding track: every banner side by side, plus a clone of the first one for a seamless loop */}
+        <div className="overflow-hidden">
+          <div
+            className={cn('flex', animate && 'transition-transform ease-in-out')}
+            style={{ transform: `translateX(-${currentIndex * 100}%)`, transitionDuration: animate ? `${SLIDE_MS}ms` : undefined }}
+          >
+            {(banners.length > 1 ? [...banners, banners[0]] : banners).map((slide, index) => (
+              <div
+                key={`${slide.id}-${index}`}
+                className="w-full flex-none"
+                aria-hidden={index % banners.length !== activeIndex || index === banners.length}
+              >
+                {renderBannerContent(slide)}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Dots */}
+        {banners.length > 1 && (
+          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            {banners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={cn(
+                  'w-3 h-3 rounded-full transition-all duration-300',
+                  index === activeIndex
+                    ? 'bg-primary-600 w-8'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                )}
+                aria-label={t('goToSlide', { number: index + 1 })}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">

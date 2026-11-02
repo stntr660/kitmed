@@ -1,0 +1,1307 @@
+Ref Fournisseur,Nom Produit (FR),Nom Produit (EN),Fabricant,Discipline (Parent),Categorie,Category ID,Statut
+"100650, 100666, 100664, 100665, 100667, 146011",Unité d Examen ORL BASIC,ENT Examination Unit BASIC,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"220000, 556339",Poste de Travail ORL COMPACT,ENT Workstation COMPACT,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"250000, 250060, 250090, 200300, 200301, 556339",Unité de Traitement ORL PLUS,ENT Treatment Unit PLUS,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325044, 325162, 325163, 325182",Set Endoscopes Rigides 0°/30°,Rigid Endoscope Set 0°/30°,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325055, 325059",Système de Lampe Frontale LED,LED Headlight System,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+325080,Lampe Frontale Fibre Optique Type Binner,Fibre Optic Headlight Type Binner,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325161, 325180, 325183, 325195",Kit Endoscope de Diagnostic,Diagnostic Endoscope Kit,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+325164,Endoscope Rigide 45°,Rigid Endoscope 45°,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325168, 325169, 325291, 325296",Set Endoscope Nasal,Nasal Endoscope Set,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325175, 325181, 325191, 325194, 325118",Système Laryngoscope,Laryngoscope System,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325293, 325298",Endoscope Otoscope 4mm,Otoscope Endoscope 4mm,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325325, 325348, 325321, 325326, 325329",Système de Vidéo-Endoscopie,Video Endoscopy System,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"325420, 325423",Système de Stroboscopie PES PILOT,Stroboscopy System PES PILOT,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+325423 (Stroboscope variant),Stroboscope STROBO Compact,Stroboscope STROBO Compact,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"350035, 350032, 350038, 350059, 700000",Station de Diagnostic ORL DIGITAL 5,ENT Diagnosis Station DIGITAL 5,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"350036, 350040, 350043, 350047, 350034, 350063, 350068, 350069, 350031, 700007, 700010, 700011, 495359, 350042, 350058, 497404",Centre de Traitement ORL PROFESSIONAL,ENT Treatment Center PROFESSIONAL,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+740009,Tympanomètre TYMP,TYMP Tympanometer,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+"740011, 740012, 140013, 740018, 740047, 700008",Système d Audiométrie Complet,Audiometry System Complete,otopront,ORL (Oto-Rhino-Laryngologie),Exploration,ent-exploration,active
+FS123,Fauteuil roulant électrique,Electric Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS123GC,Fauteuil roulant électrique avec garde,Electric Wheelchair with Guard,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS140,Fauteuil roulant électrique pliable,Foldable Electric Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS141,Fauteuil roulant électrique ultra-léger,Ultra-Lightweight Electric Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS3020W,Lit d'hôpital manuel 2 fonctions,2-Function Manual Hospital Bed,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS3230WZ,Lit d'hôpital manuel 3 fonctions,3-Function Manual Hospital Bed,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS3239WZF4,Lit d'hôpital électrique multifonction,Multi-function Electric Hospital Bed,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS609U,Chaise roulante avec bassin,Wheelchair with Commode,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS696,Chaise roulante bassin roulettes,Rolling Wheelchair with Commode,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS802-35,Fauteuil Roulant Manuel en Acier,Manual Steel Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS809,Fauteuil Roulant Manuel Standard en Acier,Standard Steel Manual Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS809B,Fauteuil roulant manuel standard,Manual Standard Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS868,Fauteuil roulant manuel standard,Standard Manual Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS874F5,Fauteuil Roulant Manuel à Dossier Haut,High Back Manual Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS875,Fauteuil roulant manuel léger,Lightweight Manual Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS894,Chaise roulante douche bassin,Shower Wheelchair with Commode,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS899,Chaise percée de chevet,Bedside Commode Chair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS902C,Fauteuil Roulant de Transport Léger,Lightweight Transit Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS902GC,Fauteuil Roulant de Transport avec Garde,Transit Wheelchair with Guard,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS903LAJPQF9,Fauteuil roulant aluminium léger,Lightweight Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS908LAJPF21,Fauteuil roulant aluminium premium,Premium Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS951B-56,Fauteuil roulant très léger,Very Lightweight Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS952LCQ,Fauteuil roulant aluminium économique,Economy Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS958LBCGPY,Fauteuil roulant aluminium confort,Comfort Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS958LBPYF8,Fauteuil roulant aluminium pliable,Foldable Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS980LA-35,Fauteuil roulant aluminium compact,Compact Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+FS980LQF8,Fauteuil roulant aluminium sportif,Sport Aluminum Wheelchair,foshan,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+BK 02,BK 02 Berceau Bebe,BK 02 Baby Cot,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+BK 04 Neo,BK 04 Neo Berceau Bebe,BK 04 Neo Baby Cot,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+BST 01,BST 01 Compact Table de Lit,BST 01 Compact Overbed Table,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+CARET 502,Table d'Examen CARET 502,CARET 502 Examination Couch,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+CARET 502 v2,CARET 502 Patient Table Examen,CARET 502 Patient Examination Table,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+EVA JMM 04,EVA JMM 04 Quatre Moteurs Gynaecological Chair,EVA JMM 04 Four Motors Gynaecological Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HAPPY,Happy Fauteuil de Dialyse,Happy Dialysis Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 1120,NITRO HB 1120 Manuel Lit Patient,NITRO HB 1120 Manual Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 1310,NITRO HB 1310 Manuel Hydraulique Bed,NITRO HB 1310 Manual Hydraulic Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 2220,NITRO HB 2220 Deux Moteurs Lit Patient,NITRO HB 2220 Two Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 2310,NITRO HB 2310 Deux Moteurs Lit Patient,NITRO HB 2310 Two Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 3110,NITRO HB 3110 Trois Moteurs Lit Patient,NITRO HB 3110 Three Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 3130,NITRO HB 3130 Trois Moteurs Lit Patient,NITRO HB 3130 Three Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 3320,NITRO HB 3320 Trois Moteurs Lit Patient,NITRO HB 3320 Three Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 4220,NITRO HB 4220 Quatre Moteurs Lit de Soins Intensifs,NITRO HB 4220 Four Motors ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 4310,NITRO HB 4310 Quatre Moteurs Lit de Soins Intensifs,NITRO HB 4310 Four Motors ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 4410,NITRO HB 4410 Quatre Moteurs Lit de Soins Intensifs,NITRO HB 4410 Four Motors ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 4430 P,NITRO HB 4430 P Quatre Moteurs Pediatric Lit de Soins Intensifs,NITRO HB 4430 P Four Motors Pediatric ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 5110,NITRO HB 5110 Cinq Moteurs Lateral Modele Colonne Lit de Soins Intensifs,NITRO HB 5110 Five Motors Lateral Column Model ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 5130,NITRO HB 5130 Quatre Moteurs Balance Modele Colonne Lit de Soins Intensifs,NITRO HB 5130 Four Motors Weight Scale Column Model ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 5220,NITRO HB 5220 Quatre Moteurs Modele Colonne Lit de Soins Intensifs,NITRO HB 5220 Four Motors Column Model ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 5230,NITRO HB 5230 Quatre Moteurs Modele Colonne Lit de Soins Intensifs,NITRO HB 5230 Four Motors Column Model ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 6220,NITRO HB 6220 Lit Hopital Bariatrique,NITRO HB 6220 Bariatric Hospital Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 6240,NITRO HB 6240 Quatre Moteurs Lit de Soins Intensifs,NITRO HB 6240 Four Motors ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 7000 W,NITRO HB 7000 W Quatre Moteurs Lit de Soins a Domicile,NITRO HB 7000 W Four Motors Home Care Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 7240,NITRO HB 7240 Serra Quatre Moteurs Lit de Soins a Domicile,NITRO HB 7240 Serra Four Motors Home Care Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 7250,NITRO HB 7250 Trois Moteurs Lit de Soins Patient,NITRO HB 7250 Three Motors Care Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 7260,NITRO HB 7260 Serra Quatre Moteurs Lit de Soins a Domicile,NITRO HB 7260 Serra Four Motors Home Care Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 7260 F,NITRO HB 7260 F Serra Quatre Moteurs Lit de Soins a Domicile,NITRO HB 7260 F Serra Four Motors Home Care Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 8000,NITRO HB 8000 Sante Quatre Moteurs Lit de Soins Intensifs,NITRO HB 8000 Sante Four Motors ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 8000 B,NITRO HB 8000 B Quatre Moteurs Lit de Soins Intensifs Bariatrique,NITRO HB 8000 B Four Motors Bariatric ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 8000 T,NITRO HB 8000 T Quatre Moteurs Lit de Soins Intensifs avec Balance,NITRO HB 8000 T Four Motors Weight Scale ICU Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 8130,NITRO HB 8130 Sante Trois Moteurs Lit Patient,NITRO HB 8130 Sante Three Motors Patient Bed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+HB 8140 ELC,NITRO HB 8140 ELC Quatre Moteurs Lit de Soins Intensifs Lit Bas,NITRO HB 8140 ELC Four Motors ICU Bed Lowbed,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+JMM 01,JMM 01 Gynaecological Table Examen,JMM 01 Gynaecological Examination Table,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+JMM 02,Lit d'Accouchement Gynécologique JMM 02,JMM 02 Delivery Bed Gynaecological,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+JMM 03,JMM 03 Gynaecological Table Examen,JMM 03 Gynaecological Examination Table,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NHS 870,NHS 870 Dialysis Brancard,NHS 870 Dialysis Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NHS 900,NHS 900 Fauteuil de Dialyse,NHS 900 Dialysis Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 112,NTHM 112 Chariot Urgence,NTHM 112 Emergency Trolley,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 113,NTHM 113 Medicine Et Treatment Chariot,NTHM 113 Medicine and Treatment Trolley,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 114,NTHM 114 Medicine Et Treatment Chariot,NTHM 114 Medicine and Treatment Cart,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 115,NTHM 115 Medicine Et Treatment Chariot,NTHM 115 Medicine and Treatment Trolley,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 116,NTHM 116 Medicine Storage Chariot,NTHM 116 Medicine Storage Cart,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 117,NTHM 117 Medicine Storage Chariot,NTHM 117 Medicine Storage Cart,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 118,NTHM 118 Chariot de Pansement,NTHM 118 Dressing Cart,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTHM 118 B,NTHM 118 B Medicine Chariot Avec Barcode,NTHM 118 B Medicine Trolley with Barcode,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X10,NTS X10 Patient Chaise de Transport,NTS X10 Patient Transport Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X11,NTS X11 Deux Moteurs Fauteuil Donneur de Sang,NTS X11 Two Motors Blood Donor Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X12,NTS X12 Bariatric Chaise de Transport,NTS X12 Bariatric Transport Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X5,NTS X5 Patient Chaise de Transport,NTS X5 Patient Transport Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X6,NTS X6 Patient Chaise de Transport,NTS X6 Patient Transport Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X7,NTS X7 Fauteuil Donneur de Sang,NTS X7 Blood Donor Chair,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+NTS X8,NTS X8 Patient Chaise de Transport Height Adjustable,NTS X8 Patient Transport Chair Height Adjustable,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+OLHD 1006,OLHD 1006 Compact Table de Chevet,OLHD 1006 Compact Bedside Cabinet,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+OLHD 1007,OLHD 1007 Compact Table de Chevet,OLHD 1007 Compact Bedside Cabinet,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+OLHD 1008,OLHD 1008 Full Compact Table de Chevet,OLHD 1008 Full Compact Bedside Cabinet,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+OLHD 1009,OLHD 1009 Table de Chevet,OLHD 1009 Bedside Cabinet,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+OLHD 1011,OLHD 1011 Full Compact Table de Chevet,OLHD 1011 Full Compact Bedside Cabinet,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 01,NTCR SD 01 Brancard de Traitement Patient,NTCR SD 01 Patient Treatment Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 01 P,NTCR SD 01 P Pediatric Transport Brancard,NTCR SD 01 P Pediatric Transport Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 04,NTCR SD 04 Brancard Urgence,NTCR SD 04 Emergency Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 05,NTCR SD 05 Brancard Urgence,NTCR SD 05 Emergency Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 06,NTCR SD 06 Patient Brancard de Transfert,NTCR SD 06 Patient Transfer Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SD 15,NTCR SD 15 Hydraulique Brancard Urgence,NTCR SD 15 Hydraulic Emergency Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SDY 10,Table d'Examen Motorisée NTCR SDY 10,NTCR SDY 10 Motorized Examination Couch,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SDY 11,Table d'Examen Motorisée NTCR SDY 11,NTCR SDY 11 Motorized Examination Couch,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+SIGMA,NTCR SIGMA C-Arm Brancard,NTCR SIGMA C-Arm Stretcher,nitrocare,Racine,Mobilier et literie hospitaliers,hospital-furniture,active
+ANNEAUXD,Anneaux de Silicone Rétiniens,Retinal Silicone Bands,fci,Ophtalmologie,Consommables,oph-consumable,active
+COQUEDEP,Coque de Protection Oculaire,Ocular Protective Shell,fci,Ophtalmologie,Consommables,oph-consumable,active
+FORMESPO,Conformateurs Oculaires,Ocular Conformers,fci,Ophtalmologie,Consommables,oph-consumable,active
+IMPLANTC,Implant Chirurgie Cataracte,Cataract Surgery Implant,fci,Ophtalmologie,Consommables,oph-consumable,active
+IMPLANTG,Implant Glaucome PAUL,PAUL Glaucoma Implant,fci,Ophtalmologie,Consommables,oph-consumable,active
+KAHOOKDU,Lame Double Kahook,Kahook Dual Blade,fci,Ophtalmologie,Consommables,oph-consumable,active
+KITAROKI,Accessoire Médical Professionnel Premium,Premium Professional Medical Accessory,fci,Ophtalmologie,Consommables,oph-consumable,active
+OCUBLUTR,Bleu Trypan Ophtalmique,Ophthalmic Trypan Blue,fci,Ophtalmologie,Consommables,oph-consumable,active
+PLANCHER,Implant Plancher Orbitaire,Orbital Floor Implant,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1361, S1.1371",Système d'Intubation Lacrymale FCI Nunchaku,FCI Nunchaku Lacrimal Intubation System,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1390, S1.1391, S1.1392",Sonde Bicanaliculaire Autostable II,Self-Stabilizing Bicanalicular Probe II,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1401, S1.1421",Sonde d'Intubation BIKA pour DCR,BIKA DCR Intubation Probe,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1451, S1.1491",Système d'Intubation Bicanaliculonasale Ritleng,Ritleng Bicanaliculonasal Intubation System,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1456, S1.1496",Intubation Bicanaliculonasale Autostable Ritleng+,Ritleng+ Self-Stabilizing Bicanaliculonasal Intubation,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1501, S1.1521",Sonde d'Intubation Monocanaliculaire Mini-Monoka,Mini-Monoka Monocanalicular Intubation Probe,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1515, S1.1522, S1.1530, S1.1535, S1.1540, S1.1545, S1.1550",Système d'Intubation Monocanaliculonasale Préchargé LacriJet,LacriJet Pre-loaded Monocanaliculonasal Intubation System,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1608, S1.1609, S1.1610",Sonde Monocanaliculonasale Autostable Masterka,Masterka Self-Stabilizing Monocanaliculonasal Probe,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1621, S1.1631, S1.1661, S1.1711",Sonde d'Intubation Monocanaliculaire Monoka,Monoka Monocanalicular Intubation Probe,fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.1801, S1.1811, S1.1821",Sonde d'Intubation Monoka Fayet-Bernard (Technique de Ritleng),Monoka Fayet-Bernard Intubation Probe (Ritleng Technique),fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.3511, S1.3521",Bouchon Perforateur Punctal Prêt à la Pose (Clou-Trou),Ready-to-Use Punctal Perforator Plug (Clou-Trou),fci,Ophtalmologie,Consommables,oph-consumable,active
+"S1.4121, S1.4122, S1.4131, S1.4132",Système de Dilatation par Cathéter à Ballonnet Ophtacath,Ophtacath Balloon Catheter Dilation System,fci,Ophtalmologie,Consommables,oph-consumable,active
+VALVEGLA,Valve de Drainage Glaucome,Glaucoma Drainage Valve,fci,Ophtalmologie,Consommables,oph-consumable,active
+ISO-ISS-16X5,Solution Saline ISOMAX,ISOMAX saline solution,isomax,Ophtalmologie,Consommables,oph-consumable,active
+11ACB,JETRING 11mm - Anneau de tension capsulaire préchargé,JETRING 11mm - Preloaded Capsular Tension Ring,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+12ACB,JETRING 12mm - Anneau de tension capsulaire préchargé,JETRING 12mm - Preloaded Capsular Tension Ring,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+640ADY,Q-Flex HL - LIO copolymère monofocale,Q-Flex HL - Copolymer Monofocal IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+640CMY,Q-Flex M Trifocal Diffractif - LIO copolymère trifocale préchargée,Q-Flex M Trifocal Diffractive - Preloaded Trifocal Copolymer IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+677ADY,Bi-Flex HL - LIO copolymère monofocale,Bi-Flex HL - Copolymer Monofocal IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+677CMTY,Liberty Trifocal Toric - LIO copolymère trifocale torique diffractive préchargée,Liberty Trifocal Toric - Preloaded Diffractive Toric Trifocal Copolymer IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+677CMY,Liberty Trifocal - LIO copolymère trifocale diffractive préchargée,Liberty Trifocal - Preloaded Diffractive Trifocal Copolymer IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+677CTAY,Bi-Flex T Préchargé - LIO copolymère torique préchargée,Bi-Flex T Preloaded - Preloaded Toric Copolymer IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+677TAY,Bi-Flex T - LIO copolymère torique,Bi-Flex T - Toric Copolymer IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+877PA,Bi-Flex POB-MA (UV) - LIO hydrophobe monofocale préchargée,Bi-Flex POB-MA (UV) - Preloaded Hydrophobic Monofocal IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+877PAY,Bi-Flex POB-MA (UV + Lumière bleue) - LIO hydrophobe monofocale préchargée jaune,Bi-Flex POB-MA (UV + Blue Light) - Preloaded Yellow Hydrophobic Monofocal IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+877PETY,Bi-Flex ELON TORIQUE - Implant EDOF hydrophobe torique préchargé,Bi-Flex ELON TORIC - Preloaded Hydrophobic Toric EDOF Implant,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+877PEY,Bi-Flex ELON - Implant EDOF hydrophobe préchargé,Bi-Flex ELON - Preloaded Hydrophobic EDOF Implant,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A45SML,Scharioth Macula Lens (SML) - Lentille maculaire pour DMLA sèche,Scharioth Macula Lens (SML) - Macular Lens for Dry AMD,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A45SMY,Scharioth Macula Lens Jaune (SML) - Lentille maculaire pour DMLA sèche,Scharioth Macula Lens Yellow (SML) - Macular Lens for Dry AMD,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4DW0M,1stQ AddOn Trifocal - Implant additionnel trifocal diffractif,1stQ AddOn Trifocal - Diffractive Trifocal Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4EW0M,1stQ AddOn Trifocal (avec correction sphérique) - Implant additionnel trifocal,1stQ AddOn Trifocal (with spherical correction) - Trifocal Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4FW00,1stQ AddOn Sphéro-Torique (Cylindres hauts) - Implant additionnel sphéro-torique,1stQ AddOn Sphero-Toric (High Cylinders) - Sphero-Toric Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4FW0T,1stQ AddOn Sphéro-Torique (Cylindres bas) - Implant additionnel sphéro-torique,1stQ AddOn Sphero-Toric (Low Cylinders) - Sphero-Toric Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4HW0M,1stQ AddOn Trifocal Torique - Implant additionnel trifocal torique diffractif,1stQ AddOn Trifocal Toric - Diffractive Toric Trifocal Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4SW00,1stQ AddOn Monofocal - Implant additionnel monofocal,1stQ AddOn Monofocal - Monofocal Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4TW00,1stQ AddOn Torique (Cylindres hauts) - Implant additionnel torique,1stQ AddOn Toric (High Cylinders) - Toric Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+A4TW0T,1stQ AddOn Torique (Cylindres bas) - Implant additionnel torique,1stQ AddOn Toric (Low Cylinders) - Toric Add-on IOL,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+Biovis-1.6,BioVis 1.6% - Solution viscoélastique NaHA cohésive,BioVis 1.6% - Cohesive NaHA Viscoelastic Solution,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+Biovis-1.8,BioVis 1.8% - Solution viscoélastique NaHA cohésive,BioVis 1.8% - Cohesive NaHA Viscoelastic Solution,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+Biovis-3.0,BioVis 3.0% - Solution viscoélastique NaHA dispersive,BioVis 3.0% - Dispersive NaHA Viscoelastic Solution,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+ISPACE-1.55,I.Space - Solution viscoélastique NaHA + Mannitol,I.Space - NaHA + Mannitol Viscoelastic Solution,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+VISCO-MC,Visco MC - Solution viscoélastique HPMC,Visco MC - HPMC Viscoelastic Solution,medicontur,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-BLUE,OMNI Blue - Colorant vital bleu trypan pour coloration capsulaire,OMNI Blue - Trypan Blue Vital Dye for Capsule Staining,omni,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-FLUORO,OMNI Fluoro - Bandelettes diagnostiques à la fluorescéine sodique,OMNI Fluoro - Fluorescein Sodium Diagnostic Strips,omni,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-HYAL,OMNI Hyal - Solution viscoélastique de hyaluronate de sodium 2%,OMNI Hyal - Sodium Hyaluronate 2% Viscoelastic Solution,omni,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-IRIS,OMNI Iris - Rétracteurs d'iris jetables stériles,OMNI Iris - Sterile Disposable Iris Retractors,omni,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-SCHIRMER,OMNI Schirmer - Bandelettes de test lacrymal de Schirmer,OMNI Schirmer - Schirmer Tear Test Strips,omni,Ophtalmologie,Consommables,oph-consumable,active
+OMNI-VISC,OMNI Visc - Solution viscoélastique HPMC 2%,OMNI Visc - HPMC 2% Viscoelastic Solution,omni,Ophtalmologie,Consommables,oph-consumable,active
+570,Precizon Presbyopic NVA,Precizon Presbyopic NVA,ophtec,Ophtalmologie,Consommables,oph-consumable,active
+ARTISAN APHAKIA,Artisan Aphakie,Artisan Aphakia,ophtec,Ophtalmologie,Consommables,oph-consumable,active
+ARTISAN MYOPIA,Artisan Myopie 206,Artisan Myopia 206,ophtec,Ophtalmologie,Consommables,oph-consumable,active
+"DO2-70, DO2-72, DO2-74",Pinces d'Implantation Artisan DO2-70/72/74,Artisan Implantation Forceps DO2-70/72/74,ophtec,Ophtalmologie,Consommables,oph-consumable,active
+4.c.4,C4V CHROMO4VIS,C4V CHROMO4VIS,regensight,Ophtalmologie,Consommables,oph-consumable,active
+RITSIGHT,Ritsight,Ritsight,regensight,Ophtalmologie,Consommables,oph-consumable,active
+2P2,eyePlate-200,eyePlate-200,rheon,Ophtalmologie,Consommables,oph-consumable,active
+2P2s,eyePlate-200s,eyePlate-200s,rheon,Ophtalmologie,Consommables,oph-consumable,active
+3P2,eyePlate-300,eyePlate-300,rheon,Ophtalmologie,Consommables,oph-consumable,active
+3P2s,eyePlate-300s,eyePlate-300s,rheon,Ophtalmologie,Consommables,oph-consumable,active
+C4,Stylo eyeWatch,eyeWatch Pen,rheon,Ophtalmologie,Consommables,oph-consumable,active
+M4,Implant eyeWatch,eyeWatch implant,rheon,Ophtalmologie,Consommables,oph-consumable,active
+aW-syst-2Q0-01,Système eyeWatch avec eyePlate-200 (1x implant eyeWatch + 1x Stylo eyeWatch usage unique + 1x eyePlate-200),eyeWatch system with eyePIate-200 (contains 1x eyeWatch implant + 1x eyeWatch Pen single-use + 1x eyePlate-200),rheon,Ophtalmologie,Consommables,oph-consumable,active
+eW-syst-300-01,Système eyeWatch avec eyePlate-300 (1x implant eyeWatch + 1x Stylo eyeWatch usage unique + 1x eyePlate-300),eyeWatch system with eyePlate-300 (contains 1x eyeWatch implant + 1x eyeWatch Pen single-use + 1x eyePlate-300),rheon,Ophtalmologie,Consommables,oph-consumable,active
+sC1,Stylo eyeWatch Usage Unique,eyeWatch Pen single use,rheon,Ophtalmologie,Consommables,oph-consumable,active
+1DAYACUV,ACUVUE OASYS 1-DAY pour Astigmatisme avec HydraLuxe,ACUVUE OASYS 1-DAY for Astigmatism with HydraLuxe,johnson-johnson-vision,Ophtalmologie,Contactologie,oph-contactology,active
+1DAYMOIS,1-DAY ACUVUE MOIST pour Astigmatisme avec LACREON,1-DAY ACUVUE MOIST for Astigmatism with LACREON,johnson-johnson-vision,Ophtalmologie,Contactologie,oph-contactology,active
+ACUVUE2,Lentilles de Contact Bi-Hebdomadaires ACUVUE 2,ACUVUE 2 Bi-Weekly Contact Lenses,johnson-johnson-vision,Ophtalmologie,Contactologie,oph-contactology,active
+ACUVUEOA,ACUVUE OASYS 1-DAY avec HydraLuxe,ACUVUE OASYS 1-DAY with HydraLuxe,johnson-johnson-vision,Ophtalmologie,Contactologie,oph-contactology,active
+ACUVUEVI,Lentilles de Contact Mensuelles ACUVUE VITA,ACUVUE VITA Monthly Contact Lenses,johnson-johnson-vision,Ophtalmologie,Contactologie,oph-contactology,active
+1011-P-7034,Écran Facial pour Ophtalmoscope Indirect Binoculaire,Binocular Indirect Face Shield,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1011-P-7042,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1011-P-7106,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1011-P-7210,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1011-P-7229,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1012-P-5276,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1012-P-7003,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1012-P-7006,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1012-P-7008,Mise à Niveau LED All Pupil II,All Pupil II LED Upgrade,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1013-P-7008,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1013-P-7009,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1013-P-7010,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1013-P-7011,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1015-P-7031,Écran Facial pour Ophtalmoscope Indirect Binoculaire,Binocular Indirect Face Shield,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1015-P-7058,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1015-P-7066,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1127-P-1008,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1127-P-1009,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1127-P-1010,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1003,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1004,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1008,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1013,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1014,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1015,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1128-P-1017,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1042,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1050,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1149,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1157,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1173,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1181,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1132-P-1202,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1201-P-6067,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1201-P-6075,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1201-P-7000,Mallette de Transport en Aluminium pour PSL,Aluminium Carry Case for PSL,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1202-P-7117,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1202-P-7192,Lentille Hi Mag Vantage Plus,Vantage Plus Hi Mag Lens,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1202-P-7205,Miroir d'Enseignement Vantage Plus,Vantage Plus Teaching Mirror,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1204-P-3043,Ophtalmoscope Indirect Binoculaire Spectra Iris,Spectra Iris Binocular Indirect Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-1010,Vantage Plus led digital con software Keeler kapture,Vantage Plus LED Digital con software Keeler Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-1015,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-1016,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-1019,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-1020,Ophtalmoscope Indirect Binoculaire LED Vantage Plus,Vantage Plus LED Binocular Indirect Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-2002,Volk digital 1.0x imaging cristallin – vdgtl1,Volk Digital 1.0x imaging lens – VDGTL1,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-5010,Camera Digital Ready avec Logiciel Kapture,Digital Ready Camera with Kapture Software,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1205-P-7001,Vantage Plus Digital BIO avec Logiciel Kinexis,Vantage Plus Digital BIO with Kinexis Software,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1006,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1007,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1010,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1011,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1012,Ophtalmoscope Standard,Standard Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1302-P-1013,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1305-P-7000,Mallette Aluminium pour PSL,Aluminum Carrying Case for PSL,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1321-P-7021,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-5170,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-5189,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-5218,Batterie Lithium avec Rhéostat,Lithium battery with rheostat,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-5314,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-5322,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1501-P-7117,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1503-P-1034,Otoscope Standard,Standard Otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1512-P-7008,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1512-P-7016,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1512-P-7024,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1512-P-7032,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1512-P-7040,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1513-P-1054,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1513-P-1062,Volk quadraspheric cristallin – vqflnf,Volk Quadr Aspheric lens – VQFLNF,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1513-P-7026,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1513-P-7034,Écran Facial pour Ophtalmoscope Indirect Binoculaire,Binocular Indirect Face Shield,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-1064,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-1136,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-1144,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-1160,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-1187,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7036,Écran Facial pour Ophtalmoscope Indirect Binoculaire,Binocular Indirect Face Shield,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7044,Écran Facial pour Ophtalmoscope Indirect Binoculaire,Binocular Indirect Face Shield,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7052,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7060,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7087,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7095,Pack de 4 Manchons de Poignée Couleurs Assorties,Pack of Four Assorted Colour Handle Sleeves,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7108,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7116,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1514-P-7124,Otoscope a Fibre Optique Complet,Fibre Optic Otoscope Complete,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1516-P-1033,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1517-P-1019,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1519-P-1001,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1519-P-1002,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1599-P-7018,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1901-P-1101,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1911-P-1228,Kit de Mise à Niveau Double Lithium,Double Lithium Upgrade Kit,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1911-P-1236,Kit de Mise à Niveau Mini Lithium,Mini Lithium Upgrade Kit,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1919-P-1013,Batterie Lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1919-P-5215,Batterie Lithium avec Rhéostat,Lithium Battery with Rheostat,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1919-P-5338,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1941-P-1368,Chargeur Double Lithium,Lithium Double Charger,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1945-P-1000,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1945-P-1001,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+1945-P-5019,Tete de Retinoscope Spot Professionnel Seule,Professional Spot Retinoscope Head Only,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1002,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1003,Otoscope à Fibre Optique LED Keeler,Keeler LED Fiber Optic otoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1010,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1011,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1012,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1013,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1022,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1023,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1024,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1025,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1050,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1051,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1052,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1053,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1064,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1065,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1066,Volk quadraspheric cristallin – vqflnf,Volk Quadr Aspheric lens – VQFLNF,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-1067,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-8049,Ophtalmoscope de Poche,Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-8057,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-8065,Ophtalmoscope de Poche Jazz LED,Jazz LED Pocket Ophthalmoscope,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2112-P-8073,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2004,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2005,Ensemble Bras de Calibration D-KAT pour Tonomètre,D-KAT Tonometer Calibration Arm Assembly,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2006,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2008,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2009,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2010,Tonomètre à Aplanation,Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2012,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2013,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-2014,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-7000,Mallette de Transport en Aluminium pour PSL,Aluminium Carry Case for PSL,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2113-P-7001,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2199-P-1500,Ensemble Bras de Calibration D-KAT pour Tonomètre,D-KAT Tonometer Calibration Arm Assembly,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2199-P-1527,Batterie Lithium avec Rhéostat,Lithium battery with rheostat,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"2199-P-7259, 1599-P-7229, 1599-P-7245, 2199-P-7582, 2199-P-7558, 2199-P-7574, 2199-P-1519, 2199-P-7216, 2199-P-7531, 2199-P-, 2199-P-7646",Monture Sport Keeler,Keeler Sports Frame,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2199-P-7603,Batterie lithium pour Vantage Plus Sans Fil,Lithium Battery for Wireless Vantage Plus,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2001,Tonometre Sans Contact Pulsair IntelliPuff,Pulsair IntelliPuff Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2005,Ensemble Bras de Calibration D-KAT pour Tonomètre,D-KAT Tonometer Calibration Arm Assembly,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2010,Tonometre a Aplanation Type Zeiss Z-KAT,Z-KAT Zeiss-Type Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2030,Tonometre a Aplanation Amovible KAT T Variante,KAT T Removable Applanation Tonometer Variant,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2032,Tonometre a Aplanation Numerique Amovible D-KAT T,D-KAT T Digital Removable Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2040,Tonometre a Aplanation Fixe KAT R,KAT R Fixed Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-2042,Tonometre a Aplanation Numerique Fixe D-KAT R,D-KAT R Digital Fixed Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-5005,Ensemble Bras de Calibration D-KAT,D-KAT Calibration Arm Assembly,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-5032,Plaque Guide de Tonometre KAT T,KAT T Tonometer Guide Plate,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-5042,Poste de Tonometre KAT-R pour Systemes Tour,KAT-R Tonometer Post for Tower Systems,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-7027,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2414-P-7042,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2415-P-7007,Ensemble Bras de Calibration D-KAT pour Tonomètre,D-KAT Tonometer Calibration Arm Assembly,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-2000,Tonometre Sans Contact de Bureau Pulsair,Pulsair Desktop Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-5021,Embouts AccuTip Emballes Individuellement 300,AccuTip Covers Individually Wrapped 300,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7011,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7025,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7026,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7028,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7029,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7030,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7031,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7032,Tonomètre à Aplanation,Applanation Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7033,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7034,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7035,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7036,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7037,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2417-P-7238,Tonomètre Sans Contact Pulsair Keeler,Keeler Pulsair Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2418-P-2000,Tonometre Sans Contact Sans Fil TonoCare 2.0,TonoCare 2.0 Wireless Non-Contact Tonometer,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2508-P-7005,Chariot Cryogenique,Cryogenic Cart,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2508-P-7015,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2508-P-7016,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2508-P-7017,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2508-P-7018,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-1010,Console Cryochirurgicale Cryomatic MK II,Cryomatic MK II Cryosurgical Console,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8007,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8008,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8015,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8020,Crayon Retinien Standard Cryo II,Cryo II Standard Retinal Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8021,Crayon Retinien Etendu Cryo II,Cryo II Extended Retinal Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8022,Crayon Retinien Mid-Reach Cryo II,Cryo II Mid-Reach Retinal Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8023,Crayon Intravitreen Cryo II,Cryo II Intravitreal Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8024,Crayon Cataracte Courbe Cryo II,Cryo II Curved Cataract Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8025,Crayon Glaucome Cryo II,Cryo II Glaucoma Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8026,Crayon Trichiasis Collins Cryo II,Cryo II Collins Trichiasis Pencil,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8027,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8028,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8030,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2509-P-8033,Adaptateur Sonde Usage Unique Dorc Cryostar,Dorc Cryostar Single-Use Probe Adaptor,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2903-P-7000,Mallette de Transport en Aluminium pour PSL,Aluminium Carry Case for PSL,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2903-P-7001,Tete de Transilluminateur Finoff Seule,Finoff Transilluminator Head Only,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3010-P-2000,Lampe a Fente Portable PSL Classic,PSL Classic Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2006,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2007,Lampe a Fente Digital Ready KSL-H5,KSL-H5 Digital Ready Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2009,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2010,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2019,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2047,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2081,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2083,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2089,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2090,Lampe a Fente Digital Ready KSL-H3,KSL-H3 Digital Ready Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2092,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2093,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2095,Cámara de lampe de hendidura digital ready con software de imagen kapture,Cámara of lamp of hendidura digital ready con software of imagen Kapture,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2139,Lampe à Fente,Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2140,Lampe a Fente Numerique KSL-Z5,KSL-Z5 Digital Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3020-P-2141,Lampe a Fente Numerique KSL-Z3,KSL-Z3 Digital Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3104-1-8201,Lampe à Fente Portable Keeler PSL One,Keeler PSL One Portable Slit Lamp,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3412-P-7000,Mallette Rigide Ophtalmoscope Retinoscope,Ophthalmoscope Retinoscope Hard Case,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+3412-P-7002,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+EP29-32777,Instrument KEELER,KEELER Instrument,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+EP39-18918,Batterie Lithium 3.6V,3.6V Lithium Battery,KEELER,Ophtalmologie,Diagnostic,oph-diagnostic,active
+C-000.32.241,Filtre Jaune Amovible pour LoupeLight2/MicroLight2,Detachable Yellow Filter for Loupelight2/Microlight2,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-000.32.302, C-000.32.305, C-000.32.306, C-000.32.307, C-000.32.309, C-000.32.523, C-000.32.537, C-000.32.549, C-000.32.551, C-000.32.027",Accessoires pour Loupes Binoculaires,Binocular Loupes Accessories,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-000.32.350, C-000.32.355, C-000.32.356, C-000.32.357, C-000.32.366, C-000.32.367",Loupes Binoculaires HR 2.5x Haute Résolution,HR 2.5x High Resolution Binocular Loupes,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-000.32.440, C-000.32.441, C-000.32.444, C-000.32.445, C-000.32.450, C-000.32.455, C-000.32.460, C-000.32.461, C-000.32.464, C-000.32.465, C-000.32.470, C-000.32.475, C-000.32.440A, C-000.32.441A, C-000.32.444A, C-000.32.445A, C-000.32.450A, C-000.32.455A, C-000.32.460A, C-000.32.461A, C-000.32.464A, C-000.32.465A, C-000.32.470A, C-000.32.475A, C-000.32.430, C-000.32.431, C-000.32.434, C-000.32.435",Loupes Binoculaires Prismatiques HRP Haute Résolution,HRP High Resolution Prismatic Binocular Loupes,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-001.30.100, C-008.30.100, C-011.10.118, C-011.28.388, C-144.10.118, C-144.24.420, C-144.28.388, C-008.30.120, C-010.28.388, C-261.10.118, C-261.24.420, C-261.28.388",Ophtalmoscope Beta 200 LED,Beta 200 LED Ophthalmoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-008.33.610, C-008.33.611, C-008.33.612, C-008.33.620, C-008.33.621, C-008.33.622",Ophtalmoscope Indirect Omega 600,Omega 600 Indirect Ophthalmoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-011.28.388, C-010.28.388, C-261.28.388, C-144.28.388",Ensemble Diagnostique Beta 200 LED (Ophtalmoscope + Otoscope),Beta 200 LED Diagnostic Set (Ophthalmoscope + Otoscope),heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-011.28.388, C-144.28.388, C-261.28.388",Ensemble Diagnostique Beta 400/200 LED (Otoscope + Ophtalmoscope),Beta 400/200 LED Diagnostic Set (Otoscope + Ophthalmoscope),heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-014.10.118, C-014.28.388, C-034.10.118, C-034.28.388",Rétinoscope Beta 200 LED,Beta 200 LED Retinoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-034.10.118, C-034.28.388, C-144.10.118, C-261.10.118",Ensemble Diagnostique Ophtalmique (Ophtalmoscope + Rétinoscope),Ophthalmic Diagnostic Set (Ophthalmoscope + Retinoscope),heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-182.10.118, C-182.28.388",Ophtalmoscope K180 LED,K180 LED Ophthalmoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"C-283.10.330, C-283.10.335, C-284.10.330, C-284.10.335, C-008.33.530, C-008.33.535",Ophtalmoscope Indirect Binoculaire Omega 500 LED,Omega 500 LED Binocular Indirect Ophthalmoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"D-001.71.120, D-002.71.120, D-008.71.120, D-008.71.220, D-886.11.021, D-886.11.022",Ophtalmoscope Mini 3000 LED,Mini 3000 LED Ophthalmoscope,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"D-886.11.021, D-886.11.022",Ensemble Diagnostique Mini 3000 LED (Ophtalmoscope + Otoscope),Mini 3000 LED Diagnostic Set (Ophthalmoscope + Otoscope),heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"J-008.31.276, J-008.31.277",Lampe Frontale MicroLight2 LED,Microlight2 LED Headlight,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+"J-008.31.415, J-008.31.416, J-008.31.417, J-008.31.418, J-008.31.431, J-008.31.432, J-008.31.433, J-008.31.434, J-008.31.441, J-008.31.442, J-008.31.443, J-008.31.444, J-008.31.445, J-008.31.446, J-008.31.447, J-008.31.448, J-008.31.451, J-008.31.453, J-008.31.455, J-008.31.457, J-008.31.461, J-008.31.463",Lampe Frontale Chirurgicale ML4 LED,ML4 LED Headlight,heine,Ophtalmologie,Diagnostic,oph-diagnostic,active
+2208-L-7008,Papier Imprimante Pulsair EasyEye,Pulsair EasyEye Printer Paper,keeler,Ophtalmologie,Diagnostic,oph-diagnostic,active
+24-3000/24-3000-V,Accupen Handheld Tonomètre,Accupen Handheld Tonometer,keeler,Ophtalmologie,Diagnostic,oph-diagnostic,active
+24-3020,Support Transparent pour AccuPen et PachPen,Clear Holder for AccuPen and PachPen,keeler,Ophtalmologie,Diagnostic,oph-diagnostic,active
+24-4001,Sonde Ultrasons A-Scan,A-Scan Ultrasound Probe,keeler,Ophtalmologie,Diagnostic,oph-diagnostic,active
+182413010A,Unité de Consultation avec Fauteuil,Consultation Unit with Chair,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+182413020A,Système Chirurgical Ophtalmique,Ophthalmic Surgical System,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+18241M012L,Système Chirurgical Ophtalmique,Ophthalmic Surgical System,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+18241M021L,Système Chirurgical Ophtalmique,Ophthalmic Surgical System,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+AFC-330,Rétinographe Non-Mydriatique AFC-330,AFC-330 Non-Mydriatic Auto Fundus Camera,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+AL-SCAN,Biomètre Optique AL-Scan,AL-Scan Optical Biometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+AR-1,Auto-Réfractomètre AR-1,AR-1 Auto-Refractometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ARK-1,Auto-Réfracto-Kératomètre ARK-1,ARK-1 Auto-Refracto-Keratometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ARK-1a,Auto-Réfracto-Kératomètre ARK-1a,ARK-1a Auto-Refracto-Keratometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ARK-1s,Auto-Réfracto-Kératomètre ARK-1s,ARK-1s Auto-Refracto-Keratometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+CEM-530,Microscope Spéculaire CEM-530,CEM-530 Specular Microscope,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+CP-9,Projecteur de Tests CP-9,CP-9 Chart Projector,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+FE 3001,Unité de Consultation avec Fauteuil FE 3001,FE 3001 Consultation Unit with Chair,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+FE-2010,Fauteuil d'Examen Électrique FE-2010,FE-2010 Electric Examination Chair,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+GS-1,Gonioscope Automatisé GS-1,GS-1 Automated Gonioscope,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+GYC-500,Photocoagulateur Laser Vert GYC-500,GYC-500 Green Laser Photocoagulator,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ICE-1,Meuleuse Intelligente ICE-1,ICE-1 Intelligent Blocker,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ICE-1500,Meuleuse Intelligente ICE-1500,ICE-1500 Intelligent Blocker,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+LM-1800P,Frontofocomètre Automatique LM-1800P,LM-1800P Automatic Lensmeter,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+LM-1800PD,Frontofocomètre Automatique LM-1800PD,LM-1800PD Automatic Lensmeter,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+LM-7,Frontofocomètre Automatique LM-7,LM-7 Automatic Lensmeter,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+LM-7P,Frontofocomètre Automatique LM-7P,LM-7P Automatic Lensmeter,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+MIRANTE,Ophtalmoscope à Balayage Laser Mirante,Mirante Scanning Laser Ophthalmoscope,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+MP-3,Micropérimètre MP-3,MP-3 Microperimeter,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+OPD-Scan,Analyseur Réfractif/Cornéen OPD-Scan III,OPD-Scan III Refractive Power/Corneal Analyzer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+OT-2200,Unité de Consultation OT-2200,OT-2200 Consultation Unit,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+OT-4200,Unité de Consultation OT-4200,OT-4200 Consultation Unit,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+OT-6400,Unité de Réfraction Motorisée OT-6400,OT-6400 Motorized Refraction Unit,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+PM-700,Pupillomètre PM-700,PM-700 Pupillometer,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+RS-330,OCT-Rétinographe RS-330,RS-330 OCT-Retinograph,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+RT-3100,Réfracteur Intelligent RT-3100,RT-3100 Intelligent Refractor,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+RT-6100,Réfracteur Intelligent RT-6100,RT-6100 Intelligent Refractor,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+SL-1800,Lampe à Fente SL-1800,SL-1800 Slit Lamp,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+SSC-370,Écran d'Optotypes SC-1600,SC-1600 Optotype Display Screen,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+US-4000,Échographe US-4000,US-4000 Echoscan,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+YC-200,Système Laser YAG YC-200,YC-200 YAG Laser System,nidek,Ophtalmologie,Diagnostic,oph-diagnostic,active
+ESP-MDP-IGGW,Pack Diagnostic Me-Check,Me-Check Diagnostic Pack,espansione-marketing,Ophtalmologie,Exploration,oph-exploration,active
+MECHECK,ME-CHECK Module de Dépistage MGD,ME-CHECK MGD Screening Module,espansione-marketing,Ophtalmologie,Exploration,oph-exploration,active
+-,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+1009000,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+1009001,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+1021400,Analyseur Oculaire OCT Swept-Source EYESTAR 900,EYESTAR 900 Swept-Source OCT Ocular Analyzer,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+1420155,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+"1420213, 1420145, 1420175",Biomicroscope a Lampe a Fente BM970,BM970 Slit Lamp Biomicroscope,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000006,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000007,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000011,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000012,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000015,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000018,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+"4000037 (NEO 900), 4000038 (NEO 900A)",Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000054,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000060,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+4000061,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+"5606011 (Set A), 5606013 (Set C)",Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+5806000A,Tonometre a Aplanation AT870,AT870 Applanation Tonometer,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7200032,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7200033,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7200154,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220001,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220096,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220354,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220376,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220400,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220460,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220494,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220497,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+7220531,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+"7221069
+Nouveau 2025",Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+9001803000,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+9001806000,Instrument HAAG-STREIT-U-K,HAAG-STREIT-U-K Instrument,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+Nouveau 2024,METIS 900 Centre de Contrôle Chirurgical,METIS 900 Surgical Control Center,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+Nouveau 2025,ELARA 900 Lampe à Fente Avancée,ELARA 900 Advanced Slit Lamp,haag-streit-u-k,Ophtalmologie,Exploration,oph-exploration,active
+FC161,APPAREIL DE CAPTURE DES IMAGES BINOCULAIRES,Binocular Image Capture Device,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+FC162,APPAREIL DE CAPTURE DES IMAGES BINOCULAIRES,Binocular Image Capture Device,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+S260,MICROSCOPE A LAMPE A FENTE,Slit Lamp Microscope,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+S260S,MICROSCOPE A LAMPE A FENTE,Slit Lamp Microscope,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+S360,MICROSCOPE A LAMPE A FENTE,Slit Lamp Microscope,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+S360S,MICROSCOPE A LAMPE A FENTE,Slit Lamp Microscope,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+S390L,MICROSCOPE A LAMPE A FENTE,Slit Lamp Microscope,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+T170,TONOMETRE A APPLANATION,Applanation Tonometer,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+TA517,ANALYSEUR DE SEGMENT ANTERIEUR L'OEIL,Anterior Segment Analyzer,mediworks,Ophtalmologie,Exploration,oph-exploration,active
+A-5,Mobilier Médical PUKANG A-5,Three Function Manual Hospital Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-16,Lit médical manuel à deux manivelles,Two Crank Manual Medical Patient Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-23,Lit d'hôpital manuel à une manivelle,Single Crank Manual Hospital Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-36,Lit pour Nouveau-Né Hospitalier,Hospital Newborn Baby Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-45,Lit Obstétrical Hydraulique,Hydraulic Obstetric Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-46,Lit pour Nourrisson,Infant Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+B-48,Lit d'Accouchement Hospitalier,Hospital Birthing Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+DA-11,Lit d'Hôpital Électrique Cinq Fonctions Type C5,Type C5 Five Function Electric Hospital Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+DA-2 (C5),Lit de Soins Intensifs Électrique DA-2,DA-2 Electric ICU Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+DA-3 (C1),Lit Électrique Trois Fonctions DA-3,DA-3 Three-Function Electric Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+DA-7 (A2),Lit de Soins Intensifs Multifonction DA-7,DA-7 Multifunction ICU Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+DB-40,Équipement Médical PUKANG DB-40,Electric Examination Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-2,Brancard Hydraulique,Hydraulic Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-3,Brancard Manuel,Manual Emergency Medical Transport Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-4,Brancard Pliable,Medical Manual Connecting Stretcher for Operating Room,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-5,Brancard de Transport,Steel Medical Manual Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-6,Brancard d'Ambulance,Stainless Steel Medical Manual Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-8,Brancard de Transfert Patient Hydraulique,Hydraulic Patient Transfer Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+E-9,Brancard d'Urgence Médicale,Medical Emergency Stretcher,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-20,Chariot en acier inoxydable pour appareils F-20,F-20 Stainless steel trolley for appliance,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-21,Chariot ABS pour appareils médicaux F-21,F-21 ABS trolley for medical appliance,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-32,Chariot de Soins Infirmiers Hospitalier,Hospital Morning Nursing Trolley,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-45,Chariot d'Urgence ABS pour Réanimation,F-45 Medical Hospital Trolley New Design ABS Hospital Crash Cart Emergency Resuscitation Trolley,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-46,Chariot d'Urgence Hospitalier,F-46 Hospital Emergency Trolley Cart,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-47,Chariot Mobile d'Urgence Médicale,F-47 Mobile Medical Emergency Cart,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-50,Chariot à médicaments F-50,F-50 Medicine Trolley,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-51,Chariot à Médicaments Hospitalier,F-51 Hospital Medicine Trolley Cart,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-52,Chariot de Distribution de Médicaments,F-52 Hospital Nursing Care Medicine Delivery Trolley,pukang,Ophtalmologie,Exploration,oph-exploration,active
+F-53,Chariot Multifonction d'Urgence,F-53 New Design Good Quality Hospital Trolley Cart Emergency Multi-function Trolley,pukang,Ophtalmologie,Exploration,oph-exploration,active
+G-11,Armoire à Instruments Médicaux en Acier Inoxydable G-11,G-11 Stainless Steel Medical Instruments Cabinet,pukang,Ophtalmologie,Exploration,oph-exploration,active
+G-18,Armoire de Rangement Médicale,Appliance Cupboard with Stainless Steel Base,pukang,Ophtalmologie,Exploration,oph-exploration,active
+G-19,Armoire à Instruments en Acier Inoxydable,2-door Appliance Cupboard with Stainless Steel Base,pukang,Ophtalmologie,Exploration,oph-exploration,active
+G-20,Armoire de Stockage Hospitalière,6 Door Employee Storage Cabinet for Hospital Use,pukang,Ophtalmologie,Exploration,oph-exploration,active
+G-9,Armoire Médicale en Acier,Stainless Steel Cupboard for Medical Appliances,pukang,Ophtalmologie,Exploration,oph-exploration,active
+H-12,Matelas Médical Imperméable de Luxe,Luxurious Mattress (medical Waterproof Mattress),pukang,Ophtalmologie,Exploration,oph-exploration,active
+H-3,Matelas Hospitalier Standard,Mattress for Full Fowler Hospital Bed,pukang,Ophtalmologie,Exploration,oph-exploration,active
+R-1,Support à perfusion R-1,R-1 I.V. Stand,pukang,Ophtalmologie,Exploration,oph-exploration,active
+R-2,Perche à perfusion mobile R-2,R-2 Mobile infusion I.V. drip pole,pukang,Ophtalmologie,Exploration,oph-exploration,active
+R-3,Perche de perfusion hospitalière mobile R-3,R-3 Hospital movable infusion pole,pukang,Ophtalmologie,Exploration,oph-exploration,active
+OM-V50,OM-V50 Opération Microscope,OM-V50 Operation Microscope,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S100,Table à Instruments TB-S100,TB-S100 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S330,Table à Instruments TB-S330,TB-S330 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S430,Table à Instruments TB-S430,TB-S430 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S560,Table à Instruments TB-S560,TB-S560 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S580,Table à Instruments TB-S580,TB-S580 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-S700,Table à Instruments TB-S700,TB-S700 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TB-V300,Table à Instruments TB-V300,TB-V300 Instrument Table,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TF-E40,TF-E40 Monture D'essai,TF-E40 Trial Frame,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TF-K30,TF-K30 Monture D'essai,TF-K30 Trial Frame,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TF-K65,TF-K65 Monture D'essai,TF-K65 Trial Frame,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TF-P50,TF-P50 Monture D'essai,TF-P50 Trial Frame,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-E80,TL-E80 Verre D'essai Ensemble,TL-E80 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-G40,TL-G40 Verre D'essai Ensemble,TL-G40 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-L15,TL-L15 Verre D'essai Ensemble,TL-L15 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-R60,TL-R60 Verre D'essai Ensemble,TL-R60 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-S30,TL-S30 Verre D'essai Ensemble,TL-S30 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+TL-V20,TL-V20 Verre D'essai Ensemble,TL-V20 Trial Lens Set,ray-vision,Ophtalmologie,Exploration,oph-exploration,active
+11057,Ciseaux Westcott-Hugonnier,Westcott-Hugonnier Scissors,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+1121B,Curette Abadie 8mm,Abadie Curette 8mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+1141,Crochet de Strabisme Moyen 12mm,Strabismus Hook Medium 12mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+12961,Canule Polisseur de Capsule Kratz,Kratz Capsule Polisher Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13010,Crochet de Strabisme Hugonnier-Gobin,Hugonnier-Gobin Strabismus Hook,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13100,Porte-Aiguille Barraquer-Moria 0.8mm Variante,Barraquer-Moria Needle Holder 0.8mm Variant,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13132,Speculum Castroviejo-Bonnet Adulte,Castroviejo-Bonnet Speculum Adult,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13160,Pince Bonn Dents 0.12mm,Bonn Forceps 0.12mm Teeth,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13161,Pince Bonn-Moria Dents 0.12mm,Bonn-Moria Forceps 0.12mm Teeth,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13167,Pince Moria 7.5mm Courbe,Moria Forceps 7.5mm Curved,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13221,Canule Aspiration Barraquer-Troutman,Barraquer-Troutman Aspiration Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13227,Manipulateur IOL Lester,Lester IOL Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13229,Canule Aspiration Charleux,Charleux Aspiration Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13230A,Canule Aspiration Charleux-Simcoe,Charleux-Simcoe Aspiration Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13238,Pince IOL a Action Croisee Blaydes,Blaydes Cross-Action IOL Forceps,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13240,Pince Bonn-Kraff Dents Obliques 0.1mm,Bonn-Kraff Forceps 0.1mm Oblique Teeth,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13245,Pince Mac Pherson-Moria Dents 0.2mm,Mac Pherson-Moria Forceps 0.2mm Teeth,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13246,Pince Bonn-Kraff 0.12mm Mors Longs,Bonn-Kraff Forceps 0.12mm Long Jaws,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13248,Canule Binkhorst-Quintana Angle Gauche,Binkhorst-Quintana Cannula Left Angle,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13250,Canule Binkhorst-Quintana Angle Droit,Binkhorst-Quintana Cannula Right Angle,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13261,Pince IOL Waring 7mm,Waring IOL Forceps 7mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13263,Ciseaux Gills-Aron-Rosa,Gills-Aron-Rosa Scissors,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+13330,Manche de Trepan Dezard avec Butee,Dezard Trephine Handle with Limit Stop,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+1353,Ecarteur Volkmann 4 Griffes,Volkmann Retractor 4 Prongs,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+15,Canule Hydrodissection 25G Angulee,Hydrodissection Cannula 25G Angled,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17000,Ciseaux de Capsulectomie Worst,Worst Capsulectomy Scissors,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17120,Canule Double Voie SFO,SFO Double-Way Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17150B,Bloc Silicone Creux Reutilisable,Hollow Silicone Block Reusable,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17157,Crochet Manipulateur de Cristallin Crozafon,Crozafon Lens Manipulating Hook,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17159,Manipulateur de Cristallin Lebuisson,Lebuisson Lens Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17161,Pince pour IOL Pliable Faulkner 7mm,Faulkner Foldable IOL Forceps 7mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17166,Trepan Hanna pour Keratoplastie,Hanna Trephine for Keratoplasty,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17167,Cle de Montage pour Trepan Hanna,Mounting Wrench for Hanna Trephine,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17168,Cle de Reglage de Profondeur pour Keratoplastie,Depth Adjustment Wrench for Keratoplasty,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17169,Emporte-Piece Donneur Hanna pour Keratoplastie,Hanna Donor Punch for Keratoplasty,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17171P,Bloc Receptacle pour Emporte-Piece Hanna,Receptacle Block for Hanna Punch,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D700,Trepan Non-Reglable 7.00mm,Non-Adjustable Trephine 7.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D725,Trepan Non-Reglable 7.25mm,Non-Adjustable Trephine 7.25mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D750,Trepan Non-Reglable 7.50mm,Non-Adjustable Trephine 7.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D775,Trepan Non-Reglable 7.75mm,Non-Adjustable Trephine 7.75mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D800,Trepan Non-Reglable 8.00mm,Non-Adjustable Trephine 8.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D825,Trepan Non-Reglable 8.25mm,Non-Adjustable Trephine 8.25mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D850,Trepan Non-Reglable 8.50mm,Non-Adjustable Trephine 8.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D875,Trepan Non-Reglable 8.75mm,Non-Adjustable Trephine 8.75mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D900,Trepan Non-Reglable 9.00mm,Non-Adjustable Trephine 9.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17201D950,Trepan Non-Reglable 9.50mm,Non-Adjustable Trephine 9.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D1000,Trepan Reglable 10.00mm,Adjustable Trephine 10.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D600,Trepan Reglable 6.00mm,Adjustable Trephine 6.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D650,Trepan Reglable 6.50mm,Adjustable Trephine 6.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D675,Trepan Reglable 6.75mm,Adjustable Trephine 6.75mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D700,Trepan Reglable 7.00mm,Adjustable Trephine 7.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D750,Trepan Reglable 7.50mm,Adjustable Trephine 7.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D775,Trepan Reglable 7.75mm,Adjustable Trephine 7.75mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D800,Trepan Reglable 8.00mm,Adjustable Trephine 8.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D825,Trepan Reglable 8.25mm,Adjustable Trephine 8.25mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D850,Trepan Reglable 8.50mm,Adjustable Trephine 8.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D875,Trepan Reglable 8.75mm,Adjustable Trephine 8.75mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D900,Trepan Reglable 9.00mm,Adjustable Trephine 9.00mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17202D950,Trepan Reglable 9.50mm,Adjustable Trephine 9.50mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+17542x10,Kit IVT Speculum avec Marqueur Scleral,IVT Kit Speculum with Scleral Marker,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18009,Canule Pediatrique Delicate 27G,Delicate Pediatric Cannula 27G,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18011,Canule Injection Viscoelastique Gills 23G,Gills Viscoelastic Injection Cannula 23G,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18013,Ciseaux Stevens Courbes Mousses,Stevens Scissors Curved Blunt,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18039,Manipulateur de Noyau Arneodo,Arneodo Nucleus Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18069,Emporte-Piece Glaucome Crozafon-De Laage,Crozafon-De Laage Glaucoma Punch,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18073FU,Connecteur de Nettoyage pour Canule Aspiration,Cleaning Connector for Aspirating Cannula,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18081,Canule en U Corydon Droite,Corydon U-Shaped Cannula Right,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18082,Canule en U Corydon Gauche,Corydon U-Shaped Cannula Left,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18089,Manipulateur Double Extremite Arneodo-Crozafon,Arneodo-Crozafon Double-Ended Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18103,Canule Hydrodissection 25G,Hydrodissection Cannula 25G,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18104,Pince a Dents Halsted,Halsted Toothed Forceps,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18112,Crochet Manipulateur en Forme de Doigt,Finger-Shaped Manipulator Hook,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18158,Pince a Action Croisee Colin,Colin Cross-Action Forceps,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18186,Trepan Dezard avec Butee 15mm,Dezard Trephine with Limit Stop 15mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18195,Speculum Shapira Fil Ouvert Adulte,Shapira Speculum Open Wire Adult,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18210,Manipulateur Stop and Chop,Stop and Chop Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18220,Anneau Fine-Thornton 15mm,Fine-Thornton Ring 15mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18221,Speculum Kratz Oblique Incision Temporale,Kratz Speculum Oblique Temporal Incision,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18224,Manipulateur de Repositionnement de Volet LASIK Caro,Caro LASIK Flap Repositioning Manipulator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18225,Pince Conjonctivale Fechtner,Fechtner Conjunctival Forceps,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18227,Phaco-Cliveur Haefliger Droitier,Haefliger Phaco-Cleaver Right-Handed,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18228,Phaco-Cliveur Haefliger Gaucher,Haefliger Phaco-Cleaver Left-Handed,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18251,Embout de Remplacement pour Emporte-Piece Glaucome 1.2mm,Replacement Tip for Glaucoma Punch 1.2mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18267,Canule Aspiration Grattoir 0.35mm,Scraper Aspiration Cannula 0.35mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+18268,Canule Irrigation Mousse 0.5mm,Blunt Irrigation Cannula 0.5mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19000,Crochet Manipulateur Diabolo,Diabolo Manipulator Hook,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19003,Pince a Implant 8mm,Implant Forceps 8mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19009,Dilatateur de Pupille Mini Beehler,Beehler Mini Pupil Dilator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19016,Embout de Remplacement pour Beehler 19009,Replacement Tip for Beehler 19009,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19017,Canule Lebuisson pour LASIK,Lebuisson Cannula for LASIK,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19018,Canule a Double Bras pour LASIK,Double-Armed Cannula for LASIK,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19019,Spatule Bahamon pour LASIK,Bahamon Spatula for LASIK,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19027,Dilatateur de Pupille Beehler,Beehler Pupil Dilator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19030,Speculum Francesci Fenestre Adulte,Francesci Speculum Fenestrated Adult,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19039,Embout de Remplacement pour Beehler 19009/2.8,Replacement Tip for Beehler 19009/2.8,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19047,Marqueur Culbertson pour LASIK Epi-LASIK,Culbertson Marker for LASIK Epi-LASIK,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19048,Speculum Olivieri-Cantera Adulte,Olivieri-Cantera Speculum Adult,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19050,Embout de Remplacement pour Beehler 19027,Replacement Tip for Beehler 19027,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19068,Coupe-Haptique pour Explantation IOL,Haptic Cutter for IOL Explantation,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19069,Speculum Aspirant Lames Carrees Ouvertes,Aspirating Speculum Open Square Blades,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19069T,Silicone Tubing Remplacement Ensemble,Silicone Tubing Replacement Set,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19070,Beehler Pupille Micro-dilatateur,Beehler Pupil Micro-dilator,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19072,Flexible IOL Loop Cutter (pour IOL Explantation),Flexible IOL Loop Cutter (for IOL Explantation),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19073,Ensemble of 3 Usage Unique Loops (pour Flexible IOL Loop Cutter (#19072)),Set of 3 Single-use Loops (for Flexible IOL Loop Cutter (#19072)),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19074,IOL Explantation Pince (7-mm Dentelé Mors),IOL Explantation Forceps (7-mm Serrated Jaws),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19076,Remplacement Embout (pour #19070),Replacement Tip (for #19070),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19078,"Réglable Colibri Spéculum (open Square Lames avec Olive Embouts, Adult)","Adjustable Colibri Speculum (open Square Blades with Olive Tips, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19079,"Hachet Pince à Capsulorhexis (2.2-mm Incision, Cross-action)","Hachet Capsulorhexis Forceps (2.2-mm Incision, Cross-action)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19080,Fox Spatule (pour LASIK),Fox Spatula (for LASIK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19082,De Laage Pince (courbe),De Laage Forceps (curved),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19084,À Double Extrémité Epi-lasik Spatule (pour Epi-lasik),Double-ended Epi-lasik Spatula (for Epi-lasik),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19087,Vryghem à Double Extrémité Spatule (pour LASIK),Vryghem Double-ended Spatula (for LASIK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19088,Epi-lasik Canule (pour Epi-lasik),Epi-lasik Cannula (for Epi-lasik),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19089,De-epithelialization Spatule (pour Surface Ablation),De-epithelialization Spatula (for Surface Ablation),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19091,"Price Crochet (pour DSAEK, DMEK)","Price Hook (for DSAEK, DMEK)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19092,Port d'Irrigation (20g),Irrigation Port (20g),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19095,Koch Rhexis Marqueur (ø 5.5-mm Rhexis),Koch Rhexis Marker (ø 5.5-mm Rhexis),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19096,S Marqueur (pour DSAEK),S Marker (for DSAEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19097,Gorovoy DSO Pince (pour Descemetorhexis),Gorovoy DSO Forceps (for Descemetorhexis),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19138,Tubulure d'Aspiration,Aspiration Tubing,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19155,ONE Turbine (pour Kératoplastie),ONE Turbine (for Keratoplasty),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19162,ALTK Artificial Chamber Cover (pour Kératoplastie),ALTK Artificial Chamber Cover (for Keratoplasty),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19168,ONE Réutilisable Guide Anneau (pour Kératoplastie),ONE Reusable Guide Ring (for Keratoplasty),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19171,Cbm Réutilisable Guide-anneau (pour Artificial Chamber),Cbm Reusable Guide-ring (for Artificial Chamber),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19172,Cbm Cover & Guide-anneau (pour Artificial Chamber),Cbm Cover & Guide-ring (for Artificial Chamber),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19173,One Use-plus Réutilisable Guide Anneau (pour Artificial Chamber),One Use-plus Reusable Guide Ring (for Artificial Chamber),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19182,Usage Unique Artificial Chamber (pour Kératoplastie : DSAEK & DMEK),Single-use Artificial Chamber (for Keratoplasty : DSAEK & DMEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19187,OUP LC Guide-anneau (x5) (pour Artificial Chamber),OUP LC Guide-ring (x5) (for Artificial Chamber),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19188,ACP Système (pour Kératoplastie),ACP System (for Keratoplasty),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19192,ACP Tubing (pour Artificial Chamber),ACP Tubing (for Artificial Chamber),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19303,"Cbm Turbine (pour DSAEK, ALTK et LASIK Chirurgie)","Cbm Turbine (for DSAEK, ALTK and LASIK Surgery)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19345,One Use-plus Handpiece (pour LASIK Chirurgie),One Use-plus Handpiece (for LASIK Surgery),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+19380,Console Evolution 3E,Evolution 3E Console,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20000,Crozafon Pince-1.8 Mm (1.8-mm Incision),Crozafon Forceps-1.8 Mm (1.8-mm Incision),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20001,"Micro Pré-Découpeur Crozafon (action croisée, incision 2.2mm)","Crozafon Micro Pre-chopper (cross-action, 2.2-mm Incision)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20002,Nagahara Phaco-chopper (1.3-mm Embout),Nagahara Phaco-chopper (1.3-mm Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20003,Ogawa Pince (pour DSAEK Graft Insertion),Ogawa Forceps (for DSAEK Graft Insertion),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20004,"20G Busin Pince (20g, Distal Control)","20G Busin Forceps (20g, Distal Control)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20006,20G Busin Spatule (pour DSAEK),20G Busin Spatula (for DSAEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20007,"Mini Busin Spatule (pour DSAEK, DMEK)","Mini Busin Spatula (for DSAEK, DMEK)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20011,"23G Busin Pince (23g, Distal Control)","23G Busin Forceps (23g, Distal Control)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20017,Villon Nucleus Divider Crochet (vertical Phaco-chopper),Villon Nucleus Divider Hook (vertical Phaco-chopper),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20018,Burtin à Double Extrémité Iris Crochet (à Double Extrémité),Burtin Double-ended Iris Hook (double-ended),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20020,"Pince à Capsulorhexis-1.5-mm (1.5-mm Incision, Cross-action)","Capsulorhexis Forceps-1.5-mm (1.5-mm Incision, Cross-action)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20021,Y Stroma-descemetic Dissector (pour DMEK),Y Stroma-descemetic Dissector (for DMEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20024,"Busin Ciseaux (clockwise, pour Kératoplastie)","Busin Scissors (clockwise, for Keratoplasty)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20025,"Busin Ciseaux (counter-clockwise, pour Kératoplastie)","Busin Scissors (counter-clockwise, for Keratoplasty)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20027,"Fontana Canule (pour Big-bubble DALK, Ø 27G)","Fontana Cannula (for Big-bubble DALK, Ø 27G)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20028,Fontana à Double Extrémité Spatule (pour DALK),Fontana Double-ended Spatula (for DALK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20029,"Gabison Ciseaux (clockwise, pour Kératoplastie)","Gabison Scissors (clockwise, for Keratoplasty)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20030,Gabison Ciseaux (counter-clockwise),Gabison Scissors (counter-clockwise),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20031,"Cross-action Pince à Capsulorhexis-1.8 Mm (1.8-mm Incision, Cross-action)","Cross-action Capsulorhexis Forceps-1.8 Mm (1.8-mm Incision, Cross-action)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20032,"Ancel à Double Extrémité Spatule (pour LASIK, SMILE)","Ancel Double-ended Spatula (for LASIK, SMILE)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20033,Can Pendular Marqueur (pour Toric Iols),Can Pendular Marker (for Toric Iols),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20034,“S” Marqueur-angulé (pour DMEK),“S” Marker-angled (for DMEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20035,"Réglable Spéculum (open Courbe Lames, Adult)","Adjustable Speculum (open Curved Blades, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20036,"Réglable Spéculum (solid Lames, Adult)","Adjustable Speculum (solid Blades, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20038,DMEK Pince (courbe),DMEK Forceps (curved),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20039,DMEK Pince (droit),DMEK Forceps (straight),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20040,Pisacano Crochet (horizontal Disk Embout),Pisacano Hook (horizontal Disk Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20041,Pisacano Crochet (vertical Disk Embout),Pisacano Hook (vertical Disk Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20042,"Réglable Spéculum (open Square Lames, Adult)","Adjustable Speculum (open Square Blades, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20043,DSO Gorovoy Marqueur 4mm,DSO Gorovoy Marker 4mm,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20044,IOL Haptic Gorovoy Marqueur (pour IOL Positionning),IOL Haptic Gorovoy Marker (for IOL Positionning),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20045,F Marqueur (pour DMEK),F Marker (for DMEK),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20158,Radial Marqueur-8 Lames (pour Kératoplastie: Pk-dalk),Radial Marker-8 Blades (for Keratoplasty: Pk-dalk),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20221X1,"Composites 23G Pince à Capsulorhexis – Long (1.5-mm Incision, 23G)","Composites 23G Capsulorhexis Forceps – Long (1.5-mm Incision, 23G)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+20222X1,"Composites 23G Pince à Capsulorhexis-short (1.5-mm Incision, 23G)","Composites 23G Capsulorhexis Forceps-short (1.5-mm Incision, 23G)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2125,Desmarres Pince (25 Mm),Desmarres Forceps (25 Mm),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2131,Lambert Pince (11 Mm),Lambert Forceps (11 Mm),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2146,"Pince (droit, Taille Moyenne, Regular)","Forceps (straight, Medium Size, Regular)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2180A,Bonaccolto Pince (0.8-mm Dentelé Mors),Bonaccolto Forceps (0.8-mm Serrated Jaws),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2183,Pince (1-mm Dentelé Mors),Forceps (1-mm Serrated Jaws),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2221,Barraquer Pince (droit avec Oblique Teeth),Barraquer Forceps (straight with Oblique Teeth),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2228,Elschnig Pince (droit avec Crossed Teeth),Elschnig Forceps (straight with Crossed Teeth),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22517172,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518350,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518351,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518352,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518353,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518354,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518355,Sterilization Boîte (in Acier Inoxydable),Sterilization Box (in Stainless Steel),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518356,Sterilization Boîte (in Acier Inoxydable),Sterilization Box (in Stainless Steel),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518357,Sterilization Boîte (in Acier Inoxydable),Sterilization Box (in Stainless Steel),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518358,Sterilization Boîte (in Acier Inoxydable),Sterilization Box (in Stainless Steel),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22518359,Sterilization Boîte (in Acier Inoxydable),Sterilization Box (in Stainless Steel),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+22519093,Sterilization Boîte (in Aluminum),Sterilization Box (in Aluminum),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2280A,Lester Pince (1.1-mm Teeth),Lester Forceps (1.1-mm Teeth),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2321,"De Wecker Pince “mosquito” (droit, Cross-action)","De Wecker Forceps “mosquito” (straight, Cross-action)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2432,"Barraquer Pince (6-mm Platforms, Mors Droits)","Barraquer Forceps (6-mm Platforms, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2456,Jaeger Paupière Plate,Jaeger Eyelid Plate,MORIA,Ophtalmologie,Instruments,oph-instruments,active
+247,Anneau de Snellen (standard),Snellen Loop (standard),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2484,"Vantey-desvignes Porte-aiguille (sans Verrouillage, Droit, Wide Mors)","Vantey-desvignes Needle-holder (non-locking, Straight, Wide Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2597B,Desmarres Lid Écarteur (pour Lid Retraction),Desmarres Lid Retractor (for Lid Retraction),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+2873A,Sichel Lachrymal Duct Sonde (0.41 Mm),Sichel Lachrymal Duct Probe (0.41 Mm),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+3201,Paufique Couteau (pour Cornée),Paufique Knife (for Cornea),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+3225,Burrato-sinskey Manipulator Crochet (angulé Partie Active avec un 0.7-mm Angulé Embout),Burrato-sinskey Manipulator Hook (angled Active Part with a 0.7-mm Angled Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+393,One Use-plus 130 Tête (pour LASIK Chirurgie),One Use-plus 130 Head (for LASIK Surgery),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4134C,"Castroviejo Porte-aiguille (à Verrouillage, Conical et Dentelé Mors, Courbe Embout)","Castroviejo Needle-holder (locking, Conical and Serrated Jaws, Curved Tip)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4134D,"Castroviejo Porte-aiguille (sans Verrouillage, Conical et Dentelé Mors)","Castroviejo Needle-holder (non-locking, Conical and Serrated Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4170,"Sourdille Compas (graduatations Every 1 Mm, Opening Partie Active 0 to 16 Mm)","Sourdille Caliper (graduatations Every 1 Mm, Opening Active Part 0 to 16 Mm)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4174,Foster-paufique Loop (pour Enucleation),Foster-paufique Loop (for Enucleation),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4174B,Ensemble of 10 Acier Inoxydable Wires (pour Foster-paufique Loop (#4174)),Set of 10 Stainless Steel Wires (for Foster-paufique Loop (#4174)),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4180A,"Barraquer Porte-aiguille (à Verrouillage, 1.5-mm Mors Courbes)","Barraquer Needle-holder (locking, 1.5-mm Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4251C,Sevrin-stevens Ciseaux (pour Tenotomy),Sevrin-stevens Scissors (for Tenotomy),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4263,"Westcott-cochet Ciseaux (droit, Lames Mousses)","Westcott-cochet Scissors (straight, Blunt Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4877A,"Ophthalmic Ciseaux (droit, Pointed Lames)","Ophthalmic Scissors (straight, Pointed Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+4878A,Ciseaux (courbe Lames),Scissors (curved Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+550,OU LC 550 Tête (x5) (pour Artificial Chambers),OU LC 550 Head (x5) (for Artificial Chambers),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6031BIS,"Cilia Pince, Swiss Model (1.5-mm Concave Mors)","Cilia Forceps, Swiss Model (1.5-mm Concave Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+61,ALTK Artificial Chamber Base (pour Kératoplastie),ALTK Artificial Chamber Base (for Keratoplasty),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6100,Urrets-zavalia Marqueur (pour Rétinien Detachment),Urrets-zavalia Marker (for Retinal Detachment),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6223,"De Saint Martin-barraquer Pince (5-mm Tying Platforms, 0.5-mm Oblique Teeth)","De Saint Martin-barraquer Forceps (5-mm Tying Platforms, 0.5-mm Oblique Teeth)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6346A,"Barraquer Adult Spéculum, Colibri (closed Lames, Adult)","Barraquer Adult Speculum, Colibri (closed Blades, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6346B,"Barraquer Spéculum Colibri, Child Taille (fenestrated Lames, Pediatric)","Barraquer Speculum Colibri, Child Size (fenestrated Blades, Pediatric)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6346C,"Barraquer Spéculum Colibri, Baby Taille (closed Lames, Pediatric)","Barraquer Speculum Colibri, Baby Size (closed Blades, Pediatric)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+6346D,"Barraquer Spéculum Colibri, Newborn Taille (closed Lames, Newborn)","Barraquer Speculum Colibri, Newborn Size (closed Blades, Newborn)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7251,"Barraquer-de Laage Porte-aiguille (sans Verrouillage, 1.0-mm Mors Courbes)","Barraquer-de Laage Needle-holder (non-locking, 1.0-mm Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7252,"Barraquer Porte-aiguille (sans Verrouillage, 1.5-mm Mors Courbes)","Barraquer Needle-holder (non-locking, 1.5-mm Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7252BIS,"Barraquer-de Laage Porte-aiguille (sans Verrouillage, 0.8-mm Mors Courbes, Lightened Manche)","Barraquer-de Laage Needle-holder (non-locking, 0.8-mm Curved Jaws, Lightened Handle)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7384,"Castroviejo Pince (6-mm Tying Platforms, 0.4-mm Oblique Teeth)","Castroviejo Forceps (6-mm Tying Platforms, 0.4-mm Oblique Teeth)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7431,"Barraquer Pince, “colibri” Type (1-mm Platforms)","Barraquer Forceps, “colibri” Type (1-mm Platforms)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7503,Calamendrei Canule (ø 0.2 Mm),Calamendrei Cannula (ø 0.2 Mm),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7504,Rycroft Canule (ø 35G),Rycroft Cannula (ø 35G),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7699,"Corcelle Spéculum, Oblique (solid Lames)","Corcelle Speculum, Oblique (solid Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7825B,Barraquer Iris Spatule (horizontal Disk Embout),Barraquer Iris Spatula (horizontal Disk Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7825C,Barraquer Iris Spatule (horizontal Disk Embout),Barraquer Iris Spatula (horizontal Disk Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7835,Bonn Pince (0.12-mm Teeth avec Platforms),Bonn Forceps (0.12-mm Teeth with Platforms),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7835C,"Moria Pince (4-mm Platforms, Mors Droits)","Moria Forceps (4-mm Platforms, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7850A,Bonn-moria Pince (0.18-mm Teeth avec Platforms),Bonn-moria Forceps (0.18-mm Teeth with Platforms),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7850B,Moria Pince (0.18-mm Teeth avec Platforms),Moria Forceps (0.18-mm Teeth with Platforms),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7850C,"Moria Pince (3-mm Platforms, Mors Droits)","Moria Forceps (3-mm Platforms, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7862,"Barraquer-troutman Pince (0.12-mm Oblique Teeth, “colibri” Type)","Barraquer-troutman Forceps (0.12-mm Oblique Teeth, “colibri” Type)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+7865,"Barraquer Ciseaux (droit, Angulé Lames)","Barraquer Scissors (straight, Angled Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+791,"Galezowski Canule (lachrymal Canule, Ø 23G)","Galezowski Cannula (lachrymal Cannula, Ø 23G)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+792,"Galezowski Canule (lachrymal Canule, Ø 23G)","Galezowski Cannula (lachrymal Cannula, Ø 23G)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8016,"Barraquer Canule (bulbous Embout, 23G Outer Ø, 27G Inner Ø)","Barraquer Cannula (bulbous Tip, 23G Outer Ø, 27G Inner Ø)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8023A,"Katzin Ciseaux (clockwise, pour Kératoplastie)","Katzin Scissors (clockwise, for Keratoplasty)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8023B,"Katzin Ciseaux (counter-clockwise, pour Kératoplastie)","Katzin Scissors (counter-clockwise, for Keratoplasty)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8063,Gass-rouchy Crochet (holed-embout),Gass-rouchy Hook (holed-tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8090,"Barraquer Ciseaux (droit, Angulé, Pointed Lames)","Barraquer Scissors (straight, Angled, Pointed Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8100,Vannas Ciseaux (courbe Lames Mousses),Vannas Scissors (curved Blunt Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8142A,"Micro-ciseaux (courbe, Pointed Lames)","Micro-scissors (curved, Pointed Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8143A,"Micro-ciseaux (droit, Pointed Lames)","Micro-scissors (straight, Pointed Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8144A,"Micro-ciseaux (courbe, Lames Mousses)","Micro-scissors (curved, Blunt Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8147,"Castroviejo Porte-aiguille (à Verrouillage, Mors Droits)","Castroviejo Needle-holder (locking, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8148,"Castroviejo Porte-aiguille (sans Verrouillage, Mors Droits)","Castroviejo Needle-holder (non-locking, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8149,"Castroviejo Porte-aiguille (à Verrouillage, Mors Courbes)","Castroviejo Needle-holder (locking, Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8150,"Castroviejo Porte-aiguille (sans Verrouillage, Mors Courbes)","Castroviejo Needle-holder (non-locking, Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+8151,"Barraquer Porte-aiguille (sans Verrouillage, 15-mm Mors Courbes, 0.5-mm Wide)","Barraquer Needle-holder (non-locking, 15-mm Curved Jaws, 0.5-mm Wide)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+90061L,Charleux-simcoe Canule (double-way),Charleux-simcoe Cannula (double-way),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+917,One Use-plus Handpiece pour Artificial Chamber (pour DSAEK Chirurgie),One Use-plus Handpiece for Artificial Chamber (for DSAEK Surgery),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9510,"Castroviejo “utility” Pince (6.5-mm Platforms, 0.3-mm Oblique Teeth)","Castroviejo “utility” Forceps (6.5-mm Platforms, 0.3-mm Oblique Teeth)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9600,Vannas Ciseaux (droit Pointed Lames),Vannas Scissors (straight Pointed Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9600BIS,Vannas Ciseaux (droit Lames Mousses),Vannas Scissors (straight Blunt Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9601,Vannas Ciseaux (courbe Lames Mousses),Vannas Scissors (curved Blunt Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9611B,Culler Iris Spatule (très Délicat),Culler Iris Spatula (very Delicate),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9623,"Charleux Canule (aspirator, Ø 0.4mm)","Charleux Cannula (aspirator, Ø 0.4mm)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9627A,"Castroviejo Spéculum (fenestrated Lames, Adult)","Castroviejo Speculum (fenestrated Blades, Adult)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9627B,"Castroviejo Spéculum, Child Model (fenestrated Lames, Pediatric)","Castroviejo Speculum, Child Model (fenestrated Blades, Pediatric)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9721,Castroviejo Ciseaux (courbe Lames Mousses),Castroviejo Scissors (curved Blunt Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9803,"Pierse Pince (0.2-mm Oblique Teeth, “colibri” Type, avec Notched Mors et Platforms)","Pierse Forceps (0.2-mm Oblique Teeth, “colibri” Type, with Notched Jaws and Platforms)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9850,Troutman Ciseaux (clockwise),Troutman Scissors (clockwise),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9851,Troutman Ciseaux (counter-clockwise),Troutman Scissors (counter-clockwise),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9960,"Troutman-o'brien Porte-aiguille (sans Verrouillage, 0.8-mm Mors Courbes)","Troutman-o'brien Needle-holder (non-locking, 0.8-mm Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9960BIS,"Troutman-o'brien Porte-aiguille (à Verrouillage, 0.8-mm Mors Courbes)","Troutman-o'brien Needle-holder (locking, 0.8-mm Curved Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9965,Remky-polak Pince (3.0-mm Angulé Teeth),Remky-polak Forceps (3.0-mm Angled Teeth),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9980,"Micro-chirurgie Pince (droit, Ultra-thin Embout)","Micro-surgery Forceps (straight, Ultra-thin Tip)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9983,Micro-chirurgie Pince (droit),Micro-surgery Forceps (straight),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+9987,Micro-chirurgie Pince (courbe),Micro-surgery Forceps (curved),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M0489,Castroviejo à Double Extrémité Spatule (à Double Extrémité),Castroviejo Double-ended Spatula (double-ended),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M0567,Kuglen Crochet (k-embout),Kuglen Hook (k-tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M0570N,Nichamin à Double Extrémité Spatule (à Double Extrémité),Nichamin Double-ended Spatula (double-ended),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M0577,Osher Crochet (y Embout),Osher Hook (y Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M0712,Koch Spatule (6.5-mm Embout),Koch Spatula (6.5-mm Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M1796,"Castroviejo Pince à Suture (5.8-mm Platforms, 0.18-mm Teeth)","Castroviejo Suturing Forceps (5.8-mm Platforms, 0.18-mm Teeth)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M1809,Bonn Pince (0.12-mm Teeth),Bonn Forceps (0.12-mm Teeth),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M1815A,"Kelman-mac Pherson Pince (7-mm Platforms, Angulé Mors)","Kelman-mac Pherson Forceps (7-mm Platforms, Angled Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M1815S,"Mac Pherson Pince (4-mm Platforms, Mors Droits)","Mac Pherson Forceps (4-mm Platforms, Straight Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M2002,Corydon Pince-1.8 Mm (1.8-mm Incision),Corydon Forceps-1.8 Mm (1.8-mm Incision),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M32390,Nagahara Spatule (110° Angulé Embout),Nagahara Spatula (110° Angled Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M35220,Sinskey Crochet (0.6-mm Embout Longueur),Sinskey Hook (0.6-mm Tip Length),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M35522,Kuglen Crochet (olive Embout),Kuglen Hook (olive Tip),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+M5030,"Kelman-mac Pherson Pince (11-mm Platforms, Angulé Mors)","Kelman-mac Pherson Forceps (11-mm Platforms, Angled Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC19,Pascheff Wolff Ciseaux (6-mm Lames),Pascheff Wolff Scissors (6-mm Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC19B,Wolff Ciseaux (4-mm Lames),Wolff Scissors (4-mm Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC26B,"Dowell Ciseaux (droit, Pointed Lames)","Dowell Scissors (straight, Pointed Blades)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC31,"Pince à Iris (courbe, Dentelé Mors)","Iris Forceps (curved, Serrated Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC32,"Pince à Iris (droit, Dentelé Mors)","Iris Forceps (straight, Serrated Jaws)",MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC40,Dumont Pince (droit),Dumont Forceps (straight),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC40B,Dumont Pince (courbe),Dumont Forceps (curved),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC43,De Wecker “mosquito” Pince (droit),De Wecker “mosquito” Forceps (straight),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC44,De Wecker mosquito Pince (courbe),De Wecker mosquito Forceps (curved),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC50,Vannas Ciseaux (courbe Pointed Lames),Vannas Scissors (curved Pointed Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+MC52,Vannas Ciseaux (droit Pointed Lames),Vannas Scissors (straight Pointed Blades),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+TI7835,Bonn Pince-titane (0.12-mm Teeth avec Platforms),Bonn Forceps-titanium (0.12-mm Teeth with Platforms),MORIA,Ophtalmologie,Instruments,oph-instruments,active
+402516,Surgical Plain Drape,,Star-set,Ophtalmologie,Instruments,oph-instruments,active
+426116,Champ Opératoire avec Ruban Adhésif,,Star-set,Ophtalmologie,Instruments,oph-instruments,active
+432516,Surgical Fenestrated Drape,,Star-set,Ophtalmologie,Instruments,oph-instruments,active
+452516,Champ Opératoire avec Fenêtre Adhésive,,Star-set,Ophtalmologie,Instruments,oph-instruments,active
+"A10.1500, A1.2100, A3.1030, A6.2026, A6.8000, A7.1110, A8.3005",Boîte d'Instruments Chirurgicaux pour Chalazion,Chalazion Surgical Instrument Set,fci,Ophtalmologie,Instruments,oph-instruments,active
+"A10.1600, A3.1030, A3.3000, A6.6210, A6.8000, A6.8030, A7.1110, A8.3005",Boîte d'Instruments Chirurgicaux pour Ptérygion,Pterygium Surgical Instrument Set,fci,Ophtalmologie,Instruments,oph-instruments,active
+"A10.4000, A5.2113, A3.1210, A3.4030, A2.4400, A6.7110, A6.5110, A6.4100, A7.3110, A8.3010",Boîte d'Instruments Chirurgicaux pour Glaucome,Glaucoma Surgical Instrument Set,fci,Ophtalmologie,Instruments,oph-instruments,active
+"A10.7000, A8.4050, A8.4120, A6.8000, A1.2210, A1.2300, A3.3100, A3.1120, A7.1010, A8.3010",Boîte d'Instruments Chirurgicaux pour Dacryocystorhinostomie (DCR),Dacryocystorhinostomy (DCR) Surgical Instrument Set,fci,Ophtalmologie,Instruments,oph-instruments,active
+A2.4220,Double Crochet de Ferron,Ferron Double Hook,fci,Ophtalmologie,Instruments,oph-instruments,active
+BONSDECO,Instruments Décompression Orbitaire,Orbital Decompression Instruments,fci,Ophtalmologie,Instruments,oph-instruments,active
+COUTEAUX,Couteaux Chirurgicaux Ophtalmiques,Ophthalmic Surgical Knives,fci,Ophtalmologie,Instruments,oph-instruments,active
+PINCEGLA,Pinces Chirurgie Glaucome,Glaucoma Surgery Forceps,fci,Ophtalmologie,Instruments,oph-instruments,active
+PINCEPTO,Pinces Chirurgie Ptosis,Ptosis Surgery Forceps,fci,Ophtalmologie,Instruments,oph-instruments,active
+18153,"Hydrodissection Canule(ø 25G, Angulé)","Hydrodissection Cannula(ø 25G, Angled)",moria,Ophtalmologie,Instruments,oph-instruments,active
+19161,ALTK Artificial Chamber Base (pour Kératoplastie),ALTK Artificial Chamber Base (for Keratoplasty),moria,Ophtalmologie,Instruments,oph-instruments,active
+19175,One Use-plus Handpiece pour Artificial Chamber (pour DSAEK Chirurgie),One Use-plus Handpiece for Artificial Chamber (for DSAEK Surgery),moria,Ophtalmologie,Instruments,oph-instruments,active
+20010,LASIK Cleaver Spatule (pour LASIK),LASIK Cleaver Spatula (for LASIK),moria,Ophtalmologie,Instruments,oph-instruments,active
+20016,Renard Cornéen Dissector Spatule (pour Kératoplastie),Renard Corneal Dissector Spatula (for Keratoplasty),moria,Ophtalmologie,Instruments,oph-instruments,active
+20022,Micro-dissector (pour DMEK),Micro-dissector (for DMEK),moria,Ophtalmologie,Instruments,oph-instruments,active
+2420A,"Prince-blascovics Pince (right Side, pour Strabismus)","Prince-blascovics Forceps (right Side, for Strabismus)",moria,Ophtalmologie,Instruments,oph-instruments,active
+2420B,"Prince-blascovics Pince (left Side, pour Strabismus)","Prince-blascovics Forceps (left Side, for Strabismus)",moria,Ophtalmologie,Instruments,oph-instruments,active
+3222,"Jayle Pince (7-mm Tying Platforms, 0.8-mm Teeth)","Jayle Forceps (7-mm Tying Platforms, 0.8-mm Teeth)",moria,Ophtalmologie,Instruments,oph-instruments,active
+4180B,"Barraquer Porte-aiguille (sans Verrouillage, 1.5-mm Mors Courbes)","Barraquer Needle-holder (non-locking, 1.5-mm Curved Jaws)",moria,Ophtalmologie,Instruments,oph-instruments,active
+9604,"Troutman Pince (8-mm Platforms, Droit)","Troutman Forceps (8-mm Platforms, Straight)",moria,Ophtalmologie,Instruments,oph-instruments,active
+9605,"Troutman Pince (7.5-mm Platforms, Courbe)","Troutman Forceps (7.5-mm Platforms, Curved)",moria,Ophtalmologie,Instruments,oph-instruments,active
+M1815AK,"Kelman-mac Pherson Pince (7-mm Platforms, Angulé Mors)","Kelman-mac Pherson Forceps (7-mm Platforms, Angled Jaws)",moria,Ophtalmologie,Instruments,oph-instruments,active
+M2002C,Corydon Pince-1.8 Mm (1.8-mm Incision),Corydon Forceps-1.8 Mm (1.8-mm Incision),moria,Ophtalmologie,Instruments,oph-instruments,active
+MC26,"Dowell Ciseaux (droit, Pointed Lames)","Dowell Scissors (straight, Pointed Blades)",moria,Ophtalmologie,Instruments,oph-instruments,active
+TI9960,"Troutman-o'brien Porte-aiguille (sans Verrouillage, 0.8-mm Mors Courbes, Titane)","Troutman-o'brien Needle-holder (non-locking, 0.8-mm Curved Jaws, Titanium)",moria,Ophtalmologie,Instruments,oph-instruments,active
+OACF-15,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OACF-17,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OACF4-15,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OCFA4-17,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OCU-MKBIIKN1,LENTILLES POUR LASER OPHTALMOLOGIQUE,Ophthalmic Laser Lenses,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OCU-MKBIIKQ9,LENTILLES INDIRECTES POUR DIAGNOSTIC ET CHIRURGIE,Indirect Lenses for Diagnosis and Surgery,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OCU-MKBIIKV0,VERRES D'EXAMENS OPHTALMOLOGIQUE,Ophthalmic Examination Lenses,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OCU-MKBIIKYJ,DIAGNOSTIC LENSES,Diagnostic Lenses,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OLPR-SUS OLPR-SUS-2,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OLTA-2,ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE,Ophthalmic Lens Accessories,ocular,Ophtalmologie,Instruments,oph-instruments,active
+OLTCW,LENTILLE DE FENETRE CORNEENNE TEMPORAIRE,Temporary Corneal Window Lens,ocular,Ophtalmologie,Instruments,oph-instruments,active
+12-202,"12-202-25DP Jetable Vitréorétinien Ciseaux Verticaux, 25 Ga, Plastique Manche 360ᵒ, 6 Par Boîte","12-202-25DP Disposable Vitreoretinal Vertical Scissors, 25 Ga, Plastic Handle 360ᵒ, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+12-209,"12-209-27DP Jetable Vitréorétinien Ciseaux Courbes, 27 Ga, Plastique Manche 360ᵒ, 6 Par Boîte","12-209-27DP Disposable Vitreoretinal Curved Scissors, 27 Ga, Plastic Handle 360ᵒ, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+12-211,"12-211-27DP Jetable Vitréorétinien Ciseaux Droits, 27 Ga, Plastique Manche 360ᵒ, 6 Par Boîte","12-211-27DP Disposable Vitreoretinal Straight Scissors, 27 Ga, Plastic Handle 360ᵒ, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+12-304,"12-304-27DP Jetable Vitréorétinien Pince de Préhension avec un crocodile Plateforme, 27 Ga, Plastique Manche 360ᵒ, 6 Par Boîte","12-304-27DP Disposable Vitreoretinal Gripping Forceps with a crocodile Platform, 27 Ga, Plastic Handle 360ᵒ, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+12-410,"12-410-27DP Jetable Vitréorétinien Eckardt End-pince de Préhension, 27 Ga, Plastique Manche 360ᵒ, 6 Par Boîte","12-410-27DP Disposable Vitreoretinal Eckardt End-gripping Forceps, 27 Ga, Plastic Handle 360ᵒ, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+3-0231,"3-0231 Abdullayev Marqueur Cornéen pour Kératoplastie, à Double Extrémité (10.00 Mm et 11.00 Mm Diameters), avec Central Marking Point, Longueur 146 Mm, Round Titane Manche","3-0231 Abdullayev Corneal Marker for Keratoplasty, Double-ended (10.00 Mm and 11.00 Mm Diameters), with Central Marking Point, Length 146 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+3-024t,"3-024T Abdullayev I & II Marqueur (pour Dsaek/dmek Grafts), Titane, Longueur 125 Mm","3-024T Abdullayev I & II Marker (for Dsaek/dmek Grafts), Titanium, Length 125 Mm",rumex,Ophtalmologie,Instruments,oph-instruments,active
+3-183t,"3-183T LRI Marqueur, Intra-op, 30, 45 et 60 Degré Marks, Longueur 116 Mm, Titane","3-183T LRI Marker, Intra-op, 30, 45 and 60 Degree Marks, Length 116 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+3-204t,"3-204T John DSAEK à Double Extrémité Marqueur 8.00/9.00mm, Longueur 143 Mm, Titane","3-204T John DSAEK Double-ended Marker 8.00/9.00mm, Length 143 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+4-033s,"4-033S Small-incision Pince à Capsulorhexis avec Double Cross-action et Scale, Cystotome Embouts, Micro-thin Mors, pour 1.50 Mm Incisions, Flat Manche, Longueur 105 Mm, Acier Inoxydable","4-033S Small-incision Capsulorhexis Forceps with Double Cross-action and Scale, Cystotome Tips, Micro-thin Jaws, for 1.50 Mm Incisions, Flat Handle, Length 105 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+4-254s,"4-254S Lambright-abdullayev Ultrathin DSAEK Grasping/pince D'insertion, Longueur 105 Mm, Acier Inoxydable","4-254S Lambright-abdullayev Ultrathin DSAEK Grasping/inserting Forceps, Length 105 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+4-261s,"4-261S Abdullayev DMEK Pince de Préhension, Longueur 82 Mm, Acier Inoxydable","4-261S Abdullayev DMEK Grasping Forceps, Length 82 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-20,"6-20/6sk-146 Phaco Sapphire Couteau, Trapezoid Lame, 1.80/2.40 Mm, Longueur 135 Mm, Angulé Titane Manche","6-20/6sk-146 Phaco Sapphire Knife, Trapezoid Blade, 1.80/2.40 Mm, Length 135 Mm, Angled Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-322,"6-322/6-0531 LRI Diamond Couteau, 20° Trifacet Lame, 1.00 Mm, Calibration Mechanism avec 3 Preset Depths of 500, 550, et 600 Microns, Longueur 125 Mm, Titane Manche","6-322/6-0531 LRI Diamond Knife, 20° Trifacet Blade, 1.00 Mm, Calibration Mechanism with 3 Preset Depths of 500, 550, and 600 Microns, Length 125 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-500,"6-500/6-0531 LRI Diamond Couteau, 20° Trifacet Lame, 0.20/1.00 Mm, Preset Depth of 500 Microns, Longueur 110 Mm, Droit Titane Manche","6-500/6-0531 LRI Diamond Knife, 20° Trifacet Blade, 0.20/1.00 Mm, Preset Depth of 500 Microns, Length 110 Mm, Straight Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-500s,"Couteau Diamant LRI 6-500s/6-0531, Lame Trifacet 20°, 0.20/1.00 Mm, Profondeur Préréglée 500 Microns, Pour Lampe à Fente, Longueur 78 Mm, Manche Court Titane","6-500s/6-0531 LRI Diamond Knife, 20° Trifacet Blade, 0.20/1.00 Mm, Preset Depth of 500 Microns, to Be Used with a Slit Lamp, Length 78 Mm, Short Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-600,"6-600/6-0531 LRI Diamond Couteau, 20° Trifacet Lame, 0.20/1.00 Mm, Preset Depth of 600 Microns, Droit, Longueur 110 Mm, Titane Manche","6-600/6-0531 LRI Diamond Knife, 20° Trifacet Blade, 0.20/1.00 Mm, Preset Depth of 600 Microns, Straight, Length 110 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+6-600s,"Couteau Diamant LRI 6-600s/6-0531, Lame Trifacet 20°, 0.20/1.00 Mm, Profondeur Préréglée 600 Microns, Pour Lampe à Fente, Longueur 78 Mm, Manche Court Titane","6-600s/6-0531 LRI Diamond Knife, 20° Trifacet Blade, 0.20/1.00 Mm, Preset Depth of 600 Microns, to Be Used with a Slit Lamp, Length 78 Mm, Short Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0201t,"7-0201T Kansas-alfonso Nucleus Fragment Removing Pince, avec Teeth, Flat Manche, Longueur 107 Mm, Titane","7-0201T Kansas-alfonso Nucleus Fragment Removing Forceps, with Teeth, Flat Handle, Length 107 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-025t,"7-025T Ernest Nucleus Cracker, Flat Manche, Longueur 106 Mm, Titane","7-025T Ernest Nucleus Cracker, Flat Handle, Length 106 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-063,"7-063 Nagahara Phaco Chopper, RHD, Dull Finish, Longueur 120 Mm, Round Titane Manche","7-063 Nagahara Phaco Chopper, RHD, Dull Finish, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0631,"7-0631 Nagahara Phaco Chopper (RHD) & Drysdale Nucleus Manipulator, à Double Extrémité, Longueur 128 Mm, Round Titane Manche","7-0631 Nagahara Phaco Chopper (RHD) & Drysdale Nucleus Manipulator, Double-ended, Length 128 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0631s,"7-0631S Nagahara Phaco Chopper & Drysdale Nucleus Manipulator, à Double Extrémité, Longueur 128 Mm, Acier Inoxydable","7-0631S Nagahara Phaco Chopper & Drysdale Nucleus Manipulator, Double-ended, Length 128 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0634,"7-0634/i Lesieur Hydrochopper, 20 Ga, Round Manche, Longueur 105 Mm, Titane Manche","7-0634/i Lesieur Hydrochopper, 20 Ga, Round Handle, Length 105 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-063d,"7-063D Jetable Nagahara Phaco Chopper, RHD, 6 Par Boîte","7-063D Disposable Nagahara Phaco Chopper, RHD, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-063s,"7-063S Nagahara Phaco Chopper, RHD, Dull Finish, Longueur 120 Mm, Acier Inoxydable","7-063S Nagahara Phaco Chopper, RHD, Dull Finish, Length 120 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-064,"7-064 Nagahara Phaco Chopper, LHD, Dull Finish, Longueur 120 Mm, Round Titane Manche","7-064 Nagahara Phaco Chopper, LHD, Dull Finish, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-065,"7-065 Rosen Phaco Chopper Universal, Angulé, Longueur 120 Mm, Round Titane Manche","7-065 Rosen Phaco Chopper Universal, Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-065d,"7-065D Jetable Rosen Phaco Chopper, Universal, 6 Par Boîte","7-065D Disposable Rosen Phaco Chopper, Universal, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-065s,"7-065S Rosen Phaco Chopper, Universal, Angulé, Longueur 120 Mm, Round Manche, Acier Inoxydable","7-065S Rosen Phaco Chopper, Universal, Angled, Length 120 Mm, Round Handle, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-066,"7-066 Rosen Phaco Splitter, RHD, Wedge-shaped, 60° Angulé, Round Manche, Longueur 120 Mm, Round Titane Manche","7-066 Rosen Phaco Splitter, RHD, Wedge-shaped, 60° Angled, Round Handle, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-067,"7-067 Rosen Phaco Splitter, LHD, Wedge-shaped, 60° Angulé, Longueur 120 Mm, Round Titane Manche","7-067 Rosen Phaco Splitter, LHD, Wedge-shaped, 60° Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-068,"7-068 Phaco Cleaver, RHD, Angulé, Longueur 120 Mm, Round Titane Manche","7-068 Phaco Cleaver, RHD, Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-069,"7-069 Phaco Cleaver, LHD, Angulé, Longueur 120 Mm, Round Titane Manche","7-069 Phaco Cleaver, LHD, Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-070,"7-070 Koch Nucleus Spatule, Courbe, Duck Bill Embouts avec Notches, Longueur 122 Mm, Round Titane Manche","7-070 Koch Nucleus Spatula, Curved, Duck Bill Tips with Notches, Length 122 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-072,"7-072 Nucleus Claw Chopper, Angulé, Round Manche, Longueur 120 Mm, Round Titane Manche","7-072 Nucleus Claw Chopper, Angled, Round Handle, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-074,"7-074 Intraoculaire Manipulator avec Ball Embout, Droit, 0.50 Mm Ball Embout, Longueur 123 Mm, Round Titane Manche","7-074 Intraocular Manipulator with Ball Tip, Straight, 0.50 Mm Ball Tip, Length 123 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-075,"7-075 Intraoculaire Manipulator avec Ball Embout, Angulé, 0.50 Mm Ball Embout, Longueur 121 Mm, Round Titane Manche","7-075 Intraocular Manipulator with Ball Tip, Angled, 0.50 Mm Ball Tip, Length 121 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-077,"7-077 Fukasaku Small Pupille Snapper Crochet et Chopper, Longueur 121 Mm, Round Titane Manche","7-077 Fukasaku Small Pupil Snapper Hook and Chopper, Length 121 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-079,"7-079 Double Phaco Spatule (small Pupille Snapper Crochet & Micro Finger), Longueur 132 Mm, Round Titane Manche","7-079 Double Phaco Spatula (small Pupil Snapper Hook & Micro Finger), Length 132 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-080,"7-080/st Droit I/un Embout, Acier Inoxydable","7-080/st Straight I/A Tip, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-081,"7-081-23 Irrigation Handpiece pour Bimanual Technique, Courbe, 23 Ga, Two Ports on Side 0.35 Mm, Longueur 105 Mm, Titane Manche","7-081-23 Irrigation Handpiece for Bimanual Technique, Curved, 23 Ga, Two Ports on Side 0.35 Mm, Length 105 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0811,"7-0811 Stodulka Enhanced Irrigation Handpiece pour Bimanual Technique, Courbe, 21 Ga, Two Ports on Side 0.50 X 1.00 Mm, Longueur 105 Mm, Titane Manche","7-0811 Stodulka Enhanced Irrigation Handpiece for Bimanual Technique, Curved, 21 Ga, Two Ports on Side 0.50 X 1.00 Mm, Length 105 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0813,"7-0813 Irrigation Handpiece pour Bimanual Technique, Courbe, 21 Ga, Two Ports on Side 0.50 Mm, Longueur 104 Mm, Titane Manche","7-0813 Irrigation Handpiece for Bimanual Technique, Curved, 21 Ga, Two Ports on Side 0.50 Mm, Length 104 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-082,"7-082 Aspiration Handpiece pour Bimanual Technique, Courbe, 21 Ga, One Top Port 0.35 Mm, Longueur 104 Mm, Titane Manche","7-082 Aspiration Handpiece for Bimanual Technique, Curved, 21 Ga, One Top Port 0.35 Mm, Length 104 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0821,"7-0821-23 Aspiration Handpiece pour Bimanual Technique, Courbe, 23 Ga, One Top Port 0.35 Mm, Longueur 105 Mm, Titane Manche","7-0821-23 Aspiration Handpiece for Bimanual Technique, Curved, 23 Ga, One Top Port 0.35 Mm, Length 105 Mm, Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-093,"7-093 Drysdale Nucleus Manipulator, Angulé, Regular Embout, Round Manche, Longueur 121 Mm, Round Titane Manche","7-093 Drysdale Nucleus Manipulator, Angled, Regular Tip, Round Handle, Length 121 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-0931,"7-0931 Drysdale Nucleus Manipulator, Angulé, Capsule Polisher Embout, Round Manche, Longueur 121 Mm, Round Titane Manche","7-0931 Drysdale Nucleus Manipulator, Angled, Capsule Polisher Tip, Round Handle, Length 121 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-093d,"7-093D Jetable Drysdale Nucleus Manipulator, Angulé, 6 Par Boîte","7-093D Disposable Drysdale Nucleus Manipulator, Angled, 6 Per Box",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-097,"7-097 Micro Finger Chopper, Round Manche, Longueur 120 Mm, Round Titane Manche","7-097 Micro Finger Chopper, Round Handle, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-101,"7-101 Antérieur/postérieur Capsule Polisher, Angulé 135°, Longueur 120 Mm, Round Titane Manche","7-101 Anterior/posterior Capsule Polisher, Angled 135°, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1061,"7-1061 He Phaco Chopper, RHD, 45° Angulé, Wedge-shaped, Longueur 120 Mm, Round Titane Manche","7-1061 He Phaco Chopper, RHD, 45° Angled, Wedge-shaped, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-111s,"7-111S Prechopper Angulé, Cross-action, Max Opening 3.00 Mm, Round Manche, Longueur 116 Mm, Acier Inoxydable","7-111S Prechopper Angled, Cross-action, Max Opening 3.00 Mm, Round Handle, Length 116 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1161s,"7-1161S Combo Prechopper, Pointu & Lames Mousses, Droit, Cross-action, Max Opening 3.00 Mm, Round Manche, Longueur 121 Mm, Acier Inoxydable","7-1161S Combo Prechopper, Sharp & Blunt Blades, Straight, Cross-action, Max Opening 3.00 Mm, Round Handle, Length 121 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1162s,"7-1162S Combo Prechopper pour Sub-2.00 Mm Coaxial Micro Phaco, Droit, Cross-action, Max Opening 2.00 Mm, Round Manche, Longueur 121 Mm, Acier Inoxydable","7-1162S Combo Prechopper for Sub-2.00 Mm Coaxial Micro Phaco, Straight, Cross-action, Max Opening 2.00 Mm, Round Handle, Length 121 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1163s,"7-1163S Akahoshi Hybrid Combo Prechopper, Droit, Cross-action, Max Opening 3.00 Mm, Round Manche, Longueur 121 Mm, Acier Inoxydable","7-1163S Akahoshi Hybrid Combo Prechopper, Straight, Cross-action, Max Opening 3.00 Mm, Round Handle, Length 121 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-11651s,"7-11651S Inamura Eagle Prechopper, Droit, Cross-action, Max Opening 2.80 Mm, Round Manche, Longueur 120 Mm, Acier Inoxydable","7-11651S Inamura Eagle Prechopper, Straight, Cross-action, Max Opening 2.80 Mm, Round Handle, Length 120 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1165s,"7-1165S Inamura Eagle Prechopper, Droit, Cross-action, Max Opening 3.00 Mm, Round Manche, Longueur 120 Mm, Acier Inoxydable","7-1165S Inamura Eagle Prechopper, Straight, Cross-action, Max Opening 3.00 Mm, Round Handle, Length 120 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1167s,"7-1167S Crozafon Prechopper, Droit, Cross-action, Max Opening 3.00 Mm, Round Manche, Longueur 118 Mm, Acier Inoxydable","7-1167S Crozafon Prechopper, Straight, Cross-action, Max Opening 3.00 Mm, Round Handle, Length 118 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-125,"7-125 Phaconit Quick Chopper, 0.18 Mm Wide Embout, Angulé, Longueur 120 Mm, Round Titane Manche","7-125 Phaconit Quick Chopper, 0.18 Mm Wide Tip, Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1251,"7-1251 Fine Phaconit Quick Chopper, 0.35 Mm Largeur, Angulé, Longueur 120 Mm, Round Titane Manche","7-1251 Fine Phaconit Quick Chopper, 0.35 Mm Width, Angled, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-126,"7-126 Triple Edge Phaco Chopper avec Polisher Embout, Longueur 117 Mm, Round Titane Manche","7-126 Triple Edge Phaco Chopper with Polisher Tip, Length 117 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-126s,"7-126S Triple Edge Chopper avec Polisher Embout, Round Manche, Longueur 117 Mm, Acier Inoxydable","7-126S Triple Edge Chopper with Polisher Tip, Round Handle, Length 117 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-127,"7-127 Chang Chopper, à Double Extrémité, RHD, Longueur 125 Mm, Round Titane Manche","7-127 Chang Chopper, Double-ended, RHD, Length 125 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1271,"7-1271 Chang Chopper, à Double Extrémité, LHD, Longueur 125 Mm, Round Titane Manche","7-1271 Chang Chopper, Double-ended, LHD, Length 125 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-127s,"7-127S Chang Chopper, à Double Extrémité, RHD, Round Manche, Longueur 125 Mm, Acier Inoxydable","7-127S Chang Chopper, Double-ended, RHD, Round Handle, Length 125 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-128,"7-128 Quick Chopper avec Rounded Edge, RHD, Round Manche, Longueur 120 Mm, Round Titane Manche","7-128 Quick Chopper with Rounded Edge, RHD, Round Handle, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1281,"7-1281 Quick Chopper avec Rounded Edge, LHD, Longueur 120 Mm, Round Titane Manche","7-1281 Quick Chopper with Rounded Edge, LHD, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-130,"7-130 Seibel Chopper, RHD, Ball-shaped Embout, Longueur 122 Mm, Round Titane Manche","7-130 Seibel Chopper, RHD, Ball-shaped Tip, Length 122 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-135,"7-135 Axe Quick Chopper, Angulé, 10.00 Mm From Bent to Embout, Longueur 120 Mm, Round Titane Manche","7-135 Axe Quick Chopper, Angled, 10.00 Mm From Bent to Tip, Length 120 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-1361,"7-1361 Seibel Chopper/quick Chopper avec Rounded Edge, RHD, Longueur 138 Mm, Round Titane Manche","7-1361 Seibel Chopper/quick Chopper with Rounded Edge, RHD, Length 138 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-142,"7-142 Holz Capsule Polisher, Angulé Shaft, Texturized Bottom et Sharpened Ridge at le Top pour Délicat Polishing, Longueur 123 Mm, Round Titane Manche","7-142 Holz Capsule Polisher, Angled Shaft, Texturized Bottom and Sharpened Ridge at the Top for Delicate Polishing, Length 123 Mm, Round Titanium Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-143,"7-143 Slade/terao Nucleus Splitter, 23 Ga, Embout Only","7-143 Slade/terao Nucleus Splitter, 23 Ga, Tip Only",rumex,Ophtalmologie,Instruments,oph-instruments,active
+7-149s,"7-149S Escaf Prechopper, Droit, Cross-action, Max Opening 2.80 Mm, Round Manche, Longueur 120 Mm, Acier Inoxydable","7-149S Escaf Prechopper, Straight, Cross-action, Max Opening 2.80 Mm, Round Handle, Length 120 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-010t,"8-010T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, avec Lock, Petite Taille, Longueur 100 Mm, Titane","8-010T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, with Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-011t,"8-011T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, Sans Lock, Petite Taille, Longueur 100 Mm, Titane","8-011T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, Without Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-013t,"8-013T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Droit, Sans Lock, Petite Taille, Longueur 100 Mm, Titane","8-013T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Straight, Without Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-020t,"8-020T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, avec Lock, Petite Taille, Longueur 100 Mm, Titane","8-020T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, with Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-021t,"8-021T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, Sans Lock, Petite Taille, Longueur 100 Mm, Titane","8-021T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, Without Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-024t,"8-024T Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, avec Lock, Petite Taille, Longueur 100 Mm, Titane","8-024T Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, with Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-025t,"8-025T Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, Sans Lock, Petite Taille, Longueur 100 Mm, Titane","8-025T Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, Without Lock, Small Size, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-030t,"8-030T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, avec Lock, Taille Moyenne, Longueur 115 Mm, Titane","8-030T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, with Lock, Medium Size, Length 115 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-031s,"8-031S Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, Sans Lock, Taille Moyenne, Longueur 115 Mm, Acier Inoxydable","8-031S Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, Without Lock, Medium Size, Length 115 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-031t,"8-031T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, Sans Lock, Taille Moyenne, Longueur 115 Mm, Titane","8-031T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, Without Lock, Medium Size, Length 115 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-040t,"8-040T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, avec Lock, Taille Moyenne, Longueur 115 Mm, Titane","8-040T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, with Lock, Medium Size, Length 115 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-041t,"8-041T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, Sans Lock, Taille Moyenne, Longueur 115 Mm, Titane","8-041T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, Without Lock, Medium Size, Length 115 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-045s,"8-045S Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, Sans Lock, Taille Moyenne, Longueur 115 Mm, Acier Inoxydable","8-045S Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, Without Lock, Medium Size, Length 115 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-045t,"8-045T Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, Sans Lock, Taille Moyenne, Longueur 115 Mm, Titane","8-045T Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, Without Lock, Medium Size, Length 115 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-050t,"8-050T Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, avec Lock, Long Taille, Longueur 125 Mm, Titane","8-050T Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, with Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-051t,"8-051T Barraquer Porte-aiguille, 8.00 Mm Extra Fine Mors, Courbe, Sans Lock, Long Taille, Longueur 125 Mm, Titane","8-051T Barraquer Needle Holder, 8.00 Mm Extra Fine Jaws, Curved, Without Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-060t,"8-060T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, avec Lock, Long Taille, Longueur 125 Mm, Titane","8-060T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, with Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-061t,"8-061T Barraquer Porte-aiguille, 12.00 Mm Standard Mors, Courbe, Sans Lock, Long Taille, Longueur 125 Mm, Titane","8-061T Barraquer Needle Holder, 12.00 Mm Standard Jaws, Curved, Without Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-070t,"8-070T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, avec Lock, Long Taille, Longueur 125 Mm, Titane","8-070T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, with Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-071s,"8-071S Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, Sans Lock, Long Taille, Longueur 125 Mm, Acier Inoxydable","8-071S Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, Without Lock, Long Size, Length 125 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-071t,"8-071T Barraquer Porte-aiguille, 12.00 Mm Fine Mors, Courbe, Sans Lock, Long Taille, Longueur 125 Mm, Titane","8-071T Barraquer Needle Holder, 12.00 Mm Fine Jaws, Curved, Without Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-080t,"8-080T Kalt Porte-aiguille, Standard Droit 10.50 Mm Mors, Longueur 135 Mm, Titane","8-080T Kalt Needle Holder, Standard Straight 10.50 Mm Jaws, Length 135 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-090t,"8-090T Barraquer Porte-aiguille, 12.00 Mm Strong Mors, Courbe, avec Lock, Long Taille, Longueur 125 Mm, Titane","8-090T Barraquer Needle Holder, 12.00 Mm Strong Jaws, Curved, with Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-091t,"8-091T Barraquer Porte-aiguille, 12.00 Mm Strong Mors, Courbe, Sans Lock, Long Taille, Longueur 125 Mm, Titane","8-091T Barraquer Needle Holder, 12.00 Mm Strong Jaws, Curved, Without Lock, Long Size, Length 125 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-0921s,"8-0921S Castroviejo Porte-aiguille, 13.50 Mm Délicat Mors, Droit, avec Lock, Longueur 122 Mm, Acier Inoxydable","8-0921S Castroviejo Needle Holder, 13.50 Mm Delicate Jaws, Straight, with Lock, Length 122 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-0921t,"8-0921T Castroviejo Porte-aiguille, Droit, avec Lock, 13.50 Mm Délicat Mors, Longueur 122 Mm, Titane","8-0921T Castroviejo Needle Holder, Straight, with Lock, 13.50 Mm Delicate Jaws, Length 122 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-096s,"8-096S Castroviejo Porte-aiguille, Délicat Mors, 8.00 Mm Gripping Surface, Courbe, Sans Lock, Longueur 135 Mm, Acier Inoxydable","8-096S Castroviejo Needle Holder, Delicate Jaws, 8.00 Mm Gripping Surface, Curved, Without Lock, Length 135 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-096t,"8-096T Castroviejo Porte-aiguille, Délicat Mors, Gripping Surface 8.00 Mm, Courbe, Sans Lock, Longueur 135 Mm, Titane","8-096T Castroviejo Needle Holder, Delicate Jaws, Gripping Surface 8.00 Mm, Curved, Without Lock, Length 135 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-100s,"8-100S Castroviejo Porte-aiguille, Standard Mors, 11.00 Mm Gripping Surface, Courbe, avec Lock, Longueur 140 Mm, Acier Inoxydable","8-100S Castroviejo Needle Holder, Standard Jaws, 11.00 Mm Gripping Surface, Curved, with Lock, Length 140 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-100t,"8-100T Castroviejo Porte-aiguille, Standard Mors, 11.00 Mm Gripping Surface, Courbe, avec Lock, Longueur 140 Mm, Titane","8-100T Castroviejo Needle Holder, Standard Jaws, 11.00 Mm Gripping Surface, Curved, with Lock, Length 140 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-102s,"Porte-aiguille/Ciseaux Ing 8-102S, Droit, Pour Coupe de Suture Uniquement, Mors 15.00 Mm, Longueur 105 Mm, Acier Inoxydable","8-102S Ing's Needle Holder/scissors, Straight, Used to Cut Suture Only, 15.00 Mm Jaws, Length 105 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+8-1211,"8-1211-23 Intraoculaire Porte-aiguille, 23 Ga, Embout Only","8-1211-23 Intraocular Needle Holder, 23 Ga, Tip Only",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-010s,"9-010S Bowman Sonde Lacrymale, Taille 0000-000, Longueur 133 Mm, Acier Inoxydable","9-010S Bowman Lacrimal Probe, Size 0000-000, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-011s,"9-011S Bowman Sonde Lacrymale, Taille 00-0, Longueur 133 Mm, Acier Inoxydable","9-011S Bowman Lacrimal Probe, Size 00-0, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-012s,"9-012S Bowman Sonde Lacrymale, Taille 1-2, Longueur 133 Mm, Acier Inoxydable","9-012S Bowman Lacrimal Probe, Size 1-2, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-013s,"9-013S Bowman Sonde Lacrymale, Taille 3-4, Longueur 133 Mm, Acier Inoxydable","9-013S Bowman Lacrimal Probe, Size 3-4, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-014s,"9-014S Bowman Sonde Lacrymale, Taille 5-6, Longueur 133 Mm, Acier Inoxydable","9-014S Bowman Lacrimal Probe, Size 5-6, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-015s,"9-015S Bowman Sonde Lacrymale, Taille 7-8, Longueur 133 Mm, Acier Inoxydable","9-015S Bowman Lacrimal Probe, Size 7-8, Length 133 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-021s,"9-021S Quickert Lacrymal Intubation Sonde, Taille 0, Longueur 140 Mm, Acier Inoxydable","9-021S Quickert Lacrimal Intubation Probe, Size 0, Length 140 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-023s,"9-023S Quickert Lacrymal Intubation Sonde, Taille 2, Longueur 140 Mm, Acier Inoxydable","9-023S Quickert Lacrimal Intubation Probe, Size 2, Length 140 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-031,"9-031 Pigtail Sonde Lacrymale, 8.00 Mm Probes avec Holes, Polished Embout, Longueur 125 Mm, Round Titane Dentelé Manche","9-031 Pigtail Lacrimal Probe, 8.00 Mm Probes with Holes, Polished Tip, Length 125 Mm, Round Titanium Serrated Handle",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-031s,"9-031S Pigtail Sonde Lacrymale, 8.00 Mm Probes avec Holes, Polished Embout, Round Manche, Longueur 125 Mm, Acier Inoxydable","9-031S Pigtail Lacrimal Probe, 8.00 Mm Probes with Holes, Polished Tip, Round Handle, Length 125 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-050s,"9-050S Wilder Dilatateur Lacrymal, Taille 1, 19.00 Mm Taper, Longueur 100 Mm, Acier Inoxydable","9-050S Wilder Lacrimal Dilator, Size 1, 19.00 Mm Taper, Length 100 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-050t,"9-050T Wilder Dilatateur Lacrymal, Taille 1, 19.00 Mm Taper, Longueur 100 Mm, Titane","9-050T Wilder Lacrimal Dilator, Size 1, 19.00 Mm Taper, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-051s,"9-051S Wilder Dilatateur Lacrymal, Taille 2, 23.00 Mm Taper, Longueur 100 Mm, Acier Inoxydable","9-051S Wilder Lacrimal Dilator, Size 2, 23.00 Mm Taper, Length 100 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-051t,"9-051T Wilder Dilatateur Lacrymal, Taille 2, 23.00 Mm Taper, Longueur 100 Mm, Titane","9-051T Wilder Lacrimal Dilator, Size 2, 23.00 Mm Taper, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-052t,"9-052T Wilder Dilatateur Lacrymal, Taille 3, 32.00 Mm Taper, Longueur 100 Mm, Titane","9-052T Wilder Lacrimal Dilator, Size 3, 32.00 Mm Taper, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-060s,"9-060S Castroviejo à Double Extrémité Dilatateur Lacrymal, Taille 1 & 2, Longueur 100 Mm, Acier Inoxydable","9-060S Castroviejo Double-ended Lacrimal Dilator, Size 1 & 2, Length 100 Mm, Stainless Steel",rumex,Ophtalmologie,Instruments,oph-instruments,active
+9-060t,"9-060T Castroviejo à Double Extrémité Dilatateur Lacrymal, Taille 1 & 2, Longueur 100 Mm, Titane","9-060T Castroviejo Double-ended Lacrimal Dilator, Size 1 & 2, Length 100 Mm, Titanium",rumex,Ophtalmologie,Instruments,oph-instruments,active
+CAT-22,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CAT-24,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CC-22,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CC-24,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CC-26,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CC-27,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CC-30,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CCD-22,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CCD-24,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CCD-26,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CCD-27,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+CR-20,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+PD-60,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+PK-11,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-22,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-24,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-26,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-27,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-28,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SL-32,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SMARTSIL,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SMARTVIS,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SP-15,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SP-30,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SP-45,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+SUPREMEV,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+TR-10,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+TR-17,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRA-19,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRA-20,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRA-23,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRS-19,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRS-20,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+VRS-23,Instrument RUMEX,RUMEX Instrument,rumex,Ophtalmologie,Instruments,oph-instruments,active
+"SCC10S, SCC12S, SCC14S, SCC16S, SCC18S, SCC20S, SCC22S, SCC24S, SCC25S, SCC26S, SCC265S, SCC275S, SCC28S, SCC285S, SCC30S, SCC32S",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCC10SP, SCC12SP, SCC14SP, SCC16SP, SCC18SP, SCC20SP, SCC22SP, SCC24SP, SCC25SP, SCC26SP, SCC265SP, SCC275SP, SCC28SP, SCC285SP, SCC30SP, SCC32SP",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCC18, SCC20, SCC22, SCC24, SCC25, SCC26, SCC265, SCC275, SCC28, SCC285, SCC30, SCC32",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCC18P, SCC20P, SCC22P, SCC24P, SCC25P, SCC26P, SCC265P, SCC275P, SCC28P, SCC285P, SCC30P, SCC32P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCD22, SCD26",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCD22P, SCD26P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+SCS26,Couteau Croissant-droit,Crescent Knife-straight,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+SCS26P,Couteau Croissant-droit PROTECT,Crescent Knife-straight PROTECT,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCU20, SCU22, SCU26",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SCU20P, SCU22P, SCU26P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SFIPB21, SFPRB21, SFIRR21, SFB21",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SSL10S, SSL12S, SSL14S, SSL16S, SSL18S, SSL20S, SSL22S, SSL24S, SSL25S, SSL26S, SSL265S, SSL275S, SSL28S, SSL285S, SSL30S, SSL32S",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SSL10SP, SSL12SP, SSL14SP, SSL16SP, SSL18SP, SSL20SP, SSL22SP, SSL24SP, SSL25SP, SSL26SP, SSL265SP, SSL275SP, SSL28SP, SSL285SP, SSL30SP, SSL32SP",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SSL18, SSL20, SSL22, SSL24, SSL25, SSL26, SSL265, SSL275, SSL28, SSL285, SSL30, SSL32",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SSL18P, SSL20P, SSL22P, SSL24P, SSL25P, SSL26P, SSL265P, SSL275P, SSL28P, SSL285P, SSL30P, SSL32P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SST15, SST22, SST30, SST45",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SST15P, SST22P, SST30P, SST45P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SVR19, SVR20, SVR23, SVR24, SVR25",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SVR19A, SVR20A, SVR21A, SVR23A, SVR24A, SVR25A",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SVR19AP, SVR20AP, SVR21AP, SVR23AP, SVR24AP, SVR25AP",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+"SVR19P, SVR20P, SVR23P, SVR24P, SVR25P",Instrument SURGICON-AG,SURGICON-AG Instrument,surgicon-ag,Ophtalmologie,Instruments,oph-instruments,active
+10-3000,Pinces Réutilisables Droites DIA,DIA Reusable Forceps Straight,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+10-3001,Pinces Réutilisables Courbes DIA,DIA Reusable Forceps Curved,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+10-4001V,Câble Bipolaire Jetable Stérile DIA,DIA Disposable Bipolar Cable Sterile,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+10-6000V,Câble Bipolaire Réutilisable DIA,DIA Reusable Bipolar Cable,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+14-1080,Pinces Jetables Courbes DIA,DIA Disposable Forceps Curved,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+14-3000,Pinces Jetables Droites DIA,DIA Disposable Forceps Straight,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+14-5000,Stylo Jetable Droit DIA,DIA Disposable Pencil Straight,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+14-7000,Stylo Réutilisable Droit DIA,DIA Reusable Pencil Straight,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0100-A,Sophi Eco,Sophi Eco,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0100-ACW,Sophi Premium,Sophi Premium,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0107-002,Batterie Lithium-Ion (BMS),Lithium-Ion Battery (BMS),this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0109,Plateau Sophi,Tray Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0170-001,Boîte de Transport Sophi,Transport Box Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0170-005,Housse Sophi,Cover Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0199-101,Câble de Terre Sophi,Earth Cable Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0199-300,Transmetteur Vidéo Wi-Fi Sophi,Wi-Fi Video Transmitter Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-0199-801,Câble Pédale Sophi,Foot Pedal Cable Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1200,Cassette Péristaltique Sophi,Cassette Peristaltic Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1203,Cassette Péristaltique Sophi Eco,Cassette Peristaltic Sophi Eco,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1210,Cassette Péristaltique & Venturi Sophi,Cassette Peristaltic & Venturi Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1290,Set de Tubulures pour Cassette Jour Sophi,Tubing Set for Day Cassette Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1300,Pédale Sophi,Foot Pedal Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-1400,Plateau Sophi Compact,Tray Sophi Compact,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2001,Pièce à Main Phaco Sophi,Phaco Handpiece Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2010,Pièce à Main Phaco Sophi Eco,Phaco Handpiece Sophi Eco,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2020,Set Phaco Sophi - 20G,Phaco Set Sophi - 20G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2021,Set Phaco Sophi - 21G,Phaco Set Sophi - 21G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2023,Set Phaco Sophi - 23G,Phaco Set Sophi - 23G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2130,Set Pièce à Main I/A Bimanuelle Sophi - 21G Avion,I/A Bimanual Handpiece Set Sophi – 21G Aeroplane,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2220,Set Pièce à Main I/A Coaxiale Sophi - 20G/45°,I/A Coaxial Handpiece Set Sophi - 20G/45°,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2221,Set Pièce à Main I/A Coaxiale Sophi - 21G/45°,I/A Coaxial Handpiece Set Sophi - 21G/45°,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2243,Set Pièce à Main I/A Coaxiale Sophi - 21G/45° Embout Souple,I/A Coaxial Handpiece Set Sophi - 21G/45° Soft Tip,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2323,Cutter Vitrectomie Sophi - 23G,Vitrectomy Cutter Sophi – 23G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2720,Set Phaco Sophi Courbé - 20G,Phaco Set Sophi - 20G Curved,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2721,Set Phaco Sophi Courbé - 21G,Phaco Set Sophi - 21G Curved,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2723,Set Phaco Sophi Courbé - 23G,Phaco Set Sophi - 23G Curved,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-2821,Set Phaco HighVac Sophi - 21G,HighVac Phaco Set Sophi - 21G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-3000,Licence Batterie Sophi,License Battery Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-3020,Set Phaco Dynamique Sophi - 20G,Dynamic Phaco Set Sophi - 20G,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1401-9928-004,Semelle Pédale Sophi,Insole Foot Pedal Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1801-0100,Sophi A,Sophi A,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1801-0170-001,Valise de Transport Sophi A,Transport Case Sophi A,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1801-0170-006,Housse Sophi A,Cover Sophi A,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1801-1310,Station de Charge USB Sophi,Charging Station USB Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+1801-1320,Station de Charge CAN Sophi,Charging Station CAN Sophi,this-ag-(sophi),Ophtalmologie,Instruments,oph-instruments,active
+GA1359900,ISOMAR Spray Hygiène Quotidienne Nez-Oreilles - Eau de Mer Isotonique,ISOMAR Spray For Daily Nose-Ears' Hygiene - Isotonic Sea Water,coswell,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+GA1360000,ISOMAR Baby Spray Hygiène Quotidienne - Eau de Mer Isotonique à la Camomille,ISOMAR Baby Spray For Daily Hygiene - Isotonic Sea Water With Chamomile,coswell,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+GA1360400,ISOMAR Spray Décongestionnant - Eau de Mer Hypertonique à l'Acide Hyaluronique,ISOMAR Spray Decongestant Effect - Hypertonic Sea Water With Hyaluronic Acid,coswell,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+18193,Complexe Aqua Ice Roll-On,Aqua Ice Complex Roll-On,esensa,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+19037,Melatosan Gouttes Orales de Mélatonine,Melatosan Melatonin Oral Drops,esensa,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+8.60601E+12,Instrument Chirurgical ESENSA,Instrument Chirurgical ESENSA 8.60601E+12,esensa,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+ACUVUERE,Solution Polyvalente ACUVUE RevitaLens,ACUVUE RevitaLens Multi-Purpose Solution,johnson-johnson-vision,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+BLINKCON,Gouttes Oculaires Lubrifiantes Blink Contacts,Blink Contacts Lubricating Eye Drops,johnson-johnson-vision,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+BLINKINT,Gouttes Oculaires Blink Intensive,Blink Intensive Eye Drops,johnson-johnson-vision,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO CARE (COLLYRE),HYLO CARE Collyre,HYLO CARE,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO DUAL INTENSE,HYLO DUAL INTENSE Collyre,HYLO DUAL INTENSE,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO-COMOD,HYLO COMOD Collyre,HYLO COMOD,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO-DUAL,HYLO DUAL Collyre,HYLO DUAL,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO-FRESH,HYLO FRESH Collyre,HYLO FRESH,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO-GEL,HYLO GEL Collyre,HYLO GEL,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+HYLO-PARIN,HYLO PARIN Collyre,HYLO PARIN,ursapharmm,Ophtalmologie,Pharmacie,oph-pharmaceutics,active
+ESP-EDLLBM-TH1G,Masque Bleu Dermatologie Eye-Light LM LLLT (500 Traitements),Eye-Light Dermatology LM LLLT Blue Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-EDLLIM-OPLT,Masque Infrarouge Dermatologie Eye-Light LM LLLT (500 Traitements),Eye-Light Dermatology LM LLLT Infrared Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-EDLLRM-HMZM,Masque Rouge Dermatologie Eye-Light LM LLLT (500 Traitements),Eye-Light Dermatology LM LLLT Red Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-EDLLYM-8CVH,Masque Jaune Dermatologie Eye-Light LM LLLT (500 Traitements),Eye-Light Dermatology LM LLLT Yellow Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLBM(-FDIO,Masque Bleu Eye-Light LM LLLT (250 Traitements),Eye-Light LM LLLT Blue Mask (250 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLBM(-WJUM,Masque Bleu Eye-Light LM LLLT (500 Traitements),Eye-Light LM LLLT Blue Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLRM(-H1CQ,Masque Rouge Eye-Light LM LLLT (500 Traitements),Eye-Light LM LLLT Red Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLRMY-KVW6,Eye-Light LM LLLT Masque Rouge+Jaune (25 Cycles/8 Sessions/200 traitements) Masques DMLA,Eye-Light LM LLLT Red Mask+ Yellow Mask(25 Cycles/8 Sessions Protocol/200 treatments) AMD masks,espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLYM(-040F,Masque Jaune Eye-Light LM LLLT (500 Traitements),Eye-Light LM LLLT Yellow Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-ELLYM(-BQ32,Masque Jaune Eye-Light LM LLLT (250 Traitements),Eye-Light LM LLLT Yellow Mask (250 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-EOIL(T-L03R,Lampe Eye-Light OPE IPL (500 Traitements),Eye-Light OPE IPL Lamp (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MLLBM(-OVAK,Masque Bleu Meibomask LM LLLT (500 Traitements),Meibomask LM LLLT Blue Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MLLBM(-W05H,Masque Bleu Meibomask LM LLLT (250 Traitements),Meibomask LM LLLT Blue Mask (250 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MLLRM(-6A87,Masque Rouge My-Mask LM LLLT (250 Traitements),My-Mask LM LLLT Red Mask (250 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MLLRM(-KFKK,Masque Rouge Meibomask LM LLLT (500 Traitements),Meibomask LM LLLT Red Mask (500 Treatments),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MW-61BT,Station de Travail Meibomask,Meibomask Workstation,espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-MW-MG3L,Station de Travail My-Mask,My-Mask Workstation,espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+ESP-NMEWSA-FET5,Station de Travail Eye-Light Nouvelle MDR (segments Antérieur+Postérieur),NEW MDR Eye-Light Workstation(both segments Anterior+Posterior),espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+M2000,Meibomask Masque de Traitement LLLT - 2000 Séances,Meibomask LLLT Treatment Mask - 2000 Sessions,espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+MYMASK,MY-MASK Masque LLLT Photobiomodulation,MY-MASK LLLT Photobiomodulation Mask,espansione-marketing,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-120,Bistouri Électrique SURTRON 120,SURTRON 120,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-160,Bistouri Électrique SURTRON 160,SURTRON 160,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-200,Bistouri Électrique SURTRON 200,SURTRON 200,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-50,Bistouri Électrique SURTRON 50,SURTRON 50,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-50D,Bistouri Électrique SURTRON 50D,SURTRON 50D,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-80,Bistouri Électrique SURTRON 80,SURTRON 80,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-80D,Bistouri Électrique SURTRON 80D,SURTRON 80D,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-FLASH-120,Bistouri Électrique SURTRON FLASH 120,SURTRON FLASH 120,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-FLASH-160HF,Bistouri Électrique SURTRON FLASH 160HF,SURTRON FLASH 160HF,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-FLASH-200,Bistouri Électrique SURTRON FLASH 200,SURTRON FLASH 200,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-200,Bistouri Électrique SURTRON HP 200,SURTRON HP 200,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-300,Bistouri Électrique SURTRON HP 300,SURTRON HP 300,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-400,Bistouri Électrique SURTRON HP 400,SURTRON HP 400,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-50D,Bistouri Électrique SURTRON HP 50D,SURTRON HP 50D,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-80,Bistouri Électrique SURTRON HP 80,SURTRON HP 80,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-80D,Bistouri Électrique SURTRON HP 80D,SURTRON HP 80D,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-I20,Bistouri Électrique SURTRON HP I20,SURTRON HP I20,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-HP-I60,Bistouri Électrique SURTRON HP I60,SURTRON HP I60,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-TOUCH-200,Bistouri Électrique SURTRON TOUCH 200,SURTRON TOUCH 200,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-TOUCH-240,Bistouri Électrique SURTRON TOUCH 240,SURTRON TOUCH 240,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-TOUCH-300,Bistouri Électrique SURTRON TOUCH 300,SURTRON TOUCH 300,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-TOUCH-380,Bistouri Électrique SURTRON TOUCH 380,SURTRON TOUCH 380,led,Ophtalmologie,Chirurgie,oph-surgery,active
+SURTRON-TOUCH-400,Bistouri Électrique SURTRON TOUCH 400,SURTRON TOUCH 400,led,Ophtalmologie,Chirurgie,oph-surgery,active
+OD125,Enclavation Aiguille,Enclavation Needle,ophtec,Ophtalmologie,Chirurgie,oph-surgery,active
+FS912L,Déambulateur cadre de marche,Walking Frame Walker,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS913L,Déambulateur intérieur,Indoor Walker,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9207LW-2,Béquille avant-bras,Forearm Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS923L,Béquille axillaire,Underarm Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS924L,Béquille junior,Junior Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9251L(L),Béquille taille L,Crutch Size L,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9251L(M),Béquille taille M,Crutch Size M,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9251L(S),Béquille taille S,Crutch Size S,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9274L,Béquille ergonomique,Ergonomic Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9280L,Béquille pliable,Foldable Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS928L,Béquille légère,Lightweight Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9301L,Béquille réglable,Adjustable Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9306L,Béquille premium,Premium Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS932,Béquille acier,Steel Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9361L,Béquille appui avant-bras,Crutch with Forearm Support,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS936L,Béquille confort,Comfort Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS937L,Béquille standard,Standard Crutch,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS961L,Déambulateur cadre léger,Lightweight Frame Walker,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS9634L,Déambulateur avec siège,Walker with Seat,foshan,Orthopedie,Consommables,ortho-consumable,active
+FS965LH,Déambulateur rollator,Rollator Walker,foshan,Orthopedie,Consommables,ortho-consumable,active
+100701,Attelle de Stack Taille 1,Stack Splint Size 1,prim,Orthopedie,Consommables,ortho-consumable,active
+100702,Attelle de Stack Taille 2,Stack Splint Size 2,prim,Orthopedie,Consommables,ortho-consumable,active
+100703,Attelle de Stack Taille 3,Stack Splint Size 3,prim,Orthopedie,Consommables,ortho-consumable,active
+100704,Attelle de Stack Taille 4,Stack Splint Size 4,prim,Orthopedie,Consommables,ortho-consumable,active
+100705,Attelle de Stack Taille 5,Stack Splint Size 5,prim,Orthopedie,Consommables,ortho-consumable,active
+100706,Attelle de Stack Taille 6,Stack Splint Size 6,prim,Orthopedie,Consommables,ortho-consumable,active
+100707,Attelle de Stack Taille 7,Stack Splint Size 7,prim,Orthopedie,Consommables,ortho-consumable,active
+8626,Immobilisateur de Genou 8626,Knee Immobilizer 8626,prim,Orthopedie,Consommables,ortho-consumable,active
+901,Orthèse d'Épaule 901,Shoulder Orthosis 901,prim,Orthopedie,Consommables,ortho-consumable,active
+902,Orthèse d'Épaule 902,Shoulder Orthosis 902,prim,Orthopedie,Consommables,ortho-consumable,active
+903,Orthèse d'Épaule 903,Shoulder Orthosis 903,prim,Orthopedie,Consommables,ortho-consumable,active
+905,Orthèse d'Épaule 905,Shoulder Orthosis 905,prim,Orthopedie,Consommables,ortho-consumable,active
+909,Orthèse d'Épaule 909,Shoulder Orthosis 909,prim,Orthopedie,Consommables,ortho-consumable,active
+940,Attelle d'Immobilisation de Doigt 940,Finger Immobilization Splint 940,prim,Orthopedie,Consommables,ortho-consumable,active
+941,Attelle d'Immobilisation de Doigt 941,Finger Immobilization Splint 941,prim,Orthopedie,Consommables,ortho-consumable,active
+947,Attelle de Stack Réf. 947,Stack Splint Ref. 947,prim,Orthopedie,Consommables,ortho-consumable,active
+948,Attelle d'Immobilisation de Doigt 948,Finger Immobilization Splint 948,prim,Orthopedie,Consommables,ortho-consumable,active
+951,Immobilisateur de Genou 951,Knee Immobilizer 951,prim,Orthopedie,Consommables,ortho-consumable,active
+961,Orthèse Cervicale Philadelphia 961,Philadelphia Cervical Collar 961,prim,Orthopedie,Consommables,ortho-consumable,active
+ATX710,Orthèse de Genou ATX710,Knee Orthosis ATX710,prim,Orthopedie,Consommables,ortho-consumable,active
+ATX720,Orthèse de Genou ATX720,Knee Orthosis ATX720,prim,Orthopedie,Consommables,ortho-consumable,active
+ATX721,Orthèse de Genou ATX721,Knee Orthosis ATX721,prim,Orthopedie,Consommables,ortho-consumable,active
+ATX730,Orthèse de Genou ATX730,Knee Orthosis ATX730,prim,Orthopedie,Consommables,ortho-consumable,active
+ATX830,Chevillière ATX830,Ankle Brace ATX830,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS100,Attelle de Poignet ATXOS100,Wrist Brace ATXOS100,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS103,Attelle de Poignet ATXOS103,Wrist Brace ATXOS103,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS200,Coudière Élastique ATXOS200,Elastic Elbow Support ATXOS200,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS205,Sangle d'Épicondylite ATXOS205,Epicondylitis Strap ATXOS205,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS700,Orthèse de Genou ATXOS700,Knee Orthosis ATXOS700,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS703,Orthèse de Genou ATXOS703,Knee Orthosis ATXOS703,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS705,Sangle Patellaire ATXOS705,Patellar Strap ATXOS705,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS800,Chevillière ATXOS800,Ankle Brace ATXOS800,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS820,Chevillière ATXOS820,Ankle Brace ATXOS820,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS901,Attelle de Cuisse ATXOS901,Thigh Splint ATXOS901,prim,Orthopedie,Consommables,ortho-consumable,active
+ATXOS902,Support Élastique Cuisse ATXOS902,Elastic Thigh Support ATXOS902,prim,Orthopedie,Consommables,ortho-consumable,active
+C3,Attelle d'Immobilisation de Doigt C3,Finger Immobilization Splint C3,prim,Orthopedie,Consommables,ortho-consumable,active
+CC121,Orthèse Cervicale CC121,Cervical Orthosis CC121,prim,Orthopedie,Consommables,ortho-consumable,active
+CC19,Orthèse Cervicale CC19,Cervical Orthosis CC19,prim,Orthopedie,Consommables,ortho-consumable,active
+CC226,Souriceaux avec Anneau CC226,Toe Separator with Ring CC226,prim,Orthopedie,Consommables,ortho-consumable,active
+CC250,Orthèse Hallux Valgus CC250,Hallux Valgus Orthosis CC250,prim,Orthopedie,Consommables,ortho-consumable,active
+CC251,Orthèse Hallux Valgus CC251,Hallux Valgus Orthosis CC251,prim,Orthopedie,Consommables,ortho-consumable,active
+CC252,Orthèse Hallux Valgus CC252,Hallux Valgus Orthosis CC252,prim,Orthopedie,Consommables,ortho-consumable,active
+CG1501,Protecteur Plantaire Élastique CG1501,Elastic Plantar Protector CG1501,prim,Orthopedie,Consommables,ortho-consumable,active
+CG1601,Protecteur Plantaire Élastique CG1601,Elastic Plantar Protector CG1601,prim,Orthopedie,Consommables,ortho-consumable,active
+CG1701,Protecteur pour Orteils CG1701,Toe Protector CG1701,prim,Orthopedie,Consommables,ortho-consumable,active
+CG1901,Protecteur pour Orteils CG1901,Toe Protector CG1901,prim,Orthopedie,Consommables,ortho-consumable,active
+CLAVI+MPK300,Immobilisateur de Clavicule CLAVI+ MPK300,Clavicle Immobilizer CLAVI+ MPK300,prim,Orthopedie,Consommables,ortho-consumable,active
+CPFL214,Coussin Anti-Escarres CPFL214,Anti-Pressure Cushion CPFL214,prim,Orthopedie,Consommables,ortho-consumable,active
+CPFL218,Coussin Anti-Escarres CPFL218,Anti-Pressure Cushion CPFL218,prim,Orthopedie,Consommables,ortho-consumable,active
+CPVA220,Coussin Anti-Escarres CPVA 220,Anti-Pressure Cushion CPVA 220,prim,Orthopedie,Consommables,ortho-consumable,active
+CPVA280,Coussin Anti-Escarres CPVA 280,Anti-Pressure Cushion CPVA 280,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK100,Attelle de Poignet Enfant MPK100,Pediatric Wrist Brace MPK100,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK101,Attelle de Poignet Enfant MPK101,Pediatric Wrist Brace MPK101,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK102,Attelle de Poignet Enfant MPK102,Pediatric Wrist Brace MPK102,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK400,Orthèse d'Épaule Enfant MPK400,Pediatric Shoulder Orthosis MPK400,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK401,Orthèse d'Épaule Enfant MPK401,Pediatric Shoulder Orthosis MPK401,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK700,Orthèse de Genou Enfant MPK700,Pediatric Knee Orthosis MPK700,prim,Orthopedie,Consommables,ortho-consumable,active
+MPK701,Orthèse de Genou Enfant MPK701,Pediatric Knee Orthosis MPK701,prim,Orthopedie,Consommables,ortho-consumable,active
+NA410,Orthèse Cheville-Pied Plastique NA410,Plastic Ankle-Foot Orthosis NA410,prim,Orthopedie,Consommables,ortho-consumable,active
+NPOS120,Support Élastique Mollet NPOS120,Elastic Calf Support NPOS120,prim,Orthopedie,Consommables,ortho-consumable,active
+NPOS173,Coudière Élastique NPOS173,Elastic Elbow Support NPOS173,prim,Orthopedie,Consommables,ortho-consumable,active
+OST220,Support Élastique Mollet OST220,Elastic Calf Support OST220,prim,Orthopedie,Consommables,ortho-consumable,active
+OST273,Coudière Élastique OST273,Elastic Elbow Support OST273,prim,Orthopedie,Consommables,ortho-consumable,active
+P700,Genouillère Élastique P700,Elastic Knee Support P700,prim,Orthopedie,Consommables,ortho-consumable,active
+P700BG,Genouillère Élastique P700BG,Elastic Knee Support P700BG,prim,Orthopedie,Consommables,ortho-consumable,active
+P701,Genouillère Élastique P701,Elastic Knee Support P701,prim,Orthopedie,Consommables,ortho-consumable,active
+P701BG,Genouillère Élastique P701BG,Elastic Knee Support P701BG,prim,Orthopedie,Consommables,ortho-consumable,active
+P703,Attelle de Poignet P703,Wrist Brace P703,prim,Orthopedie,Consommables,ortho-consumable,active
+P703G,Attelle de Poignet P703G,Wrist Brace P703G,prim,Orthopedie,Consommables,ortho-consumable,active
+P705,Chevillère Élastique P705,Elastic Ankle Support P705,prim,Orthopedie,Consommables,ortho-consumable,active
+P705BG,Chevillère Élastique P705BG,Elastic Ankle Support P705BG,prim,Orthopedie,Consommables,ortho-consumable,active
+P706,Chevillère Élastique P706,Elastic Ankle Support P706,prim,Orthopedie,Consommables,ortho-consumable,active
+P706BG,Chevillère Élastique P706BG,Elastic Ankle Support P706BG,prim,Orthopedie,Consommables,ortho-consumable,active
+P707,Coudière Élastique P707,Elastic Elbow Support P707,prim,Orthopedie,Consommables,ortho-consumable,active
+P707BG,Coudière Élastique P707BG,Elastic Elbow Support P707BG,prim,Orthopedie,Consommables,ortho-consumable,active
+P708,Support Élastique Mollet P708,Elastic Calf Support P708,prim,Orthopedie,Consommables,ortho-consumable,active
+P709,Support Élastique Cuisse P709,Elastic Thigh Support P709,prim,Orthopedie,Consommables,ortho-consumable,active
+P710BG,Chevillère Élastique P710BG,Elastic Ankle Support P710BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS600,Bande Ceinture PRS600,Support Belt PRS600,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS601,Bande Ceinture PRS601,Support Belt PRS601,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS602BG,Bande Ceinture PRS602BG,Support Belt PRS602BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS603BG,Bande Ceinture PRS603BG,Support Belt PRS603BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS604BG,Bande Ceinture PRS604BG,Support Belt PRS604BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS606,Bande Ceinture PRS606,Support Belt PRS606,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS607,Bande Ceinture PRS607,Support Belt PRS607,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS640,Orthèse Lombo-Sacrée PRS640,Lumbo-Sacral Orthosis PRS640,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS650BG,Orthèse Lombo-Sacrée PRS650BG,Lumbo-Sacral Orthosis PRS650BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS650G,Orthèse Lombo-Sacrée PRS650G,Lumbo-Sacral Orthosis PRS650G,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS651BG,Orthèse Lombo-Sacrée PRS651BG,Lumbo-Sacral Orthosis PRS651BG,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS651G,Orthèse Lombo-Sacrée PRS651G,Lumbo-Sacral Orthosis PRS651G,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS660,Orthèse Lombo-Sacrée PRS660,Lumbo-Sacral Orthosis PRS660,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS661,Orthèse Lombo-Sacrée PRS661,Lumbo-Sacral Orthosis PRS661,prim,Orthopedie,Consommables,ortho-consumable,active
+PRS666,Orthèse Lombo-Sacrée PRS666,Lumbo-Sacral Orthosis PRS666,prim,Orthopedie,Consommables,ortho-consumable,active
+PS100,Chaussure Post-Opératoire PS100,Post-Operative Shoe PS100,prim,Orthopedie,Consommables,ortho-consumable,active
+PS200,Chaussure Post-Opératoire PS200,Post-Operative Shoe PS200,prim,Orthopedie,Consommables,ortho-consumable,active
+PSL150,Attelle Antébrachiale PSL 150,Forearm Splint PSL 150,prim,Orthopedie,Consommables,ortho-consumable,active
+RS-3000,Genouillère Postopératoire RS-3000,Post-Operative Knee Brace RS-3000,prim,Orthopedie,Consommables,ortho-consumable,active
+SC7065,Urinal pour Incontinence SC7065,Incontinence Urinal SC7065,prim,Orthopedie,Consommables,ortho-consumable,active
+T29,Sangle d'Épicondylite T29,Epicondylitis Strap T29,prim,Orthopedie,Consommables,ortho-consumable,active
+W100,Orthèse Tibio-Tarsienne W100,Ankle-Foot Orthosis W100,prim,Orthopedie,Consommables,ortho-consumable,active
+W100H,Orthèse Tibio-Tarsienne W100H,Ankle-Foot Orthosis W100H,prim,Orthopedie,Consommables,ortho-consumable,active
+W100R,Orthèse Tibio-Tarsienne W100R,Ankle-Foot Orthosis W100R,prim,Orthopedie,Consommables,ortho-consumable,active
+W100RH,Orthèse Tibio-Tarsienne W100RH,Ankle-Foot Orthosis W100RH,prim,Orthopedie,Consommables,ortho-consumable,active
+W101,Orthèse Tibio-Tarsienne W101,Ankle-Foot Orthosis W101,prim,Orthopedie,Consommables,ortho-consumable,active
+W201,Orthèse Tibio-Tarsienne W201,Ankle-Foot Orthosis W201,prim,Orthopedie,Consommables,ortho-consumable,active

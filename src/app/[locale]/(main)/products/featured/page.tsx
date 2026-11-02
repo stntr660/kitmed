@@ -7,10 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
+  ExternalLink,
   ArrowRight,
-  Heart,
   Download,
-  Eye,
   Building2,
   Award,
   Sparkles,
@@ -18,9 +17,9 @@ import {
   Star
 } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -98,24 +97,15 @@ export default function FeaturedProductsPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <section className="relative bg-slate-900 py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 px-6 py-3 bg-accent-500 text-white border-0 shadow-xl">
-              {tFeatured('badge')} KITMED
-            </Badge>
-
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {tFeatured('title')}
-              <span className="text-accent-300 block mt-2">{tFeatured('subtitle')}</span>
+              <span className="text-primary-600 block mt-1">{tFeatured('subtitle')}</span>
             </h1>
 
-            <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {tFeatured('description')}
             </p>
           </div>
@@ -147,8 +137,12 @@ export default function FeaturedProductsPage() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      {/* Product Image */}
-                      <div className="relative h-64 bg-slate-100 overflow-hidden">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug || product.id}`}
+                        aria-label={getProductName(product)}
+                        className="relative block h-64 bg-slate-100 overflow-hidden"
+                      >
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
@@ -162,16 +156,7 @@ export default function FeaturedProductsPage() {
                           </div>
                         )}
 
-                        {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
 
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
@@ -185,7 +170,7 @@ export default function FeaturedProductsPage() {
                             </Badge>
                           )}
                         </div>
-                      </div>
+                      </Link>
 
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
@@ -224,29 +209,17 @@ export default function FeaturedProductsPage() {
                           </Button>
 
                           <div className="flex gap-2">
-                            <QuoteRequestForm
-                              product={{
-                                id: product.id,
-                                referenceFournisseur: product.referenceFournisseur,
-                                constructeur: product.manufacturer.name,
-                                translations: [{
-                                  languageCode: 'fr',
-                                  nom: product.name,
-                                  description: product.description,
-                                  ficheTechnique: null
-                                }]
-                              }}
-                              trigger={
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="flex-1"
-                                >
-                                  <MessageSquare className="h-4 w-4 mr-1" />
-                                  {t('quote')}
-                                </Button>
-                              }
-                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                              asChild
+                            >
+                              <Link href={`/${locale}/contact`}>
+                                <MessageSquare className="h-4 w-4 mr-1" />
+                                {t('moreDetails')}
+                              </Link>
+                            </Button>
 
                             {product.pdfBrochureUrl && (
                               <Button
@@ -256,7 +229,7 @@ export default function FeaturedProductsPage() {
                                 asChild
                               >
                                 <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                  <Download className="h-4 w-4" />
+                                  {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>
                             )}
@@ -280,7 +253,7 @@ export default function FeaturedProductsPage() {
                 {tFeatured('noFeaturedDescription')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   {tFeatured('backToProducts')}
                 </Link>
               </Button>

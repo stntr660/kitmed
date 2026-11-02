@@ -271,7 +271,7 @@ export function EnhancedPartnerDrawer({
                 />
                 {isManufacturer && (
                   <p className="text-xs text-blue-600 font-medium">
-                    💡 {t('admin.partners.manufacturerNameHint')}
+                    {t('admin.partners.manufacturerNameHint')}
                   </p>
                 )}
               </div>

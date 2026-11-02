@@ -23,82 +23,82 @@ import {
 } from 'lucide-react';
 
 export default function TrainingPage() {
-  const t = useTranslations('training');
+  const t = useTranslations('support.training');
 
   const trainingPrograms = [
     {
-      title: "Formation Échographie Avancée",
-      description: "Formation complète sur l'utilisation des équipements d'échographie haute résolution",
-      duration: "3 jours",
-      level: "Avancé",
-      participants: "6-12 personnes",
-      location: "Centre de formation KITMED",
+      titleKey: "programs.ultrasound.title",
+      descriptionKey: "programs.ultrasound.description",
+      durationKey: "programs.ultrasound.duration",
+      levelKey: "programs.ultrasound.level",
+      participantsKey: "programs.ultrasound.participants",
+      locationKey: "programs.ultrasound.location",
       price: "2,500 DH",
-      category: "Imagerie",
+      categoryKey: "programs.ultrasound.category",
       icon: Camera,
       color: "blue",
-      features: [
-        "Théorie et pratique",
-        "Certification incluse",
-        "Support technique 6 mois",
-        "Documentation complète"
+      featureKeys: [
+        "programs.ultrasound.features.0",
+        "programs.ultrasound.features.1",
+        "programs.ultrasound.features.2",
+        "programs.ultrasound.features.3"
       ],
       nextSessions: ["15 Décembre 2024", "20 Janvier 2025", "25 Février 2025"]
     },
     {
-      title: "Maintenance Préventive - Équipements Cardio",
-      description: "Protocoles de maintenance et dépannage pour équipements cardiovasculaires",
-      duration: "2 jours",
-      level: "Intermédiaire",
-      participants: "4-8 personnes",
-      location: "Site client ou centre KITMED",
+      titleKey: "programs.cardio.title",
+      descriptionKey: "programs.cardio.description",
+      durationKey: "programs.cardio.duration",
+      levelKey: "programs.cardio.level",
+      participantsKey: "programs.cardio.participants",
+      locationKey: "programs.cardio.location",
       price: "1,800 DH",
-      category: "Maintenance",
+      categoryKey: "programs.cardio.category",
       icon: Heart,
       color: "red",
-      features: [
-        "Maintenance préventive",
-        "Diagnostic de pannes",
-        "Pièces de rechange",
-        "Manuel technique"
+      featureKeys: [
+        "programs.cardio.features.0",
+        "programs.cardio.features.1",
+        "programs.cardio.features.2",
+        "programs.cardio.features.3"
       ],
       nextSessions: ["10 Décembre 2024", "15 Janvier 2025", "10 Mars 2025"]
     },
     {
-      title: "Formation Monitoring Avancé",
-      description: "Utilisation optimale des systèmes de monitoring multiparamètres",
-      duration: "2 jours",
-      level: "Intermédiaire",
-      participants: "8-15 personnes",
-      location: "Centre de formation ou site client",
+      titleKey: "programs.monitoring.title",
+      descriptionKey: "programs.monitoring.description",
+      durationKey: "programs.monitoring.duration",
+      levelKey: "programs.monitoring.level",
+      participantsKey: "programs.monitoring.participants",
+      locationKey: "programs.monitoring.location",
       price: "2,200 DH",
-      category: "Monitoring",
+      categoryKey: "programs.monitoring.category",
       icon: Activity,
       color: "green",
-      features: [
-        "Configuration systèmes",
-        "Alarmes et alertes",
-        "Analyse des données",
-        "Certification utilisateur"
+      featureKeys: [
+        "programs.monitoring.features.0",
+        "programs.monitoring.features.1",
+        "programs.monitoring.features.2",
+        "programs.monitoring.features.3"
       ],
       nextSessions: ["5 Décembre 2024", "12 Janvier 2025", "18 Février 2025"]
     },
     {
-      title: "Utilisation Équipements de Laboratoire",
-      description: "Formation pratique sur les analyseurs et équipements de laboratoire",
-      duration: "1 jour",
-      level: "Débutant",
-      participants: "6-10 personnes",
-      location: "Laboratoire partenaire",
+      titleKey: "programs.laboratory.title",
+      descriptionKey: "programs.laboratory.description",
+      durationKey: "programs.laboratory.duration",
+      levelKey: "programs.laboratory.level",
+      participantsKey: "programs.laboratory.participants",
+      locationKey: "programs.laboratory.location",
       price: "1,200 DH",
-      category: "Laboratoire",
+      categoryKey: "programs.laboratory.category",
       icon: Monitor,
       color: "purple",
-      features: [
-        "Utilisation de base",
-        "Calibration",
-        "Maintenance quotidienne",
-        "Guide utilisateur"
+      featureKeys: [
+        "programs.laboratory.features.0",
+        "programs.laboratory.features.1",
+        "programs.laboratory.features.2",
+        "programs.laboratory.features.3"
       ],
       nextSessions: ["8 Décembre 2024", "22 Janvier 2025", "5 Mars 2025"]
     }
@@ -107,60 +107,60 @@ export default function TrainingPage() {
   const trainingStats = [
     {
       number: "500+",
-      label: "Professionnels formés",
+      labelKey: "stats.professionalsTrainedLabel",
       icon: Users
     },
     {
       number: "98%",
-      label: "Taux de satisfaction",
+      labelKey: "stats.satisfactionRateLabel",
       icon: Star
     },
     {
       number: "24h",
-      label: "Support post-formation",
+      labelKey: "stats.postTrainingSupportLabel",
       icon: Clock
     },
     {
       number: "15+",
-      label: "Programmes disponibles",
+      labelKey: "stats.availableProgramsLabel",
       icon: GraduationCap
     }
   ];
 
   const testimonials = [
     {
-      quote: "Formation excellente avec une approche très pratique. Les formateurs sont des experts dans leur domaine.",
+      quoteKey: "testimonials.0.quote",
       author: "Dr. Amina Benali",
-      position: "Chef du service cardiologie",
+      positionKey: "testimonials.0.position",
       organization: "CHU Ibn Rochd"
     },
     {
-      quote: "Grâce à cette formation, notre équipe maîtrise parfaitement les nouveaux équipements. Service après-vente exceptionnel.",
+      quoteKey: "testimonials.1.quote",
       author: "Hassan Tazi",
-      position: "Responsable technique",
+      positionKey: "testimonials.1.position",
       organization: "Clinique Al Madina"
     }
   ];
 
   const benefits = [
     {
-      title: "Formation Certifiante",
-      description: "Certificats reconnus par les autorités de santé",
+      titleKey: "benefits.certified.title",
+      descriptionKey: "benefits.certified.description",
       icon: CheckCircle
     },
     {
-      title: "Formateurs Experts",
-      description: "Ingénieurs biomédicaux certifiés et expérimentés",
+      titleKey: "benefits.experts.title",
+      descriptionKey: "benefits.experts.description",
       icon: Users
     },
     {
-      title: "Support Continu",
-      description: "Assistance technique 6 mois après formation",
+      titleKey: "benefits.continuousSupport.title",
+      descriptionKey: "benefits.continuousSupport.description",
       icon: Phone
     },
     {
-      title: "Documentation Complète",
-      description: "Manuels et guides techniques inclus",
+      titleKey: "benefits.documentation.title",
+      descriptionKey: "benefits.documentation.description",
       icon: Monitor
     }
   ];
@@ -172,15 +172,14 @@ export default function TrainingPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-              Formations Professionnelles
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Développez l'expertise de vos équipes avec nos formations certifiantes
-              sur l'utilisation et la maintenance des équipements médicaux.
+              {t('hero.description')}
             </p>
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
               <Calendar className="mr-2 h-5 w-5" />
-              Réserver une Formation
+              {t('hero.bookButton')}
             </Button>
           </div>
         </div>
@@ -196,7 +195,7 @@ export default function TrainingPage() {
                   <stat.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <div className="text-3xl font-light text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600 text-sm">{stat.label}</div>
+                <div className="text-gray-600 text-sm">{t(stat.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -208,10 +207,10 @@ export default function TrainingPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Programmes de Formation
+              {t('programsSection.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Formations adaptées à tous les niveaux, de l'initiation à la spécialisation avancée
+              {t('programsSection.description')}
             </p>
           </div>
 
@@ -224,13 +223,13 @@ export default function TrainingPage() {
                       <program.icon className={`h-6 w-6 text-${program.color}-600`} />
                     </div>
                     <Badge variant="outline" className="text-xs">
-                      {program.category}
+                      {t(program.categoryKey)}
                     </Badge>
                   </div>
                   <CardTitle className="text-xl font-medium text-gray-900 mb-2">
-                    {program.title}
+                    {t(program.titleKey)}
                   </CardTitle>
-                  <p className="text-gray-600 text-sm">{program.description}</p>
+                  <p className="text-gray-600 text-sm">{t(program.descriptionKey)}</p>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -238,30 +237,30 @@ export default function TrainingPage() {
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div className="flex items-center text-gray-600">
                         <Clock className="h-4 w-4 mr-2" />
-                        {program.duration}
+                        {t(program.durationKey)}
                       </div>
                       <div className="flex items-center text-gray-600">
                         <Users className="h-4 w-4 mr-2" />
-                        {program.participants}
+                        {t(program.participantsKey)}
                       </div>
                       <div className="flex items-center text-gray-600">
                         <MapPin className="h-4 w-4 mr-2" />
-                        <span className="truncate">{program.location}</span>
+                        <span className="truncate">{t(program.locationKey)}</span>
                       </div>
                       <div className="flex items-center text-gray-600">
                         <Star className="h-4 w-4 mr-2" />
-                        {program.level}
+                        {t(program.levelKey)}
                       </div>
                     </div>
 
                     {/* Features */}
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Inclus dans la formation :</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('programsSection.includedLabel')}</h4>
                       <ul className="space-y-1">
-                        {program.features.map((feature, featureIndex) => (
+                        {program.featureKeys.map((featureKey, featureIndex) => (
                           <li key={featureIndex} className="flex items-start text-sm text-gray-600">
                             <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                            {feature}
+                            {t(featureKey)}
                           </li>
                         ))}
                       </ul>
@@ -269,7 +268,7 @@ export default function TrainingPage() {
 
                     {/* Next Sessions */}
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Prochaines sessions :</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{t('programsSection.nextSessionsLabel')}</h4>
                       <div className="flex flex-wrap gap-2">
                         {program.nextSessions.slice(0, 2).map((session, sessionIndex) => (
                           <Badge key={sessionIndex} variant="secondary" className="text-xs">
@@ -283,10 +282,10 @@ export default function TrainingPage() {
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div>
                         <span className="text-2xl font-bold text-gray-900">{program.price}</span>
-                        <span className="text-gray-600 text-sm">/personne</span>
+                        <span className="text-gray-600 text-sm">{t('programsSection.perPerson')}</span>
                       </div>
                       <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                        Réserver
+                        {t('programsSection.bookButton')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
                     </div>
@@ -303,7 +302,7 @@ export default function TrainingPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Pourquoi Choisir Nos Formations ?
+              {t('benefitsSection.title')}
             </h2>
           </div>
 
@@ -314,10 +313,10 @@ export default function TrainingPage() {
                   <benefit.icon className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
-                  {benefit.title}
+                  {t(benefit.titleKey)}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  {benefit.description}
+                  {t(benefit.descriptionKey)}
                 </p>
               </div>
             ))}
@@ -330,7 +329,7 @@ export default function TrainingPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Témoignages
+              {t('testimonialsSection.title')}
             </h2>
           </div>
 
@@ -345,12 +344,12 @@ export default function TrainingPage() {
                       ))}
                     </div>
                     <blockquote className="text-gray-700 leading-relaxed italic">
-                      "{testimonial.quote}"
+                      "{t(testimonial.quoteKey)}"
                     </blockquote>
                   </div>
                   <div className="space-y-1">
                     <div className="font-medium text-gray-900">{testimonial.author}</div>
-                    <div className="text-sm text-gray-600">{testimonial.position}</div>
+                    <div className="text-sm text-gray-600">{t(testimonial.positionKey)}</div>
                     <div className="text-sm text-blue-600 font-medium">{testimonial.organization}</div>
                   </div>
                 </CardContent>
@@ -365,11 +364,10 @@ export default function TrainingPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-light mb-4">
-              Besoin d'une Formation Personnalisée ?
+              {t('cta.title')}
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Nous créons des programmes de formation sur mesure adaptés aux besoins
-              spécifiques de votre établissement.
+              {t('cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Button className="bg-white text-gray-900 hover:bg-gray-100">

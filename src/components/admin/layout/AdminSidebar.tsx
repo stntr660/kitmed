@@ -16,6 +16,7 @@ import {
   PowerIcon,
   RectangleGroupIcon,
   PhotoIcon,
+  EnvelopeIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 import { removeAdminToken } from '@/lib/auth-utils';
@@ -76,6 +77,12 @@ function getNavigation(locale: string, t: ReturnType<typeof useTranslations>): N
       href: `/${locale}/admin/rfp-requests`,
       icon: DocumentTextIcon,
       badge: t('admin.sidebar.pending'),
+    },
+    {
+      name: 'Messages Contact',
+      href: `/${locale}/admin/contact`,
+      icon: EnvelopeIcon,
+      description: 'Gerer les messages de contact',
     },
     {
       name: t('admin.sidebar.partners'),

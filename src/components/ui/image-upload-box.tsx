@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from 'react';
 import { Upload, X, Image, FileImage, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { getAdminToken } from '@/lib/auth-utils';
 
 interface ImageUploadBoxProps {
   value?: string;
@@ -68,13 +69,19 @@ export function ImageUploadBox({
       formData.append('files', file);
       formData.append('preset', preset);
 
+      const token = getAdminToken();
       const response = await fetch('/api/admin/upload', {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors du téléchargement');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Upload failed:', response.status, errorData);
+        throw new Error(errorData.error?.message || `Erreur ${response.status}: ${response.statusText}`);
       }
 
       const result = await response.json();
@@ -83,6 +90,7 @@ export function ImageUploadBox({
         const uploadedFile = result.data.results[0];
         onChange(uploadedFile.url);
       } else {
+        console.error('Upload result failed:', result);
         throw new Error(result.error?.message || 'Erreur lors du téléchargement');
       }
     } catch (error) {
@@ -313,13 +321,18 @@ export function MultipleImageUploadBox({
       newFiles.forEach(file => formData.append('files', file));
       formData.append('preset', props.preset || 'productImage');
 
+      const token = getAdminToken();
       const response = await fetch('/api/admin/upload', {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors du téléchargement');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || 'Erreur lors du téléchargement');
       }
 
       const result = await response.json();

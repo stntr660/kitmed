@@ -1,5 +1,11 @@
 {
   "common": {
+    "newArrival": "New arrival",
+    "logoTagline": "Medical Equipment",
+    "logoSince": "Since 1997",
+    "officialSite": "Official website",
+    "all": "All",
+    "back": "Back",
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
@@ -23,9 +29,13 @@
     "confirm": "Confirm",
     "required": "Required",
     "optional": "Optional",
+    "show": "Show",
+    "hide": "Hide",
     "notSpecified": "Not specified",
     "uncategorized": "Uncategorized",
     "productWithoutName": "Product without name",
+    "direction": "Head Office",
+    "showRoom": "ShowRoom",
     "yes": "Yes",
     "no": "No",
     "export": "Export",
@@ -59,6 +69,9 @@
     "yourProfile": "Your Profile",
     "settings": "Settings",
     "signOut": "Sign Out",
+    "retry": "Retry",
+    "saveSettings": "Save Settings",
+    "saving": "Saving...",
     "reference": "Reference",
     "manufacturer": "Manufacturer",
     "quantity": "Quantity",
@@ -66,10 +79,18 @@
     "name": "Name",
     "viewDetails": "View Details",
     "quote": "Quote",
+    "moreDetails": "More Details",
     "partners": "Partners",
-    "featured": "Featured"
+    "featured": "Featured",
+    "map": {
+      "getDirections": "Get Directions",
+      "viewOnMaps": "View on Google Maps",
+      "ourLocation": "Our Location"
+    },
+    "language": "Language"
   },
   "navigation": {
+    "home": "Home",
     "products": "Products",
     "partners": "Partners",
     "about": "About",
@@ -77,20 +98,29 @@
     "allProducts": "All Products",
     "byDiscipline": "By Discipline",
     "byManufacturer": "By Manufacturer",
-    "featured": "Featured",
+    "featured": "Featured Products",
     "company": "Company",
     "team": "Team",
-    "news": "News"
+    "news": "News",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "browseCategories": "Browse Categories",
+    "quoteRequest": "Request Quote",
+    "viewAll": "View all",
+    "language": "Language"
   },
   "product": {
     "viewProduct": "View product",
-    "featured": "Featured",
+    "featured": "New",
     "discontinued": "Discontinued",
     "quickView": "Quick View",
     "addToWishlist": "Add to Wishlist",
     "addToRFP": "Add to RFP",
     "inRFP": "In RFP",
+    "moreDetails": "More Details",
     "documents": "documents",
+    "mediaFiles": "Media Files",
+    "viewAllMedia": "View all media",
     "price": {
       "quote": "Quote required",
       "contact": "Contact us"
@@ -232,9 +262,8 @@
     },
     "social": {
       "facebook": "Follow us on Facebook",
-      "twitter": "Follow us on Twitter",
-      "linkedin": "Follow us on LinkedIn",
-      "youtube": "Follow us on YouTube"
+      "instagram": "Follow us on Instagram",
+      "linkedin": "Follow us on LinkedIn"
     },
     "newsletter": {
       "title": "Newsletter",
@@ -244,6 +273,11 @@
     },
     "certifications": {
       "title": "Certifications & Standards"
+    },
+    "tagline": "High-end medical equipment for healthcare professionals in Morocco and Africa since 1997.",
+    "compliance": {
+      "title": "Full Regulatory Compliance",
+      "description": "Official ONSSA authorizations and ISO certifications to guarantee the quality and safety of our medical equipment in Morocco."
     },
     "rights": "All rights reserved.",
     "poweredBy": "Powered by"
@@ -287,7 +321,41 @@
     "submit": "Submit RFP",
     "submitting": "Submitting...",
     "success": "RFP submitted successfully",
-    "requestNumber": "Request Number"
+    "requestNumber": "Request Number",
+    "quoteForm": {
+      "title": "Quote Request",
+      "description": "Fill in the essential information to receive a personalized quote.",
+      "requestQuote": "Request a Quote",
+      "addProduct": "Add a product",
+      "selectProduct": "Select a product",
+      "searchPlaceholder": "Search in the list...",
+      "loadingProducts": "Loading products...",
+      "noProductsFound": "No products found",
+      "noProductsAvailable": "No products available",
+      "noProductsSelected": "No products selected. Click \"Add a product\" to get started.",
+      "ref": "Ref",
+      "manufacturer": "Manufacturer",
+      "qty": "Qty",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Your first and last name",
+      "email": "Email",
+      "emailPlaceholder": "your.email@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+212 6XX XXX XXX",
+      "company": "Company",
+      "companyPlaceholder": "Your company name",
+      "message": "Message",
+      "messagePlaceholder": "Describe your specific needs...",
+      "cancel": "Cancel",
+      "sending": "Sending...",
+      "submitRequest": "Send Request",
+      "nameEmailRequired": "Name and email are required",
+      "sendError": "Error sending the request",
+      "unexpectedError": "Unexpected error",
+      "successTitle": "Request Sent!",
+      "successMessage": "Your quote request has been successfully submitted.",
+      "successFollowUp": "We will get back to you as soon as possible."
+    }
   },
   "form": {
     "firstName": "First Name",
@@ -461,6 +529,99 @@
         "inactive": "Inactive",
         "discontinued": "Discontinued",
         "draft": "Draft"
+      },
+      "addDescription": "Create a new product for your catalog",
+      "editDescription": "Modify product information",
+      "viewDescription": "View product details",
+      "essentialInfo": "Essential Information",
+      "essentialInfoDescription": "Required fields for product identification",
+      "productName": "Product Name (French)",
+      "productNamePlaceholder": "Enter product name in French",
+      "productNameHint": "The primary name displayed in the catalog",
+      "brand": "Brand / Manufacturer",
+      "newManufacturerName": "New manufacturer name",
+      "pressEnterToAdd": "Press Enter to add or Escape to cancel",
+      "brandPlaceholder": "Select a manufacturer",
+      "addNewManufacturer": "Add New Manufacturer",
+      "noManufacturersFound": "No manufacturers found",
+      "brandHint": "Select from existing manufacturers or add a new one",
+      "referenceCode": "Reference Code",
+      "referenceCodePlaceholder": "e.g., REF-12345",
+      "referenceCodeHint": "Unique identifier for this product",
+      "medicalDiscipline": "Medical Discipline",
+      "selectDiscipline": "Select a discipline",
+      "disciplineHint": "The primary medical category for this product",
+      "shortDescription": "Short Description (French)",
+      "shortDescriptionPlaceholder": "Brief product description in French",
+      "shortDescriptionHint": "A concise overview of the product",
+      "internationalVersion": "International Version",
+      "internationalDescription": "Add English translations for international markets",
+      "productNameEnglish": "Product Name (English)",
+      "productNameEnglishPlaceholder": "Product name in English",
+      "descriptionEnglish": "Description (English)",
+      "descriptionEnglishPlaceholder": "Product description in English",
+      "technicalDetails": "Technical Details",
+      "technicalDetailsDescription": "Add technical specifications and documentation",
+      "specifications": "Technical Specifications (French)",
+      "specificationsPlaceholder": "Technical details and specifications",
+      "specificationsHint": "Detailed technical information about the product",
+      "specificationsEnglish": "Technical Specifications (English)",
+      "specificationsEnglishPlaceholder": "Technical specifications in English",
+      "brochureDocument": "Product Brochure (PDF)",
+      "brochureDocumentHint": "Upload a PDF brochure for this product",
+      "visibility": "Visibility",
+      "visibilityDescription": "Control how this product appears in the catalog",
+      "makeVisible": "Make Visible",
+      "makeVisibleDescription": "Product will be displayed in the catalog",
+      "keepHidden": "Keep Hidden",
+      "keepHiddenDescription": "Product will be saved as a draft",
+      "statusOptions": {
+        "visible": "Visible in catalog",
+        "draft": "Draft - hidden from catalog"
+      },
+      "highlightProduct": "Highlight this product",
+      "highlightProductDescription": "Show in featured section on homepage",
+      "media": "Product Media",
+      "mediaManagementDescription": "Upload and manage product images",
+      "errors": {
+        "nameRequired": "Product name in French is required",
+        "brandRequired": "Brand/Manufacturer is required",
+        "referenceRequired": "Supplier reference is required",
+        "categoryRequired": "At least one category is required",
+        "authRequired": "Authentication required. Please log in again.",
+        "sessionExpired": "Your session has expired. Please log in again.",
+        "noCategoriesFound": "No categories found in the system",
+        "fetchCategoriesFailed": "Failed to load categories. Please try again.",
+        "fetchManufacturersFailed": "Failed to load manufacturers. Please try again.",
+        "validationFailed": "Please correct the highlighted errors",
+        "saveFailed": "Failed to save product. Please try again.",
+        "duplicateReference": "A product with this reference code already exists. Please use a different reference.",
+        "duplicateSlug": "A product with this name already exists. Please use a different name.",
+        "duplicateEntry": "A product with this {field} already exists",
+        "invalidReference": "Invalid category or manufacturer. Please select valid options.",
+        "categoryNotFound": "The selected category no longer exists. Please select another category.",
+        "networkError": "Network error. Please check your connection and try again.",
+        "createManufacturerFailed": "Failed to create new manufacturer. Please try again.",
+        "serverError": "Server error occurred. Please try again later.",
+        "errorTitle": "Error"
+      },
+      "success": {
+        "created": "Product \"{name}\" created successfully",
+        "updated": "Product \"{name}\" updated successfully",
+        "createdTitle": "Product Created",
+        "updatedTitle": "Product Updated",
+        "savedMessage": "Your changes have been saved",
+        "saved": "Saved",
+        "manufacturerCreated": "New manufacturer created successfully"
+      },
+      "warnings": {
+        "mediaUploadFailed": "Some media files could not be uploaded"
+      },
+      "closeConfirmation": {
+        "title": "Discard unsaved changes?",
+        "description": "You have unsaved changes that will be lost. Are you sure you want to close this form?",
+        "cancel": "Keep editing",
+        "confirm": "Discard changes"
       }
     },
     "media": "Media",
@@ -597,13 +758,58 @@
       "keepHiddenDescription": "Product will remain as draft",
       
       "highlightProduct": "Highlight this product",
+      "newArrival": "New arrival",
+      "newArrivalDescription": "shows the “New arrival” badge and the homepage carousel",
       "highlightProductDescription": "will appear in featured products",
       
       "statusOptions": {
-        "visible": "Visible",
-        "draft": "Draft"
+        "active": "Active",
+        "inactive": "Inactive",
+        "discontinued": "Discontinued",
+        "visible": "Visible in catalog",
+        "draft": "Draft - hidden from catalog"
       },
-      
+      "errors": {
+        "nameRequired": "Product name in French is required",
+        "brandRequired": "Brand/Manufacturer is required",
+        "referenceRequired": "Supplier reference is required",
+        "categoryRequired": "At least one category is required",
+        "authRequired": "Authentication required. Please log in again.",
+        "sessionExpired": "Your session has expired. Please log in again.",
+        "noCategoriesFound": "No categories found in the system",
+        "fetchCategoriesFailed": "Failed to load categories. Please try again.",
+        "fetchManufacturersFailed": "Failed to load manufacturers. Please try again.",
+        "validationFailed": "Please correct the highlighted errors",
+        "saveFailed": "Failed to save product. Please try again.",
+        "duplicateReference": "A product with this reference already exists.",
+        "duplicateSlug": "A product with this name already exists.",
+        "duplicateEntry": "A product with this {field} already exists",
+        "invalidReference": "Invalid category or manufacturer.",
+        "categoryNotFound": "The selected category no longer exists.",
+        "networkError": "Network error. Please check your connection.",
+        "createManufacturerFailed": "Failed to create new manufacturer.",
+        "serverError": "Server error. Please try again later.",
+        "errorTitle": "Error"
+      },
+      "success": {
+        "created": "Product \"{name}\" created successfully",
+        "updated": "Product \"{name}\" updated successfully",
+        "createdTitle": "Product Created",
+        "updatedTitle": "Product Updated",
+        "savedMessage": "Your changes have been saved",
+        "saved": "Saved",
+        "manufacturerCreated": "New manufacturer created successfully"
+      },
+      "warnings": {
+        "mediaUploadFailed": "Some media files could not be uploaded"
+      },
+      "closeConfirmation": {
+        "title": "Discard unsaved changes?",
+        "description": "You have unsaved changes that will be lost. Are you sure you want to close?",
+        "cancel": "Keep editing",
+        "confirm": "Discard"
+      },
+
       "productNameEnglish": "Product name (English)",
       "productNameEnglishPlaceholder": "Product name in English",
       "descriptionEnglish": "Description (English)",
@@ -730,7 +936,18 @@
       "logoUrl": "Logo",
       "logoUrlPlaceholder": "https://example.com/logo.png",
       "logoUrlHint": "URL to partner logo",
-      
+
+      "mediaAndDocuments": "Media & Documents",
+      "logo": "Partner Logo",
+      "logoHint": "Image displayed on partner page (PNG, JPG)",
+      "logoPlaceholder": "Upload logo",
+      "logoDescription": "Drag & drop the logo here, or click to select (PNG, JPG - max 2MB)",
+
+      "brochure": "PDF Brochure / Catalogue",
+      "brochureHint": "Downloadable document for customers",
+      "brochurePlaceholder": "Upload PDF",
+      "brochureDescription": "Drag & drop the PDF here, or click to select (max 10MB)",
+
       "shortDescription": "Short description",
       "shortDescriptionPlaceholder": "Briefly describe the partner and their services",
       "shortDescriptionHint": "Simple presentation for the sales team",
@@ -845,11 +1062,19 @@
           "title": "Technology",
           "description": "Technology partners for integration, medical software and innovative digital solutions",
           "badge": "Digital innovation",
-          "helpTitle": "About technology", 
+          "helpTitle": "About technology",
           "helpDescription": "Technology partners provide software and integration solutions to modernize your medical practice."
+        },
+        "other": {
+          "title": "Other Partner",
+          "description": "Government, alliances, institutions and other strategic partners",
+          "badge": "Strategic partnership",
+          "examples": "Ministry of Health, Medical alliances, NGOs",
+          "helpTitle": "About other partners",
+          "helpDescription": "These partners include government institutions, strategic alliances and other important organizations."
         }
       },
-      
+
       "bulkImport": {
         "title": "CSV Bulk Import",
         "description": "Import multiple partners at once from a CSV file",
@@ -968,7 +1193,9 @@
         "editPartner": "Edit Partner",
         "stepOf": "Step {current} of {total}",
         "createPartner": "Create Partner",
-        "updatePartner": "Update Partner"
+        "updatePartner": "Update Partner",
+        "brochureFallbackHint": "This PDF will be shown as a fallback for products without individual PDFs",
+        "brochureAvailabilityHint": "Helps ensure all products have documentation available"
       }
     },
     "content": {
@@ -1351,6 +1578,20 @@
       "sendTest": "Send Test Email",
       "emailTestSuccess": "Test email sent successfully! Check your inbox.",
       "emailTestFailed": "Failed to send test email. Please check your SMTP configuration.",
+      "siteConfiguration": "Site Configuration",
+      "enableEmailNotifications": "Enable email notifications",
+      "testEmailConfiguration": "Test Email Configuration",
+      "sendTestEmailDesc": "Send a test email to verify settings",
+      "securityBasics": "Security Settings",
+      "twoFactorAuthentication": "Two-factor authentication",
+      "systemMaintenance": "System Maintenance",
+      "automaticUpdates": "Automatic updates",
+      "dataBackupFrequency": "Data backup frequency",
+      "minutes30": "30 minutes",
+      "hour1": "1 hour",
+      "hours2": "2 hours",
+      "hours4": "4 hours",
+      "attempts": "attempts",
       "enableBackup": "Enable Automated Backups",
       "backupDesc": "Automatically backup your data at scheduled intervals",
       "backupFrequency": "Backup Frequency",
@@ -1494,7 +1735,17 @@
       "validation": {
         "nameRequired": "Category name in French is required"
       },
-      
+
+      "errors": {
+        "loadFailed": "Failed to load categories",
+        "saveFailed": "Failed to save category",
+        "deleteFailed": "Failed to delete category",
+        "bulkOperationFailed": "Bulk operation failed",
+        "validationError": "Validation error: {details}",
+        "serverError": "Server error. Please try again.",
+        "imageUploadFailed": "Failed to upload image"
+      },
+
       "wizard": {
         "step1": {
           "title": "Category Type",
@@ -1528,7 +1779,7 @@
         "selectDiscipline": "Select Discipline",
         "noDisciplinesFound": "No Disciplines Found",
         "noDisciplinesFoundDescription": "You need to create at least one medical discipline before adding equipment categories.",
-        "noDisciplinesFoundHint": "💡 Create a discipline first (like 'Cardiology', 'Radiology', 'Surgery') then come back to add equipment categories.",
+        "noDisciplinesFoundHint": "Create a discipline first (like 'Cardiology', 'Radiology', 'Surgery') then come back to add equipment categories.",
         "disciplineStep": {
           "title": "Discipline Selection",
           "description": "Select the medical discipline for this category"
@@ -1596,6 +1847,23 @@
         "tapToExpand": "Tap to expand",
         "longPressForActions": "Long press for actions"
       }
+    },
+    "banners": {
+      "title": "Banner Management",
+      "subtitle": "Create and manage homepage banners",
+      "createBanner": "Create Banner",
+      "noBanners": "No banners yet",
+      "noBannersDescription": "Create your first banner to get started",
+      "readOnlyMode": "Read-only mode: Please log in for full management features",
+      "loading": "Loading banners...",
+      "position": "Position",
+      "layout": "Layout",
+      "sortOrder": "Sort Order",
+      "preview": "Preview",
+      "active": "Active",
+      "inactive": "Inactive",
+      "scheduled": "Scheduled",
+      "expired": "Expired"
     }
   },
   "dashboard": {
@@ -1663,7 +1931,10 @@
       "specs": {
         "premium": "Premium Series",
         "technology": "Advanced Technology"
-      }
+      },
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "goToSlide": "Go to slide {number}"
     },
     "getConsultation": "Get Expert Consultation",
     "whyChooseUs": "Why Choose KITMED?",
@@ -1751,7 +2022,8 @@
     },
     "cta": {
       "contact": "Get in Touch",
-      "requestQuote": "Request Quote"
+      "requestQuote": "Request Quote",
+      "viewProducts": "View Products"
     },
     "categories": {
       "exploreProducts": "Explore products",
@@ -1764,12 +2036,19 @@
       "description": "We collaborate with the most respected manufacturers in the medical industry",
       "viewAll": "View All Our Partners"
     },
+    "newArrivals": {
+      "title": "New arrivals",
+      "subtitle": "The latest additions to our catalogue",
+      "description": "Discover the equipment that has just joined the KITMED range.",
+      "viewDetails": "View product"
+    },
     "featuredProducts": {
       "title": "Premium Selection",
       "subtitle": "Featured Products",
       "description": "Discover our selection of exceptional equipment chosen for their innovation, quality, and remarkable performance.",
-      "badge": "⭐ Featured",
+      "badge": "Featured",
       "viewDetails": "View Details",
+      "downloadBrochure": "Download PDF Brochure",
       "viewAll": "View All Featured Products",
       "noDescription": "Description available on request",
       "noProducts": "No featured products at the moment",
@@ -1800,80 +2079,39 @@
   },
   "about": {
     "hero": {
-      "badge": "About KITMED",
-      "title": "Leading Medical Equipment Provider in Morocco",
-      "description": "Since our establishment, KITMED has been dedicated to importing, distributing, installing and maintaining high-performance medical equipment and consumables, meeting the needs of both public and private sector clients.",
+      "badge": "About Us",
+      "title": "Who are we?",
+      "subtitle": "SERVING THE HEALTHCARE SECTOR SINCE 1997",
       "cta": {
         "contact": "Contact Us",
         "products": "Our Products"
       }
     },
     "overview": {
-      "title": "Our Story",
-      "description1": "KITMED is a Moroccan company specialized in the import, distribution, installation, and maintenance of medical equipment and consumables for both public and private sectors.",
-      "description2": "Located at 20, rue Lalande, in Casablanca's hospital district, our company has established itself as a trusted partner for healthcare facilities throughout the kingdom and is expanding towards North African markets.",
-      "established": {
-        "title": "Established in Morocco",
-        "description": "Based in Casablanca's hospital district since our founding"
-      },
-      "expertise": {
-        "title": "Complete Medical Solutions",
-        "description": "Import, distribution, installation, and professional maintenance"
-      },
-      "reach": {
-        "title": "North African Expansion",
-        "description": "Serving Morocco and expanding strategically into North Africa"
-      }
+      "description1": "Founded in 1997, KITMED is a leading provider of high-tech medical equipment distribution and integration in Morocco. Through strategic partnerships with internationally renowned manufacturers, we deliver innovative and high-performance solutions to both public and private healthcare institutions.",
+      "description2": "Our expertise spans several specialties, including Ophthalmology, Cardiology, ENT, Intensive Care, and Medical Furnishings.",
+      "description3": "Committed to excellence and customer satisfaction, we ensure personalized support, a responsive after-sales service, and nationwide coverage to meet the highest standards of the healthcare industry.",
+      "tagline": "KITMED, your trusted partner for medical excellence."
     },
     "mission": {
-      "sectionTitle": "Our Mission & Vision",
-      "sectionDescription": "Supporting the development of the medical sector with high-performance equipment",
-      "title": "Our Mission",
-      "description": "To support the development of the medical sector by providing high-performance medical equipment and consumables, adapted to the needs of each client in both public and private sectors.",
-      "points": [
-        "Import, distribute and install cutting-edge medical equipment",
-        "Ensure professional maintenance and after-sales service",
-        "Guarantee professional and quality materials through our global partnerships",
-        "Accompany our clients throughout the process for continuous satisfaction"
-      ]
+      "title": "Mission",
+      "description": "To provide innovative medical equipment tailored to our clients needs, with personalized support to ensure their satisfaction."
     },
     "vision": {
-      "title": "Our Vision",
-      "description": "Maintain our strong position as a major player in the local market and continue our growth process by expanding towards the North African region.",
-      "points": [
-        "Consolidate our leadership in the Moroccan market",
-        "Strategic expansion towards North Africa",
-        "Develop partnerships with renowned global brands",
-        "Stay alert to new technological developments in medical equipment"
-      ]
+      "title": "Vision",
+      "description": "To strengthen our position as a leader in Morocco and expand our presence across North Africa."
     },
     "values": {
-      "title": "Our Values",
-      "description": "The fundamental principles that guide all our actions",
+      "title": "Values",
       "items": {
-        "excellence": {
-          "title": "Performance Excellence",
-          "description": "We provide high-performance equipment that meets the strictest professional standards"
-        },
-        "integrity": {
-          "title": "Professional Integrity",
-          "description": "We maintain transparency and professionalism in all our partnerships and services"
-        },
-        "partnership": {
-          "title": "Global Partnership",
-          "description": "We develop strategic partnerships with renowned international brands"
-        },
-        "quality": {
-          "title": "Quality Assurance",
-          "description": "We guarantee professional and quality materials through rigorous selection"
-        },
         "innovation": {
-          "title": "Technological Innovation",
-          "description": "We stay alert to new technological developments in the medical field"
+          "title": "Innovation"
         },
-        "commitment": {
-          "title": "Client Commitment",
-          "description": "We accompany our clients throughout the process for continuous satisfaction"
+        "satisfaction": {
+          "title": "Satisfaction"
+        },
+        "responsiveness": {
+          "title": "Responsiveness"
         }
       }
     },
@@ -1886,8 +2124,8 @@
   "partners": {
     "hero": {
       "badge": "Our Partners",
-      "title": "Trusted Partners and Global Manufacturers",
-      "description": "KITMED collaborates with the most respected manufacturers in the medical industry to provide you with the highest quality equipment.",
+      "title": "Global medical excellence, serving your standards.",
+      "description": "KITMED works alongside leading manufacturers to provide healthcare professionals with reliable, innovative and high-performance solutions.",
       "cta": {
         "contact": "Contact Us",
         "products": "Our Products"
@@ -1928,6 +2166,9 @@
       "title": "No Partners Found",
       "description": "We are constantly working to expand our partner network."
     },
+    "noPartnersInCategory": "No Partners in this Category",
+    "noPartnersInCategoryDescription": "There are no partners with products in this category yet.",
+    "viewAllPartners": "View All Partners",
     "visitWebsite": "Visit Website"
   },
   "contact": {
@@ -1957,6 +2198,11 @@
       "subject": "Subject",
       "message": "Message",
       "submit": "Send Message",
+      "errors": {
+        "missingFields": "Please fill in all required fields (name, email, phone).",
+        "invalidEmail": "Please enter a valid email address.",
+        "general": "An error occurred. Please try again."
+      },
       "placeholders": {
         "firstName": "Your first name",
         "lastName": "Your last name",
@@ -2053,7 +2299,11 @@
     "noProductsDescription": "This partner does not yet offer products in our catalog.",
     "viewAllProducts": "View All Products",
     "loadingError": "Loading error",
-    "productFallbackDescription": "Professional medical product from {partnerName}."
+    "productFallbackDescription": "Professional medical product from {partnerName}.",
+    "filteredByCategory": "Filtered: {categoryName}",
+    "filteredProductsTitle": "{partnerName} - {categoryName}",
+    "filteredProductsDescription": "Showing {partnerName} products in the {categoryName} category",
+    "clearCategoryFilter": "View All Products"
   },
   "categories": {
     "hierarchy": {
@@ -2064,7 +2314,7 @@
       "subcategories": "Subcategories",
       "subcategoriesDescription": "Explore specialized categories in {categoryName}",
       "availableProducts": "Available products",
-      "availableProductsCount": "{count} product in this category",
+      "availableProductsCount": "{count, plural, =0 {no products} one {# product} other {# products}} in this category",
       "productSingular": "product",
       "productPlural": "products",
       "subcategorySingular": "subcategory", 
@@ -2075,7 +2325,18 @@
       "emptyCategory": "Category under development",
       "emptyCategoryDescription": "This category does not yet contain products or subcategories.",
       "discipline": "Discipline",
-      "category": "Category"
+      "category": "Category",
+      "featured": "Featured",
+      "reference": "Reference",
+      "viewProduct": "View Product",
+      "downloadBrochure": "Download Brochure",
+      "generalBrochure": "(General)",
+      "phoneSupport": "Phone Support",
+      "sortByPrice": "Sort by Price",
+      "sortByPopularity": "Sort by Popularity",
+      "quote": "Quote",
+      "moreDetails": "More Details",
+      "productFallback": "Professional quality medical product"
     }
   },
   "disciplines": {
@@ -2119,7 +2380,10 @@
     "viewProducts": "View Products",
     "noCategoriesTitle": "No Categories Available",
     "noCategoriesDescription": "This discipline does not yet contain equipment categories.",
-    "viewAllProducts": "View All Products"
+    "viewAllProducts": "View All Products",
+    "directProductsTitle": "{count} Products Available",
+    "directProductsDescription": "Browse all {disciplineName} products directly in our catalog.",
+    "partnersInDiscipline": "Our Partners in this Discipline"
   },
   "products": {
     "hero": {
@@ -2145,7 +2409,9 @@
       "viewDetails": "View Details",
       "quote": "Quote",
       "reference": "Ref: {ref}",
-      "descriptionFallback": "Description available on request"
+      "descriptionFallback": "Description available on request",
+      "manufacturerBrochure": "Manufacturer brochure",
+      "productBrochure": "Product brochure"
     },
     "noResults": {
       "title": "No Products Found",
@@ -2174,6 +2440,415 @@
       "viewDetails": "View Details",
       "websiteLink": "Official Website",
       "backToProducts": "Back to Products"
+    },
+    "detail": {
+      "loading": "Loading product...",
+      "notFound": "Product not found",
+      "backToCatalog": "Back to catalog",
+      "breadcrumbProducts": "Products",
+      "featuredBadge": "Featured Product",
+      "available": "Available",
+      "reference": "Reference",
+      "contactEmail": "Contact Email",
+      "moreDetails": "More Details",
+      "downloadBrochure": "Download Brochure",
+      "generalBrochure": "(General)",
+      "phoneSupport": "Phone Support"
+    }
+  },
+  "certifications": {
+    "title": "Certifications & Standards",
+    "description": "KITMED is certified and authorized by regulatory bodies to guarantee the quality and safety of our medical equipment.",
+    "complianceTitle": "Full Regulatory Compliance",
+    "complianceDescription": "All our products comply with international quality and safety standards for medical equipment, with official authorization from the Moroccan Ministry of Health.",
+    "bannerTitle": "International Certifications & Standards",
+    "bannerSubtitle": "Trust guaranteed by our official certifications",
+    "compliant": "Compliant",
+    "certifiedLabel": "Certified ONSSA - ISO 9001/13485/22716",
+    "verified": "Verified"
+  },
+  "support": {
+    "maintenance": {
+      "hero": {
+        "title": "Maintenance & Technical Support",
+        "description": "Professional maintenance services to ensure the proper operation and longevity of your medical equipment.",
+        "urgentRequest": "Urgent Intervention Request",
+        "scheduleMaintenance": "Schedule Maintenance"
+      },
+      "stats": {
+        "uptime": "Uptime",
+        "responseTime": "Average response time",
+        "equipmentUnderContract": "Equipment under contract",
+        "supportAvailable": "Support available"
+      },
+      "servicesSection": {
+        "title": "Our Maintenance Services",
+        "description": "Comprehensive solutions for all types of medical equipment",
+        "includedServices": "Included services:",
+        "requestQuote": "Request a Quote"
+      },
+      "services": {
+        "preventive": {
+          "title": "Preventive Maintenance",
+          "description": "Scheduled maintenance programs to prevent breakdowns and extend equipment lifespan",
+          "features": {
+            "inspection": "Regular inspection",
+            "calibration": "Calibration and testing",
+            "replacement": "Preventive replacement",
+            "report": "Detailed report"
+          },
+          "pricing": "Starting from 800 DH/visit"
+        },
+        "corrective": {
+          "title": "Corrective Maintenance",
+          "description": "Rapid intervention for emergency repair and troubleshooting",
+          "features": {
+            "intervention": "24/7 intervention",
+            "diagnostic": "Complete diagnostic",
+            "onSiteRepair": "On-site repair",
+            "warranty": "Parts and labor warranty"
+          },
+          "pricing": "Custom quote"
+        },
+        "contracts": {
+          "title": "Maintenance Contracts",
+          "description": "Annual contracts for comprehensive coverage and predictable costs",
+          "features": {
+            "preventiveIncluded": "Preventive maintenance included",
+            "priority": "Priority on interventions",
+            "spareParts": "Guaranteed spare parts",
+            "unlimitedSupport": "Unlimited technical support"
+          },
+          "pricing": "Starting from 12,000 DH/year"
+        },
+        "training": {
+          "title": "Technical Training",
+          "description": "Training your teams for first-level maintenance",
+          "features": {
+            "certified": "Certified training",
+            "manual": "Technical manual included",
+            "continuousSupport": "Continuous support",
+            "procedureUpdates": "Procedure updates"
+          },
+          "pricing": "1,500 DH/training day"
+        }
+      },
+      "equipmentSection": {
+        "title": "Supported Equipment",
+        "description": "Technical expertise across all medical equipment categories",
+        "maintenanceLabel": "Maintenance"
+      },
+      "equipment": {
+        "imaging": {
+          "name": "Medical Imaging",
+          "items": {
+            "ultrasound": "Ultrasound",
+            "radiology": "Radiology",
+            "mri": "MRI",
+            "ctScan": "CT Scanner"
+          },
+          "interval": "Quarterly"
+        },
+        "cardio": {
+          "name": "Cardio Equipment",
+          "items": {
+            "ecg": "ECG",
+            "holter": "Holter",
+            "defibrillators": "Defibrillators",
+            "monitoring": "Monitoring"
+          },
+          "interval": "Bimonthly"
+        },
+        "monitoring": {
+          "name": "Monitoring Systems",
+          "items": {
+            "multiparameter": "Multiparameter",
+            "telemetry": "Telemetry",
+            "oximetry": "Oximetry",
+            "capnography": "Capnography"
+          },
+          "interval": "Monthly"
+        },
+        "laboratory": {
+          "name": "Laboratory Equipment",
+          "items": {
+            "analyzers": "Analyzers",
+            "centrifuges": "Centrifuges",
+            "microscopes": "Microscopes",
+            "automatedSystems": "Automated systems"
+          },
+          "interval": "Monthly"
+        }
+      },
+      "form": {
+        "title": "Maintenance Request",
+        "description": "Fill out the form below to request an intervention",
+        "equipmentType": {
+          "label": "Equipment Type *",
+          "placeholder": "Select a type",
+          "options": {
+            "imaging": "Medical Imaging",
+            "cardio": "Cardio Equipment",
+            "monitoring": "Monitoring Systems",
+            "laboratory": "Laboratory Equipment",
+            "other": "Other"
+          }
+        },
+        "serialNumber": {
+          "label": "Serial Number",
+          "placeholder": "E.g.: KM2024-001"
+        },
+        "urgency": {
+          "label": "Urgency Level *",
+          "options": {
+            "low": "Low - Preventive maintenance",
+            "normal": "Normal - Within the week",
+            "high": "High - Within 24 hours",
+            "urgent": "Urgent - Immediate intervention"
+          }
+        },
+        "location": {
+          "label": "Location *",
+          "placeholder": "Equipment address"
+        },
+        "issueDescription": {
+          "label": "Problem Description *",
+          "placeholder": "Describe the issue in detail..."
+        },
+        "contactName": {
+          "label": "Contact Name *",
+          "placeholder": "Full name"
+        },
+        "contactPhone": {
+          "label": "Phone *"
+        },
+        "contactEmail": {
+          "label": "Email *"
+        },
+        "requiredFields": "* Required fields",
+        "submit": "Submit Request"
+      },
+      "contact": {
+        "title": "Emergency Maintenance Contact",
+        "description": "For emergencies, contact our technical team 24/7",
+        "emergency": {
+          "title": "24/7 Emergency",
+          "availability": "Available at all times"
+        },
+        "email": {
+          "title": "Technical Email",
+          "responseTime": "Response within 2 hours"
+        },
+        "intervention": {
+          "title": "Intervention",
+          "coverage": "Morocco & Africa",
+          "serviceType": "National service"
+        }
+      }
+    },
+    "training": {
+      "hero": {
+        "title": "Professional Training",
+        "description": "Develop your team's expertise with our certified training programs on the use and maintenance of medical equipment.",
+        "bookButton": "Book a Training"
+      },
+      "stats": {
+        "professionalsTrainedLabel": "Professionals trained",
+        "satisfactionRateLabel": "Satisfaction rate",
+        "postTrainingSupportLabel": "Post-training support",
+        "availableProgramsLabel": "Programs available"
+      },
+      "programsSection": {
+        "title": "Training Programs",
+        "description": "Training adapted to all levels, from introductory to advanced specialization",
+        "includedLabel": "Included in the training:",
+        "nextSessionsLabel": "Upcoming sessions:",
+        "perPerson": "/person",
+        "bookButton": "Book"
+      },
+      "programs": {
+        "ultrasound": {
+          "title": "Advanced Ultrasound Training",
+          "description": "Comprehensive training on the use of high-resolution ultrasound equipment",
+          "duration": "3 days",
+          "level": "Advanced",
+          "participants": "6-12 people",
+          "location": "KITMED Training Center",
+          "category": "Imaging",
+          "features": {
+            "0": "Theory and practice",
+            "1": "Certification included",
+            "2": "6-month technical support",
+            "3": "Complete documentation"
+          }
+        },
+        "cardio": {
+          "title": "Preventive Maintenance - Cardio Equipment",
+          "description": "Maintenance protocols and troubleshooting for cardiovascular equipment",
+          "duration": "2 days",
+          "level": "Intermediate",
+          "participants": "4-8 people",
+          "location": "Client site or KITMED center",
+          "category": "Maintenance",
+          "features": {
+            "0": "Preventive maintenance",
+            "1": "Fault diagnosis",
+            "2": "Spare parts",
+            "3": "Technical manual"
+          }
+        },
+        "monitoring": {
+          "title": "Advanced Monitoring Training",
+          "description": "Optimal use of multi-parameter monitoring systems",
+          "duration": "2 days",
+          "level": "Intermediate",
+          "participants": "8-15 people",
+          "location": "Training center or client site",
+          "category": "Monitoring",
+          "features": {
+            "0": "System configuration",
+            "1": "Alarms and alerts",
+            "2": "Data analysis",
+            "3": "User certification"
+          }
+        },
+        "laboratory": {
+          "title": "Laboratory Equipment Operation",
+          "description": "Hands-on training on analyzers and laboratory equipment",
+          "duration": "1 day",
+          "level": "Beginner",
+          "participants": "6-10 people",
+          "location": "Partner laboratory",
+          "category": "Laboratory",
+          "features": {
+            "0": "Basic operation",
+            "1": "Calibration",
+            "2": "Daily maintenance",
+            "3": "User guide"
+          }
+        }
+      },
+      "benefitsSection": {
+        "title": "Why Choose Our Training?"
+      },
+      "benefits": {
+        "certified": {
+          "title": "Certified Training",
+          "description": "Certificates recognized by health authorities"
+        },
+        "experts": {
+          "title": "Expert Trainers",
+          "description": "Certified and experienced biomedical engineers"
+        },
+        "continuousSupport": {
+          "title": "Continuous Support",
+          "description": "6-month technical assistance after training"
+        },
+        "documentation": {
+          "title": "Complete Documentation",
+          "description": "Technical manuals and guides included"
+        }
+      },
+      "testimonialsSection": {
+        "title": "Testimonials"
+      },
+      "testimonials": {
+        "0": {
+          "quote": "Excellent training with a very hands-on approach. The trainers are experts in their field.",
+          "position": "Head of Cardiology Department"
+        },
+        "1": {
+          "quote": "Thanks to this training, our team has fully mastered the new equipment. Exceptional after-sales service.",
+          "position": "Technical Manager"
+        }
+      },
+      "cta": {
+        "title": "Need Customized Training?",
+        "description": "We create tailored training programs adapted to the specific needs of your facility."
+      }
+    },
+    "documentation": {
+      "hero": {
+        "title": "Technical Documentation",
+        "description": "Access all technical documentation for our medical equipment: user manuals, installation guides, maintenance protocols and more.",
+        "searchPlaceholder": "Search documentation..."
+      },
+      "sidebar": {
+        "categoriesTitle": "Categories",
+        "quickAccessTitle": "Quick Access"
+      },
+      "categories": {
+        "all": "All documents",
+        "userManuals": "User manuals",
+        "technical": "Technical documentation",
+        "installation": "Installation guides",
+        "maintenance": "Maintenance"
+      },
+      "documents": {
+        "ultrasound": {
+          "title": "User Manual - Portable Ultrasound",
+          "description": "Complete user guide for high-resolution portable ultrasound",
+          "type": "User manual",
+          "language": "French"
+        },
+        "monitoring": {
+          "title": "Installation - Monitoring System",
+          "description": "Installation procedure and configuration of the monitoring system",
+          "type": "Installation guide",
+          "language": "French/English"
+        },
+        "cardio": {
+          "title": "Preventive Maintenance - Cardio Equipment",
+          "description": "Maintenance protocols for cardiovascular equipment",
+          "type": "Maintenance manual",
+          "language": "French"
+        },
+        "imaging": {
+          "title": "Technical Specifications - Medical Imaging",
+          "description": "Complete specifications for medical imaging equipment",
+          "type": "Technical documentation",
+          "language": "French/English"
+        }
+      },
+      "quickLinks": {
+        "ceCertificates": {
+          "title": "CE Certificates",
+          "description": "All European conformity certificates"
+        },
+        "safetySheets": {
+          "title": "Safety Data Sheets",
+          "description": "Safety data sheets for all products"
+        },
+        "videoTraining": {
+          "title": "Video Training",
+          "description": "Training video library"
+        },
+        "technicalSupport": {
+          "title": "Technical Support",
+          "description": "Direct access to technical support"
+        }
+      },
+      "documentCard": {
+        "type": "Type",
+        "size": "Size",
+        "language": "Language",
+        "version": "Version",
+        "download": "Download"
+      },
+      "results": {
+        "documentsFound": "{count, plural, =0 {No documents found} =1 {1 document found} other {# documents found}}"
+      },
+      "noResults": {
+        "title": "No documents found",
+        "description": "Try modifying your search criteria or contact our support team.",
+        "contactSupport": "Contact Support"
+      },
+      "helpSection": {
+        "title": "Need Additional Help?",
+        "description": "Our technical team is available to assist you with the use of our equipment.",
+        "contactSupport": "Contact Support",
+        "requestTraining": "Request Training"
+      }
     }
   }
 }

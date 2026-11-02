@@ -1,35 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get('locale') || 'fr';
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
-    const excludeZeroProducts = searchParams.get('excludeZeroProducts') === 'true';
+    const includeHierarchy = searchParams.get('hierarchy') === 'true';
 
-    // Get active categories with translations and product count
+    const counts = await getRecursiveProductCounts();
+
+    // Get active categories with translations, product count, and child categories
     const categories = await prisma.categories.findMany({
       where: {
         is_active: true,
-        parent_id: null, // Only root categories for homepage
+        parent_id: null, // Only root categories
       },
       orderBy: {
         sort_order: 'asc',
       },
       include: {
         category_translations: true,
-        ...(includeProductCount && {
-          _count: {
-            select: {
-              products: {
-                where: {
-                  status: 'active'
-                }
-              }
-            }
+        other_categories: {
+          where: { is_active: true },
+          orderBy: { sort_order: 'asc' },
+          include: {
+            category_translations: true,
           }
-        })
+        },
       }
     });
 
@@ -37,7 +36,21 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const processedCategories = categories.map(category => {
       const translation = category.category_translations.find(t => t.language_code === locale);
       const fallbackTranslation = category.category_translations.find(t => t.language_code === 'fr');
-      const productCount = category._count?.products || 0;
+
+      // Products anywhere below this category, not just one level down
+      const totalProductCount = counts.get(category.id) || 0;
+
+      // Process subcategories if hierarchy requested
+      const subcategories = includeHierarchy ? (category.other_categories || []).map(sub => {
+        const subTranslation = sub.category_translations.find(t => t.language_code === locale);
+        const subFallback = sub.category_translations.find(t => t.language_code === 'fr');
+        return {
+          id: sub.id,
+          name: subTranslation?.name || subFallback?.name || sub.name,
+          slug: sub.slug,
+          productCount: counts.get(sub.id) || 0
+        };
+      }).filter(sub => sub.productCount > 0) : undefined;
 
       return {
         id: category.id,
@@ -46,17 +59,20 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         description: translation?.description || fallbackTranslation?.description || category.description,
         imageUrl: category.image_url,
         sortOrder: category.sort_order,
+        count: String(totalProductCount),
         ...(includeProductCount && {
-          productCount
+          productCount: totalProductCount
+        }),
+        ...(includeHierarchy && {
+          subcategories
         })
       };
-    }).filter(category => {
-      // Filter out categories with zero products if requested
-      if (excludeZeroProducts && includeProductCount) {
-        return (category as any).productCount > 0;
-      }
-      return true;
-    });
+    })
+      // An empty category is an unfinished page ("catégorie en cours de
+      // développement"); the public site never links to one.
+      // Order is categories.sort_order (see orderBy above), which the catalogue
+      // scripts own -- no hardcoded specialty priority.
+      .filter(category => category.count !== '0');
 
     return NextResponse.json({
       success: true,

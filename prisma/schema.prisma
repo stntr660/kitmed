@@ -260,6 +260,7 @@ model products {
   slug                  String                 @unique
   status                String                 @default("active")
   is_featured           Boolean                @default(false)
+  is_new_arrival        Boolean                @default(false)
   sort_order            Int                    @default(0)
   meta_title            String?
   meta_description      String?
@@ -333,4 +334,19 @@ model users {
   activity_logs activity_logs[]
   notifications notifications[]
   user_sessions user_sessions[]
+}
+
+model contact_submissions {
+  id         String   @id @default(uuid())
+  first_name String
+  last_name  String
+  email      String
+  phone      String?
+  company    String?
+  subject    String
+  message    String
+  status     String   @default("new") // new, read, replied, archived
+  notes      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

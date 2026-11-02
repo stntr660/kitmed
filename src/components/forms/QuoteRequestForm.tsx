@@ -68,7 +68,7 @@ interface QuoteItem {
 }
 
 export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFormProps) {
-  const t = useTranslations();
+  const t = useTranslations('rfp.quoteForm');
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -195,7 +195,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     e.preventDefault();
 
     if (!formData.customerName || !formData.customerEmail) {
-      setError('Nom et email sont requis');
+      setError(t('nameEmailRequired'));
       return;
     }
 
@@ -229,7 +229,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Erreur lors de l\'envoi de la demande');
+        throw new Error(errorData.error || t('sendError'));
       }
 
       const result = await response.json();
@@ -261,7 +261,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
       }, 2000);
 
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur inattendue');
+      setError(err instanceof Error ? err.message : t('unexpectedError'));
     } finally {
       setLoading(false);
     }
@@ -269,7 +269,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
   const contactOptions = [
     { value: 'email', label: 'Email', icon: Mail },
-    { value: 'phone', label: 'Téléphone', icon: Phone },
+    { value: 'phone', label: t('phone'), icon: Phone },
     { value: 'whatsapp', label: 'WhatsApp', icon: MessageSquare },
   ];
 
@@ -279,7 +279,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
         {trigger || (
           <Button className="bg-primary text-white hover:bg-gray-600">
             <MessageSquare className="h-4 w-4 mr-2" />
-            Demander un Devis
+            {t('requestQuote')}
           </Button>
         )}
       </DialogTrigger>
@@ -288,23 +288,23 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
           <div className="text-center py-8">
             <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-green-800 mb-2">
-              Demande Envoyée !
+              {t('successTitle')}
             </h3>
             <p className="text-green-600 mb-4">
-              Votre demande de devis a été transmise avec succès.
+              {t('successMessage')}
             </p>
             <p className="text-sm text-gray-600">
-              Nous vous recontacterons dans les plus brefs délais.
+              {t('successFollowUp')}
             </p>
           </div>
         ) : (
           <>
             <DialogHeader>
               <DialogTitle className="text-xl font-bold text-gray-900">
-                Demande de Devis
+                {t('title')}
               </DialogTitle>
               <DialogDescription className="text-gray-600">
-                Remplissez les informations essentielles pour recevoir un devis personnalisé.
+                {t('description')}
               </DialogDescription>
             </DialogHeader>
 
@@ -323,7 +323,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                   className="flex items-center gap-2"
                 >
                   <Plus className="h-4 w-4" />
-                  Ajouter un produit
+                  {t('addProduct')}
                 </Button>
               </div>
 
@@ -331,7 +331,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
               {showProductSelector && (
                 <div className="mb-4 p-4 bg-white rounded-lg border">
                   <div className="flex items-center justify-between mb-3">
-                    <h5 className="font-medium text-gray-900">Sélectionner un produit</h5>
+                    <h5 className="font-medium text-gray-900">{t('selectProduct')}</h5>
                     <Button
                       type="button"
                       size="sm"
@@ -349,7 +349,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                   <div className="relative mb-3">
                     <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <Input
-                      placeholder="Rechercher dans la liste..."
+                      placeholder={t('searchPlaceholder')}
                       value={productSearchQuery}
                       onChange={(e) => setProductSearchQuery(e.target.value)}
                       className="pl-10"
@@ -358,7 +358,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
                   {loadingProducts ? (
                     <div className="flex items-center justify-center py-8">
-                      <div className="text-sm text-gray-500">Chargement des produits...</div>
+                      <div className="text-sm text-gray-500">{t('loadingProducts')}</div>
                     </div>
                   ) : (
                     <div className="max-h-64 overflow-y-auto border rounded-md">
@@ -373,8 +373,8 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="text-sm font-medium text-gray-900">{getProductName(prod)}</div>
-                                <div className="text-xs text-gray-500 mt-1">Réf: {prod.referenceFournisseur}</div>
-                                <div className="text-xs text-gray-400 mt-1">Constructeur: {prod.constructeur}</div>
+                                <div className="text-xs text-gray-500 mt-1">{t('ref')}: {prod.referenceFournisseur}</div>
+                                <div className="text-xs text-gray-400 mt-1">{t('manufacturer')}: {prod.constructeur}</div>
                               </div>
                               <div className="text-right">
                                 <Plus className="h-4 w-4 text-gray-400" />
@@ -384,7 +384,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                         ))
                       ) : (
                         <div className="p-4 text-center text-sm text-gray-500">
-                          {productSearchQuery ? 'Aucun produit trouvé' : 'Aucun produit disponible'}
+                          {productSearchQuery ? t('noProductsFound') : t('noProductsAvailable')}
                         </div>
                       )}
                     </div>
@@ -399,11 +399,11 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <h5 className="font-medium text-sm">{item.productName}</h5>
-                        <p className="text-xs text-gray-500">Réf: {item.productRef}</p>
+                        <p className="text-xs text-gray-500">{t('ref')}: {item.productRef}</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="flex items-center gap-1">
-                          <label className="text-xs text-gray-600">Qté:</label>
+                          <label className="text-xs text-gray-600">{t('qty')}:</label>
                           <Input
                             type="number"
                             min="1"
@@ -428,7 +428,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
                 {quoteItems.length === 0 && (
                   <div className="text-center py-4 text-gray-500 text-sm">
-                    Aucun produit sélectionné. Cliquez sur "Ajouter un produit" pour commencer.
+                    {t('noProductsSelected')}
                   </div>
                 )}
               </div>
@@ -438,13 +438,13 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="customerName" className="text-sm text-gray-700 mb-1 block">
-                    Nom Complet *
+                    {t('fullName')} *
                   </label>
                   <Input
                     id="customerName"
                     value={formData.customerName}
                     onChange={(e) => handleInputChange('customerName', e.target.value)}
-                    placeholder="Votre nom et prénom"
+                    placeholder={t('fullNamePlaceholder')}
                     required
                     className="h-10"
                   />
@@ -452,14 +452,14 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
                 <div>
                   <label htmlFor="customerEmail" className="text-sm text-gray-700 mb-1 block">
-                    Email *
+                    {t('email')} *
                   </label>
                   <Input
                     id="customerEmail"
                     type="email"
                     value={formData.customerEmail}
                     onChange={(e) => handleInputChange('customerEmail', e.target.value)}
-                    placeholder="votre.email@exemple.com"
+                    placeholder={t('emailPlaceholder')}
                     required
                     className="h-10"
                   />
@@ -469,27 +469,27 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="customerPhone" className="text-sm text-gray-700 mb-1 block">
-                    Téléphone
+                    {t('phone')}
                   </label>
                   <Input
                     id="customerPhone"
                     type="tel"
                     value={formData.customerPhone}
                     onChange={(e) => handleInputChange('customerPhone', e.target.value)}
-                    placeholder="+212 6XX XXX XXX"
+                    placeholder={t('phonePlaceholder')}
                     className="h-10"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="companyName" className="text-sm text-gray-700 mb-1 block">
-                    Entreprise
+                    {t('company')}
                   </label>
                   <Input
                     id="companyName"
                     value={formData.companyName}
                     onChange={(e) => handleInputChange('companyName', e.target.value)}
-                    placeholder="Nom de votre entreprise"
+                    placeholder={t('companyPlaceholder')}
                     className="h-10"
                   />
                 </div>
@@ -497,13 +497,13 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
 
               <div>
                 <label htmlFor="message" className="text-sm text-gray-700 mb-1 block">
-                  Message
+                  {t('message')}
                 </label>
                 <Textarea
                   id="message"
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
-                  placeholder="Décrivez vos besoins spécifiques..."
+                  placeholder={t('messagePlaceholder')}
                   rows={3}
                   className="resize-none"
                 />
@@ -525,7 +525,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                   onClick={() => setOpen(false)}
                   disabled={loading}
                 >
-                  Annuler
+                  {t('cancel')}
                 </Button>
                 <Button
                   type="submit"
@@ -535,12 +535,12 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
                   {loading ? (
                     <>
                       <LoadingSpinner size="sm" className="mr-2" />
-                      Envoi...
+                      {t('sending')}
                     </>
                   ) : (
                     <>
                       <MessageSquare className="h-4 w-4 mr-2" />
-                      Envoyer la Demande
+                      {t('submitRequest')}
                     </>
                   )}
                 </Button>

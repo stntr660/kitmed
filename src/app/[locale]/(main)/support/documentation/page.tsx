@@ -23,66 +23,66 @@ import {
 import { useState } from 'react';
 
 export default function DocumentationPage() {
-  const t = useTranslations('documentation');
+  const t = useTranslations('support.documentation');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const documentCategories = [
-    { id: 'all', name: 'Tous les documents', count: 45, icon: FileText },
-    { id: 'user-manuals', name: 'Manuels d\'utilisation', count: 18, icon: Book },
-    { id: 'technical', name: 'Documentation technique', count: 12, icon: Wrench },
-    { id: 'installation', name: 'Guides d\'installation', count: 8, icon: Monitor },
-    { id: 'maintenance', name: 'Maintenance', count: 7, icon: Heart }
+    { id: 'all', name: t('categories.all'), count: 45, icon: FileText },
+    { id: 'user-manuals', name: t('categories.userManuals'), count: 18, icon: Book },
+    { id: 'technical', name: t('categories.technical'), count: 12, icon: Wrench },
+    { id: 'installation', name: t('categories.installation'), count: 8, icon: Monitor },
+    { id: 'maintenance', name: t('categories.maintenance'), count: 7, icon: Heart }
   ];
 
   const featuredDocuments = [
     {
-      title: "Manuel d'Utilisation - Échographe Portable",
-      description: "Guide complet d'utilisation pour échographe portable haute résolution",
-      type: "Manuel utilisateur",
+      title: t('documents.ultrasound.title'),
+      description: t('documents.ultrasound.description'),
+      type: t('documents.ultrasound.type'),
       category: "user-manuals",
       format: "PDF",
       size: "15.2 MB",
-      language: "Français",
+      language: t('documents.ultrasound.language'),
       version: "v2.3",
       downloadUrl: "#",
       icon: FileText,
       color: "blue"
     },
     {
-      title: "Installation - Système de Monitoring",
-      description: "Procédure d'installation et configuration du système de monitoring",
-      type: "Guide d'installation",
+      title: t('documents.monitoring.title'),
+      description: t('documents.monitoring.description'),
+      type: t('documents.monitoring.type'),
       category: "installation",
       format: "PDF",
       size: "8.7 MB",
-      language: "Français/Anglais",
+      language: t('documents.monitoring.language'),
       version: "v1.8",
       downloadUrl: "#",
       icon: Monitor,
       color: "green"
     },
     {
-      title: "Maintenance Préventive - Équipement Cardio",
-      description: "Protocoles de maintenance pour équipements cardiovasculaires",
-      type: "Manuel maintenance",
+      title: t('documents.cardio.title'),
+      description: t('documents.cardio.description'),
+      type: t('documents.cardio.type'),
       category: "maintenance",
       format: "PDF",
       size: "12.4 MB",
-      language: "Français",
+      language: t('documents.cardio.language'),
       version: "v3.1",
       downloadUrl: "#",
       icon: Heart,
       color: "red"
     },
     {
-      title: "Spécifications Techniques - Imagerie Médicale",
-      description: "Spécifications complètes pour équipements d'imagerie médicale",
-      type: "Documentation technique",
+      title: t('documents.imaging.title'),
+      description: t('documents.imaging.description'),
+      type: t('documents.imaging.type'),
       category: "technical",
       format: "PDF",
       size: "22.1 MB",
-      language: "Français/Anglais",
+      language: t('documents.imaging.language'),
       version: "v4.0",
       downloadUrl: "#",
       icon: Camera,
@@ -92,26 +92,26 @@ export default function DocumentationPage() {
 
   const quickLinks = [
     {
-      title: "Certificats CE",
-      description: "Tous les certificats de conformité européenne",
+      title: t('quickLinks.ceCertificates.title'),
+      description: t('quickLinks.ceCertificates.description'),
       icon: FileText,
       link: "#"
     },
     {
-      title: "Fiches de Sécurité",
-      description: "Fiches de données de sécurité pour tous les produits",
+      title: t('quickLinks.safetySheets.title'),
+      description: t('quickLinks.safetySheets.description'),
       icon: FileText,
       link: "#"
     },
     {
-      title: "Formations Vidéo",
-      description: "Bibliothèque de vidéos de formation",
+      title: t('quickLinks.videoTraining.title'),
+      description: t('quickLinks.videoTraining.description'),
       icon: Video,
       link: "#"
     },
     {
-      title: "Support Technique",
-      description: "Accès direct au support technique",
+      title: t('quickLinks.technicalSupport.title'),
+      description: t('quickLinks.technicalSupport.description'),
       icon: Wrench,
       link: "#"
     }
@@ -131,11 +131,10 @@ export default function DocumentationPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-              Documentation Technique
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-              Accédez à toute la documentation technique de nos équipements médicaux :
-              manuels d'utilisation, guides d'installation, protocoles de maintenance et plus encore.
+              {t('hero.description')}
             </p>
 
             {/* Search Bar */}
@@ -144,7 +143,7 @@ export default function DocumentationPage() {
                 <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
                 <Input
                   type="search"
-                  placeholder="Rechercher dans la documentation..."
+                  placeholder={t('hero.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 h-12 text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500"
@@ -163,7 +162,7 @@ export default function DocumentationPage() {
               <CardHeader>
                 <CardTitle className="text-lg font-medium flex items-center">
                   <Filter className="h-5 w-5 mr-2" />
-                  Catégories
+                  {t('sidebar.categoriesTitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -192,7 +191,7 @@ export default function DocumentationPage() {
             {/* Quick Links */}
             <Card className="border border-gray-200 mt-6">
               <CardHeader>
-                <CardTitle className="text-lg font-medium">Accès Rapide</CardTitle>
+                <CardTitle className="text-lg font-medium">{t('sidebar.quickAccessTitle')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {quickLinks.map((link, index) => (
@@ -224,11 +223,11 @@ export default function DocumentationPage() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-light text-gray-900">
-                  {selectedCategory === 'all' ? 'Tous les documents' :
+                  {selectedCategory === 'all' ? t('categories.all') :
                    documentCategories.find(c => c.id === selectedCategory)?.name}
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  {filteredDocuments.length} document{filteredDocuments.length > 1 ? 's' : ''} trouvé{filteredDocuments.length > 1 ? 's' : ''}
+                  {t('results.documentsFound', { count: filteredDocuments.length })}
                 </p>
               </div>
             </div>
@@ -255,19 +254,19 @@ export default function DocumentationPage() {
 
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>Type</span>
+                          <span>{t('documentCard.type')}</span>
                           <span>{doc.type}</span>
                         </div>
                         <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>Taille</span>
+                          <span>{t('documentCard.size')}</span>
                           <span>{doc.size}</span>
                         </div>
                         <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>Langue</span>
+                          <span>{t('documentCard.language')}</span>
                           <span>{doc.language}</span>
                         </div>
                         <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>Version</span>
+                          <span>{t('documentCard.version')}</span>
                           <span>{doc.version}</span>
                         </div>
                       </div>
@@ -275,7 +274,7 @@ export default function DocumentationPage() {
                       <div className="flex items-center space-x-2 pt-2">
                         <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white flex-1">
                           <Download className="h-4 w-4 mr-2" />
-                          Télécharger
+                          {t('documentCard.download')}
                         </Button>
                         <Button size="sm" variant="outline">
                           <ExternalLink className="h-4 w-4" />
@@ -290,12 +289,12 @@ export default function DocumentationPage() {
             {filteredDocuments.length === 0 && (
               <div className="text-center py-12">
                 <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Aucun document trouvé</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('noResults.title')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Essayez de modifier vos critères de recherche ou contactez notre support.
+                  {t('noResults.description')}
                 </p>
                 <Button variant="outline">
-                  Contacter le Support
+                  {t('noResults.contactSupport')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -309,18 +308,18 @@ export default function DocumentationPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-light text-gray-900 mb-4">
-              Besoin d'Aide Supplémentaire ?
+              {t('helpSection.title')}
             </h2>
             <p className="text-gray-600 mb-8">
-              Notre équipe technique est disponible pour vous accompagner dans l'utilisation de nos équipements.
+              {t('helpSection.description')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                Contacter le Support
+                {t('helpSection.contactSupport')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button size="lg" variant="outline">
-                Demander une Formation
+                {t('helpSection.requestTraining')}
                 <Video className="ml-2 h-5 w-5" />
               </Button>
             </div>

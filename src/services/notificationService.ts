@@ -57,8 +57,8 @@ class NotificationService {
       type: 'rfp',
       priority: isUrgent ? 'high' : 'medium',
       title: isUrgent ?
-        `🚨 Nouveau devis URGENT - ${rfpData.customerName}` :
-        `📋 Nouveau devis - ${rfpData.customerName}`,
+        `[URGENT] Nouveau devis - ${rfpData.customerName}` :
+        `Nouveau devis - ${rfpData.customerName}`,
       message: isUrgent ?
         `Demande urgente nécessitant une réponse dans les 24h` :
         `Nouvelle demande de devis reçue et en attente de traitement`,
@@ -89,7 +89,7 @@ class NotificationService {
     await this.createNotification({
       type: 'rfp',
       priority,
-      title: `${rfpData.status === 'accepted' ? '✅' : rfpData.status === 'rejected' ? '❌' : '📋'} Devis ${rfpData.customerName}`,
+      title: `Devis ${rfpData.customerName}`,
       message: statusMessages[rfpData.status as keyof typeof statusMessages] || `Statut mis à jour: ${rfpData.status}`,
       data: rfpData,
       actionRequired: rfpData.status === 'accepted',
@@ -111,8 +111,8 @@ class NotificationService {
       type: 'inventory',
       priority: isCritical ? 'critical' : 'medium',
       title: isCritical ?
-        `🔴 Rupture de stock - ${productData.name}` :
-        `⚠️ Stock faible - ${productData.name}`,
+        `[ALERTE] Rupture de stock - ${productData.name}` :
+        `Stock faible - ${productData.name}`,
       message: isCritical ?
         'Produit en rupture de stock. Réapprovisionnement urgent requis.' :
         `Stock actuel: ${productData.currentStock} unités (seuil: ${productData.minThreshold})`,
@@ -131,7 +131,7 @@ class NotificationService {
     await this.createNotification({
       type: 'inventory',
       priority: 'low',
-      title: `✅ Stock réapprovisionné - ${productData.name}`,
+      title: `Stock réapprovisionné - ${productData.name}`,
       message: `+${productData.addedQuantity} unités ajoutées. Stock actuel: ${productData.newStock}`,
       data: productData,
       actionRequired: false,
@@ -149,7 +149,7 @@ class NotificationService {
     await this.createNotification({
       type: 'product',
       priority: 'low',
-      title: `➕ Nouveau produit ajouté`,
+      title: `Nouveau produit ajouté`,
       message: `${productData.name} ajouté dans ${productData.category} par ${productData.addedBy}`,
       data: productData,
       actionRequired: false,
@@ -166,7 +166,7 @@ class NotificationService {
     await this.createNotification({
       type: 'product',
       priority: 'low',
-      title: `📝 Produit mis à jour - ${productData.name}`,
+      title: `Produit mis à jour - ${productData.name}`,
       message: `Modifications: ${productData.changes.join(', ')} par ${productData.updatedBy}`,
       data: productData,
       actionRequired: false,
@@ -184,7 +184,7 @@ class NotificationService {
     await this.createNotification({
       type: 'user',
       priority: 'medium',
-      title: `👤 Nouvel utilisateur - ${userData.name}`,
+      title: `Nouvel utilisateur - ${userData.name}`,
       message: `Nouvel utilisateur enregistré avec le rôle ${userData.role}`,
       data: userData,
       actionRequired: true,
@@ -202,7 +202,7 @@ class NotificationService {
     await this.createNotification({
       type: 'security',
       priority: 'high',
-      title: `🚨 Activité suspecte détectée`,
+      title: `Activité suspecte détectée`,
       message: `${activityData.activityType}: ${activityData.details}`,
       data: activityData,
       actionRequired: true,
@@ -220,7 +220,7 @@ class NotificationService {
     await this.createNotification({
       type: 'system',
       priority: 'critical',
-      title: `🔧 Maintenance système programmée`,
+      title: `Maintenance système programmée`,
       message: `Maintenance de ${new Date(maintenanceData.startTime).toLocaleString('fr-FR')} à ${new Date(maintenanceData.endTime).toLocaleString('fr-FR')}`,
       data: maintenanceData,
       actionRequired: false,
@@ -239,8 +239,8 @@ class NotificationService {
       type: 'system',
       priority: hasSecurityFixes ? 'high' : 'medium',
       title: hasSecurityFixes ?
-        `🔒 Mise à jour de sécurité disponible v${updateData.version}` :
-        `⬆️ Nouvelle version disponible v${updateData.version}`,
+        `[SECURITE] Mise à jour disponible v${updateData.version}` :
+        `Nouvelle version disponible v${updateData.version}`,
       message: hasSecurityFixes ?
         'Mise à jour de sécurité critique disponible. Installation recommandée.' :
         `Nouvelles fonctionnalités: ${updateData.features.slice(0, 2).join(', ')}`,
@@ -261,9 +261,9 @@ class NotificationService {
       backupData.status === 'partial' ? 'medium' : 'low';
 
     const statusEmoji = {
-      'success': '✅',
-      'failed': '❌',
-      'partial': '⚠️'
+      'success': '[OK]',
+      'failed': '[ERREUR]',
+      'partial': '[PARTIEL]'
     };
 
     await this.createNotification({
@@ -289,7 +289,7 @@ class NotificationService {
       await this.createNotification({
         type: 'inventory',
         priority: updates.criticalItems > 0 ? 'critical' : 'high',
-        title: `📊 Alerte stock multiple`,
+        title: `Alerte stock multiple`,
         message: `${updates.criticalItems} produits en rupture, ${updates.lowStockItems} avec stock faible sur ${updates.totalProducts} vérifiés`,
         data: updates,
         actionRequired: true,
@@ -308,7 +308,7 @@ class NotificationService {
     await this.createNotification({
       type: 'system',
       priority: 'low',
-      title: `📊 Rapport quotidien - ${new Date(reportData.date).toLocaleDateString('fr-FR')}`,
+      title: `Rapport quotidien - ${new Date(reportData.date).toLocaleDateString('fr-FR')}`,
       message: `${reportData.newRFPs} nouveaux devis, ${reportData.completedRFPs} finalisés, ${reportData.lowStockAlerts} alertes stock`,
       data: reportData,
       actionRequired: false,

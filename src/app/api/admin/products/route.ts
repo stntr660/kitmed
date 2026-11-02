@@ -31,22 +31,38 @@ async function getProducts(request: NextRequest) {
       where.slug = filters.slug;
     }
 
-    // Text search in product translations
+    // Text search in product translations (case-insensitive)
     if (filters.query) {
       where.OR = [
-        { reference_fournisseur: { contains: filters.query } },
-        { constructeur: { contains: filters.query } },
+        { reference_fournisseur: { contains: filters.query, mode: 'insensitive' } },
+        { constructeur: { contains: filters.query, mode: 'insensitive' } },
         {
           product_translations: {
             some: {
-              nom: { contains: filters.query }
+              nom: { contains: filters.query, mode: 'insensitive' }
             }
           }
         },
         {
           product_translations: {
             some: {
-              description: { contains: filters.query }
+              description: { contains: filters.query, mode: 'insensitive' }
+            }
+          }
+        },
+        // Search by brand/manufacturer name via partner relation
+        {
+          partners: {
+            name: { contains: filters.query, mode: 'insensitive' }
+          }
+        },
+        // Search in partner translations (multilingual brand names)
+        {
+          partners: {
+            partner_translations: {
+              some: {
+                name: { contains: filters.query, mode: 'insensitive' }
+              }
             }
           }
         }
@@ -98,6 +114,20 @@ async function getProducts(request: NextRequest) {
             select: {
               product_media: true
             }
+          },
+          partners: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              logo_url: true,
+              partner_translations: {
+                select: {
+                  name: true,
+                  language_code: true
+                }
+              }
+            }
           }
         },
         orderBy: { [filters.sortBy]: filters.sortOrder },
@@ -107,18 +137,24 @@ async function getProducts(request: NextRequest) {
       prisma.products.count({ where }),
     ]);
 
-    // Transform the data to match expected format
+    // Transform the data to match expected format (camelCase for frontend)
     const transformedItems = items.map(product => ({
       id: product.id,
-      reference_fournisseur: product.reference_fournisseur,
+      referenceFournisseur: product.reference_fournisseur,
+      reference_fournisseur: product.reference_fournisseur, // Keep snake_case for backwards compatibility
       constructeur: product.constructeur,
       slug: product.slug,
-      category_id: product.category_id,
+      categoryId: product.category_id,
+      category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
-      pdf_brochure_url: product.pdf_brochure_url,
-      created_at: product.created_at,
-      updated_at: product.updated_at,
+      newArrival: product.is_new_arrival,
+      pdfBrochureUrl: product.pdf_brochure_url,
+      pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
+      createdAt: product.created_at,
+      created_at: product.created_at, // Keep snake_case for backwards compatibility
+      updatedAt: product.updated_at,
+      updated_at: product.updated_at, // Keep snake_case for backwards compatibility
       // Create a name field from French translation for compatibility
       name: product.product_translations.find(t => t.language_code === 'fr')?.nom ||
             product.product_translations[0]?.nom ||
@@ -139,6 +175,10 @@ async function getProducts(request: NextRequest) {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
       },
+      ficheTechnique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
+      },
       fiche_technique: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
@@ -154,8 +194,15 @@ async function getProducts(request: NextRequest) {
       } : null,
       // Add manufacturer object for compatibility
       manufacturer: {
-        name: product.constructeur || 'Unknown Manufacturer'
+        id: product.partners?.id || null,
+        name: product.partners?.name || product.constructeur || 'Unknown Manufacturer',
+        slug: product.partners?.slug || null,
+        logo_url: product.partners?.logo_url || null,
+        translations: product.partners?.partner_translations || []
       },
+      // Add partner_id for brand association
+      partnerId: product.partner_id,
+      partner_id: product.partner_id,
       // Add discipline object based on category for compatibility
       discipline: product.categories ? {
         name: {
@@ -223,10 +270,14 @@ async function getProducts(request: NextRequest) {
 }
 
 // POST /api/admin/products - Create new product
+// Accept both camelCase (frontend) and snake_case (legacy) field names
 const createProductSchema = z.object({
-  reference_fournisseur: z.string().min(1, 'Référence fournisseur est requise'),
+  // Accept both naming conventions
+  referenceFournisseur: z.string().min(1, 'Référence fournisseur est requise').optional(),
+  reference_fournisseur: z.string().min(1, 'Référence fournisseur est requise').optional(),
   constructeur: z.string().min(1, 'Constructeur est requis'),
-  category_id: z.string().min(1, 'Catégorie est requise'),
+  categoryId: z.string().min(1, 'Catégorie est requise').optional(),
+  category_id: z.string().min(1, 'Catégorie est requise').optional(),
   nom: z.object({
     fr: z.string().min(1, 'Nom en français est requis'),
     en: z.string().optional(), // English is optional for French-first approach
@@ -235,13 +286,19 @@ const createProductSchema = z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
+  ficheTechnique: z.object({
+    fr: z.string().optional(),
+    en: z.string().optional(),
+  }).optional(),
   fiche_technique: z.object({
     fr: z.string().optional(),
     en: z.string().optional(),
   }).optional(),
-  pdf_brochure_url: z.string().url().optional().or(z.literal('')),
+  pdfBrochureUrl: z.string().optional().or(z.literal('')).or(z.literal(null)),
+  pdf_brochure_url: z.string().optional().or(z.literal('')).or(z.literal(null)),
   status: z.enum(['active', 'inactive', 'discontinued']).default('active'),
   featured: z.boolean().default(false),
+  newArrival: z.boolean().default(false),
   seo: z.object({
     title: z.record(z.string(), z.string()).optional(),
     description: z.record(z.string(), z.string()).optional(),
@@ -249,6 +306,10 @@ const createProductSchema = z.object({
     canonical: z.string().url().optional(),
     noIndex: z.boolean().optional(),
   }).optional(),
+}).refine(data => data.referenceFournisseur || data.reference_fournisseur, {
+  message: 'Référence fournisseur est requise',
+}).refine(data => data.categoryId || data.category_id, {
+  message: 'Catégorie est requise',
 });
 
 async function createProduct(request: NextRequest) {
@@ -274,6 +335,12 @@ async function createProduct(request: NextRequest) {
 
     const productData = validation.data;
 
+    // Normalize field names (accept both camelCase and snake_case)
+    const referenceFournisseur = productData.referenceFournisseur || productData.reference_fournisseur;
+    const categoryId = productData.categoryId || productData.category_id;
+    const ficheTechnique = productData.ficheTechnique || productData.fiche_technique;
+    const pdfBrochureUrl = productData.pdfBrochureUrl || productData.pdf_brochure_url;
+
     // Generate unique slug from French name (primary language)
     const baseSlug = productData.nom.fr
       .toLowerCase()
@@ -287,26 +354,31 @@ async function createProduct(request: NextRequest) {
     // Create product in database
     const product = await prisma.products.create({
       data: {
-        reference_fournisseur: productData.reference_fournisseur,
+        id: crypto.randomUUID(),
+        reference_fournisseur: referenceFournisseur,
         constructeur: productData.constructeur,
-        category_id: productData.category_id,
+        category_id: categoryId,
         slug,
         status: productData.status,
         is_featured: productData.featured,
-        pdf_brochure_url: productData.pdf_brochure_url || null,
+        is_new_arrival: productData.newArrival,
+        pdf_brochure_url: pdfBrochureUrl || null,
+        updated_at: new Date(),
         product_translations: {
           create: [
             {
+              id: crypto.randomUUID(),
               language_code: 'fr',
               nom: productData.nom.fr,
               description: productData.description?.fr || null,
-              fiche_technique: productData.fiche_technique?.fr || null,
+              fiche_technique: ficheTechnique?.fr || null,
             },
             ...(productData.nom.en ? [{
+              id: crypto.randomUUID(),
               language_code: 'en',
               nom: productData.nom.en,
               description: productData.description?.en || null,
-              fiche_technique: productData.fiche_technique?.en || null,
+              fiche_technique: ficheTechnique?.en || null,
             }] : []),
           ],
         },
@@ -321,17 +393,23 @@ async function createProduct(request: NextRequest) {
       },
     });
 
-    // Transform the response to match expected format
+    // Transform the response to match expected format (camelCase for frontend)
     const transformedProduct = {
       id: product.id,
-      reference_fournisseur: product.reference_fournisseur,
+      referenceFournisseur: product.reference_fournisseur,
+      reference_fournisseur: product.reference_fournisseur, // Keep snake_case for backwards compatibility
       constructeur: product.constructeur,
-      category_id: product.category_id,
+      categoryId: product.category_id,
+      category_id: product.category_id, // Keep snake_case for backwards compatibility
       status: product.status,
       featured: product.is_featured,
-      pdf_brochure_url: product.pdf_brochure_url,
-      created_at: product.created_at,
-      updated_at: product.updated_at,
+      newArrival: product.is_new_arrival,
+      pdfBrochureUrl: product.pdf_brochure_url,
+      pdf_brochure_url: product.pdf_brochure_url, // Keep snake_case for backwards compatibility
+      createdAt: product.created_at,
+      created_at: product.created_at, // Keep snake_case for backwards compatibility
+      updatedAt: product.updated_at,
+      updated_at: product.updated_at, // Keep snake_case for backwards compatibility
       nom: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.nom || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.nom || '',
@@ -339,6 +417,10 @@ async function createProduct(request: NextRequest) {
       description: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.description || '',
         en: product.product_translations.find(t => t.language_code === 'en')?.description || '',
+      },
+      ficheTechnique: {
+        fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
+        en: product.product_translations.find(t => t.language_code === 'en')?.fiche_technique || '',
       },
       fiche_technique: {
         fr: product.product_translations.find(t => t.language_code === 'fr')?.fiche_technique || '',
@@ -358,6 +440,58 @@ async function createProduct(request: NextRequest) {
     });
   } catch (error) {
     console.error('Product creation error:', error);
+
+    // Handle Prisma-specific errors
+    if (error && typeof error === 'object' && 'code' in error) {
+      const prismaError = error as { code: string; meta?: { target?: string[] } };
+
+      // Unique constraint violation
+      if (prismaError.code === 'P2002') {
+        const field = prismaError.meta?.target?.[0] || 'field';
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'DUPLICATE_ENTRY',
+              message: `A product with this ${field} already exists`,
+              field: field,
+              details: `Duplicate value for ${field}`,
+            },
+          },
+          { status: 409 }
+        );
+      }
+
+      // Foreign key constraint failure
+      if (prismaError.code === 'P2003') {
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'INVALID_REFERENCE',
+              message: 'Invalid category or manufacturer reference',
+              details: 'The referenced category or manufacturer does not exist',
+            },
+          },
+          { status: 400 }
+        );
+      }
+
+      // Record not found
+      if (prismaError.code === 'P2025') {
+        return NextResponse.json(
+          {
+            success: false,
+            error: {
+              code: 'NOT_FOUND',
+              message: 'Referenced record not found',
+              details: 'A required related record does not exist',
+            },
+          },
+          { status: 404 }
+        );
+      }
+    }
 
     return NextResponse.json(
       {

@@ -9,13 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import {
+  ExternalLink,
   ArrowLeft,
   Download,
   Heart,
   Share2,
-  Star,
   Building2,
-  Award,
   FileText,
   Image as ImageIcon,
   CheckCircle,
@@ -25,8 +24,8 @@ import {
   Sparkles
 } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -37,6 +36,7 @@ interface Product {
   pdfSource?: 'product' | 'manufacturer' | null;
   status: string;
   isFeatured: boolean;
+  isNewArrival?: boolean;
   createdAt: string;
   category?: {
     id: string;
@@ -69,6 +69,9 @@ interface Product {
 export default function ProductDetailPage() {
   const params = useHydrationSafeParams();
   const slug = params.slug as string;
+  const locale = (params.locale as string) || 'fr';
+  const t = useTranslations('products.detail');
+  const tCommon = useTranslations('common');
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -77,14 +80,14 @@ export default function ProductDetailPage() {
     if (slug) {
       loadProduct();
     }
-  }, [slug]);
+  }, [slug, locale]);
 
   const loadProduct = async () => {
     try {
       setLoading(true);
 
       // Try to fetch real product data by slug using the public API
-      const response = await fetch(`/api/products/${slug}`);
+      const response = await fetch(`/api/products/${slug}?locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         if (data.success && data.data) {
@@ -149,25 +152,28 @@ export default function ProductDetailPage() {
     }
   };
 
-  const getProductName = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductName = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.nom || product.referenceFournisseur;
   };
 
-  const getProductDescription = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductDescription = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.description;
   };
 
-  const getProductSpecs = (product: Product, locale: string = 'fr') => {
-    const translation = product.translations?.find(t => t.languageCode === locale);
+  const getProductSpecs = (product: Product) => {
+    const translation = product.translations?.find(t => t.languageCode === locale)
+      || product.translations?.find(t => t.languageCode === 'fr');
     return translation?.ficheTechnique;
   };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <LoadingSpinner size="lg" text="Chargement du produit..." />
+        <LoadingSpinner size="lg" text={t('loading')} />
       </div>
     );
   }
@@ -176,11 +182,11 @@ export default function ProductDetailPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-slate-900 mb-4">Produit non trouvé</h1>
+          <h1 className="text-2xl font-bold text-slate-900 mb-4">{t('notFound')}</h1>
           <Button asChild>
-            <Link href="/products">
+            <Link href={`/${locale}/products/disciplines`}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour au catalogue
+              {t('backToCatalog')}
             </Link>
           </Button>
         </div>
@@ -197,14 +203,14 @@ export default function ProductDetailPage() {
       <nav className="bg-white border-b border-slate-200 py-4">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex items-center text-sm text-slate-600">
-            <Link href="/products" className="hover:text-gray-600 transition-colors">
-              Produits
+            <Link href={`/${locale}/products/disciplines`} className="hover:text-gray-600 transition-colors">
+              {t('breadcrumbProducts')}
             </Link>
             <span className="mx-2">/</span>
             {product.category && (
               <>
-                <Link href={`/products?category=${product.category.slug}`} className="hover:text-gray-600 transition-colors">
-                  {product.category.name?.fr || product.category.name?.en || 'Category'}
+                <Link href={`/${locale}/products/categories/${product.category.slug}`} className="hover:text-gray-600 transition-colors">
+                  {product.category.name}
                 </Link>
                 <span className="mx-2">/</span>
               </>
@@ -238,15 +244,21 @@ export default function ProductDetailPage() {
 
                   {/* Status Badges */}
                   <div className="absolute top-6 left-6 space-y-2">
+                    {product.isNewArrival && (
+                      <Badge className="bg-primary text-white border-0">
+                        <Sparkles className="h-3 w-3 mr-1" />
+                        {tCommon('newArrival')}
+                      </Badge>
+                    )}
                     {product.isFeatured && (
                       <Badge className="bg-accent-500 text-white border-0">
                         <Sparkles className="h-3 w-3 mr-1" />
-                        Produit Vedette
+                        {t('featuredBadge')}
                       </Badge>
                     )}
                     <Badge variant="secondary" className="bg-green-100 text-green-800">
                       <CheckCircle className="h-3 w-3 mr-1" />
-                      Disponible
+                      {t('available')}
                     </Badge>
                   </div>
 
@@ -305,12 +317,6 @@ export default function ProductDetailPage() {
                     <Building2 className="h-4 w-4" />
                     {product.partner?.name || product.constructeur}
                   </Badge>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-300 text-amber-300" />
-                    ))}
-                    <span className="text-sm text-slate-600 ml-1">(4.8)</span>
-                  </div>
                 </div>
 
                 <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
@@ -318,7 +324,7 @@ export default function ProductDetailPage() {
                 </h1>
 
                 <div className="text-sm text-slate-500 font-mono mb-6">
-                  Référence: {product.referenceFournisseur}
+                  {t('reference')}: {product.referenceFournisseur}
                 </div>
 
                 <p className="text-lg text-slate-700 leading-relaxed">
@@ -329,28 +335,20 @@ export default function ProductDetailPage() {
               {/* Actions */}
               <div className="space-y-4">
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <QuoteRequestForm
-                    product={{
-                      id: product.id,
-                      referenceFournisseur: product.referenceFournisseur,
-                      constructeur: product.constructeur,
-                      translations: product.translations
-                    }}
-                    trigger={
-                      <Button size="lg" className="bg-primary text-white hover:bg-gray-600 h-14">
-                        <MessageSquare className="h-5 w-5 mr-2" />
-                        Demander un Devis
-                      </Button>
-                    }
-                  />
+                  <Button size="lg" className="bg-primary text-white hover:bg-gray-600 h-14" asChild>
+                    <Link href={`/${locale}/contact`}>
+                      <MessageSquare className="h-5 w-5 mr-2" />
+                      {t('moreDetails')}
+                    </Link>
+                  </Button>
 
                   {product.pdfBrochureUrl && (
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>
                       <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                        <Download className="h-5 w-5 mr-2" />
-                        Télécharger Brochure
+                        {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-5 w-5 mr-2" /> : <Download className="h-5 w-5 mr-2" />}
+                        {isWebPageLink(product.pdfBrochureUrl) ? tCommon('officialSite') : t('downloadBrochure')}
                         {product.pdfSource === 'manufacturer' && (
-                          <span className="ml-2 text-xs text-slate-500">(Générale)</span>
+                          <span className="ml-2 text-xs text-slate-500">{t('generalBrochure')}</span>
                         )}
                       </a>
                     </Button>
@@ -362,7 +360,7 @@ export default function ProductDetailPage() {
                 <div className="flex items-center justify-center space-x-8 text-center">
                   <div className="flex flex-col items-center">
                     <Phone className="h-6 w-6 text-primary-600 mb-2" />
-                    <span className="text-sm text-slate-600">Support Téléphone</span>
+                    <span className="text-sm text-slate-600">{t('phoneSupport')}</span>
                     <div className="space-y-1">
                       <a href="tel:+212522860366" className="block text-sm font-semibold text-slate-900 hover:text-gray-600 transition-colors">
                         +212 522 86 03 66
@@ -375,7 +373,7 @@ export default function ProductDetailPage() {
 
                   <div className="flex flex-col items-center">
                     <Mail className="h-6 w-6 text-primary-600 mb-2" />
-                    <span className="text-sm text-slate-600">Contact Email</span>
+                    <span className="text-sm text-slate-600">{t('contactEmail')}</span>
                     <div className="space-y-1">
                       <a href="mailto:INFO@KITMED.MA" className="block text-sm font-semibold text-slate-900 hover:text-gray-600 transition-colors">
                         INFO@KITMED.MA

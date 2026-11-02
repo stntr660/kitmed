@@ -5,6 +5,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// A brochure link can be the maker's product page instead of a PDF
+// (the Hylo range points at hylo.ma): it opens, it doesn't download.
+export function isWebPageLink(url: string | null | undefined): boolean {
+  if (!url || !/^https?:\/\//i.test(url)) return false;
+  return !/\.pdf($|[?#])/i.test(url);
+}
+
 export function formatFileSize(bytes: number): string {
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   if (bytes === 0) return '0 Bytes';

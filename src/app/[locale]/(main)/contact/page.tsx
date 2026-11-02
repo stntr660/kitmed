@@ -19,6 +19,7 @@ import {
   Printer
 } from 'lucide-react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
+import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
 
 export default function ContactPage() {
   const t = useTranslations('contact');
@@ -37,6 +38,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -46,12 +48,47 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitted(true);
-    setIsSubmitting(false);
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        // Translate error codes
+        const errorKey = result.error;
+        if (errorKey === 'MISSING_REQUIRED_FIELDS') {
+          setError(t('form.errors.missingFields'));
+        } else if (errorKey === 'INVALID_EMAIL') {
+          setError(t('form.errors.invalidEmail'));
+        } else {
+          setError(t('form.errors.general'));
+        }
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError(t('form.errors.general'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -120,7 +157,7 @@ export default function ContactPage() {
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                       <Building2 className="h-5 w-5 mr-2 text-primary-600" />
-                      Direction
+                      {tCommon('direction')}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-start space-x-3">
@@ -165,7 +202,7 @@ export default function ContactPage() {
                 <Card className="border-0 shadow-md">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      ShowRoom
+                      {tCommon('showRoom')}
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-start space-x-3">
@@ -205,11 +242,11 @@ export default function ContactPage() {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.weekdays')}</span>
-                        <span className="text-gray-900 font-medium">08:00 - 18:00</span>
+                        <span className="text-gray-900 font-medium">08:30 - 17:30</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.saturday')}</span>
-                        <span className="text-gray-900 font-medium">08:00 - 13:00</span>
+                        <span className="text-gray-900 font-medium">08:30 - 12:30</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">{t('hours.sunday')}</span>
@@ -228,6 +265,11 @@ export default function ContactPage() {
                       {t('form.title')}
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                          {error}
+                        </div>
+                      )}
                       <div className="grid gap-4 md:grid-cols-2">
                         <div>
                           <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -285,6 +327,7 @@ export default function ContactPage() {
                             id="phone"
                             name="phone"
                             type="tel"
+                            required
                             value={formData.phone}
                             onChange={handleInputChange}
                             className="w-full"
@@ -316,7 +359,6 @@ export default function ContactPage() {
                           id="subject"
                           name="subject"
                           type="text"
-                          required
                           value={formData.subject}
                           onChange={handleInputChange}
                           className="w-full"
@@ -332,7 +374,6 @@ export default function ContactPage() {
                           id="message"
                           name="message"
                           rows={6}
-                          required
                           value={formData.message}
                           onChange={handleInputChange}
                           className="w-full resize-none"
@@ -360,6 +401,20 @@ export default function ContactPage() {
                 </Card>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-light text-gray-900 mb-4">
+                {tCommon('map.ourLocation')}
+              </h2>
+            </div>
+            <GoogleMapEmbed variant="full" showDirectionsButton />
           </div>
         </div>
       </section>

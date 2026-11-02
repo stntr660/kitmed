@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowLeft, Building2, ExternalLink, Package, Star, FileText, Heart, Eye, Award, Sparkles, Download, MessageSquare } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Building2, Package, Star, Award, Sparkles, Download, MessageSquare, X, Filter } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 
 interface Product {
   id: string;
@@ -68,17 +68,41 @@ interface PageProps {
 export default function PartnerProductsPage({ params }: PageProps) {
   const t = useTranslations('common');
   const tPartner = useTranslations('partnerDetail');
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const categoryFilter = searchParams.get('category');
+
   const [partner, setPartner] = useState<Partner | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [categoryName, setCategoryName] = useState<string | null>(null);
   const locale = useHydrationSafeLocale('fr');
+
+  // Fetch category name when filter is active
+  useEffect(() => {
+    if (categoryFilter) {
+      fetch(`/api/categories?locale=${locale}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            const category = data.data.find((c: { slug: string; name: string }) => c.slug === categoryFilter);
+            if (category) {
+              setCategoryName(category.name);
+            }
+          }
+        })
+        .catch(console.error);
+    } else {
+      setCategoryName(null);
+    }
+  }, [categoryFilter, locale]);
 
   useEffect(() => {
     loadPartnerData();
-  }, [params.slug, locale, page]);
+  }, [params.slug, locale, page, categoryFilter]);
 
   const loadPartnerData = async () => {
     try {
@@ -95,10 +119,9 @@ export default function PartnerProductsPage({ params }: PageProps) {
       const partnerData = await partnerResponse.json();
       setPartner(partnerData.data);
 
-      // Load partner products
-      const productsResponse = await fetch(
-        `/api/products?partner=${partnerData.data.id}&locale=${locale}&page=${page}&pageSize=12`
-      );
+      // Load partner products (with optional category filter)
+      const productsUrl = `/api/products?partner=${partnerData.data.id}&locale=${locale}&page=${page}&pageSize=12${categoryFilter ? `&categorySlug=${categoryFilter}` : ''}`;
+      const productsResponse = await fetch(productsUrl);
 
       if (productsResponse.ok) {
         const productsData = await productsResponse.json();
@@ -124,7 +147,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
   if (error || !partner) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <CertificationsBanner variant="compact" />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -150,21 +172,13 @@ export default function PartnerProductsPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
-      {/* Partner Header */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+      {/* Partner Header (matches category page style) */}
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
             {/* Breadcrumb */}
-            <div className="mb-6">
-              <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-white/10" asChild>
+            <div className="mb-4 flex justify-center">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-primary-600" asChild>
                 <Link href={`/${locale}/partners`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   {t('partners')}
@@ -172,65 +186,52 @@ export default function PartnerProductsPage({ params }: PageProps) {
               </Button>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="flex flex-col items-center gap-4">
               {/* Partner Logo */}
-              <div className="flex-shrink-0">
-                {partner.logoUrl ? (
-                  <div className="w-32 h-32 bg-white rounded-xl p-4 flex items-center justify-center shadow-xl">
-                    <Image
-                      src={partner.logoUrl}
-                      alt={partner.name}
-                      width={120}
-                      height={120}
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-32 h-32 bg-white rounded-xl flex items-center justify-center shadow-xl">
-                    <Building2 className="h-16 w-16 text-slate-400" />
-                  </div>
-                )}
-              </div>
-
-              {/* Partner Info */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-4">
-                  {partner.isFeatured && (
-                    <Badge className="bg-white/20 text-white border-0 shadow-xl">
-                      <Star className="mr-1 h-3 w-3" />
-                      {tPartner('featuredBadge')}
-                    </Badge>
-                  )}
-                  <Badge className="bg-white/20 text-white border-0 shadow-xl">
-                    <Package className="mr-1 h-3 w-3" />
-                    {tPartner('productsCount', { count: partner.productCount || products.length })}
-                  </Badge>
+              {partner.logoUrl ? (
+                <div className="w-20 h-20 bg-white rounded-lg p-2 flex items-center justify-center shadow-sm border border-slate-200">
+                  <Image
+                    src={partner.logoUrl}
+                    alt={partner.name}
+                    width={72}
+                    height={72}
+                    className="object-contain"
+                  />
                 </div>
+              ) : (
+                <div className="w-20 h-20 bg-slate-100 rounded-lg flex items-center justify-center">
+                  <Building2 className="h-10 w-10 text-slate-400" />
+                </div>
+              )}
 
-                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                  {partner.name}
-                </h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight break-words">
+                {partner.name}
+              </h1>
 
-                {partner.description && (
-                  <p className="text-xl text-primary-100 mb-6 leading-relaxed max-w-3xl">
-                    {partner.description}
-                  </p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {partner.isFeatured && (
+                  <Badge variant="secondary" className="bg-primary-50 text-primary-700 border-0">
+                    <Star className="mr-1 h-3 w-3" />
+                    {tPartner('featuredBadge')}
+                  </Badge>
                 )}
-
-                {partner.websiteUrl && (
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button
-                      className="bg-white text-primary-600 hover:bg-primary-50 transition-colors"
-                      asChild
-                    >
-                      <a href={partner.websiteUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        {tPartner('visitWebsite')}
-                      </a>
-                    </Button>
-                  </div>
+                <Badge variant="secondary" className="bg-slate-100 text-slate-700 border-0">
+                  <Package className="mr-1 h-3 w-3" />
+                  {tPartner('productsCount', { count: partner.productCount || products.length })}
+                </Badge>
+                {categoryFilter && categoryName && (
+                  <Badge className="bg-primary-600 text-white border-0">
+                    <Filter className="mr-1 h-3 w-3" />
+                    {tPartner('filteredByCategory', { categoryName })}
+                  </Badge>
                 )}
               </div>
+
+              {partner.description && (
+                <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+                  {partner.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -243,11 +244,25 @@ export default function PartnerProductsPage({ params }: PageProps) {
             <>
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  {tPartner('productsTitle', { partnerName: partner.name })}
+                  {categoryFilter && categoryName
+                    ? tPartner('filteredProductsTitle', { partnerName: partner.name, categoryName })
+                    : tPartner('productsTitle', { partnerName: partner.name })}
                 </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {tPartner('productsDescription', { partnerName: partner.name })}
+                <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
+                  {categoryFilter && categoryName
+                    ? tPartner('filteredProductsDescription', { partnerName: partner.name, categoryName })
+                    : tPartner('productsDescription', { partnerName: partner.name })}
                 </p>
+                {categoryFilter && (
+                  <Button
+                    variant="outline"
+                    onClick={() => router.push(`/${locale}/partners/${params.slug}`)}
+                    className="gap-2"
+                  >
+                    <X className="h-4 w-4" />
+                    {tPartner('clearCategoryFilter')}
+                  </Button>
+                )}
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -258,8 +273,12 @@ export default function PartnerProductsPage({ params }: PageProps) {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      {/* Product Image */}
-                      <div className="relative h-64 bg-white overflow-hidden p-4">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug || product.id}`}
+                        aria-label={productName}
+                        className="relative block h-64 bg-white overflow-hidden p-4"
+                      >
                         {primaryImage ? (
                           <Image
                             src={primaryImage.url}
@@ -273,16 +292,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                           </div>
                         )}
 
-                        {/* Overlay Controls */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Heart className="h-4 w-4" />
-                          </Button>
-                          <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                            <Eye className="h-4 w-4" />
-                          </Button>
-                        </div>
 
                         {/* Status Badges */}
                         <div className="absolute top-4 left-4 space-y-2">
@@ -298,7 +308,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                             </Badge>
                           )}
                         </div>
-                      </div>
+                      </Link>
 
                       <CardHeader className="p-6 pb-4">
                         <div className="flex items-start justify-between mb-3">
@@ -316,7 +326,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                         </div>
 
                         <div className="text-sm text-slate-600 line-clamp-2">
-                          {product.description || product.shortDescription || tPartner('productFallbackDescription')}
+                          {product.description || product.shortDescription || `${locale === 'fr' ? 'Produit médical professionnel de' : 'Professional medical product from'} ${partner?.name || ''}.`}
                         </div>
                       </CardHeader>
 
@@ -339,29 +349,17 @@ export default function PartnerProductsPage({ params }: PageProps) {
                           </Button>
 
                           <div className="flex gap-2">
-                            <QuoteRequestForm
-                              product={{
-                                id: product.id,
-                                referenceFournisseur: product.referenceFournisseur,
-                                constructeur: manufacturerName,
-                                translations: product.translations?.length ? product.translations : [{
-                                  languageCode: 'fr',
-                                  nom: productName,
-                                  description: product.description || product.shortDescription || '',
-                                  ficheTechnique: null
-                                }]
-                              }}
-                              trigger={
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="flex-1"
-                                >
-                                  <MessageSquare className="h-4 w-4 mr-1" />
-                                  {t('quote')}
-                                </Button>
-                              }
-                            />
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-1"
+                              asChild
+                            >
+                              <Link href={`/${locale}/contact`}>
+                                <MessageSquare className="h-4 w-4 mr-1" />
+                                {t('moreDetails')}
+                              </Link>
+                            </Button>
 
                             {product.pdfBrochureUrl && (
                               <Button
@@ -371,7 +369,7 @@ export default function PartnerProductsPage({ params }: PageProps) {
                                 asChild
                               >
                                 <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                  <Download className="h-4 w-4" />
+                                  {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>
                             )}
@@ -415,11 +413,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
                   <Link href={`/${locale}/partners`}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     {tPartner('backToPartners')}
-                  </Link>
-                </Button>
-                <Button asChild>
-                  <Link href={`/${locale}/products`}>
-                    {tPartner('viewAllProducts')}
                   </Link>
                 </Button>
               </div>

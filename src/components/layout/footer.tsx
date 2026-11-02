@@ -8,9 +8,8 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Twitter,
   Linkedin,
-  Youtube,
+  Instagram,
   ExternalLink,
   Building2,
   Shield,
@@ -22,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { FooterLogo } from '@/components/ui/logo';
 import { ComplianceBadges } from '@/components/ui/compliance-badges';
+import { GoogleMapCompact } from '@/components/ui/google-map-embed';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/types';
 
@@ -32,7 +32,6 @@ interface FooterProps {
 
 const getFooterLinks = (locale: string) => ({
   products: [
-    { name: 'allProducts', href: `/${locale}/products` },
     { name: 'byDiscipline', href: `/${locale}/products/disciplines` },
     { name: 'byManufacturer', href: `/${locale}/products/manufacturers` },
     { name: 'featured', href: `/${locale}/products/featured` },
@@ -55,16 +54,16 @@ const getFooterLinks = (locale: string) => ({
 });
 
 const socialLinks = [
-  { name: 'facebook', href: '#', icon: Facebook },
-  { name: 'twitter', href: '#', icon: Twitter },
-  { name: 'linkedin', href: '#', icon: Linkedin },
-  { name: 'youtube', href: '#', icon: Youtube },
+  { name: 'facebook', href: 'https://www.facebook.com/share/1E9mpRMbRD/?mibextid=wwXIfr', icon: Facebook },
+  { name: 'instagram', href: 'https://www.instagram.com/kitmed.maroc?igsh=MjluY25wMGc2N3Aw', icon: Instagram },
+  { name: 'linkedin', href: 'https://www.linkedin.com/company/kitmed/', icon: Linkedin },
 ];
 
 export function Footer({ locale, className }: FooterProps) {
   const t = useTranslations('footer');
   const tCommon = useTranslations('common');
   const footerLinks = getFooterLinks(locale);
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={cn('bg-gray-50 border-t', className)}>
@@ -77,7 +76,7 @@ export function Footer({ locale, className }: FooterProps) {
               <FooterLogo />
             </div>
             <p className="text-sm text-medical-text-secondary mb-6">
-              Équipements médicaux de pointe pour les professionnels de santé au Maroc et en Afrique depuis 1997.
+              {t('tagline')}
             </p>
 
             {/* Social Links */}
@@ -107,7 +106,7 @@ export function Footer({ locale, className }: FooterProps) {
           <div className="lg:col-span-1">
             <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
               <Building2 className="h-4 w-4 mr-2" />
-              Direction
+              {tCommon('direction')}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-2">
@@ -154,7 +153,7 @@ export function Footer({ locale, className }: FooterProps) {
           {/* ShowRoom */}
           <div className="lg:col-span-1">
             <h3 className="text-sm font-semibold text-medical-heading mb-4">
-              ShowRoom
+              {tCommon('showRoom')}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-start space-x-2">
@@ -214,13 +213,18 @@ export function Footer({ locale, className }: FooterProps) {
 
         </div>
 
+        {/* Full-width Map Section */}
+        <div className="mt-8">
+          <GoogleMapCompact className="w-full" />
+        </div>
+
         <Separator className="my-8" />
 
         {/* Certifications & Standards */}
         <div className="mb-8">
           <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
             <Shield className="h-4 w-4 mr-2" />
-            Certifications et Normes
+            {t('certifications.title')}
           </h3>
 
           {/* Professional Certifications */}
@@ -232,11 +236,10 @@ export function Footer({ locale, className }: FooterProps) {
               <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
               <div className="space-y-1">
                 <p className="text-sm font-medium text-gray-900">
-                  Conformité Réglementaire Complète
+                  {t('compliance.title')}
                 </p>
                 <p className="text-sm text-gray-600">
-                  Autorisations officielles ONSSA et certifications ISO pour garantir la qualité
-                  et la sécurité de nos équipements médicaux au Maroc.
+                  {t('compliance.description')}
                 </p>
               </div>
             </div>
@@ -249,7 +252,7 @@ export function Footer({ locale, className }: FooterProps) {
         <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
           <div className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-4">
             <p className="text-xs text-medical-text-muted">
-              © 2024 KITMED. {t('rights')}
+              © {currentYear} KITMED. {t('rights')}
             </p>
 
             <div className="flex items-center space-x-4">

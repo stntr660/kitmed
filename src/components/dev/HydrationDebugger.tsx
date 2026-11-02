@@ -146,7 +146,7 @@ export function HydrationDebugger({
 
           {hydrationStatus === 'success' && (
             <div className="text-sm text-green-700">
-              ✅ No hydration mismatches detected
+              No hydration mismatches detected
             </div>
           )}
 

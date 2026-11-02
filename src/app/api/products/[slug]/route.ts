@@ -38,7 +38,13 @@ export async function GET(
             name: true,
             logo_url: true,
             website_url: true,
-            default_pdf_url: true
+            default_pdf_url: true,
+            partner_translations: {
+              select: {
+                name: true,
+                language_code: true
+              }
+            }
           }
         },
         product_media: {
@@ -79,6 +85,11 @@ export async function GET(
     const categoryTranslation = product.categories?.category_translations.find(t => t.language_code === locale);
     const categoryFallback = product.categories?.category_translations.find(t => t.language_code === 'fr');
 
+    // Get partner/manufacturer name from translations
+    const partnerTranslation = product.partners?.partner_translations?.find(t => t.language_code === locale);
+    const partnerFallback = product.partners?.partner_translations?.find(t => t.language_code === 'fr');
+    const manufacturerName = partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || 'Unknown Manufacturer';
+
     // Determine effective PDF URL - check multiple sources
     const productPdfUrl = product.pdf_brochure_url;
     const mediaPdfUrl = product.product_media.find(m => m.type === 'pdf')?.url;
@@ -94,6 +105,7 @@ export async function GET(
       constructeur: product.constructeur,
       status: product.status,
       isFeatured: product.is_featured,
+      isNewArrival: product.is_new_arrival,
       pdfBrochureUrl: effectivePdfUrl,
       pdfSource: productPdfUrl ? 'product' : 
                  mediaPdfUrl ? 'product' : 
@@ -120,7 +132,7 @@ export async function GET(
       // Partner/Manufacturer info
       partner: product.partners ? {
         id: product.partners.id,
-        name: product.partners.name,
+        name: manufacturerName,
         logoUrl: product.partners.logo_url,
         websiteUrl: product.partners.website_url
       } : null,

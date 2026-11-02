@@ -4,11 +4,13 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown } from 'lucide-react';
+import { ExternalLink, ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown, Download } from 'lucide-react';
 import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import { CertificationsBanner } from '@/components/ui/certifications-banner';
 import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
+import { NewArrivalsCarousel, type NewArrivalProduct } from '@/components/carousel/NewArrivalsCarousel';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useIsHydrated } from '@/components/ui/hydration-safe';
@@ -53,6 +55,9 @@ interface Product {
   }>;
 }
 
+// « Nouveaux arrivages » carousel hidden on request (2026-10-29); set to true to show it again
+const SHOW_NEW_ARRIVALS = false;
+
 export default function HomePage() {
   const t = useTranslations('home');
   const tCommon = useTranslations('common');
@@ -62,6 +67,8 @@ export default function HomePage() {
   const [partnersLoading, setPartnersLoading] = useState(true);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = useState(true);
+  const [newArrivals, setNewArrivals] = useState<NewArrivalProduct[]>([]);
+  const [newArrivalsLoading, setNewArrivalsLoading] = useState(true);
   const isHydrated = useIsHydrated();
   const locale = useHydrationSafeLocale('fr');
 
@@ -147,7 +154,7 @@ export default function HomePage() {
     const fetchFeaturedProducts = async () => {
       try {
         setProductsLoading(true);
-        const response = await fetch(`/api/products?status=active&featured=true&pageSize=6&locale=${locale}`);
+        const response = await fetch(`/api/products?status=active&featured=true&pageSize=4&locale=${locale}`);
         const result = await response.json();
 
         if (result.success && result.data) {
@@ -160,10 +167,27 @@ export default function HomePage() {
       }
     };
 
+    const fetchNewArrivals = async () => {
+      try {
+        setNewArrivalsLoading(true);
+        const response = await fetch(`/api/products?status=active&newArrival=true&pageSize=12&locale=${locale}`);
+        const result = await response.json();
+
+        if (result.success && result.data) {
+          setNewArrivals(result.data.items || []);
+        }
+      } catch (error) {
+        console.error('Error fetching new arrivals:', error);
+      } finally {
+        setNewArrivalsLoading(false);
+      }
+    };
+
     if (isHydrated) {
       fetchCategories();
       fetchPartners();
       fetchFeaturedProducts();
+      if (SHOW_NEW_ARRIVALS) fetchNewArrivals();
     }
   }, [locale, isHydrated]);
 
@@ -172,90 +196,6 @@ export default function HomePage() {
       <div className="flex flex-col">
         {/* Dynamic Banner - always render the same component structure */}
         <DynamicBanner position="homepage" />
-
-        {/* Certifications Banner */}
-        <CertificationsBanner variant="hero" />
-
-        {/* Partners Section */}
-        <section className="py-12 lg:py-16 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('partners.title')}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                {t('partners.subtitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                {t('partners.description')}
-              </p>
-            </div>
-
-            <ManufacturerCarousel
-              partners={partners}
-              isLoading={!isHydrated || partnersLoading}
-              className="px-4"
-              locale={locale}
-            />
-
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-20 lg:py-24 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.concepts')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-                {t('sections.innovation')}
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('sections.innovationDescription')}
-              </p>
-            </div>
-
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  number: "01",
-                  title: t('features.0.title'),
-                  description: t('features.0.description')
-                },
-                {
-                  number: "02",
-                  title: t('features.1.title'),
-                  description: t('features.1.description')
-                },
-                {
-                  number: "03",
-                  title: t('features.2.title'),
-                  description: t('features.2.description')
-                }
-              ].map((feature, index) => (
-                <div key={index} className="group text-center">
-                  <div className="relative mb-8">
-                    <div className="w-20 h-20 mx-auto border border-gray-300 rounded-full flex items-center justify-center group-hover:border-primary transition-colors duration-300">
-                      <span className="text-2xl font-light text-gray-400 group-hover:text-primary transition-colors duration-300">
-                        {feature.number}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl font-light text-gray-900 mb-4">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
 
         {/* Medical Disciplines Section */}
         <section className="py-16 lg:py-20 bg-white">
@@ -301,7 +241,7 @@ export default function HomePage() {
               ) : (
                 categories.map((category) => (
                   <div key={category.id} className="group cursor-pointer">
-                    <Link href={`/${locale}/products?category=${category.slug}`}>
+                    <Link href={`/${locale}/products/disciplines/${category.slug}`}>
                       <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
                         <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                           {category.imageUrl ? (
@@ -361,6 +301,59 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Certifications Banner */}
+        <CertificationsBanner variant="hero" />
+
+        {/* Partners Section */}
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+                {t('partners.title')}
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+                {t('partners.subtitle')}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                {t('partners.description')}
+              </p>
+            </div>
+
+            <ManufacturerCarousel
+              partners={partners}
+              isLoading={!isHydrated || partnersLoading}
+              className="px-4"
+              locale={locale}
+            />
+
+          </div>
+        </section>
+
+        {/* New Arrivals Section -- hidden when no product is flagged */}
+        {SHOW_NEW_ARRIVALS && (!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
+          <section className="py-12 lg:py-16 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-4 lg:px-8">
+              <div className="max-w-4xl mx-auto text-center mb-8">
+                <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
+                  {t('newArrivals.title')}
+                </p>
+                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
+                  {t('newArrivals.subtitle')}
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                  {t('newArrivals.description')}
+                </p>
+              </div>
+
+              <NewArrivalsCarousel
+                products={newArrivals}
+                isLoading={!isHydrated || newArrivalsLoading}
+                locale={locale}
+              />
+            </div>
+          </section>
+        )}
+
         {/* Featured Products Section */}
         <section className="py-16 lg:py-20 bg-gray-50">
           <div className="container mx-auto px-4 lg:px-8">
@@ -376,10 +369,10 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {!isHydrated || productsLoading ? (
                 // Loading skeleton - same structure as actual content
-                Array.from({ length: 6 }).map((_, index) => (
+                Array.from({ length: 4 }).map((_, index) => (
                   <Card key={index} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
                     <div className="relative h-48 bg-slate-100 overflow-hidden">
                       <div className="animate-pulse bg-gray-200 w-full h-full"></div>
@@ -405,7 +398,12 @@ export default function HomePage() {
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      <div className="relative h-48 bg-white overflow-hidden p-4">
+                      {/* Product Image -- the whole photo opens the product, not only the button */}
+                      <Link
+                        href={`/${locale}/products/${product.slug}`}
+                        aria-label={product.name}
+                        className="relative block h-48 bg-white overflow-hidden p-4"
+                      >
                         {primaryImage ? (
                           <img
                             src={primaryImage.url}
@@ -424,14 +422,15 @@ export default function HomePage() {
                         <div className="absolute top-4 left-4">
                           <Badge className="bg-accent-500 text-white border-0 text-xs">
                             <Star className="h-3 w-3 mr-1" />
-                            {t('featured')}
+                            {t('featuredProducts.badge')}
                           </Badge>
                         </div>
-                      </div>
+
+                      </Link>
 
                       <CardContent className="p-4">
                         <div className="mb-2">
-                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer.name}</p>
+                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer?.name || product.constructeur}</p>
                         </div>
                         <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
                           {product.name}
@@ -444,15 +443,34 @@ export default function HomePage() {
                             {product.category.name}
                           </p>
                         )}
-                        <Button
-                          size="sm"
-                          className="w-full bg-primary text-white hover:bg-primary-600"
-                          asChild
-                        >
-                          <Link href={`/${locale}/products/${product.slug}`}>
-                            {t('viewDetails')}
-                          </Link>
-                        </Button>
+                        <div className="flex gap-2">
+                          {product.pdfBrochureUrl && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="flex-shrink-0 border-primary-200 hover:bg-primary-50"
+                              asChild
+                            >
+                              <a
+                                href={product.pdfBrochureUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={t('featuredProducts.downloadBrochure')}
+                              >
+                                {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4 text-primary-600" /> : <Download className="h-4 w-4 text-primary-600" />}
+                              </a>
+                            </Button>
+                          )}
+                          <Button
+                            size="sm"
+                            className="flex-1 bg-primary text-white hover:bg-primary-600"
+                            asChild
+                          >
+                            <Link href={`/${locale}/products/${product.slug}`}>
+                              {t('featuredProducts.viewDetails')}
+                            </Link>
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   );
@@ -464,125 +482,9 @@ export default function HomePage() {
               )}
             </div>
 
-            <div className="mt-12 text-center">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-accent-300 text-accent-700 hover:bg-accent-50"
-                asChild
-              >
-                <Link href={`/${locale}/products/featured`}>
-                  {t('featuredProducts.viewAll')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
 
-        {/* References Section */}
-        <section className="py-20 lg:py-24 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.references')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 leading-tight">
-                {t('sections.referencesTitle')}
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                {t('sections.referencesDescription')}
-              </p>
-            </div>
-
-            {/* Statistics */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {[
-                {
-                  number: t('references.stats.0.number'),
-                  label: t('references.stats.0.label')
-                },
-                {
-                  number: t('references.stats.1.number'),
-                  label: t('references.stats.1.label')
-                },
-                {
-                  number: t('references.stats.2.number'),
-                  label: t('references.stats.2.label')
-                },
-                {
-                  number: t('references.stats.3.number'),
-                  label: t('references.stats.3.label')
-                }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl font-light text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Testimonial */}
-            <div className="max-w-4xl mx-auto">
-              <Card className="border-0 shadow-lg bg-white">
-                <CardContent className="p-8 lg:p-12">
-                  <div className="text-center">
-                    <blockquote className="text-2xl font-light text-gray-800 leading-relaxed mb-8 italic">
-                      "{t('references.testimonial.quote')}"
-                    </blockquote>
-                    <div className="space-y-1">
-                      <div className="font-medium text-gray-900">{t('references.testimonial.author')}</div>
-                      <div className="text-gray-600 text-sm">{t('references.testimonial.position')}</div>
-                      <div className="text-primary text-sm font-medium">{t('references.testimonial.organization')}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 lg:py-24 bg-gray-900 text-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-gray-400 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('sections.service')}
-              </p>
-              <h2 className="text-4xl lg:text-5xl font-light mb-6 leading-tight">
-                {t('sections.consultation')}
-              </h2>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
-                {t('sections.consultationDescription')}
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <Button
-                  size="lg"
-                  className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium transition-all duration-300"
-                  asChild
-                >
-                  <Link href="/contact" className="flex items-center">
-                    {t('cta.contact')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-medium transition-all duration-300"
-                  asChild
-                >
-                  <Link href="/rfp/new" className="flex items-center">
-                    {t('cta.requestQuote')}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </HydrationErrorBoundary>
   );

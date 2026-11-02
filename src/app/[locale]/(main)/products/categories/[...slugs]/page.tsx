@@ -6,12 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ArrowRight, ArrowLeft, Building2, ChevronRight, Package, Eye, Heart, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
+import { ExternalLink, ArrowRight, ArrowLeft, Building2, Package, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
+import { isWebPageLink } from '@/lib/utils';
 import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
-import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
+import { useScrollRestore } from '@/hooks/useScrollRestore';
+import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
 
 interface Category {
   id: string;
@@ -33,6 +34,7 @@ interface Product {
   slug: string;
   status: string;
   isFeatured: boolean;
+  isNewArrival?: boolean;
   pdfBrochureUrl?: string;
   primaryImage?: string;
   translations: Array<{
@@ -60,6 +62,9 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
   const locale = useHydrationSafeLocale('fr');
 
   const currentSlug = params.slugs[params.slugs.length - 1];
+
+  // Link clicks start at the top; Back returns to the card the user clicked
+  useScrollRestore(!loading);
 
   useEffect(() => {
     loadCategoryData();
@@ -119,7 +124,6 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
   if (error || !category) {
     return (
       <div className="min-h-screen bg-slate-50">
-        <CertificationsBanner variant="compact" />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
@@ -132,7 +136,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
               {tCategories('notFoundDescription')}
             </p>
             <Button asChild>
-              <Link href={`/${locale}/products`}>
+              <Link href={`/${locale}/products/disciplines`}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 {tCategories('backToProducts')}
               </Link>
@@ -145,61 +149,20 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Certifications Banner */}
-      <CertificationsBanner variant="compact" />
-
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="relative container mx-auto px-6 lg:px-8">
+      <section className="bg-white border-b py-4 lg:py-6">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Breadcrumb Navigation */}
-            <nav className="mb-6">
-              <ol className="flex items-center justify-center space-x-2 text-sm">
-                <li>
-                  <Link 
-                    href={`/${locale}/products`}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    {t('navigation.products')}
-                  </Link>
-                </li>
-                {breadcrumbs.map((crumb, index) => (
-                  <li key={crumb.id} className="flex items-center">
-                    <ChevronRight className="h-4 w-4 text-white/50 mx-2" />
-                    {index < breadcrumbs.length - 1 ? (
-                      <Link 
-                        href={`/${locale}/products/categories/${breadcrumbs.slice(0, index + 1).map(b => b.slug).join('/')}`}
-                        className="text-white/70 hover:text-white transition-colors"
-                      >
-                        {crumb.name}
-                      </Link>
-                    ) : (
-                      <span className="text-white font-medium">{crumb.name}</span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <Badge className="mb-6 px-6 py-3 bg-white/20 text-white border-0 shadow-xl">
-              🏥 {category.type === 'discipline' ? tCategories('discipline') : tCategories('category')}
-            </Badge>
-
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
               {category.name}
             </h1>
 
-            <p className="text-xl text-primary-100 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
               {category.description ||
                tCategories('exploreFallback', { categoryName: category.name.toLowerCase() })}
             </p>
 
-            <div className="flex items-center justify-center space-x-6 text-primary-100">
+            <div className="flex items-center justify-center space-x-6 text-slate-500 mt-4">
               {hasSubcategories && (
                 <div className="flex items-center">
                   <Building2 className="h-5 w-5 mr-2" />
@@ -217,23 +180,26 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Partner Logos Carousel */}
+      <section className="bg-white border-b">
+        <div className="container mx-auto px-6 lg:px-8">
+          <PartnerLogosCarousel locale={locale} />
+        </div>
+      </section>
+
       {/* Subcategories Section */}
       {hasSubcategories && (
-        <section className="py-16 lg:py-24">
+        <section className="py-6 lg:py-8">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                {tCategories('subcategories')}
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                {tCategories('subcategoriesDescription', { categoryName: category.name.toLowerCase() })}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {category.children.map((subCategory) => (
-                <Card key={subCategory.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                  <div className="relative h-56 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+                <Link
+                  key={subCategory.id}
+                  href={`/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`}
+                  className="block group"
+                >
+                <Card className="flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
+                  <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
                     {subCategory.imageUrl ? (
                       <Image
                         src={subCategory.imageUrl}
@@ -242,7 +208,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                      <div className="w-full h-full flex items-center justify-center">
                         <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
                           <span className="text-primary-600 font-bold text-xl">
                             {subCategory.name.charAt(0)}
@@ -252,36 +218,24 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                     )}
 
                     {/* Count Badge */}
-                    <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                      {subCategory.productCount || 0} {tCategories('productPlural')}
+                    <div className="absolute top-3 right-3 bg-primary-600 text-white px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
+                      {subCategory.children && subCategory.children.length > 0
+                        ? `${subCategory.children.length} ${tCategories('subcategoryPlural')}`
+                        : `${subCategory.productCount || 0} ${tCategories('productPlural')}`}
                     </div>
                   </div>
 
-                  <CardHeader className="p-6 pb-4">
-                    <CardTitle className="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                  <div className="p-3 pt-2 space-y-2">
+                    <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
                       {subCategory.name}
                     </CardTitle>
-                    <p className="text-slate-600 leading-relaxed line-clamp-3">
-                      {subCategory.description ||
-                       tCategories('subcategoryFallback', { categoryName: subCategory.name.toLowerCase() })}
-                    </p>
-                  </CardHeader>
-
-                  <CardContent className="p-6 pt-0">
-                    <Button
-                      className="w-full bg-primary-600 text-white hover:bg-primary-700 transition-colors"
-                      asChild
-                    >
-                      <Link 
-                        href={`/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`}
-                        className="flex items-center justify-center"
-                      >
-                        {tCategories('explore')}
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
+                    <div className="w-full inline-flex items-center justify-center gap-1.5 bg-primary-600 text-white group-hover:bg-primary-700 transition-colors h-8 text-xs font-medium rounded-md">
+                      {tCategories('explore')}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </div>
+                  </div>
                 </Card>
+                </Link>
               ))}
             </div>
           </div>
@@ -322,8 +276,12 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
 
                 return (
                   <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    {/* Product Image */}
-                    <div className="relative h-64 bg-white overflow-hidden p-4">
+                    {/* Product Image -- the whole photo opens the product, not only the button */}
+                    <Link
+                      href={`/${locale}/products/${product.slug || product.id}`}
+                      aria-label={productName}
+                      className="relative block h-64 bg-white overflow-hidden p-4"
+                    >
                       {primaryImage ? (
                         <Image
                           src={primaryImage}
@@ -337,19 +295,16 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                         </div>
                       )}
 
-                      {/* Overlay Controls */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 space-y-2">
-                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                          <Heart className="h-4 w-4" />
-                        </Button>
-                        <Button size="sm" variant="secondary" className="h-8 w-8 p-0 shadow-lg">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                      </div>
 
                       {/* Status Badges */}
                       <div className="absolute top-4 left-4 space-y-2">
+                        {product.isNewArrival && (
+                          <Badge className="bg-primary text-white border-0 text-xs">
+                            <Sparkles className="h-3 w-3 mr-1" />
+                            {t('newArrival')}
+                          </Badge>
+                        )}
                         {product.isFeatured && (
                           <Badge className="bg-accent-500 text-white border-0 text-xs">
                             <Sparkles className="h-3 w-3 mr-1" />
@@ -357,31 +312,20 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                           </Badge>
                         )}
                       </div>
-                    </div>
+                    </Link>
 
-                    <CardHeader className="p-6 pb-4">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex-1">
-                          <div className="text-sm text-slate-500 font-medium mb-1">
-                            {product.constructeur}
-                          </div>
-                          <CardTitle className="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
-                            {productName}
-                          </CardTitle>
-                        </div>
-                        {product.isFeatured && (
-                          <Award className="h-5 w-5 text-primary-500 flex-shrink-0 ml-2" />
-                        )}
+                    <CardHeader className="p-4 pb-2">
+                      <div className="text-xs text-slate-500 font-medium mb-1">
+                        {product.constructeur}
                       </div>
-
-                      <div className="text-sm text-slate-600 line-clamp-2">
-                        {productTranslation?.description || tCategories('productFallback')}
-                      </div>
+                      <CardTitle className="text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors h-10">
+                        {productName}
+                      </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="p-6 pt-0 mt-auto">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-xs text-slate-500 font-mono">
+                    <CardContent className="p-4 pt-0 mt-auto">
+                      <div className="mb-3">
+                        <div className="text-xs text-slate-500 font-mono truncate" title={product.referenceFournisseur}>
                           {tCategories('reference')}: {product.referenceFournisseur}
                         </div>
                       </div>
@@ -398,24 +342,17 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                         </Button>
 
                         <div className="flex gap-2">
-                          <QuoteRequestForm
-                            product={{
-                              id: product.id,
-                              referenceFournisseur: product.referenceFournisseur,
-                              constructeur: product.constructeur,
-                              translations: product.translations
-                            }}
-                            trigger={
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="flex-1"
-                              >
-                                <MessageSquare className="h-4 w-4 mr-1" />
-                                {tCategories('quote')}
-                              </Button>
-                            }
-                          />
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="flex-1"
+                            asChild
+                          >
+                            <Link href={`/${locale}/contact`}>
+                              <MessageSquare className="h-4 w-4 mr-1" />
+                              {tCategories('moreDetails')}
+                            </Link>
+                          </Button>
 
                           {product.pdfBrochureUrl && (
                             <Button
@@ -425,7 +362,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                               asChild
                             >
                               <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                <Download className="h-4 w-4" />
+                                {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                               </a>
                             </Button>
                           )}
@@ -455,7 +392,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                 {tCategories('emptyCategoryDescription')}
               </p>
               <Button asChild>
-                <Link href={`/${locale}/products`}>
+                <Link href={`/${locale}/products/disciplines`}>
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   {tCategories('backToProducts')}
                 </Link>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
 
 interface RouteParams {
   params: {
@@ -24,20 +25,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           where: { language_code: locale }
         },
         other_categories: {
-          where: { 
-            is_active: true,
-            products: {
-              some: {
-                status: 'active'
-              }
-            }
+          where: {
+            is_active: true
           },
           include: {
             category_translations: {
               where: { language_code: locale }
             },
+            other_categories: {
+              where: { is_active: true },
+              include: {
+                _count: {
+                  select: { products: { where: { status: 'active' } } }
+                }
+              }
+            },
             _count: {
-              select: { 
+              select: {
                 products: {
                   where: { status: 'active' }
                 }
@@ -66,6 +70,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       );
     }
 
+    const counts = await getRecursiveProductCounts();
+
     // Transform the discipline data
     const translation = discipline.category_translations?.[0];
     const transformedDiscipline = {
@@ -75,20 +81,26 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       description: translation?.description || discipline.description,
       imageUrl: discipline.image_url,
       type: discipline.type,
-      productCount: discipline._count.products,
-      children: discipline.other_categories.map((category: any) => {
-        const categoryTranslation = category.category_translations?.[0];
-        return {
-          id: category.id,
-          name: categoryTranslation?.name || category.name,
-          slug: category.slug,
-          description: categoryTranslation?.description || category.description,
-          imageUrl: category.image_url,
-          type: category.type,
-          productCount: category._count.products,
-          children: [] // Will be loaded dynamically when needed
-        };
-      })
+      productCount: counts.get(discipline.id) || 0,
+      other_categories: discipline.other_categories
+        .map((category: any) => {
+          const categoryTranslation = category.category_translations?.[0];
+          // Products anywhere below this category, not just one level down
+          const totalProducts = counts.get(category.id) || 0;
+          return {
+            id: category.id,
+            name: categoryTranslation?.name || category.name,
+            slug: category.slug,
+            description: categoryTranslation?.description || category.description,
+            imageUrl: category.image_url,
+            type: category.type,
+            productCount: totalProducts,
+            childCount: (category.other_categories || [])
+              .filter((child: any) => (counts.get(child.id) || 0) > 0).length
+          };
+        })
+        // A category with no product anywhere below it is never shown
+        .filter((cat: any) => cat.productCount > 0)
     };
 
     return NextResponse.json({
