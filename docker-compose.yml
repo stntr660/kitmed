@@ -1,19 +1,19 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kitmed-app
     ports:
       - "3000"
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://kitmed_user:KitMed_PostgreSQL_2024_SecurePass_104c764723b98616@10.0.1.22:5432/kitmed_prod
+      - DATABASE_URL=postgresql://kitmed_user:KitMed_PostgreSQL_2024_SecurePass_104c764723b98616@kitmed-kitmeddb-d5xl2a:5432/kitmed_prod
       - NEXTAUTH_URL=https://kitmed.ma
       - NEXTAUTH_SECRET=KitMed_NextAuth_Secret_2024_SecureKey_a8b7c6d5e4f3
       - JWT_SECRET=KitMed_JWT_Secret_2024_SecureKey_1a2b3c4d5e6f
+      - MAINTENANCE_MODE=false
+    volumes:
+      - /root/docker-volumes/kitmed-prod/public/uploads:/app/public/uploads
     restart: unless-stopped
     networks:
       - dokploy-network
