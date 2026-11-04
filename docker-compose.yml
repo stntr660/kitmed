@@ -11,7 +11,7 @@ services:
       - NEXTAUTH_URL=https://kitmed.ma
       - NEXTAUTH_SECRET=KitMed_NextAuth_Secret_2024_SecureKey_a8b7c6d5e4f3
       - JWT_SECRET=KitMed_JWT_Secret_2024_SecureKey_1a2b3c4d5e6f
-      - MAINTENANCE_MODE=false
+      - MAINTENANCE_MODE=true
     volumes:
       - /root/docker-volumes/kitmed-prod/public/uploads:/app/public/uploads
     restart: unless-stopped
