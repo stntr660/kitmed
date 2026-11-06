@@ -102,6 +102,19 @@ export function isAuthenticated(): boolean {
   return !!getAdminToken();
 }
 
+/**
+ * Read the JWT signing secret. Fails closed: there is no fallback value,
+ * so a missing JWT_SECRET can never let anyone sign or accept tokens
+ * with a publicly known key.
+ */
+export function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is required');
+  }
+  return secret;
+}
+
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { attempts: number; resetTime: number }>();
 
@@ -116,7 +129,7 @@ export async function verifyRequestAuth(request: NextRequest): Promise<{ userId:
     }
 
     const token = authHeader.substring(7);
-    const secret = process.env.JWT_SECRET || 'development-secret-key';
+    const secret = getJwtSecret();
 
     const decoded = jwt.verify(token, secret) as any;
 
@@ -159,7 +172,7 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
  * Generate JWT token
  */
 export function generateToken(user: { id: string; email: string; firstName: string; lastName: string; role: string }): string {
-  const secret = process.env.JWT_SECRET || 'development-secret-key';
+  const secret = getJwtSecret();
 
   return jwt.sign(
     {

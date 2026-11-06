@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { withAuth } from '@/lib/auth';
+import { logSafeError } from '@/lib/safe-log';
 
 // GET - Get single contact submission
-export async function GET(
+async function handleGET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -36,7 +38,7 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error('Error fetching contact submission:', error);
+    logSafeError('Error fetching contact submission:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to fetch contact submission' },
       { status: 500 }
@@ -45,7 +47,7 @@ export async function GET(
 }
 
 // PATCH - Update contact submission (status, notes)
-export async function PATCH(
+async function handlePATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -89,7 +91,7 @@ export async function PATCH(
       },
     });
   } catch (error) {
-    console.error('Error updating contact submission:', error);
+    logSafeError('Error updating contact submission:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to update contact submission' },
       { status: 500 }
@@ -98,7 +100,7 @@ export async function PATCH(
 }
 
 // DELETE - Delete contact submission
-export async function DELETE(
+async function handleDELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -112,10 +114,15 @@ export async function DELETE(
       message: 'Contact submission deleted successfully',
     });
   } catch (error) {
-    console.error('Error deleting contact submission:', error);
+    logSafeError('Error deleting contact submission:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to delete contact submission' },
       { status: 500 }
     );
   }
 }
+
+// Admin only: these handlers expose or change customer personal data.
+export const GET = withAuth(handleGET);
+export const PATCH = withAuth(handlePATCH);
+export const DELETE = withAuth(handleDELETE);

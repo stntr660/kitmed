@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createAuthFetchOptions } from '@/lib/auth-utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -83,7 +84,7 @@ export function ContactSubmissionsList() {
       if (statusFilter !== 'all') params.set('status', statusFilter);
       if (search) params.set('search', search);
 
-      const response = await fetch(`/api/contact?${params}`);
+      const response = await fetch(`/api/contact?${params}`, createAuthFetchOptions());
       const result = await response.json();
 
       if (result.success) {
@@ -101,10 +102,10 @@ export function ContactSubmissionsList() {
   const loadStats = async () => {
     try {
       const responses = await Promise.all([
-        fetch('/api/contact?status=new&pageSize=1'),
-        fetch('/api/contact?status=read&pageSize=1'),
-        fetch('/api/contact?status=replied&pageSize=1'),
-        fetch('/api/contact?status=archived&pageSize=1'),
+        fetch('/api/contact?status=new&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/contact?status=read&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/contact?status=replied&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/contact?status=archived&pageSize=1', createAuthFetchOptions()),
       ]);
 
       const [newRes, readRes, repliedRes, archivedRes] = await Promise.all(
@@ -129,11 +130,10 @@ export function ContactSubmissionsList() {
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const response = await fetch(`/api/contact/${id}`, {
+      const response = await fetch(`/api/contact/${id}`, createAuthFetchOptions({
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
-      });
+      }));
 
       if (response.ok) {
         loadSubmissions();
@@ -151,9 +151,9 @@ export function ContactSubmissionsList() {
     if (!submissionToDelete) return;
 
     try {
-      const response = await fetch(`/api/contact/${submissionToDelete}`, {
+      const response = await fetch(`/api/contact/${submissionToDelete}`, createAuthFetchOptions({
         method: 'DELETE',
-      });
+      }));
 
       if (response.ok) {
         loadSubmissions();

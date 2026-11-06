@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { randomUUID } from 'crypto';
+import { withAuth } from '@/lib/auth';
+import { logSafeError } from '@/lib/safe-log';
 
 // Validation schemas
 const createRFPSchema = z.object({
@@ -42,7 +44,7 @@ function generateReferenceNumber(): string {
 }
 
 // GET - List RFP requests
-export async function GET(request: NextRequest) {
+async function handleGET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const query = querySchema.parse({
@@ -127,7 +129,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('RFP requests fetch error:', error);
+    logSafeError('RFP requests fetch error:', error);
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -224,7 +226,7 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error) {
-    console.error('RFP request creation error:', error);
+    logSafeError('RFP request creation error:', error);
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -246,3 +248,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin only: these handlers expose or change customer personal data.
+export const GET = withAuth(handleGET);
