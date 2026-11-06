@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
@@ -12,7 +13,7 @@ const bulkActionSchema = z.object({
   })).optional(),
 });
 
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
     const { action, categoryIds, newOrder } = bulkActionSchema.parse(body);
@@ -160,3 +161,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

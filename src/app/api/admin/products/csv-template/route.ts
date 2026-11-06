@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 
-export async function GET(request: NextRequest): Promise<NextResponse> {
+async function handleGET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') || 'basic';
 
@@ -88,7 +89,7 @@ TEST002,GE Healthcare,${categories[0]?.id || 'category-id-here'},"Échographe","
 }
 
 // POST endpoint to generate custom template
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
     const {
@@ -212,3 +213,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET);
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

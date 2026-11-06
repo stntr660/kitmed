@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { hasValidAdminToken } from '../lib/edge-jwt';
 
 // Simple maintenance mode check
 // Only activate in production on main branch
@@ -18,21 +19,10 @@ function isMaintenanceModeEnabled(): boolean {
   }
 }
 
-// Check if user has valid admin authentication
-function hasAdminAuthentication(request: NextRequest): boolean {
-  // Check Authorization header
-  const authHeader = request.headers.get('authorization');
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    return authHeader.substring(7).length > 0; // Basic token presence check
-  }
-
-  // Check admin token cookie
-  const adminToken = request.cookies.get('admin-token')?.value;
-  if (adminToken && adminToken.length > 0) {
-    return true;
-  }
-
-  return false;
+// Admins can bypass maintenance mode, but only with a valid, unexpired JWT
+// (previously any non-empty admin-token cookie was enough).
+async function hasAdminAuthentication(request: NextRequest): Promise<boolean> {
+  return hasValidAdminToken(request);
 }
 
 export async function maintenanceMiddleware(request: NextRequest) {
@@ -50,7 +40,11 @@ export async function maintenanceMiddleware(request: NextRequest) {
   ];
 
   // Check if current path should skip maintenance check
-  const shouldSkip = skipPaths.some(path => pathname.startsWith(path));
+  // The admin panel (/admin/*, also with a locale prefix: /fr/admin/*) is not
+  // behind maintenance, as documented in MAINTENANCE_MODE.md. Access to it is
+  // controlled by the JWT check in src/middleware.ts.
+  const isAdminPanel = /^\/(?:(?:en|fr)\/)?admin(?:\/|$)/.test(pathname);
+  const shouldSkip = isAdminPanel || skipPaths.some(path => pathname.startsWith(path));
   if (shouldSkip) {
     return NextResponse.next();
   }
@@ -60,7 +54,7 @@ export async function maintenanceMiddleware(request: NextRequest) {
 
   if (maintenanceEnabled && !pathname.includes('/maintenance')) {
     // Check if user is authenticated admin - admins can bypass maintenance mode
-    const isAdminUser = hasAdminAuthentication(request);
+    const isAdminUser = await hasAdminAuthentication(request);
 
     if (!isAdminUser) {
       // Extract locale from pathname if it exists

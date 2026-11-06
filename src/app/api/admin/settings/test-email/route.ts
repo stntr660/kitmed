@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { z } from 'zod';
 
 const emailTestSchema = z.object({
@@ -6,7 +7,7 @@ const emailTestSchema = z.object({
   fromName: z.string(),
 });
 
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const body = await request.json();
     const { fromEmail, fromName } = emailTestSchema.parse(body);
@@ -37,3 +38,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

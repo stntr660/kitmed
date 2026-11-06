@@ -49,14 +49,25 @@ export const verifyToken = (token: string): any => {
 export const authenticate = async (request: NextRequest): Promise<AdminUser | null> => {
   try {
     const authHeader = request.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '') ||
-                  request.cookies.get('admin-token')?.value;
+    const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
+    const cookieToken = request.cookies.get('admin-token')?.value || '';
 
-    if (!token) {
-      return null;
+    // Try the header first, then the cookie: a stale header such as
+    // "Bearer null" must not hide a valid httpOnly cookie.
+    let decoded: any = null;
+    for (const token of [headerToken, cookieToken]) {
+      if (!token) continue;
+      try {
+        decoded = verifyToken(token);
+        break;
+      } catch {
+        decoded = null;
+      }
     }
 
-    const decoded = verifyToken(token);
+    if (!decoded) {
+      return null;
+    }
 
     // In a real implementation, you'd fetch the user from the database
     // For now, we'll return the decoded token data

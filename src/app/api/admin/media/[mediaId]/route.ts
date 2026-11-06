@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { unlink } from 'fs/promises';
 import { join } from 'path';
@@ -138,5 +139,5 @@ async function updateMedia(request: NextRequest, { params }: { params: Promise<{
 }
 
 // Export handlers
-export const DELETE = deleteMedia;
-export const PUT = updateMedia;
+export const DELETE = withAuth(deleteMedia, { roles: ['admin'] });
+export const PUT = withAuth(updateMedia, { roles: ['admin'] });

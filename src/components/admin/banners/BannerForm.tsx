@@ -30,7 +30,7 @@ import { CompactImageUpload } from '@/components/ui/compact-image-upload';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { getAdminToken } from '@/lib/auth-utils';
+import { getAdminToken, getAuthHeaders } from '@/lib/auth-utils';
 
 const bannerSchema = z.object({
   // French content (required)
@@ -263,6 +263,7 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
 
       const response = await fetch('/api/upload', {
         method: 'POST',
+        headers: getAuthHeaders(),
         body: formData,
       });
 

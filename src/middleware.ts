@@ -3,55 +3,61 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { maintenanceMiddleware } from './middleware/maintenance';
 
-// Simplified auth verification for proxy (Edge Runtime compatible)
-function extractTokenFromRequest(request: NextRequest): string | null {
-  // Check Authorization header
-  const authHeader = request.headers.get('authorization');
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    return authHeader.substring(7);
-  }
+import { hasValidAdminToken } from './lib/edge-jwt';
 
-  // Check cookies
-  const tokenFromCookie = request.cookies.get('admin-token')?.value;
-  if (tokenFromCookie) {
-    return tokenFromCookie;
-  }
+const LOCALES = ['en', 'fr'];
 
-  return null;
+function unauthorized() {
+  return NextResponse.json(
+    {
+      success: false,
+      error: {
+        code: 'UNAUTHORIZED',
+        message: 'Authentication required',
+      },
+    },
+    { status: 401 }
+  );
+}
+
+// Admin pages: /admin/..., /en/admin/..., /fr/admin/... (except the login page)
+function adminPageLocale(pathname: string): string | null {
+  const match = pathname.match(/^\/(?:(en|fr)\/)?admin(?:\/(.*))?$/);
+  if (!match) return null;
+  const rest = match[2] || '';
+  if (rest === 'login' || rest.startsWith('login/')) return null;
+  return match[1] || 'en';
 }
 
 // Create the intl middleware
 const intlMiddleware = createIntlMiddleware({
-  locales: ['en', 'fr'],
+  locales: LOCALES,
   defaultLocale: 'en'
 });
 
 export async function middleware(request: NextRequest) {
-  // Handle admin API routes with authentication
-  if (request.nextUrl.pathname.startsWith('/api/admin/')) {
-    // Allow login endpoint
-    if (request.nextUrl.pathname === '/api/admin/auth/login') {
+  const { pathname } = request.nextUrl;
+
+  // Admin API: the JWT signature and expiry are verified here (Edge runtime),
+  // then again in each route handler by withAuth (role checks).
+  if (pathname.startsWith('/api/admin/')) {
+    if (pathname === '/api/admin/auth/login') {
       return NextResponse.next();
     }
-
-    // Check for token presence (detailed verification happens in API routes)
-    const token = extractTokenFromRequest(request);
-
-    if (!token) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: {
-            code: 'UNAUTHORIZED',
-            message: 'Authentication required',
-          },
-        },
-        { status: 401 }
-      );
+    if (!(await hasValidAdminToken(request))) {
+      return unauthorized();
     }
-
-    // Token exists, let the API route handle detailed verification
     return NextResponse.next();
+  }
+
+  // Admin pages: redirect to the login page without a valid token.
+  // Only outside development: in development the login route does not set
+  // the admin-token cookie (the token lives in localStorage only).
+  if (process.env.NODE_ENV !== 'development') {
+    const locale = adminPageLocale(pathname);
+    if (locale && !(await hasValidAdminToken(request))) {
+      return NextResponse.redirect(new URL(`/${locale}/admin/login`, request.url));
+    }
   }
 
   // Handle API routes (no locale handling needed)

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
@@ -44,7 +45,7 @@ interface RouteContext {
   }>;
 }
 
-export async function GET(
+async function handleGET(
   request: NextRequest,
   context: RouteContext
 ): Promise<NextResponse> {
@@ -118,7 +119,7 @@ export async function GET(
   }
 }
 
-export async function PUT(
+async function handlePUT(
   request: NextRequest,
   context: RouteContext
 ): Promise<NextResponse> {
@@ -340,7 +341,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
+async function handleDELETE(
   request: NextRequest,
   context: RouteContext
 ): Promise<NextResponse> {
@@ -408,3 +409,8 @@ export async function DELETE(
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET);
+export const PUT = withAuth(handlePUT, { roles: ['admin'] });
+export const DELETE = withAuth(handleDELETE, { roles: ['admin'] });

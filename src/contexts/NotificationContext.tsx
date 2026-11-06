@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { getAuthHeaders } from '@/lib/auth-utils';
 
 interface NotificationData {
   [key: string]: any;
@@ -100,7 +101,9 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
       }
       params.append('limit', '50'); // Get more notifications
 
-      const response = await fetch(`/api/admin/notifications?${params.toString()}`);
+      const response = await fetch(`/api/admin/notifications?${params.toString()}`, {
+        headers: getAuthHeaders(),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to fetch notifications');
@@ -123,6 +126,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          ...getAuthHeaders(),
         },
         body: JSON.stringify({ read: true }),
       });
@@ -164,6 +168,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
 
       const response = await fetch(`/api/admin/notifications/mark-all-read?${params.toString()}`, {
         method: 'POST',
+        headers: getAuthHeaders(),
       });
 
       if (!response.ok) {
@@ -183,6 +188,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
     try {
       const response = await fetch(`/api/admin/notifications/${notificationId}`, {
         method: 'DELETE',
+        headers: getAuthHeaders(),
       });
 
       if (!response.ok) {
@@ -220,6 +226,7 @@ export function NotificationProvider({ children, userId }: NotificationProviderP
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...getAuthHeaders(),
         },
         body: JSON.stringify(notification),
       });

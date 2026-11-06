@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
@@ -279,6 +280,6 @@ async function deleteBanner(request: NextRequest, { params }: { params: { id: st
 }
 
 // Export handlers without auth
-export const GET = getBanner;
-export const PUT = updateBanner;
-export const DELETE = deleteBanner;
+export const GET = withAuth(getBanner, { roles: ['admin'] });
+export const PUT = withAuth(updateBanner, { roles: ['admin'] });
+export const DELETE = withAuth(deleteBanner, { roles: ['admin'] });
