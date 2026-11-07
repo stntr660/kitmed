@@ -130,4 +130,4 @@ async function bulkOperations(request: NextRequest) {
 }
 
 // Export handlers
-export const POST = bulkOperations;
+export const POST = withAuth(bulkOperations, { roles: ['admin'] });

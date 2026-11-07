@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { randomUUID } from 'crypto';
 
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -80,3 +81,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST);

@@ -1,5 +1,6 @@
 'use client';
 
+import { getAuthHeaders } from '@/lib/auth-utils';
 import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -80,6 +81,7 @@ export function CSVUpload({ onImportComplete }: CSVUploadProps) {
 
       const response = await fetch('/api/admin/partners/bulk-import', {
         method: 'POST',
+        headers: getAuthHeaders(),
         body: formData,
       });
 

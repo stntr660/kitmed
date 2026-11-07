@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
@@ -53,7 +54,7 @@ interface EnhancedPartnerImportResult {
   totalProcessingTime: number;
 }
 
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const startTime = Date.now();
 
   try {
@@ -324,3 +325,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

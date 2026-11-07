@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
@@ -120,7 +121,7 @@ function buildCategoryTree(categories: CategoryWithTranslations[]): CategoryWith
   return rootCategories;
 }
 
-export async function GET(request: NextRequest): Promise<NextResponse> {
+async function handleGET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const params = Object.fromEntries(searchParams.entries());
@@ -262,7 +263,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 }
 
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
     console.log('RAW REQUEST:', JSON.stringify(body, null, 2));
@@ -367,3 +368,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET);
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

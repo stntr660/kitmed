@@ -1,3 +1,5 @@
+import { getAuthHeaders } from '@/lib/auth-utils';
+
 export type NotificationType = 'rfp' | 'inventory' | 'product' | 'user' | 'system' | 'security';
 export type NotificationPriority = 'low' | 'medium' | 'high' | 'critical';
 
@@ -26,6 +28,7 @@ class NotificationService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...getAuthHeaders(),
         },
         body: JSON.stringify({
           ...params,

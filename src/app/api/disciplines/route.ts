@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { MigrationFeatureFlags, APIFeatureFlags } from '@/lib/feature-flags';
 
@@ -200,7 +201,7 @@ export async function GET(request: NextRequest) {
  * Create a new medical discipline.
  * Routes to appropriate table based on feature flags.
  */
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const body = await request.json();
     const { name, slug, description, iconUrl, colorHex, sortOrder, isActive, metaTitle, metaDescription } = body;
@@ -309,3 +310,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { MigrationFeatureFlags, APIFeatureFlags } from '@/lib/feature-flags';
 
@@ -297,7 +298,7 @@ function buildCategoryTree(categories: any[]): any[] {
  *
  * Create a new category with enhanced logic for the disciplines-categories separation
  */
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const body = await request.json();
 
@@ -408,3 +409,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

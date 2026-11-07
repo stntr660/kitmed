@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { z } from 'zod';
 
 const notificationUpdateSchema = z.object({
@@ -28,7 +29,7 @@ let notifications: any[] = [
   }
 ];
 
-export async function GET(
+async function handleGET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -52,7 +53,7 @@ export async function GET(
   }
 }
 
-export async function PUT(
+async function handlePUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -96,7 +97,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
+async function handleDELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -122,3 +123,8 @@ export async function DELETE(
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET);
+export const PUT = withAuth(handlePUT);
+export const DELETE = withAuth(handleDELETE);

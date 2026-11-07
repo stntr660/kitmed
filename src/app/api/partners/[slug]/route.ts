@@ -5,6 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 
 interface RouteContext {
@@ -102,7 +103,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
  *
  * Update a specific partner.
  */
-export async function PUT(request: NextRequest, { params }: RouteContext) {
+async function handlePUT(request: NextRequest, { params }: RouteContext) {
   try {
     const { slug } = params;
     const body = await request.json();
@@ -177,7 +178,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
  *
  * Delete a specific partner.
  */
-export async function DELETE(request: NextRequest, { params }: RouteContext) {
+async function handleDELETE(request: NextRequest, { params }: RouteContext) {
   try {
     const { slug } = params;
     const searchParams = request.nextUrl.searchParams;
@@ -277,3 +278,7 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const PUT = withAuth(handlePUT, { roles: ['admin'] });
+export const DELETE = withAuth(handleDELETE, { roles: ['admin'] });

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import {
   cleanupOrphanedFiles,
   markOrphanedFiles,
   getFileRegistryStats
 } from '@/lib/file-deduplication';
 
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const body = await request.json();
     const { action, olderThanDays = 7 } = body;
@@ -53,7 +54,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+async function handleGET() {
   try {
     const stats = await getFileRegistryStats();
     return NextResponse.json({
@@ -71,3 +72,7 @@ export async function GET() {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET, { roles: ['admin'] });
+export const POST = withAuth(handlePOST, { roles: ['admin'] });

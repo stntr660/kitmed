@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { z } from 'zod';
 
 // Notification schema
@@ -71,7 +72,7 @@ let notifications = [
   }
 ];
 
-export async function GET(request: NextRequest) {
+async function handleGET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const type = searchParams.get('type');
@@ -157,7 +158,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: NextRequest) {
+async function handlePOST(request: NextRequest) {
   try {
     const body = await request.json();
     const validatedNotification = notificationSchema.parse(body);
@@ -187,3 +188,7 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET);
+export const POST = withAuth(handlePOST);

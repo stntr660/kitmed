@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 import { parse } from 'csv-parse/sync';
@@ -47,7 +48,7 @@ const csvProductSchema = z.object({
 });
 
 // GET endpoint to check progress
-export async function GET(request: NextRequest): Promise<NextResponse> {
+async function handleGET(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const jobId = searchParams.get('jobId');
 
@@ -74,7 +75,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 }
 
 // POST endpoint to start bulk import with progress tracking
-export async function POST(request: NextRequest): Promise<NextResponse> {
+async function handlePOST(request: NextRequest): Promise<NextResponse> {
   const jobId = `import_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
   try {
@@ -412,7 +413,7 @@ async function processImportWithProgress(jobId: string, file: File) {
 }
 
 // Cleanup endpoint to remove completed jobs
-export async function DELETE(request: NextRequest): Promise<NextResponse> {
+async function handleDELETE(request: NextRequest): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
   const jobId = searchParams.get('jobId');
 
@@ -430,3 +431,8 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
     message: deleted ? 'Job removed' : 'Job not found',
   });
 }
+
+// Admin authentication (security fix 2026-11-06)
+export const GET = withAuth(handleGET, { roles: ['admin'] });
+export const POST = withAuth(handlePOST, { roles: ['admin'] });
+export const DELETE = withAuth(handleDELETE, { roles: ['admin'] });

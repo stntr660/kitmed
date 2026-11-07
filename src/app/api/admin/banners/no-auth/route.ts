@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { withAuth } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
 
@@ -202,5 +203,5 @@ async function createBanner(request: NextRequest) {
 }
 
 // Export handlers without auth
-export const GET = getBanners;
-export const POST = createBanner;
+export const GET = withAuth(getBanners, { roles: ['admin'] });
+export const POST = withAuth(createBanner, { roles: ['admin'] });
