@@ -23,6 +23,7 @@ import { RFPQuickView } from './RFPQuickView';
 import { AdminSearchFilters, AdminSearchResult } from '@/types/admin';
 import { RFPRequest } from '@/types';
 import { formatDate, formatCurrency } from '@/lib/utils';
+import { createAuthFetchOptions } from '@/lib/auth-utils';
 
 interface RFPWithDetails extends RFPRequest {
   itemCount: number;
@@ -72,10 +73,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
     try {
       // Fetch statistics for all statuses
       const responses = await Promise.all([
-        fetch('/api/admin/rfp-requests?status=pending&pageSize=1'),
-        fetch('/api/admin/rfp-requests?status=reviewing&pageSize=1'),
-        fetch('/api/admin/rfp-requests?status=quoted&pageSize=1'),
-        fetch('/api/admin/rfp-requests?status=completed&pageSize=1'),
+        fetch('/api/admin/rfp-requests?status=pending&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/admin/rfp-requests?status=reviewing&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/admin/rfp-requests?status=quoted&pageSize=1', createAuthFetchOptions()),
+        fetch('/api/admin/rfp-requests?status=completed&pageSize=1', createAuthFetchOptions()),
       ]);
 
       const [pendingRes, reviewingRes, quotedRes, completedRes] = responses;
@@ -126,7 +127,7 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
       }
 
       // Fetch RFP requests
-      const response = await fetch(`/api/rfp-requests?${params}`);
+      const response = await fetch(`/api/rfp-requests?${params}`, createAuthFetchOptions());
 
       if (!response.ok) {
         throw new Error('Failed to load RFP requests');
@@ -237,13 +238,10 @@ export function UnifiedRFPList({ initialFilters = {} }: UnifiedRFPListProps) {
           return;
       }
 
-      const response = await fetch(endpoint, {
+      const response = await fetch(endpoint, createAuthFetchOptions({
         method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: method !== 'DELETE' ? JSON.stringify(body) : undefined,
-      });
+      }));
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 import { z } from 'zod';
+import { withAuth } from '@/lib/auth';
+import { logSafeError } from '@/lib/safe-log';
 
 // Validation schema for updates
 const updateRFPSchema = z.object({
@@ -27,7 +29,7 @@ interface RouteParams {
 }
 
 // GET - Get single RFP request
-export async function GET(request: NextRequest, { params }: RouteParams) {
+async function handleGET(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = params;
 
@@ -60,7 +62,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     });
 
   } catch (error) {
-    console.error('RFP request fetch error:', error);
+    logSafeError('RFP request fetch error:', error);
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
       { status: 500 }
@@ -69,7 +71,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 // PUT - Update RFP request
-export async function PUT(request: NextRequest, { params }: RouteParams) {
+async function handlePUT(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = params;
     const body = await request.json();
@@ -122,7 +124,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     });
 
   } catch (error) {
-    console.error('RFP request update error:', error);
+    logSafeError('RFP request update error:', error);
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -143,7 +145,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 // DELETE - Delete RFP request
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+async function handleDELETE(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = params;
 
@@ -170,10 +172,15 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     });
 
   } catch (error) {
-    console.error('RFP request deletion error:', error);
+    logSafeError('RFP request deletion error:', error);
     return NextResponse.json(
       { success: false, error: 'Internal server error' },
       { status: 500 }
     );
   }
 }
+
+// Admin only: these handlers expose or change customer personal data.
+export const GET = withAuth(handleGET);
+export const PUT = withAuth(handlePUT);
+export const DELETE = withAuth(handleDELETE);

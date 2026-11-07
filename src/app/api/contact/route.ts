@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
+import { withAuth } from '@/lib/auth';
+import { logSafeError } from '@/lib/safe-log';
 
 // GET - List all contact submissions (admin only)
-export async function GET(request: NextRequest) {
+async function handleGET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
@@ -66,7 +68,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error fetching contact submissions:', error);
+    logSafeError('Error fetching contact submissions:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to fetch contact submissions' },
       { status: 500 }
@@ -119,10 +121,13 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error creating contact submission:', error);
+    logSafeError('Error creating contact submission:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to submit contact form' },
       { status: 500 }
     );
   }
 }
+
+// Admin only: these handlers expose or change customer personal data.
+export const GET = withAuth(handleGET);
