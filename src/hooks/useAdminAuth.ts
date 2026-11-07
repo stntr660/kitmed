@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { AdminUser } from '@/types/admin';
-import { getAdminToken, setAdminToken, removeAdminToken } from '@/lib/auth-utils';
+import { getAdminToken, setAdminToken, removeAdminToken, logoutAdmin } from '@/lib/auth-utils';
 
 interface UseAdminAuthReturn {
   user: AdminUser | null;
   loading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
 }
 
@@ -95,20 +95,11 @@ export function useAdminAuth(): UseAdminAuthReturn {
     }
   };
 
-  const logout = () => {
-    removeAdminToken();
+  const logout = async () => {
+    // Server first (clears the httpOnly cookie, revokes the token), then the local copy
+    await logoutAdmin();
     setUser(null);
     setError(null);
-
-    // Call logout endpoint to invalidate token on server
-    fetch('/api/admin/auth/logout', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${getAdminToken()}`,
-      },
-    }).catch(() => {
-      // Ignore errors on logout
-    });
   };
 
   const refreshUser = async () => {

@@ -63,6 +63,28 @@ export function removeAdminToken(): void {
 }
 
 /**
+ * Log out on the server, then drop the client-side copy of the token.
+ * The server clears the httpOnly `admin-token` cookie (JS cannot) and refuses
+ * every token issued before this moment. The token is sent before it is
+ * removed locally (in development it only lives in localStorage).
+ */
+export async function logoutAdmin(): Promise<void> {
+  if (typeof window === 'undefined') return;
+  const token = getAdminToken();
+  try {
+    await fetch('/api/admin/auth/logout', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+  } catch {
+    // Network error: the local copy is still removed below.
+  } finally {
+    removeAdminToken();
+  }
+}
+
+/**
  * Get auth headers for API requests
  */
 export function getAuthHeaders(): HeadersInit {

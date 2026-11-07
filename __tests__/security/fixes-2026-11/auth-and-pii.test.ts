@@ -13,6 +13,11 @@ jest.mock('@/lib/database', () => ({
       update: jest.fn(),
       delete: jest.fn(),
     },
+    // no logout recorded: tokens are not revoked (see session-revocation)
+    activity_logs: {
+      findFirst: jest.fn().mockResolvedValue(null),
+      create: jest.fn(),
+    },
     rfp_requests: {
       findMany: jest.fn().mockResolvedValue([]),
       count: jest.fn().mockResolvedValue(0),
