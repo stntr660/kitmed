@@ -10,6 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { AdminUser } from '@/types/admin';
 import { cn } from '@/lib/utils';
+import { logoutAdmin } from '@/lib/auth-utils';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import type { Locale } from '@/types';
 
@@ -56,9 +57,9 @@ export function AdminHeader({ user, setSidebarOpen, onMenuClick }: AdminHeaderPr
     }
   ];
 
-  const handleLogout = () => {
-    localStorage.removeItem('admin-token');
-    document.cookie = 'admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+  const handleLogout = async () => {
+    // End the session on the server, then clear the local copy
+    await logoutAdmin();
     router.push('/en/admin/login');
   };
 

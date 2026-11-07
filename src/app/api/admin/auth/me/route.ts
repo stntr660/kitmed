@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyRequestAuth, getAdminUser } from '@/lib/auth-utils';
+import { getAdminUser } from '@/lib/auth-utils';
+import { authenticate } from '@/lib/auth';
 import { prisma } from '@/lib/database';
 
 export async function GET(request: NextRequest) {
   try {
-    // Verify JWT token
-    const auth = await verifyRequestAuth(request);
+    // Verify the JWT (header or cookie) and refuse tokens issued before the
+    // user's last logout.
+    const auth = await authenticate(request);
 
     if (!auth) {
       return NextResponse.json(
@@ -26,7 +28,7 @@ export async function GET(request: NextRequest) {
     try {
       // Look up the actual user from database using the token's user ID
       const dbUser = await prisma.users.findUnique({
-        where: { id: auth.userId },
+        where: { id: auth.id },
         select: {
           id: true,
           email: true,
