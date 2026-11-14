@@ -1,0 +1,632 @@
+{
+ "categories": {
+  "autres": {
+   "parent_id": "ophthalmology",
+   "sort_order": 16,
+   "is_active": true,
+   "image_url": "/uploads/categories/autres.png",
+   "fr": "Autres",
+   "en": "Other",
+   "name": "Autres"
+  },
+  "segment-anterieur": {
+   "parent_id": "ophthalmology",
+   "sort_order": 4,
+   "is_active": true,
+   "image_url": "/uploads/categories/segment-anterieur-photo.jpg",
+   "fr": "Segment antérieur",
+   "en": "Anterior Segment",
+   "name": "Segment antérieur"
+  },
+  "lasers-et-ipl": {
+   "parent_id": "ophthalmology",
+   "sort_order": 6,
+   "is_active": true,
+   "image_url": "/uploads/categories/lasers-et-ipl-photo.jpg",
+   "fr": "Lasers & IPL",
+   "en": "Lasers & IPL",
+   "name": "Lasers & IPL"
+  },
+  "diagnostic-retine": {
+   "parent_id": "ophthalmology",
+   "sort_order": 7,
+   "is_active": true,
+   "image_url": "/uploads/categories/diagnostic-retine-photo.jpg",
+   "fr": "Diagnostic rétine",
+   "en": "Retina Diagnostics",
+   "name": "Diagnostic rétine"
+  },
+  "consommable": {
+   "parent_id": "ophthalmology",
+   "sort_order": 11,
+   "is_active": true,
+   "image_url": "/uploads/categories/consommable-photo.jpg",
+   "fr": "Consommables et implants",
+   "en": "Consumables and Implants",
+   "name": "Consommables et implants"
+  },
+  "ophtalmologie": {
+   "parent_id": null,
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/categories/ophtalmologie-photo.jpg",
+   "fr": "Ophtalmologie",
+   "en": "Ophthalmology",
+   "name": "Ophtalmologie"
+  },
+  "mobilier-et-literie-hospitaliers": {
+   "parent_id": null,
+   "sort_order": 3,
+   "is_active": true,
+   "image_url": "/uploads/categories/mobilier-et-literie-hospitaliers-photo.jpg",
+   "fr": "Mobilier et literie hospitaliers",
+   "en": "Hospital Furniture and Bedding",
+   "name": "Mobilier et literie hospitaliers"
+  },
+  "bloc-operatoire": {
+   "parent_id": "ophthalmology",
+   "sort_order": 10,
+   "is_active": true,
+   "image_url": "/uploads/categories/bloc-operatoire-photo.jpg",
+   "fr": "Bloc opératoire",
+   "en": "Operating Room",
+   "name": "Bloc opératoire"
+  },
+  "orthopedics": {
+   "parent_id": null,
+   "sort_order": 4,
+   "is_active": true,
+   "image_url": "/uploads/categories/orthopedics-photo.jpg",
+   "fr": "Orthopedie",
+   "en": "Orthopedics",
+   "name": "Orthopedie"
+  },
+  "flux-air-laminaire": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 31,
+   "is_active": true,
+   "image_url": "/uploads/categories/flux-air-laminaire.jpg",
+   "fr": "Flux d'air laminaire",
+   "en": "Laminar airflow",
+   "name": "Flux d'air laminaire"
+  },
+  "microscope-operatoire": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 26,
+   "is_active": true,
+   "image_url": "/uploads/categories/microscope-operatoire-photo.jpg",
+   "fr": "Microscope opératoire",
+   "en": "Surgical Microscope",
+   "name": "Microscope opératoire"
+  },
+  "instrumentation": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 28,
+   "is_active": true,
+   "image_url": "/uploads/categories/instrumentation.png",
+   "fr": "Instrumentation",
+   "en": "Instrumentation",
+   "name": "Instrumentation"
+  },
+  "oph-contactology": {
+   "parent_id": "ophthalmology",
+   "sort_order": 14,
+   "is_active": true,
+   "image_url": "/uploads/categories/oph-contactology-photo.jpg",
+   "fr": "Contactologie",
+   "en": "Contactology",
+   "name": "Contactologie"
+  },
+  "pupillometres": {
+   "parent_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "sort_order": 5,
+   "is_active": true,
+   "image_url": "/uploads/categories/pupillometres.jpg",
+   "fr": "Pupillomètres",
+   "en": "Pupillometers",
+   "name": "Pupillomètres"
+  },
+  "lampe-a-fente": {
+   "parent_id": "ophthalmology",
+   "sort_order": 3,
+   "is_active": true,
+   "image_url": "/uploads/categories/lampe-a-fente-photo.jpg",
+   "fr": "Lampes à fente",
+   "en": "Slit Lamps",
+   "name": "Lampes à fente"
+  },
+  "retine": {
+   "parent_id": "ophthalmology",
+   "sort_order": 20,
+   "is_active": false,
+   "image_url": null,
+   "fr": "RETINE",
+   "en": "Retina",
+   "name": "RETINE"
+  },
+  "implant-et-visco": {
+   "parent_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "sort_order": 29,
+   "is_active": true,
+   "image_url": "/uploads/categories/implant-et-visco.png",
+   "fr": "Implants intra-oculaires",
+   "en": "Intraocular Implants",
+   "name": "Implants intra-oculaires"
+  },
+  "couteaux": {
+   "parent_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "sort_order": 13,
+   "is_active": true,
+   "image_url": "/uploads/categories/couteaux.png",
+   "fr": "Couteaux",
+   "en": "Knives",
+   "name": "Couteaux"
+  },
+  "microscopie-speculaire": {
+   "parent_id": "103e91e2-b57d-40ce-a1dc-285359a0e5ad",
+   "sort_order": 18,
+   "is_active": true,
+   "image_url": "/uploads/categories/microscopie-speculaire-photo.jpg",
+   "fr": "Microscopes spéculaires",
+   "en": "Specular Microscopes",
+   "name": "Microscopes spéculaires"
+  },
+  "valves": {
+   "parent_id": "ophthalmology",
+   "sort_order": 13,
+   "is_active": true,
+   "image_url": "/uploads/categories/valves-photo.jpg",
+   "fr": "Glaucome",
+   "en": "Glaucoma",
+   "name": "Glaucome"
+  },
+  "materiel-de-refraction": {
+   "parent_id": "ophthalmology",
+   "sort_order": 2,
+   "is_active": true,
+   "image_url": "/uploads/categories/materiel-de-refraction-photo.jpg",
+   "fr": "Matériel de réfraction",
+   "en": "Refraction Equipment",
+   "name": "Matériel de réfraction"
+  },
+  "oph-diagnostic": {
+   "parent_id": "ophthalmology",
+   "sort_order": 18,
+   "is_active": false,
+   "image_url": "https://www.heine.com/fileadmin/_processed_/7/1/csm_C-014.10.118-HEINE-Retinoscope-BETA200-Diagnostic-Kit-main_cd2f01a6c0.png",
+   "fr": "[Archive] Diagnostic",
+   "en": "[Archived] Diagnostics",
+   "name": "[Archived] Diagnostic"
+  },
+  "table-motorisee": {
+   "parent_id": "ophthalmology",
+   "sort_order": 17,
+   "is_active": true,
+   "image_url": "/uploads/categories/table-motorisee.png",
+   "fr": "Tables motorisées",
+   "en": "Motorized Tables",
+   "name": "Tables motorisées"
+  },
+  "phaco": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 27,
+   "is_active": true,
+   "image_url": "/uploads/categories/phaco-photo-sophi.jpg",
+   "fr": "Phacoemulsification",
+   "en": "Phacoemulsification",
+   "name": "Phacoemulsification"
+  },
+  "viscoelastique": {
+   "parent_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "sort_order": 30,
+   "is_active": true,
+   "image_url": "/uploads/banners/2851ec1d-06dc-4f4b-9b6f-a2fd51ba3714.png",
+   "fr": "Viscoélastique",
+   "en": "Viscoelastics",
+   "name": "Viscoélastique"
+  },
+  "retinographes": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 2,
+   "is_active": true,
+   "image_url": "/uploads/categories/retinographes-photo.jpg",
+   "fr": "Rétinographes",
+   "en": "Fundus Cameras",
+   "name": "Rétinographes"
+  },
+  "tonometres-pachymetres": {
+   "parent_id": "103e91e2-b57d-40ce-a1dc-285359a0e5ad",
+   "sort_order": 12,
+   "is_active": true,
+   "image_url": "/uploads/categories/tonometres-pachymetres-photo.jpg",
+   "fr": "Tonomètres",
+   "en": "Tonometers",
+   "name": "Tonomètres"
+  },
+  "unites-excellence": {
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/categories/unites-excellence.jpg",
+   "fr": "Unités « d'Excellence »",
+   "en": "Excellence Units",
+   "name": "Unités « d'Excellence »"
+  },
+  "unites-performances": {
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 2,
+   "is_active": true,
+   "image_url": "/uploads/categories/unites-performances.jpg",
+   "fr": "Unités « Performances »",
+   "en": "Performance Units",
+   "name": "Unités « Performances »"
+  },
+  "unites-compactes": {
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 3,
+   "is_active": true,
+   "image_url": "/uploads/categories/unites-compactes.jpg",
+   "fr": "Unités « Compactes »",
+   "en": "Compact Units",
+   "name": "Unités « Compactes »"
+  },
+  "angiographes": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 6,
+   "is_active": false,
+   "image_url": "/uploads/categories/angiographes-photo.jpg",
+   "fr": "Angiographes",
+   "en": "Angiographers",
+   "name": "Angiographes"
+  },
+  "refracteurs": {
+   "parent_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "sort_order": 2,
+   "is_active": true,
+   "image_url": "/uploads/categories/refracteurs.jpg",
+   "fr": "Réfracteurs",
+   "en": "Refractors",
+   "name": "Réfracteurs"
+  },
+  "frontofocometre": {
+   "parent_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "sort_order": 4,
+   "is_active": true,
+   "image_url": "/uploads/categories/frontofocometre.png",
+   "fr": "Frontofocomètres",
+   "en": "Lensmeters",
+   "name": "Frontofocomètres"
+  },
+  "champ-visuel-electrophysiologie": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 5,
+   "is_active": true,
+   "image_url": "/uploads/categories/champ-visuel-electrophysiologie.jpg",
+   "fr": "Micropérimètres",
+   "en": "Microperimeters",
+   "name": "Micropérimètres"
+  },
+  "plateformes-multimodales": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 3,
+   "is_active": true,
+   "image_url": "/uploads/categories/plateformes-multimodales.jpg",
+   "fr": "Plateformes multimodales",
+   "en": "Multimodal Platforms",
+   "name": "Plateformes multimodales"
+  },
+  "echographes": {
+   "parent_id": "d5b2283d-5328-4091-a5aa-a33f97e6afe4",
+   "sort_order": 2,
+   "is_active": true,
+   "image_url": "/uploads/categories/echographes.jpg",
+   "fr": "Échographes",
+   "en": "Ultrasound Systems",
+   "name": "Échographes"
+  },
+  "table-de-consultation": {
+   "parent_id": "ophthalmology",
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/categories/table-de-consultation-photo.jpg",
+   "fr": "Unités de consultation",
+   "en": "Examination Units",
+   "name": "Unités de consultation"
+  },
+  "logiciels": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 7,
+   "is_active": false,
+   "image_url": null,
+   "fr": "Logiciels",
+   "en": "Software",
+   "name": "Logiciels"
+  },
+  "auto-refractometres": {
+   "parent_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/categories/auto-refractometres.jpg",
+   "fr": "Réfractomètres / Kératomètres",
+   "en": "Refractometers / Keratometers",
+   "name": "Réfractomètres / Kératomètres"
+  },
+  "biometres-optiques": {
+   "parent_id": "d5b2283d-5328-4091-a5aa-a33f97e6afe4",
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/banners/01fa0526-49ba-43b9-96a3-49b66b6988cd.png",
+   "fr": "Biomètre non contact",
+   "en": "Non-contact biometer",
+   "name": "Biomètre non contact"
+  },
+  "schirmer-fluorescein-et-bleu-vision": {
+   "parent_id": "ophthalmology",
+   "sort_order": 19,
+   "is_active": false,
+   "image_url": "/uploads/categories/schirmer-fluorescein-et-bleu-vision.png",
+   "fr": "Schirmer, fluoresceine et bleu vision",
+   "en": "Schirmer, Fluorescein and Blue Vision",
+   "name": "Schirmer, fluoresceine et bleu vision"
+  },
+  "ecran-optotype": {
+   "parent_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "sort_order": 3,
+   "is_active": true,
+   "image_url": "/uploads/categories/ecran-optotype.png",
+   "fr": "Afficheurs de tests",
+   "en": "Test Displays",
+   "name": "Afficheurs de tests"
+  },
+  "topographie": {
+   "parent_id": "103e91e2-b57d-40ce-a1dc-285359a0e5ad",
+   "sort_order": 22,
+   "is_active": true,
+   "image_url": "/uploads/categories/topographie-photo.jpg",
+   "fr": "Aberromètres - Topographes",
+   "en": "Aberrometers - Topographers",
+   "name": "Aberromètres - Topographes"
+  },
+  "verres-ophtalmoscope-et-skeepens": {
+   "parent_id": "ophthalmology",
+   "sort_order": 5,
+   "is_active": true,
+   "image_url": "/uploads/categories/verres-ophtalmoscope-et-skeepens-photo.jpg",
+   "fr": "Verres et ophtalmoscopes",
+   "en": "Lenses and Ophthalmoscopes",
+   "name": "Verres et ophtalmoscopes"
+  },
+  "traitement-et-diagnostique-secheresse-oculaire": {
+   "parent_id": "222bf645-28f7-4518-9ee2-16c1bbde2eed",
+   "sort_order": 7,
+   "is_active": true,
+   "image_url": "/uploads/categories/traitement-et-diagnostique-secheresse-oculaire-photo.jpg",
+   "fr": "Traitement et diagnostic de la sécheresse oculaire",
+   "en": "Dry Eye Treatment and Diagnosis",
+   "name": "Traitement et diagnostic de la sécheresse oculaire"
+  },
+  "laser-yag-et-slt": {
+   "parent_id": "222bf645-28f7-4518-9ee2-16c1bbde2eed",
+   "sort_order": 23,
+   "is_active": true,
+   "image_url": "/uploads/categories/laser-yag-et-slt-photo.jpg",
+   "fr": "Laser YAG et SLT",
+   "en": "YAG and SLT Lasers",
+   "name": "Laser YAG et SLT"
+  },
+  "laser-photocoagulateurs": {
+   "parent_id": "222bf645-28f7-4518-9ee2-16c1bbde2eed",
+   "sort_order": 24,
+   "is_active": true,
+   "image_url": "/uploads/categories/laser-photocoagulateurs-photo.jpg",
+   "fr": "Laser photocoagulateurs",
+   "en": "Photocoagulation Lasers",
+   "name": "Laser photocoagulateurs"
+  },
+  "oct-et-imagerie": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 1,
+   "is_active": true,
+   "image_url": "/uploads/categories/oct-et-imagerie-photo.jpg",
+   "fr": "OCT et OCT-A",
+   "en": "OCT and OCT-A",
+   "name": "OCT et OCT-A"
+  },
+  "perimetres": {
+   "parent_id": "91012ded-27a0-400c-a75b-443ccafe9d40",
+   "sort_order": 4,
+   "is_active": true,
+   "image_url": "/uploads/categories/perimetres-photo.jpg",
+   "fr": "Périmètres (champ visuel)",
+   "en": "Perimeters (Visual Field)",
+   "name": "Périmètres (champ visuel)"
+  },
+  "biometrie-contact-sans-contact-et-echographie": {
+   "parent_id": "ophthalmology",
+   "sort_order": 8,
+   "is_active": true,
+   "image_url": "/uploads/categories/biometrie-contact-sans-contact-et-echographie-photo.jpg",
+   "fr": "Biométrie et échographie",
+   "en": "Biometry and Ultrasound",
+   "name": "Biométrie et échographie"
+  },
+  "simulateur": {
+   "parent_id": "ophthalmology",
+   "sort_order": 15,
+   "is_active": true,
+   "image_url": "/uploads/categories/simulateur-photo.jpg",
+   "fr": "Simulateur",
+   "en": "Simulator",
+   "name": "Simulateur"
+  },
+  "oculoplastie-fci": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 30,
+   "is_active": true,
+   "image_url": "/uploads/categories/oculoplastie-fci-photo2.jpg",
+   "fr": "Oculoplastie",
+   "en": "Oculoplasty",
+   "name": "Oculoplastie"
+  },
+  "punchs-trepans": {
+   "parent_id": "e740e151-3964-42b0-b32b-d05218c37b84",
+   "sort_order": 29,
+   "is_active": false,
+   "image_url": "/uploads/banners/cdee6ea5-d301-416a-b22c-765d2719326c.png",
+   "fr": "Punchs & Trépans",
+   "en": "Punches & Trephines",
+   "name": "Punchs & Trépans"
+  },
+  "gonioscope": {
+   "parent_id": "ophthalmology",
+   "sort_order": 9,
+   "is_active": true,
+   "image_url": "/uploads/categories/gonioscope.png",
+   "fr": "Gonioscope",
+   "en": "Gonioscope",
+   "name": "Gonioscope"
+  }
+ },
+ "products": {
+  "31ad0ac7-21ab-4cdb-b365-f22ea1c7f990": {
+   "category_id": "5b358961-e4e7-44c2-9cc9-6a27d2563dbd",
+   "status": "active",
+   "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-10-phantom-brochure.pdf"
+  },
+  "a1033956-d016-42d6-9c46-35e89ce5ff77": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "75690617-aeca-43a2-9cec-e15bbef5be56": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "641873cf-f8cf-4609-a830-874f589ca4ea": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "b6eb72dc-a45a-4689-b08a-b282b4a43174": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "custom-1776443957039-58ed1582": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": "/uploads/pdfs/heine-omega-600-brochure.pdf"
+  },
+  "custom-1776447208289-eb3bef0a": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "522caa8c-2bf6-400d-ae35-65fa9f08cb69": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "16a900cb-4ff6-48a4-b2d9-0686d3590603": {
+   "category_id": "a8595c54-edb2-44c0-895b-2314fe5d723b",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "13e41431-7e1e-42a5-a9d4-91315fa7c524": {
+   "category_id": "fa77b7e4-3911-451e-b27a-1bfa71a8b3e9",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "4f3d44ac-9571-417e-b68f-6706893e9c76": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "c632cb82-b68c-439c-a615-ab0fe070cdb8": {
+   "category_id": "ophthalmology",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab": {
+   "category_id": "ophthalmology",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "87dc43e2-6b64-4bce-86ed-41a18ccebf49": {
+   "category_id": "ophthalmology",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "066a53f1-2aa7-4e5b-90c9-0587c616fa4d": {
+   "category_id": "other",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "17a11d68-2725-4c4d-acf1-6fc5abbe0d57": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "7571ecad-f25e-45d4-92a3-505da95cdb1f": {
+   "category_id": "5e06fe26-e2e2-4394-bb0f-e6a455f9808e",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "ad0edaa4-cfb9-4b54-84c9-ff8d4545f29e": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "9f59a846-94a2-4841-b03e-20847d57b575": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "a3e2d935-c5bb-4630-afb0-43b6a2874d83": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "8d919400-9fcd-467a-ad72-80a145f3b973": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "e352f02a-6200-446c-b4ba-07d631216de0": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "668f9ff1-8bd5-46ab-9e78-2fda4390a03d": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "a7b7fee1-ff03-49eb-88d5-831998e7ef16": {
+   "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "ed939d0c-c518-42ca-9b5f-7f5a3922adb5": {
+   "category_id": "af5e0cc6-6a9b-47bd-9b21-128804f23a20",
+   "status": "archived",
+   "pdf_brochure_url": null
+  },
+  "omni-1768245275641-mcac2r5g2": {
+   "category_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "omni-1768245275610-ozjjmhwc7": {
+   "category_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "status": "active",
+   "pdf_brochure_url": null
+  },
+  "omni-1768245275619-1fd5kczer": {
+   "category_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+   "status": "active",
+   "pdf_brochure_url": null
+  }
+ }
+}
