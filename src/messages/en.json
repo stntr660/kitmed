@@ -89,6 +89,25 @@
     },
     "language": "Language"
   },
+  "siteChrome": {
+    "topBar": "Serving healthcare professionals since 1997",
+    "location": "Casablanca, Morocco",
+    "certified": "ISO certified 1997-2015",
+    "searchPlaceholder": "Search for a product…",
+    "quote": "Request a quote",
+    "categories": "Our categories",
+    "allCategories": "All our categories",
+    "viewAll": "View all",
+    "menu": "Menu",
+    "nav": {
+      "home": "Home",
+      "about": "About us",
+      "products": "Our products",
+      "catalogues": "Catalogues",
+      "sav": "After-sales",
+      "contact": "Contact"
+    }
+  },
   "navigation": {
     "home": "Home",
     "products": "Products",
@@ -1908,6 +1927,52 @@
     "yourProfile": "Your Profile",
     "settings": "Settings",
     "signOut": "Sign out"
+  },
+  "homePage": {
+    "hero": {
+      "title": "Medical expertise, close at hand.",
+      "text": "Equipment, medical devices and support for healthcare professionals.",
+      "primary": "Discover our products",
+      "secondary": "Contact us"
+    },
+    "strip": {
+      "catalogues": "Our catalogues",
+      "advice": "Advice & support",
+      "sav": "After-sales service"
+    },
+    "equipment": {
+      "title": "Discover our equipment",
+      "cta": "Discover",
+      "previous": "Previous equipment",
+      "next": "Next equipment",
+      "goTo": "Go to slide {number}"
+    },
+    "expertise": {
+      "title": "Our areas of expertise",
+      "subtitle": "Solutions tailored to every specialty.",
+      "viewProducts": "View products",
+      "ophtalmologie": "Ophthalmology",
+      "orl": "ENT",
+      "pharma": "Pharma",
+      "contactologie": "Contact lenses",
+      "literie": "Medical beds and furniture",
+      "drapage": "Surgical drapes",
+      "orthopedie": "Orthopaedics"
+    },
+    "partners": {
+      "title": "Our partners",
+      "viewAll": "See all our partners"
+    },
+    "featured": {
+      "title": "Featured products",
+      "cta": "Discover",
+      "empty": "No featured products yet."
+    },
+    "band": {
+      "title": "KITMED, your partner since 1997",
+      "text": "Import, distribution and maintenance of medical devices in Morocco.",
+      "cta": "Learn more"
+    }
   },
   "home": {
     "title": "Professional Medical Equipment Solutions",

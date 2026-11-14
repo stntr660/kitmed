@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -29,7 +28,7 @@ export function ManufacturerCarousel({
   className,
   locale = 'fr'
 }: ManufacturerCarouselProps) {
-  const t = useTranslations('home');
+  const t = useTranslations('homePage.partners');
   const [translateX, setTranslateX] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -131,33 +130,33 @@ export function ManufacturerCarousel({
       {sortedPartners.length > 3 && (
         <>
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-[#10146B] shadow-sm hover:text-accent transition-colors duration-200"
             onClick={goToPrevious}
             aria-label="Previous manufacturers"
           >
-            <ChevronLeft className="h-8 w-8" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
           
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-gray-600 hover:text-primary-600 transition-colors duration-200"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-[#10146B] shadow-sm hover:text-accent transition-colors duration-200"
             onClick={goToNext}
             aria-label="Next manufacturers"
           >
-            <ChevronRight className="h-8 w-8" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </>
       )}
 
       {/* Continuous scrolling logos */}
       <div 
-        className="overflow-hidden py-12"
+        className="mx-12 overflow-hidden py-6"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         role="region"
         aria-label="Manufacturer logos carousel"
       >
         <div 
-          className="flex gap-12 items-center"
+          className="flex items-center"
           style={{
             transform: `translateX(${translateX}px)`,
             width: `${extendedPartners.length * 240}px`, // 240px per logo (bigger spacing)
@@ -166,14 +165,14 @@ export function ManufacturerCarousel({
           {extendedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
-              className="flex-none w-48 h-28 flex items-center justify-center group"
+              className="flex-none w-60 h-24 flex items-center justify-center group border-l border-[#10146B]/15"
               title={partner.name}
             >
               {partner.logo ? (
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="max-h-24 max-w-44 object-contain transition-all duration-300 group-hover:scale-110"
+                  className="max-h-20 max-w-44 object-contain transition-all duration-300 group-hover:scale-110"
                   loading="lazy"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -198,19 +197,11 @@ export function ManufacturerCarousel({
         </div>
       </div>
       
-      {/* See all partners button */}
-      <div className="text-center mt-8">
-        <Button
-          size="lg"
-          variant="outline"
-          className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
-          asChild
-        >
-          <Link href={`/${locale}/partners`}>
-            {t('partners.viewAll')}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
-        </Button>
+      {/* See all partners */}
+      <div className="text-center">
+        <Link href={`/${locale}/partners`} className="text-sm font-medium text-[#0B5CAD] hover:text-accent">
+          {t('viewAll')}
+        </Link>
       </div>
     </div>
   );

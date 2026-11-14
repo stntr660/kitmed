@@ -466,6 +466,8 @@ export function BannerForm({ banner, onSuccess, onCancel }: BannerFormProps) {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="homepage">Homepage</SelectItem>
+                          <SelectItem value="homepage-hero">Homepage – hero (top)</SelectItem>
+                          <SelectItem value="equipment-showcase">Homepage – Découvrez nos équipements</SelectItem>
                           <SelectItem value="category">Category Pages</SelectItem>
                           <SelectItem value="product">Product Pages</SelectItem>
                         </SelectContent>
