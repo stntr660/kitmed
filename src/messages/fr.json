@@ -2050,47 +2050,115 @@
     }
   },
   "about": {
-    "hero": {
-      "badge": "À propos",
-      "title": "Qui sommes nous?",
-      "subtitle": "DEPUIS 1997 AU SERVICE DU SECTEUR MÉDICAL",
-      "cta": {
-        "contact": "Nous Contacter",
-        "products": "Nos Produits"
+    "header": {
+      "title": "À propos de KITMED",
+      "breadcrumb": "À propos de nous"
+    },
+    "kicker": "DEPUIS 1997",
+    "headline": "Près de 30 ans d’expérience au service des professionnels de santé",
+    "who": {
+      "title": "Qui sommes-nous ?",
+      "p1": "Fondée en 1997 et implantée à Casablanca, KITMED accompagne les professionnels et les établissements de santé publics et privés au Maroc. Près de trois décennies d’expérience nourrissent notre connaissance du terrain et notre engagement auprès de nos clients.",
+      "p2": "Spécialisés dans l’importation, la distribution et la maintenance de dispositifs médicaux, nous intervenons en ophtalmologie, en ORL ainsi que dans l’équipement et le mobilier hospitaliers.",
+      "imageAlt": "Un technicien et un commercial KITMED accompagnent une professionnelle de santé sur un appareil d’ophtalmologie",
+      "caption": "Illustration de notre accompagnement technique et commercial"
+    },
+    "expertise": {
+      "title": "Une expertise qui accompagne chaque projet",
+      "text": "Comprendre vos besoins, vous conseiller et proposer des solutions adaptées à votre activité : cette démarche guide notre travail. Nos collaborations avec des fabricants internationaux nous permettent de proposer des équipements, des instruments et des consommables pour la pratique quotidienne."
+    },
+    "longTerm": {
+      "title": "Un accompagnement dans la durée",
+      "text": "Conseil, installation, mise en service, formation à l’utilisation et maintenance : nos équipes commerciales et techniques se mobilisent à chaque étape pour assurer un suivi cohérent et durable."
+    },
+    "commitments": {
+      "title": "Nos engagements",
+      "listening": {
+        "title": "Écoute & proximité",
+        "text": "Comprendre vos besoins et vous apporter un conseil adapté."
+      },
+      "quality": {
+        "title": "Qualité & rigueur",
+        "text": "Porter une attention constante au choix des solutions et au suivi des projets."
+      },
+      "followUp": {
+        "title": "Suivi & réactivité",
+        "text": "Assurer un accompagnement technique et commercial dans la durée."
+      },
+      "training": {
+        "title": "Transmission & formation",
+        "text": "Favoriser la prise en main des équipements et le partage des connaissances."
       }
     },
-    "overview": {
-      "description1": "Fondée en 1997, KITMED est un acteur de référence dans la distribution et l'intégration d'équipements médicaux de haute technologie au Maroc. Grâce à des partenariats stratégiques avec des fabricants internationaux de renom, nous offrons des solutions innovantes et performantes aux établissements de santé publics et privés.",
-      "description2": "Notre expertise couvre plusieurs spécialités, notamment : Ophtalmologie, Cardiologie, ORL, Réanimation et Mobilier médical.",
-      "description3": "Engagés envers l'excellence et la satisfaction de nos clients, nous garantissons un accompagnement personnalisé, un service après-vente réactif et une couverture nationale permettant de répondre aux exigences les plus élevées du secteur médical.",
-      "tagline": "KITMED, votre partenaire de confiance pour une santé d'excellence."
+    "teams": {
+      "title": "Des équipes engagées",
+      "text": "Compétence, implication et sens du service : nos équipes travaillent ensemble pour construire une relation de confiance avec chaque client."
     },
-    "mission": {
-      "title": "Mission",
-      "description": "Fournir des équipements médicaux innovants, adaptés aux besoins de nos clients, avec un accompagnement personnalisé pour garantir leur satisfaction."
+    "ambition": {
+      "title": "Notre ambition",
+      "text": "Être un partenaire de confiance pour les professionnels de santé, en associant expertise, proximité et qualité de service."
     },
-    "vision": {
-      "title": "Vision",
-      "description": "Consolider notre position de leader au Maroc et étendre notre présence en Afrique du Nord."
+    "cta": {
+      "title": "Parlons de votre projet",
+      "button": "Contactez-nous"
+    }
+  },
+  "catalogues": {
+    "header": {
+      "title": "Catalogues",
+      "breadcrumb": "Catalogues"
     },
-    "values": {
-      "title": "Valeurs",
-      "items": {
-        "innovation": {
-          "title": "Innovation"
-        },
-        "satisfaction": {
-          "title": "Satisfaction"
-        },
-        "responsiveness": {
-          "title": "Réactivité"
-        }
-      }
+    "intro": "Téléchargez les catalogues et brochures de nos partenaires, classés par domaine.",
+    "download": "Télécharger le catalogue",
+    "brochures": "Brochures produits",
+    "showMore": "Voir les {count} autres brochures",
+    "showLess": "Réduire la liste",
+    "loading": "Chargement des catalogues…",
+    "error": "Impossible de charger les catalogues pour le moment. Veuillez réessayer plus tard.",
+    "empty": "Aucun catalogue n’est disponible pour le moment.",
+    "pdf": "PDF",
+    "cta": {
+      "title": "Vous ne trouvez pas un document ?",
+      "button": "Contactez-nous"
+    }
+  },
+  "sav": {
+    "header": {
+      "title": "Service après-vente",
+      "breadcrumb": "SAV"
     },
-    "contact": {
-      "title": "Nos Coordonnées",
-      "description": "Contactez-nous pour tous vos besoins en équipements médicaux",
-      "cta": "Prendre Contact"
+    "kicker": "SAV",
+    "title": "Un accompagnement technique à chaque étape",
+    "intro": "Nos équipes techniques assurent l’installation, la mise en service, la formation à l’utilisation et la maintenance de vos équipements. Décrivez votre demande : nous revenons vers vous rapidement.",
+    "services": {
+      "installation": "Installation",
+      "commissioning": "Mise en service",
+      "training": "Formation",
+      "maintenance": "Maintenance"
+    },
+    "form": {
+      "title": "Demande d’intervention SAV",
+      "name": "Nom et prénom",
+      "establishment": "Établissement",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "equipment": "Équipement / marque",
+      "serial": "Numéro de série",
+      "optional": "facultatif",
+      "description": "Description de la demande",
+      "descriptionPlaceholder": "Décrivez le problème ou le besoin (installation, panne, formation, maintenance…)",
+      "required": "Champs obligatoires",
+      "submit": "Envoyer la demande",
+      "sending": "Envoi en cours…",
+      "successTitle": "Demande envoyée",
+      "success": "Merci, votre demande SAV a bien été reçue. Notre équipe technique vous contactera rapidement.",
+      "newRequest": "Nouvelle demande",
+      "error": "L’envoi a échoué. Vérifiez les champs puis réessayez, ou contactez-nous par téléphone.",
+      "invalidEmail": "Adresse e-mail invalide."
+    },
+    "cta": {
+      "title": "Besoin d’un conseil avant votre demande ?",
+      "button": "Contactez-nous"
     }
   },
   "partners": {
