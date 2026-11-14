@@ -1,252 +1,121 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import {
-  Target,
-  Eye,
-  Lightbulb,
-  Heart,
-  Zap,
-  ArrowRight,
-  MapPin,
-  Phone,
-  Mail,
-  Building2
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Users, ShieldCheck, Timer, GraduationCap, type LucideIcon } from 'lucide-react';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { CertificationSection } from '@/components/ui/compliance-badges';
-import { GoogleMapEmbed } from '@/components/ui/google-map-embed';
+import { PageHeader } from '@/components/layout/PageHeader';
+import { CtaBand } from '@/components/layout/CtaBand';
+import { SectionTitle } from '@/components/layout/SectionTitle';
+
+const COMMITMENTS: { key: 'listening' | 'quality' | 'followUp' | 'training'; icon: LucideIcon }[] = [
+  { key: 'listening', icon: Users },
+  { key: 'quality', icon: ShieldCheck },
+  { key: 'followUp', icon: Timer },
+  { key: 'training', icon: GraduationCap },
+];
+
+function TextBlock({ title, text }: { title: string; text: string }) {
+  return (
+    <div>
+      <SectionTitle title={title} />
+      <p className="mt-5 text-base lg:text-lg leading-relaxed text-gray-800">{text}</p>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   const t = useTranslations('about');
-  const tCommon = useTranslations('common');
+  const tNav = useTranslations('navigation');
   const locale = useHydrationSafeLocale('fr');
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
+      <PageHeader
+        accent
+        title={t('header.title')}
+        breadcrumb={[{ label: tNav('home'), href: `/${locale}` }, { label: t('header.breadcrumb') }]}
+      />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-16 lg:py-24">
+      {/* Intro: kicker, headline, who we are + photo */}
+      <section className="py-10 lg:py-14">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6" variant="outline">
-              {t('hero.badge')}
-            </Badge>
-            <h1 className="text-4xl lg:text-5xl font-light text-gray-900 mb-4 leading-tight">
-              {t('hero.title')}
-            </h1>
-            <p className="text-2xl lg:text-3xl font-semibold text-primary-600 mb-8">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" asChild>
-                <Link href={`/${locale}/contact`}>
-                  {t('hero.cta.contact')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+          <p className="text-sm lg:text-base font-bold tracking-wide text-[#E3040D]">{t('kicker')}</p>
+          <h2 className="mt-2 max-w-3xl text-3xl lg:text-4xl font-bold leading-tight text-[#00007C]">
+            {t('headline')}
+          </h2>
+          <span aria-hidden="true" className="mt-4 block h-1 w-16 rounded-full bg-[#E3040D]" />
+
+          <div className="mt-8 grid items-start gap-8 lg:grid-cols-[2fr_3fr] lg:gap-10">
+            <div className="lg:pt-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-[#00007C]">{t('who.title')}</h3>
+              <p className="mt-5 text-base lg:text-lg leading-relaxed text-gray-800">{t('who.p1')}</p>
+              <p className="mt-5 text-base lg:text-lg leading-relaxed text-gray-800">{t('who.p2')}</p>
+            </div>
+            <figure>
+              <div className="overflow-hidden rounded-lg shadow-sm">
+                <Image
+                  src="/images/about/accompagnement-technique.jpg"
+                  alt={t('who.imageAlt')}
+                  width={580}
+                  height={280}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
+              </div>
+              <figcaption className="mt-2 text-center text-xs italic text-gray-600">{t('who.caption')}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise / long-term support */}
+      <section className="pb-10 lg:pb-14">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid gap-10 md:grid-cols-2 md:gap-0 md:divide-x md:divide-gray-300">
+            <div className="md:pr-10">
+              <TextBlock title={t('expertise.title')} text={t('expertise.text')} />
+            </div>
+            <div className="md:pl-10">
+              <TextBlock title={t('longTerm.title')} text={t('longTerm.text')} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg max-w-none text-center">
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                {t('overview.description1')}
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                {t('overview.description2')}
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                {t('overview.description3')}
-              </p>
-              <p className="text-xl font-semibold text-primary-600 italic">
-                {t('overview.tagline')}
-              </p>
+      {/* Commitments */}
+      <section className="px-4 lg:px-5">
+        <div className="mx-auto max-w-[1440px] rounded-2xl bg-[#DBEEFD] px-4 py-8 lg:px-8 lg:py-10">
+          <div className="container mx-auto px-0 lg:px-4">
+            <SectionTitle title={t('commitments.title')} align="center" />
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {COMMITMENTS.map(({ key, icon: Icon }) => (
+                <div key={key} className="rounded-xl bg-white p-6 text-center shadow-sm">
+                  <Icon className="mx-auto h-12 w-12 text-[#00007C]" strokeWidth={1.6} aria-hidden="true" />
+                  <h3 className="mt-4 text-lg font-bold text-[#00007C]">{t(`commitments.${key}.title`)}</h3>
+                  <p className="mt-2 text-sm lg:text-base leading-snug text-gray-800">{t(`commitments.${key}.text`)}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission, Vision & Values */}
-      <section className="py-16 lg:py-20 bg-gray-50">
+      {/* Teams / ambition */}
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid gap-8 lg:grid-cols-3">
-              {/* Mission */}
-              <Card className="border-0 shadow-lg h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Target className="h-8 w-8 text-primary-600" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                    {t('mission.title')}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {t('mission.description')}
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Vision */}
-              <Card className="border-0 shadow-lg h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Eye className="h-8 w-8 text-primary-600" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                    {t('vision.title')}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {t('vision.description')}
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* Values */}
-              <Card className="border-0 shadow-lg h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Heart className="h-8 w-8 text-primary-600" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-                    {t('values.title')}
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-center space-x-3">
-                      <Lightbulb className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700 font-medium">
-                        {t('values.items.innovation.title')}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-3">
-                      <Heart className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700 font-medium">
-                        {t('values.items.satisfaction.title')}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-3">
-                      <Zap className="h-5 w-5 text-primary-500" />
-                      <span className="text-gray-700 font-medium">
-                        {t('values.items.responsiveness.title')}
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="grid gap-10 md:grid-cols-2 md:gap-0 md:divide-x md:divide-gray-300">
+            <div className="md:pr-10">
+              <TextBlock title={t('teams.title')} text={t('teams.text')} />
+            </div>
+            <div className="md:pl-10">
+              <TextBlock title={t('ambition.title')} text={t('ambition.text')} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications & Compliance */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <CertificationSection />
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="py-16 lg:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6">
-                {t('contact.title')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {t('contact.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              {/* Direction */}
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Building2 className="h-5 w-5 mr-2" />
-                    {tCommon('direction')}
-                  </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="h-4 w-4 text-gray-500 mt-1" />
-                      <div>
-                        <p className="text-gray-700">20, rue Lalande</p>
-                        <p className="text-gray-700">Quartier des Hopitaux</p>
-                        <p className="text-gray-700">Casablanca - Maroc</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-gray-700">+212 522 86 03 66</p>
-                        <p className="text-gray-700">+212 522 86 04 31</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-gray-700">INFO@KITMED.MA</p>
-                        <p className="text-gray-700">EXPORT@KITMED.MA</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* ShowRoom */}
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    {tCommon('showRoom')}
-                  </h3>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="h-4 w-4 text-gray-500 mt-1" />
-                      <div>
-                        <p className="text-gray-700">33, rue Lahcen El Aarjounen</p>
-                        <p className="text-gray-700">Quartier des Hopitaux</p>
-                        <p className="text-gray-700">Casablanca - Maroc</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="h-4 w-4 text-gray-500" />
-                      <div>
-                        <p className="text-gray-700">+212 522 86 34 27</p>
-                        <p className="text-gray-700">+212 522 86 08 56</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Map */}
-            <div className="mt-8">
-              <GoogleMapEmbed variant="medium" showDirectionsButton />
-            </div>
-
-            <div className="text-center mt-12">
-              <Button size="lg" asChild>
-                <Link href={`/${locale}/contact`}>
-                  {t('contact.cta')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBand title={t('cta.title')} buttonLabel={t('cta.button')} href={`/${locale}/contact`} variant="solid" />
     </div>
   );
 }
