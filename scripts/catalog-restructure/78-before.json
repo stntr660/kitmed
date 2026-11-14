@@ -1,0 +1,1194 @@
+{
+ "taken_at": "2026-11-14T18:51:43.201Z",
+ "categories": {
+  "orl-oto-rhino-laryngologie": {
+   "row": {
+    "id": "ent",
+    "name": "ORL (Oto-Rhino-Laryngologie)",
+    "slug": "orl-oto-rhino-laryngologie",
+    "description": "Equipements ORL specialises",
+    "parent_id": null,
+    "sort_order": 2,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/orl-oto-rhino-laryngologie-photo.jpg",
+    "created_at": "2026-01-10T17:33:37.459Z",
+    "updated_at": "2026-10-19T12:03:42.346Z",
+    "type": "discipline"
+   },
+   "translations": [
+    {
+     "id": "ent-fr",
+     "category_id": "ent",
+     "language_code": "fr",
+     "name": "ORL (Oto-Rhino-Laryngologie)",
+     "description": "Equipements pour l'oto-rhino-laryngologie",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "ent-en",
+     "category_id": "ent",
+     "language_code": "en",
+     "name": "ENT (Ear, Nose and Throat)",
+     "description": "Equipment for ear, nose and throat medicine",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "ent-exploration": {
+   "row": {
+    "id": "ent-exploration",
+    "name": "Exploration ORL",
+    "slug": "ent-exploration",
+    "description": "Endoscopes et laryngoscopes",
+    "parent_id": "ent",
+    "sort_order": 2,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/ent-exploration-photo.jpg",
+    "created_at": "2026-01-13T14:55:04.475Z",
+    "updated_at": "2026-10-27T16:05:45.269Z",
+    "type": "category"
+   },
+   "translations": [
+    {
+     "id": "ent-exploration-fr",
+     "category_id": "ent-exploration",
+     "language_code": "fr",
+     "name": "Exploration ORL",
+     "description": "Endoscopes et equipements d'exploration ORL",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "ent-exploration-en",
+     "category_id": "ent-exploration",
+     "language_code": "en",
+     "name": "ENT Exploration",
+     "description": "Endoscopes and ENT exploration equipment",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  }
+ },
+ "products": {
+  "1270e704-08c5-4357-bf9e-2f8be1c3c951": {
+   "row": {
+    "id": "1270e704-08c5-4357-bf9e-2f8be1c3c951",
+    "reference_fournisseur": "00",
+    "category_id": "ent-exploration",
+    "constructeur": "OTOPRONT",
+    "slug": "station-de-travail-orl-basic-plus",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/unite-de-consultation-basicplus-1768473771171-10e50975.pdf",
+    "created_at": "2026-01-13T14:42:37.248Z",
+    "updated_at": "2026-01-15T10:47:40.601Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "907ca4a1-9c51-4f20-99cd-aae4d2bf0001",
+     "product_id": "1270e704-08c5-4357-bf9e-2f8be1c3c951",
+     "language_code": "fr",
+     "nom": "Station de travail ORL BASIC PLUS",
+     "description": "25+ ans de développement\nLe BASIC PLUS offre un design optimisé et un niveau technique élevé, fruit de plus de 25 ans d'évolution continue.\nPersonnalisation maximale\nConfiguration modulaire et librement paramétrable : variantes, tailles, modules complémentaires – tout s'adapte à vos besoins.\nDesign fonctionnel\nLignes épurées et intemporelles, apaisantes pour le patient. Tous les éléments sont positionnés pour une utilisation à une seule main.\nTechnologie et hygiène\nDéveloppé en collaboration avec hôpitaux et praticiens. Normes d'hygiène élevées, maintenance rapide et facile.\nConfiguration flexible\nRangements, tiroirs et bacs librement configurables. Distributeurs intégrés (cotons, abaisse-langue, gants, mouchoirs) pour un travail efficace à une main.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "f0ae3795-d4a2-4c58-9875-b8856240a497",
+     "product_id": "1270e704-08c5-4357-bf9e-2f8be1c3c951",
+     "language_code": "en",
+     "nom": "BASIC PLUS ENT Workstation",
+     "description": "11:46 AM25+ years of development\nThe BASIC PLUS offers optimized design and high technical standards, the result of over 25 years of continuous evolution.\nMaximum customization\nModular, freely configurable setup: variants, sizes, add-on modules – everything adapts to your needs.\nFunctional design\nClean, timeless lines that calm patients. All elements positioned for single-hand operation.\nTechnology and hygiene\nDeveloped with hospitals and practitioners. High hygiene standards, quick and easy maintenance.\nFlexible configuration\nStorage, drawers, and trays freely configurable. Integrated dispensers (cotton, tongue depressors, gloves, tissues) for efficient one-handed work.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "b2aa12ad-3fd4-4052-a76a-f189b6963d91",
+     "product_id": "1270e704-08c5-4357-bf9e-2f8be1c3c951",
+     "type": "image",
+     "url": "/uploads/products/1270e704-08c5-4357-bf9e-2f8be1c3c951/1768315403246-0.png",
+     "alt_text": "Screenshot 2026-01-13 at 15",
+     "title": "Screenshot 2026-01-13 at 15.40.28.png",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-13T14:43:23.252Z"
+    },
+    {
+     "id": "04c27c81-2207-46ad-8c84-8cfd8b13d7d6",
+     "product_id": "1270e704-08c5-4357-bf9e-2f8be1c3c951",
+     "type": "image",
+     "url": "/uploads/products/1270e704-08c5-4357-bf9e-2f8be1c3c951/1768315403256-1.png",
+     "alt_text": "Screenshot 2026-01-13 at 15",
+     "title": "Screenshot 2026-01-13 at 15.40.39.png",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-13T14:43:23.262Z"
+    }
+   ]
+  },
+  "23952c1c-380e-4e4b-af77-02e2bf484458": {
+   "row": {
+    "id": "23952c1c-380e-4e4b-af77-02e2bf484458",
+    "reference_fournisseur": "740009",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "tymp-tympanometer",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:32.406Z",
+    "updated_at": "2025-12-08T19:52:32.406Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "56e95a1d-4288-476c-916c-56eb6a36ce3c",
+     "product_id": "23952c1c-380e-4e4b-af77-02e2bf484458",
+     "language_code": "fr",
+     "nom": "Tympanomètre TYMP",
+     "description": "TECHNOLOGIE ET PERFORMANCE : Impédancemètre audiométrique automatique sur PC avec mesure de compliance intégrée. Caractéristiques : cycle de mesure de 2 secondes, sonde automatique à 226Hz et 1000Hz, plage de balayage de pression -600 à +400 daPa. Traitement numérique haute résolution avec affichage en temps réel. APPLICATIONS CLINIQUES : Tympanométrie, test de réflexe acoustique, évaluation de la fonction tubaire, évaluation de la compliance de l'oreille moyenne. Idéal pour le diagnostic ORL, les cliniques d'audiologie et les applications pédiatriques. INTÉGRATION : Fonctionnement sur PC avec logiciel dédié, base de données patients unifiée compatible avec la plateforme RHINO-SYS. Connectivité réseau pour cabinets multi-postes. Capacité d'export DICOM. INGÉNIERIE ALLEMANDE : Fabrication de précision par Happersberger Otopront GmbH. Marqué CE, certifié ISO 13485. Fabriqué en Allemagne depuis 1950.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "e3a3de4f-8ad9-4b89-b0e7-485537d43696",
+     "product_id": "23952c1c-380e-4e4b-af77-02e2bf484458",
+     "language_code": "en",
+     "nom": "TYMP Tympanometer",
+     "description": "TECHNOLOGY & PERFORMANCE: Fully automatic PC-based impedance audiometer with integrated compliance measurement. Features 2-second measurement cycle, automatic probe tone at 226Hz and 1000Hz, pressure sweep range -600 to +400 daPa. High-resolution digital signal processing with real-time display. CLINICAL APPLICATIONS: Tympanometry, acoustic reflex testing, Eustachian tube function evaluation, middle ear compliance assessment. Ideal for ENT diagnostics, audiology clinics, and pediatric applications. INTEGRATION: PC-based operation with dedicated software, unified patient database compatible with RHINO-SYS platform. Network connectivity for multi-station practices. DICOM export capability. GERMAN ENGINEERING: Precision manufactured by Happersberger Otopront GmbH. CE marked, ISO 13485 certified. Made in Germany since 1950.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "0475e0cd-f725-4643-a08d-a4bacceb20b9",
+     "product_id": "23952c1c-380e-4e4b-af77-02e2bf484458",
+     "type": "image",
+     "url": "/uploads/products/740009-primary.jpg",
+     "alt_text": "Tymp Tympanometer - Image principale",
+     "title": "Tymp Tympanometer - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:32.664Z"
+    }
+   ]
+  },
+  "337796e4-d4a5-437e-8633-1a56bdbd9cab": {
+   "row": {
+    "id": "337796e4-d4a5-437e-8633-1a56bdbd9cab",
+    "reference_fournisseur": "325420, 325423",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "pes-pilot-hdpro",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:27.648Z",
+    "updated_at": "2025-12-08T19:52:27.648Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "6599e66f-18bb-41e0-974a-f076ceb751b0",
+     "product_id": "337796e4-d4a5-437e-8633-1a56bdbd9cab",
+     "language_code": "fr",
+     "nom": "Système de Stroboscopie PES PILOT",
+     "description": "Système de stroboscopie avancé pour l'examen des cordes vocales. Imagerie à haute vitesse avec fréquence de flash variable pour une évaluation laryngée détaillée.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "57ff8db2-334e-4d43-9433-c7a48016b36d",
+     "product_id": "337796e4-d4a5-437e-8633-1a56bdbd9cab",
+     "language_code": "en",
+     "nom": "Stroboscopy System PES PILOT",
+     "description": "Advanced stroboscopy system for vocal fold examination. High-speed imaging with variable flash frequency for detailed laryngeal assessment.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "788a891f-0fa7-4e8d-b11f-3c9c17aaa13e",
+     "product_id": "337796e4-d4a5-437e-8633-1a56bdbd9cab",
+     "type": "image",
+     "url": "/uploads/products/325420--325423-primary.jpg",
+     "alt_text": "PES Pilot Hdpro - Image principale",
+     "title": "PES Pilot Hdpro - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:28.432Z"
+    }
+   ]
+  },
+  "34a3e417-1dcb-4ba4-91c0-dfa976830163": {
+   "row": {
+    "id": "34a3e417-1dcb-4ba4-91c0-dfa976830163",
+    "reference_fournisseur": "350035, 350032, 350038, 350059, 700000",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "pes-eco-hd-cam-ra-syst-me",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:29.550Z",
+    "updated_at": "2025-12-08T19:52:29.550Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "9739a8c4-1d7a-4d40-955f-018fe1124573",
+     "product_id": "34a3e417-1dcb-4ba4-91c0-dfa976830163",
+     "language_code": "fr",
+     "nom": "Station de Diagnostic ORL DIGITAL 5",
+     "description": "Station de diagnostic ORL numérique avec capacité d'échographie. Conception modulaire avec gestion intégrée des données patients pour un diagnostic complet.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4a71fc89-ff46-4afb-ae03-71e81bb87fe4",
+     "product_id": "34a3e417-1dcb-4ba4-91c0-dfa976830163",
+     "language_code": "en",
+     "nom": "ENT Diagnosis Station DIGITAL 5",
+     "description": "Digital ENT diagnosis station with ultrasound capability. Modular design with integrated patient data management for comprehensive diagnostics.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "72483a8a-9857-4d4b-8429-38e0ec0db8bb",
+     "product_id": "34a3e417-1dcb-4ba4-91c0-dfa976830163",
+     "type": "image",
+     "url": "/uploads/products/350035--350032--350038--350059--700000-primary.jpg",
+     "alt_text": "PES Eco HD Caméra Système - Image principale",
+     "title": "PES Eco HD Caméra Système - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:29.559Z"
+    }
+   ]
+  },
+  "3cf6aab3-0f62-49bb-9618-a9cf4ca3c0cd": {
+   "row": {
+    "id": "3cf6aab3-0f62-49bb-9618-a9cf4ca3c0cd",
+    "reference_fournisseur": "250000, 250060, 250090, 200300, 200301, 556339",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "basic-plus-traitement-unit",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:17.956Z",
+    "updated_at": "2025-12-08T19:52:17.956Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "d3caba03-233d-4519-ba13-6312b9543c77",
+     "product_id": "3cf6aab3-0f62-49bb-9618-a9cf4ca3c0cd",
+     "language_code": "fr",
+     "nom": "Unité de Traitement ORL PLUS",
+     "description": "Unité de traitement ORL avancée avec canaux d'aspiration multiples, nébuliseur intégré et jeu d'instruments complet pour les procédures oto-rhino-laryngologiques complètes.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "39b6acc4-c3f8-412b-be5a-db1c87ca7ba8",
+     "product_id": "3cf6aab3-0f62-49bb-9618-a9cf4ca3c0cd",
+     "language_code": "en",
+     "nom": "ENT Treatment Unit PLUS",
+     "description": "Advanced ENT treatment unit with multiple suction channels, integrated nebulizer, and comprehensive instrument set for complete otorhinolaryngological procedures.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "0fb79b60-88ee-472b-83fc-080c8f50f759",
+     "product_id": "3cf6aab3-0f62-49bb-9618-a9cf4ca3c0cd",
+     "type": "image",
+     "url": "/uploads/products/250000--250060--250090--200300--200301--556339-primary.jpg",
+     "alt_text": "Basic Plus Traitement Unité - Image principale",
+     "title": "Basic Plus Traitement Unité - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:18.089Z"
+    }
+   ]
+  },
+  "4e57487f-c32c-4f03-90bb-52c658759038": {
+   "row": {
+    "id": "4e57487f-c32c-4f03-90bb-52c658759038",
+    "reference_fournisseur": "325325, 325348, 325321, 325326, 325329",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "otolux-led-headlight",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:26.288Z",
+    "updated_at": "2025-12-08T19:52:26.288Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "83113fd3-f643-4ca0-8f97-d77da8caee16",
+     "product_id": "4e57487f-c32c-4f03-90bb-52c658759038",
+     "language_code": "fr",
+     "nom": "Système de Vidéo-Endoscopie",
+     "description": "Système de vidéo-endoscopie complet avec caméra HD et capacité d'enregistrement. Écran moniteur intégré pour la visualisation en temps réel et la documentation.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "fe7d3626-78b7-41fa-bd9d-b00496a8df16",
+     "product_id": "4e57487f-c32c-4f03-90bb-52c658759038",
+     "language_code": "en",
+     "nom": "Video Endoscopy System",
+     "description": "Complete video endoscopy system with HD camera and recording capability. Integrated monitor display for real-time visualization and documentation.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "6c40874b-f2c7-471f-9b8f-6ec26c0d1440",
+     "product_id": "4e57487f-c32c-4f03-90bb-52c658759038",
+     "type": "image",
+     "url": "/uploads/products/325325--325348--325321--325326--325329-primary.jpg",
+     "alt_text": "Otolux LED Headlight - Image principale",
+     "title": "Otolux LED Headlight - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:26.293Z"
+    }
+   ]
+  },
+  "7280bce6-3c61-48f4-9ce2-38a2f22cfe50": {
+   "row": {
+    "id": "7280bce6-3c61-48f4-9ce2-38a2f22cfe50",
+    "reference_fournisseur": "220000, 556339",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "smart-traitement-unit",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:17.555Z",
+    "updated_at": "2025-12-08T19:52:17.555Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "aaf8ccdb-636d-4a3c-999f-79cf70f7449d",
+     "product_id": "7280bce6-3c61-48f4-9ce2-38a2f22cfe50",
+     "language_code": "fr",
+     "nom": "Poste de Travail ORL COMPACT",
+     "description": "Poste de travail ORL compact avec instruments de diagnostic essentiels. Conception peu encombrante idéale pour les salles d'examen de petite taille.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "0d1b5714-6ac5-40e7-8279-566e6fff799e",
+     "product_id": "7280bce6-3c61-48f4-9ce2-38a2f22cfe50",
+     "language_code": "en",
+     "nom": "ENT Workstation COMPACT",
+     "description": "Compact ENT workstation with essential diagnostic instruments. Space-saving design ideal for smaller examination rooms.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f8440da3-35c6-4fa8-b753-c7c71cf6372e",
+     "product_id": "7280bce6-3c61-48f4-9ce2-38a2f22cfe50",
+     "type": "image",
+     "url": "/uploads/products/220000--556339-primary.jpg",
+     "alt_text": "Smart Traitement Unité - Image principale",
+     "title": "Smart Traitement Unité - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:17.701Z"
+    }
+   ]
+  },
+  "9442066d-f5b9-4399-b864-3f46d8b43c67": {
+   "row": {
+    "id": "9442066d-f5b9-4399-b864-3f46d8b43c67",
+    "reference_fournisseur": "325044, 325162, 325163, 325182",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-endoscopes-70-sinuscopes",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:19.027Z",
+    "updated_at": "2025-12-08T19:52:19.027Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "59ad27ee-9570-40e6-ad49-98511ce63d37",
+     "product_id": "9442066d-f5b9-4399-b864-3f46d8b43c67",
+     "language_code": "fr",
+     "nom": "Set Endoscopes Rigides 0°/30°",
+     "description": "Set d'endoscopes rigides professionnel incluant des optiques à 0° et 30°. Optique haute résolution avec illumination brillante pour un diagnostic ORL précis.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "96289617-8826-4296-99d0-a64470b42391",
+     "product_id": "9442066d-f5b9-4399-b864-3f46d8b43c67",
+     "language_code": "en",
+     "nom": "Rigid Endoscope Set 0°/30°",
+     "description": "Professional rigid endoscope set including 0° and 30° angle scopes. High-resolution optics with brilliant illumination for precise ENT diagnostics.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "57212169-9a2c-44fa-b254-c58a2606dccf",
+     "product_id": "9442066d-f5b9-4399-b864-3f46d8b43c67",
+     "type": "image",
+     "url": "/uploads/products/325044--325162--325163--325182-primary.jpg",
+     "alt_text": "Rigid Endoscopes 70° (sinuscopes) - Image principale",
+     "title": "Rigid Endoscopes 70° (sinuscopes) - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:19.165Z"
+    }
+   ]
+  },
+  "96d9bf5b-f85b-4621-b824-06ace14b50fa": {
+   "row": {
+    "id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+    "reference_fournisseur": "000",
+    "category_id": "ent-exploration",
+    "constructeur": "OTOPRONT",
+    "slug": "station-de-travail-orl-smart",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T14:46:58.236Z",
+    "updated_at": "2026-01-13T17:14:48.833Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "6f6c4940-a6e0-4b02-9080-6ae698a04f74",
+     "product_id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+     "language_code": "en",
+     "nom": "SMART ENT Workstation",
+     "description": "The SMART ENT workstation by Otopront is a fully equipped, compact treatment unit designed for modern ENT practices. Featuring a slim, elegant design with stable casters for easy mobility between treatment rooms, operating theaters, and bedside use. Despite its small footprint, the SMART offers complete functionality: high-performance vibration-free surgical suction for 24-hour use, warm water irrigation, compressed air unit, up to 3 auto-switching LED light sources, and integration capability for radiofrequency systems, endoscopes, and microscopes. The ergonomic design allows comfortable operation whether seated or standing.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "e12bbc84-7b97-4529-9262-b3cbf9f73a31",
+     "product_id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+     "language_code": "fr",
+     "nom": "Station de travail ORL SMART\t",
+     "description": "Réinterprétation d'une icône L'idée de la SMART est née de la forme révolutionnaire de la première unité de traitement ORL, l'Otopront \"Säule\" (pilier). Tous les éléments fonctionnels, réunis en un seul espace, ont été réinterprétés en fonction des besoins actuels et des développements techniques. Le résultat est une unité de traitement très flexible, entièrement équipée, mince et élégante. En harmonie avec les exigences actuelles de flexibilité Avec ses deux roulettes stables, ses dimensions appropriées, la SMART peut être facilement déplacée en différents endroits. D’autres équipements optionnels peuvent également être fournis avec des roulettes, comme un microscope intégré ou des tables d'instruments et des armoires. L'unité complète est donc flexible pour une utilisation mobile en chirurgie ambulatoire, au chevet ou dans différentes salles de traitement. Fonctionnalité complète malgré ses petites dimensions Grâce à un encombrement réduit de tous les composants, la SMART peut être entièrement équipée : aspiration chirurgicale haute performance sans vibrations pour une utilisation de 24 heures, eau chaude avec rinçage, unité d'air comprimé, jusqu'à 3 sources lumineuses LED à commutation automatique, intégration de systèmes de Radiofréquence, d’endoscopies ou de microscopes. Ergonomie et design sophistiqués Tous les éléments peuvent être facilement commandés, à la fois assis ou debout, en raison de la partie supérieure inclinée vers l'avant et de son arrangement circulaire autour du corps. C’est donc « l'assistant » parfait pour le traitement permanent.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "447d4e9f-b178-417f-a2c7-3e3307495114",
+     "product_id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+     "type": "image",
+     "url": "/uploads/products/96d9bf5b-f85b-4621-b824-06ace14b50fa/1768315659237-0.png",
+     "alt_text": "Screenshot 2026-01-13 at 15",
+     "title": "Screenshot 2026-01-13 at 15.43.47.png",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-13T14:47:39.241Z"
+    },
+    {
+     "id": "28bb35f8-b4be-4d67-a38f-69aa412618c4",
+     "product_id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+     "type": "image",
+     "url": "/uploads/products/96d9bf5b-f85b-4621-b824-06ace14b50fa/1768315659243-1.png",
+     "alt_text": "Screenshot 2026-01-13 at 15",
+     "title": "Screenshot 2026-01-13 at 15.43.59.png",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-13T14:47:39.247Z"
+    },
+    {
+     "id": "1e10040c-aebe-49c6-9eb3-cec7cc40de27",
+     "product_id": "96d9bf5b-f85b-4621-b824-06ace14b50fa",
+     "type": "image",
+     "url": "/uploads/products/96d9bf5b-f85b-4621-b824-06ace14b50fa/1768315659248-2.png",
+     "alt_text": "Screenshot 2026-01-13 at 15",
+     "title": "Screenshot 2026-01-13 at 15.44.06.png",
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2026-01-13T14:47:39.251Z"
+    }
+   ]
+  },
+  "9f2532f5-c56a-4409-8346-91bf93a1acdd": {
+   "row": {
+    "id": "9f2532f5-c56a-4409-8346-91bf93a1acdd",
+    "reference_fournisseur": "740011, 740012, 140013, 740018, 740047, 700008",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rhino-sys-diagnostic-syst-me",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:33.003Z",
+    "updated_at": "2025-12-08T19:52:33.003Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "362132d8-e54e-4ac0-b0eb-5bd6d459152f",
+     "product_id": "9f2532f5-c56a-4409-8346-91bf93a1acdd",
+     "language_code": "fr",
+     "nom": "Système d Audiométrie Complet",
+     "description": "Système d'audiométrie complet incluant audiomètre tonal, audiométrie vocale et tympanométrie. Logiciel intégré pour une évaluation auditive complète et la génération de rapports.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "84f8f287-0c33-4919-bba0-ce9b562efe00",
+     "product_id": "9f2532f5-c56a-4409-8346-91bf93a1acdd",
+     "language_code": "en",
+     "nom": "Audiometry System Complete",
+     "description": "Complete audiometry system including pure tone audiometer, speech audiometry, and tympanometry. Integrated software for comprehensive hearing assessment and reporting.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ee4b17fc-41ca-49f0-b703-715d3bae9020",
+     "product_id": "9f2532f5-c56a-4409-8346-91bf93a1acdd",
+     "type": "image",
+     "url": "/uploads/products/740011--740012--140013--740018--740047--700008-primary.jpg",
+     "alt_text": "Rhino-Sys Diagnostic Système - Image principale",
+     "title": "Rhino-Sys Diagnostic Système - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:33.103Z"
+    }
+   ]
+  },
+  "a1e9d120-f1e4-43e7-b927-d2052b4b2d1f": {
+   "row": {
+    "id": "a1e9d120-f1e4-43e7-b927-d2052b4b2d1f",
+    "reference_fournisseur": "325175, 325181, 325191, 325194, 325118",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-endoscopes-30",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:23.467Z",
+    "updated_at": "2025-12-08T19:52:23.467Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "de1407bf-44c5-4e7a-8989-cd225b13349c",
+     "product_id": "a1e9d120-f1e4-43e7-b927-d2052b4b2d1f",
+     "language_code": "en",
+     "nom": "Laryngoscope System",
+     "description": "Professional laryngoscope system for vocal cord examination. High-definition optics with integrated light source for clear visualization.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4e8215c2-7bf5-415d-82f6-2a3ae14d0149",
+     "product_id": "a1e9d120-f1e4-43e7-b927-d2052b4b2d1f",
+     "language_code": "fr",
+     "nom": "Système Laryngoscope",
+     "description": "Système de laryngoscope professionnel pour l'examen des cordes vocales. Optique haute définition avec source lumineuse intégrée pour une visualisation claire.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "bab9951c-a18b-49d7-b52b-95c702a72924",
+     "product_id": "a1e9d120-f1e4-43e7-b927-d2052b4b2d1f",
+     "type": "image",
+     "url": "/uploads/products/325175--325181--325191--325194--325118-primary.jpg",
+     "alt_text": "Rigid Endoscopes 30° - Image principale",
+     "title": "Rigid Endoscopes 30° - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:23.475Z"
+    }
+   ]
+  },
+  "a2e71699-5aa9-4327-88f1-c82d91449fa2": {
+   "row": {
+    "id": "a2e71699-5aa9-4327-88f1-c82d91449fa2",
+    "reference_fournisseur": "325293, 325298",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-laryngoscopes-70",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:25.825Z",
+    "updated_at": "2025-12-08T19:52:25.825Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "4f22358c-da32-4439-8fdb-bf1f7a93fe7d",
+     "product_id": "a2e71699-5aa9-4327-88f1-c82d91449fa2",
+     "language_code": "en",
+     "nom": "Otoscope Endoscope 4mm",
+     "description": "Precision 4mm otoscope endoscope for detailed ear canal and tympanic membrane examination. Crystal-clear resolution with optimal illumination.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "9e1f8cc8-7e04-422e-ba7e-dc6a2102d0fc",
+     "product_id": "a2e71699-5aa9-4327-88f1-c82d91449fa2",
+     "language_code": "fr",
+     "nom": "Endoscope Otoscope 4mm",
+     "description": "Endoscope otoscope de précision de 4 mm pour l'examen détaillé du conduit auditif et de la membrane tympanique. Résolution cristalline avec illumination optimale.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ec6ecaec-683c-4dee-9407-24142b3d45c1",
+     "product_id": "a2e71699-5aa9-4327-88f1-c82d91449fa2",
+     "type": "image",
+     "url": "/uploads/products/325293--325298-primary.jpg",
+     "alt_text": "Rigid Laryngoscopes 70° - Image principale",
+     "title": "Rigid Laryngoscopes 70° - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:25.830Z"
+    }
+   ]
+  },
+  "abb64199-1ed5-49c4-9f32-0ad50175f7a3": {
+   "row": {
+    "id": "abb64199-1ed5-49c4-9f32-0ad50175f7a3",
+    "reference_fournisseur": "325164",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-endoscope-45",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:22.761Z",
+    "updated_at": "2025-12-08T19:52:22.761Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "0c8c1984-86da-498a-9b2e-eafc31c86528",
+     "product_id": "abb64199-1ed5-49c4-9f32-0ad50175f7a3",
+     "language_code": "fr",
+     "nom": "Endoscope Rigide 45°",
+     "description": "TECHNOLOGIE ET PERFORMANCE : Endoscope spécialisé à angle de 45° avec système de lentilles à tiges nouvellement calculé. Optimisé pour les applications vidéo Full HD et 4K. SPÉCIFICATIONS : L'angle de vision de 45° offre une perspective intermédiaire entre les options à 30° et 70°. Optique à lentilles à tiges de type Hopkins. APPLICATIONS CLINIQUES : Procédures spécialisées nécessitant une visualisation angulaire intermédiaire. Utile pour des approches anatomiques spécifiques où les angles de 30° ou 70° sont insuffisants. CONSTRUCTION : Acier inoxydable sablé, lentille de protection en saphir, autoclavable à 134°C. INGÉNIERIE ALLEMANDE : Fabrication de précision Happersberger Otopront.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "428e91c2-4135-42d4-8259-4d56871f9b5d",
+     "product_id": "abb64199-1ed5-49c4-9f32-0ad50175f7a3",
+     "language_code": "en",
+     "nom": "Rigid Endoscope 45°",
+     "description": "TECHNOLOGY & PERFORMANCE: Specialized 45° angled endoscope with newly calculated rod lens system. Optimized for Full HD and 4K video applications. SPECIFICATIONS: 45° viewing angle provides intermediate perspective between 30° and 70° options. Hopkins-type rod lens optics. CLINICAL APPLICATIONS: Specialized procedures requiring intermediate angled visualization. Useful for specific anatomical approaches where 30° or 70° angles are insufficient. CONSTRUCTION: Sanded stainless steel, sapphire cover lens, autoclavable 134°C / 273°F. GERMAN ENGINEERING: Happersberger Otopront precision manufacturing.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "71abf887-8378-4d66-8b31-4eb1e19c893e",
+     "product_id": "abb64199-1ed5-49c4-9f32-0ad50175f7a3",
+     "type": "image",
+     "url": "/uploads/products/325164-primary.jpg",
+     "alt_text": "Rigid Endoscope 45° - Image principale",
+     "title": "Rigid Endoscope 45° - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:22.810Z"
+    }
+   ]
+  },
+  "ad09b724-1852-4c20-8e77-528b32c94f28": {
+   "row": {
+    "id": "ad09b724-1852-4c20-8e77-528b32c94f28",
+    "reference_fournisseur": "325423 (Stroboscope variant)",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "pes-pilot-hdpro-stroboscope",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:29.180Z",
+    "updated_at": "2025-12-08T19:52:29.180Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "eb206754-1557-4752-a07a-b830137de827",
+     "product_id": "ad09b724-1852-4c20-8e77-528b32c94f28",
+     "language_code": "fr",
+     "nom": "Stroboscope STROBO Compact",
+     "description": "Stroboscope compact pour les examens phoniatriques. Conception portable avec source lumineuse LED intégrée et commande de fréquence réglable.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "5e1baf91-d738-4d2b-a30a-33c1dd3a3607",
+     "product_id": "ad09b724-1852-4c20-8e77-528b32c94f28",
+     "language_code": "en",
+     "nom": "Stroboscope STROBO Compact",
+     "description": "Compact stroboscope unit for phoniatric examinations. Portable design with integrated LED light source and adjustable frequency control.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "5f4910cd-2abc-4f73-a93d-6d58e6955e09",
+     "product_id": "ad09b724-1852-4c20-8e77-528b32c94f28",
+     "type": "image",
+     "url": "/uploads/products/325423--stroboscope-variant--primary.jpg",
+     "alt_text": "PES Pilot Hdpro Stroboscope - Image principale",
+     "title": "PES Pilot Hdpro Stroboscope - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:29.190Z"
+    }
+   ]
+  },
+  "ae85e587-f604-4d5c-99e6-4f4c283636d3": {
+   "row": {
+    "id": "ae85e587-f604-4d5c-99e6-4f4c283636d3",
+    "reference_fournisseur": "325168, 325169, 325291, 325296",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-endoscopes-90",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:23.159Z",
+    "updated_at": "2025-12-08T19:52:23.159Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "aaa15426-de67-44e0-9f6d-cea5caf6ac0b",
+     "product_id": "ae85e587-f604-4d5c-99e6-4f4c283636d3",
+     "language_code": "fr",
+     "nom": "Set Endoscope Nasal",
+     "description": "Set d'endoscope nasal spécialisé pour les procédures de rhinoscopie. Optique grand angle avec profondeur de champ améliorée pour un examen détaillé de la cavité nasale.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "0bcfbc09-c255-41c6-93c2-27779ab2ee4c",
+     "product_id": "ae85e587-f604-4d5c-99e6-4f4c283636d3",
+     "language_code": "en",
+     "nom": "Nasal Endoscope Set",
+     "description": "Specialized nasal endoscope set for rhinoscopy procedures. Wide-angle optics with enhanced depth of field for detailed nasal cavity examination.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "1cd99a5e-0c99-4744-92c8-642c91d92bfd",
+     "product_id": "ae85e587-f604-4d5c-99e6-4f4c283636d3",
+     "type": "image",
+     "url": "/uploads/products/325168--325169--325291--325296-primary.jpg",
+     "alt_text": "Rigid Endoscopes 90° - Image principale",
+     "title": "Rigid Endoscopes 90° - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:23.164Z"
+    }
+   ]
+  },
+  "b2aea94d-4e29-4ac5-945b-97f2242c0e40": {
+   "row": {
+    "id": "b2aea94d-4e29-4ac5-945b-97f2242c0e40",
+    "reference_fournisseur": "325055, 325059",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "fibre-optique-headlight-type-clar",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:19.605Z",
+    "updated_at": "2025-12-08T19:52:19.605Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "a2056daf-0e60-451f-b85b-37b543c32084",
+     "product_id": "b2aea94d-4e29-4ac5-945b-97f2242c0e40",
+     "language_code": "fr",
+     "nom": "Système de Lampe Frontale LED",
+     "description": "Système de lampe frontale LED haute intensité avec mise au point réglable du faisceau. Conception légère avec batterie rechargeable pour un fonctionnement sans fil.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "ffb71d84-7367-484c-95d2-6b7bdbbaab22",
+     "product_id": "b2aea94d-4e29-4ac5-945b-97f2242c0e40",
+     "language_code": "en",
+     "nom": "LED Headlight System",
+     "description": "High-intensity LED headlight system with adjustable beam focus. Lightweight design with rechargeable battery pack for cordless operation.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "cc4c1dff-d6a8-401e-8f3b-13227d8d9f2a",
+     "product_id": "b2aea94d-4e29-4ac5-945b-97f2242c0e40",
+     "type": "image",
+     "url": "/uploads/products/325055--325059-primary.jpg",
+     "alt_text": "Fibre Optique Headlight Type Clar - Image principale",
+     "title": "Fibre Optique Headlight Type Clar - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:19.612Z"
+    }
+   ]
+  },
+  "b5593bfd-ab32-49e3-80c8-71aa989df9d8": {
+   "row": {
+    "id": "b5593bfd-ab32-49e3-80c8-71aa989df9d8",
+    "reference_fournisseur": "100650, 100666, 100664, 100665, 100667, 146011",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "sit-4-ent-examen-chair",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:17.216Z",
+    "updated_at": "2025-12-08T19:52:17.216Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "648f5f33-50b8-4a47-bf6b-cc3aefc44de8",
+     "product_id": "b5593bfd-ab32-49e3-80c8-71aa989df9d8",
+     "language_code": "fr",
+     "nom": "Unité d Examen ORL BASIC",
+     "description": "Unité d'examen ORL complète avec système d'aspiration intégré, fonction de pulvérisation et instruments d'examen. Conception ergonomique pour un examen efficace des patients.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "29c6cd5d-c940-471e-9803-54d3cb613f36",
+     "product_id": "b5593bfd-ab32-49e3-80c8-71aa989df9d8",
+     "language_code": "en",
+     "nom": "ENT Examination Unit BASIC",
+     "description": "Complete ENT examination unit with integrated suction system, spray function, and examination instruments. Ergonomic design for efficient patient examination.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "18e5b6bb-9c07-4578-8009-edcda8edf357",
+     "product_id": "b5593bfd-ab32-49e3-80c8-71aa989df9d8",
+     "type": "image",
+     "url": "/uploads/products/100650--100666--100664--100665--100667--146011-primary.jpg",
+     "alt_text": "SIT 4 ENT Examen Chair - Image principale",
+     "title": "SIT 4 ENT Examen Chair - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:17.294Z"
+    }
+   ]
+  },
+  "c98d8b69-f80c-400c-a853-12d9867b36b9": {
+   "row": {
+    "id": "c98d8b69-f80c-400c-a853-12d9867b36b9",
+    "reference_fournisseur": "325161, 325180, 325183, 325195",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "rigid-endoscopes-0",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:22.317Z",
+    "updated_at": "2025-12-08T19:52:22.317Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "2358f8eb-79d2-4682-af63-0776f78979c1",
+     "product_id": "c98d8b69-f80c-400c-a853-12d9867b36b9",
+     "language_code": "fr",
+     "nom": "Kit Endoscope de Diagnostic",
+     "description": "Kit d'endoscope de diagnostic complet avec angles de vision multiples. Conception autoclavable avec revêtement de lentille résistant aux rayures pour une durabilité à long terme.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "1bf6b963-5796-43ab-b4cc-dbc7310343e6",
+     "product_id": "c98d8b69-f80c-400c-a853-12d9867b36b9",
+     "language_code": "en",
+     "nom": "Diagnostic Endoscope Kit",
+     "description": "Complete diagnostic endoscope kit with multiple viewing angles. Autoclavable design with scratch-resistant lens coating for long-term durability.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "86a9b123-457d-40bd-b4d8-f38f1d571347",
+     "product_id": "c98d8b69-f80c-400c-a853-12d9867b36b9",
+     "type": "image",
+     "url": "/uploads/products/325161--325180--325183--325195-primary.jpg",
+     "alt_text": "Rigid Endoscopes 0° - Image principale",
+     "title": "Rigid Endoscopes 0° - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:22.351Z"
+    }
+   ]
+  },
+  "fc13dbf0-4689-41a6-8ace-9a0806c06571": {
+   "row": {
+    "id": "fc13dbf0-4689-41a6-8ace-9a0806c06571",
+    "reference_fournisseur": "325080",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "fibre-optique-headlight-type-binner",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:22.033Z",
+    "updated_at": "2025-12-08T19:52:22.033Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "199c81b5-996f-4a93-8d49-1ee3b6c4204e",
+     "product_id": "fc13dbf0-4689-41a6-8ace-9a0806c06571",
+     "language_code": "en",
+     "nom": "Fibre Optic Headlight Type Binner",
+     "description": "TECHNOLOGY & PERFORMANCE: Alternative fibre optic headlight design with Type Binner optical configuration. Lightweight construction with flexible fibre optic cable connection. OPTICAL DESIGN: Binner-type optical system providing focused illumination for detailed examination work. Cold-light source prevents tissue heating during extended procedures. CLINICAL APPLICATIONS: ENT examinations, diagnostic procedures requiring intense illumination without heat generation. GERMAN ENGINEERING: Happersberger Otopront precision manufacturing. CE marked medical device.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "6c78bad8-6dfd-431e-9786-bafd0554d08b",
+     "product_id": "fc13dbf0-4689-41a6-8ace-9a0806c06571",
+     "language_code": "fr",
+     "nom": "Lampe Frontale Fibre Optique Type Binner",
+     "description": "TECHNOLOGIE ET PERFORMANCE : Design alternatif de lampe frontale à fibre optique avec configuration optique Type Binner. Construction légère avec connexion par câble à fibre optique flexible. DESIGN OPTIQUE : Système optique type Binner fournissant un éclairage focalisé pour un travail d'examen détaillé. Source lumineuse froide empêchant l'échauffement des tissus pendant les procédures prolongées. APPLICATIONS CLINIQUES : Examens ORL, procédures diagnostiques nécessitant un éclairage intense sans génération de chaleur. INGÉNIERIE ALLEMANDE : Fabrication de précision Happersberger Otopront. Dispositif médical marqué CE.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "39f72812-3c79-4673-a971-c5c094945ea9",
+     "product_id": "fc13dbf0-4689-41a6-8ace-9a0806c06571",
+     "type": "image",
+     "url": "/uploads/products/325080-primary.jpg",
+     "alt_text": "Fibre Optique Headlight Type Binner - Image principale",
+     "title": "Fibre Optique Headlight Type Binner - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:22.037Z"
+    }
+   ]
+  },
+  "fe023ac0-c525-411a-b109-40843b0a9e42": {
+   "row": {
+    "id": "fe023ac0-c525-411a-b109-40843b0a9e42",
+    "reference_fournisseur": "350036, 350040, 350043, 350047, 350034, 350063, 350068, 350069, 350031, 700007, 700010, 700011, 495359, 350042, 350058, 497404",
+    "category_id": "ent-exploration",
+    "constructeur": "otopront",
+    "slug": "endoscopy-accessoires-components",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:32.047Z",
+    "updated_at": "2025-12-08T19:52:32.047Z",
+    "partner_id": "d4b45aad-3a0a-4925-ae56-a38a535b28cb"
+   },
+   "translations": [
+    {
+     "id": "c9fc498f-e9bd-496e-9f27-17df930c169f",
+     "product_id": "fe023ac0-c525-411a-b109-40843b0a9e42",
+     "language_code": "fr",
+     "nom": "Centre de Traitement ORL PROFESSIONAL",
+     "description": "Centre de traitement ORL professionnel complet avec jeu d'instruments compréhensif, systèmes d'aspiration multiples et gestion intégrée du flux de travail. Solution de premier plan pour les cliniques ORL.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "23033005-127e-4e39-b0cb-c0f63d227346",
+     "product_id": "fe023ac0-c525-411a-b109-40843b0a9e42",
+     "language_code": "en",
+     "nom": "ENT Treatment Center PROFESSIONAL",
+     "description": "Complete professional ENT treatment center with comprehensive instrument set, multiple suction systems, and integrated workflow management. Premium solution for ENT clinics.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "55bb5993-e62d-47c4-a806-e14f300a2989",
+     "product_id": "fe023ac0-c525-411a-b109-40843b0a9e42",
+     "type": "image",
+     "url": "/uploads/products/350036--350040--350043--350047--350034--350063--350068--350069--350031--700007--700010--700011--495359--350042--350058--497404-primary.jpg",
+     "alt_text": "Endoscopy Accessoires & Components - Image principale",
+     "title": "Endoscopy Accessoires & Components - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T19:52:32.052Z"
+    }
+   ]
+  }
+ }
+}
