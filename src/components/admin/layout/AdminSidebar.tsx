@@ -19,7 +19,7 @@ import {
   EnvelopeIcon,
 } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
-import { removeAdminToken } from '@/lib/auth-utils';
+import { logoutAdmin } from '@/lib/auth-utils';
 import { AdminUser } from '@/types/admin';
 import { Badge } from '@/components/ui/badge';
 import { Logo } from '@/components/ui/logo';
@@ -226,8 +226,8 @@ function SidebarContent({ user }: { user: AdminUser }) {
   const navigation = getNavigation(locale, t);
 
   const handleLogout = async () => {
-    // Use hydration-safe logout
-    removeAdminToken();
+    // End the session on the server, then clear the local copy
+    await logoutAdmin();
 
     if (typeof window !== 'undefined') {
       window.location.href = '/admin/login';

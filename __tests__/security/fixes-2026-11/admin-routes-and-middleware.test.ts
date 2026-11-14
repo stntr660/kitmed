@@ -23,6 +23,8 @@ jest.mock('@/lib/database', () => {
       products: model(),
       product_media: model(),
       banners: model(),
+      // no logout recorded: findFirst resolves null, tokens are not revoked
+      activity_logs: model(),
     },
   };
 });

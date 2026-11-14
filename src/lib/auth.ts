@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { AdminUser, AdminPermission, AdminResource, AdminAction } from '@/types/admin';
+import { isTokenRevoked, revokeUserSessions } from '@/lib/session-revocation';
 
 // Use centralized JWT_SECRET validation
 if (!process.env.JWT_SECRET) {
@@ -54,11 +55,14 @@ export const authenticate = async (request: NextRequest): Promise<AdminUser | nu
 
     // Try the header first, then the cookie: a stale header such as
     // "Bearer null" must not hide a valid httpOnly cookie.
+    // A token issued before the user's last logout is refused.
     let decoded: any = null;
     for (const token of [headerToken, cookieToken]) {
       if (!token) continue;
       try {
-        decoded = verifyToken(token);
+        const candidate = verifyToken(token);
+        if (await isTokenRevoked(candidate)) continue;
+        decoded = candidate;
         break;
       } catch {
         decoded = null;
@@ -196,9 +200,11 @@ export const createSession = async (user: AdminUser): Promise<string> => {
   return token;
 };
 
+// Ends every session of the token's user (see src/lib/session-revocation.ts).
 export const destroySession = async (token: string): Promise<void> => {
-  // In a real implementation, you'd remove session from database
-  // or add token to blacklist
+  const decoded = verifyToken(token);
+  const userId = decoded?.userId || decoded?.id;
+  if (userId) await revokeUserSessions(String(userId));
 };
 
 // Audit logging

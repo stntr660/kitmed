@@ -41,7 +41,9 @@ export async function middleware(request: NextRequest) {
   // Admin API: the JWT signature and expiry are verified here (Edge runtime),
   // then again in each route handler by withAuth (role checks).
   if (pathname.startsWith('/api/admin/')) {
-    if (pathname === '/api/admin/auth/login') {
+    // Logout stays reachable with an expired token so it can always clear the
+    // cookie; it only revokes sessions for a token with a valid signature.
+    if (pathname === '/api/admin/auth/login' || pathname === '/api/admin/auth/logout') {
       return NextResponse.next();
     }
     if (!(await hasValidAdminToken(request))) {
