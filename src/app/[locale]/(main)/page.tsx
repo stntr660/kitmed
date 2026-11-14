@@ -1,29 +1,18 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { ExternalLink, ArrowRight, Shield, Award, Users, Globe, Star, Play, ChevronDown, Download } from 'lucide-react';
-import { DynamicBanner } from '@/components/banners/DynamicBanner';
-import { CertificationsBanner } from '@/components/ui/certifications-banner';
-import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
-import { NewArrivalsCarousel, type NewArrivalProduct } from '@/components/carousel/NewArrivalsCarousel';
 import Link from 'next/link';
-import { isWebPageLink } from '@/lib/utils';
 import { useState, useEffect } from 'react';
+import { ChevronRight } from 'lucide-react';
+import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
+import { SectionTitle } from '@/components/layout/SectionTitle';
+import { HomeHero } from '@/components/home/HomeHero';
+import { ServiceStrip } from '@/components/home/ServiceStrip';
+import { EquipmentCarousel } from '@/components/home/EquipmentCarousel';
+import { ExpertiseGrid } from '@/components/home/ExpertiseGrid';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useIsHydrated } from '@/components/ui/hydration-safe';
 import { HydrationErrorBoundary } from '@/components/ui/hydration-error-boundary';
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  imageUrl: string | null;
-  productCount: number;
-}
 
 interface Partner {
   id: string;
@@ -38,453 +27,145 @@ interface Product {
   id: string;
   name: string;
   slug: string;
-  description: string;
-  shortDescription: string;
-  manufacturer: {
-    name: string;
-  };
-  category?: {
-    name: string;
-  };
-  media: Array<{
-    id: string;
-    type: string;
-    url: string;
-    isPrimary: boolean;
-    altText: string | null;
-  }>;
+  media: Array<{ id: string; type: string; url: string; isPrimary: boolean; altText: string | null }>;
 }
 
-// « Nouveaux arrivages » carousel hidden on request (2026-10-29); set to true to show it again
-const SHOW_NEW_ARRIVALS = false;
+const localized = (value: unknown, locale: string): string => {
+  if (typeof value === 'string') return value;
+  if (value && typeof value === 'object') {
+    const v = value as Record<string, string>;
+    return v[locale] || v.fr || v.en || '';
+  }
+  return '';
+};
 
+/** Homepage in the order of the client mockup (KITMED_Accueil_Banniere_Equipements). */
 export default function HomePage() {
-  const t = useTranslations('home');
-  const tCommon = useTranslations('common');
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const t = useTranslations('homePage');
   const [partners, setPartners] = useState<Partner[]>([]);
   const [partnersLoading, setPartnersLoading] = useState(true);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = useState(true);
-  const [newArrivals, setNewArrivals] = useState<NewArrivalProduct[]>([]);
-  const [newArrivalsLoading, setNewArrivalsLoading] = useState(true);
   const isHydrated = useIsHydrated();
   const locale = useHydrationSafeLocale('fr');
 
-  // Fetch data from APIs
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setCategoriesLoading(true);
-        const response = await fetch(`/api/categories?includeProductCount=true&locale=${locale}`);
-        const result = await response.json();
+    if (!isHydrated) return;
 
-        if (result.success && result.data) {
-          setCategories(result.data.slice(0, 6)); // Limit to 6 categories
-        }
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      } finally {
-        setCategoriesLoading(false);
-      }
-    };
+    fetch(`/api/partners?status=active&pageSize=12`)
+      .then(res => res.json())
+      .then(result => {
+        if (!result.success || !result.data) return;
+        const list: Partner[] = result.data.map((partner: any) => ({
+          id: partner.id,
+          name: localized(partner.name, locale) || 'Partner',
+          logo: partner.logoUrl || '/uploads/partners/default.png',
+          description: localized(partner.description, locale),
+          featured: partner.featured || false,
+          priority: partner.priority || 0,
+        }));
+        setPartners(list);
+      })
+      .catch(error => console.error('Error fetching partners:', error))
+      .finally(() => setPartnersLoading(false));
 
-    const fetchPartners = async () => {
-      try {
-        setPartnersLoading(true);
-        const response = await fetch(`/api/partners?status=active&pageSize=12`);
-        const result = await response.json();
-
-        if (result.success && result.data) {
-          // Transform partner data to match expected interface with safe fallbacks
-          const transformedPartners = result.data.map((partner: any) => {
-            // Safely extract name with proper fallback handling
-            let partnerName = 'Partner';
-            if (partner.name) {
-              if (typeof partner.name === 'string') {
-                partnerName = partner.name;
-              } else if (typeof partner.name === 'object') {
-                partnerName = partner.name[locale] || partner.name.fr || partner.name.en || 'Partner';
-              }
-            }
-
-            // Safely extract description
-            let partnerDescription = '';
-            if (partner.description) {
-              if (typeof partner.description === 'string') {
-                partnerDescription = partner.description;
-              } else if (typeof partner.description === 'object') {
-                partnerDescription = partner.description[locale] || partner.description.fr || partner.description.en || '';
-              }
-            }
-
-            return {
-              id: partner.id,
-              name: partnerName,
-              logo: partner.logoUrl || '/uploads/partners/default.png',
-              description: partnerDescription,
-              featured: partner.featured || false,
-              priority: partner.priority || 0
-            };
-          });
-
-          // Sort partners: featured first, then by priority, then by name
-          const sortedPartners = transformedPartners.sort((a, b) => {
-            if (a.featured !== b.featured) {
-              return b.featured ? 1 : -1; // Featured partners first
-            }
-            if (a.priority !== b.priority) {
-              return b.priority - a.priority; // Higher priority first
-            }
-            return a.name.localeCompare(b.name); // Alphabetical by name
-          });
-
-          setPartners(sortedPartners);
-        }
-      } catch (error) {
-        console.error('Error fetching partners:', error);
-        // Fallback to empty array on error
-        setPartners([]);
-      } finally {
-        setPartnersLoading(false);
-      }
-    };
-
-    const fetchFeaturedProducts = async () => {
-      try {
-        setProductsLoading(true);
-        const response = await fetch(`/api/products?status=active&featured=true&pageSize=4&locale=${locale}`);
-        const result = await response.json();
-
-        if (result.success && result.data) {
-          setFeaturedProducts(result.data.items || []);
-        }
-      } catch (error) {
-        console.error('Error fetching featured products:', error);
-      } finally {
-        setProductsLoading(false);
-      }
-    };
-
-    const fetchNewArrivals = async () => {
-      try {
-        setNewArrivalsLoading(true);
-        const response = await fetch(`/api/products?status=active&newArrival=true&pageSize=12&locale=${locale}`);
-        const result = await response.json();
-
-        if (result.success && result.data) {
-          setNewArrivals(result.data.items || []);
-        }
-      } catch (error) {
-        console.error('Error fetching new arrivals:', error);
-      } finally {
-        setNewArrivalsLoading(false);
-      }
-    };
-
-    if (isHydrated) {
-      fetchCategories();
-      fetchPartners();
-      fetchFeaturedProducts();
-      if (SHOW_NEW_ARRIVALS) fetchNewArrivals();
-    }
+    fetch(`/api/products?status=active&featured=true&pageSize=4&locale=${locale}`)
+      .then(res => res.json())
+      .then(result => {
+        if (result.success && result.data) setFeaturedProducts(result.data.items || []);
+      })
+      .catch(error => console.error('Error fetching featured products:', error))
+      .finally(() => setProductsLoading(false));
   }, [locale, isHydrated]);
 
   return (
     <HydrationErrorBoundary>
-      <div className="flex flex-col">
-        {/* Dynamic Banner - always render the same component structure */}
-        <DynamicBanner position="homepage" />
+      <div className="flex flex-col bg-white">
+        <HomeHero locale={locale} />
+        <ServiceStrip locale={locale} />
+        <EquipmentCarousel locale={locale} />
+        <ExpertiseGrid locale={locale} />
 
-        {/* Medical Disciplines Section */}
-        <section className="py-16 lg:py-20 bg-white">
+        {/* Nos partenaires */}
+        <section className="bg-gradient-to-r from-[#E1F0FD] via-[#EEF7FF] to-[#E1F0FD] py-8">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('disciplines.title')}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                {t('disciplines.subtitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                {t('disciplines.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {!isHydrated || categoriesLoading ? (
-                // Loading skeleton - same structure as actual content
-                Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className="group cursor-pointer">
-                    <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
-                      <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-                        <div className="animate-pulse bg-gray-200 w-full h-full"></div>
-                        <div className="absolute top-4 right-4 bg-gray-200 animate-pulse px-3 py-1 rounded-full text-xs font-medium w-16 h-6">
-                        </div>
-                      </div>
-
-                      <CardContent className="p-6">
-                        <div className="animate-pulse">
-                          <div className="h-6 bg-gray-200 rounded mb-3 w-3/4"></div>
-                          <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
-                          <div className="h-4 bg-gray-200 rounded mb-4 w-2/3"></div>
-                          <div className="flex items-center justify-between">
-                            <div className="h-4 bg-gray-200 rounded w-1/3"></div>
-                            <div className="h-4 w-4 bg-gray-200 rounded"></div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))
-              ) : (
-                categories.map((category) => (
-                  <div key={category.id} className="group cursor-pointer">
-                    <Link href={`/${locale}/products/disciplines/${category.slug}`}>
-                      <Card className="h-full border border-gray-200 hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:border-primary-300">
-                        <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-                          {category.imageUrl ? (
-                            <img
-                              src={category.imageUrl}
-                              alt={category.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-white">
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
-                                  <span className="text-primary-600 font-bold text-xl">{category.name.charAt(0)}</span>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                          <div className="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                            {category.productCount} {t('disciplines.productsCount')}
-                          </div>
-                        </div>
-
-                        <CardContent className="p-6">
-                          <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                            {category.name}
-                          </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4 min-h-[3rem]">
-                            {category.description || t('disciplines.fallbackDescription', { name: category.name.toLowerCase() })}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-500 group-hover:text-primary-600 transition-colors">
-                              {t('disciplines.viewRange')}
-                            </span>
-                            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </div>
-                ))
-              )}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-primary-300 text-primary-700 hover:bg-primary-50"
-                asChild
-              >
-                <Link href={`/${locale}/products/disciplines`}>
-                  {t('disciplines.viewAll')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Certifications Banner */}
-        <CertificationsBanner variant="hero" />
-
-        {/* Partners Section */}
-        <section className="py-12 lg:py-16 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('partners.title')}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                {t('partners.subtitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                {t('partners.description')}
-              </p>
-            </div>
-
+            <SectionTitle title={t('partners.title')} />
             <ManufacturerCarousel
               partners={partners}
               isLoading={!isHydrated || partnersLoading}
-              className="px-4"
+              className="mt-2"
               locale={locale}
             />
-
           </div>
         </section>
 
-        {/* New Arrivals Section -- hidden when no product is flagged */}
-        {SHOW_NEW_ARRIVALS && (!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
-          <section className="py-12 lg:py-16 bg-white border-t border-gray-100">
-            <div className="container mx-auto px-4 lg:px-8">
-              <div className="max-w-4xl mx-auto text-center mb-8">
-                <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                  {t('newArrivals.title')}
-                </p>
-                <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                  {t('newArrivals.subtitle')}
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                  {t('newArrivals.description')}
-                </p>
-              </div>
-
-              <NewArrivalsCarousel
-                products={newArrivals}
-                isLoading={!isHydrated || newArrivalsLoading}
-                locale={locale}
-              />
-            </div>
-          </section>
-        )}
-
-        {/* Featured Products Section */}
-        <section className="py-16 lg:py-20 bg-gray-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <p className="text-gray-500 uppercase tracking-wider text-sm font-medium mb-4">
-                {t('featuredProducts.title')}
-              </p>
-              <h2 className="text-3xl lg:text-4xl font-light text-gray-900 mb-6 leading-tight">
-                {t('featuredProducts.subtitle')}
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                {t('featuredProducts.description')}
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {!isHydrated || productsLoading ? (
-                // Loading skeleton - same structure as actual content
-                Array.from({ length: 4 }).map((_, index) => (
-                  <Card key={index} className="group h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white overflow-hidden">
-                    <div className="relative h-48 bg-slate-100 overflow-hidden">
-                      <div className="animate-pulse bg-gray-200 w-full h-full"></div>
-                      <div className="absolute top-3 left-3">
-                        <div className="animate-pulse bg-gray-200 h-6 w-16 rounded"></div>
-                      </div>
+        {/* Produits phares */}
+        <section className="container mx-auto px-4 py-12 lg:px-8">
+          <SectionTitle title={t('featured.title')} />
+          <div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+            {!isHydrated || productsLoading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="h-72 animate-pulse rounded-xl border border-gray-100 bg-gray-50" />
+              ))
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map(product => {
+                const image = product.media?.find(m => m.isPrimary && m.type === 'image') || product.media?.[0];
+                const href = `/${locale}/products/${product.slug}`;
+                return (
+                  <Link
+                    key={product.id}
+                    href={href}
+                    className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 text-center shadow-sm transition-shadow hover:shadow-md"
+                  >
+                    <div className="flex h-36 items-center justify-center sm:h-48">
+                      {image ? (
+                        <img
+                          src={image.url}
+                          alt={image.altText || product.name}
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="h-full w-full rounded-lg bg-gray-50" />
+                      )}
                     </div>
-
-                    <CardContent className="p-4">
-                      <div className="animate-pulse">
-                        <div className="h-3 bg-gray-200 rounded mb-2 w-1/2"></div>
-                        <div className="h-4 bg-gray-200 rounded mb-2 w-3/4"></div>
-                        <div className="h-3 bg-gray-200 rounded mb-3 w-full"></div>
-                        <div className="h-3 bg-gray-200 rounded mb-3 w-1/3"></div>
-                        <div className="h-8 bg-gray-200 rounded w-full"></div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : featuredProducts.length > 0 ? (
-                featuredProducts.map((product) => {
-                  const primaryImage = product.media?.find(m => m.isPrimary && m.type === 'image');
-
-                  return (
-                    <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                      {/* Product Image -- the whole photo opens the product, not only the button */}
-                      <Link
-                        href={`/${locale}/products/${product.slug}`}
-                        aria-label={product.name}
-                        className="relative block h-48 bg-white overflow-hidden p-4"
-                      >
-                        {primaryImage ? (
-                          <img
-                            src={primaryImage.url}
-                            alt={primaryImage.altText || product.name}
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-white flex items-center justify-center">
-                            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                              <span className="text-gray-500 text-xs">IMG</span>
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Featured Badge */}
-                        <div className="absolute top-4 left-4">
-                          <Badge className="bg-accent-500 text-white border-0 text-xs">
-                            <Star className="h-3 w-3 mr-1" />
-                            {t('featuredProducts.badge')}
-                          </Badge>
-                        </div>
-
-                      </Link>
-
-                      <CardContent className="p-4">
-                        <div className="mb-2">
-                          <p className="text-xs text-gray-500 font-medium">{product.manufacturer?.name || product.constructeur}</p>
-                        </div>
-                        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
-                          {product.name}
-                        </h3>
-                        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
-                          {product.shortDescription || t('featuredProducts.noDescription')}
-                        </p>
-                        {product.category && (
-                          <p className="text-xs text-primary-600 font-medium mb-3">
-                            {product.category.name}
-                          </p>
-                        )}
-                        <div className="flex gap-2">
-                          {product.pdfBrochureUrl && (
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="flex-shrink-0 border-primary-200 hover:bg-primary-50"
-                              asChild
-                            >
-                              <a
-                                href={product.pdfBrochureUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                title={t('featuredProducts.downloadBrochure')}
-                              >
-                                {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4 text-primary-600" /> : <Download className="h-4 w-4 text-primary-600" />}
-                              </a>
-                            </Button>
-                          )}
-                          <Button
-                            size="sm"
-                            className="flex-1 bg-primary text-white hover:bg-primary-600"
-                            asChild
-                          >
-                            <Link href={`/${locale}/products/${product.slug}`}>
-                              {t('featuredProducts.viewDetails')}
-                            </Link>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })
-              ) : (
-                <div className="col-span-full text-center py-12">
-                  <p className="text-gray-500">{t('featuredProducts.noProducts')}</p>
-                </div>
-              )}
-            </div>
-
+                    <h3 className="mt-4 line-clamp-2 text-sm font-bold text-[#10146B] sm:text-base">{product.name}</h3>
+                    <span className="mt-auto inline-flex items-center justify-center gap-1 pt-2 text-sm font-medium text-[#0B5CAD] group-hover:text-accent">
+                      {t('featured.cta')}
+                      <ChevronRight className="h-4 w-4 text-accent" />
+                    </span>
+                  </Link>
+                );
+              })
+            ) : (
+              <p className="col-span-full py-8 text-center text-gray-500">{t('featured.empty')}</p>
+            )}
           </div>
         </section>
 
+        {/* KITMED, votre partenaire depuis 1997 */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-[#DCEEFD] via-[#E8F4FE] to-[#F3F9FF]">
+          <img
+            src="/images/home/band-building.jpg"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-y-0 right-0 hidden h-full w-[45%] object-cover md:block"
+          />
+          <div className="absolute inset-y-0 right-0 hidden w-[45%] bg-gradient-to-r from-[#E8F4FE] to-transparent md:block" />
+          <div className="relative container mx-auto px-4 py-10 lg:px-8">
+            <div className="max-w-2xl border-l-4 border-accent pl-4 sm:pl-6">
+              <h2 className="text-2xl font-bold text-[#10146B] lg:text-3xl">{t('band.title')}</h2>
+              <p className="mt-2 text-[#10146B]">{t('band.text')}</p>
+              <Link
+                href={`/${locale}/about`}
+                className="mt-5 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-600"
+              >
+                {t('band.cta')}
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </HydrationErrorBoundary>
   );

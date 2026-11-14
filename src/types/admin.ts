@@ -212,7 +212,7 @@ export interface BannerFormData {
   image?: string;
   ctaText?: Record<Locale, string>;
   ctaUrl?: string;
-  position: 'homepage' | 'category' | 'product';
+  position: 'homepage' | 'homepage-hero' | 'equipment-showcase' | 'category' | 'product';
   order: number;
   isActive: boolean;
   startDate?: Date;
