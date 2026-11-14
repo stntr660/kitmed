@@ -2850,5 +2850,15 @@
         "requestTraining": "Request Training"
       }
     }
+  },
+  "categoryCards": {
+    "home": "Home",
+    "ourProducts": "Our products",
+    "solutionsTitle": "Discover our solutions in {name}",
+    "chooseCategory": "Choose a category to browse our products.",
+    "discoverProducts": "Discover the products",
+    "seeProducts": "See the products",
+    "ctaTitle": "Need advice for your project?",
+    "ctaButton": "Contact us"
   }
 }

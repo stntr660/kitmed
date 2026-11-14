@@ -13,6 +13,9 @@ import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useScrollRestore } from '@/hooks/useScrollRestore';
 import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
+import { PageHeader } from '@/components/layout/PageHeader';
+import { CtaBand } from '@/components/layout/CtaBand';
+import { CategoryCards, PILLAR_MAX } from '@/components/products/CategoryCards';
 
 interface Category {
   id: string;
@@ -54,6 +57,7 @@ interface PageProps {
 export default function CategoryHierarchyPage({ params }: PageProps) {
   const t = useTranslations('common');
   const tCategories = useTranslations('categories.hierarchy');
+  const tCards = useTranslations('categoryCards');
   const [category, setCategory] = useState<Category | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [breadcrumbs, setBreadcrumbs] = useState<Category[]>([]);
@@ -147,8 +151,64 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
     );
   }
 
+  const items = (category.children || []).map((subCategory) => ({
+    id: subCategory.id,
+    name: subCategory.name,
+    description: subCategory.description,
+    imageUrl: subCategory.imageUrl,
+    href: `/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`,
+  }));
+  const pillars = items.length <= PILLAR_MAX;
+  // Parents first; a discipline parent links to its discipline page
+  const parentCrumbs = breadcrumbs.slice(0, -1).map((c) => ({
+    label: c.name,
+    href: c.type === 'discipline'
+      ? `/${locale}/products/disciplines/${c.slug}`
+      : `/${locale}/products/categories/${c.slug}`,
+  }));
+  const cardsView = hasSubcategories ? (
+    <>
+      <PageHeader
+        title={category.name}
+        breadcrumb={[
+          { label: tCards('home'), href: `/${locale}` },
+          { label: tCards('ourProducts'), href: `/${locale}/products` },
+          ...parentCrumbs,
+          { label: category.name },
+        ]}
+      />
+      <section className="py-8 lg:py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {pillars && (
+            <div className="text-center mb-8 lg:mb-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-900">
+                {tCards('solutionsTitle', { name: category.name.toLowerCase() })}
+              </h2>
+              <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-accent-500" />
+              <p className="mt-4 text-lg text-slate-700">{tCards('chooseCategory')}</p>
+            </div>
+          )}
+          <CategoryCards items={items} buttonLabel={tCards('discoverProducts')} linkLabel={tCards('seeProducts')} />
+        </div>
+      </section>
+    </>
+  ) : null;
+  const cardsFooter = hasSubcategories ? (
+    <>
+      <CtaBand title={tCards('ctaTitle')} buttonLabel={tCards('ctaButton')} href={`/${locale}/contact`} />
+      <section className="bg-white border-t py-2">
+        <div className="container mx-auto px-6 lg:px-8">
+          <PartnerLogosCarousel locale={locale} />
+        </div>
+      </section>
+    </>
+  ) : null;
+
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className={hasSubcategories ? 'min-h-screen bg-white' : 'min-h-screen bg-slate-50'}>
+      {cardsView}
+
+      {!hasSubcategories && (<>
       {/* Hero Section */}
       <section className="bg-white border-b py-4 lg:py-6">
         <div className="container mx-auto px-6 lg:px-8">
@@ -186,61 +246,7 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
           <PartnerLogosCarousel locale={locale} />
         </div>
       </section>
-
-      {/* Subcategories Section */}
-      {hasSubcategories && (
-        <section className="py-6 lg:py-8">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {category.children.map((subCategory) => (
-                <Link
-                  key={subCategory.id}
-                  href={`/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`}
-                  className="block group"
-                >
-                <Card className="flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
-                  <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-                    {subCategory.imageUrl ? (
-                      <Image
-                        src={subCategory.imageUrl}
-                        alt={subCategory.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
-                          <span className="text-primary-600 font-bold text-xl">
-                            {subCategory.name.charAt(0)}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Count Badge */}
-                    <div className="absolute top-3 right-3 bg-primary-600 text-white px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
-                      {subCategory.children && subCategory.children.length > 0
-                        ? `${subCategory.children.length} ${tCategories('subcategoryPlural')}`
-                        : `${subCategory.productCount || 0} ${tCategories('productPlural')}`}
-                    </div>
-                  </div>
-
-                  <div className="p-3 pt-2 space-y-2">
-                    <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
-                      {subCategory.name}
-                    </CardTitle>
-                    <div className="w-full inline-flex items-center justify-center gap-1.5 bg-primary-600 text-white group-hover:bg-primary-700 transition-colors h-8 text-xs font-medium rounded-md">
-                      {tCategories('explore')}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </div>
-                  </div>
-                </Card>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      </>)}
 
       {/* Products Section */}
       {hasProducts && (
@@ -401,6 +407,8 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {cardsFooter}
     </div>
   );
 }

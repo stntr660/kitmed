@@ -13,6 +13,9 @@ import Image from 'next/image';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { useScrollRestore } from '@/hooks/useScrollRestore';
 import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
+import { PageHeader } from '@/components/layout/PageHeader';
+import { CtaBand } from '@/components/layout/CtaBand';
+import { CategoryCards, PILLAR_MAX } from '@/components/products/CategoryCards';
 
 interface Product {
   id: string;
@@ -63,6 +66,7 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
   const t = useTranslations('common');
   const tDisciplines = useTranslations('disciplinesDetail');
   const tCategories = useTranslations('categories.hierarchy');
+  const tCards = useTranslations('categoryCards');
   const [discipline, setDiscipline] = useState<Discipline | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -137,6 +141,49 @@ export default function DisciplineCategoriesPage({ params }: PageProps) {
             </Button>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  if (discipline.other_categories && discipline.other_categories.length > 0) {
+    const items = discipline.other_categories.map((category) => ({
+      id: category.id,
+      name: category.name,
+      description: category.description,
+      imageUrl: category.imageUrl,
+      href: `/${locale}/products/categories/${category.slug}`,
+    }));
+    const pillars = items.length <= PILLAR_MAX;
+    return (
+      <div className="min-h-screen bg-white">
+        <PageHeader
+          title={discipline.name}
+          breadcrumb={[
+            { label: tCards('home'), href: `/${locale}` },
+            { label: tCards('ourProducts'), href: `/${locale}/products` },
+            { label: discipline.name },
+          ]}
+        />
+        <section className="py-8 lg:py-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {pillars && (
+              <div className="text-center mb-8 lg:mb-10">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-900">
+                  {tCards('solutionsTitle', { name: discipline.name.toLowerCase() })}
+                </h2>
+                <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-accent-500" />
+                <p className="mt-4 text-lg text-slate-700">{tCards('chooseCategory')}</p>
+              </div>
+            )}
+            <CategoryCards items={items} buttonLabel={tCards('discoverProducts')} linkLabel={tCards('seeProducts')} />
+          </div>
+        </section>
+        <CtaBand title={tCards('ctaTitle')} buttonLabel={tCards('ctaButton')} href={`/${locale}/contact`} />
+        <section className="bg-white border-t py-2">
+          <div className="container mx-auto px-6 lg:px-8">
+            <PartnerLogosCarousel locale={locale} />
+          </div>
+        </section>
       </div>
     );
   }

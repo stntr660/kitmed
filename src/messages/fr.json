@@ -2844,5 +2844,15 @@
         "requestTraining": "Demander une Formation"
       }
     }
+  },
+  "categoryCards": {
+    "home": "Accueil",
+    "ourProducts": "Nos produits",
+    "solutionsTitle": "Découvrez nos solutions en {name}",
+    "chooseCategory": "Choisissez une catégorie pour consulter nos produits.",
+    "discoverProducts": "Découvrir les produits",
+    "seeProducts": "Voir les produits",
+    "ctaTitle": "Besoin d’un conseil pour votre projet ?",
+    "ctaButton": "Contactez-nous"
   }
 }
