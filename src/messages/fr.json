@@ -89,6 +89,25 @@
     },
     "language": "Langue"
   },
+  "siteChrome": {
+    "topBar": "Au service des professionnels de santé depuis 1997",
+    "location": "Casablanca, Maroc",
+    "certified": "Certifié ISO 1997-2015",
+    "searchPlaceholder": "Rechercher un produit…",
+    "quote": "Demander un devis",
+    "categories": "Nos catégories",
+    "allCategories": "Toutes nos catégories",
+    "viewAll": "Voir tout",
+    "menu": "Menu",
+    "nav": {
+      "home": "Accueil",
+      "about": "Qui sommes-nous ?",
+      "products": "Nos produits",
+      "catalogues": "Catalogues",
+      "sav": "SAV",
+      "contact": "Contact"
+    }
+  },
   "navigation": {
     "home": "Accueil",
     "products": "Produits",
@@ -1880,6 +1899,52 @@
     "yourProfile": "Votre Profil",
     "settings": "Paramètres",
     "signOut": "Déconnexion"
+  },
+  "homePage": {
+    "hero": {
+      "title": "L'expertise médicale, la proximité en plus.",
+      "text": "Équipements, dispositifs médicaux et accompagnement des professionnels de santé.",
+      "primary": "Découvrir nos produits",
+      "secondary": "Nous contacter"
+    },
+    "strip": {
+      "catalogues": "Nos catalogues",
+      "advice": "Conseil & accompagnement",
+      "sav": "Service après-vente"
+    },
+    "equipment": {
+      "title": "Découvrez nos équipements",
+      "cta": "Découvrir",
+      "previous": "Équipements précédents",
+      "next": "Équipements suivants",
+      "goTo": "Aller à la diapositive {number}"
+    },
+    "expertise": {
+      "title": "Nos domaines d'expertise",
+      "subtitle": "Des solutions adaptées à chaque spécialité.",
+      "viewProducts": "Voir les produits",
+      "ophtalmologie": "Ophtalmologie",
+      "orl": "ORL",
+      "pharma": "Pharma",
+      "contactologie": "Contactologie",
+      "literie": "Literie et mobilier médical",
+      "drapage": "Drapage",
+      "orthopedie": "Orthopédie"
+    },
+    "partners": {
+      "title": "Nos partenaires",
+      "viewAll": "Voir tous nos partenaires"
+    },
+    "featured": {
+      "title": "Produits phares",
+      "cta": "Découvrir",
+      "empty": "Aucun produit phare pour le moment."
+    },
+    "band": {
+      "title": "KITMED, votre partenaire depuis 1997",
+      "text": "Importation, distribution et maintenance de dispositifs médicaux au Maroc.",
+      "cta": "En savoir plus"
+    }
   },
   "home": {
     "title": "Solutions d'Équipement Médical Professionnel",

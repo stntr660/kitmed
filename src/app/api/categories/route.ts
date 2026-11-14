@@ -27,6 +27,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
           orderBy: { sort_order: 'asc' },
           include: {
             category_translations: true,
+            // third level (e.g. Ophtalmologie > Appareillage > Lampe à fente) for the header menu
+            ...(includeHierarchy && {
+              other_categories: {
+                where: { is_active: true },
+                orderBy: { sort_order: 'asc' },
+                include: { category_translations: true },
+              },
+            }),
           }
         },
       }
@@ -41,16 +49,17 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       const totalProductCount = counts.get(category.id) || 0;
 
       // Process subcategories if hierarchy requested
-      const subcategories = includeHierarchy ? (category.other_categories || []).map(sub => {
-        const subTranslation = sub.category_translations.find(t => t.language_code === locale);
-        const subFallback = sub.category_translations.find(t => t.language_code === 'fr');
-        return {
-          id: sub.id,
-          name: subTranslation?.name || subFallback?.name || sub.name,
-          slug: sub.slug,
-          productCount: counts.get(sub.id) || 0
-        };
-      }).filter(sub => sub.productCount > 0) : undefined;
+      const localize = (c: { id: string; name: string; slug: string; category_translations: { language_code: string; name: string }[] }) => ({
+        id: c.id,
+        name: c.category_translations.find(t => t.language_code === locale)?.name
+          || c.category_translations.find(t => t.language_code === 'fr')?.name || c.name,
+        slug: c.slug,
+        productCount: counts.get(c.id) || 0,
+      });
+      const subcategories = includeHierarchy ? (category.other_categories || []).map((sub: any) => ({
+        ...localize(sub),
+        subcategories: (sub.other_categories || []).map(localize).filter((c: { productCount: number }) => c.productCount > 0),
+      })).filter(sub => sub.productCount > 0) : undefined;
 
       return {
         id: category.id,
