@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { ManufacturerCarousel } from '@/components/carousel/ManufacturerCarousel';
 import { SectionTitle } from '@/components/layout/SectionTitle';
-import { HomeHero } from '@/components/home/HomeHero';
+import { DynamicBanner } from '@/components/banners/DynamicBanner';
 import { ServiceStrip } from '@/components/home/ServiceStrip';
 import { EquipmentCarousel } from '@/components/home/EquipmentCarousel';
 import { ExpertiseGrid } from '@/components/home/ExpertiseGrid';
@@ -81,7 +81,7 @@ export default function HomePage() {
   return (
     <HydrationErrorBoundary>
       <div className="flex flex-col bg-white">
-        <HomeHero locale={locale} />
+        <DynamicBanner position="homepage" />
         <ServiceStrip locale={locale} />
         <EquipmentCarousel locale={locale} />
         <ExpertiseGrid locale={locale} />

@@ -3,9 +3,25 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Linkedin,
+  Instagram,
+  ExternalLink,
+  Building2,
+  Shield,
+  CheckCircle,
+  Printer
+} from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { FooterLogo } from '@/components/ui/logo';
+import { ComplianceBadges } from '@/components/ui/compliance-badges';
+import { GoogleMapCompact } from '@/components/ui/google-map-embed';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/types';
 
@@ -14,71 +30,253 @@ interface FooterProps {
   className?: string;
 }
 
+const getFooterLinks = (locale: string) => ({
+  products: [
+    { name: 'byDiscipline', href: `/${locale}/products/disciplines` },
+    { name: 'byManufacturer', href: `/${locale}/products/manufacturers` },
+    { name: 'featured', href: `/${locale}/products/featured` },
+  ],
+  company: [
+    { name: 'about', href: `/${locale}/about` },
+  ],
+  support: [
+    { name: 'contact', href: `/${locale}/contact` },
+    { name: 'documentation', href: `/${locale}/support/documentation` },
+    { name: 'training', href: `/${locale}/support/training` },
+    { name: 'maintenance', href: `/${locale}/support/maintenance` },
+  ],
+  legal: [
+    { name: 'privacy', href: `/${locale}/legal/privacy` },
+    { name: 'terms', href: `/${locale}/legal/terms` },
+    { name: 'cookies', href: `/${locale}/legal/cookies` },
+    { name: 'compliance', href: `/${locale}/legal/compliance` },
+  ],
+});
+
 const socialLinks = [
   { name: 'facebook', href: 'https://www.facebook.com/share/1E9mpRMbRD/?mibextid=wwXIfr', icon: Facebook },
   { name: 'instagram', href: 'https://www.instagram.com/kitmed.maroc?igsh=MjluY25wMGc2N3Aw', icon: Instagram },
   { name: 'linkedin', href: 'https://www.linkedin.com/company/kitmed/', icon: Linkedin },
 ];
 
-const LEGAL = ['privacy', 'terms', 'cookies'] as const;
-
-/** Slim footer from the client mockups: logo | Casablanca | Contact | Catalogues | SAV, then © + legal. */
 export function Footer({ locale, className }: FooterProps) {
   const t = useTranslations('footer');
-  const tChrome = useTranslations('siteChrome');
+  const tCommon = useTranslations('common');
+  const footerLinks = getFooterLinks(locale);
   const currentYear = new Date().getFullYear();
 
-  const links = [
-    { label: tChrome('nav.contact'), href: `/${locale}/contact` },
-    { label: tChrome('nav.catalogues'), href: `/${locale}/catalogues` },
-    { label: tChrome('nav.sav'), href: `/${locale}/sav` },
-  ];
-  const cell = 'flex items-center justify-center px-6 py-2 text-sm font-semibold text-[#10146B] md:border-l md:border-[#10146B]/30';
-
   return (
-    <footer className={cn('border-t border-gray-100 bg-white', className)}>
-      <div className="container mx-auto px-4 py-6 lg:px-8">
-        <div className="flex flex-col items-center gap-3 md:flex-row md:justify-between md:gap-0">
-          <Link href={`/${locale}`} className="flex flex-col items-center pr-6">
-            <FooterLogo className="py-0 [&_img]:!max-h-[48px]" />
-            <span className="mt-0.5 text-[10px] font-semibold leading-none text-gray-800">{tChrome('certified')}</span>
-          </Link>
-          <div className="flex flex-1 flex-col items-center md:flex-row md:justify-around">
-            <span className={cn(cell, 'gap-1.5 font-normal')}>
-              <MapPin className="h-4 w-4 text-accent" />
-              {tChrome('location')}
-            </span>
-            {links.map(link => (
-              <Link key={link.href} href={link.href} className={cn(cell, 'hover:text-accent')}>
-                {link.label}
-              </Link>
-            ))}
+    <footer className={cn('bg-gray-50 border-t', className)}>
+      {/* Main Footer Content */}
+      <div className="container py-12 lg:py-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
+          {/* Company Logo */}
+          <div className="lg:col-span-1">
+            <div className="mb-4">
+              <FooterLogo />
+            </div>
+            <p className="text-sm text-medical-text-secondary mb-6">
+              {t('tagline')}
+            </p>
+
+            {/* Social Links */}
+            <div className="flex items-center space-x-3">
+              {socialLinks.map((social) => (
+                <Button
+                  key={social.name}
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  asChild
+                >
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t(`social.${social.name}`)}
+                  >
+                    <social.icon className="h-4 w-4" />
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Direction */}
+          <div className="lg:col-span-1">
+            <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
+              <Building2 className="h-4 w-4 mr-2" />
+              {tCommon('direction')}
+            </h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  20, rue Lalande, Quartier des Hôpitaux<br />
+                  Casablanca - Maroc
+                </span>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="tel:+212522860366" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 03 66
+                  </a>
+                  <a href="tel:+212522860431" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 04 31
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  +212 522 86 04 16
+                </span>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Mail className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="mailto:INFO@KITMED.MA" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    INFO@KITMED.MA
+                  </a>
+                  <a href="mailto:EXPORT@KITMED.MA" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    EXPORT@KITMED.MA
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ShowRoom */}
+          <div className="lg:col-span-1">
+            <h3 className="text-sm font-semibold text-medical-heading mb-4">
+              {tCommon('showRoom')}
+            </h3>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  33, rue Lahcen El Aarjounen<br />
+                  Quartier des Hôpitaux<br />
+                  Casablanca - Maroc
+                </span>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Phone className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a href="tel:+212522863427" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 34 27
+                  </a>
+                  <a href="tel:+212522860856" className="text-medical-text-secondary hover:text-gray-600 transition-colors block">
+                    +212 522 86 08 56
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-2">
+                <Printer className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
+                <span className="text-medical-text-secondary">
+                  +212 522 86 04 16
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Links */}
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-8">
+              {Object.entries(footerLinks).slice(0, 2).map(([section, links]) => (
+                <div key={section}>
+                  <h3 className="text-sm font-semibold text-medical-heading mb-3">
+                    {t(`sections.${section}`)}
+                  </h3>
+                  <ul className="space-y-2">
+                    {links.map((link) => (
+                      <li key={link.name}>
+                        <Link
+                          href={link.href}
+                          className="text-sm text-medical-text-secondary hover:text-gray-600 transition-colors"
+                        >
+                          {t(`links.${link.name}`)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Full-width Map Section */}
+        <div className="mt-8">
+          <GoogleMapCompact className="w-full" />
+        </div>
+
+        <Separator className="my-8" />
+
+        {/* Certifications & Standards */}
+        <div className="mb-8">
+          <h3 className="text-sm font-semibold text-medical-heading mb-4 flex items-center">
+            <Shield className="h-4 w-4 mr-2" />
+            {t('certifications.title')}
+          </h3>
+
+          {/* Professional Certifications */}
+          <ComplianceBadges variant="grid" className="mb-6" />
+
+          {/* Additional Compliance Information */}
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="flex items-start space-x-3">
+              <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-900">
+                  {t('compliance.title')}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {t('compliance.description')}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col items-center justify-between gap-3 border-t border-gray-100 pt-4 text-xs text-gray-500 md:flex-row">
-          <p>© {currentYear} KITMED. {t('rights')}</p>
-          <div className="flex items-center gap-4">
-            {LEGAL.map(key => (
-              <Link key={key} href={`/${locale}/legal/${key}`} className="hover:text-gray-700">
-                {t(`links.${key}`)}
+        <Separator className="my-8" />
+
+        {/* Bottom Footer */}
+        <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+          <div className="flex flex-col items-center space-y-2 md:flex-row md:space-y-0 md:space-x-4">
+            <p className="text-xs text-medical-text-muted">
+              © {currentYear} KITMED. {t('rights')}
+            </p>
+
+            <div className="flex items-center space-x-4">
+              <Link
+                href="/legal/privacy"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
+              >
+                {t('links.privacy')}
               </Link>
-            ))}
-            <span className="flex items-center gap-2 pl-2">
-              {socialLinks.map(social => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={t(`social.${social.name}`)}
-                  className="text-gray-400 hover:text-primary"
-                >
-                  <social.icon className="h-3.5 w-3.5" />
-                </a>
-              ))}
-            </span>
+              <Link
+                href="/legal/terms"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
+              >
+                {t('links.terms')}
+              </Link>
+              <Link
+                href="/legal/cookies"
+                className="text-xs text-medical-text-muted hover:text-gray-600 transition-colors"
+              >
+                {t('links.cookies')}
+              </Link>
+            </div>
           </div>
+
         </div>
       </div>
     </footer>
