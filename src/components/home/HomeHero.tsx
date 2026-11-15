@@ -49,20 +49,20 @@ export function HomeHero({ locale }: { locale: string }) {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#00306F] via-[#003A85]/90 to-[#003A85]/30 md:via-[#003A85]/85 md:to-transparent" />
       <div className="relative container mx-auto px-4 py-14 lg:px-8 lg:py-20">
-        <div className="max-w-xl text-white">
-          <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">{title}</h1>
+        <div className="min-w-0 max-w-xl text-white">
+          <h1 className="break-words text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">{title}</h1>
           <p className="mt-4 max-w-md text-base leading-relaxed text-white/90 lg:text-lg">{text}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={primaryHref}
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-600"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-600"
             >
               {primaryLabel}
               <ChevronRight className="h-4 w-4" />
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 rounded-md border border-white px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#003A85]"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-white px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-[#003A85]"
             >
               {t('secondary')}
               <ChevronRight className="h-4 w-4" />
