@@ -44,8 +44,6 @@ export default function HomePage() {
   const t = useTranslations('homePage');
   const [partners, setPartners] = useState<Partner[]>([]);
   const [partnersLoading, setPartnersLoading] = useState(true);
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [productsLoading, setProductsLoading] = useState(true);
   const [newArrivals, setNewArrivals] = useState<Product[]>([]);
   const [newArrivalsLoading, setNewArrivalsLoading] = useState(true);
   const isHydrated = useIsHydrated();
@@ -71,13 +69,6 @@ export default function HomePage() {
       .catch(error => console.error('Error fetching partners:', error))
       .finally(() => setPartnersLoading(false));
 
-    fetch(`/api/products?status=active&featured=true&pageSize=4&locale=${locale}`)
-      .then(res => res.json())
-      .then(result => {
-        if (result.success && result.data) setFeaturedProducts(result.data.items || []);
-      })
-      .catch(error => console.error('Error fetching featured products:', error))
-      .finally(() => setProductsLoading(false));
 
     fetch(`/api/products?status=active&newArrival=true&pageSize=8&locale=${locale}`)
       .then(res => res.json())
@@ -150,15 +141,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Produits phares */}
-        <section className="container mx-auto px-4 py-12 lg:px-8">
-          <SectionTitle title={t('featured.title')} align="center" />
-          {productGrid(featuredProducts, productsLoading, t('featured.empty'))}
-        </section>
-
         {/* Nouveaux arrivages (products flagged « nouvel arrivage » in the admin) */}
         {(!isHydrated || newArrivalsLoading || newArrivals.length > 0) && (
-          <section className="container mx-auto px-4 pb-12 lg:px-8">
+          <section className="container mx-auto px-4 py-12 lg:px-8">
             <SectionTitle title={t('newArrivals.title')} align="center" />
             {productGrid(newArrivals, newArrivalsLoading, '')}
           </section>
