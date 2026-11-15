@@ -2144,57 +2144,47 @@
     }
   },
   "about": {
-    "header": {
-      "title": "About KITMED",
-      "breadcrumb": "About us"
-    },
-    "kicker": "SINCE 1997",
-    "headline": "Nearly 30 years of experience serving healthcare professionals",
-    "who": {
+    "hero": {
+      "badge": "About Us",
       "title": "Who are we?",
-      "p1": "Founded in 1997 and based in Casablanca, KITMED supports healthcare professionals and public and private healthcare facilities across Morocco. Nearly three decades of experience shape our knowledge of the field and our commitment to our clients.",
-      "p2": "Specialised in the import, distribution and maintenance of medical devices, we work in ophthalmology and ENT, as well as in hospital equipment and furniture.",
-      "imageAlt": "A KITMED technician and sales representative assisting a healthcare professional with an ophthalmic device",
-      "caption": "An illustration of our technical and commercial support"
-    },
-    "expertise": {
-      "title": "Expertise that supports every project",
-      "text": "Understanding your needs, advising you and offering solutions suited to your practice: this approach guides our work. Our partnerships with international manufacturers allow us to offer equipment, instruments and consumables for everyday practice."
-    },
-    "longTerm": {
-      "title": "Support for the long term",
-      "text": "Advice, installation, commissioning, user training and maintenance: our sales and technical teams are involved at every stage to ensure consistent, lasting follow-up."
-    },
-    "commitments": {
-      "title": "Our commitments",
-      "listening": {
-        "title": "Listening & proximity",
-        "text": "Understanding your needs and giving you the right advice."
-      },
-      "quality": {
-        "title": "Quality & rigour",
-        "text": "Paying constant attention to the choice of solutions and to project follow-up."
-      },
-      "followUp": {
-        "title": "Follow-up & responsiveness",
-        "text": "Providing technical and commercial support over time."
-      },
-      "training": {
-        "title": "Knowledge sharing & training",
-        "text": "Helping users get to grips with their equipment and sharing knowledge."
+      "subtitle": "SERVING THE HEALTHCARE SECTOR SINCE 1997",
+      "cta": {
+        "contact": "Contact Us",
+        "products": "Our Products"
       }
     },
-    "teams": {
-      "title": "Committed teams",
-      "text": "Skill, dedication and a sense of service: our teams work together to build a relationship of trust with every client."
+    "overview": {
+      "description1": "Founded in 1997, KITMED is a leading provider of high-tech medical equipment distribution and integration in Morocco. Through strategic partnerships with internationally renowned manufacturers, we deliver innovative and high-performance solutions to both public and private healthcare institutions.",
+      "description2": "Our expertise spans several specialties, including Ophthalmology, Cardiology, ENT, Intensive Care, and Medical Furnishings.",
+      "description3": "Committed to excellence and customer satisfaction, we ensure personalized support, a responsive after-sales service, and nationwide coverage to meet the highest standards of the healthcare industry.",
+      "tagline": "KITMED, your trusted partner for medical excellence."
     },
-    "ambition": {
-      "title": "Our ambition",
-      "text": "To be a trusted partner for healthcare professionals, combining expertise, proximity and quality of service."
+    "mission": {
+      "title": "Mission",
+      "description": "To provide innovative medical equipment tailored to our clients needs, with personalized support to ensure their satisfaction."
     },
-    "cta": {
-      "title": "Let’s talk about your project",
-      "button": "Contact us"
+    "vision": {
+      "title": "Vision",
+      "description": "To strengthen our position as a leader in Morocco and expand our presence across North Africa."
+    },
+    "values": {
+      "title": "Values",
+      "items": {
+        "innovation": {
+          "title": "Innovation"
+        },
+        "satisfaction": {
+          "title": "Satisfaction"
+        },
+        "responsiveness": {
+          "title": "Responsiveness"
+        }
+      }
+    },
+    "contact": {
+      "title": "Our Contact Information",
+      "description": "Contact us for all your medical equipment needs",
+      "cta": "Get in Touch"
     }
   },
   "catalogues": {
