@@ -1,0 +1,2461 @@
+{
+ "taken_at": "2026-11-15T09:32:28.866Z",
+ "partner": {
+  "id": "8e928e51-8b4a-424d-b0d2-8182411dc002",
+  "name": "PUKANG",
+  "slug": "pukang",
+  "description": "Medical equipment manufacturer providing healthcare solutions.",
+  "website_url": "https://www.pukang.com",
+  "logo_url": "/uploads/partners/images-removebg-preview-1765376343045-7165b547.png",
+  "default_pdf_url": null,
+  "type": "manufacturer",
+  "is_featured": false,
+  "sort_order": 50,
+  "status": "active",
+  "created_at": "2025-11-24T21:06:16.835Z",
+  "updated_at": "2026-10-27T16:47:52.888Z"
+ },
+ "categories": {
+  "mobilier-et-literie-hospitaliers": {
+   "row": {
+    "id": "hospital-furniture",
+    "name": "Literie et mobilier médical",
+    "slug": "mobilier-et-literie-hospitaliers",
+    "description": "Mobilier medical et literie hospitaliere",
+    "parent_id": null,
+    "sort_order": 3,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/mobilier-et-literie-hospitaliers-photo.jpg",
+    "created_at": "2026-01-10T17:33:37.459Z",
+    "updated_at": "2026-11-14T18:24:35.630Z",
+    "type": "discipline"
+   },
+   "translations": [
+    {
+     "id": "hospital-furniture-fr",
+     "category_id": "hospital-furniture",
+     "language_code": "fr",
+     "name": "Literie et mobilier médical",
+     "description": "Mobilier medical, literie et equipements hospitaliers",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "hospital-furniture-en",
+     "category_id": "hospital-furniture",
+     "language_code": "en",
+     "name": "Medical beds and furniture",
+     "description": "Medical furniture, bedding and hospital equipment",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "chariots": {
+   "row": {
+    "id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "name": "Chariots",
+    "slug": "chariots",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 5,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/chariots.png",
+    "created_at": "2026-04-02T16:47:44.604Z",
+    "updated_at": "2026-08-22T10:35:49.289Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "cb52fb07-53aa-4bff-8cae-209d44d237ea",
+     "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+     "language_code": "fr",
+     "name": "Chariots",
+     "description": "Chariots d'urgence, de pansement, a medicaments et instruments",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "a00edc80-3518-492d-b546-a92d8d789376",
+     "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+     "language_code": "en",
+     "name": "Trolleys & Carts",
+     "description": "Emergency, dressing, medicine and instrument trolleys",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "equipement-pediatrique": {
+   "row": {
+    "id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+    "name": "Equipement pediatrique",
+    "slug": "equipement-pediatrique",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 7,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/equipement-pediatrique.png",
+    "created_at": "2026-04-02T16:47:45.153Z",
+    "updated_at": "2026-08-22T10:35:50.199Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "c20cc4e4-29fb-4b86-a3c9-dcc985a47d90",
+     "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+     "language_code": "fr",
+     "name": "Equipement pediatrique",
+     "description": "Berceaux, tables chauffantes, phototherapie neonatale",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "e472de7d-3fc8-4a38-8708-9a61d4e6f8dd",
+     "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+     "language_code": "en",
+     "name": "Pediatric Equipment",
+     "description": "Baby cots, infant warmers, neonatal phototherapy",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "fauteuils-patients": {
+   "row": {
+    "id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "name": "Fauteuils patients",
+    "slug": "fauteuils-patients",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 3,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/fauteuils-patients.png",
+    "created_at": "2026-04-02T16:47:44.067Z",
+    "updated_at": "2026-08-22T10:35:50.660Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "770d8570-1fcf-426e-a174-0e24470da6a4",
+     "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+     "language_code": "fr",
+     "name": "Fauteuils patients",
+     "description": "Fauteuils de dialyse, chimiotherapie, prelevement et geriatrie",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "febb1f8d-edf6-4279-bde9-8baeec4abecf",
+     "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+     "language_code": "en",
+     "name": "Patient Chairs & Seating",
+     "description": "Dialysis, chemotherapy, blood collection and geriatric chairs",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "literie-hospitaliere": {
+   "row": {
+    "id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "name": "Literie hospitaliere",
+    "slug": "literie-hospitaliere",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 1,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/literie-hospitaliere.png",
+    "created_at": "2026-04-02T16:47:43.391Z",
+    "updated_at": "2026-08-22T10:35:52.101Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "6651b68d-d732-4753-a8d7-279e53d6aa9a",
+     "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+     "language_code": "fr",
+     "name": "Literie hospitaliere",
+     "description": "Lits d'hopital, lits de soins intensifs, lits bariatriques",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "97fea125-ae51-43e6-adcd-56ba9390fdad",
+     "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+     "language_code": "en",
+     "name": "Hospital Beds",
+     "description": "Hospital beds, ICU beds, bariatric beds",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "mobilite-et-soutien": {
+   "row": {
+    "id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+    "name": "Mobilite et soutien",
+    "slug": "mobilite-et-soutien",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 8,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/mobilite-et-soutien.png",
+    "created_at": "2026-04-02T16:47:45.419Z",
+    "updated_at": "2026-08-22T10:35:52.670Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "6bd9881e-f185-40b8-9320-fad4010912fa",
+     "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+     "language_code": "fr",
+     "name": "Mobilite et soutien",
+     "description": "Fauteuils roulants, deambulateurs, bequilles",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "12d77196-c620-4531-aae3-f7a6536eecce",
+     "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+     "language_code": "en",
+     "name": "Mobility & Support",
+     "description": "Wheelchairs, walkers, crutches",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "tables-medicales": {
+   "row": {
+    "id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "name": "Tables medicales",
+    "slug": "tables-medicales",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 4,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/tables-medicales.png",
+    "created_at": "2026-04-02T16:47:44.335Z",
+    "updated_at": "2026-08-22T10:35:54.575Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "ac69717b-b4d6-49e0-be5c-1a6d34ab06d0",
+     "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+     "language_code": "fr",
+     "name": "Tables medicales",
+     "description": "Tables d'examen, d'operation, gynecologiques et autopsie",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "3b6b2801-432c-4cb7-8559-6bb7df98a0f4",
+     "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+     "language_code": "en",
+     "name": "Medical Tables",
+     "description": "Examination, operating, gynecological and autopsy tables",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "armoires-et-rangement": {
+   "row": {
+    "id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "name": "Armoires et rangement",
+    "slug": "armoires-et-rangement",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 6,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/armoires-et-rangement.png",
+    "created_at": "2026-04-02T16:47:44.871Z",
+    "updated_at": "2026-08-22T10:35:48.241Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "da551731-65e8-45fc-9ba1-ee26bf9b7e94",
+     "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+     "language_code": "fr",
+     "name": "Armoires et rangement",
+     "description": "Armoires a instruments, pharmacie, tables de chevet et casiers",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "27353077-8a70-4e9c-b9ba-d7cc6db2f860",
+     "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+     "language_code": "en",
+     "name": "Storage & Cabinets",
+     "description": "Instrument cabinets, pharmacy, bedside tables and lockers",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "brancards": {
+   "row": {
+    "id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "name": "Brancards",
+    "slug": "brancards",
+    "description": null,
+    "parent_id": "hospital-furniture",
+    "sort_order": 2,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/brancards.png",
+    "created_at": "2026-04-02T16:47:43.794Z",
+    "updated_at": "2026-08-22T10:35:48.808Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "0e2161b6-9ad2-4078-b1f4-604836e99a3d",
+     "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+     "language_code": "fr",
+     "name": "Brancards",
+     "description": "Brancards d'urgence, de transfert, hydrauliques et ambulanciers",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "f8a89ebd-f228-4c58-82e4-62862540ef91",
+     "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+     "language_code": "en",
+     "name": "Stretchers & Gurneys",
+     "description": "Emergency, transfer, hydraulic and ambulance stretchers",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  }
+ },
+ "products": {
+  "0126d436-89bf-43f8-a621-bdff9c0773be": {
+   "row": {
+    "id": "0126d436-89bf-43f8-a621-bdff9c0773be",
+    "reference_fournisseur": "F-53",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-multifonction-d-urgence",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:17:07.571Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "6ebe82c2-40e1-496a-8f1d-ac0fcdec408f",
+     "product_id": "0126d436-89bf-43f8-a621-bdff9c0773be",
+     "language_code": "fr",
+     "nom": "Chariot Multifonction d'Urgence",
+     "description": "Chariot multifonction d'urgence hospitalier de nouvelle generation. Dimensions : L815 x W540 x H980 mm. Accessoires standard : 3 tiroirs ABS, 1 serrure centrale, 2 poubelles, 1 systeme de verrouillage central, 4 roulettes avec frein individuel, 1 tablette de travail coulissante, 1 conteneur pour aiguilles usagees.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "eb1b1ac0-51fe-47da-bed3-3e4a65f362a4",
+     "product_id": "0126d436-89bf-43f8-a621-bdff9c0773be",
+     "language_code": "en",
+     "nom": "F-53 New Design Good Quality Hospital Trolley Cart Emergency Multi-function Trolley",
+     "description": "Size: L815*W540*H980mm (±10mm). Standard Accessories: ABS Drawers (3), Central lock (1), Waste Bin (2), Central locking system (1), Individual brake castor (4), Silding working table(1), Needle disposal container (1).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "9db1e4d4-7554-43c8-92fa-e2b092471606",
+     "product_id": "0126d436-89bf-43f8-a621-bdff9c0773be",
+     "type": "image",
+     "url": "/uploads/products/0126d436-89bf-43f8-a621-bdff9c0773be/1768757910557-0.webp",
+     "alt_text": "f53",
+     "title": "f53.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:38:30.559Z"
+    }
+   ]
+  },
+  "065a35c6-cc06-467c-8e96-fa53259cd52c": {
+   "row": {
+    "id": "065a35c6-cc06-467c-8e96-fa53259cd52c",
+    "reference_fournisseur": "B-45",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "hydraulic-obstetric-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:53:30.904Z",
+    "updated_at": "2026-04-02T16:49:52.113Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "17aa3aa3-17d1-4d79-b551-815c7c0c43b7",
+     "product_id": "065a35c6-cc06-467c-8e96-fa53259cd52c",
+     "language_code": "fr",
+     "nom": "Lit Obstétrical Hydraulique",
+     "description": "Lit obstetrical hydraulique multifonction. Fonctions : relevage du dossier, inclinaison ATR et TR, plaque de jambe amovible. Configuration standard : colonne elevatrice hydraulique, verin a gaz, inclinaison manuelle, matelas en mousse, support de bras, poignee d'accouchement, support de jambe, roues, systeme de freinage, bassin de proprete.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "852e8bc7-6596-4da4-8a7e-d2b4c834e508",
+     "product_id": "065a35c6-cc06-467c-8e96-fa53259cd52c",
+     "language_code": "en",
+     "nom": "Hydraulic Obstetric Bed",
+     "description": "Functions: Backrest lift, ATR tilt, TR tilt, Removable leg plateStd. Config: Hydraulic lifting column, Gas spring, Manual tilt, Foaming mattress, Arm support, Labor grip, Leg support, Wheels, Brake system, Basin of dirt.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "5fac1cb0-6c3c-4c43-a6a6-bc5d25bee86d",
+     "product_id": "065a35c6-cc06-467c-8e96-fa53259cd52c",
+     "type": "image",
+     "url": "/uploads/products/065a35c6-cc06-467c-8e96-fa53259cd52c/1768757178689-0.webp",
+     "alt_text": "b45",
+     "title": "b45.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:26:18.691Z"
+    }
+   ]
+  },
+  "0aa8824b-6a21-404b-8084-fc229ec48e2c": {
+   "row": {
+    "id": "0aa8824b-6a21-404b-8084-fc229ec48e2c",
+    "reference_fournisseur": "E-3",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-manuel",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:45.614Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "06111d6b-c9fc-4eaf-8cf2-87ac2cd59d34",
+     "product_id": "0aa8824b-6a21-404b-8084-fc229ec48e2c",
+     "language_code": "fr",
+     "nom": "Brancard Manuel",
+     "description": "Brancard medical manuel de transport d'urgence. Dimensions externes : L1960 x W670 mm. Hauteur du lit : H590-860 mm. Angle du dossier : 0-80 degres. Charge utile de securite : 240 kg. Fonctions : relevage du dossier, reglage de la hauteur, conduite directionnelle, freinage central. Solution de transport robuste pour les services medicaux.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "cd892be8-95e9-4894-bb60-645e982e495f",
+     "product_id": "0aa8824b-6a21-404b-8084-fc229ec48e2c",
+     "language_code": "en",
+     "nom": "Manual Emergency Medical Transport Stretcher",
+     "description": "External dimensions: L1960×W670mm (±10mm)Bed height: H590-860mm (±10mm)Backrest angle: 0-80°Safe working load: 240kgFunctions: Backrest lift, Height adjustment, Directional driving, Central braking.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "1e6b47ee-1e6f-42d0-92c5-638a6c4698dc",
+     "product_id": "0aa8824b-6a21-404b-8084-fc229ec48e2c",
+     "type": "image",
+     "url": "/uploads/products/0aa8824b-6a21-404b-8084-fc229ec48e2c/1768757426750-0.webp",
+     "alt_text": "e3",
+     "title": "e3.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:30:26.753Z"
+    }
+   ]
+  },
+  "1a47cb10-2d2d-48b3-9e6c-5531896b5ef6": {
+   "row": {
+    "id": "1a47cb10-2d2d-48b3-9e6c-5531896b5ef6",
+    "reference_fournisseur": "E-8",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-de-transfert-patient-hydraulique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:26.511Z",
+    "updated_at": "2026-04-02T16:49:56.082Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "4fabe860-4bdd-4875-8290-8f5bd62ce93e",
+     "product_id": "1a47cb10-2d2d-48b3-9e6c-5531896b5ef6",
+     "language_code": "fr",
+     "nom": "Brancard de Transfert Patient Hydraulique",
+     "description": "Brancard de transfert patient avec systeme hydraulique pour le reglage de la hauteur et de l'angle. Barrieres laterales, ceintures de securite et freinage d'urgence. Double pompe hydraulique avec verrouillage central et cinquieme roulette directionnelle. Fonctions : hauteur variable, Trendelenburg commande par pedales. Couvercle inferieur en ABS.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "42251a9d-1612-45c8-87ef-18f52c175e3d",
+     "product_id": "1a47cb10-2d2d-48b3-9e6c-5531896b5ef6",
+     "language_code": "en",
+     "nom": "Hydraulic Patient Transfer Stretcher",
+     "description": "Hydraulic system for height/angle adjustmentSide rails, seat belts, emergency brakingDouble rise-and-fall hydraulic pump (X-ray revealed)Central locking & fifth steering castorFunctions: hi-low, Trendelenburg (controlled by pedals)Bottom cover: ABS.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "2f32443f-badc-4dc5-ad44-b991591f7203",
+     "product_id": "1a47cb10-2d2d-48b3-9e6c-5531896b5ef6",
+     "type": "image",
+     "url": "/uploads/products/1a47cb10-2d2d-48b3-9e6c-5531896b5ef6/1768757511765-0.webp",
+     "alt_text": "e8",
+     "title": "e8.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:31:51.767Z"
+    }
+   ]
+  },
+  "24919efd-bca5-4899-aad3-c5360b1e7063": {
+   "row": {
+    "id": "24919efd-bca5-4899-aad3-c5360b1e7063",
+    "reference_fournisseur": "E-9",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-d-urgence-m-dicale",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:35.989Z",
+    "updated_at": "2026-04-02T16:49:56.124Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "3b9380fd-1e17-410b-ba80-260ad8a985fc",
+     "product_id": "24919efd-bca5-4899-aad3-c5360b1e7063",
+     "language_code": "fr",
+     "nom": "Brancard d'Urgence Médicale",
+     "description": "Brancard d'urgence medicale avec double pompe hydraulique importee et verrouillage central avec cinquieme roulette directionnelle. Fonctions : hauteur variable, Trendelenburg commande par pedales. Couvercle inferieur en ABS. Amortissement avance des chocs. Potences de perfusion, crochets de drainage, barrieres laterales pliables en alliage d'aluminium.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "7d385daa-fdf1-423d-8f26-3037b47fa6b4",
+     "product_id": "24919efd-bca5-4899-aad3-c5360b1e7063",
+     "language_code": "en",
+     "nom": "Medical Emergency Stretcher",
+     "description": "Imported Double rise-and-fall hydraulic pump (X-ray revealed)Central locking & fifth steering castorFunctions: hi-low, Trendelenburg (controlled by pedals)ABS bottom coverAdvanced shock absorptionInfusion poles, drainage hooks, collapsible aluminum alloy side rails.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "65735041-0d84-47ab-b32d-ab739a3c2565",
+     "product_id": "24919efd-bca5-4899-aad3-c5360b1e7063",
+     "type": "image",
+     "url": "/uploads/products/24919efd-bca5-4899-aad3-c5360b1e7063/1768757529625-0.webp",
+     "alt_text": "e9",
+     "title": "e9.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:32:09.626Z"
+    }
+   ]
+  },
+  "2ca231ba-3acf-4a00-9695-599b0b777409": {
+   "row": {
+    "id": "2ca231ba-3acf-4a00-9695-599b0b777409",
+    "reference_fournisseur": "G-19",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "pukang",
+    "slug": "armoire-instruments-en-acier-inoxydable",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:34:52.967Z",
+    "updated_at": "2026-04-02T16:49:52.276Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "455ac9ca-2e99-4c85-8925-13a19cb09928",
+     "product_id": "2ca231ba-3acf-4a00-9695-599b0b777409",
+     "language_code": "fr",
+     "nom": "Armoire à Instruments en Acier Inoxydable",
+     "description": "Armoire a instruments en acier avec revetement epoxy et base en acier inoxydable. Deux portes vitrees verrouillables avec cinq etageres reglables. Dimensions : L960 x W400 x H1750 mm. Construction durable et hygienique pour le stockage securise des instruments medicaux. Surfaces faciles a nettoyer et a desinfecter.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "67fb4f37-37fa-436c-bb31-e076950c724b",
+     "product_id": "2ca231ba-3acf-4a00-9695-599b0b777409",
+     "language_code": "en",
+     "nom": "2-door Appliance Cupboard with Stainless Steel Base",
+     "description": "Epoxy coated steel construction with stainless steel baseTwo lockable glass doors with five adjustable shelvesSize: L960×W400×H1750mm (±10mm).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "b3e44961-65d8-4ce8-9ef8-6cae5db22f18",
+     "product_id": "2ca231ba-3acf-4a00-9695-599b0b777409",
+     "type": "image",
+     "url": "/uploads/products/2ca231ba-3acf-4a00-9695-599b0b777409/1768758380604-0.jpeg",
+     "alt_text": "images (3)",
+     "title": "images (3).jpeg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:46:20.607Z"
+    }
+   ]
+  },
+  "2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6": {
+   "row": {
+    "id": "2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6",
+    "reference_fournisseur": "F-47",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-mobile-d-urgence-m-dicale",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:27.234Z",
+    "updated_at": "2026-04-02T16:49:52.568Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "efada8f3-3eb5-47ed-9a95-beeccb886d91",
+     "product_id": "2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6",
+     "language_code": "fr",
+     "nom": "Chariot Mobile d'Urgence Médicale",
+     "description": "Chariot mobile d'urgence medicale. Dimensions : 750 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 1 tiroir peu profond, 1 tiroir central, 1 tiroir profond avec cloisons. Cote droit : conteneur pour aiguilles usagees, 2 paniers a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "8da29a86-9d6e-4958-8b2c-e9bf4275d864",
+     "product_id": "2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6",
+     "language_code": "en",
+     "nom": "F-47 Mobile Medical Emergency Cart",
+     "description": "Size: 750*470*920mm. Main features: ABS body, stainless steel guard rail, 1 shallow drawer, 1 middle drawer, 1 deep drawer (all with partitions). Right side: needle disposal holder, 2 dust baskets. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "a507e42d-4980-4fcb-a6ca-8bdebef55856",
+     "product_id": "2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6",
+     "type": "image",
+     "url": "/uploads/products/2fd1eb7d-8ab1-4903-a82d-e4c4e9684bc6/1768757858003-0.jpg",
+     "alt_text": "f47",
+     "title": "f47.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:37:38.005Z"
+    }
+   ]
+  },
+  "32e44a61-3899-4faf-b9e4-334175f7804c": {
+   "row": {
+    "id": "32e44a61-3899-4faf-b9e4-334175f7804c",
+    "reference_fournisseur": "DA-7 (A2)",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "lit-de-soins-intensifs-multifonction-da-7",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:12.148Z",
+    "updated_at": "2026-04-02T16:49:55.661Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "d6546c6c-7bcb-40db-9eb4-b728d01747c5",
+     "product_id": "32e44a61-3899-4faf-b9e4-334175f7804c",
+     "language_code": "fr",
+     "nom": "Lit de Soins Intensifs Multifonction DA-7",
+     "description": "Lit de soins intensifs electrique multifonction avec tetes de lit a hauteur constante pour un acces rapide au patient. Barrieres laterales PP divisees en 4 parties avec 2 barrieres supplementaires pres du pied du lit. Fonctions Trendelenburg et Trendelenburg inverse. Dimensions : L2240 x W1060 mm x H495-895 mm. Certifie CE, FDA, ISO 13485.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "49f7fad0-ff16-4967-8991-9b3418738057",
+     "product_id": "32e44a61-3899-4faf-b9e4-334175f7804c",
+     "language_code": "en",
+     "nom": "DA-7 Multifunction ICU Bed",
+     "description": "Multifunction electric ICU bed with constant height head ends for quick patient access. 4-piece PP split side rails with 2 additional side rails near footboard for extra safety. Trendelenburg and reverse Trendelenburg functions. Dimensions: L2240×W1060mm×H495-895mm. CE, FDA, ISO 13485 certified. Manufactured by Hebei Pukang Medical Instruments Co., Ltd.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "213649e5-4aa6-4dd1-997c-97af5ec71028",
+     "product_id": "32e44a61-3899-4faf-b9e4-334175f7804c",
+     "type": "image",
+     "url": "/uploads/products/32e44a61-3899-4faf-b9e4-334175f7804c/1768757286975-0.webp",
+     "alt_text": "da7 a2",
+     "title": "da7 a2.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:28:06.977Z"
+    }
+   ]
+  },
+  "34e454ea-1227-44d5-bd69-ed10f3c02957": {
+   "row": {
+    "id": "34e454ea-1227-44d5-bd69-ed10f3c02957",
+    "reference_fournisseur": "G-18",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "pukang",
+    "slug": "armoire-de-rangement-m-dicale",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:34:41.263Z",
+    "updated_at": "2026-04-02T16:49:52.235Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "b3d6060e-4101-4f0b-aca3-82e33f747c88",
+     "product_id": "34e454ea-1227-44d5-bd69-ed10f3c02957",
+     "language_code": "fr",
+     "nom": "Armoire de Rangement Médicale",
+     "description": "Armoire de rangement medicale en acier avec revetement epoxy et base en acier inoxydable. Partie superieure avec deux portes vitrees verrouillables et 3 etageres reglables. Partie inferieure avec un grand compartiment de rangement verrouillable. Dimensions : L960 x W400 x H1750 mm. Construction robuste et hygienique pour le stockage organise du materiel medical.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "013dd145-4497-4128-a1ce-53a1a9bb8c00",
+     "product_id": "34e454ea-1227-44d5-bd69-ed10f3c02957",
+     "language_code": "en",
+     "nom": "Appliance Cupboard with Stainless Steel Base",
+     "description": "Epoxy coated steel construction with stainless steel baseUpper section with two lockable glass doors, with 3 adjustable shelvesLower section with one big lockable storageSize: L960×W400×H1750mm (±10mm).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ada6b687-7878-4294-9fbe-9ed714368dea",
+     "product_id": "34e454ea-1227-44d5-bd69-ed10f3c02957",
+     "type": "image",
+     "url": "/uploads/products/34e454ea-1227-44d5-bd69-ed10f3c02957/1768758091157-0.jpg",
+     "alt_text": "76348-20436848",
+     "title": "76348-20436848.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:41:31.159Z"
+    }
+   ]
+  },
+  "48cedc3f-b729-47b0-8aff-d6700c27f71a": {
+   "row": {
+    "id": "48cedc3f-b729-47b0-8aff-d6700c27f71a",
+    "reference_fournisseur": "E-2",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-hydraulique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:35.615Z",
+    "updated_at": "2026-04-02T16:49:55.743Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "a80711a2-95bf-4c29-b99f-ec2682f9c782",
+     "product_id": "48cedc3f-b729-47b0-8aff-d6700c27f71a",
+     "language_code": "fr",
+     "nom": "Brancard Hydraulique",
+     "description": "Brancard hydraulique avec surface superieure en fil d'acier plastifie. Dossier reglable par verin a gaz de 0 a 45 degres. Hauteur ajustable de 460 a 850 mm par pompe hydraulique. Systeme de controle central avec roulettes de 125 mm de diametre. Dimensions : L2100 x W690 x H460-850 mm. Solution de transport polyvalente.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "de96ccdd-c8e2-4e81-8eda-c07e04d2ded4",
+     "product_id": "48cedc3f-b729-47b0-8aff-d6700c27f71a",
+     "language_code": "en",
+     "nom": "Hydraulic Stretcher",
+     "description": "Plastic sprayed steel wire top surfaceBackrest adjusted by gas spring (0-45°)Height adjustable (460-850mm) by hydraulic pumpdia.125mm central control systemSize: L2100×W690×H460-850mm (±10mm).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "6280310f-0e91-4566-9d5a-71e2053d9926",
+     "product_id": "48cedc3f-b729-47b0-8aff-d6700c27f71a",
+     "type": "image",
+     "url": "/uploads/products/48cedc3f-b729-47b0-8aff-d6700c27f71a/1768757412566-0.webp",
+     "alt_text": "e2",
+     "title": "e2.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:30:12.570Z"
+    }
+   ]
+  },
+  "51c63135-d016-4548-bf23-cf5f681a07e9": {
+   "row": {
+    "id": "51c63135-d016-4548-bf23-cf5f681a07e9",
+    "reference_fournisseur": "E-4",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-pliable",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:54.858Z",
+    "updated_at": "2026-04-02T16:49:55.832Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "94c990fa-79f6-48af-bb37-ae8b879a12d4",
+     "product_id": "51c63135-d016-4548-bf23-cf5f681a07e9",
+     "language_code": "en",
+     "nom": "Medical Manual Connecting Stretcher for Operating Room",
+     "description": "External dimension: L3650×W720×H625-905mm (±10mm)Functions: Backrest lift, Height adjustment, Directional driving, Central brakingFeatures: Aluminium alloy, Automatic locking, Direction wheel.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "a61ea7e4-242a-4463-aa61-416e6475a952",
+     "product_id": "51c63135-d016-4548-bf23-cf5f681a07e9",
+     "language_code": "fr",
+     "nom": "Brancard Pliable",
+     "description": "Brancard medical manuel pliable de connexion pour bloc operatoire. Dimensions externes : L3650 x W720 x H625-905 mm. Fonctions : relevage du dossier, reglage de la hauteur, conduite directionnelle, freinage central. Caracteristiques : alliage d'aluminium, verrouillage automatique, roue directionnelle. Concu pour le transfert securise des patients.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "7ecdd440-ee46-41de-accd-37933eef0aa5",
+     "product_id": "51c63135-d016-4548-bf23-cf5f681a07e9",
+     "type": "image",
+     "url": "/uploads/products/51c63135-d016-4548-bf23-cf5f681a07e9/1768757442509-0.webp",
+     "alt_text": "e4",
+     "title": "e4.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:30:42.512Z"
+    }
+   ]
+  },
+  "555b9a05-921a-48fc-aa0d-20f12cd09905": {
+   "row": {
+    "id": "555b9a05-921a-48fc-aa0d-20f12cd09905",
+    "reference_fournisseur": "E-6",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-d-ambulance",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:14.606Z",
+    "updated_at": "2026-04-02T16:49:56.042Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "3539000f-4ae0-465c-83fb-a672e1f7faa3",
+     "product_id": "555b9a05-921a-48fc-aa0d-20f12cd09905",
+     "language_code": "fr",
+     "nom": "Brancard d'Ambulance",
+     "description": "Brancard médical manuel en acier inoxydable scellé. La partie supérieure peut être utilisée comme civière séparée. Accessoires supplémentaires : panier de rangement. Construction démontable. Dimensions : L1950×W650×H780mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "b0195aeb-c6f9-43f3-bcb9-c1396ad2126b",
+     "product_id": "555b9a05-921a-48fc-aa0d-20f12cd09905",
+     "language_code": "en",
+     "nom": "Stainless Steel Medical Manual Stretcher",
+     "description": "Sealed stainless steelTop part can be used as a separate stretcherExtra accessories: storage basketKnock-down constructionSize: L1950×W650×H780mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "7c9618d0-f6ef-4afd-b293-659ab92a7957",
+     "product_id": "555b9a05-921a-48fc-aa0d-20f12cd09905",
+     "type": "image",
+     "url": "/uploads/products/555b9a05-921a-48fc-aa0d-20f12cd09905/1768757492504-0.webp",
+     "alt_text": "76348-20436880",
+     "title": "76348-20436880.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:31:32.507Z"
+    }
+   ]
+  },
+  "61f996b0-4ae8-48c9-8e07-facc10b026cb": {
+   "row": {
+    "id": "61f996b0-4ae8-48c9-8e07-facc10b026cb",
+    "reference_fournisseur": "DB-40",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "quipement-m-dical-pukang-db-40",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:22.027Z",
+    "updated_at": "2026-04-02T16:49:56.001Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "cac3fe21-ce3c-4646-8444-79aabca4f1e4",
+     "product_id": "61f996b0-4ae8-48c9-8e07-facc10b026cb",
+     "language_code": "fr",
+     "nom": "Équipement Médical PUKANG DB-40",
+     "description": "Lit d'examen electrique DB-40. Fonctions : panneau dorsal vers le haut, panneau dorsal vers le bas, reglage de la hauteur. Configuration standard : 1 moteur lineaire, 1 boitier de commande, 1 panneau de controle portatif, 1 batterie de secours, 1 jeu de verin a gaz, 4 roulettes avec frein individuel, 1 matelas en mousse.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "b9513277-c6fd-443f-9803-01384edebd6d",
+     "product_id": "61f996b0-4ae8-48c9-8e07-facc10b026cb",
+     "language_code": "en",
+     "nom": "Electric Examination Bed",
+     "description": "Product name: DB-40 Electric examination bed Functions: Back panel upward Back panel downward Bed height adjustment Standard configurations: 1pc Linear motor 1pc Contral box 1pc Handheld control panel 1pc Backup battery 1set Gas spring of back panel 4pcs individual brake castor 1set Foaming Mattress.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "068e3aa6-6fbc-4541-ad73-3e44b011b66a",
+     "product_id": "61f996b0-4ae8-48c9-8e07-facc10b026cb",
+     "type": "image",
+     "url": "/uploads/products/61f996b0-4ae8-48c9-8e07-facc10b026cb/1768757395029-0.webp",
+     "alt_text": "db-40",
+     "title": "db-40.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:29:55.030Z"
+    }
+   ]
+  },
+  "66721c27-bf92-49bb-901a-93a4e74ceb37": {
+   "row": {
+    "id": "66721c27-bf92-49bb-901a-93a4e74ceb37",
+    "reference_fournisseur": "E-5",
+    "category_id": "10f8db31-0077-4bbd-9e96-13ee140c4f54",
+    "constructeur": "pukang",
+    "slug": "brancard-de-transport",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:05.117Z",
+    "updated_at": "2026-04-02T16:49:55.702Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "a9d43f31-0593-4c6f-b92a-bf4fd30af1eb",
+     "product_id": "66721c27-bf92-49bb-901a-93a4e74ceb37",
+     "language_code": "fr",
+     "nom": "Brancard de Transport",
+     "description": "Brancard de transport medical manuel en acier. Charge utile de securite : 240 kg. Fonctions : relevage du dossier, reglage de la hauteur, plateforme de civiere detachable. Caracteristiques : cadre en acier inoxydable, surface en mousse haute densite, reglage par manivelles, barrieres laterales en acier inoxydable.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "ac67b3ef-3d25-4a81-8425-bfe2e1be797b",
+     "product_id": "66721c27-bf92-49bb-901a-93a4e74ceb37",
+     "language_code": "en",
+     "nom": "Steel Medical Manual Stretcher",
+     "description": "Safe working load: 240kgFunctions: Backrest lift, Height adjustment, Detachable stretcher platformFeatures: Stainless steel frame, High density foam top, Adjustable by cranks, Stainless steel side rails.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "970abac8-a142-40cf-a881-ac143c69ee36",
+     "product_id": "66721c27-bf92-49bb-901a-93a4e74ceb37",
+     "type": "image",
+     "url": "/uploads/products/66721c27-bf92-49bb-901a-93a4e74ceb37/1768757457901-0.webp",
+     "alt_text": "e5",
+     "title": "e5.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:30:57.903Z"
+    }
+   ]
+  },
+  "66cb77d7-c1e2-40b0-b6a8-258deadc3b59": {
+   "row": {
+    "id": "66cb77d7-c1e2-40b0-b6a8-258deadc3b59",
+    "reference_fournisseur": "R-1",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "r-1-i-v-stand",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:36:00.930Z",
+    "updated_at": "2026-04-06T18:29:21.189Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "2c25f740-4e9a-454e-9ad3-ffe428b8c433",
+     "product_id": "66cb77d7-c1e2-40b0-b6a8-258deadc3b59",
+     "language_code": "en",
+     "nom": "R-1 I.V. Stand",
+     "description": "R-1 IV stand. Main features: 1. Stainless steel round tube and base; 2. Top with 4 hooks, base with castors.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "2d1d8e1a-6e50-4a84-8380-e4cbe7cfb491",
+     "product_id": "66cb77d7-c1e2-40b0-b6a8-258deadc3b59",
+     "language_code": "fr",
+     "nom": "Support à perfusion R-1",
+     "description": "Support a perfusion R-1 en acier inoxydable. Tube rond en acier inoxydable et base en acier inoxydable. Sommet equipe de 4 crochets, base avec roulettes pour une mobilite aisee. Construction robuste et hygienique. Hauteur reglable pour s'adapter aux besoins cliniques. Surface facile a nettoyer et a desinfecter.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "289aa2d1-f884-42ff-812f-8f2596999bb9",
+     "product_id": "66cb77d7-c1e2-40b0-b6a8-258deadc3b59",
+     "type": "image",
+     "url": "/uploads/products/pukang-r-1.png",
+     "alt_text": "R-1 I.V. Stand - Image principale",
+     "title": "R-1 I.V. Stand - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:36:00.940Z"
+    }
+   ]
+  },
+  "67c28d46-e3a9-405b-9fd2-05a1bab2118d": {
+   "row": {
+    "id": "67c28d46-e3a9-405b-9fd2-05a1bab2118d",
+    "reference_fournisseur": "B-48",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "hospital-birthing-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:13:30.220Z",
+    "updated_at": "2026-04-02T16:49:55.407Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "5316fd94-694a-49e4-83d8-a6d6a3b33909",
+     "product_id": "67c28d46-e3a9-405b-9fd2-05a1bab2118d",
+     "language_code": "en",
+     "nom": "Hospital Birthing Bed",
+     "description": "Functions: Backrest lift, Seat plate lift, Height adjustment, Foot section Up-Down, TR tilt, Mechanical CPR, Detachable leg plate, Night light, Emergency STOP, Central braking, etc.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "9986d376-6eb3-417c-96cb-54c500422b8c",
+     "product_id": "67c28d46-e3a9-405b-9fd2-05a1bab2118d",
+     "language_code": "fr",
+     "nom": "Lit d'Accouchement Hospitalier",
+     "description": "Lit d'accouchement hospitalier multifonction. Fonctions : relevage du dossier, relevage de l'assise, reglage de la hauteur, montee-descente de la section pieds, inclinaison Trendelenburg, RCP mecanique, plaque de jambe detachable, veilleuse, arret d'urgence, freinage central. Conception ergonomique pour le confort de la parturiente.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f549f93c-edee-4cbf-a999-0ec3aa516b29",
+     "product_id": "67c28d46-e3a9-405b-9fd2-05a1bab2118d",
+     "type": "image",
+     "url": "/uploads/products/67c28d46-e3a9-405b-9fd2-05a1bab2118d/1768757207015-0.webp",
+     "alt_text": "b 48",
+     "title": "b 48.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:26:47.019Z"
+    }
+   ]
+  },
+  "6fa261fe-9c5d-4bb0-9854-99c239f6968c": {
+   "row": {
+    "id": "6fa261fe-9c5d-4bb0-9854-99c239f6968c",
+    "reference_fournisseur": "F-32",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-de-soins-infirmiers-hospitalier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:56.826Z",
+    "updated_at": "2026-04-02T16:49:56.288Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "4c096722-751f-4736-ae3f-0bf7bdd814dc",
+     "product_id": "6fa261fe-9c5d-4bb0-9854-99c239f6968c",
+     "language_code": "fr",
+     "nom": "Chariot de Soins Infirmiers Hospitalier",
+     "description": "Chariot de soins infirmiers hospitalier en acier inoxydable. Cote gauche : trois plateaux avec barrieres laterales. Cote droit : sac amovible en toile Oxford. Base : roulettes de 100 mm de diametre dont deux avec freins. Dimensions : L950 x W495 x H905 mm. Construction hygienique et durable pour les soins infirmiers.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "0142e9fd-015e-45d0-b309-c5d59ed0d77f",
+     "product_id": "6fa261fe-9c5d-4bb0-9854-99c239f6968c",
+     "language_code": "en",
+     "nom": "Hospital Morning Nursing Trolley",
+     "description": "Stainless steel constructionLeft side: three decks with side railsRight side: removable oxford cloth bagBase: dia.100mm castors (two with brakes)Size: L950×W495×H905mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "51545723-4123-4b9e-8d1d-533e2119d706",
+     "product_id": "6fa261fe-9c5d-4bb0-9854-99c239f6968c",
+     "type": "image",
+     "url": "/uploads/products/6fa261fe-9c5d-4bb0-9854-99c239f6968c/1768757565559-0.webp",
+     "alt_text": "76348-20436777",
+     "title": "76348-20436777.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:32:45.561Z"
+    }
+   ]
+  },
+  "73642b7d-17de-45f9-9722-ad964e822409": {
+   "row": {
+    "id": "73642b7d-17de-45f9-9722-ad964e822409",
+    "reference_fournisseur": "F-20",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "pukang",
+    "slug": "f-20-acier-inoxydable-trolley-pour-appliance",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:45.774Z",
+    "updated_at": "2026-04-02T16:49:56.206Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "00de7a28-62e8-40ac-a4bb-03e6563f2f91",
+     "product_id": "73642b7d-17de-45f9-9722-ad964e822409",
+     "language_code": "fr",
+     "nom": "Chariot en acier inoxydable pour appareils F-20",
+     "description": "Chariot en acier inoxydable pour appareils medicaux. Dimensions : 730 x 470 x 975 mm. Construction en acier inoxydable, poignee de poussee, deux plateaux avec garde-corps. Base avec 4 roulettes dont deux avec freins. Pare-chocs sur chaque coin. Construction demontable. Surface hygienique facile a nettoyer et a desinfecter.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "9a8a18ca-36de-4fc3-ae5c-fae911e4d23a",
+     "product_id": "73642b7d-17de-45f9-9722-ad964e822409",
+     "language_code": "en",
+     "nom": "F-20 Stainless steel trolley for appliance",
+     "description": "Size: 730mm(L)*470mm(W)*975mm(H). Main features: Stainless steel construction, pushing handle, two decks with guard rails. Base with 4 castors (two with brakes). Bumpers on each corner. Knock-down construction.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "0530dc4c-d60d-42ac-adc8-f8516f6cbc8f",
+     "product_id": "73642b7d-17de-45f9-9722-ad964e822409",
+     "type": "image",
+     "url": "/uploads/products/pukang-f-20.png",
+     "alt_text": "F-20 Acier Inoxydable Trolley pour Appliance - Image placeholder",
+     "title": "F-20 Acier Inoxydable Trolley pour Appliance",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T20:46:55.891Z"
+    }
+   ]
+  },
+  "7a756e03-dba7-4088-8f1d-409812cdc17c": {
+   "row": {
+    "id": "7a756e03-dba7-4088-8f1d-409812cdc17c",
+    "reference_fournisseur": "F-50",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "f-50-medicine-trolley",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:36.649Z",
+    "updated_at": "2026-04-02T16:49:52.610Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "1c021eb6-fc12-4d00-a560-d4446a597816",
+     "product_id": "7a756e03-dba7-4088-8f1d-409812cdc17c",
+     "language_code": "en",
+     "nom": "F-50 Medicine Trolley",
+     "description": "Size: 780*470*920mm. Main features: ABS body, stainless steel guard rail, 2 shallow drawers, 1 middle drawer, 1 deep drawer (all with partitions). Right side: needle disposal holder, dust basket. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "8422b4eb-8a20-4110-9d92-0cb6cd5e09c1",
+     "product_id": "7a756e03-dba7-4088-8f1d-409812cdc17c",
+     "language_code": "fr",
+     "nom": "Chariot à médicaments F-50",
+     "description": "Chariot a medicaments hospitalier F-50. Dimensions : 780 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 2 tiroirs peu profonds, 1 tiroir central, 1 tiroir profond avec cloisons. Cote droit : conteneur pour aiguilles, panier a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "fce97650-fc80-4260-85fc-556d3b52bb6a",
+     "product_id": "7a756e03-dba7-4088-8f1d-409812cdc17c",
+     "type": "image",
+     "url": "/uploads/products/pukang-f-50.png",
+     "alt_text": "F-50 Medicine Trolley - Image placeholder",
+     "title": "F-50 Medicine Trolley",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T20:46:55.911Z"
+    }
+   ]
+  },
+  "83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba": {
+   "row": {
+    "id": "83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba",
+    "reference_fournisseur": "H-12",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "matelas-m-dical-imperm-able-de-luxe",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:35:38.290Z",
+    "updated_at": "2026-04-02T16:49:52.358Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "5b8906e3-04c6-43d2-9287-4fd8fa4b552e",
+     "product_id": "83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba",
+     "language_code": "fr",
+     "nom": "Matelas Médical Imperméable de Luxe",
+     "description": "Matelas medical impermeable de luxe. Housse en materiau PU impermeable et respirant. Interieur en mousse a haute resilience. Housse avec fermeture eclair. Tailles disponibles : H100 mm, H120 mm, H140 mm. Protection efficace contre les fluides tout en maintenant la respirabilite pour le confort du patient.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "da9e2f6c-b0f5-4cad-a889-32f97b82c68e",
+     "product_id": "83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba",
+     "language_code": "en",
+     "nom": "Luxurious Mattress (medical Waterproof Mattress)",
+     "description": "Cover: PU waterproof and breathable materialInner: High resilience spongeMattress cover with zipperAvailable sizes: H100mm, H120mm, H140mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "9b55b8ea-1acb-4fa0-ae7d-05e394cb59b8",
+     "product_id": "83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba",
+     "type": "image",
+     "url": "/uploads/products/83eeaa0f-7d62-4339-bfbb-dfda5d2a4eba/1768758324805-0.webp",
+     "alt_text": "12",
+     "title": "12.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:45:24.806Z"
+    }
+   ]
+  },
+  "8c643ef1-079c-4284-8e85-ac73074147e2": {
+   "row": {
+    "id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+    "reference_fournisseur": "F-46",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-d-urgence-hospitalier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:17.993Z",
+    "updated_at": "2026-04-02T16:49:52.525Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "26a057ee-2a89-4805-bdb3-0dd875c40a09",
+     "product_id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+     "language_code": "fr",
+     "nom": "Chariot d'Urgence Hospitalier",
+     "description": "Chariot d'urgence hospitalier. Dimensions : 750 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 2 tiroirs peu profonds, 1 tiroir central, 1 tiroir profond avec cloisons. Cote droit : 2 paniers a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins. Organisation optimale pour un acces rapide.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "99f819a1-62ac-4896-ae59-172e987c5b5a",
+     "product_id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+     "language_code": "en",
+     "nom": "F-46 Hospital Emergency Trolley Cart",
+     "description": "Size: 750*470*920mm. Main features: ABS body, stainless steel guard rail, 2 shallow drawers, 1 middle drawer, 1 deep drawer (all with partitions). Right side: 2 dust baskets. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "c75bdd4a-ad84-4204-a4ec-7ba9be411b0a",
+     "product_id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+     "type": "image",
+     "url": "/uploads/products/8c643ef1-079c-4284-8e85-ac73074147e2/1768757822245-0.jpg",
+     "alt_text": "f46",
+     "title": "f46.jpg",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:37:02.259Z"
+    }
+   ]
+  },
+  "8ef6996e-4e78-4b84-a66f-7e9280d68862": {
+   "row": {
+    "id": "8ef6996e-4e78-4b84-a66f-7e9280d68862",
+    "reference_fournisseur": "F-21",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "f-21-abs-trolley-pour-medical-appliance",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:15:46.938Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "44450376-db33-4144-a442-d7806367e594",
+     "product_id": "8ef6996e-4e78-4b84-a66f-7e9280d68862",
+     "language_code": "en",
+     "nom": "F-21 ABS trolley for medical appliance",
+     "description": "Size: 720mm(L)*460mm(W)*975mm(H). Main features: Stainless steel frame with three ABS engineering plastic decks. Base with dia.100mm castors (two with brakes). Loading ability: 100KGS. Knock-down construction.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "314dc94b-f087-4fc9-9d2f-387145bf8e7a",
+     "product_id": "8ef6996e-4e78-4b84-a66f-7e9280d68862",
+     "language_code": "fr",
+     "nom": "Chariot ABS pour appareils médicaux F-21",
+     "description": "Chariot ABS pour appareils medicaux. Dimensions : 720 x 460 x 975 mm. Cadre en acier inoxydable avec trois plateaux en plastique ABS technique. Base avec roulettes de 100 mm de diametre dont deux avec freins. Capacite de charge : 100 kg. Construction demontable. Surface en ABS facile a nettoyer et resistante aux produits chimiques.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "4155063a-e6e3-47d6-9816-646e90d4e270",
+     "product_id": "8ef6996e-4e78-4b84-a66f-7e9280d68862",
+     "type": "image",
+     "url": "/uploads/products/pukang-f-21.jpg",
+     "alt_text": "F-21 ABS Trolley pour Medical Appliance - Image principale",
+     "title": "F-21 ABS Trolley pour Medical Appliance - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T20:15:47.041Z"
+    }
+   ]
+  },
+  "9394c1a5-5ce3-4052-8feb-8ab6820d9175": {
+   "row": {
+    "id": "9394c1a5-5ce3-4052-8feb-8ab6820d9175",
+    "reference_fournisseur": "R-2",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "r-2-mobile-infusion-i-v-drip-pole",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:36:13.403Z",
+    "updated_at": "2026-04-06T18:29:21.189Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "fa82bb02-cd63-44b6-a68b-a41344c24e97",
+     "product_id": "9394c1a5-5ce3-4052-8feb-8ab6820d9175",
+     "language_code": "en",
+     "nom": "R-2 Mobile infusion I.V. drip pole",
+     "description": "R-2 Mobile infusion I.V. drip pole. L510xW510xH1520-1965mm(±10mm). Main features: 1. Stainless steel round tube and base; 2. Top with 4 chrome hooks, base with castors",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "e515ddb7-ccc7-4f08-9295-8eac31056d37",
+     "product_id": "9394c1a5-5ce3-4052-8feb-8ab6820d9175",
+     "language_code": "fr",
+     "nom": "Perche à perfusion mobile R-2",
+     "description": "Perche a perfusion mobile R-2. Dimensions : L510 x W510 x H1520-1965 mm. Tube rond en acier inoxydable et base en acier inoxydable. Sommet equipe de 4 crochets chromes, base avec roulettes pour une mobilite optimale. Hauteur reglable pour s'adapter aux differentes configurations de perfusion. Construction durable et hygienique.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f1e81ee0-e9b0-4e2e-a401-2cd0b87ace3a",
+     "product_id": "9394c1a5-5ce3-4052-8feb-8ab6820d9175",
+     "type": "image",
+     "url": "/uploads/products/pukang-r-2.png",
+     "alt_text": "R-2 Mobile Infusion I.V. Drip Pole - Image principale",
+     "title": "R-2 Mobile Infusion I.V. Drip Pole - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:36:13.409Z"
+    }
+   ]
+  },
+  "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a": {
+   "row": {
+    "id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+    "reference_fournisseur": "DA-11",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "type-c5-five-function-electric-hospital-bed-220226",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:13:42.517Z",
+    "updated_at": "2026-04-02T16:49:55.448Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "c57dfe89-4543-42c3-be2f-e2e19a874244",
+     "product_id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+     "language_code": "fr",
+     "nom": "Lit d'Hôpital Électrique Cinq Fonctions Type C5",
+     "description": "Lit d'hopital electrique a cinq fonctions type C5. Cadre en acier avec revetement epoxy. Tetes de lit et barrieres laterales en HDPE. RCP manuelle en option. Systeme de verrouillage central avec roulettes de 125 mm. Batterie en option. Cinq fonctions : dossier, appui genoux, hauteur variable, Trendelenburg, Trendelenburg inverse.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "8b961213-ba49-40a9-9119-d5b3a94b4ca7",
+     "product_id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+     "language_code": "en",
+     "nom": "Type C5 Five Function Electric Hospital Bed",
+     "description": "Epoxy coated steel frameHDPE head/foot board & side railsManual CPR (optional)Central locking system (dia-125mm castors)Battery (optional)Five functions: Backrest, Knee rest, High-low, Trendelenburg, Reverse trendelenburg.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "02eecee4-30c8-4bc6-9b3d-6f16eca90b7e",
+     "product_id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+     "type": "image",
+     "url": "/uploads/products/98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a/1768253363208-0.webp",
+     "alt_text": "Type C5 Five Function Electric Hospital Bed",
+     "title": "Type C5 Five Function Electric Hospital Bed.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-12T21:29:23.210Z"
+    }
+   ]
+  },
+  "990b925a-ca58-4455-855a-e1cadce2e075": {
+   "row": {
+    "id": "990b925a-ca58-4455-855a-e1cadce2e075",
+    "reference_fournisseur": "DA-2 (C5)",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "lit-de-soins-intensifs-lectrique-da-2",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:13:52.388Z",
+    "updated_at": "2026-04-02T16:49:55.573Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "282041c0-0c6d-4f2d-bc26-fcf63f7467df",
+     "product_id": "990b925a-ca58-4455-855a-e1cadce2e075",
+     "language_code": "fr",
+     "nom": "Lit de Soins Intensifs Électrique DA-2",
+     "description": "Lit de soins intensifs électrique à cinq fonctions avec moteur importé silencieux et flexible. Caractéristiques : barrières latérales PP divisées en 4 parties pour protection anti-chute, plateforme de matelas amovible facile à stériliser, batterie de secours en cas de coupure de courant.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "cde53b21-021c-4f03-838a-2a4f86b9f0ef",
+     "product_id": "990b925a-ca58-4455-855a-e1cadce2e075",
+     "language_code": "en",
+     "nom": "DA-2 Electric ICU Bed",
+     "description": "Five-function electric ICU bed with quiet, flexible imported motor. Features: 4-piece PP split side rails for fall protection, removable mattress platform easy to sterilize, backup battery for power failure. Height adjustable from 465mm to 800mm, load capacity 240 kg. CE, FDA, and ISO 13485 certified. Manufactured by Hebei Pukang Medical Instruments Co., Ltd.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "5a3b5da7-17bd-4bf1-a51b-399ce42c9361",
+     "product_id": "990b925a-ca58-4455-855a-e1cadce2e075",
+     "type": "image",
+     "url": "/uploads/products/990b925a-ca58-4455-855a-e1cadce2e075/1768757237864-0.webp",
+     "alt_text": "da-2",
+     "title": "da-2.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:27:17.866Z"
+    }
+   ]
+  },
+  "a512a085-a4fe-42d3-954b-444d18b6973a": {
+   "row": {
+    "id": "a512a085-a4fe-42d3-954b-444d18b6973a",
+    "reference_fournisseur": "DA-3 (C1)",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "lit-lectrique-trois-fonctions-da-3",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:14:02.227Z",
+    "updated_at": "2026-04-02T16:49:55.618Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "2a9d3ef3-62c2-4b43-8f4a-a161763372b5",
+     "product_id": "a512a085-a4fe-42d3-954b-444d18b6973a",
+     "language_code": "en",
+     "nom": "DA-3 Three-Function Electric Bed",
+     "description": "Three-function electric hospital bed with HDPE head and foot boards. Standard configuration: HDPE side rails with damping (4), 3 motors, handle control, I.V. pole holes (4), drainage bag hooks (4), luxury central locking castors. Robust construction for intensive hospital use. Manufactured by Hebei Pukang Medical Instruments Co., Ltd.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "1bf88838-a00b-430c-8580-4bc3bbd622bb",
+     "product_id": "a512a085-a4fe-42d3-954b-444d18b6973a",
+     "language_code": "fr",
+     "nom": "Lit Électrique Trois Fonctions DA-3",
+     "description": "Lit d'hopital electrique a trois fonctions avec tetes de lit en HDPE. Configuration standard : barrieres laterales HDPE avec amortissement (4), 3 moteurs, commande par poignee, trous pour potence de perfusion (4), crochets pour poches de drainage (4), roulettes centrales de luxe verrouillables. Construction robuste pour utilisation hospitaliere intensive.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "59872ffe-5a2a-4e63-a06e-2fdc13bf9bbb",
+     "product_id": "a512a085-a4fe-42d3-954b-444d18b6973a",
+     "type": "image",
+     "url": "/uploads/products/a512a085-a4fe-42d3-954b-444d18b6973a/1768757269837-0.webp",
+     "alt_text": "da3c1",
+     "title": "da3c1.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:27:49.839Z"
+    }
+   ]
+  },
+  "aea51c7e-4ff5-47c1-9844-a68f62c5b89b": {
+   "row": {
+    "id": "aea51c7e-4ff5-47c1-9844-a68f62c5b89b",
+    "reference_fournisseur": "F-45",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-d-urgence-abs-pour-r-animation",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:08.622Z",
+    "updated_at": "2026-04-02T16:49:52.483Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "28d5b2ad-6d57-402f-9f1c-a334324dbc90",
+     "product_id": "aea51c7e-4ff5-47c1-9844-a68f62c5b89b",
+     "language_code": "fr",
+     "nom": "Chariot d'Urgence ABS pour Réanimation",
+     "description": "Chariot d'urgence ABS pour reanimation hospitaliere. Dimensions : 750 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 1 tiroir peu profond, 1 tiroir central, 1 tiroir profond avec cloisons de separation. Cote droit : 2 paniers a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "cd57ba1f-e295-4bb1-a1ce-518310ba06bd",
+     "product_id": "aea51c7e-4ff5-47c1-9844-a68f62c5b89b",
+     "language_code": "en",
+     "nom": "F-45 Medical Hospital Trolley New Design ABS Hospital Crash Cart Emergency Resuscitation Trolley",
+     "description": "Size: 750*470*920mm. Main features: ABS body, stainless steel guard rail, 1 shallow drawer, 1 middle drawer, 1 deep drawer (all with partitions). Right side: 2 dust baskets. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "e1a6190f-373e-48bc-adf8-08385ce49997",
+     "product_id": "aea51c7e-4ff5-47c1-9844-a68f62c5b89b",
+     "type": "image",
+     "url": "/uploads/products/aea51c7e-4ff5-47c1-9844-a68f62c5b89b/1768757810685-0.webp",
+     "alt_text": "f45",
+     "title": "f45.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:36:50.689Z"
+    }
+   ]
+  },
+  "b1e07702-6696-4c70-975d-aa202dc22eef": {
+   "row": {
+    "id": "b1e07702-6696-4c70-975d-aa202dc22eef",
+    "reference_fournisseur": "H-3",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "matelas-hospitalier-standard",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:35:49.773Z",
+    "updated_at": "2026-04-02T16:49:52.400Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "3dc3be17-3ccc-4b5a-8994-8ea485664697",
+     "product_id": "b1e07702-6696-4c70-975d-aa202dc22eef",
+     "language_code": "en",
+     "nom": "Mattress for Full Fowler Hospital Bed",
+     "description": "Cover: Oxford waterproof cloth, liquid not permeableInner: High density spongeEquipped with zipperSize: L1970×W900×H80mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "91be8a2a-7166-4230-a96c-9827d3c0d9dc",
+     "product_id": "b1e07702-6696-4c70-975d-aa202dc22eef",
+     "language_code": "fr",
+     "nom": "Matelas Hospitalier Standard",
+     "description": "Matelas hospitalier standard pour lit Fowler complet. Housse en toile Oxford impermeabilisee, impermeable aux liquides. Interieur en mousse haute densite. Equipe d'une fermeture eclair. Dimensions : L1970 x W900 x H80 mm. Matelas concu pour resister aux conditions d'utilisation intensive en milieu hospitalier.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "e8303a9b-f680-4efb-9eee-d7e54d7cd1b5",
+     "product_id": "b1e07702-6696-4c70-975d-aa202dc22eef",
+     "type": "image",
+     "url": "/uploads/products/b1e07702-6696-4c70-975d-aa202dc22eef/1768758340608-0.webp",
+     "alt_text": "H3",
+     "title": "H3.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:45:40.609Z"
+    }
+   ]
+  },
+  "ba7732b1-4db0-4bfc-8732-d30070302c0e": {
+   "row": {
+    "id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+    "reference_fournisseur": "G-9",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "pukang",
+    "slug": "armoire-m-dicale-en-acier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:35:22.261Z",
+    "updated_at": "2026-04-02T16:49:52.317Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "ba95f6a1-4a04-4f4f-8d30-2bc14e0fbfc4",
+     "product_id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+     "language_code": "fr",
+     "nom": "Armoire Médicale en Acier",
+     "description": "Armoire medicale en acier inoxydable. Partie superieure : 2 portes vitrees avec serrure, facade ouverte, interieur avec etageres reglables. Partie inferieure avec un petit placard verrouillable. Dimensions : L960 x W400 x H1750 mm. Construction durable et hygienique. Surfaces faciles a nettoyer et a desinfecter.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4f387495-2b6d-4baa-bdd2-c535418dbbaf",
+     "product_id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+     "language_code": "en",
+     "nom": "Stainless Steel Cupboard for Medical Appliances",
+     "description": "Stainless steel constructionUpper part: 2 doors with glass, with lock, opened front, inner with adjustable shelvesLower part with a small cupboard, with lockSize: L960×W400×H1750mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "aebd1cb7-16ee-4ee9-a469-e221510d1b3c",
+     "product_id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+     "type": "image",
+     "url": "/uploads/products/ba7732b1-4db0-4bfc-8732-d30070302c0e/1768758169656-0.webp",
+     "alt_text": "e9",
+     "title": "e9.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:42:49.659Z"
+    }
+   ]
+  },
+  "c07f4990-f8b9-490b-8ac7-df7512703b05": {
+   "row": {
+    "id": "c07f4990-f8b9-490b-8ac7-df7512703b05",
+    "reference_fournisseur": "R-3",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "r-3-hospital-movable-infusion-pole",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:36:23.302Z",
+    "updated_at": "2026-04-09T09:55:42.517Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "2c6b6b81-cfa1-4f09-8b5e-592246cdce62",
+     "product_id": "c07f4990-f8b9-490b-8ac7-df7512703b05",
+     "language_code": "fr",
+     "nom": "Perche de perfusion hospitalière mobile R-3",
+     "description": "Potence à perfusion mobile hospitalière R-3. Caractéristiques principales : 1. Tube rond en acier inoxydable et base en plastique ABS ; 2. Hauteur réglable de 135cm à 230cm ; 3. Sommet avec 4 crochets chromés, base avec roulettes.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "75169c86-627a-4409-b901-c2da1283538f",
+     "product_id": "c07f4990-f8b9-490b-8ac7-df7512703b05",
+     "language_code": "en",
+     "nom": "R-3 Hospital movable infusion pole",
+     "description": "R-3 Hospital movable infusion pole. Main features: 1. Stainless steel round tube and ABS plastic base; 2. Height can be adjusted from 135cm to 230cm; 3. Top with 4 chrome hooks, base with castors.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "fb3331e9-2ea9-4e5b-aed8-0c832997b1b1",
+     "product_id": "c07f4990-f8b9-490b-8ac7-df7512703b05",
+     "type": "image",
+     "url": "/uploads/products/pukang-r-3.png",
+     "alt_text": "R-3 Hospital Movable Infusion Pole - Image principale",
+     "title": "R-3 Hospital Movable Infusion Pole - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:36:23.391Z"
+    }
+   ]
+  },
+  "c21ba929-85ad-4bff-a0cd-357900ea3fd1": {
+   "row": {
+    "id": "c21ba929-85ad-4bff-a0cd-357900ea3fd1",
+    "reference_fournisseur": "A-5",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "three-function-manuel-hospital-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:52:50.353Z",
+    "updated_at": "2026-04-02T16:49:55.240Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "8fd5a4a4-7d5a-407b-864e-8f1aa8b03921",
+     "product_id": "c21ba929-85ad-4bff-a0cd-357900ea3fd1",
+     "language_code": "en",
+     "nom": "Three Function Manual Hospital Bed",
+     "description": "Functions: Backrest lift, Thighrest lift, Bed height adjustment, Central brakingFeatures: Epoxy coated frame, collapsible aluminum side rails, detachable HDPE headboards, Anti-bumperStd. Config: Manual crank (3 sets), Central brake castor (4), I.V. Pole holes (4).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "54ac8448-952b-45ae-a444-983e6f4ab1a6",
+     "product_id": "c21ba929-85ad-4bff-a0cd-357900ea3fd1",
+     "language_code": "fr",
+     "nom": "Mobilier Médical PUKANG A-5",
+     "description": "Lit d'hopital manuel a trois fonctions PUKANG A-5. Fonctions : relevage du dossier, relevage de la cuisse, reglage de la hauteur, freinage central. Cadre avec revetement epoxy, barrieres laterales pliables en aluminium, tetes de lit amovibles en HDPE, pare-chocs. Manivelles manuelles (3 jeux), roulettes avec frein central (4).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "b42cf520-cdcf-4f11-a7ea-9203b7ca4d23",
+     "product_id": "c21ba929-85ad-4bff-a0cd-357900ea3fd1",
+     "type": "image",
+     "url": "/uploads/products/c21ba929-85ad-4bff-a0cd-357900ea3fd1/1768757148052-0.webp",
+     "alt_text": "a5",
+     "title": "a5.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:25:48.056Z"
+    }
+   ]
+  },
+  "c7812472-51a2-4849-b784-b221387faacb": {
+   "row": {
+    "id": "c7812472-51a2-4849-b784-b221387faacb",
+    "reference_fournisseur": "F-51",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-m-dicaments-hospitalier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:46.472Z",
+    "updated_at": "2026-04-02T16:49:52.652Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "3ef6e1a4-f482-45a6-aa23-86c056813d28",
+     "product_id": "c7812472-51a2-4849-b784-b221387faacb",
+     "language_code": "en",
+     "nom": "F-51 Hospital Medicine Trolley Cart",
+     "description": "Size: 780*470*920mm. Main features: ABS body, stainless steel guard rail, 1 shallow drawer, 1 middle drawer, 1 deep drawer (all with partitions). Right side: 2 dust baskets. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "43d8c04b-3d19-400b-b965-f1547f53eae3",
+     "product_id": "c7812472-51a2-4849-b784-b221387faacb",
+     "language_code": "fr",
+     "nom": "Chariot à Médicaments Hospitalier",
+     "description": "Chariot a medicaments hospitalier. Dimensions : 780 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 1 tiroir peu profond, 1 tiroir central, 1 tiroir profond avec cloisons. Cote droit : 2 paniers a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins. Pour la distribution organisee des medicaments.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f925b415-1cc8-43ff-934b-92175b3cf133",
+     "product_id": "c7812472-51a2-4849-b784-b221387faacb",
+     "type": "image",
+     "url": "/uploads/products/c7812472-51a2-4849-b784-b221387faacb/1768757880603-0.webp",
+     "alt_text": "76348-20436882",
+     "title": "76348-20436882.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:38:00.611Z"
+    }
+   ]
+  },
+  "cde5e08a-de03-4288-8567-f45f2a98961b": {
+   "row": {
+    "id": "cde5e08a-de03-4288-8567-f45f2a98961b",
+    "reference_fournisseur": "B-23",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "simple-crank-manuel-hospital-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:53:11.685Z",
+    "updated_at": "2026-04-02T16:49:55.324Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "4ff35def-1811-4f35-9161-63c4e8c99d1b",
+     "product_id": "cde5e08a-de03-4288-8567-f45f2a98961b",
+     "language_code": "en",
+     "nom": "Single Crank Manual Hospital Bed",
+     "description": "HDPE blow molding (head/foot board). Tiltable folding aluminum alloy-cross-bar side rail. Corner bumpers. Bed surface: corrugated board. Crank life span: 20,000+ movements. High quality single brake casters.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "b66d0390-369c-4433-a3d7-6d9ae2b8c52b",
+     "product_id": "cde5e08a-de03-4288-8567-f45f2a98961b",
+     "language_code": "fr",
+     "nom": "Lit d'hôpital manuel à une manivelle",
+     "description": "Lit d'hopital manuel a une manivelle avec tetes de lit en HDPE moule par soufflage. Barriere laterale pliable en alliage d'aluminium avec barre transversale inclinable. Pare-chocs d'angle. Surface du lit en panneau ondule. Duree de vie de la manivelle : plus de 20 000 mouvements. Roulettes a frein simple de haute qualite.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ef5aa201-d803-4140-aa8a-aae5a7e5bad5",
+     "product_id": "cde5e08a-de03-4288-8567-f45f2a98961b",
+     "type": "image",
+     "url": "/uploads/products/pukang-b-23.png",
+     "alt_text": "Simple Crank Manuel Hospital Bed - Image placeholder",
+     "title": "Simple Crank Manuel Hospital Bed",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T20:46:55.738Z"
+    }
+   ]
+  },
+  "db83c168-0fc6-44dc-8516-0317a9ba6cbf": {
+   "row": {
+    "id": "db83c168-0fc6-44dc-8516-0317a9ba6cbf",
+    "reference_fournisseur": "B-16",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "two-crank-manuel-medical-patient-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:53:00.644Z",
+    "updated_at": "2026-04-02T16:49:55.284Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "0def7d20-f7cf-4c12-bac0-c4e460c24d34",
+     "product_id": "db83c168-0fc6-44dc-8516-0317a9ba6cbf",
+     "language_code": "en",
+     "nom": "Two Crank Manual Medical Patient Bed",
+     "description": "HDPE blow molding (head/foot board). Foldable folding side rail. Steel batten sleep deck. High quality single brake casters. Crank life span: 20,000+ movements. Corner bumpers.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "70900bfe-6e97-425f-a987-c5e2a9bbb376",
+     "product_id": "db83c168-0fc6-44dc-8516-0317a9ba6cbf",
+     "language_code": "fr",
+     "nom": "Lit médical manuel à deux manivelles",
+     "description": "Lit medical manuel a deux manivelles avec tetes de lit en HDPE moule par soufflage. Barriere laterale pliable. Sommier en lattes d'acier. Roulettes a frein simple de haute qualite. Duree de vie de la manivelle : plus de 20 000 mouvements. Pare-chocs d'angle. Construction robuste et economique pour les services de soins generaux.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "93b55446-5f3f-4e86-bcc0-ecb33d2e448c",
+     "product_id": "db83c168-0fc6-44dc-8516-0317a9ba6cbf",
+     "type": "image",
+     "url": "/uploads/products/pukang-b-16.png",
+     "alt_text": "Two Crank Manuel Medical Patient Bed - Image placeholder",
+     "title": "Two Crank Manuel Medical Patient Bed",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-08T20:46:55.665Z"
+    }
+   ]
+  },
+  "de381244-1f34-4297-96eb-823ddc58d37c": {
+   "row": {
+    "id": "de381244-1f34-4297-96eb-823ddc58d37c",
+    "reference_fournisseur": "F-52",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-de-distribution-de-m-dicaments",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:16:57.730Z",
+    "updated_at": "2026-04-02T16:49:52.695Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "c759446e-2803-4a1a-ae8a-0bb1098b69e9",
+     "product_id": "de381244-1f34-4297-96eb-823ddc58d37c",
+     "language_code": "en",
+     "nom": "F-52 Hospital Nursing Care Medicine Delivery Trolley",
+     "description": "Size: 780*470*920mm. Main features: ABS body, stainless steel guard rail, 1 middle drawer, 1 deep drawer (both with partitions). Right side: 2 dust baskets. Left side: file box. Base with 4 castors (two with brakes).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4457d3fc-3138-4057-8705-efbec68e11f2",
+     "product_id": "de381244-1f34-4297-96eb-823ddc58d37c",
+     "language_code": "fr",
+     "nom": "Chariot de Distribution de Médicaments",
+     "description": "Chariot de distribution de medicaments hospitalier. Dimensions : 780 x 470 x 920 mm. Corps en ABS, garde-corps en acier inoxydable, 1 tiroir central, 1 tiroir profond avec cloisons de separation. Cote droit : 2 paniers a dechets. Cote gauche : porte-dossiers. Base avec 4 roulettes dont deux avec freins.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ed3a4360-cc92-4fa4-a50f-bb0f59e71524",
+     "product_id": "de381244-1f34-4297-96eb-823ddc58d37c",
+     "type": "image",
+     "url": "/uploads/products/de381244-1f34-4297-96eb-823ddc58d37c/1768757895189-0.webp",
+     "alt_text": "f52",
+     "title": "f52.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:38:15.191Z"
+    }
+   ]
+  },
+  "e5a9a8cb-c97c-46d7-a770-724146d60f51": {
+   "row": {
+    "id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+    "reference_fournisseur": "G-11",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "armoire-instruments-m-dicaux-en-acier-inoxydable-g-11",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:17:17.349Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "433b5791-46ae-4497-b07e-cf18de8b4f87",
+     "product_id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+     "language_code": "fr",
+     "nom": "Armoire à Instruments Médicaux en Acier Inoxydable G-11",
+     "description": "Armoire à instruments médicaux en acier inoxydable 304 de haute qualité. Deux portes vitrées verrouillables avec cinq étagères réglables. Dimensions : L960×W400×H1750mm. Construction durable et hygiénique pour le stockage sécurisé du matériel médical.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "9745447f-e673-4991-9ee6-77912ed827df",
+     "product_id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+     "language_code": "en",
+     "nom": "G-11 Stainless Steel Medical Instruments Cabinet",
+     "description": "High-quality 304 stainless steel medical instruments cabinet. Two lockable glass doors with five adjustable shelves. Dimensions: L960×W400×H1750mm. Durable and hygienic construction for secure medical instrument storage. Easy-to-clean and disinfect surface. Manufactured by Hebei Pukang Medical Instruments Co., Ltd.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "71bedc10-1d7f-457d-9bb4-af811f2db8db",
+     "product_id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+     "type": "image",
+     "url": "/uploads/products/e5a9a8cb-c97c-46d7-a770-724146d60f51/1768757948542-0.webp",
+     "alt_text": "g11",
+     "title": "g11.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:39:08.544Z"
+    }
+   ]
+  },
+  "e84aba0c-cfc3-465f-97e7-f906fc71355b": {
+   "row": {
+    "id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+    "reference_fournisseur": "G-20",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "armoire-de-stockage-hospitali-re",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:35:08.381Z",
+    "updated_at": "2026-04-02T16:49:54.521Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "264ed00d-f6f3-4a56-b400-2da760ab844c",
+     "product_id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+     "language_code": "en",
+     "nom": "6 Door Employee Storage Cabinet for Hospital Use",
+     "description": "Epoxy coated steel construction with stainless steel baseSix lockable doors with handleProvides secure, organized storageSize: L960×W400×H1750mm.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "49daa21a-b123-41bd-8762-17a3e34bbafc",
+     "product_id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+     "language_code": "fr",
+     "nom": "Armoire de Stockage Hospitalière",
+     "description": "Armoire de stockage hospitaliere a six portes pour le rangement du personnel. Construction en acier avec revetement epoxy et base en acier inoxydable. Six portes verrouillables avec poignee pour un stockage securise et organise. Dimensions : L960 x W400 x H1750 mm. Ideale pour les vestiaires du personnel hospitalier.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "3b4b0273-fb39-4a4b-ac13-404e56a973ea",
+     "product_id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+     "type": "image",
+     "url": "/uploads/products/e84aba0c-cfc3-465f-97e7-f906fc71355b/1768758114664-0.webp",
+     "alt_text": "g20",
+     "title": "g20.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:41:54.666Z"
+    }
+   ]
+  },
+  "efe7a845-54d7-4e67-bba8-046bf9dc10ad": {
+   "row": {
+    "id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+    "reference_fournisseur": "B-46",
+    "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+    "constructeur": "pukang",
+    "slug": "infant-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T20:13:19.955Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "194ff0aa-d253-4147-961e-0c4f20bc05a5",
+     "product_id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+     "language_code": "fr",
+     "nom": "Lit pour Nourrisson",
+     "description": "Lit pour nourrisson avec couvercle inferieur et accoudoirs en ABS. Baignoire pour bebe en materiau PE de qualite alimentaire. Verin a gaz pour le levage et l'inclinaison. Roulettes de 100 mm a frein double face complet. Colonne elevatrice en alliage d'aluminium. Construction hygienique et securisee pour les soins neonataux.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "99afac4c-2e29-4e6b-870d-0482c44414d9",
+     "product_id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+     "language_code": "en",
+     "nom": "Infant Bed",
+     "description": "Bottom cover/armrests: ABSBaby tub: food grade PE materialLifting gas spring, Tilting gas springCasters: Φ100mm double-sided full brakeLifting column: aluminum alloy.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "e3cb8172-64fc-4714-9489-a8ddf0b9e77a",
+     "product_id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+     "type": "image",
+     "url": "/uploads/products/efe7a845-54d7-4e67-bba8-046bf9dc10ad/1768757191497-0.webp",
+     "alt_text": "76348-20436919",
+     "title": "76348-20436919.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:26:31.499Z"
+    }
+   ]
+  },
+  "fe91e990-0027-46a0-a04c-aab40ec894d0": {
+   "row": {
+    "id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+    "reference_fournisseur": "B-36",
+    "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+    "constructeur": "pukang",
+    "slug": "hospital-newborn-baby-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-08T19:53:21.649Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "translations": [
+    {
+     "id": "f21a4d9b-d2b9-4b37-8877-9099a6e867cc",
+     "product_id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+     "language_code": "en",
+     "nom": "Hospital Newborn Baby Bed",
+     "description": "Stainless steel frame with transparent ABS plastic basinFour dia.100mm castors (two with brakes)Inclination angle adjustable: 0-12°Size: 825mm(L)×550mm(W)×940mm(H).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "63a2b985-ccb5-40e4-8bb6-19117eb4a7bd",
+     "product_id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+     "language_code": "fr",
+     "nom": "Lit pour Nouveau-Né Hospitalier",
+     "description": "Lit pour nouveau-ne hospitalier avec cadre en acier inoxydable et berceau en plastique ABS transparent. Quatre roulettes de 100 mm de diametre dont deux avec freins. Angle d'inclinaison reglable de 0 a 12 degres. Dimensions : 825 x 550 x 940 mm. Construction hygienique et durable pour les services de maternite et de neonatologie.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "9ed9cf6a-8e5e-4517-9130-4dcce354eb6d",
+     "product_id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+     "type": "image",
+     "url": "/uploads/products/fe91e990-0027-46a0-a04c-aab40ec894d0/1768757161476-0.webp",
+     "alt_text": "b36",
+     "title": "b36.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:26:01.484Z"
+    }
+   ]
+  }
+ }
+}
