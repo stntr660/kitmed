@@ -486,5 +486,9 @@
  "oph-contactology": {
   "before": "/uploads/categories/oph-contactology-photo.jpg",
   "after": "/uploads/categories/q87-oph-contactology.jpg"
+ },
+ "chariots": {
+  "before": "/uploads/categories/chariots.png",
+  "after": "/uploads/categories/q87-chariots.jpg"
  }
 }
