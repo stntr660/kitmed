@@ -1,0 +1,235 @@
+{
+ "taken_at": "2026-11-15T09:30:03.607Z",
+ "products": {
+  "40fca373-375e-48c6-be14-4a70125b30c5": {
+   "row": {
+    "id": "40fca373-375e-48c6-be14-4a70125b30c5",
+    "reference_fournisseur": "NT-1",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "nidek",
+    "slug": "nidek-nt-1",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/nidek-nt1-brochure-1776180543563-dc55e9ae.pdf",
+    "created_at": "2026-04-09T11:07:33.218Z",
+    "updated_at": "2026-04-14T15:29:33.171Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "ce68ed2d-a733-498b-a5c4-d3ebd366acc0",
+     "product_id": "40fca373-375e-48c6-be14-4a70125b30c5",
+     "language_code": "fr",
+     "nom": "Tonometre Sans Contact NT-1 / NT-1e / NT-1p",
+     "description": "Tonometre sans contact entierement automatise Nidek NT-1. La mesure demarre automatiquement des que le patient pose le menton sur la mentonniere, grace a la camera de detection oculaire. La technologie APC (Automatic Puff Control) ajuste automatiquement la puissance du jet d'air en fonction de la pression intraoculaire du patient, optimisant le confort et reduisant le bruit. Guidage vocal disponible en 9 langues. Modeles disponibles : NT-1e (mesure manuelle), NT-1 (automatique), NT-1p (tonometre-pachymetre).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "dd54c7f1-7b0b-439a-a1ba-603963c24c25",
+     "product_id": "40fca373-375e-48c6-be14-4a70125b30c5",
+     "language_code": "en",
+     "nom": "Non-Contact Tonometer NT-1 / NT-1e / NT-1p",
+     "description": "Nidek NT-1 fully automated non-contact tonometer. Measurement starts automatically when the patient places their chin on the chinrest, thanks to the eye detection camera. APC (Automatic Puff Control) technology automatically adjusts air jet power based on the patient's intraocular pressure, optimizing comfort and reducing noise. Voice guidance available in 9 languages. Available models: NT-1e (manual measurement), NT-1 (automatic), NT-1p (tono-pachymeter).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ce7d1e63-8818-4d00-9340-30576dd9be72",
+     "product_id": "40fca373-375e-48c6-be14-4a70125b30c5",
+     "type": "image",
+     "url": "/uploads/products/nidek-nt1-primary-1776180540300-49517a93.jpg",
+     "alt_text": "Nidek NT-1",
+     "title": "Nidek NT-1",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-09T11:07:54.174Z"
+    }
+   ]
+  },
+  "430c53db-bf47-4368-a759-26fb90309426": {
+   "row": {
+    "id": "430c53db-bf47-4368-a759-26fb90309426",
+    "reference_fournisseur": "UNIQUETECH-COUTEAUX",
+    "category_id": "3fbcf977-9921-403d-bbb3-01c24504ef9e",
+    "constructeur": "uniquetech",
+    "slug": "couteaux-chirurgicaux-uniquetech-uniquetech-couteaux",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/uniquetech-knives-catalog.pdf",
+    "created_at": "2026-04-14T15:03:49.461Z",
+    "updated_at": "2026-04-17T17:02:37.292Z",
+    "partner_id": "a4dd17b5-a630-4fcd-8dbb-7bd820459570"
+   },
+   "translations": [
+    {
+     "id": "863455ed-c92e-478b-8e56-7495620b94ba",
+     "product_id": "430c53db-bf47-4368-a759-26fb90309426",
+     "language_code": "fr",
+     "nom": "Couteaux Chirurgicaux Uniquetech",
+     "description": "Gamme complete de couteaux chirurgicaux ophtalmiques Uniquetech. Couteaux slit (simple et double biseau), couteaux stab (15, 22.5, 30, 45 degres), couteaux crescent (biseau haut/bas/double), versions avec garde. Acier haute precision pour incisions nettes.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "f17443c2-dd48-48c9-90f9-df5217cac0a0",
+     "product_id": "430c53db-bf47-4368-a759-26fb90309426",
+     "language_code": "en",
+     "nom": "Uniquetech Surgical Knives",
+     "description": "Complete range of Uniquetech ophthalmic surgical knives. Slit knives (single and double bevel), stab knives (15, 22.5, 30, 45 degrees), crescent knives (bevel up/down/double), guarded versions. High-precision steel for clean incisions.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "3d904d01-9937-440b-b500-4e2a04a8199f",
+     "product_id": "430c53db-bf47-4368-a759-26fb90309426",
+     "type": "image",
+     "url": "/uploads/products/uniquetech-blades.webp",
+     "alt_text": "Couteaux Chirurgicaux Uniquetech",
+     "title": "Couteaux Chirurgicaux Uniquetech",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-17T17:02:37.552Z"
+    }
+   ]
+  },
+  "16a900cb-4ff6-48a4-b2d9-0686d3590603": {
+   "row": {
+    "id": "16a900cb-4ff6-48a4-b2d9-0686d3590603",
+    "reference_fournisseur": "MP-3",
+    "category_id": "307aae15-440d-4903-a4b6-6fb6b52552a8",
+    "constructeur": "nidek",
+    "slug": "microperimetre-analyseur",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-11-nidek-mp-3.pdf",
+    "created_at": "2025-12-09T12:11:44.424Z",
+    "updated_at": "2026-11-14T18:24:35.692Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "91fadca8-63a2-4866-a23d-ac27ae31b087",
+     "product_id": "16a900cb-4ff6-48a4-b2d9-0686d3590603",
+     "language_code": "en",
+     "nom": "MP-3 Microperimeter",
+     "description": "NIDEK MP-3 is an advanced microperimeter measuring local retinal sensitivity with 12-megapixel fundus camera integration. Features wide measurement range (0-34 dB), 3D auto-tracking and auto-alignment, fixation analysis, and visual rehabilitation mode. Results can be displayed over color fundus images for anatomical-functional correlation.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "c8c57389-1b3a-48e6-85d1-7730eb764b38",
+     "product_id": "16a900cb-4ff6-48a4-b2d9-0686d3590603",
+     "language_code": "fr",
+     "nom": "Micropérimètre MP-3",
+     "description": "Le NIDEK MP-3 est un micropérimètre avancé mesurant la sensibilité rétinienne locale avec intégration d'une caméra de fond d'oeil de 12 mégapixels. Caractéristiques : large plage de mesure (0-34 dB), auto-tracking et auto-alignement 3D, analyse de fixation et mode de réhabilitation visuelle. Les résultats peuvent être affichés sur des images couleur du fond d'oeil pour corrélation anatomo-fonctionnelle.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "8ff8641d-98d6-4040-af69-eb7902b3f042",
+     "product_id": "16a900cb-4ff6-48a4-b2d9-0686d3590603",
+     "type": "image",
+     "url": "/uploads/products/mp-3-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:42:55.999Z"
+    }
+   ]
+  }
+ },
+ "partners": {
+  "dfc94859-9703-48c9-9206-b45fd2d57b68": {
+   "row": {
+    "id": "dfc94859-9703-48c9-9206-b45fd2d57b68",
+    "name": "SURGICALSPECIALITIES (CORZA)",
+    "slug": "surgicalspecialities-corza",
+    "description": "Part of Corza Medical - global leader in surgical sutures, ophthalmic knives, and wound closure technologies. Brands include Sharpoint, Katena, and Quill.",
+    "website_url": "https://www.corza.com",
+    "logo_url": "/uploads/partners/griz-corzamedical-full-logo-color-1-100-1764081480490-10e49b8c.jpg",
+    "default_pdf_url": null,
+    "type": "manufacturer",
+    "is_featured": false,
+    "sort_order": 50,
+    "status": "inactive",
+    "created_at": "2025-11-24T21:42:10.435Z",
+    "updated_at": "2026-10-27T16:47:52.862Z"
+   },
+   "translations": [
+    {
+     "id": "18bcf930-a17e-46e8-bdae-18c09bda45b9",
+     "partner_id": "dfc94859-9703-48c9-9206-b45fd2d57b68",
+     "language_code": "fr",
+     "name": "SURGICALSPECIALITIES (CORZA)",
+     "description": "Part of Corza Medical - mondial leader in surgical sutures, ophtalmique knives, and wound closure technologies. Brands include Sharpoint, Katena, and Quill."
+    },
+    {
+     "id": "deae678b-cd27-4ab4-bbe6-f49aecf5afe3",
+     "partner_id": "dfc94859-9703-48c9-9206-b45fd2d57b68",
+     "language_code": "en",
+     "name": "SURGICALSPECIALITIES (CORZA)",
+     "description": "Part of Corza Medical - global leader in surgical sutures, ophthalmic knives, and wound closure technologies. Brands include Sharpoint, Katena, and Quill."
+    }
+   ]
+  },
+  "a4dd17b5-a630-4fcd-8dbb-7bd820459570": {
+   "row": {
+    "id": "a4dd17b5-a630-4fcd-8dbb-7bd820459570",
+    "name": "Uniquetech",
+    "slug": "uniquetech",
+    "description": null,
+    "website_url": null,
+    "logo_url": "/uploads/products/uniquetech-blades.webp",
+    "default_pdf_url": "/uploads/pdfs/uniquetech-knives-catalog.pdf",
+    "type": "manufacturer",
+    "is_featured": false,
+    "sort_order": 99,
+    "status": "active",
+    "created_at": "2026-04-17T17:02:36.722Z",
+    "updated_at": "2026-04-17T17:02:36.722Z"
+   },
+   "translations": [
+    {
+     "id": "4a94c64a-58e8-47b5-a5c4-82b8d6c9433d",
+     "partner_id": "a4dd17b5-a630-4fcd-8dbb-7bd820459570",
+     "language_code": "fr",
+     "name": "Uniquetech",
+     "description": "Fabricant de couteaux chirurgicaux ophtalmiques a usage unique."
+    },
+    {
+     "id": "185b756e-0a54-477a-afd0-60eaf9f6647c",
+     "partner_id": "a4dd17b5-a630-4fcd-8dbb-7bd820459570",
+     "language_code": "en",
+     "name": "Uniquetech",
+     "description": "Manufacturer of single-use ophthalmic surgical knives."
+    }
+   ]
+  }
+ }
+}
