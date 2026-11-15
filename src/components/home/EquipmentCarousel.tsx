@@ -15,11 +15,12 @@ interface Item {
   href: string;
 }
 
-const PER_SLIDE = 2;
+/** Products per slide: 1 on phones, 2 from the md breakpoint (768px). */
+const MD_QUERY = '(min-width: 768px)';
 const AUTO_MS = 6000;
 
 /**
- * « Découvrez nos équipements »: 2 products per slide.
+ * « Découvrez nos équipements »: 2 products per slide (1 on phones).
  * Source, first non-empty of: banners « equipment-showcase », banners « homepage »
  * (the product slides managed in admin > Bannières), featured products.
  */
@@ -28,6 +29,15 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
   const [items, setItems] = useState<Item[] | null>(null);
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [perSlide, setPerSlide] = useState(1);
+
+  useEffect(() => {
+    const mq = window.matchMedia(MD_QUERY);
+    const update = () => setPerSlide(mq.matches ? 2 : 1);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -68,8 +78,13 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
   }, [locale]);
 
   const slides: Item[][] = [];
-  for (let i = 0; i < (items?.length || 0); i += PER_SLIDE) slides.push(items!.slice(i, i + PER_SLIDE));
+  for (let i = 0; i < (items?.length || 0); i += perSlide) slides.push(items!.slice(i, i + perSlide));
   const count = slides.length;
+
+  // Keep the current slide valid when the layout switches between 1 and 2 per slide
+  useEffect(() => {
+    if (count > 0 && slide >= count) setSlide(count - 1);
+  }, [count, slide]);
 
   useEffect(() => {
     if (count <= 1 || paused) return;
@@ -92,7 +107,7 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
 
         {!items ? (
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {[0, 1].map(i => <div key={i} className="h-72 animate-pulse rounded-xl bg-white/60" />)}
+            {[0, 1].map(i => <div key={i} className={cn("h-72 animate-pulse rounded-xl bg-white/60", i > 0 && "hidden md:block")} />)}
           </div>
         ) : (
           <div className="mt-6 overflow-hidden">
@@ -101,12 +116,12 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
               style={{ transform: `translateX(-${slide * 100}%)` }}
             >
               {slides.map((group, gi) => (
-                <div key={gi} className="grid w-full flex-none grid-cols-1 md:grid-cols-2" aria-hidden={gi !== slide}>
+                <div key={gi} className="grid w-full min-w-0 flex-none grid-cols-1 md:grid-cols-2" aria-hidden={gi !== slide}>
                   {group.map((item, ii) => (
                     <div
                       key={item.id}
                       className={cn(
-                        'flex items-center gap-4 px-2 py-4 sm:gap-6 md:px-6',
+                        'flex min-w-0 items-center gap-4 px-2 py-4 sm:gap-6 md:px-6',
                         ii > 0 && 'border-t border-[#10146B]/15 md:border-l md:border-t-0'
                       )}
                     >
@@ -115,8 +130,8 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
                           <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-contain" />
                         )}
                       </Link>
-                      <div className="min-w-0">
-                        <p className="text-xl font-bold uppercase leading-tight text-[#10146B] lg:text-2xl">{item.title}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="break-words text-lg font-bold uppercase leading-tight sm:text-xl text-[#10146B] lg:text-2xl">{item.title}</p>
                         {item.subtitle && <p className="mt-1 line-clamp-2 text-sm text-[#10146B] lg:text-base">{item.subtitle}</p>}
                         <Link
                           href={item.href}

@@ -52,7 +52,11 @@ export function Header({ locale, className }: HeaderProps) {
 
   const { query, setQuery } = useSearchStore();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = React.useState(false);
   const [categories, setCategories] = React.useState<CategoryNode[]>([]);
+
+  // Close the phone search row when the page changes
+  React.useEffect(() => setMobileSearchOpen(false), [pathname]);
 
   // Category tree (3 levels), only branches that hold products
   React.useEffect(() => {
@@ -68,6 +72,7 @@ export function Header({ locale, className }: HeaderProps) {
     e.preventDefault();
     if (query.trim()) {
       setMobileMenuOpen(false);
+      setMobileSearchOpen(false);
       router.push(`/${locale}/search?q=${encodeURIComponent(query)}`);
     }
   };
@@ -137,7 +142,7 @@ export function Header({ locale, className }: HeaderProps) {
 
       {/* Logo, search, quote */}
       <div className="border-b border-gray-100">
-        <div className="container mx-auto flex h-20 items-center justify-between gap-6 px-4 lg:h-24 lg:px-8">
+        <div className="container mx-auto flex h-20 items-center justify-between gap-3 px-4 md:gap-6 lg:h-24 lg:px-8">
           <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-shrink-0 flex-col items-center">
             <HeaderLogo className="py-0 [&_img]:!max-h-[48px] lg:[&_img]:!max-h-[60px]" />
             <span className="mt-0.5 text-[10px] font-semibold leading-none text-gray-800">{t('certified')}</span>
@@ -145,7 +150,25 @@ export function Header({ locale, className }: HeaderProps) {
 
           <div className="hidden max-w-xl flex-1 md:block">{searchForm()}</div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-shrink-0 items-center gap-1 sm:gap-2">
+            {/* Phones: search and quote as icons (the full controls show from md / sm) */}
+            <button
+              type="button"
+              onClick={() => setMobileSearchOpen(o => !o)}
+              aria-expanded={mobileSearchOpen}
+              aria-controls="mobile-search"
+              aria-label={tCommon('searchProducts')}
+              className="rounded-lg p-2.5 text-[#10146B] transition-colors hover:bg-gray-100 md:hidden"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+            <Link
+              href={`/${locale}/rfp/new`}
+              aria-label={t('quote')}
+              className="rounded-lg p-2.5 text-accent transition-colors hover:bg-accent/5 sm:hidden"
+            >
+              <FileText className="h-5 w-5" />
+            </Link>
             <Link
               href={`/${locale}/rfp/new`}
               className="hidden items-center gap-2 rounded-lg border-2 border-accent px-4 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-white sm:inline-flex"
@@ -210,6 +233,13 @@ export function Header({ locale, className }: HeaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Search row (phones), opened by the search icon */}
+      {mobileSearchOpen && (
+        <div id="mobile-search" className="border-b border-gray-100 bg-white px-4 py-3 md:hidden">
+          {searchForm()}
+        </div>
+      )}
 
       {/* Navigation row (desktop) */}
       <div className="hidden border-b border-gray-100 bg-white lg:block">

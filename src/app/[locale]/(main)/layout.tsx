@@ -48,7 +48,7 @@ interface MainLayoutProps {
 export default async function MainLayout({ children, params }: MainLayoutProps) {
   const { locale } = await params;
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header locale={locale as Locale} />
 
       <main
