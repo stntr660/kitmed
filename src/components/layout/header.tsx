@@ -244,9 +244,17 @@ export function Header({ locale, className }: HeaderProps) {
       {/* Navigation row (desktop) */}
       <div className="hidden border-b border-gray-100 bg-white lg:block">
         <div className="container relative mx-auto flex h-14 items-center gap-10 px-4 lg:px-8">
-          <CategoryMenu categories={categories} locale={locale} pathname={pathname} />
           <nav className="flex flex-1 items-center justify-between">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item) => item.key === 'products' ? (
+              <CategoryMenu
+                key={item.key}
+                categories={categories}
+                locale={locale}
+                pathname={pathname}
+                label={t(`nav.${item.key}`)}
+                active={isActive(item.path)}
+              />
+            ) : (
               <Link
                 key={item.key}
                 href={`/${locale}${item.path}`}
@@ -268,8 +276,10 @@ export function Header({ locale, className }: HeaderProps) {
   );
 }
 
-/** « Nos catégories » button + panel: roots on the left, their pillars and tiles on the right. */
-function CategoryMenu({ categories, locale, pathname }: { categories: CategoryNode[]; locale: string; pathname: string }) {
+/** « Nos produits » nav item opening the category panel: roots on the left, their pillars and tiles on the right. */
+function CategoryMenu({ categories, locale, pathname, label, active: navActive }: {
+  categories: CategoryNode[]; locale: string; pathname: string; label: string; active: boolean;
+}) {
   const t = useTranslations('siteChrome');
   const [open, setOpen] = React.useState(false);
   const [activeId, setActiveId] = React.useState<string | null>(null);
@@ -296,21 +306,25 @@ function CategoryMenu({ categories, locale, pathname }: { categories: CategoryNo
   const close = () => setOpen(false);
 
   return (
-    <div ref={ref} className="flex-shrink-0">
+    <div ref={ref} className="flex h-14 items-center" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
         aria-haspopup="true"
-        className="flex h-10 items-center gap-3 rounded-md bg-[#0B5CAD] px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#094C8F]"
+        className={cn(
+          'relative flex items-center gap-1 py-2 text-sm font-semibold transition-colors hover:text-accent',
+          navActive || open
+            ? "text-accent after:absolute after:-bottom-1 after:left-0 after:right-5 after:h-[3px] after:rounded-full after:bg-accent after:content-['']"
+            : NAVY
+        )}
       >
-        <Menu className="h-5 w-5" />
-        {t('categories')}
+        {label}
         <ChevronDown className={cn('h-4 w-4 transition-transform', open && 'rotate-180')} />
       </button>
 
       {open && categories.length > 0 && (
-        <div className="absolute left-4 right-4 top-full z-50 mt-1 flex max-h-[70vh] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl lg:left-8 lg:right-8">
+        <div className="absolute left-4 right-4 top-full z-50 flex max-h-[70vh] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xl lg:left-8 lg:right-8">
           <ul className="w-64 flex-shrink-0 overflow-y-auto border-r border-gray-100 bg-[#F4F9FF] py-2">
             {categories.map(cat => (
               <li key={cat.id}>
