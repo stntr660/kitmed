@@ -1,0 +1,189 @@
+{
+ "taken_at": "2026-11-15T09:35:34.532Z",
+ "categories": {
+  "instrumentation": {
+   "row": {
+    "id": "af5e0cc6-6a9b-47bd-9b21-128804f23a20",
+    "name": "Instrumentation",
+    "slug": "instrumentation",
+    "description": null,
+    "parent_id": "ophthalmology",
+    "sort_order": 3,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/oph-pilier-instrumentation.jpg",
+    "created_at": "2026-04-02T16:46:17.027Z",
+    "updated_at": "2026-11-14T18:24:35.451Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "69e4c144-141b-40d6-9973-619c3eb9f679",
+     "category_id": "af5e0cc6-6a9b-47bd-9b21-128804f23a20",
+     "language_code": "en",
+     "name": "Instrumentation",
+     "description": "Precision instruments for ophthalmic surgery.",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "231dfcc4-4c81-4883-9c28-aa4a0bcee551",
+     "category_id": "af5e0cc6-6a9b-47bd-9b21-128804f23a20",
+     "language_code": "fr",
+     "name": "Instrumentation",
+     "description": "Instruments de précision pour la chirurgie ophtalmique.",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  },
+  "oculoplastie-fci": {
+   "row": {
+    "id": "ee805e39-2bb1-4cdb-adb6-a6ebeb7fdb56",
+    "name": "Oculoplastie",
+    "slug": "oculoplastie-fci",
+    "description": null,
+    "parent_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+    "sort_order": 6,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/oculoplastie-fci-photo2.jpg",
+    "created_at": "2026-04-14T14:39:30.164Z",
+    "updated_at": "2026-11-14T18:24:35.622Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "b674e118-ba96-48a6-ac47-d55ef3619031",
+     "category_id": "ee805e39-2bb1-4cdb-adb6-a6ebeb7fdb56",
+     "language_code": "en",
+     "name": "Oculoplasty",
+     "description": "FCI oculoplastic instruments and devices",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "e1b584b0-49c2-4d55-8eea-596b24403046",
+     "category_id": "ee805e39-2bb1-4cdb-adb6-a6ebeb7fdb56",
+     "language_code": "fr",
+     "name": "Oculoplastie",
+     "description": "Instruments et dispositifs oculoplastiques FCI",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  }
+ },
+ "products": {
+  "2b2ae872-7ae9-4779-b102-e13a9717981f": {
+   "row": {
+    "id": "2b2ae872-7ae9-4779-b102-e13a9717981f",
+    "reference_fournisseur": "FCI-OCULOPLASTIE-KIT",
+    "category_id": "ee805e39-2bb1-4cdb-adb6-a6ebeb7fdb56",
+    "constructeur": "fci",
+    "slug": "oculoplastie-fci-catalogue",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://www.fci.fr/wp-content/uploads/2020/03/Catatalogue-Oculoplastie.pdf",
+    "created_at": "2026-10-08T10:37:09.823Z",
+    "updated_at": "2026-10-08T10:37:09.817Z",
+    "partner_id": "588ba503-6949-406b-82c6-6670f3c32692"
+   },
+   "translations": [
+    {
+     "id": "2beb03c5-23b1-4f3d-848e-02cf8d685536",
+     "product_id": "2b2ae872-7ae9-4779-b102-e13a9717981f",
+     "language_code": "fr",
+     "nom": "Oculoplastie FCI",
+     "description": "Découvrez la gamme FCI pour l’oculoplastie : voies lacrymales, sécheresse oculaire, paupières et orbite. Consultez le catalogue complet pour les produits, références et techniques.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "6caecce4-5e11-4147-ac93-1214a4ed3c34",
+     "product_id": "2b2ae872-7ae9-4779-b102-e13a9717981f",
+     "language_code": "en",
+     "nom": "FCI Oculoplasty",
+     "description": "Explore the FCI oculoplasty range: lacrimal drainage, dry eye, eyelids and orbit. See the full catalogue for products, references and techniques.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "9b7a03bb-6ebe-421e-b9e1-c14ff214ecd2",
+     "product_id": "2b2ae872-7ae9-4779-b102-e13a9717981f",
+     "type": "image",
+     "url": "/uploads/categories/oculoplastie-fci.png",
+     "alt_text": "Oculoplastie FCI",
+     "title": "Oculoplastie FCI",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-10-08T10:37:09.823Z"
+    }
+   ]
+  },
+  "7f1a6ff3-ca81-496d-8f0c-f1a20cb89dd7": {
+   "row": {
+    "id": "7f1a6ff3-ca81-496d-8f0c-f1a20cb89dd7",
+    "reference_fournisseur": "FCI-INSTRUMENTS",
+    "category_id": "af5e0cc6-6a9b-47bd-9b21-128804f23a20",
+    "constructeur": "fci",
+    "slug": "instruments-fci-fci-instruments",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://www.fci.fr/wp-content/uploads/2021/07/Cat.-INSTRUMENTATION_BD_FCI18.016-IndC.pdf",
+    "created_at": "2026-04-14T15:03:41.687Z",
+    "updated_at": "2026-04-14T17:17:10.886Z",
+    "partner_id": null
+   },
+   "translations": [
+    {
+     "id": "726c9a65-53ad-4c0e-809c-ba0d85df4279",
+     "product_id": "7f1a6ff3-ca81-496d-8f0c-f1a20cb89dd7",
+     "language_code": "fr",
+     "nom": "Instruments FCI",
+     "description": "Gamme complete d'instruments chirurgicaux ophtalmiques FCI. Instrumentation specialisee pour la chirurgie oculoplastique et de la cataracte.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "0a3d91e7-5c57-4a05-9dec-29933e92c548",
+     "product_id": "7f1a6ff3-ca81-496d-8f0c-f1a20cb89dd7",
+     "language_code": "en",
+     "nom": "FCI Instruments",
+     "description": "Complete range of FCI ophthalmic surgical instruments. Specialized instrumentation for oculoplastic and cataract surgery.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "fdbf9bca-6581-456c-bee9-ae4e909ef477",
+     "product_id": "7f1a6ff3-ca81-496d-8f0c-f1a20cb89dd7",
+     "type": "image",
+     "url": "/uploads/products/fci-cataract-1776184760845-32e480f5.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-14T15:50:26.225Z"
+    }
+   ]
+  }
+ }
+}
