@@ -390,6 +390,28 @@ export default function ProductDetailPage() {
         </div>
       </section>
 
+      {getProductSpecs(product) && (
+        <section className="container mx-auto px-4 lg:px-8 pb-12">
+          <div className="rounded-lg border border-slate-200 bg-white p-6 lg:p-8">
+            <h2 className="text-xl lg:text-2xl font-bold text-primary-900">{t('technicalSheet')}</h2>
+            <span aria-hidden="true" className="mt-2 mb-5 block h-1 w-12 rounded-full bg-accent-500" />
+            <dl className="divide-y divide-slate-100 text-sm">
+              {getProductSpecs(product)!.split('\n').map(l => l.trim()).filter(Boolean).map((line, i) => {
+                const m = line.match(/^([^:]{1,60}?)\s+:\s+(.+)$/);
+                return m ? (
+                  <div key={i} className="grid gap-1 py-2 sm:grid-cols-[minmax(0,16rem)_1fr] sm:gap-6">
+                    <dt className="font-medium text-slate-900 break-words">{m[1]}</dt>
+                    <dd className="text-slate-700 break-words">{m[2]}</dd>
+                  </div>
+                ) : (
+                  <p key={i} className="py-2 text-slate-700 break-words">{line}</p>
+                );
+              })}
+            </dl>
+          </div>
+        </section>
+      )}
+
     </div>
   );
 }
