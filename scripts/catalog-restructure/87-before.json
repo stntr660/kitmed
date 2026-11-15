@@ -1,0 +1,490 @@
+{
+ "ocular-verres-laser-argon-diode": {
+  "before": "/uploads/categories/ocular-tile-laser-argon-diode.jpg",
+  "after": "/uploads/categories/q87-ocular-verres-laser-argon-diode.jpg"
+ },
+ "ocular-verres-laser-yag": {
+  "before": "/uploads/categories/ocular-tile-laser-yag.jpg",
+  "after": "/uploads/categories/q87-ocular-verres-laser-yag.jpg"
+ },
+ "ocular-verres-diagnostic": {
+  "before": "/uploads/categories/ocular-tile-diagnostic.jpg",
+  "after": "/uploads/categories/q87-ocular-verres-diagnostic.jpg"
+ },
+ "ocular-verres-indirects": {
+  "before": "/uploads/categories/ocular-tile-indirects.jpg",
+  "after": "/uploads/categories/q87-ocular-verres-indirects.jpg"
+ },
+ "ocular-systemes-grand-angle": {
+  "before": "/uploads/categories/ocular-tile-grand-angle.jpg",
+  "after": "/uploads/categories/q87-ocular-systemes-grand-angle.jpg"
+ },
+ "ocular-verres-chirurgicaux": {
+  "before": "/uploads/categories/ocular-tile-chirurgicaux.jpg",
+  "after": "/uploads/categories/q87-ocular-verres-chirurgicaux.jpg"
+ },
+ "ocular-tonometres": {
+  "before": "/uploads/categories/ocular-tile-tonometres.jpg",
+  "after": "/uploads/categories/q87-ocular-tonometres.jpg"
+ },
+ "ocular-modeles-oeil-accessoires": {
+  "before": "/uploads/categories/ocular-tile-modeles-accessoires.jpg",
+  "after": "/uploads/categories/q87-ocular-modeles-oeil-accessoires.jpg"
+ },
+ "unites-excellence": {
+  "before": "/uploads/categories/unites-excellence.jpg",
+  "after": "/uploads/categories/q87-unites-excellence.jpg"
+ },
+ "unites-performances": {
+  "before": "/uploads/categories/unites-performances.jpg",
+  "after": "/uploads/categories/q87-unites-performances.jpg"
+ },
+ "unites-compactes": {
+  "before": "/uploads/categories/unites-compactes.jpg",
+  "after": "/uploads/categories/q87-unites-compactes.jpg"
+ },
+ "refracteurs": {
+  "before": "/uploads/categories/refracteurs.jpg",
+  "after": "/uploads/categories/q87-refracteurs.jpg"
+ },
+ "biometres-optiques": {
+  "before": "/uploads/banners/01fa0526-49ba-43b9-96a3-49b66b6988cd.png",
+  "after": "/uploads/categories/q87-biometres-optiques.jpg"
+ },
+ "echographes": {
+  "before": "/uploads/categories/echographes.jpg",
+  "after": "/uploads/categories/q87-echographes.jpg"
+ },
+ "laser-yag-et-slt": {
+  "before": "/uploads/categories/laser-yag-et-slt-photo.jpg",
+  "after": "/uploads/categories/q87-laser-yag-et-slt.jpg"
+ },
+ "laser-photocoagulateurs": {
+  "before": "/uploads/categories/laser-photocoagulateurs-photo.jpg",
+  "after": "/uploads/categories/q87-laser-photocoagulateurs.jpg"
+ },
+ "implant-et-visco": {
+  "before": "/uploads/categories/implant-et-visco.png",
+  "after": "/uploads/categories/q87-implant-et-visco.jpg"
+ },
+ "viscoelastique": {
+  "before": "/uploads/banners/2851ec1d-06dc-4f4b-9b6f-a2fd51ba3714.png",
+  "after": "/uploads/categories/q87-viscoelastique.jpg"
+ },
+ "couteaux": {
+  "before": "/uploads/categories/couteaux.png",
+  "after": "/uploads/categories/q87-couteaux.jpg"
+ },
+ "valves": {
+  "before": "/uploads/categories/valves-photo.jpg",
+  "after": "/uploads/categories/q87-valves.jpg"
+ },
+ "schirmer-fluorescein-et-bleu-vision": {
+  "before": "/uploads/categories/schirmer-fluorescein-et-bleu-vision.png",
+  "after": "/uploads/categories/q87-schirmer-fluorescein-et-bleu-vision.jpg"
+ },
+ "oculoplastie-fci": {
+  "before": "/uploads/categories/oculoplastie-fci-photo2.jpg",
+  "after": "/uploads/categories/q87-oculoplastie-fci.jpg"
+ },
+ "fci-epiphora-bouchons": {
+  "before": "/uploads/categories/fci-tile-epiphora-bouchons.jpg",
+  "after": "/uploads/categories/q87-fci-epiphora-bouchons.jpg"
+ },
+ "fci-epiphora-intubation": {
+  "before": "/uploads/categories/fci-tile-epiphora-intubation.jpg",
+  "after": "/uploads/categories/q87-fci-epiphora-intubation.jpg"
+ },
+ "fci-epiphora-dcr": {
+  "before": "/uploads/categories/fci-tile-epiphora-dcr.jpg",
+  "after": "/uploads/categories/q87-fci-epiphora-dcr.jpg"
+ },
+ "fci-secheresse-bouchons": {
+  "before": "/uploads/categories/fci-tile-secheresse-bouchons.jpg",
+  "after": "/uploads/categories/q87-fci-secheresse-bouchons.jpg"
+ },
+ "fci-paupieres-ptosis": {
+  "before": "/uploads/categories/fci-tile-paupieres-ptosis.jpg",
+  "after": "/uploads/categories/q87-fci-paupieres-ptosis.jpg"
+ },
+ "fci-paupieres-poids": {
+  "before": "/uploads/categories/fci-tile-paupieres-poids.jpg",
+  "after": "/uploads/categories/q87-fci-paupieres-poids.jpg"
+ },
+ "fci-orbite-implants": {
+  "before": "/uploads/categories/fci-tile-orbite-implants.jpg",
+  "after": "/uploads/categories/q87-fci-orbite-implants.jpg"
+ },
+ "fci-orbite-accessoires": {
+  "before": "/uploads/categories/fci-tile-orbite-accessoires.jpg",
+  "after": "/uploads/categories/q87-fci-orbite-accessoires.jpg"
+ },
+ "moria-usage-unique": {
+  "before": "/uploads/categories/moria-usage-unique-tile-v2.jpg",
+  "after": "/uploads/categories/q87-moria-usage-unique.jpg"
+ },
+ "moria-uu-blepharostats": {
+  "before": "/uploads/categories/moria-uu-blepharostats-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-blepharostats.jpg"
+ },
+ "moria-uu-pinces": {
+  "before": "/uploads/categories/moria-uu-pinces-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-pinces.jpg"
+ },
+ "moria-uu-crochets-anneaux": {
+  "before": "/uploads/categories/moria-uu-crochets-anneaux-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-crochets-anneaux.jpg"
+ },
+ "moria-uu-ciseaux": {
+  "before": "/uploads/categories/moria-uu-ciseaux-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-ciseaux.jpg"
+ },
+ "moria-uu-canules": {
+  "before": "/uploads/categories/moria-uu-canules-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-canules.jpg"
+ },
+ "moria-uu-kits": {
+  "before": "/uploads/categories/moria-uu-kits-tile.jpg",
+  "after": "/uploads/categories/q87-moria-uu-kits.jpg"
+ },
+ "fci-instruments": {
+  "before": "/uploads/categories/fci-tile-instruments.jpg",
+  "after": "/uploads/categories/q87-fci-instruments.jpg"
+ },
+ "fci-aiguilles": {
+  "before": "/uploads/categories/fci-tile-aiguilles.jpg",
+  "after": "/uploads/categories/q87-fci-aiguilles.jpg"
+ },
+ "fci-blepharostats": {
+  "before": "/uploads/categories/fci-tile-blepharostats.jpg",
+  "after": "/uploads/categories/q87-fci-blepharostats.jpg"
+ },
+ "fci-canules": {
+  "before": "/uploads/categories/fci-tile-canules.jpg",
+  "after": "/uploads/categories/q87-fci-canules.jpg"
+ },
+ "fci-ciseaux": {
+  "before": "/uploads/categories/fci-tile-ciseaux.jpg",
+  "after": "/uploads/categories/q87-fci-ciseaux.jpg"
+ },
+ "fci-compas": {
+  "before": "/uploads/categories/fci-tile-compas.jpg",
+  "after": "/uploads/categories/q87-fci-compas.jpg"
+ },
+ "fci-couteaux": {
+  "before": "/uploads/categories/fci-tile-couteaux.jpg",
+  "after": "/uploads/categories/q87-fci-couteaux.jpg"
+ },
+ "fci-crochets": {
+  "before": "/uploads/categories/fci-tile-crochets.jpg",
+  "after": "/uploads/categories/q87-fci-crochets.jpg"
+ },
+ "fci-curettes": {
+  "before": "/uploads/categories/fci-tile-curettes.jpg",
+  "after": "/uploads/categories/q87-fci-curettes.jpg"
+ },
+ "fci-ecarteurs": {
+  "before": "/uploads/categories/fci-tile-ecarteurs.jpg",
+  "after": "/uploads/categories/q87-fci-ecarteurs.jpg"
+ },
+ "fci-marqueurs": {
+  "before": "/uploads/categories/fci-tile-marqueurs.jpg",
+  "after": "/uploads/categories/q87-fci-marqueurs.jpg"
+ },
+ "fci-osteotomes": {
+  "before": "/uploads/categories/fci-tile-osteotomes.jpg",
+  "after": "/uploads/categories/q87-fci-osteotomes.jpg"
+ },
+ "fci-pinces-capsulorhexis": {
+  "before": "/uploads/categories/fci-tile-pinces-capsulorhexis.jpg",
+  "after": "/uploads/categories/q87-fci-pinces-capsulorhexis.jpg"
+ },
+ "fci-pinces-oculoplastie": {
+  "before": "/uploads/categories/fci-tile-pinces-oculoplastie.jpg",
+  "after": "/uploads/categories/q87-fci-pinces-oculoplastie.jpg"
+ },
+ "fci-pinces-suture": {
+  "before": "/uploads/categories/fci-tile-pinces-suture.jpg",
+  "after": "/uploads/categories/q87-fci-pinces-suture.jpg"
+ },
+ "fci-pinces-dissection": {
+  "before": "/uploads/categories/fci-tile-pinces-dissection.jpg",
+  "after": "/uploads/categories/q87-fci-pinces-dissection.jpg"
+ },
+ "fci-plaques-releveurs": {
+  "before": "/uploads/categories/fci-tile-plaques-releveurs.jpg",
+  "after": "/uploads/categories/q87-fci-plaques-releveurs.jpg"
+ },
+ "fci-porte-aiguilles": {
+  "before": "/uploads/categories/fci-tile-porte-aiguilles.jpg",
+  "after": "/uploads/categories/q87-fci-porte-aiguilles.jpg"
+ },
+ "fci-spatules": {
+  "before": "/uploads/categories/fci-tile-spatules.jpg",
+  "after": "/uploads/categories/q87-fci-spatules.jpg"
+ },
+ "fci-voies-lacrymales": {
+  "before": "/uploads/categories/fci-tile-voies-lacrymales.jpg",
+  "after": "/uploads/categories/q87-fci-voies-lacrymales.jpg"
+ },
+ "fci-sterilisation": {
+  "before": "/uploads/categories/fci-tile-sterilisation.jpg",
+  "after": "/uploads/categories/q87-fci-sterilisation.jpg"
+ },
+ "moria-instruments": {
+  "before": "/uploads/categories/moria-instruments-tile-v2.jpg",
+  "after": "/uploads/categories/q87-moria-instruments.jpg"
+ },
+ "moria-blepharostats": {
+  "before": "/uploads/categories/moria-blepharostats-tile.jpg",
+  "after": "/uploads/categories/q87-moria-blepharostats.jpg"
+ },
+ "moria-pinces": {
+  "before": "/uploads/categories/moria-pinces-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces.jpg"
+ },
+ "moria-pinces-capsulorhexis": {
+  "before": "/uploads/categories/moria-pinces-capsulorhexis-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-capsulorhexis.jpg"
+ },
+ "moria-pinces-cornee-sclere": {
+  "before": "/uploads/categories/moria-pinces-cornee-sclere-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-cornee-sclere.jpg"
+ },
+ "moria-pinces-a-nouer": {
+  "before": "/uploads/categories/moria-pinces-a-nouer-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-a-nouer.jpg"
+ },
+ "moria-pinces-sans-dents": {
+  "before": "/uploads/categories/moria-pinces-sans-dents-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-sans-dents.jpg"
+ },
+ "moria-pinces-keratoplastie": {
+  "before": "/uploads/categories/moria-pinces-keratoplastie-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-keratoplastie.jpg"
+ },
+ "moria-pinces-autres": {
+  "before": "/uploads/categories/moria-pinces-autres-tile.jpg",
+  "after": "/uploads/categories/q87-moria-pinces-autres.jpg"
+ },
+ "moria-porte-aiguilles": {
+  "before": "/uploads/categories/moria-porte-aiguilles-tile.jpg",
+  "after": "/uploads/categories/q87-moria-porte-aiguilles.jpg"
+ },
+ "moria-ciseaux": {
+  "before": "/uploads/categories/moria-ciseaux-tile.jpg",
+  "after": "/uploads/categories/q87-moria-ciseaux.jpg"
+ },
+ "moria-crochets-spatules": {
+  "before": "/uploads/categories/moria-crochets-spatules-tile.jpg",
+  "after": "/uploads/categories/q87-moria-crochets-spatules.jpg"
+ },
+ "moria-canules": {
+  "before": "/uploads/categories/moria-canules-tile.jpg",
+  "after": "/uploads/categories/q87-moria-canules.jpg"
+ },
+ "moria-autres": {
+  "before": "/uploads/categories/moria-autres-tile.jpg",
+  "after": "/uploads/categories/q87-moria-autres.jpg"
+ },
+ "moria-boites-sterilisation": {
+  "before": "/uploads/categories/moria-boites-sterilisation-tile.jpg",
+  "after": "/uploads/categories/q87-moria-boites-sterilisation.jpg"
+ },
+ "orl-unites-consultation": {
+  "before": "/uploads/categories/orl-tile-basic-plus.jpg",
+  "after": "/uploads/categories/q87-orl-unites-consultation.jpg"
+ },
+ "orl-fauteuils": {
+  "before": "/uploads/categories/orl-tile-sit-4.jpg",
+  "after": "/uploads/categories/q87-orl-fauteuils.jpg"
+ },
+ "orl-endoscopie": {
+  "before": "/uploads/categories/orl-tile-endoscope-30.jpg",
+  "after": "/uploads/categories/q87-orl-endoscopie.jpg"
+ },
+ "orl-laryngoscopie": {
+  "before": "/uploads/categories/orl-tile-telelaryngo.jpg",
+  "after": "/uploads/categories/q87-orl-laryngoscopie.jpg"
+ },
+ "orl-video-endoscopie": {
+  "before": "/uploads/categories/orl-tile-pes-pilot-hdpro.jpg",
+  "after": "/uploads/categories/q87-orl-video-endoscopie.jpg"
+ },
+ "orl-stroboscopie": {
+  "before": "/uploads/categories/orl-tile-pes-pilot-strobo.jpg",
+  "after": "/uploads/categories/q87-orl-stroboscopie.jpg"
+ },
+ "orl-microscopie": {
+  "before": "/uploads/categories/orl-tile-opmi-pico-2.jpg",
+  "after": "/uploads/categories/q87-orl-microscopie.jpg"
+ },
+ "orl-eclairage": {
+  "before": "/uploads/categories/orl-tile-lampe-led.jpg",
+  "after": "/uploads/categories/q87-orl-eclairage.jpg"
+ },
+ "orl-audiologie": {
+  "before": "/uploads/categories/orl-tile-audio.jpg",
+  "after": "/uploads/categories/q87-orl-audiologie.jpg"
+ },
+ "orl-tympanometrie": {
+  "before": "/uploads/categories/orl-tile-tymp.jpg",
+  "after": "/uploads/categories/q87-orl-tympanometrie.jpg"
+ },
+ "orl-exploration-vestibulaire": {
+  "before": "/uploads/categories/orl-tile-vng.jpg",
+  "after": "/uploads/categories/q87-orl-exploration-vestibulaire.jpg"
+ },
+ "orl-rhinologie": {
+  "before": "/uploads/categories/orl-tile-rhino-sys.jpg",
+  "after": "/uploads/categories/q87-orl-rhinologie.jpg"
+ },
+ "orl-diagnostic-sinusien": {
+  "before": "/uploads/categories/orl-tile-digital-5.jpg",
+  "after": "/uploads/categories/q87-orl-diagnostic-sinusien.jpg"
+ },
+ "literie-hospitaliere": {
+  "before": "/uploads/categories/literie-hospitaliere.png",
+  "after": "/uploads/categories/q87-literie-hospitaliere.jpg"
+ },
+ "brancards": {
+  "before": "/uploads/categories/brancards.png",
+  "after": "/uploads/categories/q87-brancards.jpg"
+ },
+ "fauteuils-patients": {
+  "before": "/uploads/categories/fauteuils-patients.png",
+  "after": "/uploads/categories/q87-fauteuils-patients.jpg"
+ },
+ "tables-medicales": {
+  "before": "/uploads/categories/tables-medicales.png",
+  "after": "/uploads/categories/q87-tables-medicales.jpg"
+ },
+ "armoires-et-rangement": {
+  "before": "/uploads/categories/armoires-et-rangement.png",
+  "after": "/uploads/categories/q87-armoires-et-rangement.jpg"
+ },
+ "equipement-pediatrique": {
+  "before": "/uploads/categories/equipement-pediatrique.png",
+  "after": "/uploads/categories/q87-equipement-pediatrique.jpg"
+ },
+ "mobilite-et-soutien": {
+  "before": "/uploads/categories/mobilite-et-soutien.png",
+  "after": "/uploads/categories/q87-mobilite-et-soutien.jpg"
+ },
+ "pukang-accessoires-lit": {
+  "before": "/uploads/categories/pukang-85-tile-accessoires-lit.jpg",
+  "after": "/uploads/categories/q87-pukang-accessoires-lit.jpg"
+ },
+ "pukang-mobilier-soins": {
+  "before": "/uploads/categories/pukang-85-tile-mobilier-soins.jpg",
+  "after": "/uploads/categories/q87-pukang-mobilier-soins.jpg"
+ },
+ "attelles-immobilisation": {
+  "before": "/uploads/categories/attelles-immobilisation.png",
+  "after": "/uploads/categories/q87-attelles-immobilisation.jpg"
+ },
+ "ortheses-articulaires": {
+  "before": "/uploads/categories/ortheses-articulaires.png",
+  "after": "/uploads/categories/q87-ortheses-articulaires.jpg"
+ },
+ "ceintures-lombaires": {
+  "before": "/uploads/categories/ceintures-lombaires.png",
+  "after": "/uploads/categories/q87-ceintures-lombaires.jpg"
+ },
+ "genouilleres-chevillieres": {
+  "before": "/uploads/categories/genouilleres-chevillieres.png",
+  "after": "/uploads/categories/q87-genouilleres-chevillieres.jpg"
+ },
+ "chaussures-protections": {
+  "before": "/uploads/categories/chaussures-protections.png",
+  "after": "/uploads/categories/q87-chaussures-protections.jpg"
+ },
+ "coussins-anti-escarres": {
+  "before": "/uploads/categories/coussins-anti-escarres.png",
+  "after": "/uploads/categories/q87-coussins-anti-escarres.jpg"
+ },
+ "ortheses-cervicales": {
+  "before": "/uploads/categories/ortheses-cervicales.png",
+  "after": "/uploads/categories/q87-ortheses-cervicales.jpg"
+ },
+ "starset-chirurgie-generale": {
+  "before": "/uploads/categories/starset-tile-chirurgie-generale.jpg",
+  "after": "/uploads/categories/q87-starset-chirurgie-generale.jpg"
+ },
+ "starset-coelioscopie": {
+  "before": "/uploads/categories/starset-tile-coelioscopie.jpg",
+  "after": "/uploads/categories/q87-starset-coelioscopie.jpg"
+ },
+ "starset-chirurgie-cardiovasculaire": {
+  "before": "/uploads/categories/starset-tile-chirurgie-cardiovasculaire.jpg",
+  "after": "/uploads/categories/q87-starset-chirurgie-cardiovasculaire.jpg"
+ },
+ "starset-cardiologie-angiographie": {
+  "before": "/uploads/categories/starset-tile-cardiologie-angiographie.jpg",
+  "after": "/uploads/categories/q87-starset-cardiologie-angiographie.jpg"
+ },
+ "starset-orthopedie": {
+  "before": "/uploads/categories/starset-tile-orthopedie.jpg",
+  "after": "/uploads/categories/q87-starset-orthopedie.jpg"
+ },
+ "starset-neurochirurgie": {
+  "before": "/uploads/categories/starset-tile-neurochirurgie.jpg",
+  "after": "/uploads/categories/q87-starset-neurochirurgie.jpg"
+ },
+ "starset-urologie": {
+  "before": "/uploads/categories/starset-tile-urologie.jpg",
+  "after": "/uploads/categories/q87-starset-urologie.jpg"
+ },
+ "starset-gynecologie-obstetrique": {
+  "before": "/uploads/categories/starset-tile-gynecologie-obstetrique.jpg",
+  "after": "/uploads/categories/q87-starset-gynecologie-obstetrique.jpg"
+ },
+ "starset-ophtalmologie": {
+  "before": "/uploads/categories/starset-tile-ophtalmologie.jpg",
+  "after": "/uploads/categories/q87-starset-ophtalmologie.jpg"
+ },
+ "starset-orl": {
+  "before": "/uploads/categories/starset-tile-orl.jpg",
+  "after": "/uploads/categories/q87-starset-orl.jpg"
+ },
+ "starset-dentaire-implantologie": {
+  "before": "/uploads/categories/starset-tile-dentaire-implantologie.jpg",
+  "after": "/uploads/categories/q87-starset-dentaire-implantologie.jpg"
+ },
+ "starset-champs-accessoires": {
+  "before": "/uploads/categories/starset-tile-champs-accessoires.jpg",
+  "after": "/uploads/categories/q87-starset-champs-accessoires.jpg"
+ },
+ "starset-tenues-non-steriles": {
+  "before": "/uploads/categories/starset-tile-tenues-non-steriles.jpg",
+  "after": "/uploads/categories/q87-starset-tenues-non-steriles.jpg"
+ },
+ "ophtalmologie": {
+  "before": "/uploads/categories/ophtalmologie-photo.jpg",
+  "after": "/uploads/categories/q87-ophtalmologie.jpg"
+ },
+ "mobilier-et-literie-hospitaliers": {
+  "before": "/uploads/categories/mobilier-et-literie-hospitaliers-photo.jpg",
+  "after": "/uploads/categories/q87-mobilier-et-literie-hospitaliers.jpg"
+ },
+ "orthopedics": {
+  "before": "/uploads/categories/orthopedics-photo.jpg",
+  "after": "/uploads/categories/q87-orthopedics.jpg"
+ },
+ "orl-oto-rhino-laryngologie": {
+  "before": "/uploads/categories/orl-oto-rhino-laryngologie-photo.jpg",
+  "after": "/uploads/categories/q87-orl-oto-rhino-laryngologie.jpg"
+ },
+ "dispositifs-medicaux": {
+  "before": "/uploads/categories/dispositifs-medicaux-photo.jpg",
+  "after": "/uploads/categories/q87-dispositifs-medicaux.jpg"
+ },
+ "drapage": {
+  "before": null,
+  "after": "/uploads/categories/q87-drapage.jpg"
+ },
+ "oph-contactology": {
+  "before": "/uploads/categories/oph-contactology-photo.jpg",
+  "after": "/uploads/categories/q87-oph-contactology.jpg"
+ }
+}
