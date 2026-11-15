@@ -1,0 +1,638 @@
+{
+ "taken_at": "2026-11-15T09:30:42.923Z",
+ "categories": {
+  "verres-ophtalmoscope-et-skeepens": {
+   "row": {
+    "id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+    "name": "Verres ophtalmiques",
+    "slug": "verres-ophtalmoscope-et-skeepens",
+    "description": null,
+    "parent_id": "c76a0001-0000-4000-8000-000000000001",
+    "sort_order": 4,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": "/uploads/categories/oph-verres-ophtalmiques.jpg",
+    "created_at": "2026-04-14T14:39:30.164Z",
+    "updated_at": "2026-11-14T18:24:35.483Z",
+    "type": "equipment"
+   },
+   "translations": [
+    {
+     "id": "bfb9ec21-c5a1-4c35-93f3-8a805ae19ddc",
+     "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+     "language_code": "fr",
+     "name": "Verres ophtalmiques",
+     "description": "Verres d'essai, montures et ophtalmoscopes",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "c0141ed9-00e0-49bb-bf49-8724a2b99e0b",
+     "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+     "language_code": "en",
+     "name": "Ophthalmic lenses",
+     "description": "Trial lenses, trial frames and ophthalmoscopes",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  }
+ },
+ "products": {
+  "oph-1768243482568-2ebuvyhca": {
+   "row": {
+    "id": "oph-1768243482568-2ebuvyhca",
+    "reference_fournisseur": "OLTCW",
+    "category_id": "8bb5e9ba-9c3a-4e0c-973b-bf8996497193",
+    "constructeur": "ocular",
+    "slug": "lentille-de-fenetre-corneenne-temporaire",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://ocularinc.com/media/productmedia/639/11550%20OLTCW%20Rev%20A.pdf",
+    "created_at": "2026-01-12T18:44:44.328Z",
+    "updated_at": "2026-04-14T14:43:05.887Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "56ae0063-ecb5-476b-a78e-691fbeacb5df",
+     "product_id": "oph-1768243482568-2ebuvyhca",
+     "language_code": "fr",
+     "nom": "LENTILLE DE FENETRE CORNEENNE TEMPORAIRE",
+     "description": "La fenêtre cornéenne grand champ Landers est conçue avec une surface antérieure convexe pour faciliter la visualisation de la rétine périphérique et du pôle postérieur pendant la chirurgie de vitrectomie et de greffe de cornée.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4384381f-6f88-4342-b599-eb2bdbe2e014",
+     "product_id": "oph-1768243482568-2ebuvyhca",
+     "language_code": "en",
+     "nom": "Temporary Corneal Window Lens",
+     "description": "The Landers Wide Field Corneal Window is designed with a convex anterior surface to facilitate viewing of the peripheral retina & the posterior pole during vitrectomy corneal transplant surgery.. The design of the OLTCW allows for sealing trephine sizes 6-8.2mm in addition to irregular shaped corneal openings.. This lens has six suture holes around its peripheral edge. Lens design is suitable for phakic, aphakic and pseudophakic eye.. Once the sutures are in place, the lens/cornea interface acts as a seal and provides a closed system for a vitrectomy procedure.. May be used in conjunction with our handled vitrectomy lenses (OBVI, OFVI, OMVI, OPGVI, OPVI-3) or the Machemer Flat Vitrectomy Lens (OLV-5).",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "42304716-8b54-4ac0-a953-10615f24d695",
+     "product_id": "oph-1768243482568-2ebuvyhca",
+     "type": "image",
+     "url": "/uploads/products/oph-1768243482568-2ebuvyhca/1768252964873-0.jpg",
+     "alt_text": "file (1)",
+     "title": "file (1).jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T21:22:44.875Z"
+    }
+   ]
+  },
+  "oph-1768243484414-q3txdxrw9": {
+   "row": {
+    "id": "oph-1768243484414-q3txdxrw9",
+    "reference_fournisseur": "OCU-MKBIIKN1",
+    "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-laser-lenses-ocu-mkbiikn1",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 20,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-12T18:44:44.494Z",
+    "updated_at": "2026-10-16T13:27:43.173Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243484414-q3txdxrw9-fr",
+     "product_id": "oph-1768243484414-q3txdxrw9",
+     "language_code": "fr",
+     "nom": "Lentilles pour Laser Ophtalmologique",
+     "description": "Lentilles laser ophtalmiques Ocular Instruments offrant le champ de vision le plus large disponible pour la photocoagulation panretinienne. La conception optique unique fournit une image claire et lumineuse sur l'ensemble du champ. Construction legere avec bride Securefit pour une manipulation aisee et un positionnement stable sur l'oeil du patient. Desormais disponibles avec le nouveau revetement antireflet Laserlight HD pour une transmission lumineuse optimale et des reflexions minimales pendant le traitement laser. Concu pour les procedures de photocoagulation retinienne au laser argon et diode. Verre de haute qualite optique avec revetement antireflet large bande. Instruments de reference pour les ophtalmologistes specialises en retine.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243484414-q3txdxrw9-en",
+     "product_id": "oph-1768243484414-q3txdxrw9",
+     "language_code": "en",
+     "nom": "Ophthalmic Laser Lenses",
+     "description": "Widest field of view available for panretinal photocoagulation. Unique optical design provides clear, bright image across the entire field. Light weight. Securefit® flange for easy manipulation. Now available with our NEW Laserlight® HD anti-reflective coating. See Coatings and Materials for more details.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f4554cb3-60e6-4822-b0cb-e877f2f8e284",
+     "product_id": "oph-1768243484414-q3txdxrw9",
+     "type": "image",
+     "url": "/uploads/products/oph-1768243484414-q3txdxrw9/1768252930037-0.jpg",
+     "alt_text": "file (1)",
+     "title": "file (1).jpg",
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2026-01-12T21:22:10.039Z"
+    }
+   ]
+  },
+  "oph-1768243484530-63j802q5j": {
+   "row": {
+    "id": "oph-1768243484530-63j802q5j",
+    "reference_fournisseur": "OCU-MKBIIKQ9",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "indirect-lenses-for-diagnosis-and-surgery-ocu-mkbiikq9",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/pdfs/indirect-lenses-for-diagnosis-and-surgery-ocu-mkbi.pdf",
+    "created_at": "2026-01-12T18:44:44.612Z",
+    "updated_at": "2026-04-14T14:42:40.571Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243484530-63j802q5j-en",
+     "product_id": "oph-1768243484530-63j802q5j",
+     "language_code": "en",
+     "nom": "Indirect Lenses for Diagnosis and Surgery",
+     "description": "The most popular power for non-contact fundus examination. Large and small holding ring available. Available with red, blue, green, gold, purple, or traditional black holding ring. Now available with our NEW Laserlight® HD anti-reflective coating. See Coatings and Materials for more details.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243484530-63j802q5j-fr",
+     "product_id": "oph-1768243484530-63j802q5j",
+     "language_code": "fr",
+     "nom": "LENTILLES INDIRECTES POUR DIAGNOSTIC ET CHIRURGIE",
+     "description": "Lentilles indirectes Ocular Instruments pour le diagnostic et la chirurgie du fond d'oeil. Puissance la plus populaire pour l'examen du fond d'oeil sans contact. Disponibles avec anneau de maintien grand et petit format, et en plusieurs couleurs (rouge, bleu, vert, or, violet ou noir traditionnel). Desormais disponibles avec le nouveau revetement antireflet Laserlight HD pour une transmission lumineuse maximale et des reflexions minimales. La conception optique offre une image claire et lumineuse sur l'ensemble du champ de vision. Construction legere pour une manipulation confortable lors des examens prolonges. Compatibles avec la plupart des lampes a fente et systemes d'imagerie. Instruments de diagnostic de reference en ophtalmologie.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "fe3b4f8a-5b92-414c-be71-4fe08489bdf9",
+     "product_id": "oph-1768243484530-63j802q5j",
+     "type": "image",
+     "url": "/uploads/products/oph-1768243484530-63j802q5j/1768252754019-0.jfif",
+     "alt_text": "OI-STDM-LR_R (1)",
+     "title": "OI-STDM-LR_R (1).jfif",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-12T21:19:14.021Z"
+    }
+   ]
+  },
+  "oph-1768243484701-sb8kiqzte": {
+   "row": {
+    "id": "oph-1768243484701-sb8kiqzte",
+    "reference_fournisseur": "OCU-MKBIIKV0",
+    "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-examination-lenses-ocu-mkbiikv0",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 10,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-12T18:44:44.784Z",
+    "updated_at": "2026-10-16T13:27:43.138Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243484701-sb8kiqzte-fr",
+     "product_id": "oph-1768243484701-sb8kiqzte",
+     "language_code": "fr",
+     "nom": "Verres d'Examen Ophtalmologique",
+     "description": "Présentation de la NOUVELLE lentille laser gonioscopique à trois miroirs Max360® avec petite fissure et bride de 16mm O.D. Plus confortable pour les patients avec une ouverture oculaire plus petite. Avec l'anneau rotatif révolutionnaire.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243484701-sb8kiqzte-en",
+     "product_id": "oph-1768243484701-sb8kiqzte",
+     "language_code": "en",
+     "nom": "Ophthalmic Examination Lenses",
+     "description": "Introducing the NEW Max360® Three Mirror Small Fissure Gonio Laser lens with Flange 16mm O.D. More comfortable for patients with smaller eye opening. Featuring the revolutionary rotating ring. Designed for maximum comfort, the smooth one handed movement of the rotating ring adds precision to your procedure, improving rotational control while eliminating the need for two handed adjustments. The ring rotates both directions at a full 360° allowing you to STAY FOCUSED on your patient, not the lens!",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "44893b16-2911-4bb6-bd96-cb2cfd8a0537",
+     "product_id": "oph-1768243484701-sb8kiqzte",
+     "type": "image",
+     "url": "/uploads/products/oph-1768243484701-sb8kiqzte/1768252671045-0.jfif",
+     "alt_text": "OI-STDM-LR_R",
+     "title": "OI-STDM-LR_R.jfif",
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2026-01-12T21:17:51.047Z"
+    }
+   ]
+  },
+  "oph-1768243484828-flbb75w0v": {
+   "row": {
+    "id": "oph-1768243484828-flbb75w0v",
+    "reference_fournisseur": "OCU-MKBIIKYJ",
+    "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+    "constructeur": "ocular",
+    "slug": "diagnostic-lenses-ocu-mkbiikyj",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/pdfs/diagnostic-lenses-ocu-mkbiikyj.pdf",
+    "created_at": "2026-01-12T18:44:44.910Z",
+    "updated_at": "2026-10-08T10:28:02.465Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243484828-flbb75w0v-fr",
+     "product_id": "oph-1768243484828-flbb75w0v",
+     "language_code": "fr",
+     "nom": "Verres de Diagnostic",
+     "description": "Les lentilles universelles à trois miroirs permettent l'examen du fond d'oeil et de l'angle de la chambre antérieure. Trois miroirs de 59°, 67° et 73° sont disposés à intervalles de 120°. Le petit miroir de 59° est utilisé pour la périphérie.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243484828-flbb75w0v-en",
+     "product_id": "oph-1768243484828-flbb75w0v",
+     "language_code": "en",
+     "nom": "Diagnostic Lenses",
+     "description": "Three Mirror Universal Lenses provide mirrors for the examination of the fundus and the anterior chamber angle.. Three mirrors of 59°, 67° and 73° are arranged at 120° intervals.. The small 59° mirror is inclined for gonioscopic procedures. It may also be used for the observation of the vitreous and the fundus near the ora serrata.. The middle size mirror is inclined at 67° to observe the peripheral fundus from the ora serrata to the region of the equator.. The largest mirror is inclined at 73° to observe the fundus from the equator to an area adjacent to the posterior pole.. The posterior pole can be observed through the central axis of the lens.. Argon/Diode broad band anti-reflective coatings are bonded to the lenses to minimize reflections and maximize light transmission during laser treatment.. Ocular Instruments offers seventeen styles of the Three Mirror Universal Lens, seven of which require no methylcellulose (NMR) during routine eye examinations.. An unusually flat cornea (K=38.00) may require use of a drop of methylcellulose or Celluvisc between the cornea and the lens on the NMR styles.. OG3MSA-IR, OG3MSFA-IR & OG3MSA-2-IR lenses incorporate an ergonomic rotating feature that greatly improves rotational control while eliminating the need for two handed adjustments",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "a1913815-3c47-4f20-aa66-473437dbb525",
+     "product_id": "oph-1768243484828-flbb75w0v",
+     "type": "image",
+     "url": "/uploads/products/oph-1768243484828-flbb75w0v/1768252479626-0.jpg",
+     "alt_text": "file",
+     "title": "file.jpg",
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2026-01-12T21:14:39.628Z"
+    }
+   ]
+  },
+  "oph-1768243484955-evah0e3ek": {
+   "row": {
+    "id": "oph-1768243484955-evah0e3ek",
+    "reference_fournisseur": "OACF-15",
+    "category_id": "b3bcc215-951d-4dae-92bd-8f416f975eb5",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-oacf-15",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 30,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://ocularinc.com/media/productmedia/521/8134-%20OG3MAC%20&%20OACF%20all%20%20Rev%20K.pdf",
+    "created_at": "2026-01-12T18:44:45.032Z",
+    "updated_at": "2026-10-16T16:46:54.527Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243484955-evah0e3ek-en",
+     "product_id": "oph-1768243484955-evah0e3ek",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Provides mirrors for the examination of the fundus and the anterior chamber angle. Steam sterilizable universal ophthalmic lens prism. High index glass design. Mirrors maintain total internal reflection (TIR) as if they are coated. One 64° Gonio mirror and two fundus mirrors, 73° and 67°. Fundus images overlap, no “blind spot” in fundus field. Methylcellulose not required. Features 15mm flange adapter (OACF-15). .61x Gonio Mag.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243484955-evah0e3ek-fr",
+     "product_id": "oph-1768243484955-evah0e3ek",
+     "language_code": "fr",
+     "nom": "Accessoires pour Verres d'Examen Oculaire",
+     "description": "Prisme de lentille ophtalmique universelle sterilisable a la vapeur, fournissant des miroirs pour l'examen du fond d'oeil et de l'angle de la chambre anterieure. Conception en verre a indice de refraction eleve. Les miroirs maintiennent la reflexion interne totale (TIR) comme s'ils etaient revetus. Un miroir gonioscopique de 64 degres et deux miroirs de fond d'oeil de 73 et 67 degres. Les images du fond d'oeil se chevauchent, sans zone aveugle dans le champ du fond d'oeil. Methylcellulose non requise. Comprend un adaptateur de bride de 15 mm (OACF-15). Grossissement gonioscopique de 0,61x. Instrument de diagnostic versatile pour l'examen complet du segment anterieur et posterieur.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243484955-evah0e3ek-media-1",
+     "product_id": "oph-1768243484955-evah0e3ek",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/265x265/17f82f742ffe127f42dca9de82fb58b1/o/g/OG3MAC-15_1.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.084Z"
+    }
+   ]
+  },
+  "oph-1768243485086-1i97bfznh": {
+   "row": {
+    "id": "oph-1768243485086-1i97bfznh",
+    "reference_fournisseur": "OACF-17",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-oacf-17",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://ocularinc.com/media/productmedia/522/8134-%20OG3MAC%20&%20OACF%20all%20%20Rev%20K.pdf",
+    "created_at": "2026-01-12T18:44:45.167Z",
+    "updated_at": "2026-04-02T16:51:14.087Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243485086-1i97bfznh-en",
+     "product_id": "oph-1768243485086-1i97bfznh",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Provides mirrors for the examination of the fundus and the anterior chamber angle. Steam sterilizable universal ophthalmic lens prism. High index glass design. Mirrors maintain total internal reflection (TIR) as if they are coated. One 64° Gonio mirror and two fundus mirrors, 73° and 67°. Fundus images overlap, no “blind spot” in fundus field. Features 17mm flange adapter (OACF-17). .61x Gonio Mag.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243485086-1i97bfznh-fr",
+     "product_id": "oph-1768243485086-1i97bfznh",
+     "language_code": "fr",
+     "nom": "ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE",
+     "description": "Prisme de lentille ophtalmique universelle sterilisable a la vapeur, fournissant des miroirs pour l'examen du fond d'oeil et de l'angle de la chambre anterieure. Conception en verre a indice de refraction eleve. Les miroirs maintiennent la reflexion interne totale (TIR) comme s'ils etaient revetus. Un miroir gonioscopique de 64 degres et deux miroirs de fond d'oeil de 73 et 67 degres. Les images du fond d'oeil se chevauchent, sans zone aveugle dans le champ du fond d'oeil. Comprend un adaptateur de bride de 17 mm (OACF-17). Grossissement gonioscopique de 0,61x. Instrument de diagnostic versatile pour l'examen complet du segment anterieur et posterieur.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243485086-1i97bfznh-media-1",
+     "product_id": "oph-1768243485086-1i97bfznh",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/265x265/17f82f742ffe127f42dca9de82fb58b1/o/g/OG3MAC-17_1.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.212Z"
+    }
+   ]
+  },
+  "oph-1768243485214-keolanyua": {
+   "row": {
+    "id": "oph-1768243485214-keolanyua",
+    "reference_fournisseur": "OACF4-15",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-oacf4-15",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://ocularinc.com/media/productmedia/195/7792%20-%20O4MAC%20all%20O4MAC-LR%20all%20O4MAC-H%20all%20p12%20OACF4%20all%20Rev%20N.pdf",
+    "created_at": "2026-01-12T18:44:45.294Z",
+    "updated_at": "2026-04-02T16:51:14.131Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243485214-keolanyua-en",
+     "product_id": "oph-1768243485214-keolanyua",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Flange designed to be installed on the glass Ocular MaxField® Autoclavable Four Mirror Gonio Lens (O4MAC, O4MAC-1X, O4MAC-LR, O4MAC-1X-LR), and the Ocular Gaasterland Four Mirror Gonio Lens (OG4MG, OG4MG-1X, OG4MG-LR, OG4MG-1X-LR). Flange made of durable medical polymer, will not break during normal handling and use. Eliminates the need to purchase additional lenses with dedicated flanges. Flange cover is easily removed from the lens for cleaning and sterilization. Compatible with most common disinfection and sterilization methods including steam sterilization.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243485214-keolanyua-fr",
+     "product_id": "oph-1768243485214-keolanyua",
+     "language_code": "fr",
+     "nom": "ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE",
+     "description": "Bride conçue pour être installée sur les lentilles gonioscopiques à quatre miroirs Ocular MaxField® autoclavables en verre (O4MAC, O4MAC-1X, O4MAC-LR, O4MAC-1X-LR) et les lentilles Ocular Gaasterland.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243485214-keolanyua-media-1",
+     "product_id": "oph-1768243485214-keolanyua",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/265x265/17f82f742ffe127f42dca9de82fb58b1/o/a/OACF4-15.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.339Z"
+    }
+   ]
+  },
+  "oph-1768243485341-3im66hf4b": {
+   "row": {
+    "id": "oph-1768243485341-3im66hf4b",
+    "reference_fournisseur": "OCFA4-17",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-ocfa4-17",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://ocularinc.com/media/productmedia/196/7792%20-%20O4MAC%20all%20O4MAC-LR%20all%20O4MAC-H%20all%20p12%20OACF4%20all%20Rev%20N.pdf",
+    "created_at": "2026-01-12T18:44:45.417Z",
+    "updated_at": "2026-04-02T16:51:14.173Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243485341-3im66hf4b-en",
+     "product_id": "oph-1768243485341-3im66hf4b",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Flange designed to be installed on the glass Ocular MaxField® Autoclavable Four Mirror Gonio Lens (O4MAC, O4MAC-1X, O4MAC-LR, O4MAC-1X-LR), and the Ocular Gaasterland Four Mirror Gonio Lens (OG4MG, OG4MG-1X, OG4MG-LR, OG4MG-1X-LR). Flange made of durable medical polymer, will not break during normal handling and use. Eliminates the need to purchase additional lenses with dedicated flanges. Flange cover is easily removed from the lens for cleaning and sterilization. Compatible with most common disinfection and sterilization methods including steam sterilization",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243485341-3im66hf4b-fr",
+     "product_id": "oph-1768243485341-3im66hf4b",
+     "language_code": "fr",
+     "nom": "ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE",
+     "description": "Bride conçue pour être installée sur les lentilles gonioscopiques à quatre miroirs Ocular MaxField® autoclavables en verre (O4MAC, O4MAC-1X, O4MAC-LR, O4MAC-1X-LR) et les lentilles Ocular Gaasterland.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243485341-3im66hf4b-media-1",
+     "product_id": "oph-1768243485341-3im66hf4b",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/60x60/9df78eab33525d08d6e5fb8d27136e95/o/g/OG4MG-17_1.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.461Z"
+    }
+   ]
+  },
+  "oph-1768243485463-irg4j5esi": {
+   "row": {
+    "id": "oph-1768243485463-irg4j5esi",
+    "reference_fournisseur": "OLPR-SUS OLPR-SUS-2",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-olpr-sus-olpr-sus-2",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-12T18:44:45.503Z",
+    "updated_at": "2026-04-02T16:51:14.213Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243485463-irg4j5esi-en",
+     "product_id": "oph-1768243485463-irg4j5esi",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Lens protection rings slip over the top of lenses to guard against accidental scratches. Knurled edges provide a secure gripping surface.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243485463-irg4j5esi-fr",
+     "product_id": "oph-1768243485463-irg4j5esi",
+     "language_code": "fr",
+     "nom": "ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE",
+     "description": "Les anneaux de protection pour lentilles se glissent sur le dessus des lentilles pour les protéger des rayures accidentelles. Les bords moletés offrent une surface de préhension sécurisée.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243485463-irg4j5esi-media-1",
+     "product_id": "oph-1768243485463-irg4j5esi",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/265x265/17f82f742ffe127f42dca9de82fb58b1/o/l/olpr-sus-2.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.627Z"
+    }
+   ]
+  },
+  "oph-1768243485629-eoszk662l": {
+   "row": {
+    "id": "oph-1768243485629-eoszk662l",
+    "reference_fournisseur": "OLTA-2",
+    "category_id": "oph-diagnostic",
+    "constructeur": "ocular",
+    "slug": "ophthalmic-lens-accessories-olta-2",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-12T18:44:45.667Z",
+    "updated_at": "2026-04-02T16:51:14.255Z",
+    "partner_id": "316d7982-4ea8-49d6-b82a-230b1357ed7c"
+   },
+   "translations": [
+    {
+     "id": "oph-1768243485629-eoszk662l-en",
+     "product_id": "oph-1768243485629-eoszk662l",
+     "language_code": "en",
+     "nom": "Ophthalmic Lens Accessories",
+     "description": "Replacement Luer Tube Assembly for the Vitrectomy infusion handled lenses.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "oph-1768243485629-eoszk662l-fr",
+     "product_id": "oph-1768243485629-eoszk662l",
+     "language_code": "fr",
+     "nom": "ACCESSOIRES POUR VERRES D'EXAMEN OCULAIRE",
+     "description": "Ensemble de tube Luer de remplacement pour les lentilles de vitrectomie a poignee avec systeme d'infusion. Cet accessoire permet de maintenir la fonctionnalite d'infusion des lentilles de vitrectomie Ocular sans necessiter le remplacement complet de la lentille. Le tube Luer assure une connexion fiable et etanche avec les systemes d'infusion standard utilises en chirurgie vitreoretinienne. Compatible avec les lentilles de vitrectomie a poignee Ocular (OBVI, OFVI, OMVI, OPGVI, OPVI-3) et la lentille de vitrectomie plate Machemer (OLV-5). Piece de remplacement essentielle pour les centres chirurgicaux pratiquant la vitrectomie.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "oph-1768243485629-eoszk662l-media-1",
+     "product_id": "oph-1768243485629-eoszk662l",
+     "type": "image",
+     "url": "https://ocularinc.com/media/catalog/product/cache/1/image/265x265/17f82f742ffe127f42dca9de82fb58b1/o/l/OLTA.jpg",
+     "alt_text": "Ophthalmic Lens Accessories",
+     "title": "Ophthalmic Lens Accessories",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-12T18:44:45.694Z"
+    }
+   ]
+  }
+ }
+}
