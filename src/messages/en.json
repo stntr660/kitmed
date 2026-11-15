@@ -2575,6 +2575,7 @@
       "backToProducts": "Back to Products"
     },
     "detail": {
+      "technicalSheet": "Technical sheet",
       "loading": "Loading product...",
       "notFound": "Product not found",
       "backToCatalog": "Back to catalog",

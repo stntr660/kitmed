@@ -2569,6 +2569,7 @@
       "backToProducts": "Retour aux Produits"
     },
     "detail": {
+      "technicalSheet": "Fiche technique",
       "loading": "Chargement du produit...",
       "notFound": "Produit non trouvé",
       "backToCatalog": "Retour au catalogue",
