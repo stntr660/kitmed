@@ -306,15 +306,9 @@ export default function CategoryHierarchyPage({ params }: PageProps) {
                       {/* Status Badges */}
                       <div className="absolute top-4 left-4 space-y-2">
                         {product.isNewArrival && (
-                          <Badge className="bg-primary text-white border-0 text-xs">
+                          <Badge className="rounded-full border-0 bg-accent-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm">
                             <Sparkles className="h-3 w-3 mr-1" />
                             {t('newArrival')}
-                          </Badge>
-                        )}
-                        {product.isFeatured && (
-                          <Badge className="bg-accent-500 text-white border-0 text-xs">
-                            <Sparkles className="h-3 w-3 mr-1" />
-                            {tCategories('featured')}
                           </Badge>
                         )}
                       </div>

@@ -36,13 +36,17 @@ export async function GET(request: NextRequest) {
       }
 
       if (targetCategoryId) {
-        // Get all child categories as well (for parent categories)
-        const childCategories = await prisma.categories.findMany({
-          where: { parent_id: targetCategoryId },
-          select: { id: true },
-        });
-
-        const categoryIds = [targetCategoryId, ...childCategories.map(c => c.id)];
+        // The category and all its descendants (the ophthalmology tree is 4 levels deep)
+        const categoryIds = [targetCategoryId];
+        let frontier = [targetCategoryId];
+        while (frontier.length) {
+          const children = await prisma.categories.findMany({
+            where: { parent_id: { in: frontier }, is_active: true },
+            select: { id: true },
+          });
+          frontier = children.map(c => c.id).filter(id => !categoryIds.includes(id));
+          categoryIds.push(...frontier);
+        }
 
         // Find partner IDs that have products in these categories
         const partnersWithProducts = await prisma.products.findMany({

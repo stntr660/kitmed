@@ -45,6 +45,7 @@ interface Product {
   };
   partner?: {
     id: string;
+    slug?: string;
     name: string;
     logoUrl: string | null;
     websiteUrl: string | null;
@@ -245,19 +246,13 @@ export default function ProductDetailPage() {
                   {/* Status Badges */}
                   <div className="absolute top-6 left-6 space-y-2">
                     {product.isNewArrival && (
-                      <Badge className="bg-primary text-white border-0">
+                      <Badge className="rounded-full border-0 bg-accent-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm">
                         <Sparkles className="h-3 w-3 mr-1" />
                         {tCommon('newArrival')}
                       </Badge>
                     )}
-                    {product.isFeatured && (
-                      <Badge className="bg-accent-500 text-white border-0">
-                        <Sparkles className="h-3 w-3 mr-1" />
-                        {t('featuredBadge')}
-                      </Badge>
-                    )}
-                    <Badge variant="secondary" className="bg-green-100 text-green-800">
-                      <CheckCircle className="h-3 w-3 mr-1" />
+                    <Badge variant="secondary" className="rounded-full border border-slate-200 bg-white/95 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+                      <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-green-500" aria-hidden="true" />
                       {t('available')}
                     </Badge>
                   </div>
@@ -304,19 +299,21 @@ export default function ProductDetailPage() {
               {/* Header */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge variant="outline" className="text-slate-600 flex items-center gap-2">
+                  <Link
+                    href={product.partner?.slug ? `/${locale}/partners/${product.partner.slug}` : `/${locale}/partners`}
+                    className="inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-primary-900 shadow-sm transition-colors hover:border-primary-300"
+                  >
                     {product.partner?.logoUrl && (
                       <Image
                         src={product.partner.logoUrl}
-                        alt={product.partner.name}
-                        width={20}
-                        height={20}
-                        className="object-contain"
+                        alt=""
+                        width={56}
+                        height={24}
+                        className="h-6 w-auto max-w-[72px] object-contain"
                       />
                     )}
-                    <Building2 className="h-4 w-4" />
                     {product.partner?.name || product.constructeur}
-                  </Badge>
+                  </Link>
                 </div>
 
                 <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">

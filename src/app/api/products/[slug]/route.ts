@@ -132,6 +132,7 @@ export async function GET(
       // Partner/Manufacturer info
       partner: product.partners ? {
         id: product.partners.id,
+        slug: product.partners.slug,
         name: manufacturerName,
         logoUrl: product.partners.logo_url,
         websiteUrl: product.partners.website_url

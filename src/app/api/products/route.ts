@@ -98,26 +98,17 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       }
 
       if (rootCategoryId) {
-        // Collect all descendant category IDs (3 levels deep)
-        const level1 = await prisma.categories.findMany({
-          where: { parent_id: rootCategoryId, is_active: true },
-          select: { id: true }
-        });
-        const level1Ids = level1.map(c => c.id);
-
-        const level2 = level1Ids.length > 0 ? await prisma.categories.findMany({
-          where: { parent_id: { in: level1Ids }, is_active: true },
-          select: { id: true }
-        }) : [];
-        const level2Ids = level2.map(c => c.id);
-
-        const level3 = level2Ids.length > 0 ? await prisma.categories.findMany({
-          where: { parent_id: { in: level2Ids }, is_active: true },
-          select: { id: true }
-        }) : [];
-        const level3Ids = level3.map(c => c.id);
-
-        const allCategoryIds = [rootCategoryId, ...level1Ids, ...level2Ids, ...level3Ids];
+        // Collect all descendant category IDs, whatever the depth
+        const allCategoryIds = [rootCategoryId];
+        let frontier = [rootCategoryId];
+        while (frontier.length > 0) {
+          const children = await prisma.categories.findMany({
+            where: { parent_id: { in: frontier }, is_active: true },
+            select: { id: true }
+          });
+          frontier = children.map(c => c.id).filter(id => !allCategoryIds.includes(id));
+          allCategoryIds.push(...frontier);
+        }
         where.category_id = { in: allCategoryIds };
       }
     }

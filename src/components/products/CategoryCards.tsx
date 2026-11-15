@@ -11,7 +11,8 @@ export interface CategoryCardItem {
 }
 
 /** A category with this many children or fewer shows big pillar cards; more shows the tile grid. */
-export const PILLAR_MAX = 4;
+// 0 = every level uses the same tile grid (owner, 2026-11-15: « everything should be unified »)
+export const PILLAR_MAX = 0;
 
 function Placeholder({ name }: { name: string }) {
   return (
