@@ -1,0 +1,275 @@
+{
+ "taken_at": "2026-11-15T09:27:07.005Z",
+ "categories": {
+  "drapage": {
+   "row": {
+    "id": "c79a0001-0000-4000-8000-000000000001",
+    "name": "Drapage",
+    "slug": "drapage",
+    "description": null,
+    "parent_id": null,
+    "sort_order": 6,
+    "is_active": true,
+    "meta_title": null,
+    "meta_description": null,
+    "image_url": null,
+    "created_at": "2026-11-14T18:44:51.911Z",
+    "updated_at": "2026-11-14T18:44:51.909Z",
+    "type": "discipline"
+   },
+   "translations": [
+    {
+     "id": "78d019cf-ccdf-48d4-af85-2de9a51e6750",
+     "category_id": "c79a0001-0000-4000-8000-000000000001",
+     "language_code": "fr",
+     "name": "Drapage",
+     "description": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "69d67915-c20c-413e-9efc-b25f2c43e2cc",
+     "category_id": "c79a0001-0000-4000-8000-000000000001",
+     "language_code": "en",
+     "name": "Surgical drapes",
+     "description": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ]
+  }
+ },
+ "products": {
+  "0c6d3580-6a3b-49d1-b432-5463ce05e0c7": {
+   "row": {
+    "id": "0c6d3580-6a3b-49d1-b432-5463ce05e0c7",
+    "reference_fournisseur": "452516",
+    "category_id": "a7c7d774-3a84-44e4-8903-2a6bc4bbd683",
+    "constructeur": "Star-set",
+    "slug": "surgical-drape-with-adhesive-fenester-050106",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-10T16:37:30.108Z",
+    "updated_at": "2026-04-14T17:23:52.488Z",
+    "partner_id": "3e36b3f4-67b3-4cdd-8563-f1cec7789f47"
+   },
+   "translations": [
+    {
+     "id": "88c39a3c-7544-45f3-84c0-4994af882232",
+     "product_id": "0c6d3580-6a3b-49d1-b432-5463ce05e0c7",
+     "language_code": "en",
+     "nom": "Surgical Drape With Adhesive Fenester",
+     "description": "Sterile, single-use surgical drape with adhesive fenestration window. Designed for precise surgical field isolation during ophthalmic and microsurgical procedures. The adhesive fenester ensures secure positioning around the operative site while maintaining a sterile barrier.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "b41e48c7-d95f-44db-9eea-0fc4d63b7500",
+     "product_id": "0c6d3580-6a3b-49d1-b432-5463ce05e0c7",
+     "language_code": "fr",
+     "nom": "Surgical Drape With Adhesive Fenester",
+     "description": "Champ opératoire avec fenêtre adhésive. Stérile, à usage unique.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "dcf1a1df-2708-43d4-ab8f-2f94a1f5a67a",
+     "product_id": "0c6d3580-6a3b-49d1-b432-5463ce05e0c7",
+     "type": "image",
+     "url": "/uploads/products/0c6d3580-6a3b-49d1-b432-5463ce05e0c7/1768063050283-0.jpg",
+     "alt_text": "Surg-Drape-With-Adh-Fenester-900x1024",
+     "title": "Surg-Drape-With-Adh-Fenester-900x1024.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-10T16:37:30.288Z"
+    }
+   ]
+  },
+  "1db88eb4-543a-4988-aa31-c9b4713abb3d": {
+   "row": {
+    "id": "1db88eb4-543a-4988-aa31-c9b4713abb3d",
+    "reference_fournisseur": "432516",
+    "category_id": "8bb5e9ba-9c3a-4e0c-973b-bf8996497193",
+    "constructeur": "Star-set",
+    "slug": "surgical-fenestrated-drape",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-10T16:24:17.471Z",
+    "updated_at": "2026-04-14T14:43:05.887Z",
+    "partner_id": "3e36b3f4-67b3-4cdd-8563-f1cec7789f47"
+   },
+   "translations": [
+    {
+     "id": "d9fe70e9-3d86-4083-aee6-8ab6107747d6",
+     "product_id": "1db88eb4-543a-4988-aa31-c9b4713abb3d",
+     "language_code": "en",
+     "nom": "Surgical Fenestrated Drape",
+     "description": "Sterile, single-use fenestrated surgical drape designed for surgical field isolation. Features a pre-cut fenestration for precise exposure of the operative site while maintaining a complete sterile barrier around the surrounding area. Suitable for ophthalmic, microsurgical, and general surgical procedures.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "81dad29f-9bf3-4d26-922b-71e457a64e9d",
+     "product_id": "1db88eb4-543a-4988-aa31-c9b4713abb3d",
+     "language_code": "fr",
+     "nom": "Surgical Fenestrated Drape",
+     "description": "Champ operatoire fenetre sterile a usage unique, concu pour l'isolation du champ chirurgical. Dote d'une fenestration pre-decoupee pour une exposition precise du site operatoire tout en maintenant une barriere sterile complete autour de la zone environnante. Adapte aux interventions ophtalmiques, microchirurgicales et de chirurgie generale.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "0d491432-a51b-48dd-99f2-ffd7d1480ba2",
+     "product_id": "1db88eb4-543a-4988-aa31-c9b4713abb3d",
+     "type": "image",
+     "url": "/uploads/products/1db88eb4-543a-4988-aa31-c9b4713abb3d/1768062257663-0.jpg",
+     "alt_text": "SUrg-Fenes-Drape",
+     "title": "SUrg-Fenes-Drape.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-10T16:24:17.665Z"
+    }
+   ]
+  },
+  "ab2457e9-76e7-424a-8739-6db1af87469c": {
+   "row": {
+    "id": "ab2457e9-76e7-424a-8739-6db1af87469c",
+    "reference_fournisseur": "402516",
+    "category_id": "8bb5e9ba-9c3a-4e0c-973b-bf8996497193",
+    "constructeur": "Star-set",
+    "slug": "surgical-plain-drape",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-10T16:25:50.439Z",
+    "updated_at": "2026-04-14T14:43:05.887Z",
+    "partner_id": "3e36b3f4-67b3-4cdd-8563-f1cec7789f47"
+   },
+   "translations": [
+    {
+     "id": "363a5490-d200-41d0-bc90-ae9366501cde",
+     "product_id": "ab2457e9-76e7-424a-8739-6db1af87469c",
+     "language_code": "en",
+     "nom": "Surgical Plain Drape",
+     "description": "Sterile, single-use plain surgical drape for general surgical field preparation and coverage. Provides a reliable sterile barrier during surgical procedures. Available in standard dimensions suitable for a variety of surgical applications.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "1d781865-c5c4-4489-9593-90cd16b80dd3",
+     "product_id": "ab2457e9-76e7-424a-8739-6db1af87469c",
+     "language_code": "fr",
+     "nom": "Surgical Plain Drape",
+     "description": "Champ operatoire simple sterile a usage unique pour la preparation et la couverture du champ chirurgical. Assure une barriere sterile fiable pendant les interventions chirurgicales. Disponible en dimensions standard adaptees a diverses applications chirurgicales.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "058c99d9-d202-43f1-8457-36290c26cd4e",
+     "product_id": "ab2457e9-76e7-424a-8739-6db1af87469c",
+     "type": "image",
+     "url": "/uploads/products/ab2457e9-76e7-424a-8739-6db1af87469c/1768062350663-0.jpg",
+     "alt_text": "Surgical-Plain-Drape (1)",
+     "title": "Surgical-Plain-Drape (1).jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-10T16:25:50.667Z"
+    }
+   ]
+  },
+  "f1ac0af6-cffa-4686-9854-443f1956155c": {
+   "row": {
+    "id": "f1ac0af6-cffa-4686-9854-443f1956155c",
+    "reference_fournisseur": "426116",
+    "category_id": "8bb5e9ba-9c3a-4e0c-973b-bf8996497193",
+    "constructeur": "Star-set",
+    "slug": "surgical-drape-with-adhesive-tape-749974",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-10T16:32:29.976Z",
+    "updated_at": "2026-04-14T14:43:05.887Z",
+    "partner_id": "3e36b3f4-67b3-4cdd-8563-f1cec7789f47"
+   },
+   "translations": [
+    {
+     "id": "80d7e77b-7fa3-4296-86d8-3797fea37f92",
+     "product_id": "f1ac0af6-cffa-4686-9854-443f1956155c",
+     "language_code": "en",
+     "nom": "Surgical Drape With Adhesive Tape",
+     "description": "Sterile, single-use surgical drape with integrated adhesive tape for secure positioning during surgical procedures. Provides reliable surgical field isolation and maintains sterile barrier throughout the operation. Suitable for a wide range of surgical applications.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "4eb13168-bb43-4e6c-be2b-54a71adffb62",
+     "product_id": "f1ac0af6-cffa-4686-9854-443f1956155c",
+     "language_code": "fr",
+     "nom": "Surgical Drape With Adhesive Tape",
+     "description": "Champ opératoire avec ruban adhésif stérile. Usage unique pour procédures chirurgicales.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "86693b59-0584-48c2-9fa9-a5f83eb9c608",
+     "product_id": "f1ac0af6-cffa-4686-9854-443f1956155c",
+     "type": "image",
+     "url": "/uploads/products/f1ac0af6-cffa-4686-9854-443f1956155c/1768062750213-0.jpg",
+     "alt_text": "Surg-Drape-With-Adh-tape (2)",
+     "title": "Surg-Drape-With-Adh-tape (2).jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-10T16:32:30.216Z"
+    }
+   ]
+  }
+ },
+ "partner": {
+  "id": "3e36b3f4-67b3-4cdd-8563-f1cec7789f47",
+  "name": "Star-set",
+  "slug": "star-set",
+  "description": null,
+  "website_url": "https://www.star-set.com/en/",
+  "logo_url": "/uploads/partners/photo-2026-01-13-15-02-50-1768322196326-bdc1405a.jpg",
+  "default_pdf_url": null,
+  "type": "manufacturer",
+  "is_featured": false,
+  "sort_order": 50,
+  "status": "active",
+  "created_at": "2026-01-10T16:16:57.212Z",
+  "updated_at": "2026-10-27T16:47:52.908Z"
+ }
+}
