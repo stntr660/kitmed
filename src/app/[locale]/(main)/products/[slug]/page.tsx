@@ -100,52 +100,8 @@ export default function ProductDetailPage() {
         }
       }
 
-      // Fallback to mock data if no real product found
-      const mockProduct: Product = {
-        id: '1',
-        referenceFournisseur: 'REF001',
-        constructeur: 'Medtronic',
-        slug: slug,
-        pdfBrochureUrl: '/uploads/brochures/sample-brochure.pdf',
-        status: 'active',
-        isFeatured: true,
-        createdAt: '2024-01-01',
-        category: {
-          id: 'cardiology',
-          name: 'Cardiologie',
-          slug: 'cardiology'
-        },
-        translations: [
-          {
-            languageCode: 'fr',
-            nom: 'Moniteur Cardiaque Pro X1',
-            description: 'Moniteur cardiaque avancé avec écran haute résolution, surveillance continue et alertes intelligentes pour un diagnostic précis.',
-            ficheTechnique: 'Écran 15 pouces • Résolution 1920x1080 • Connectivité Wi-Fi • Batterie 12h • Certification CE/FDA'
-          }
-        ],
-        media: [
-          {
-            id: '1',
-            type: 'image',
-            url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop',
-            isPrimary: true,
-            altText: 'Moniteur Cardiaque Vue Principale',
-            title: 'Vue Principale',
-            sortOrder: 0
-          },
-          {
-            id: '2',
-            type: 'image',
-            url: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop',
-            isPrimary: false,
-            altText: 'Moniteur Cardiaque Vue Latérale',
-            title: 'Vue Latérale',
-            sortOrder: 1
-          }
-        ]
-      };
-
-      setProduct(mockProduct);
+      // Unknown slug: show the « not found » state, never placeholder data
+      setProduct(null);
     } catch (error) {
       console.error('Failed to load product:', error);
     } finally {
