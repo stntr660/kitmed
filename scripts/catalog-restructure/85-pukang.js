@@ -643,10 +643,8 @@ async function apply() {
     }
     const data = {};
     if (row.parent_id !== root.id) data.parent_id = root.id;
-    if (row.image_url !== cimg(c.image)) data.image_url = cimg(c.image);
+    // image_url, name and sort_order are managed by later scripts (87 tiles / accents): never overwritten here
     if (!row.is_active) data.is_active = true;
-    if (row.name !== c.fr) data.name = c.fr;
-    if (row.sort_order !== c.sort) data.sort_order = c.sort;
     if (!Object.keys(data).length) { console.log(`  [SKIP] category ${c.slug}`); continue; }
     console.log(`  category ${c.slug} ${JSON.stringify(data)}`);
     if (WRITE) await prisma.categories.update({ where: { id: c.id }, data: { ...data, updated_at: now() } });
