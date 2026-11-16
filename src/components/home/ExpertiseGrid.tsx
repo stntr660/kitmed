@@ -3,9 +3,13 @@ import { useTranslations } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
 import { SectionTitle } from '@/components/layout/SectionTitle';
 
-/** The 7 domains of the mockup, in its order; photos cropped from the mockup. */
+/**
+ * The 8 domains of the client mockup (2026-11-16), in its order; photos cropped from the mockup.
+ * There is no « Orthoptie » category yet: its tile opens the ophthalmic equipment (réfraction, optotypes).
+ */
 const DOMAINS = [
   { key: 'ophtalmologie', slug: 'ophtalmologie' },
+  { key: 'orthoptie', slug: 'ophtalmologie/appareillage-ophtalmique' },
   { key: 'orl', slug: 'orl-oto-rhino-laryngologie' },
   { key: 'pharma', slug: 'dispositifs-medicaux' },
   { key: 'contactologie', slug: 'oph-contactology' },

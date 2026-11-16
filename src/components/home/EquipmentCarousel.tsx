@@ -20,6 +20,23 @@ const MD_QUERY = '(min-width: 768px)';
 const AUTO_MS = 6000;
 
 /**
+ * The mockup shows the kind of device under the name (« Lampe à fente »), not the banner slogan.
+ * Keyed by the banner title in lower case, without ® or spaces; unknown titles keep their subtitle.
+ */
+const DEVICE_TYPE: Record<string, string> = {
+  elara900: 'Lampe à fente',
+  metis900: 'Microscope opératoire',
+  unitésynetic2: 'Unité de consultation',
+  phantom: 'Unité de réfraction',
+  eyestar900: 'Biomètre OCT',
+  'eye-light': 'Sécheresse oculaire',
+  'rs-1': 'Tomographe OCT',
+  surgicube: 'Bloc opératoire mobile',
+  'opério&steristay': "Flux d'air laminaire",
+};
+const typeKey = (title: string) => title.replace(/[®\s]/g, '').toLowerCase();
+
+/**
  * « Découvrez nos équipements »: 2 products per slide (1 on phones).
  * Source, first non-empty of: banners « equipment-showcase », banners « homepage »
  * (the product slides managed in admin > Bannières), featured products.
@@ -50,7 +67,7 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
         .map((b: any) => ({
           id: b.id,
           title: (b.title || '').trim(),
-          subtitle: b.subtitle || undefined,
+          subtitle: (locale === 'fr' && DEVICE_TYPE[typeKey(b.title || '')]) || b.subtitle || undefined,
           image: b.imageUrl,
           href: b.ctaUrl ? localize(b.ctaUrl) : `/${locale}/products`,
         }));
