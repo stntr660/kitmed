@@ -2204,6 +2204,8 @@
       "both": "Catalogue + {count, plural, =1 {1 brochure} other {# brochures}}",
       "viewDocuments": "Voir les documents",
       "viewDocumentsOf": "Voir les documents de {name}",
+      "viewProducts": "Voir les produits",
+      "viewProductsOf": "Voir les produits {name}",
       "matches": "{count, plural, =1 {1 brochure correspond à votre recherche} other {# brochures correspondent à votre recherche}}",
       "fallbackDescription": "Documentation {domain}."
     },

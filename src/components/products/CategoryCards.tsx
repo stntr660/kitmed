@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
+import { DomainTile, DOMAIN_GRID } from './DomainTile';
 
 export interface CategoryCardItem {
   id: string;
@@ -66,36 +67,12 @@ export function PillarCards({ items, buttonLabel }: { items: CategoryCardItem[];
   );
 }
 
-/** Tile grid: 3 columns, ~3:1 photo, bold navy title, underlined link, thin blue border. */
+/** Tile grid: the site's single category card (same as the homepage domains), collage photos in 3:1. */
 export function TileGrid({ items, linkLabel }: { items: CategoryCardItem[]; linkLabel: string }) {
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className={DOMAIN_GRID}>
       {items.map((item) => (
-        <Link
-          key={item.id}
-          href={item.href}
-          className="group flex flex-col overflow-hidden border border-primary-300 bg-white hover:border-primary-500 hover:shadow-md transition"
-        >
-          <div className="relative aspect-[3/1] overflow-hidden bg-slate-100">
-            {item.imageUrl ? (
-              <Image
-                src={item.imageUrl}
-                alt={item.name}
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            ) : (
-              <Placeholder name={item.name} />
-            )}
-          </div>
-          <div className="px-4 py-2.5">
-            <h3 className="text-lg font-bold leading-tight text-primary-900 group-hover:text-primary-600 transition-colors">
-              {item.name}
-            </h3>
-            <span className="text-sm text-primary-600 underline underline-offset-2">{linkLabel}</span>
-          </div>
-        </Link>
+        <DomainTile key={item.id} href={item.href} title={item.name} imageUrl={item.imageUrl} linkLabel={linkLabel} ratio="3/1" />
       ))}
     </div>
   );

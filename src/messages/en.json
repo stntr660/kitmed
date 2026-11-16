@@ -2232,6 +2232,8 @@
       "both": "Catalogue + {count, plural, =1 {1 brochure} other {# brochures}}",
       "viewDocuments": "View documents",
       "viewDocumentsOf": "View {name} documents",
+      "viewProducts": "View products",
+      "viewProductsOf": "View {name} products",
       "matches": "{count, plural, =1 {1 brochure matches your search} other {# brochures match your search}}",
       "fallbackDescription": "{domain} documentation."
     },

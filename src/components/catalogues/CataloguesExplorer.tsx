@@ -268,12 +268,14 @@ function ManufacturerCard({
   query,
   onDomain,
   onOpen,
+  activeDomain,
 }: {
   manufacturer: Manufacturer;
   locale: string;
   query: string;
   onDomain: (slug: string) => void;
   onOpen: (m: Manufacturer, trigger: HTMLElement) => void;
+  activeDomain?: string;
 }) {
   const t = useTranslations('catalogues');
   const name = localized(manufacturer.name, locale);
@@ -281,6 +283,13 @@ function ManufacturerCard({
     localized(manufacturer.description, locale) ||
     t('card.fallbackDescription', { domain: localized(manufacturer.domains[0]?.name, locale) });
   const brochureCount = manufacturer.brochures.length;
+  // The card leads to the product catalogue filtered by this brand and domain (owner 2026-11-16);
+  // the documents stay one click away (summary link -> drawer).
+  const domainSlug =
+    (activeDomain && manufacturer.domains.some((d) => d.slug === activeDomain) ? activeDomain : manufacturer.domains[0]?.slug) || '';
+  const productsHref = `/${locale}/partners/${manufacturer.slug}${
+    domainSlug && domainSlug !== 'other' ? `?category=${encodeURIComponent(domainSlug)}` : ''
+  }`;
   const summary =
     manufacturer.catalogueUrl && brochureCount > 0
       ? t('card.both', { count: brochureCount })
@@ -330,17 +339,23 @@ function ManufacturerCard({
       )}
 
       <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-        <span className="min-w-0 text-sm text-slate-500">{summary}</span>
         <button
           type="button"
           onClick={(e) => onOpen(manufacturer, e.currentTarget)}
           aria-label={t('card.viewDocumentsOf', { name })}
           aria-haspopup="dialog"
+          className="min-w-0 text-left text-sm text-slate-500 underline-offset-2 hover:text-[#0B5CAD] hover:underline focus:outline-none focus-visible:underline"
+        >
+          {summary}
+        </button>
+        <Link
+          href={productsHref}
+          aria-label={t('card.viewProductsOf', { name })}
           className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-[#10146B] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0A0EA4] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0B5CAD] focus-visible:ring-offset-2"
         >
-          {t('card.viewDocuments')}
+          {t('card.viewProducts')}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
+        </Link>
       </div>
     </article>
   );
@@ -631,6 +646,7 @@ export function CataloguesExplorer({ locale }: { locale: string }) {
                   query={query}
                   onDomain={(slug) => selectDomain(slug)}
                   onOpen={openDocuments}
+                  activeDomain={activeDomain}
                 />
               ))}
             </div>

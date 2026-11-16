@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { DomainTile, DOMAIN_GRID } from '@/components/products/DomainTile';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
@@ -24,6 +25,7 @@ interface Category {
 export default function ProductsByDisciplinePage() {
   const t = useTranslations('common');
   const tDisciplines = useTranslations('disciplines');
+  const tCards = useTranslations('categoryCards');
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   useScrollRestore(!loading);
@@ -89,45 +91,15 @@ export default function ProductsByDisciplinePage() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div className={DOMAIN_GRID}>
                 {categories.map((category) => (
-                  <Link
+                  <DomainTile
                     key={category.id}
                     href={`/${locale}/products/disciplines/${category.slug}`}
-                    className="block group"
-                  >
-                    <Card className="flex flex-col border-0 shadow-md hover:shadow-lg transition-all duration-300 bg-white overflow-hidden cursor-pointer h-full">
-                      <div className="relative aspect-square bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-                        {category.imageUrl ? (
-                          <Image
-                            src={category.imageUrl}
-                            alt={category.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
-                              <Building2 className="h-8 w-8 text-primary-600" />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <CardHeader className="p-3 pb-2">
-                        <CardTitle className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors line-clamp-1">
-                          {category.name}
-                        </CardTitle>
-                      </CardHeader>
-
-                      <CardContent className="p-3 pt-0">
-                        <div className="w-full inline-flex items-center justify-center gap-1.5 bg-primary-600 text-white group-hover:bg-primary-700 transition-colors h-8 text-xs font-medium rounded-md">
-                          {tDisciplines('exploreCategories')}
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                    title={category.name}
+                    imageUrl={category.imageUrl}
+                    linkLabel={tCards('seeProducts')}
+                  />
                 ))}
               </div>
             </>
