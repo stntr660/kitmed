@@ -112,6 +112,11 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
 
   const slides: Item[][] = [];
   for (let i = 0; i < (items?.length || 0); i += perSlide) slides.push(items!.slice(i, i + perSlide));
+  // Never a half-empty last slide: complete it with the first products
+  const lastSlide = slides[slides.length - 1];
+  if (slides.length > 1 && lastSlide.length < perSlide) {
+    slides[slides.length - 1] = [...lastSlide, ...items!.slice(0, perSlide - lastSlide.length)];
+  }
   const count = slides.length;
 
   // Keep the current slide valid when the layout switches between 1 and 2 per slide
@@ -170,15 +175,15 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
                       <Link
                         href={item.href}
                         tabIndex={gi === slide ? 0 : -1}
-                        className="block h-44 w-[48%] flex-shrink-0 sm:h-60 md:-mr-[4%] md:h-[340px] md:w-[calc(58%)] lg:h-[420px] lg:self-end xl:-mr-[46px] xl:mb-[4px] xl:h-[470px] xl:w-[calc(100%-228px)]"
+                        className="block h-44 w-[48%] flex-shrink-0 sm:h-60 md:mr-[3%] md:h-[340px] md:w-[54%] lg:h-[420px] lg:self-end xl:mb-[4px] xl:mr-[20px] xl:h-[470px] xl:w-[56%]"
                       >
                         {item.image && (
-                          <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full origin-bottom object-contain object-bottom drop-shadow-[0_14px_14px_rgba(40,80,130,0.12)] md:scale-[1.08]" />
+                          <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-contain object-bottom drop-shadow-[0_14px_14px_rgba(40,80,130,0.12)]" />
                         )}
                       </Link>
                       <div className={cn('relative min-w-0 flex-1', ii > 0 ? 'md:mt-[90px] xl:mt-[104px]' : 'xl:mt-[16px]')}>
-                        <p className="break-words text-xl font-bold uppercase leading-[1.1] text-[#0A0E96] sm:text-2xl lg:text-[30px] xl:text-[38px]">{item.title}</p>
-                        {item.subtitle && <p className="mt-1 line-clamp-2 text-sm font-medium leading-snug text-[#13277A] sm:text-base lg:text-xl xl:mt-[12px] xl:whitespace-nowrap xl:text-[23px]">{item.subtitle}</p>}
+                        <p className="break-words text-xl font-bold uppercase leading-[1.1] text-[#0A0E96] sm:text-2xl lg:text-[28px] xl:text-[34px]">{item.title}</p>
+                        {item.subtitle && <p className="mt-1 line-clamp-2 text-sm font-medium leading-snug text-[#13277A] sm:text-base lg:text-xl xl:mt-[12px] xl:text-[23px]">{item.subtitle}</p>}
                         <Link
                           href={item.href}
                           tabIndex={gi === slide ? 0 : -1}
