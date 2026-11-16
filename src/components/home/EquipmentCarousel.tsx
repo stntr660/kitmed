@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { SectionTitle } from '@/components/layout/SectionTitle';
 import { cn } from '@/lib/utils';
 
 interface Item {
@@ -35,6 +34,23 @@ const DEVICE_TYPE: Record<string, string> = {
   'opério&steristay': "Flux d'air laminaire",
 };
 const typeKey = (title: string) => title.replace(/[®\s]/g, '').toLowerCase();
+
+/** Panel colours sampled from the mockup: deeper blue on both sides, near-white centre and top. */
+const PANEL_BG = [
+  'radial-gradient(60% 40% at 50% 0%, rgba(243,251,255,0.95) 0%, rgba(243,251,255,0) 100%)',
+  'radial-gradient(30% 14% at 25% 96%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 100%)',
+  'radial-gradient(30% 14% at 72% 96%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 100%)',
+  'linear-gradient(90deg, #C3E2F9 0%, #D3EAFB 12%, #E4F3FD 30%, #EAF6FE 50%, #E4F3FD 70%, #D3EAFB 88%, #C4E3F8 100%)',
+].join(', ');
+/** Thin white diagonal light streaks: top-left corner, lower-left and lower-right. */
+const PANEL_SHEEN = [
+  'linear-gradient(135deg, rgba(255,255,255,0) 6%, rgba(255,255,255,0.55) 9%, rgba(255,255,255,0) 13%)',
+  'linear-gradient(160deg, rgba(255,255,255,0) 55%, rgba(255,255,255,0.4) 62%, rgba(255,255,255,0) 70%)',
+  'linear-gradient(200deg, rgba(255,255,255,0) 60%, rgba(255,255,255,0.4) 66%, rgba(255,255,255,0) 73%)',
+].join(', ');
+const BUTTON_BG = 'linear-gradient(180deg, #149DEC 0%, #0377D1 35%, #0052B1 72%, #063C93 100%)';
+const ARROW =
+  'absolute top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[10px] bg-white text-[#0A0BA6] shadow-[0_3px_10px_rgba(20,60,120,0.14)] ring-1 ring-[#E3ECF5] transition-colors hover:text-accent sm:flex lg:h-[56px] lg:w-[56px]';
 
 /**
  * « Découvrez nos équipements »: 2 products per slide (1 on phones).
@@ -114,20 +130,29 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
   const go = (d: number) => setSlide(s => (s + d + count) % count);
 
   return (
-    <section className="container mx-auto px-4 pt-10 lg:px-8">
+    <section className="mx-auto w-full max-w-[1440px] px-4 pt-8 lg:px-[28px]">
       <div
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#D3E8FB] via-[#E9F4FE] to-[#D3E8FB] px-4 pb-8 pt-8 sm:px-14"
+        className="relative overflow-hidden rounded-[12px] border border-white/80 px-3 pb-4 pt-5 shadow-[0_2px_10px_rgba(16,60,120,0.06)] sm:px-[88px] md:pb-[14px] md:pt-[18px]"
+        style={{ background: PANEL_BG }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <SectionTitle title={t('title')} align="center" />
+        {/* Light streaks of the mockup (thin white diagonal sheens on the sides) */}
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: PANEL_SHEEN }} />
+
+        <div className="relative text-center">
+          <h2 className="text-[26px] font-bold leading-tight tracking-[-0.01em] text-[#0A0EA4] sm:text-[34px] lg:text-[42px] lg:leading-[56px] xl:text-[49px]">
+            {t('title')}
+          </h2>
+          <span aria-hidden="true" className="mx-auto mt-2 block h-[4px] w-20 rounded-full bg-[#D7191A] lg:mt-[11px] lg:h-[5px] lg:w-[112px]" />
+        </div>
 
         {!items ? (
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {[0, 1].map(i => <div key={i} className={cn("h-72 animate-pulse rounded-xl bg-white/60", i > 0 && "hidden md:block")} />)}
+          <div className="relative mt-6 grid gap-6 md:grid-cols-2">
+            {[0, 1].map(i => <div key={i} className={cn("h-72 animate-pulse rounded-xl bg-white/60 lg:h-[465px]", i > 0 && "hidden md:block")} />)}
           </div>
         ) : (
-          <div className="mt-6 overflow-hidden">
+          <div className="relative mt-4 overflow-hidden lg:mt-[6px]">
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${slide * 100}%)` }}
@@ -137,26 +162,31 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
                   {group.map((item, ii) => (
                     <div
                       key={item.id}
-                      className={cn(
-                        'flex min-w-0 items-center gap-4 px-2 py-4 sm:gap-6 md:px-6',
-                        ii > 0 && 'border-t border-[#10146B]/15 md:border-l md:border-t-0'
-                      )}
+                      className="relative flex min-w-0 items-center gap-3 py-2 md:gap-0 md:py-0 md:pl-[2%] lg:h-[440px] xl:h-[500px] xl:pl-[16px]"
                     >
-                      <Link href={item.href} tabIndex={gi === slide ? 0 : -1} className="block h-44 w-1/2 flex-shrink-0 sm:h-60 lg:h-72">
+                      {ii > 0 && (
+                        <span aria-hidden="true" className="absolute left-0 top-[17%] hidden h-[63%] w-px bg-[#9FB4D1] md:block" />
+                      )}
+                      <Link
+                        href={item.href}
+                        tabIndex={gi === slide ? 0 : -1}
+                        className="block h-44 w-[48%] flex-shrink-0 sm:h-60 md:-mr-[4%] md:h-[340px] md:w-[calc(58%)] lg:h-[420px] lg:self-end xl:-mr-[46px] xl:mb-[4px] xl:h-[470px] xl:w-[calc(100%-228px)]"
+                      >
                         {item.image && (
-                          <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full object-contain" />
+                          <img src={item.image} alt={item.title} loading="lazy" className="h-full w-full origin-bottom object-contain object-bottom drop-shadow-[0_14px_14px_rgba(40,80,130,0.12)] md:scale-[1.08]" />
                         )}
                       </Link>
-                      <div className="min-w-0 flex-1">
-                        <p className="break-words text-lg font-bold uppercase leading-tight sm:text-xl text-[#10146B] lg:text-2xl">{item.title}</p>
-                        {item.subtitle && <p className="mt-1 line-clamp-2 text-sm text-[#10146B] lg:text-base">{item.subtitle}</p>}
+                      <div className={cn('relative min-w-0 flex-1', ii > 0 ? 'md:mt-[90px] xl:mt-[104px]' : 'xl:mt-[16px]')}>
+                        <p className="break-words text-xl font-bold uppercase leading-[1.1] text-[#0A0E96] sm:text-2xl lg:text-[30px] xl:text-[38px]">{item.title}</p>
+                        {item.subtitle && <p className="mt-1 line-clamp-2 text-sm font-medium leading-snug text-[#13277A] sm:text-base lg:text-xl xl:mt-[12px] xl:whitespace-nowrap xl:text-[23px]">{item.subtitle}</p>}
                         <Link
                           href={item.href}
                           tabIndex={gi === slide ? 0 : -1}
-                          className="mt-4 inline-flex items-center gap-1.5 rounded-md bg-[#0B5CAD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#094C8F]"
+                          className="mt-3 inline-flex h-10 items-center justify-center gap-2 rounded-[8px] border border-[#0A4AA6] px-4 text-sm font-semibold text-white shadow-[0_3px_8px_rgba(2,60,150,0.25),inset_0_1px_0_rgba(255,255,255,0.35)] transition-[filter] hover:brightness-110 lg:h-[46px] lg:px-6 lg:text-lg xl:mt-[14px] xl:h-[50px] xl:min-w-[182px] xl:text-[20px]"
+                          style={{ background: BUTTON_BG }}
                         >
                           {t('cta')}
-                          <ChevronRight className="h-4 w-4" />
+                          <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5" strokeWidth={3} />
                         </Link>
                       </div>
                     </div>
@@ -173,26 +203,29 @@ export function EquipmentCarousel({ locale }: { locale: string }) {
               type="button"
               onClick={() => go(-1)}
               aria-label={t('previous')}
-              className="absolute left-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg border border-gray-200 bg-white text-[#10146B] shadow-sm hover:text-accent sm:flex"
+              className={cn(ARROW, 'left-4')}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-6 w-6 lg:h-7 lg:w-7" strokeWidth={3.25} />
             </button>
             <button
               type="button"
               onClick={() => go(1)}
               aria-label={t('next')}
-              className="absolute right-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg border border-gray-200 bg-white text-[#10146B] shadow-sm hover:text-accent sm:flex"
+              className={cn(ARROW, 'right-4')}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-6 w-6 lg:h-7 lg:w-7" strokeWidth={3.25} />
             </button>
-            <div className="mt-4 flex justify-center gap-2">
+            <div className="relative mt-3 flex justify-center gap-3 lg:mt-[6px] lg:gap-[25px]">
               {slides.map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setSlide(i)}
                   aria-label={t('goTo', { number: i + 1 })}
-                  className={cn('h-2.5 w-2.5 rounded-full transition-colors', i === slide ? 'bg-[#0B5CAD]' : 'bg-[#10146B]/20 hover:bg-[#10146B]/40')}
+                  className={cn(
+                    'h-3 w-3 rounded-full transition-colors lg:h-4 lg:w-4',
+                    i === slide ? 'bg-[#04389C]' : 'bg-[#ABBCD8] hover:bg-[#8FA5C9]'
+                  )}
                 />
               ))}
             </div>

@@ -53,6 +53,9 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
 
   const slides: Partner[][] = [];
   for (let i = 0; i < sorted.length; i += perSlide) slides.push(sorted.slice(i, i + perSlide));
+  // Never a half-empty last slide: complete it with the first logos
+  const last = slides[slides.length - 1];
+  if (slides.length > 1 && last.length < perSlide) slides[slides.length - 1] = [...last, ...sorted.slice(0, perSlide - last.length)];
   const count = slides.length;
 
   useEffect(() => setSlide(0), [perSlide]);
@@ -63,38 +66,38 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
   }, [paused, count]);
 
   if (isLoading) {
-    return <div className={cn('mx-auto h-28 max-w-3xl animate-pulse rounded-lg bg-white/60', className)} />;
+    return <div className={cn('mx-auto h-[100px] max-w-3xl animate-pulse rounded-lg bg-white/60', className)} />;
   }
   if (count === 0) return null;
 
   const go = (delta: number) => setSlide(s => (s + delta + count) % count);
-  const arrow = 'flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-[#10146B] shadow-sm transition-colors hover:text-accent';
+  // Mockup: 45px white tiles, soft edge, navy chevron.
+  const arrow =
+    'flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[5px] border border-[#E2EAF4] bg-[#F7F9FC] text-[#11109A] shadow-[0_1px_3px_rgba(16,40,90,0.18)] transition-colors hover:text-[#DD0F0E] lg:h-[45px] lg:w-[45px]';
 
   return (
     <div
-      className={cn('mx-auto flex max-w-4xl items-center gap-4', className)}
+      className={cn('flex items-center px-3 lg:px-[76px]', className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <button type="button" onClick={() => go(-1)} aria-label="Partenaires précédents" className={arrow}>
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6" strokeWidth={3} />
       </button>
 
-      <div className="flex-1 overflow-hidden" role="region" aria-label="Logos des partenaires">
+      <div className="min-w-0 flex-1 overflow-hidden" role="region" aria-label="Logos des partenaires">
         <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${slide * 100}%)` }}>
           {slides.map((group, gi) => (
             <div key={gi} className="flex w-full flex-none items-center">
               {group.map((partner, i) => (
-                <div
-                  key={partner.id}
-                  className={cn('flex h-28 flex-1 items-center justify-center px-6', i > 0 && 'border-l border-[#10146B]/25')}
-                >
+                <div key={partner.id} className="relative flex h-[100px] flex-1 items-center justify-center px-4">
+                  {i > 0 && <span aria-hidden="true" className="absolute left-0 top-1/2 h-[62px] w-[1.5px] -translate-y-1/2 bg-[#86A3C0]" />}
                   <Link href={`/${locale}/partners`} title={partner.name}>
                     <img
                       src={partner.logo}
                       alt={partner.name}
                       loading="lazy"
-                      className="max-h-20 max-w-[220px] object-contain mix-blend-multiply"
+                      className="max-h-[72px] max-w-[200px] object-contain mix-blend-multiply lg:max-h-[86px] lg:max-w-[250px]"
                     />
                   </Link>
                 </div>
@@ -105,7 +108,7 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
       </div>
 
       <button type="button" onClick={() => go(1)} aria-label="Partenaires suivants" className={arrow}>
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6" strokeWidth={3} />
       </button>
     </div>
   );
