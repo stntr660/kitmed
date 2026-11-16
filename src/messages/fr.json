@@ -2177,11 +2177,47 @@
       "title": "Catalogues",
       "breadcrumb": "Catalogues"
     },
-    "intro": "Téléchargez les catalogues et brochures de nos partenaires, classés par domaine.",
-    "download": "Télécharger le catalogue",
-    "brochures": "Brochures produits",
-    "showMore": "Voir les {count} autres brochures",
-    "showLess": "Réduire la liste",
+    "kicker": "Documentation professionnelle",
+    "title": "Catalogues & brochures médicales",
+    "intro": "Retrouvez les catalogues généraux et les brochures produits de nos partenaires. Choisissez une spécialité, puis un fabricant, pour consulter sa documentation.",
+    "stats": {
+      "manufacturers": "{count, plural, =1 {fabricant} other {fabricants}}",
+      "domains": "{count, plural, =1 {domaine} other {domaines}}"
+    },
+    "filters": {
+      "label": "Filtres des catalogues",
+      "searchPlaceholder": "Rechercher un fournisseur, un équipement…",
+      "searchLabel": "Rechercher dans les catalogues",
+      "clearSearch": "Effacer la recherche",
+      "domain": "Filtrer par domaine",
+      "allDomains": "Tous les domaines",
+      "brand": "Marque",
+      "allBrands": "Toutes les marques",
+      "results": "{count, plural, =0 {Aucun fabricant} =1 {1 fabricant} other {# fabricants}}",
+      "reset": "Réinitialiser les filtres",
+      "filterByDomain": "Afficher le domaine {domain}",
+      "filterByBrand": "Afficher uniquement {brand}"
+    },
+    "card": {
+      "catalogue": "Catalogue général",
+      "brochures": "Brochures produits",
+      "both": "Catalogue + {count, plural, =1 {1 brochure} other {# brochures}}",
+      "viewDocuments": "Voir les documents",
+      "viewDocumentsOf": "Voir les documents de {name}",
+      "matches": "{count, plural, =1 {1 brochure correspond à votre recherche} other {# brochures correspondent à votre recherche}}",
+      "fallbackDescription": "Documentation {domain}."
+    },
+    "drawer": {
+      "close": "Fermer",
+      "catalogue": "Catalogue général",
+      "catalogueHint": "PDF complet du fabricant",
+      "brochures": "Brochures produits",
+      "filterPlaceholder": "Filtrer les brochures…",
+      "noMatch": "Aucune brochure ne correspond.",
+      "open": "Ouvrir le PDF dans un nouvel onglet",
+      "products": "Voir les produits {name}"
+    },
+    "noResults": "Aucun fabricant ne correspond à ces filtres.",
     "loading": "Chargement des catalogues…",
     "error": "Impossible de charger les catalogues pour le moment. Veuillez réessayer plus tard.",
     "empty": "Aucun catalogue n’est disponible pour le moment.",

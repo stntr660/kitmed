@@ -2205,11 +2205,47 @@
       "title": "Catalogues",
       "breadcrumb": "Catalogues"
     },
-    "intro": "Download our partners’ catalogues and brochures, grouped by field.",
-    "download": "Download the catalogue",
-    "brochures": "Product brochures",
-    "showMore": "Show {count} more brochures",
-    "showLess": "Show less",
+    "kicker": "Professional documentation",
+    "title": "Medical catalogues & brochures",
+    "intro": "Find our partners’ general catalogues and product brochures. Choose a specialty, then a manufacturer, to browse its documentation.",
+    "stats": {
+      "manufacturers": "{count, plural, =1 {manufacturer} other {manufacturers}}",
+      "domains": "{count, plural, =1 {field} other {fields}}"
+    },
+    "filters": {
+      "label": "Catalogue filters",
+      "searchPlaceholder": "Search a supplier, a piece of equipment…",
+      "searchLabel": "Search the catalogues",
+      "clearSearch": "Clear search",
+      "domain": "Filter by field",
+      "allDomains": "All fields",
+      "brand": "Brand",
+      "allBrands": "All brands",
+      "results": "{count, plural, =0 {No manufacturer} =1 {1 manufacturer} other {# manufacturers}}",
+      "reset": "Reset filters",
+      "filterByDomain": "Show the {domain} field",
+      "filterByBrand": "Show only {brand}"
+    },
+    "card": {
+      "catalogue": "General catalogue",
+      "brochures": "Product brochures",
+      "both": "Catalogue + {count, plural, =1 {1 brochure} other {# brochures}}",
+      "viewDocuments": "View documents",
+      "viewDocumentsOf": "View {name} documents",
+      "matches": "{count, plural, =1 {1 brochure matches your search} other {# brochures match your search}}",
+      "fallbackDescription": "{domain} documentation."
+    },
+    "drawer": {
+      "close": "Close",
+      "catalogue": "General catalogue",
+      "catalogueHint": "Manufacturer’s full PDF",
+      "brochures": "Product brochures",
+      "filterPlaceholder": "Filter brochures…",
+      "noMatch": "No brochure matches.",
+      "open": "Open the PDF in a new tab",
+      "products": "View {name} products"
+    },
+    "noResults": "No manufacturer matches these filters.",
     "loading": "Loading catalogues…",
     "error": "Catalogues cannot be loaded right now. Please try again later.",
     "empty": "No catalogue is available at the moment.",

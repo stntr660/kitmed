@@ -31,7 +31,7 @@ interface CatalogueDomain {
 const DOMAIN_LABELS: Record<string, Localized> = {
   'ophtalmologie': { fr: 'Ophtalmologie', en: 'Ophthalmology' },
   'orl-oto-rhino-laryngologie': { fr: 'ORL', en: 'ENT' },
-  'mobilier-et-literie-hospitaliers': { fr: 'Literie et mobilier médical', en: 'Medical beds and furniture' },
+  'mobilier-et-literie-hospitaliers': { fr: 'Literie & mobilier médical', en: 'Medical beds & furniture' },
   'orthopedics': { fr: 'Orthopédie', en: 'Orthopaedics' },
   'dispositifs-medicaux': { fr: 'Pharma', en: 'Pharma' },
 };
