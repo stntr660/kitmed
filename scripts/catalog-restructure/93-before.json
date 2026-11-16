@@ -1,0 +1,35 @@
+{
+ "taken_at": "2026-11-16T19:08:37.582Z",
+ "top_level": [
+  {
+   "id": "ophthalmology",
+   "slug": "ophtalmologie",
+   "sort_order": 1
+  },
+  {
+   "id": "ent",
+   "slug": "orl-oto-rhino-laryngologie",
+   "sort_order": 2
+  },
+  {
+   "id": "hospital-furniture",
+   "slug": "mobilier-et-literie-hospitaliers",
+   "sort_order": 3
+  },
+  {
+   "id": "orthopedics",
+   "slug": "orthopedics",
+   "sort_order": 4
+  },
+  {
+   "id": "oph-pharmaceutics",
+   "slug": "dispositifs-medicaux",
+   "sort_order": 5
+  },
+  {
+   "id": "c79a0001-0000-4000-8000-000000000001",
+   "slug": "drapage",
+   "sort_order": 6
+  }
+ ]
+}

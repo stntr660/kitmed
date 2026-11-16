@@ -1,0 +1,744 @@
+{
+ "taken_at": "2026-11-16T19:11:04.465Z",
+ "category": {
+  "id": "c85a0001-0000-4000-8000-000000000002",
+  "name": "Mobilier de soins",
+  "slug": "pukang-mobilier-soins",
+  "description": null,
+  "parent_id": "hospital-furniture",
+  "sort_order": 10,
+  "is_active": true,
+  "meta_title": null,
+  "meta_description": null,
+  "image_url": "/uploads/categories/q89-pukang-mobilier-soins.jpg",
+  "created_at": "2026-11-15T09:32:40.299Z",
+  "updated_at": "2026-11-15T11:51:26.886Z",
+  "type": "equipment",
+  "category_translations": [
+   {
+    "id": "c85a0001-0000-4000-8000-000000000002-fr",
+    "category_id": "c85a0001-0000-4000-8000-000000000002",
+    "language_code": "fr",
+    "name": "Mobilier de soins",
+    "description": null,
+    "meta_title": null,
+    "meta_description": null
+   },
+   {
+    "id": "c85a0001-0000-4000-8000-000000000002-en",
+    "category_id": "c85a0001-0000-4000-8000-000000000002",
+    "language_code": "en",
+    "name": "Care furniture",
+    "description": null,
+    "meta_title": null,
+    "meta_description": null
+   }
+  ]
+ },
+ "products": {
+  "0e1dba58-7cc2-4975-bc6f-e5a65f8c71e0": {
+   "row": {
+    "id": "0e1dba58-7cc2-4975-bc6f-e5a65f8c71e0",
+    "reference_fournisseur": "FS868",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "fauteuil-roulant-manuel-standard",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:12.763Z",
+    "updated_at": "2026-04-02T16:51:14.295Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "cdd64d7b-dec4-45fd-be04-94a6c2b4de3b",
+     "product_id": "0e1dba58-7cc2-4975-bc6f-e5a65f8c71e0",
+     "type": "image",
+     "url": "/uploads/products/0e1dba58-7cc2-4975-bc6f-e5a65f8c71e0/1768477339177-0.jpg",
+     "alt_text": "5072_Fauteuil-roulant-708-DELIGHT-VERMEIREN",
+     "title": "5072_Fauteuil-roulant-708-DELIGHT-VERMEIREN.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:42:19.180Z"
+    }
+   ]
+  },
+  "0f9f86dd-14a3-4871-8a97-db39f7634f88": {
+   "row": {
+    "id": "0f9f86dd-14a3-4871-8a97-db39f7634f88",
+    "reference_fournisseur": "FS9274L",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "foshan",
+    "slug": "b-quille-ergonomique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:15.295Z",
+    "updated_at": "2026-04-02T16:49:53.714Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "194e5bca-b400-4436-b462-e0ebd0be7253",
+     "product_id": "0f9f86dd-14a3-4871-8a97-db39f7634f88",
+     "type": "image",
+     "url": "/uploads/products/0f9f86dd-14a3-4871-8a97-db39f7634f88/1768476997667-0.png",
+     "alt_text": "fs9301l-1",
+     "title": "fs9301l-1.png",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:36:37.669Z"
+    }
+   ]
+  },
+  "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a": {
+   "row": {
+    "id": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a",
+    "reference_fournisseur": "FS952LCQ",
+    "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+    "constructeur": "foshan",
+    "slug": "fauteuil-roulant-aluminium-conomique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:13.045Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "38b7d003-8ef0-4af0-aba4-f571e99b6662",
+     "product_id": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a",
+     "type": "image",
+     "url": "/uploads/products/302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a/1768476000691-0.png",
+     "alt_text": "Screenshot 2026-01-14 at 16",
+     "title": "Screenshot 2026-01-14 at 16.45.12.png",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-15T11:20:00.698Z"
+    }
+   ]
+  },
+  "496f3138-024a-41e4-8597-aeebeba7e2be": {
+   "row": {
+    "id": "496f3138-024a-41e4-8597-aeebeba7e2be",
+    "reference_fournisseur": "FS874F5",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "manuel-wheelchair-double-bar",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://img.waimaoniu.net/2088/E-catalog.pdf",
+    "created_at": "2025-12-10T13:10:05.889Z",
+    "updated_at": "2026-04-02T16:49:53.124Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "c16ebfad-6896-441d-b1d7-3fc8dcb4bf31",
+     "product_id": "496f3138-024a-41e4-8597-aeebeba7e2be",
+     "type": "image",
+     "url": "/uploads/products/fs874f5-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-10T13:10:05.931Z"
+    }
+   ]
+  },
+  "590a4739-6bf5-4526-a71b-2da3a50a572e": {
+   "row": {
+    "id": "590a4739-6bf5-4526-a71b-2da3a50a572e",
+    "reference_fournisseur": "FS609U",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "wheelchair-with-commode-fs609u",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:14.992Z",
+    "updated_at": "2026-04-06T18:29:21.189Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "c9d35657-65be-4cea-8392-86812f5210fc",
+     "product_id": "590a4739-6bf5-4526-a71b-2da3a50a572e",
+     "type": "image",
+     "url": "/uploads/products/fs609u-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:11:39.068Z"
+    }
+   ]
+  },
+  "64b79d69-e981-4144-99e7-d47f6db6f38d": {
+   "row": {
+    "id": "64b79d69-e981-4144-99e7-d47f6db6f38d",
+    "reference_fournisseur": "FS980LQF8",
+    "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+    "constructeur": "foshan",
+    "slug": "fauteuil-roulant-aluminium-sportif",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:13.048Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "29262126-02da-4e90-ba64-eedd8372b54e",
+     "product_id": "64b79d69-e981-4144-99e7-d47f6db6f38d",
+     "type": "image",
+     "url": "/uploads/products/64b79d69-e981-4144-99e7-d47f6db6f38d/1768475882607-0.webp",
+     "alt_text": "D_NQ_NP_656894-MLA92285765736_092025-O",
+     "title": "D_NQ_NP_656894-MLA92285765736_092025-O.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-15T11:18:02.611Z"
+    }
+   ]
+  },
+  "8a5aaee3-d20b-4ae1-b924-3ee4bf6bcc56": {
+   "row": {
+    "id": "8a5aaee3-d20b-4ae1-b924-3ee4bf6bcc56",
+    "reference_fournisseur": "FS902GC",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "high-back-reclining-wheelchair",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://img.waimaoniu.net/2088/E-catalog.pdf",
+    "created_at": "2025-12-10T13:10:26.587Z",
+    "updated_at": "2026-04-02T16:49:53.333Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "e22ec003-354a-44e0-bde4-b88420ebc7d8",
+     "product_id": "8a5aaee3-d20b-4ae1-b924-3ee4bf6bcc56",
+     "type": "image",
+     "url": "/uploads/products/FS902GC-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-10T13:10:26.593Z"
+    }
+   ]
+  },
+  "8b37bd9a-4f04-4b6a-b81a-879982480850": {
+   "row": {
+    "id": "8b37bd9a-4f04-4b6a-b81a-879982480850",
+    "reference_fournisseur": "FS9280L",
+    "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+    "constructeur": "foshan",
+    "slug": "b-quille-pliable",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:15.298Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "59e05f6c-fd01-4255-b099-2eea3abcc311",
+     "product_id": "8b37bd9a-4f04-4b6a-b81a-879982480850",
+     "type": "image",
+     "url": "/uploads/products/8b37bd9a-4f04-4b6a-b81a-879982480850/1768476961497-0.webp",
+     "alt_text": "onemed-fs9280l-tongkat-jalan-orang-tua-2048x2048",
+     "title": "onemed-fs9280l-tongkat-jalan-orang-tua-2048x2048.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-15T11:36:01.533Z"
+    }
+   ]
+  },
+  "8c643ef1-079c-4284-8e85-ac73074147e2": {
+   "row": {
+    "id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+    "reference_fournisseur": "F-46",
+    "category_id": "58e20062-64fc-4872-a1ae-ba504f609907",
+    "constructeur": "pukang",
+    "slug": "chariot-d-urgence-hospitalier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-08T20:16:17.993Z",
+    "updated_at": "2026-11-15T09:32:40.931Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "c75bdd4a-ad84-4204-a4ec-7ba9be411b0a",
+     "product_id": "8c643ef1-079c-4284-8e85-ac73074147e2",
+     "type": "image",
+     "url": "/uploads/products/8c643ef1-079c-4284-8e85-ac73074147e2/1768757822245-0.jpg",
+     "alt_text": "f46",
+     "title": "f46.jpg",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:37:02.259Z"
+    }
+   ]
+  },
+  "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a": {
+   "row": {
+    "id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+    "reference_fournisseur": "DA-11",
+    "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+    "constructeur": "pukang",
+    "slug": "type-c5-five-function-electric-hospital-bed-220226",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-08T20:13:42.517Z",
+    "updated_at": "2026-11-15T09:32:40.947Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "02eecee4-30c8-4bc6-9b3d-6f16eca90b7e",
+     "product_id": "98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a",
+     "type": "image",
+     "url": "/uploads/products/98a9a80b-4228-4ea2-b24a-6a0a8fbe5d7a/1768253363208-0.webp",
+     "alt_text": "Type C5 Five Function Electric Hospital Bed",
+     "title": "Type C5 Five Function Electric Hospital Bed.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-12T21:29:23.210Z"
+    }
+   ]
+  },
+  "992d2f63-aa44-449d-8f5f-bfc5783bdaee": {
+   "row": {
+    "id": "992d2f63-aa44-449d-8f5f-bfc5783bdaee",
+    "reference_fournisseur": "FS912L",
+    "category_id": "b1ccd546-8ede-4da8-b76f-37fad569dcff",
+    "constructeur": "foshan",
+    "slug": "d-ambulateur-cadre-de-marche",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:13.053Z",
+    "updated_at": "2026-04-02T16:49:53.464Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "d460700e-439f-48c3-bfac-8eee0209b0e1",
+     "product_id": "992d2f63-aa44-449d-8f5f-bfc5783bdaee",
+     "type": "image",
+     "url": "/uploads/products/992d2f63-aa44-449d-8f5f-bfc5783bdaee/1768475844404-0.jpg",
+     "alt_text": "w",
+     "title": "w.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:17:24.407Z"
+    }
+   ]
+  },
+  "9f1b7117-7a09-4b6e-8663-37cc67c3f92c": {
+   "row": {
+    "id": "9f1b7117-7a09-4b6e-8663-37cc67c3f92c",
+    "reference_fournisseur": "FS809",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "fauteuil-roulant-manuel-standard-en-acier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://img.waimaoniu.net/2088/E-catalog.pdf",
+    "created_at": "2025-12-10T13:09:55.716Z",
+    "updated_at": "2026-04-02T16:49:52.999Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "ce8c47e7-0d35-4a57-a728-3d31c11b3164",
+     "product_id": "9f1b7117-7a09-4b6e-8663-37cc67c3f92c",
+     "type": "image",
+     "url": "/uploads/products/9f1b7117-7a09-4b6e-8663-37cc67c3f92c/1768476541408-0.png",
+     "alt_text": "Screenshot 2026-01-15 at 12",
+     "title": "Screenshot 2026-01-15 at 12.28.41.png",
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2026-01-15T11:29:01.416Z"
+    }
+   ]
+  },
+  "a45ddd82-5b84-4e9b-8159-3edb94b787f5": {
+   "row": {
+    "id": "a45ddd82-5b84-4e9b-8159-3edb94b787f5",
+    "reference_fournisseur": "FS894",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "shower-wheelchair-with-commode-fs894",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:15.000Z",
+    "updated_at": "2026-04-02T16:49:53.208Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "d6b198b5-2e0e-4058-91eb-4543b24eb0bf",
+     "product_id": "a45ddd82-5b84-4e9b-8159-3edb94b787f5",
+     "type": "image",
+     "url": "/uploads/products/fs894-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:11:39.068Z"
+    }
+   ]
+  },
+  "b2697472-5af3-4469-9c84-d76c6ad7e045": {
+   "row": {
+    "id": "b2697472-5af3-4469-9c84-d76c6ad7e045",
+    "reference_fournisseur": "FS696",
+    "category_id": "501dc64a-89a7-4e0b-a578-77068230ed07",
+    "constructeur": "foshan",
+    "slug": "chaise-roulante-bassin-roulettes",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:14.996Z",
+    "updated_at": "2026-04-06T18:29:21.189Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "8273f8b6-bc46-4c76-854f-efb1178bc811",
+     "product_id": "b2697472-5af3-4469-9c84-d76c6ad7e045",
+     "type": "image",
+     "url": "/uploads/products/b2697472-5af3-4469-9c84-d76c6ad7e045/1768476882147-0.png",
+     "alt_text": "Screenshot 2026-01-15 at 12",
+     "title": "Screenshot 2026-01-15 at 12.34.17.png",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T11:34:42.151Z"
+    }
+   ]
+  },
+  "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef": {
+   "row": {
+    "id": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef",
+    "reference_fournisseur": "FS123GC",
+    "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+    "constructeur": "foshan",
+    "slug": "fauteuil-roulant-lectrique-avec-garde",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2026-01-13T20:40:14.983Z",
+    "updated_at": "2026-04-06T18:28:45.394Z",
+    "partner_id": "2bac8f54-0edc-47d6-9484-653b3b205b41"
+   },
+   "media": [
+    {
+     "id": "90e1d105-5923-4f9f-b2b6-eb606f2ae766",
+     "product_id": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef",
+     "type": "image",
+     "url": "/uploads/products/b4fa6f6c-2a32-47e9-aa87-238fd505d0ef/1768476609944-0.png",
+     "alt_text": "Screenshot 2026-01-15 at 12",
+     "title": "Screenshot 2026-01-15 at 12.29.47.png",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-15T11:30:09.951Z"
+    }
+   ]
+  },
+  "ba7732b1-4db0-4bfc-8732-d30070302c0e": {
+   "row": {
+    "id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+    "reference_fournisseur": "G-9",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "armoire-m-dicale-en-acier",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-09T11:35:22.261Z",
+    "updated_at": "2026-11-15T11:08:49.526Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "aebd1cb7-16ee-4ee9-a469-e221510d1b3c",
+     "product_id": "ba7732b1-4db0-4bfc-8732-d30070302c0e",
+     "type": "image",
+     "url": "/uploads/products/ba7732b1-4db0-4bfc-8732-d30070302c0e/1768758169656-0.webp",
+     "alt_text": "e9",
+     "title": "e9.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:42:49.659Z"
+    }
+   ]
+  },
+  "e5a9a8cb-c97c-46d7-a770-724146d60f51": {
+   "row": {
+    "id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+    "reference_fournisseur": "G-11",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "armoire-instruments-m-dicaux-en-acier-inoxydable-g-11",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-08T20:17:17.349Z",
+    "updated_at": "2026-11-15T09:32:40.939Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "71bedc10-1d7f-457d-9bb4-af811f2db8db",
+     "product_id": "e5a9a8cb-c97c-46d7-a770-724146d60f51",
+     "type": "image",
+     "url": "/uploads/products/e5a9a8cb-c97c-46d7-a770-724146d60f51/1768757948542-0.webp",
+     "alt_text": "g11",
+     "title": "g11.webp",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-18T17:39:08.544Z"
+    }
+   ]
+  },
+  "e84aba0c-cfc3-465f-97e7-f906fc71355b": {
+   "row": {
+    "id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+    "reference_fournisseur": "G-20",
+    "category_id": "6f01305c-6913-4ff9-8063-05f0b797e1e6",
+    "constructeur": "pukang",
+    "slug": "armoire-de-stockage-hospitali-re",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:35:08.381Z",
+    "updated_at": "2026-04-02T16:49:54.521Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "3b4b0273-fb39-4a4b-ac13-404e56a973ea",
+     "product_id": "e84aba0c-cfc3-465f-97e7-f906fc71355b",
+     "type": "image",
+     "url": "/uploads/products/e84aba0c-cfc3-465f-97e7-f906fc71355b/1768758114664-0.webp",
+     "alt_text": "g20",
+     "title": "g20.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:41:54.666Z"
+    }
+   ]
+  },
+  "efe7a845-54d7-4e67-bba8-046bf9dc10ad": {
+   "row": {
+    "id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+    "reference_fournisseur": "B-46",
+    "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+    "constructeur": "pukang",
+    "slug": "infant-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-08T20:13:19.955Z",
+    "updated_at": "2026-11-15T09:32:40.923Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "e3cb8172-64fc-4714-9489-a8ddf0b9e77a",
+     "product_id": "efe7a845-54d7-4e67-bba8-046bf9dc10ad",
+     "type": "image",
+     "url": "/uploads/products/efe7a845-54d7-4e67-bba8-046bf9dc10ad/1768757191497-0.webp",
+     "alt_text": "76348-20436919",
+     "title": "76348-20436919.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:26:31.499Z"
+    }
+   ]
+  },
+  "fe91e990-0027-46a0-a04c-aab40ec894d0": {
+   "row": {
+    "id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+    "reference_fournisseur": "B-36",
+    "category_id": "25fa5872-c078-4bec-b00e-8f51d20bb15c",
+    "constructeur": "pukang",
+    "slug": "hospital-newborn-baby-bed",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/pukang-catalogue-2026.pdf",
+    "created_at": "2025-12-08T19:53:21.649Z",
+    "updated_at": "2026-11-15T09:32:40.949Z",
+    "partner_id": "8e928e51-8b4a-424d-b0d2-8182411dc002"
+   },
+   "media": [
+    {
+     "id": "9ed9cf6a-8e5e-4517-9130-4dcce354eb6d",
+     "product_id": "fe91e990-0027-46a0-a04c-aab40ec894d0",
+     "type": "image",
+     "url": "/uploads/products/fe91e990-0027-46a0-a04c-aab40ec894d0/1768757161476-0.webp",
+     "alt_text": "b36",
+     "title": "b36.webp",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-18T17:26:01.484Z"
+    }
+   ]
+  },
+  "prim-1768238719005-momsk0j64": {
+   "row": {
+    "id": "prim-1768238719005-momsk0j64",
+    "reference_fournisseur": "100705",
+    "category_id": "ortho-attelles",
+    "constructeur": "prim",
+    "slug": "attelle-de-stack-taille-5",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/prim-catalogue-orthopedie.pdf",
+    "created_at": "2026-01-12T17:25:19.006Z",
+    "updated_at": "2026-11-15T10:53:26.372Z",
+    "partner_id": "f1731aed-ede2-4bf8-aa60-e071e4fc0404"
+   },
+   "media": [
+    {
+     "id": "a537ae0f-cfda-4085-96b2-62b985975da2",
+     "product_id": "prim-1768238719005-momsk0j64",
+     "type": "image",
+     "url": "/uploads/products/prim-1768238719005-momsk0j64/1768309911264-0.png",
+     "alt_text": "Screenshot 2026-01-13 134322",
+     "title": "Screenshot 2026-01-13 134322.png",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2026-01-13T13:11:51.266Z"
+    }
+   ]
+  },
+  "prim-1768238719081-dn8tkvbgn": {
+   "row": {
+    "id": "prim-1768238719081-dn8tkvbgn",
+    "reference_fournisseur": "SC7065",
+    "category_id": "ortho-chaussures",
+    "constructeur": "prim",
+    "slug": "urinal-pour-incontinence-sc7065",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 99,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/prim-catalogue-orthopedie.pdf",
+    "created_at": "2026-01-12T17:25:19.081Z",
+    "updated_at": "2026-11-15T10:53:26.372Z",
+    "partner_id": "f1731aed-ede2-4bf8-aa60-e071e4fc0404"
+   },
+   "media": [
+    {
+     "id": "136e8708-865b-47d2-bcc6-9bcc26d2827f",
+     "product_id": "prim-1768238719081-dn8tkvbgn",
+     "type": "image",
+     "url": "/uploads/products/prim-1768238719081-dn8tkvbgn/1768308413150-0.jpg",
+     "alt_text": "Urinal-homme-et-femme",
+     "title": "Urinal-homme-et-femme.jpg",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-13T12:46:53.152Z"
+    }
+   ]
+  }
+ }
+}

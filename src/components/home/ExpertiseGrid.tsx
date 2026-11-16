@@ -4,11 +4,11 @@ import { ChevronRight } from 'lucide-react';
 
 /**
  * The 8 domains of the client mockup (2026-11-16), in its order; photos cropped from the mockup.
- * There is no « Orthoptie » category yet: its tile opens the ophthalmic equipment (réfraction, optotypes).
+ * « Orthoptie » opens its own category (MC2 range, scripts/catalog-restructure/93-orthoptie-mc2.js).
  */
 const DOMAINS = [
   { key: 'ophtalmologie', slug: 'ophtalmologie' },
-  { key: 'orthoptie', slug: 'ophtalmologie/appareillage-ophtalmique' },
+  { key: 'orthoptie', slug: 'orthoptie' },
   { key: 'orl', slug: 'orl-oto-rhino-laryngologie' },
   { key: 'pharma', slug: 'dispositifs-medicaux' },
   { key: 'contactologie', slug: 'oph-contactology' },

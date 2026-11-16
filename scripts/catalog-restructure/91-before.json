@@ -1,0 +1,155 @@
+{
+  "prod-1768072845599-svkxux5a3": {
+    "status": "active",
+    "pdf_brochure_url": null,
+    "media": [
+      {
+        "id": "9b8f8633-99fd-4895-9e98-f0be8231de97",
+        "product_id": "prod-1768072845599-svkxux5a3",
+        "type": "image",
+        "url": "/uploads/products/prod-1768072845599-svkxux5a3/1768164683160-0.png",
+        "alt_text": null,
+        "title": null,
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2026-01-15T10:20:48.006Z"
+      }
+    ]
+  },
+  "prod-1768072845641-8sxxmwi1x": {
+    "status": "active",
+    "pdf_brochure_url": null,
+    "media": [
+      {
+        "id": "f278c234-0c9d-4da7-aaac-14bf74e96778",
+        "product_id": "prod-1768072845641-8sxxmwi1x",
+        "type": "image",
+        "url": "/uploads/products/prod-1768072845641-8sxxmwi1x/1768415058890-0.png",
+        "alt_text": null,
+        "title": null,
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2026-01-15T10:20:48.007Z"
+      }
+    ]
+  },
+  "92953380-4087-4153-8db3-1c7b6a8701e1": {
+    "status": "active",
+    "pdf_brochure_url": "https://hylo.ma/produits/hylo-carer/",
+    "media": [
+      {
+        "id": "4af26eec-60b7-45b5-b06c-0bd71f83fd35",
+        "product_id": "92953380-4087-4153-8db3-1c7b6a8701e1",
+        "type": "image",
+        "url": "/uploads/products/hylo-care-1776189430545-bd9ffa4b.png",
+        "alt_text": "Hylo Care - Image 1",
+        "title": "Hylo Care - Image 1",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2025-12-08T14:20:36.370Z"
+      }
+    ]
+  },
+  "prod-1768072845647-n5eco5adk": {
+    "status": "active",
+    "pdf_brochure_url": null,
+    "media": [
+      {
+        "id": "64b4aed2-c9c1-47e4-a440-c915b9b412b4",
+        "product_id": "prod-1768072845647-n5eco5adk",
+        "type": "image",
+        "url": "/uploads/products/prod-1768072845647-n5eco5adk/1768164551683-0.png",
+        "alt_text": null,
+        "title": null,
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2026-01-15T10:20:48.008Z"
+      }
+    ]
+  },
+  "b8c7c96f-4a07-4d0d-982a-feea0fbbc9f6": {
+    "status": "active",
+    "pdf_brochure_url": null,
+    "media": [
+      {
+        "id": "a4d30a03-f096-40a5-b71a-c31649e2c818",
+        "product_id": "b8c7c96f-4a07-4d0d-982a-feea0fbbc9f6",
+        "type": "image",
+        "url": "/uploads/products/b8c7c96f-4a07-4d0d-982a-feea0fbbc9f6/1768330363051-0.jpg",
+        "alt_text": "nutrifov-60-tablets",
+        "title": "nutrifov-60-tablets.jpg",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2026-01-13T18:52:43.053Z"
+      }
+    ]
+  },
+  "c157792a-ebab-4b99-a252-9132621e133f": {
+    "status": "active",
+    "pdf_brochure_url": "https://hylo.ma/produits/hylor-gel/",
+    "media": [
+      {
+        "id": "d6fc4757-4712-4e90-95f5-e13231730249",
+        "product_id": "c157792a-ebab-4b99-a252-9132621e133f",
+        "type": "image",
+        "url": "/uploads/products/hylo-gel-1776189432678-0ad74dce.png",
+        "alt_text": "Hylo GEL - Image 1",
+        "title": "Hylo GEL - Image 1",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2025-12-08T14:20:37.040Z"
+      }
+    ]
+  },
+  "3cff0f65-a5d6-4def-bbf1-59550629157a": {
+    "status": "active",
+    "pdf_brochure_url": "https://hylo.ma/produits/hylo-comodr/",
+    "media": [
+      {
+        "id": "8391efc8-0c7d-4aca-8fcd-168da12da26c",
+        "product_id": "3cff0f65-a5d6-4def-bbf1-59550629157a",
+        "type": "image",
+        "url": "/uploads/products/hylo-comod-1776189432060-948a2185.png",
+        "alt_text": "Hylo Comod - Image 1",
+        "title": "Hylo Comod - Image 1",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2025-12-08T14:20:36.517Z"
+      }
+    ]
+  },
+  "0aaf54bc-ed1b-47bd-bca4-637d6e7947d5": {
+    "status": "active",
+    "pdf_brochure_url": "https://hylo.ma/produits/hylo-dualr/",
+    "media": [
+      {
+        "id": "2456c3fc-a1c2-497b-8f7b-e1e7a330147d",
+        "product_id": "0aaf54bc-ed1b-47bd-bca4-637d6e7947d5",
+        "type": "image",
+        "url": "/uploads/products/hylo-dual-1776189433878-84ee3721.png",
+        "alt_text": "Hylo Dual - Image 1",
+        "title": "Hylo Dual - Image 1",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2025-12-08T14:20:36.596Z"
+      }
+    ]
+  },
+  "cce98b3b-c207-46e8-850f-0d949a6b6463": {
+    "status": "active",
+    "pdf_brochure_url": "https://hylo.ma/produits/hylo-freshr/",
+    "media": [
+      {
+        "id": "e299b45d-ad1a-4df7-846d-2b64a532861c",
+        "product_id": "cce98b3b-c207-46e8-850f-0d949a6b6463",
+        "type": "image",
+        "url": "/uploads/products/hylo-fresh-1776189431397-d4363cb7.png",
+        "alt_text": "Hylo Fresh - Image 1",
+        "title": "Hylo Fresh - Image 1",
+        "sort_order": 0,
+        "is_primary": true,
+        "created_at": "2025-12-08T14:20:36.664Z"
+      }
+    ]
+  }
+}

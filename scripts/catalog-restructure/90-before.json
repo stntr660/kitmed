@@ -1,0 +1,1203 @@
+{
+ "taken_at": "2026-11-16T19:14:15.970Z",
+ "products": {
+  "467fbbb6-8517-409f-ab5f-1f8d2996899f": {
+   "row": {
+    "id": "467fbbb6-8517-409f-ab5f-1f8d2996899f",
+    "reference_fournisseur": "AFC-330",
+    "category_id": "307aae15-440d-4903-a4b6-6fb6b52552a8",
+    "constructeur": "nidek",
+    "slug": "retinographe-non-mydriatique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/products/afc-330-brochure.pdf",
+    "created_at": "2025-12-09T11:42:19.602Z",
+    "updated_at": "2026-09-14T12:04:29.184Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "a988f108-17a5-4632-9306-af09faaec970",
+     "product_id": "467fbbb6-8517-409f-ab5f-1f8d2996899f",
+     "language_code": "fr",
+     "nom": "Rétinographe Non-Mydriatique AFC-330",
+     "description": "Le rétinographe non mydriatique NIDEK AFC-330 est une caméra de fond d'oeil automatique pour l'imagerie rétinienne sans dilatation pupillaire. Doté d'une capture d'image automatisée avec photographie haute résolution du fond d'oeil pour le dépistage et la documentation des pathologies rétiniennes incluant la rétinopathie diabétique et la dégénérescence maculaire.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "fcaf9331-94bb-4872-afaa-275529f869ea",
+     "product_id": "467fbbb6-8517-409f-ab5f-1f8d2996899f",
+     "language_code": "en",
+     "nom": "AFC-330 Non-Mydriatic Auto Fundus Camera",
+     "description": "NIDEK AFC-330 is a non-mydriatic auto fundus camera for retinal imaging without pupil dilation. Features automated image capture with high-resolution fundus photography for screening and documentation of retinal pathologies including diabetic retinopathy and macular degeneration.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "b8e29143-138b-4d5e-9ba9-a90a8782993e",
+     "product_id": "467fbbb6-8517-409f-ab5f-1f8d2996899f",
+     "type": "image",
+     "url": "/uploads/products/afc-330-primary.jpg",
+     "alt_text": "Retinographe NON Mydriatique - Image principale",
+     "title": "Retinographe NON Mydriatique - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:42:19.610Z"
+    },
+    {
+     "id": "f26ac8f9-636a-403e-a5f6-f9e7a911d75e",
+     "product_id": "467fbbb6-8517-409f-ab5f-1f8d2996899f",
+     "type": "image",
+     "url": "/uploads/products/afc-330-gallery-2.pdf",
+     "alt_text": "Retinographe NON Mydriatique - Image 2",
+     "title": "Retinographe NON Mydriatique - Image 2",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2025-12-09T11:42:19.612Z"
+    }
+   ]
+  },
+  "7d49fb91-4401-4592-ab8d-e1bce05c2112": {
+   "row": {
+    "id": "7d49fb91-4401-4592-ab8d-e1bce05c2112",
+    "reference_fournisseur": "RS-330-DUO2",
+    "category_id": "307aae15-440d-4903-a4b6-6fb6b52552a8",
+    "constructeur": "nidek",
+    "slug": "rs-330-duo-2-rs-330-duo2",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-10-rs-330-duo2-brochure.pdf",
+    "created_at": "2026-04-14T14:57:54.223Z",
+    "updated_at": "2026-10-16T12:20:57.831Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "edc4516e-7444-428c-8859-f00084d6db08",
+     "product_id": "7d49fb91-4401-4592-ab8d-e1bce05c2112",
+     "language_code": "fr",
+     "nom": "RS-330 DUO 2",
+     "description": "Retinographe multimodal et OCT en un seul instrument. Imagerie grand angle du fond d'oeil et OCT haute resolution.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "6e7fd2db-7122-4bf9-beeb-8adfa0e8c6c6",
+     "product_id": "7d49fb91-4401-4592-ab8d-e1bce05c2112",
+     "language_code": "en",
+     "nom": "RS-330 DUO 2",
+     "description": "Multimodal retinal camera and OCT in a single instrument. Wide-angle fundus imaging and high-resolution OCT.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "f4f3596e-6dea-4ebe-8eaf-cb9efe0ad805",
+     "product_id": "7d49fb91-4401-4592-ab8d-e1bce05c2112",
+     "type": "image",
+     "url": "/uploads/products/rs330-1776181627522-215aebcc.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-14T15:49:13.676Z"
+    }
+   ]
+  },
+  "3d1d1339-5099-4492-82a4-806448bf3de5": {
+   "row": {
+    "id": "3d1d1339-5099-4492-82a4-806448bf3de5",
+    "reference_fournisseur": "RS-1",
+    "category_id": "b0e59d65-16b0-4989-8a1b-6d96c908530d",
+    "constructeur": "nidek",
+    "slug": "rs-1-rs-1",
+    "status": "active",
+    "is_featured": true,
+    "is_new_arrival": true,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-10-rs-1-brochure.pdf",
+    "created_at": "2026-04-14T14:57:55.132Z",
+    "updated_at": "2026-10-29T13:42:59.965Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "14a72cb9-8ecc-4c18-ab94-0c1509252ac0",
+     "product_id": "3d1d1339-5099-4492-82a4-806448bf3de5",
+     "language_code": "fr",
+     "nom": "Tomographe OCT RS-1",
+     "description": "Retinographe non-mydriatique compact Nidek. Solution d'imagerie retinienne portable et accessible.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "ee852d51-ed0a-4d79-b44f-193081f9f732",
+     "product_id": "3d1d1339-5099-4492-82a4-806448bf3de5",
+     "language_code": "en",
+     "nom": "RS-1 OCT Tomographer",
+     "description": "Compact non-mydriatic retinal camera by Nidek. Portable and accessible retinal imaging solution.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "d51cf8f6-af60-413d-897a-0bb83e143d5a",
+     "product_id": "3d1d1339-5099-4492-82a4-806448bf3de5",
+     "type": "image",
+     "url": "/uploads/products/rs1-1776181628177-b98cbea4.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-14T15:49:14.111Z"
+    }
+   ]
+  },
+  "d6427d02-d53a-48b6-b5c9-f09ffefd19d0": {
+   "row": {
+    "id": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+    "reference_fournisseur": "OT-6400",
+    "category_id": "135e3fc7-7d6b-4105-9830-f0fac90fb427",
+    "constructeur": "nidek",
+    "slug": "unite-de-consultation-avec-fauteuil-d-examen-ta66",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T12:11:48.596Z",
+    "updated_at": "2026-08-23T11:31:36.561Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "8e9255fc-f0a5-461c-ba1c-131f6a996131",
+     "product_id": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+     "language_code": "en",
+     "nom": "OT-6400 Motorized Refraction Unit",
+     "description": "NIDEK OT-6400 is the most advanced motorized refraction unit in the NIDEK range. This high-end rotating unit accommodates 3 or 4 instruments with a translating and tilting phoropter arm, fully automated and motorized. Features smooth movements and elegant design for premium ophthalmic consultations.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "17e98c7b-f695-4eaa-bf35-93aac2c4254d",
+     "product_id": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+     "language_code": "fr",
+     "nom": "Unité de Réfraction Motorisée OT-6400",
+     "description": "Le NIDEK OT-6400 est l'unité de réfraction motorisée la plus avancée de la gamme NIDEK. Cette unité rotative haut de gamme accueille 3 ou 4 instruments avec un bras phoropter translatable et inclinable, entièrement automatisé et motorisé. Mouvements fluides et design élégant pour des consultations ophtalmiques de premier plan.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "27c16d6f-3a51-4815-b312-60ada7ee9589",
+     "product_id": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+     "type": "image",
+     "url": "/uploads/products/ot-6400-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:43:12.285Z"
+    },
+    {
+     "id": "e1335573-17c9-41d7-aef8-71ed3429dacd",
+     "product_id": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+     "type": "pdf",
+     "url": "/uploads/products/ot-6400-gallery-2.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:43:13.338Z"
+    }
+   ]
+  },
+  "509127fd-2898-4e84-a897-b596bbd59526": {
+   "row": {
+    "id": "509127fd-2898-4e84-a897-b596bbd59526",
+    "reference_fournisseur": "NDK",
+    "category_id": "135e3fc7-7d6b-4105-9830-f0fac90fb427",
+    "constructeur": "NIDEK",
+    "slug": "unit-synetic-2",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/brochure-synetic-bd-1772797814426-66fb5856.pdf",
+    "created_at": "2026-03-06T11:50:15.706Z",
+    "updated_at": "2026-11-15T10:53:26.367Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "4b816650-9621-4d15-be48-0440c876ba3c",
+     "product_id": "509127fd-2898-4e84-a897-b596bbd59526",
+     "language_code": "fr",
+     "nom": "Unite Synetic 2/3 instruments",
+     "description": "L'unité de réfraction Nidek SYNETIC est une solution haut de gamme entièrement motorisée conçue pour éliminer toute fatigue physique lors des examens. Capable d'accueillir 2 ou 3 instruments avec une charge robuste de 40 kg par position, elle garantit une sécurité maximale grâce à ses capteurs anti-écrasement intégrés sous le plateau. Ce combiné d'examen, disponible en couleurs exclusives, intègre un fauteuil électrique performant offrant une course de 25 cm, alliant ainsi une ergonomie parfaite pour le praticien à un confort optimal pour le patient.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "a23aa2f7-d2ab-442f-a693-92d87e929d0f",
+     "product_id": "509127fd-2898-4e84-a897-b596bbd59526",
+     "language_code": "en",
+     "nom": "Synetic 2 Unit",
+     "description": "The Nidek SYNETIC refraction unit is a premium, fully motorized solution designed to eliminate physical fatigue during examinations. Capable of accommodating 2 or 3 instruments with a robust 40 kg load capacity per position, it ensures maximum safety through its integrated anti-crush sensors beneath the platform. This examination unit, available in exclusive colors, features a high-performance electric chair with a 25 cm travel range, combining perfect ergonomics for the practitioner with optimal comfort for the patient.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "457f1fee-a83e-49e7-b262-45a1746e4d53",
+     "product_id": "509127fd-2898-4e84-a897-b596bbd59526",
+     "type": "image",
+     "url": "/uploads/products/509127fd-2898-4e84-a897-b596bbd59526/1772798080021-0.png",
+     "alt_text": "Screenshot_2026-03-06_at_11",
+     "title": "Screenshot_2026-03-06_at_11.53.16-removebg-preview.png",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-03-06T11:54:40.023Z"
+    }
+   ]
+  },
+  "b63b26fa-0716-4370-879a-0340bf573a7f": {
+   "row": {
+    "id": "b63b26fa-0716-4370-879a-0340bf573a7f",
+    "reference_fournisseur": "OT-4200",
+    "category_id": "995b5f36-4f14-4ce8-89cd-b13bd6a50aba",
+    "constructeur": "nidek",
+    "slug": "unite-de-consultation-avec-fauteuil-d-examen-ebpg",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T12:11:47.527Z",
+    "updated_at": "2026-08-23T11:31:37.406Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "5158e7b1-12d2-4d60-88c2-a36a261d9907",
+     "product_id": "b63b26fa-0716-4370-879a-0340bf573a7f",
+     "language_code": "fr",
+     "nom": "Unité de Consultation OT-4200",
+     "description": "Le NIDEK OT-4200 est une unité de consultation complète avec fauteuil d'examen conçue pour un flux de travail efficace en cabinet d'ophtalmologie. Ce système intégré fournit un positionnement ergonomique du patient et un accès pratique aux instruments pour des examens oculaires complets.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "58ba828e-2c94-4f47-8048-577045c7d5c4",
+     "product_id": "b63b26fa-0716-4370-879a-0340bf573a7f",
+     "language_code": "en",
+     "nom": "OT-4200 Consultation Unit",
+     "description": "NIDEK OT-4200 is a comprehensive consultation unit with examination chair designed for efficient ophthalmic practice workflow. This integrated system provides ergonomic patient positioning and convenient instrument access for complete eye examinations.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "4d8e3324-e6f9-438f-869d-4aeb3d4d58fc",
+     "product_id": "b63b26fa-0716-4370-879a-0340bf573a7f",
+     "type": "image",
+     "url": "/uploads/products/ot-4200-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:43:10.068Z"
+    },
+    {
+     "id": "25b3f6d1-cef8-4034-9a25-80aaf9303cf0",
+     "product_id": "b63b26fa-0716-4370-879a-0340bf573a7f",
+     "type": "pdf",
+     "url": "/uploads/products/ot-4200-gallery-2.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:43:10.809Z"
+    }
+   ]
+  },
+  "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4": {
+   "row": {
+    "id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+    "reference_fournisseur": "OT-2200",
+    "category_id": "995b5f36-4f14-4ce8-89cd-b13bd6a50aba",
+    "constructeur": "nidek",
+    "slug": "unite-de-consultation-avec-fauteuil-d-examen-4l14",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://www.nidek.fr/wp-content/uploads/2022/08/Brochure_AFFINITY_2022_BD.pdf",
+    "created_at": "2025-12-09T12:11:46.519Z",
+    "updated_at": "2026-10-08T10:36:06.838Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "9d2d14f1-a58f-4e0e-9c5d-63a707ce862f",
+     "product_id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+     "language_code": "fr",
+     "nom": "Affinity II / III",
+     "description": "Le NIDEK OT-2200 est une unité de consultation polyvalente avec fauteuil d'examen offrant des performances fiables pour les cabinets d'ophtalmologie. Ce système combine le confort du patient avec une organisation pratique des instruments pour des examens cliniques rationalisés.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "fe940184-4cb8-463e-937a-bfb2d92a12ee",
+     "product_id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+     "language_code": "en",
+     "nom": "OT-2200 Consultation Unit",
+     "description": "NIDEK OT-2200 is a versatile consultation unit with examination chair offering reliable performance for ophthalmic practices. This system combines patient comfort with practical instrument organization for streamlined clinical examinations.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "7714d1f5-0c7c-4af2-9d3d-cb59a52bb016",
+     "product_id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+     "type": "pdf",
+     "url": "/uploads/products/ot-2200-gallery-2.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:43:08.226Z"
+    },
+    {
+     "id": "7f585c56-160e-4e42-9288-bce3678cb5ab",
+     "product_id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+     "type": "image",
+     "url": "/uploads/products/ot-2200-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:43:03.192Z"
+    },
+    {
+     "id": "e319b5b6-34f3-4b37-8552-f4b42ecd494c",
+     "product_id": "8f0fa842-bcbe-4540-b4b5-4a6da01e44b4",
+     "type": "image",
+     "url": "/uploads/products/affinity-2-3.jpg",
+     "alt_text": "Affinity II / III",
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-10-16T12:20:58.156Z"
+    }
+   ]
+  },
+  "6b31c251-147f-49b6-aaf2-a78c21f46eab": {
+   "row": {
+    "id": "6b31c251-147f-49b6-aaf2-a78c21f46eab",
+    "reference_fournisseur": "LYPOP",
+    "category_id": "11e96df3-2cec-4345-8fe6-b276c88d4185",
+    "constructeur": "nidek",
+    "slug": "lypop-lypop",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 0,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-10-lypop-brochure.pdf",
+    "created_at": "2026-04-14T15:03:35.372Z",
+    "updated_at": "2026-10-16T12:20:57.317Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "2b984f7f-a0e7-4199-bb01-b686a62c7290",
+     "product_id": "6b31c251-147f-49b6-aaf2-a78c21f46eab",
+     "language_code": "fr",
+     "nom": "Unité de Consultation Compacte LyPop",
+     "description": "Unite de consultation ophtalmologique Nidek Lypop. Design compact et ergonomique pour la consultation.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "62a3c8c5-6a02-423f-a9d2-27ab9aeaf337",
+     "product_id": "6b31c251-147f-49b6-aaf2-a78c21f46eab",
+     "language_code": "en",
+     "nom": "LyPop Compact Examination Unit",
+     "description": "Nidek Lypop ophthalmic consultation unit. Compact and ergonomic design for consultations.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "241fd037-5e88-48c8-9523-eb39b8c0d985",
+     "product_id": "6b31c251-147f-49b6-aaf2-a78c21f46eab",
+     "type": "image",
+     "url": "/uploads/products/lypop-1776183500400-423fe95b.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-04-14T15:50:22.445Z"
+    }
+   ]
+  },
+  "9fad61dd-c843-4420-84b0-929de153fd46": {
+   "row": {
+    "id": "9fad61dd-c843-4420-84b0-929de153fd46",
+    "reference_fournisseur": "5806000A",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "haag-streit-u-k",
+    "slug": "perkins-mk3",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 2,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": "https://haag-streit.com/2%20Products/General%20diagnostics/Tonometers/Perkins%20Mk3/Brochures/HS_tonometers_5806001_Perkins_brochure_en.pdf",
+    "created_at": "2025-12-09T16:29:57.304Z",
+    "updated_at": "2026-04-02T16:58:13.383Z",
+    "partner_id": "bc6c494f-bfd1-488b-aabe-91bdfe65e519"
+   },
+   "translations": [
+    {
+     "id": "63a2510d-3a0f-4ac7-995b-7ad9b3079375",
+     "product_id": "9fad61dd-c843-4420-84b0-929de153fd46",
+     "language_code": "fr",
+     "nom": "Tonometre a Aplanation AT870",
+     "description": "Tonomètre portable Perkins Mk3 de Haag-Streit, conçu pour la mesure de la pression intraoculaire par aplanation. Éclairage LED intégré offrant une image améliorée des mires, batterie rechargeable longue durée. Compatible avec les prismes jetables Tonosafe et les prismes Goldmann réutilisables via le porte-prisme Tonogrip. Corrélation étroite avec le tonomètre Goldmann, y compris en position couchée. Idéal pour les patients alités, en fauteuil roulant et en pédiatrie.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "a5d0d453-29c6-495d-bcb1-100f6fcae428",
+     "product_id": "9fad61dd-c843-4420-84b0-929de153fd46",
+     "language_code": "en",
+     "nom": "AT870 Applanation Tonometer",
+     "description": "Haag-Streit Perkins Mk3 portable tonometer, designed for intraocular pressure measurement by applanation. Integrated LED illumination providing enhanced mire imaging, long-lasting rechargeable battery. Compatible with Tonosafe disposable prisms and reusable Goldmann prisms via the Tonogrip prism holder. Strong correlation with Goldmann tonometer readings, including in supine position. Ideal for bedbound, wheelchair, and pediatric patients.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "58f31553-b15b-4f0f-8798-aab0e5cb4998",
+     "product_id": "9fad61dd-c843-4420-84b0-929de153fd46",
+     "type": "image",
+     "url": "/uploads/products/5806000a-primary.jpg",
+     "alt_text": "Perkins MK3 - Image principale",
+     "title": "Perkins MK3 - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T16:29:57.399Z"
+    }
+   ]
+  },
+  "683027a2-f527-485c-86dc-44cfe93f2d70": {
+   "row": {
+    "id": "683027a2-f527-485c-86dc-44cfe93f2d70",
+    "reference_fournisseur": "2414-P-2032",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "KEELER",
+    "slug": "d-kat-t-ton-metro-de-aplanaci-n-desmontable-2414-p",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 5,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-11-26T10:41:12.439Z",
+    "updated_at": "2026-04-14T14:42:33.875Z",
+    "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+   },
+   "translations": [
+    {
+     "id": "b2d33dc0-b78e-48de-b497-c7df6b8f2681",
+     "product_id": "683027a2-f527-485c-86dc-44cfe93f2d70",
+     "language_code": "en",
+     "nom": "D-KAT T Digital Removable Applanation Tonometer",
+     "description": "Keeler D-KAT T digital removable applanation tonometer (ref. 2414-P-2032). Digital Goldmann-type applanation tonometer with LED display for accurate intraocular pressure measurement. The T-type removable design allows the tonometer to be detached and shared between multiple slit lamp stations. Internal electronics ensure fast, precise IOP readings. Includes calibration arm assembly and reusable tonometer prism.",
+     "fiche_technique": "Diagnóstico fiable: tonometría en su máxima expresión; Pantalla LED: para facilitar su uso en entornos oscuros; KAT T: tonómetro de aplanación desmontable (Copy); D-KAT R: tonómetro de aplanación fijo",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "645e538f-c751-44ac-a111-769d44172f2a",
+     "product_id": "683027a2-f527-485c-86dc-44cfe93f2d70",
+     "language_code": "fr",
+     "nom": "Tonometre a Aplanation Numerique Amovible D-KAT T",
+     "description": "Tonometre a aplanation numerique amovible Keeler D-KAT T (ref. 2414-P-2032). Tonometre a aplanation de type Goldmann numerique avec ecran LED pour la mesure precise de la pression intraoculaire. La conception amovible de type T permet de detacher le tonometre et de le partager entre plusieurs postes de lampe a fente, offrant une flexibilite dans les environnements cliniques multi-salles. L'electronique interne assure des lectures de PIO rapides et precises. Comprend un ensemble bras de calibration et un prisme de tonometre reutilisable. Alimente par pile alcaline AA standard 1,5V.",
+     "fiche_technique": "Diagnóstico fiable: tonometría en su máxima expresión; Pantalla LED: para facilitar su uso en entornos oscuros; KAT T: tonómetro de aplanación desmontable (Copy); D-KAT R: tonómetro de aplanación fijo",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "873b0c80-6fa0-4e2e-bb9b-cf679a5ad814",
+     "product_id": "683027a2-f527-485c-86dc-44cfe93f2d70",
+     "type": "image",
+     "url": "/uploads/products/2414-P-2032-primary.webp",
+     "alt_text": "D-KAT T: tonómetro de aplanación desmontable",
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-11-26T10:41:12.439Z"
+    }
+   ]
+  },
+  "4aa63549-d0a0-41f5-9b64-605a18bd00e1": {
+   "row": {
+    "id": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+    "reference_fournisseur": "2414-P-2030",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "KEELER",
+    "slug": "kat-t-ton-metro-de-aplanaci-n-desmontable-2414-p-2",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 5,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-11-26T10:41:07.608Z",
+    "updated_at": "2026-04-14T14:42:34.570Z",
+    "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+   },
+   "translations": [
+    {
+     "id": "a6cb8104-e021-47ab-b022-1eb6b5ddb3ba",
+     "product_id": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+     "language_code": "en",
+     "nom": "KAT T Removable Applanation Tonometer Variant",
+     "description": "Keeler KAT T removable Goldmann applanation tonometer (ref. 2414-P-2030). Mechanical applanation tonometer with T-type removable mounting that allows the instrument to be transferred between slit lamp stations. Measures intraocular pressure using the Goldmann method by determining the force required to flatten a 3.06mm area of the cornea. The removable design offers cost-effective flexibility in multi-room practices. Includes reusable doubling prism.",
+     "fiche_technique": "Pantalla LED: para facilitar su uso en entornos oscuros; KAT T: tonómetro de aplanación desmontable (Copy); KAT R: tonómetro de aplanación fijo; D-KAT T: tonómetro de aplanación desmontable",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "d4aae128-5fb5-40bc-92ba-5eca57a74157",
+     "product_id": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+     "language_code": "fr",
+     "nom": "Tonometre a Aplanation Amovible KAT T Variante",
+     "description": "Tonometre a aplanation de Goldmann amovible Keeler KAT T (ref. 2414-P-2030). Tonometre a aplanation mecanique avec montage amovible de type T permettant le transfert de l'instrument entre differents postes de lampe a fente. Mesure la pression intraoculaire selon la methode de Goldmann en determinant la force necessaire pour aplatir une zone corneenne de 3,06 mm. La conception amovible offre une flexibilite economique dans les cabinets multi-salles. Comprend un prisme de dedoublement reutilisable.",
+     "fiche_technique": "Pantalla LED: para facilitar su uso en entornos oscuros; KAT T: tonómetro de aplanación desmontable (Copy); KAT R: tonómetro de aplanación fijo; D-KAT T: tonómetro de aplanación desmontable",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "8e1dbfbb-44cc-4c40-84f2-52299aafd71d",
+     "product_id": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+     "type": "image",
+     "url": "/uploads/products/2414-P-2030-primary.webp",
+     "alt_text": "KAT T: tonómetro de aplanación desmontable",
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-11-26T10:41:07.608Z"
+    }
+   ]
+  },
+  "d68162c8-76f4-4a54-b3bb-62fb894ec1d9": {
+   "row": {
+    "id": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9",
+    "reference_fournisseur": "2417-P-2000",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "KEELER",
+    "slug": "pulsair-desktop-non-contact-tonometer-2417-p-2000",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 5,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-11-26T10:40:51.388Z",
+    "updated_at": "2026-04-14T14:42:34.988Z",
+    "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+   },
+   "translations": [
+    {
+     "id": "bb58750c-8f2a-4258-984f-58edf677ed09",
+     "product_id": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9",
+     "language_code": "en",
+     "nom": "Pulsair Desktop Non-Contact Tonometer",
+     "description": "Keeler Pulsair desktop non-contact tonometer (ref. 2417-P-2000). Latest-generation air-puff tonometer for non-invasive measurement of intraocular pressure. Features the Keeler intelligent puff system that starts gently and automatically increases pressure only for patients with elevated IOP, enhancing comfort. Compact desktop design occupies less than 50% of the space of conventional non-contact tonometers. LED-based alignment and positional detection systems enable automated measurement capture. No sterile consumables required. Wall-mountable option available for space-constrained environments.",
+     "fiche_technique": "",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "b4a8ab27-0316-47d9-8373-8a805e565bcd",
+     "product_id": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9",
+     "language_code": "fr",
+     "nom": "Tonometre Sans Contact de Bureau Pulsair",
+     "description": "Tonometre sans contact de bureau Keeler Pulsair (ref. 2417-P-2000). Tonometre a jet d'air de derniere generation pour la mesure non invasive de la pression intraoculaire. Equipe du systeme de souffle intelligent Keeler qui demarre en douceur et augmente automatiquement la pression uniquement pour les patients presentant une PIO elevee, ameliorant le confort. Conception de bureau compacte occupant moins de 50 % de l'espace des tonometres sans contact conventionnels. Les systemes d'alignement et de detection de position a LED permettent une capture de mesure automatisee. Aucun consommable sterile requis. Option de montage mural disponible pour les espaces restreints.",
+     "fiche_technique": "",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "b2add558-3c62-444f-8c9f-a7b3e7f934d8",
+     "product_id": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9",
+     "type": "image",
+     "url": "/uploads/products/2417-P-2000-primary.webp",
+     "alt_text": "Pulsair desktop – Non contact tonometer",
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-11-26T10:40:51.388Z"
+    }
+   ]
+  },
+  "e3e31895-9be0-47cf-a96d-4ae1e70bf183": {
+   "row": {
+    "id": "e3e31895-9be0-47cf-a96d-4ae1e70bf183",
+    "reference_fournisseur": "2418-P-2000",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "KEELER",
+    "slug": "tonocare-wireless-non-contact-tonometer-2418-p-200",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 5,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-11-26T10:40:47.329Z",
+    "updated_at": "2026-04-14T14:42:35.075Z",
+    "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+   },
+   "translations": [
+    {
+     "id": "8734dfcf-eff6-4934-baf2-87882d0fba6c",
+     "product_id": "e3e31895-9be0-47cf-a96d-4ae1e70bf183",
+     "language_code": "en",
+     "nom": "TonoCare 2.0 Wireless Non-Contact Tonometer",
+     "description": "Keeler TonoCare 2.0 wireless non-contact tonometer (ref. 2418-P-2000). Handheld wireless NCT with unique converging nozzle design for precise air delivery to the cornea. Measurement range of 5-50 mmHg conforming to BS EN ISO 8612. Ready for use in less than 10 seconds; bilateral IOP readings achievable within 30 seconds. Lightweight design at only 1.0 kg. Docking station provides charging and USB data transfer to PC. Operating temperature range 10-35 degrees C. Compliant with EN60601-1 and UL60601-1 safety standards. Class II medical device.",
+     "fiche_technique": "",
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "96d2ffc6-649d-4661-b491-73f65ad57264",
+     "product_id": "e3e31895-9be0-47cf-a96d-4ae1e70bf183",
+     "language_code": "fr",
+     "nom": "Tonometre Sans Contact Sans Fil TonoCare 2.0",
+     "description": "Tonometre sans contact sans fil Keeler TonoCare 2.0 (ref. 2418-P-2000). Tonometre sans contact portatif sans fil avec conception de buse convergente unique pour une distribution precise de l'air sur la cornee. Plage de mesure de 5 a 50 mmHg conforme a la norme BS EN ISO 8612. Operationnel en moins de 10 secondes ; mesures bilaterales de la PIO realisables en 30 secondes. Conception legere de seulement 1,0 kg. La station d'accueil assure la charge et le transfert de donnees USB vers PC. Plage de temperature de fonctionnement de 10 a 35 degres C. Conforme aux normes de securite EN60601-1 et UL60601-1. Dispositif medical de classe II.",
+     "fiche_technique": "",
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "a659c202-77e9-4dd3-a0ed-98b9369efb31",
+     "product_id": "e3e31895-9be0-47cf-a96d-4ae1e70bf183",
+     "type": "image",
+     "url": "/uploads/products/2418-P-2000-primary.webp",
+     "alt_text": "TonoCare wireless – Non contact tonometer",
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-11-26T10:40:47.329Z"
+    }
+   ]
+  },
+  "5a8aba58-c1b9-4ec0-9edd-d58f32f28835": {
+   "row": {
+    "id": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835",
+    "reference_fournisseur": "24-3000/24-3000-V",
+    "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+    "constructeur": "keeler",
+    "slug": "accupen-handheld-tonom-tre",
+    "status": "archived",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 5,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T10:55:33.894Z",
+    "updated_at": "2026-04-14T14:42:32.050Z",
+    "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+   },
+   "translations": [
+    {
+     "id": "59d3d69f-2700-4f61-9a96-d95c170e60b1",
+     "product_id": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835",
+     "language_code": "fr",
+     "nom": "Accupen Handheld Tonomètre",
+     "description": "Tonometre portatif Keeler AccuPen (ref. 24-3000/24-3000-V). Tonometre de contact compact et portable pour la mesure de la pression intraoculaire (PIO) en toute position du patient. Conception legere en forme de stylo permettant un depistage rapide de la PIO en milieu clinique et a domicile. Les embouts jetables garantissent une mesure hygienique pour chaque patient. L'affichage numerique fournit des lectures de PIO immediates. Ideal pour le depistage, les evaluations pediatriques et les patients ne pouvant pas etre positionnes a la lampe a fente.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "64fb4359-b73b-4a61-a477-4840e1870c26",
+     "product_id": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835",
+     "language_code": "en",
+     "nom": "Accupen Handheld Tonometer",
+     "description": "Keeler AccuPen handheld tonometer (ref. 24-3000/24-3000-V). Compact, portable contact tonometer for measuring intraocular pressure (IOP) at any patient position. Lightweight pen-style design enables quick IOP screening in clinical and domiciliary settings. Disposable tip covers ensure hygienic measurement for each patient. Digital display provides immediate IOP readings. Ideal for screening, paediatric assessments, and patients who cannot be positioned at a slit lamp.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ffb879cf-719b-46b4-8d05-fe6152b9615b",
+     "product_id": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835",
+     "type": "image",
+     "url": "/uploads/products/24-3000-24-3000-v-primary.webp",
+     "alt_text": "Accupen Handheld Tonomètre - Image principale",
+     "title": "Accupen Handheld Tonomètre - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T10:55:33.906Z"
+    }
+   ]
+  },
+  "2576f5ce-74b4-457a-b7d5-da4ef892faae": {
+   "row": {
+    "id": "2576f5ce-74b4-457a-b7d5-da4ef892faae",
+    "reference_fournisseur": "LM-7",
+    "category_id": "a593036f-f748-4a63-b386-0ae0cb593eed",
+    "constructeur": "nidek",
+    "slug": "frontofocometre-72p4",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T12:11:41.304Z",
+    "updated_at": "2026-04-17T17:04:06.952Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "c04f6bf0-8fe4-4ad3-976c-2bf14410201c",
+     "product_id": "2576f5ce-74b4-457a-b7d5-da4ef892faae",
+     "language_code": "fr",
+     "nom": "Frontofocomètre Automatique LM-7 / LM-7P",
+     "description": "Le frontofocomètre automatique NIDEK LM-7 est un appareil compact et ergonomique pour la détermination du type de verre et la mesure de puissance des verres montés ou non montés. Doté de capacités de détection automatique pour des mesures optiques efficaces et précises.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "9f0b29cc-3065-4e49-b5c2-fdc045340a92",
+     "product_id": "2576f5ce-74b4-457a-b7d5-da4ef892faae",
+     "language_code": "en",
+     "nom": "LM-7 / LM-7P Automatic Lensmeter",
+     "description": "NIDEK LM-7 is a compact and ergonomic automatic lensmeter for lens type determination and power measurement of mounted or unmounted lenses. Features automatic detection capabilities for efficient and accurate optical measurements.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "34b87851-0bfd-4658-a69f-bf8a62666065",
+     "product_id": "2576f5ce-74b4-457a-b7d5-da4ef892faae",
+     "type": "image",
+     "url": "/uploads/products/lm-7-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:42:45.352Z"
+    },
+    {
+     "id": "92986916-e196-4ae2-8aeb-df7ceeca0ba2",
+     "product_id": "2576f5ce-74b4-457a-b7d5-da4ef892faae",
+     "type": "pdf",
+     "url": "/uploads/products/lm-7-gallery-2.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:42:48.614Z"
+    }
+   ]
+  },
+  "c5916866-4e40-4436-b950-654e945b443a": {
+   "row": {
+    "id": "c5916866-4e40-4436-b950-654e945b443a",
+    "reference_fournisseur": "LM-1800P",
+    "category_id": "a593036f-f748-4a63-b386-0ae0cb593eed",
+    "constructeur": "nidek",
+    "slug": "frontofocometre",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T12:11:39.283Z",
+    "updated_at": "2026-04-02T16:58:15.602Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "d82a2b55-231a-431c-978c-bdbd2a5853ba",
+     "product_id": "c5916866-4e40-4436-b950-654e945b443a",
+     "language_code": "fr",
+     "nom": "Frontofocomètre Automatique LM-1800 P/PD",
+     "description": "Le frontofocomètre automatique NIDEK LM-1800P est un appareil haute performance avec imprimante intégrée pour la mesure et la documentation complètes de la puissance des verres. Conçu pour un flux de travail efficace en cabinet d'optique avec des mesures précises et fiables.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "0d4dfbb9-e76e-4118-906d-e8d950bd7785",
+     "product_id": "c5916866-4e40-4436-b950-654e945b443a",
+     "language_code": "en",
+     "nom": "LM-1800P Automatic Lensmeter P/PD",
+     "description": "NIDEK LM-1800P is a high-performance automatic lensmeter with integrated printer for comprehensive lens power measurement and documentation. Designed for efficient optical practice workflow with accurate and reliable measurements.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "bc8b7f14-634b-49aa-b2b1-01bffbc11472",
+     "product_id": "c5916866-4e40-4436-b950-654e945b443a",
+     "type": "image",
+     "url": "/uploads/products/lm-1800p-primary.jpg",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 1,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:42:38.482Z"
+    },
+    {
+     "id": "5a412a25-6d0b-4890-86a9-ddc31c186975",
+     "product_id": "c5916866-4e40-4436-b950-654e945b443a",
+     "type": "pdf",
+     "url": "/uploads/products/lm-1800p-gallery-2.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 2,
+     "is_primary": false,
+     "created_at": "2025-12-09T12:42:40.932Z"
+    }
+   ]
+  },
+  "87dc43e2-6b64-4bce-86ed-41a18ccebf49": {
+   "row": {
+    "id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+    "reference_fournisseur": "FE-2010",
+    "category_id": "c76a0001-0000-4000-8000-000000000002",
+    "constructeur": "nidek",
+    "slug": "fauteuil-d-examen-electrique",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 1,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:42:58.553Z",
+    "updated_at": "2026-11-14T18:24:35.685Z",
+    "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+   },
+   "translations": [
+    {
+     "id": "4403f963-89cd-45a1-9f93-14ad79b1c159",
+     "product_id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+     "language_code": "en",
+     "nom": "FE-2010 Electric Examination Chair",
+     "description": "NIDEK FE-2010 is an electric examination chair designed for patient comfort during ophthalmic examinations. Features motorized height and positioning adjustments for optimal patient positioning and clinical workflow efficiency.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "7e1f343d-466b-493e-9ecf-617036334cd3",
+     "product_id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+     "language_code": "fr",
+     "nom": "Fauteuil d'Examen Électrique FE-2010",
+     "description": "Le fauteuil d'examen électrique NIDEK FE-2010 est conçu pour le confort du patient lors des examens ophtalmiques. Il est équipé de réglages motorisés en hauteur et en position pour un positionnement optimal du patient et une efficacité accrue du flux de travail clinique.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "7d9546b6-bdfc-49c7-bcb6-b7f4209e995c",
+     "product_id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+     "type": "pdf",
+     "url": "/uploads/products/fe-2010-brochure.pdf",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 3,
+     "is_primary": true,
+     "created_at": "2025-12-09T12:11:00.171Z"
+    },
+    {
+     "id": "97cfefd6-8f73-4936-9412-a2e763c00e52",
+     "product_id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+     "type": "image",
+     "url": "/uploads/products/fe-2010-primary.jpg",
+     "alt_text": "Fauteuil D'examen Electrique - Image principale",
+     "title": "Fauteuil D'examen Electrique - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:42:58.601Z"
+    },
+    {
+     "id": "d545585f-329f-4e68-9044-a45d588ccc3a",
+     "product_id": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+     "type": "image",
+     "url": "/uploads/products/fe-2010-gallery-2.pdf",
+     "alt_text": "Fauteuil D'examen Electrique - Image 2",
+     "title": "Fauteuil D'examen Electrique - Image 2",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2025-12-09T11:42:58.603Z"
+    }
+   ]
+  },
+  "a1033956-d016-42d6-9c46-35e89ce5ff77": {
+   "row": {
+    "id": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+    "reference_fournisseur": "TL-L15",
+    "category_id": "c76a0001-0000-4000-8000-000000000002",
+    "constructeur": "ray-vision",
+    "slug": "tl-l15-verre-d-essai-ensemble",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 60,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:36:47.822Z",
+    "updated_at": "2026-11-14T18:24:35.640Z",
+    "partner_id": "955797bf-3f11-4863-82c3-40481e301e21"
+   },
+   "translations": [
+    {
+     "id": "397832b9-b4df-4f90-88e6-8f1575523321",
+     "product_id": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+     "language_code": "en",
+     "nom": "TL-L15 Trial Lens Set",
+     "description": "A premium refraction accessory designed to meet the needs of professional optometrists and ophthalmologists. Featuring a large 26 mm plastic rim, the TL-L15 adopts an innovative dual-ring structure.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "1463f75d-a5c0-457a-b30d-4530a4e95f98",
+     "product_id": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+     "language_code": "fr",
+     "nom": "TL-L15 Verre D'essai Ensemble",
+     "description": "Accessoire de réfraction premium conçu pour répondre aux besoins des optométristes et ophtalmologistes professionnels. Avec une grande monture plastique de 26 mm, le TL-L15 adopte une structure innovante à double anneau.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "68a7db74-657a-4e48-81f4-e5d676f54e3e",
+     "product_id": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+     "type": "image",
+     "url": "https://omo-oss-image.thefastimg.com/portal-saas/pg2025051213484812726/cms/image/7404028e-b6b1-46b5-8cee-726587c1e2ae.png_640xaf.png",
+     "alt_text": "Tl-L15 Verre D'essai Ensemble - Image principale",
+     "title": "Tl-L15 Verre D'essai Ensemble - Image principale",
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2025-12-09T11:36:47.827Z"
+    },
+    {
+     "id": "1a23c49d-4bfd-4167-bf28-fc1f6cbeb718",
+     "product_id": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+     "type": "image",
+     "url": "https://omo-oss-image.thefastimg.com/portal-saas/pg2025051213484812726/cms/image/4c046f01-adac-4926-a635-5cdbcab600f6.jpeg",
+     "alt_text": "Tl-L15 Verre D'essai Ensemble - Image 2",
+     "title": "Tl-L15 Verre D'essai Ensemble - Image 2",
+     "sort_order": 1,
+     "is_primary": false,
+     "created_at": "2025-12-09T11:36:47.828Z"
+    }
+   ]
+  },
+  "b6eb72dc-a45a-4689-b08a-b282b4a43174": {
+   "row": {
+    "id": "b6eb72dc-a45a-4689-b08a-b282b4a43174",
+    "reference_fournisseur": "TL-V20",
+    "category_id": "c76a0001-0000-4000-8000-000000000002",
+    "constructeur": "ray-vision",
+    "slug": "tl-v20-verre-d-essai-ensemble",
+    "status": "active",
+    "is_featured": false,
+    "is_new_arrival": false,
+    "sort_order": 90,
+    "meta_title": null,
+    "meta_description": null,
+    "pdf_brochure_url": null,
+    "created_at": "2025-12-09T11:36:49.847Z",
+    "updated_at": "2026-11-14T18:24:35.648Z",
+    "partner_id": "955797bf-3f11-4863-82c3-40481e301e21"
+   },
+   "translations": [
+    {
+     "id": "45a66335-43cc-42a6-81ac-762ae129bd12",
+     "product_id": "b6eb72dc-a45a-4689-b08a-b282b4a43174",
+     "language_code": "en",
+     "nom": "TL-V20 Trial Lens Set",
+     "description": "A premium refraction accessory designed to meet the needs of professional optometrists and ophthalmologists. Containing 272 pieces.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    },
+    {
+     "id": "763083ee-d28d-4742-9e68-0f55a63e4016",
+     "product_id": "b6eb72dc-a45a-4689-b08a-b282b4a43174",
+     "language_code": "fr",
+     "nom": "TL-V20 Verre D'essai Ensemble",
+     "description": "Accessoire de réfraction premium conçu pour répondre aux besoins des optométristes et ophtalmologistes professionnels. Contient 272 pièces.",
+     "fiche_technique": null,
+     "meta_title": null,
+     "meta_description": null
+    }
+   ],
+   "media": [
+    {
+     "id": "ea0f537f-ec78-497f-ac57-7d9a6430b16f",
+     "product_id": "b6eb72dc-a45a-4689-b08a-b282b4a43174",
+     "type": "image",
+     "url": "/uploads/products/b6eb72dc-a45a-4689-b08a-b282b4a43174/1768403792387-0.png",
+     "alt_text": null,
+     "title": null,
+     "sort_order": 0,
+     "is_primary": true,
+     "created_at": "2026-01-15T10:20:47.990Z"
+    }
+   ]
+  }
+ },
+ "categories": {
+  "unites-excellence": {
+   "id": "135e3fc7-7d6b-4105-9830-f0fac90fb427",
+   "name": "Unités « d'Excellence »",
+   "slug": "unites-excellence",
+   "description": null,
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 1,
+   "is_active": true,
+   "meta_title": null,
+   "meta_description": null,
+   "image_url": "/uploads/categories/q87-unites-excellence.jpg",
+   "created_at": "2026-08-23T11:25:38.144Z",
+   "updated_at": "2026-11-15T11:04:25.943Z",
+   "type": "equipment"
+  },
+  "unites-performances": {
+   "id": "995b5f36-4f14-4ce8-89cd-b13bd6a50aba",
+   "name": "Unités « Performances »",
+   "slug": "unites-performances",
+   "description": null,
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 2,
+   "is_active": true,
+   "meta_title": null,
+   "meta_description": null,
+   "image_url": "/uploads/categories/q87-unites-performances.jpg",
+   "created_at": "2026-08-23T11:25:38.588Z",
+   "updated_at": "2026-11-15T11:04:25.945Z",
+   "type": "equipment"
+  },
+  "unites-compactes": {
+   "id": "11e96df3-2cec-4345-8fe6-b276c88d4185",
+   "name": "Unités « Compactes »",
+   "slug": "unites-compactes",
+   "description": null,
+   "parent_id": "baf51b41-1784-44cb-9c99-db34f444d103",
+   "sort_order": 3,
+   "is_active": true,
+   "meta_title": null,
+   "meta_description": null,
+   "image_url": "/uploads/categories/q87-unites-compactes.jpg",
+   "created_at": "2026-08-23T11:25:38.894Z",
+   "updated_at": "2026-11-15T11:04:25.948Z",
+   "type": "equipment"
+  },
+  "cryochirurgie": {
+   "id": "c76a0001-0000-4000-8000-000000000003",
+   "name": "Cryochirurgie",
+   "slug": "cryochirurgie",
+   "description": null,
+   "parent_id": "c76a0001-0000-4000-8000-000000000001",
+   "sort_order": 20,
+   "is_active": true,
+   "meta_title": null,
+   "meta_description": null,
+   "image_url": "/uploads/categories/oph-cryochirurgie.jpg",
+   "created_at": "2026-11-14T18:24:35.430Z",
+   "updated_at": "2026-11-14T18:24:35.573Z",
+   "type": "equipment"
+  }
+ }
+}
