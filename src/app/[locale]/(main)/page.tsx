@@ -32,12 +32,13 @@ const localized = (value: unknown, locale: string): string => {
   return '';
 };
 
-/* Curve of the 1997 band, measured on the mockup (viewBox 1000×1000, stretched to the band):
-   top at 66.6 % of the width, bottom at 45.2 %, slightly bowed. */
-const CURVE = (dx: number) => `M${666 + dx} 0 Q${550 + dx} 350 ${452 + dx} 1000`;
-const CURVE_BACK = (dx: number) => `L${452 + dx} 1000 Q${550 + dx} 350 ${666 + dx} 0 Z`;
-const CURVE_M = (dy: number) => `M0 ${300 + dy} Q450 ${70 + dy} 1000 ${20 + dy}`;
-const CURVE_M_BACK = (dy: number) => `L1000 ${20 + dy} Q450 ${70 + dy} 0 ${300 + dy} Z`;
+/* Curve of the 1997 band, drawn in the box of the portrait building photo (viewBox 1000×1000 stretched
+   to the photo, which is shown whole, roof to lawn: owner 2026-11-16) so it sits at the same place on the
+   photo at every screen width; slightly bowed like the mockup. */
+const CURVE = (dx: number) => `M${110 + dx} 0 Q${52 + dx} 500 ${0 + dx} 1000`;
+const CURVE_BACK = (dx: number) => `L${0 + dx} 1000 Q${52 + dx} 500 ${110 + dx} 0 Z`;
+const CURVE_M = (dy: number) => `M0 ${170 + dy} Q450 ${40 + dy} 1000 ${10 + dy}`;
+const CURVE_M_BACK = (dy: number) => `L1000 ${10 + dy} Q450 ${40 + dy} 0 ${170 + dy} Z`;
 
 const svgMask = (d: string): React.CSSProperties => {
   const url = `url("data:image/svg+xml,${encodeURIComponent(
@@ -45,14 +46,14 @@ const svgMask = (d: string): React.CSSProperties => {
   )}")`;
   return { WebkitMaskImage: url, maskImage: url, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' };
 };
-const BAND_PHOTO_MASK = svgMask(`M666 0 Q550 350 452 1000 L1000 1000 L1000 0 Z`);
-const BAND_PHOTO_MASK_MOBILE = svgMask(`M0 300 Q450 70 1000 20 L1000 1000 L0 1000 Z`);
+const BAND_PHOTO_MASK = svgMask(`M110 0 Q52 500 0 1000 L1000 1000 L1000 0 Z`);
+const BAND_PHOTO_MASK_MOBILE = svgMask(`M0 170 Q450 40 1000 10 L1000 1000 L0 1000 Z`);
 
 /** Cyan swoosh along the curve: bright thin edge, solid cyan, then fading into the photo (thin slices = smooth gradient). */
 function BandSwoosh({ className, mobile = false }: { className?: string; mobile?: boolean }) {
   const STEPS = 16;
-  const SOLID = 14; // viewBox units of solid cyan before the fade
-  const FADE = 40;
+  const SOLID = mobile ? 14 : 45; // viewBox units of solid cyan before the fade
+  const FADE = mobile ? 40 : 60;
   const slices = Array.from({ length: STEPS }, (_, i) => {
     const a = SOLID + (FADE * i) / STEPS;
     const b = SOLID + (FADE * (i + 1)) / STEPS;
@@ -137,19 +138,14 @@ export default function HomePage() {
         <section className="px-4 pb-10 lg:px-[28px]">
           <div className="relative mx-auto max-w-[1384px] overflow-hidden rounded-[3px_3px_10px_10px] bg-[linear-gradient(180deg,#D9EFFD_0%,#D4EBFB_100%)] shadow-[0_3px_8px_rgba(20,60,120,0.14)] md:h-[340px] lg:h-[473px]">
             {/* Desktop photo: masked to the right of the curve, swoosh drawn over the seam */}
-            <div aria-hidden="true" className="absolute inset-0 hidden md:block" style={BAND_PHOTO_MASK}>
-              <img
-                src="/images/home/band-building.jpg"
-                alt=""
-                className="absolute right-0 top-0 h-full w-[55%] object-cover"
-                style={{ objectPosition: '50% 4%' }}
-              />
+            <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden aspect-[1024/1230] md:block">
+              <img src="/images/home/band-building.jpg" alt="" className="h-full w-full" style={BAND_PHOTO_MASK} />
+              <BandSwoosh className="absolute inset-0 h-full w-full" />
             </div>
-            <BandSwoosh className="absolute inset-0 hidden h-full w-full md:block" />
 
             <div className="relative px-5 pb-6 pt-7 md:pl-[45px] md:pr-0 md:pt-[39px] xl:pl-[52px] xl:pt-[45px]">
-              <div className="border-l-4 border-[#DD0F0E] pl-4 md:max-w-[56%] md:pl-[31px] lg:max-w-[680px]">
-                <h2 className="-mt-[6px] text-[22px] font-bold leading-[1.2] text-[#080CA0] md:text-[26px] lg:whitespace-nowrap lg:text-[30px] xl:text-[35px]">{t('band.title')}</h2>
+              <div className="border-l-4 border-[#DD0F0E] pl-4 md:max-w-[56%] md:pl-[31px] xl:max-w-[680px]">
+                <h2 className="-mt-[6px] text-[22px] font-bold leading-[1.2] text-[#080CA0] md:text-[26px] lg:text-[30px] xl:whitespace-nowrap xl:text-[35px]">{t('band.title')}</h2>
                 <p className="mt-2 text-[15px] leading-[1.2] text-[#1E4597] lg:mt-[8px] lg:max-w-[560px] lg:text-[19px] xl:max-w-[640px] xl:text-[22px]">{t('band.text')}</p>
                 <Link
                   href={`/${locale}/about`}
@@ -162,9 +158,9 @@ export default function HomePage() {
             </div>
 
             {/* Phone photo: below the text, curved top edge */}
-            <div aria-hidden="true" className="relative h-[220px] md:hidden">
+            <div aria-hidden="true" className="relative h-[460px] md:hidden">
               <div className="absolute inset-0" style={BAND_PHOTO_MASK_MOBILE}>
-                <img src="/images/home/band-building.jpg" alt="" className="h-full w-full object-cover" style={{ objectPosition: '50% 20%' }} />
+                <img src="/images/home/band-building.jpg" alt="" className="h-full w-full object-cover" style={{ objectPosition: '50% 100%' }} />
               </div>
               <BandSwoosh mobile className="absolute inset-0 h-full w-full" />
             </div>
