@@ -237,7 +237,7 @@ export default function SavPage() {
             <h1 className="text-[30px] font-bold leading-tight tracking-tight text-[#10146B] sm:text-4xl lg:text-[44px] lg:leading-[1.1] xl:text-[50px]">
               {t('hero.title')}
             </h1>
-            <p className="mt-3 max-w-[560px] text-lg font-medium italic leading-snug text-[#10146B] lg:mt-4 lg:text-[28px] lg:leading-[1.25]">
+            <p className="mt-3 max-w-[560px] text-base leading-relaxed text-[#10146B] lg:mt-4 lg:text-[21px]">
               {t('hero.subtitle')}
             </p>
             <span className="mt-5 block h-1.5 w-24 rounded-full bg-[#16B3A3] lg:mt-6" aria-hidden="true" />
