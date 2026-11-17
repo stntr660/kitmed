@@ -38,6 +38,7 @@ const NAV_ITEMS = [
   { key: 'home', path: '' },
   { key: 'about', path: '/about' },
   { key: 'products', path: '/products' },
+  { key: 'partners', path: '/partners' },
   { key: 'catalogues', path: '/catalogues' },
   { key: 'sav', path: '/sav' },
   { key: 'contact', path: '/contact' },
@@ -151,10 +152,14 @@ export function Header({ locale, className }: HeaderProps) {
               <Linkedin className="h-3.5 w-3.5 fill-current" />
             </a>
           </div>
-          <span className={cn('flex flex-shrink-0 items-center gap-1.5 text-xs', NAVY)}>
-            <MapPin className="h-3.5 w-3.5 text-accent" />
-            {t('location')}
-          </span>
+          <div className="flex flex-shrink-0 items-center gap-3">
+            <span className={cn('flex items-center gap-1.5 text-xs', NAVY)}>
+              <MapPin className="h-3.5 w-3.5 text-accent" />
+              <span className="hidden sm:inline">{t('location')}</span>
+            </span>
+            <span className="h-4 w-px bg-[#10146B]/30" />
+            {languageSwitch}
+          </div>
         </div>
       </div>
 
