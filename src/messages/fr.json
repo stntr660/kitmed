@@ -2321,12 +2321,24 @@
   "contact": {
     "hero": {
       "badge": "Contactez-nous",
-      "title": "Entrons en Contact",
-      "description": "Notre équipe d'experts est à votre disposition pour vous accompagner dans tous vos projets d'équipements médicaux."
+      "title": "Contactez-nous",
+      "description": "Une question, un besoin d'équipement médical, un accompagnement ou un service SAV ? Notre équipe est à votre écoute et vous répond dans les meilleurs délais.",
+      "question": "Une question, un besoin d'équipement médical, un accompagnement ou un service SAV ?",
+      "answer": "Notre équipe est à votre écoute et vous répond dans les meilleurs délais."
     },
     "info": {
       "title": "Nos Coordonnées",
-      "description": "Contactez-nous par le moyen qui vous convient le mieux. Nous sommes là pour répondre à toutes vos questions."
+      "description": "Contactez-nous par le moyen qui vous convient le mieux. Nous sommes là pour répondre à toutes vos questions.",
+      "headOffice": "Siège social",
+      "addressLine1": "20, rue Lalande",
+      "addressLine2": "Quartier des Hôpitaux",
+      "addressLine3": "Casablanca – Maroc",
+      "perks": {
+        "fastReply": "Réponse rapide",
+        "team": "Une équipe\nà votre écoute",
+        "support": "Un accompagnement\npersonnalisé",
+        "sav": "Un service SAV\ndédié"
+      }
     },
     "hours": {
       "title": "Horaires d'Ouverture",
@@ -2336,7 +2348,7 @@
       "closed": "Fermé"
     },
     "form": {
-      "title": "Envoyez-nous un Message",
+      "title": "Formulaire de contact",
       "firstName": "Prénom",
       "lastName": "Nom",
       "email": "Email",
@@ -2344,7 +2356,7 @@
       "company": "Société",
       "subject": "Objet",
       "message": "Message",
-      "submit": "Envoyer le Message",
+      "submit": "Envoyer ma demande",
       "errors": {
         "missingFields": "Veuillez remplir tous les champs obligatoires (nom, email, telephone).",
         "invalidEmail": "Veuillez entrer une adresse email valide.",
@@ -2357,7 +2369,15 @@
         "phone": "+212 6XX XXX XXX",
         "company": "Nom de votre société",
         "subject": "Objet de votre demande",
-        "message": "Décrivez votre demande en détail..."
+        "message": "Décrivez votre demande en détail…"
+      },
+      "subjectPlaceholder": "Sélectionnez un objet",
+      "subjects": {
+        "quote": "Demande de devis",
+        "product": "Information sur un produit",
+        "sav": "Service après-vente (SAV)",
+        "partnership": "Partenariat / Export",
+        "other": "Autre demande"
       }
     },
     "success": {

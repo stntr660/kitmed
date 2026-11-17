@@ -2349,12 +2349,24 @@
   "contact": {
     "hero": {
       "badge": "Contact Us",
-      "title": "Get in Touch",
-      "description": "Our team of experts is at your disposal to support you in all your medical equipment projects."
+      "title": "Contact us",
+      "description": "A question, a need for medical equipment, support or after-sales service? Our team is here to listen and will reply as quickly as possible.",
+      "question": "A question, a need for medical equipment, support or after-sales service?",
+      "answer": "Our team is here to listen and will reply as quickly as possible."
     },
     "info": {
-      "title": "Our Contact Information",
-      "description": "Contact us by the method that suits you best. We are here to answer all your questions."
+      "title": "Our Contact Details",
+      "description": "Contact us by the method that suits you best. We are here to answer all your questions.",
+      "headOffice": "Head office",
+      "addressLine1": "20, rue Lalande",
+      "addressLine2": "Quartier des Hôpitaux",
+      "addressLine3": "Casablanca – Morocco",
+      "perks": {
+        "fastReply": "Fast response",
+        "team": "A team\nthat listens",
+        "support": "Personalised\nsupport",
+        "sav": "A dedicated\nafter-sales service"
+      }
     },
     "hours": {
       "title": "Business Hours",
@@ -2364,7 +2376,7 @@
       "closed": "Closed"
     },
     "form": {
-      "title": "Send Us a Message",
+      "title": "Contact form",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
@@ -2372,7 +2384,7 @@
       "company": "Company",
       "subject": "Subject",
       "message": "Message",
-      "submit": "Send Message",
+      "submit": "Send my request",
       "errors": {
         "missingFields": "Please fill in all required fields (name, email, phone).",
         "invalidEmail": "Please enter a valid email address.",
@@ -2385,7 +2397,15 @@
         "phone": "+212 6XX XXX XXX",
         "company": "Your company name",
         "subject": "Subject of your inquiry",
-        "message": "Describe your request in detail..."
+        "message": "Describe your request in detail…"
+      },
+      "subjectPlaceholder": "Select a subject",
+      "subjects": {
+        "quote": "Quote request",
+        "product": "Product information",
+        "sav": "After-sales service (SAV)",
+        "partnership": "Partnership / Export",
+        "other": "Other request"
       }
     },
     "success": {
