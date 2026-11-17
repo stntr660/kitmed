@@ -73,7 +73,7 @@ function Field({ icon, invalid, children }: { icon: ReactNode; invalid?: boolean
   );
 }
 
-/** Gold laurel wreath drawn around the "+30 ans" badge. */
+/** Gold laurel wreath drawn around the "30 ans" badge. */
 function Laurel({ className }: { className?: string }) {
   // Leaves placed along a circle (phi in degrees, SVG coordinates: 90 = bottom, 180 = left, 270 = top)
   const leaf = (phi: number, tilt: number, key: string) => {
@@ -210,7 +210,7 @@ export default function NewRFPPage() {
         {/* Building photo, desktop: centre column blending into the sky */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 hidden lg:block lg:left-[35%] lg:w-[34%] xl:left-[35%] xl:w-[30.5%]"
+          className="pointer-events-none absolute bottom-0 top-6 hidden lg:block lg:left-[33%] lg:w-[28%] xl:left-[35%] xl:w-[25%]"
           style={{
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 16%, #000 90%, transparent 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, #000 16%, #000 90%, transparent 100%)',
@@ -229,7 +229,7 @@ export default function NewRFPPage() {
               fill
               priority
               sizes="40vw"
-              className="object-cover object-[center_35%]"
+              className="object-cover object-[85%_0%]"
             />
           </div>
         </div>
@@ -307,7 +307,7 @@ export default function NewRFPPage() {
                 alt=""
                 fill
                 sizes="100vw"
-                className="object-cover object-[center_30%]"
+                className="object-cover object-[35%_0%]"
               />
             </div>
 
