@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,7 @@ import { Building2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
+import { DOMAIN_PHOTOS, PRODUCT_DOMAINS } from '@/components/products/productDomains';
 
 interface Partner {
   id: string;
@@ -33,15 +34,56 @@ interface Category {
   productCount?: number;
 }
 
-// The partners strip shows a photo per discipline chosen by the client,
-// cropped square around the subject; the catalogue pages keep their own photos.
-const CATEGORY_PHOTOS: Record<string, string> = {
-  ophtalmologie: '/images/partners/ophtalmologie.jpg',
-  'orl-oto-rhino-laryngologie': '/images/partners/orl-oto-rhino-laryngologie.jpg',
-  'mobilier-et-literie-hospitaliers': '/images/partners/mobilier-et-literie-hospitaliers.jpg',
-  orthopedics: '/images/partners/orthopedics.jpg',
-  'dispositifs-medicaux': '/images/partners/dispositifs-medicaux.jpg',
+// Category filter tiles: one photo per domain, cropped from the owner's mockup
+// (public/images/products/domaine-<slug>.jpg); other categories fall back to their own image.
+const photoFor = (category: Category) => DOMAIN_PHOTOS[category.slug] ?? category.imageUrl ?? null;
+
+// The 7 mockup domains first, in the mockup's order; any other category after them.
+const DOMAIN_ORDER: string[] = PRODUCT_DOMAINS.map((d) => d.slug);
+const orderedCategories = (list: Category[]) =>
+  [...list].sort((a, b) => {
+    const ia = DOMAIN_ORDER.indexOf(a.slug);
+    const ib = DOMAIN_ORDER.indexOf(b.slug);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+  });
+
+// Fades the hero photo's edges into the background (left edge most, like the mockup).
+const HERO_FADE_LAYERS =
+  'linear-gradient(to right, transparent 0%, #000 15%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 86%, transparent 100%)';
+const HERO_PHOTO_FADE: CSSProperties = {
+  maskImage: HERO_FADE_LAYERS,
+  WebkitMaskImage: HERO_FADE_LAYERS,
+  maskComposite: 'intersect',
+  WebkitMaskComposite: 'source-in',
 };
+
+/** « ORL (Oto-Rhino-Laryngologie) »: as in the mockup, the part in brackets is set in regular weight. */
+function DomainLabel({ label }: { label: string }) {
+  const i = label.indexOf(' (');
+  if (i < 0) return <>{label}</>;
+  return (
+    <>
+      {label.slice(0, i)}
+      <span className="block font-normal">{label.slice(i + 1)}</span>
+    </>
+  );
+}
+
+/** Soft white/blue waves behind the hero, as in the mockup. */
+function HeroWaves() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[55%] w-full"
+      viewBox="0 0 1440 400"
+      preserveAspectRatio="none"
+    >
+      <path d="M0 210 C 260 120 520 300 820 230 C 1080 170 1260 200 1440 150 L1440 400 L0 400 Z" fill="#ffffff" fillOpacity="0.35" />
+      <path d="M0 290 C 300 210 560 360 900 300 C 1140 255 1300 300 1440 260 L1440 400 L0 400 Z" fill="#ffffff" fillOpacity="0.55" />
+      <path d="M0 350 C 360 300 700 400 1040 350 C 1220 325 1340 345 1440 330 L1440 400 L0 400 Z" fill="#F4F8FE" />
+    </svg>
+  );
+}
 
 export default function PartnersPage() {
   const t = useTranslations('partners');
@@ -123,67 +165,84 @@ export default function PartnersPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Header (matches category pages) */}
-      <section className="bg-white border-b py-4 lg:py-6">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
-              {t('hero.title')}
+      {/* Hero (owner mockup 2026-11-17): light-blue background with soft waves + product composition photo */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#F1F7FE] via-[#E6F0FC] to-[#D6E8FB]">
+        <HeroWaves />
+        <div className="relative mx-auto grid w-full max-w-[1440px] items-center gap-6 px-4 pb-6 pt-8 sm:pb-14 sm:pt-10 lg:grid-cols-[1fr_minmax(0,47%)] lg:gap-0 lg:px-[34px] lg:pb-10 lg:pt-6 xl:pl-[78px]">
+          <div className="relative z-10 lg:py-10">
+            <h1 className="max-w-[720px] text-[28px] font-bold leading-[1.18] tracking-[-0.01em] text-[#10146B] sm:text-[38px] lg:text-[42px] xl:w-[800px] xl:max-w-none xl:text-[46px]">
+              {t('solutionsHero.title')}
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              {t('hero.description')}
+            <span aria-hidden="true" className="mt-5 block h-[5px] w-[100px] rounded-full bg-[#10146B] lg:mt-8" />
+            <p className="mt-5 max-w-[600px] text-[17px] leading-[1.45] text-[#2A2F45] sm:text-[20px] lg:mt-7 xl:text-[26px]">
+              {t('solutionsHero.description')}
             </p>
+          </div>
+          <div className="relative -mx-4 sm:mx-0 lg:-ml-24 lg:-mr-[34px]">
+            <img
+              src="/images/products/produits-hero.jpg"
+              alt={t('solutionsHero.imageAlt')}
+              width={1314}
+              height={940}
+              className="block h-auto w-full"
+              style={HERO_PHOTO_FADE}
+            />
           </div>
         </div>
       </section>
 
-      {/* Category Filter Chips */}
+      {/* Domain photo tiles = category filter (clicking the selected one again shows all partners) */}
       {categories.length > 0 && (
-        <section className="bg-white border-b sticky top-0 z-10 shadow-sm">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="py-8 overflow-x-auto scrollbar-hide">
-              <div className="flex gap-5 justify-center min-w-max">
-                {/* Category Chips */}
-                {categories.map((category) => (
-                  <button
+        <section aria-label={t('solutionsHero.domainsLabel')} className="bg-[#F4F8FE]">
+          <div className="mx-auto w-full max-w-[1440px] px-4 pb-12 pt-6 lg:px-[34px] lg:pb-14 lg:pt-2">
+            <ul className="flex flex-wrap justify-center gap-x-4 gap-y-7 lg:flex-nowrap lg:gap-x-6">
+              {orderedCategories(categories).map((category) => {
+                const selected = selectedCategory === category.slug;
+                const photo = photoFor(category);
+                return (
+                  <li
                     key={category.id}
-                    // no « Tous » chip: clicking the selected category again shows all partners
-                    onClick={() => setSelectedCategory((prev) => (prev === category.slug ? null : category.slug))}
-                    className={cn(
-                      'flex flex-col items-center gap-4 p-5 rounded-2xl transition-all duration-200 min-w-[120px]',
-                      selectedCategory === category.slug
-                        ? 'bg-primary text-white shadow-xl scale-105'
-                        : 'bg-gray-50 hover:bg-gray-100 text-gray-700 hover:shadow-lg'
-                    )}
+                    className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-auto lg:min-w-0 lg:flex-1"
                   >
-                    <div className={cn(
-                      'w-28 h-28 rounded-xl overflow-hidden flex items-center justify-center',
-                      selectedCategory === category.slug ? 'bg-white/20 ring-2 ring-white' : 'bg-white shadow-md'
-                    )}>
-                      {CATEGORY_PHOTOS[category.slug] ? (
-                        <img
-                          src={CATEGORY_PHOTOS[category.slug]}
-                          alt=""
-                          aria-hidden
-                          className="w-full h-full object-cover object-center"
-                        />
-                      ) : (
-                        <Building2
-                          aria-hidden
-                          className={cn(
-                            'h-14 w-14',
-                            selectedCategory === category.slug ? 'text-white' : 'text-primary'
-                          )}
-                        />
-                      )}
-                    </div>
-                    <span className="text-xs font-semibold text-center leading-tight max-w-[120px]">
-                      {category.name}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
+                    <button
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => setSelectedCategory((prev) => (prev === category.slug ? null : category.slug))}
+                      className="group block w-full text-center"
+                    >
+                      <div
+                        className={cn(
+                          'aspect-[161/153] overflow-hidden rounded-2xl bg-white shadow-[0_6px_18px_rgba(16,20,107,0.10)] transition',
+                          selected && 'ring-4 ring-[#0B5CAD] ring-offset-2 ring-offset-[#F4F8FE]'
+                        )}
+                      >
+                        {photo ? (
+                          <img
+                            src={photo}
+                            alt=""
+                            aria-hidden
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary-50 to-white">
+                            <Building2 aria-hidden className="h-12 w-12 text-primary" />
+                          </div>
+                        )}
+                      </div>
+                      <span
+                        className={cn(
+                          'mt-3 block text-[16px] font-bold leading-tight group-hover:text-[#0B5CAD] sm:text-[18px] xl:mt-4 xl:text-[20px]',
+                          selected ? 'text-[#0B5CAD]' : 'text-[#10146B]'
+                        )}
+                      >
+                        <DomainLabel label={category.name} />
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </section>
       )}
@@ -200,7 +259,7 @@ export default function PartnersPage() {
                 </div>
               </div>
             ) : partners.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {partners.map((partner) => (
                   <Link key={partner.id} href={`/${locale}/partners/${partner.slug}${selectedCategory ? `?category=${selectedCategory}` : ''}`}>
                     <Card className="hover:shadow-md transition-shadow cursor-pointer group h-full">

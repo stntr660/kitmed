@@ -1992,7 +1992,7 @@
     },
     "band": {
       "title": "KITMED, votre partenaire depuis 1997",
-      "text": "Importation, distribution et maintenance de dispositifs médicaux au Maroc.",
+      "text": "Importation, distribution et maintenance des équipements médicaux au Maroc.",
       "cta": "En savoir plus"
     }
   },
@@ -2276,6 +2276,10 @@
     }
   },
   "sav": {
+    "hero": {
+      "title": "Service après-vente (SAV)",
+      "subtitle": "Un accompagnement technique fiable pour la performance et la longévité de vos équipements."
+    },
     "header": {
       "title": "Service après-vente",
       "breadcrumb": "SAV"
@@ -2287,7 +2291,7 @@
       "installation": "Installation",
       "commissioning": "Mise en service",
       "training": "Formation",
-      "maintenance": "Maintenance"
+      "maintenance": "Maintenance préventive et corrective"
     },
     "form": {
       "title": "Demande d’intervention SAV",
@@ -2295,11 +2299,11 @@
       "establishment": "Établissement",
       "phone": "Téléphone",
       "email": "E-mail",
-      "equipment": "Équipement / marque",
+      "equipment": "Équipement concerné",
       "serial": "Numéro de série",
-      "optional": "facultatif",
+      "optional": "si connu",
       "description": "Description de la demande",
-      "descriptionPlaceholder": "Décrivez le problème ou le besoin (installation, panne, formation, maintenance…)",
+      "descriptionPlaceholder": "Décrivez le problème ou la nature de l’intervention (panne, entretien, assistance, …)",
       "required": "Champs obligatoires",
       "submit": "Envoyer la demande",
       "sending": "Envoi en cours…",
@@ -2307,7 +2311,23 @@
       "success": "Merci, votre demande SAV a bien été reçue. Notre équipe technique vous contactera rapidement.",
       "newRequest": "Nouvelle demande",
       "error": "L’envoi a échoué. Vérifiez les champs puis réessayez, ou contactez-nous par téléphone.",
-      "invalidEmail": "Adresse e-mail invalide."
+      "invalidEmail": "Adresse e-mail invalide.",
+      "namePlaceholder": "Votre nom et prénom",
+      "establishmentPlaceholder": "Nom de votre établissement",
+      "phonePlaceholder": "Votre numéro",
+      "emailPlaceholder": "Votre adresse e-mail",
+      "equipmentPlaceholder": "Sélectionnez un équipement",
+      "serialPlaceholder": "N° de série",
+      "equipmentOptions": {
+        "slitLamp": "Lampe à fente",
+        "oct": "OCT / imagerie",
+        "refraction": "Réfraction / unité de consultation",
+        "laser": "Laser",
+        "microscope": "Microscope opératoire",
+        "biometry": "Biométrie / échographie",
+        "furniture": "Mobilier / literie",
+        "other": "Autre"
+      }
     },
     "cta": {
       "title": "Besoin d’un conseil avant votre demande ?",
@@ -2315,6 +2335,12 @@
     }
   },
   "partners": {
+    "solutionsHero": {
+      "title": "Solutions médicales complètes pour les professionnels de santé",
+      "description": "Un large choix de dispositifs, consommables et équipements, alliant qualité, sécurité et performance.",
+      "imageAlt": "Lampe à fente, laser ophtalmique, gouttes oculaires, pansements oculaires, champs de drapage et otoscope KITMED",
+      "domainsLabel": "Filtrer les partenaires par domaine"
+    },
     "hero": {
       "badge": "Nos Partenaires",
       "title": "Excellence médicale mondiale, au service de vos exigences.",

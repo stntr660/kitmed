@@ -2020,7 +2020,7 @@
     },
     "band": {
       "title": "KITMED, your partner since 1997",
-      "text": "Import, distribution and maintenance of medical devices in Morocco.",
+      "text": "Import, distribution and maintenance of medical equipment in Morocco.",
       "cta": "Learn more"
     }
   },
@@ -2304,6 +2304,10 @@
     }
   },
   "sav": {
+    "hero": {
+      "title": "After-sales service",
+      "subtitle": "Reliable technical support for the performance and longevity of your equipment."
+    },
     "header": {
       "title": "After-sales service",
       "breadcrumb": "After-sales service"
@@ -2315,7 +2319,7 @@
       "installation": "Installation",
       "commissioning": "Commissioning",
       "training": "Training",
-      "maintenance": "Maintenance"
+      "maintenance": "Preventive and corrective maintenance"
     },
     "form": {
       "title": "After-sales service request",
@@ -2323,11 +2327,11 @@
       "establishment": "Facility",
       "phone": "Phone",
       "email": "Email",
-      "equipment": "Equipment / brand",
+      "equipment": "Equipment concerned",
       "serial": "Serial number",
-      "optional": "optional",
+      "optional": "if known",
       "description": "Description of your request",
-      "descriptionPlaceholder": "Describe the issue or need (installation, breakdown, training, maintenance…)",
+      "descriptionPlaceholder": "Describe the issue or the type of intervention (breakdown, servicing, assistance, …)",
       "required": "Required fields",
       "submit": "Send request",
       "sending": "Sending…",
@@ -2335,7 +2339,23 @@
       "success": "Thank you, your after-sales request has been received. Our technical team will contact you shortly.",
       "newRequest": "New request",
       "error": "Sending failed. Please check the fields and try again, or contact us by phone.",
-      "invalidEmail": "Invalid email address."
+      "invalidEmail": "Invalid email address.",
+      "namePlaceholder": "Your full name",
+      "establishmentPlaceholder": "Name of your facility",
+      "phonePlaceholder": "Your number",
+      "emailPlaceholder": "Your email address",
+      "equipmentPlaceholder": "Select equipment",
+      "serialPlaceholder": "Serial no.",
+      "equipmentOptions": {
+        "slitLamp": "Slit lamp",
+        "oct": "OCT / imaging",
+        "refraction": "Refraction / examination unit",
+        "laser": "Laser",
+        "microscope": "Surgical microscope",
+        "biometry": "Biometry / ultrasound",
+        "furniture": "Furniture / beds",
+        "other": "Other"
+      }
     },
     "cta": {
       "title": "Need advice before your request?",
@@ -2343,6 +2363,12 @@
     }
   },
   "partners": {
+    "solutionsHero": {
+      "title": "Complete medical solutions for healthcare professionals",
+      "description": "A wide range of devices, consumables and equipment, combining quality, safety and performance.",
+      "imageAlt": "KITMED slit lamp, ophthalmic laser, eye drops, eye patches, surgical drapes and otoscope",
+      "domainsLabel": "Filter partners by field"
+    },
     "hero": {
       "badge": "Our Partners",
       "title": "Global medical excellence, serving your standards.",
