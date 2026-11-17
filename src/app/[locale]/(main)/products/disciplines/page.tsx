@@ -53,25 +53,22 @@ export default function ProductsByDisciplinePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <section className="bg-white border-b py-4 lg:py-6">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
-              {tDisciplines('title')}
-              <span className="text-primary-600 block mt-1">{tDisciplines('titleSuffix')}</span>
-            </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              {tDisciplines('description')}
-            </p>
-          </div>
+    <div className="min-h-screen bg-white">
+      {/* Page title, same style as the homepage section titles (owner 2026-11-17: one colour) */}
+      <section className="bg-white pb-6 pt-10 lg:pt-14">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <h1 className="text-[28px] font-bold leading-tight tracking-[-0.01em] text-[#0A0EA4] sm:text-[36px] lg:text-[46px]">
+            {tDisciplines('title')} {tDisciplines('titleSuffix')}
+          </h1>
+          <span aria-hidden="true" className="mx-auto mt-3 block h-[4px] w-20 rounded-full bg-[#D7191A] lg:h-[5px] lg:w-[112px]" />
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#10146B] lg:text-[19px]">
+            {tDisciplines('description')}
+          </p>
         </div>
       </section>
 
       {/* Disciplines Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="pb-16 pt-4 lg:pb-24">
         <div className="container mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="flex justify-center items-center py-20">
@@ -79,17 +76,12 @@ export default function ProductsByDisciplinePage() {
             </div>
           ) : categories.length > 0 ? (
             <>
-              <div className="text-center mb-16">
-                <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-                  {tDisciplines('disciplinesSectionTitle')}
-                </h2>
-                <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  {tDisciplines('disciplinesSectionDescription', { 
-                    count: categories.length, 
-                    plural: categories.length > 1 ? 's' : '' 
-                  })}
-                </p>
-              </div>
+              <p className="mb-10 text-center text-sm font-semibold uppercase tracking-[0.14em] text-accent">
+                {tDisciplines('disciplinesSectionDescription', {
+                  count: categories.length,
+                  plural: categories.length > 1 ? 's' : ''
+                })}
+              </p>
 
               <div className={DOMAIN_GRID}>
                 {categories.map((category) => (
