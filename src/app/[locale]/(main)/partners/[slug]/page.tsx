@@ -302,11 +302,6 @@ export default function PartnerProductsPage({ params }: PageProps) {
                               {t('featured')}
                             </Badge>
                           )}
-                          {product.category && (
-                            <Badge variant="secondary" className="bg-primary-100 text-primary-600 border-0 text-xs">
-                              {product.category.name}
-                            </Badge>
-                          )}
                         </div>
                       </Link>
 
