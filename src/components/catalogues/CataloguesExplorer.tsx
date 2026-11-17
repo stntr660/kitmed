@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { ArrowRight, Building2, ChevronDown, ExternalLink, FileText, Loader2, Search, X } from 'lucide-react';
+import { SoftWaveBackground } from '@/components/layout/SoftWaveBackground';
 
 type Localized = { fr: string; en: string };
 
@@ -488,7 +489,9 @@ export function CataloguesExplorer({ locale }: { locale: string }) {
 
   return (
     <>
-      <section className="pb-6 pt-10 sm:pt-14 lg:pb-8 lg:pt-16">
+      {/* Header + filters on the light-blue wave background (same as the Partenaires hero) */}
+      <section className="relative isolate overflow-hidden pb-16 pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+        <SoftWaveBackground wavesClassName="-bottom-px h-[50%] sm:h-[60%] lg:h-[72%]" />
         <div className="container mx-auto px-4 lg:px-8">
           <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
             <div className="max-w-3xl">
@@ -496,7 +499,7 @@ export function CataloguesExplorer({ locale }: { locale: string }) {
               <h1 className="mt-4 text-[2.4rem] font-bold leading-[1.08] tracking-tight text-[#10146B] sm:text-5xl lg:text-[3.5rem]">
                 {t('title')}
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-500">{t('intro')}</p>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#2A2F45]">{t('intro')}</p>
             </div>
             {state === 'ready' && manufacturers.length > 0 && (
               <dl className="mt-8 flex gap-8 lg:mt-0 lg:shrink-0 lg:gap-12">
@@ -513,16 +516,11 @@ export function CataloguesExplorer({ locale }: { locale: string }) {
               </dl>
             )}
           </div>
-        </div>
-      </section>
-
-      <section className="pb-14 lg:pb-20">
-        <div className="container mx-auto px-4 lg:px-8">
           {state === 'ready' && domains.length > 0 && (
             <div
               role="search"
               aria-label={t('filters.label')}
-              className="rounded-2xl border border-slate-200 bg-[#F6F8FC] p-4 sm:p-6"
+              className="mt-10 rounded-2xl border border-white/80 bg-white/70 p-4 shadow-[0_10px_30px_rgba(16,20,107,0.08)] backdrop-blur-sm sm:p-6 lg:mt-12"
             >
               <div className="flex flex-col gap-3 md:flex-row">
                 <div className="relative flex-1">
@@ -590,8 +588,13 @@ export function CataloguesExplorer({ locale }: { locale: string }) {
             </div>
           )}
 
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-b from-[#F4F8FE] to-white pb-14 lg:pb-20">
+        <div className="container mx-auto px-4 lg:px-8">
           {state === 'ready' && domains.length > 0 && (
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
               <p className="text-sm font-medium text-slate-600" aria-live="polite">
                 {t('filters.results', { count: visible.length })}
               </p>

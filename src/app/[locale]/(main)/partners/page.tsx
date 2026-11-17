@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
 import { cn } from '@/lib/utils';
 import { DOMAIN_PHOTOS, PRODUCT_DOMAINS } from '@/components/products/productDomains';
+import { SoftWaveBackground } from '@/components/layout/SoftWaveBackground';
 
 interface Partner {
   id: string;
@@ -66,22 +67,6 @@ function DomainLabel({ label }: { label: string }) {
       {label.slice(0, i)}
       <span className="block font-normal">{label.slice(i + 1)}</span>
     </>
-  );
-}
-
-/** Soft white/blue waves behind the hero, as in the mockup. */
-function HeroWaves() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[55%] w-full"
-      viewBox="0 0 1440 400"
-      preserveAspectRatio="none"
-    >
-      <path d="M0 210 C 260 120 520 300 820 230 C 1080 170 1260 200 1440 150 L1440 400 L0 400 Z" fill="#ffffff" fillOpacity="0.35" />
-      <path d="M0 290 C 300 210 560 360 900 300 C 1140 255 1300 300 1440 260 L1440 400 L0 400 Z" fill="#ffffff" fillOpacity="0.55" />
-      <path d="M0 350 C 360 300 700 400 1040 350 C 1220 325 1340 345 1440 330 L1440 400 L0 400 Z" fill="#F4F8FE" />
-    </svg>
   );
 }
 
@@ -166,8 +151,8 @@ export default function PartnersPage() {
   return (
     <div className="flex flex-col">
       {/* Hero (owner mockup 2026-11-17): light-blue background with soft waves + product composition photo */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#F1F7FE] via-[#E6F0FC] to-[#D6E8FB]">
-        <HeroWaves />
+      <section className="relative isolate overflow-hidden">
+        <SoftWaveBackground />
         <div className="relative mx-auto grid w-full max-w-[1440px] items-center gap-6 px-4 pb-6 pt-8 sm:pb-14 sm:pt-10 lg:grid-cols-[1fr_minmax(0,47%)] lg:gap-0 lg:px-[34px] lg:pb-10 lg:pt-6 xl:pl-[78px]">
           <div className="relative z-10 lg:py-10">
             <h1 className="max-w-[720px] text-[28px] font-bold leading-[1.18] tracking-[-0.01em] text-[#10146B] sm:text-[38px] lg:text-[42px] xl:w-[800px] xl:max-w-none xl:text-[46px]">
