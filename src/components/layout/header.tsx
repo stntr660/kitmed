@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, Search, ChevronDown, ChevronRight, MapPin, FileText, Instagram, Facebook } from 'lucide-react';
+import { Menu, Search, ChevronDown, ChevronRight, MapPin, FileText, Instagram, Facebook, Linkedin } from 'lucide-react';
 
 import { HeaderLogo } from '@/components/ui/logo';
 import {
@@ -45,6 +46,8 @@ const NAV_ITEMS = [
 const NAVY = 'text-[#10146B]';
 const INSTAGRAM_URL = 'https://www.instagram.com/kitmed.maroc?igsh=MjluY25wMGc2N3Aw';
 const FACEBOOK_URL = 'https://www.facebook.com/share/1E9mpRMbRD/?mibextid=wwXIfr';
+const LINKEDIN_URL = 'https://www.linkedin.com/company/kitmed/';
+const ISO_BADGES = ['9001', '13485', '22716'];
 
 export function Header({ locale, className }: HeaderProps) {
   const t = useTranslations('siteChrome');
@@ -142,6 +145,11 @@ export function Header({ locale, className }: HeaderProps) {
               className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1877F2] text-white">
               <Facebook className="h-3.5 w-3.5 fill-current" />
             </a>
+            <span className="h-4 w-px bg-[#10146B]/40" />
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0A66C2] text-white">
+              <Linkedin className="h-3.5 w-3.5 fill-current" />
+            </a>
           </div>
           <span className={cn('flex flex-shrink-0 items-center gap-1.5 text-xs', NAVY)}>
             <MapPin className="h-3.5 w-3.5 text-accent" />
@@ -162,6 +170,17 @@ export function Header({ locale, className }: HeaderProps) {
               {t('certifiedLine2')}
             </span>
           </Link>
+
+          {/* ONSSA + ISO badges, as in the previous header (owner 2026-11-17) */}
+          <div className="hidden flex-shrink-0 items-center gap-3 border-l border-gray-200 pl-5 xl:flex">
+            <Image src="/images/compliance/onssa-logo.svg" alt="ONSSA" width={56} height={56} className="object-contain" />
+            {ISO_BADGES.map(code => (
+              <div key={code} className="flex flex-col items-center gap-0.5">
+                <Image src="/images/compliance/iso-logo.png" alt={`ISO ${code}`} width={40} height={40} className="rounded-full object-contain" />
+                <span className="text-[10px] font-semibold text-primary-600">{code}</span>
+              </div>
+            ))}
+          </div>
 
           <div className="hidden max-w-md flex-1 md:block">{searchForm()}</div>
 
