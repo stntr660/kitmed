@@ -136,20 +136,20 @@ export default function HomePage() {
 
         {/* KITMED, votre partenaire depuis 1997 — mockup: light-blue band, building photo on the right behind a curved cyan swoosh */}
         <section className="px-4 pb-10 lg:px-[28px]">
-          <div className="relative mx-auto max-w-[1384px] overflow-hidden rounded-[3px_3px_10px_10px] bg-[linear-gradient(180deg,#D9EFFD_0%,#D4EBFB_100%)] shadow-[0_3px_8px_rgba(20,60,120,0.14)] md:h-[340px] lg:h-[473px]">
+          <div className="relative mx-auto max-w-[1152px] overflow-hidden rounded-[10px] bg-[linear-gradient(180deg,#D9EFFD_0%,#D4EBFB_100%)] shadow-[0_3px_8px_rgba(20,60,120,0.14)] md:h-[260px] lg:h-[300px]">
             {/* Desktop photo: masked to the right of the curve, swoosh drawn over the seam */}
             <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden aspect-[1024/1230] md:block">
               <img src="/images/home/band-building.jpg" alt="" className="h-full w-full" style={BAND_PHOTO_MASK} />
               <BandSwoosh className="absolute inset-0 h-full w-full" />
             </div>
 
-            <div className="relative px-5 pb-6 pt-7 md:pl-[45px] md:pr-0 md:pt-[39px] xl:pl-[52px] xl:pt-[45px]">
+            <div className="relative px-5 pb-6 pt-7 md:flex md:h-full md:items-center md:pb-0 md:pl-[45px] md:pr-0 md:pt-0">
               <div className="border-l-4 border-[#DD0F0E] pl-4 md:max-w-[56%] md:pl-[31px] xl:max-w-[680px]">
-                <h2 className="-mt-[6px] text-[22px] font-bold leading-[1.2] text-[#080CA0] md:text-[26px] lg:text-[30px] xl:whitespace-nowrap xl:text-[35px]">{t('band.title')}</h2>
-                <p className="mt-2 text-[15px] leading-[1.2] text-[#1E4597] lg:mt-[8px] lg:max-w-[560px] lg:text-[19px] xl:max-w-[640px] xl:text-[22px]">{t('band.text')}</p>
+                <h2 className="-mt-[6px] text-[22px] font-bold leading-[1.2] text-[#080CA0] md:text-[26px] lg:text-[30px] xl:whitespace-nowrap xl:text-[30px]">{t('band.title')}</h2>
+                <p className="mt-2 text-[15px] leading-[1.2] text-[#1E4597] lg:mt-[8px] lg:max-w-[560px] lg:text-[19px] xl:max-w-[560px] xl:text-[19px]">{t('band.text')}</p>
                 <Link
                   href={`/${locale}/about`}
-                  className="mt-4 inline-flex h-[41px] items-center gap-3 rounded-[6px] bg-[linear-gradient(180deg,#EE2B27_0%,#D0110D_55%,#B90606_100%)] px-[20px] text-[16px] font-medium lg:text-[17px] text-white shadow-[0_2px_4px_rgba(120,0,0,0.35)] transition-[filter] hover:brightness-110 lg:mt-[13px] lg:w-[195px] lg:justify-center lg:px-0 xl:h-[47px] xl:w-[225px] xl:text-[19px]"
+                  className="mt-4 inline-flex h-[41px] items-center gap-3 rounded-[6px] bg-[linear-gradient(180deg,#EE2B27_0%,#D0110D_55%,#B90606_100%)] px-[20px] text-[16px] font-medium lg:text-[17px] text-white shadow-[0_2px_4px_rgba(120,0,0,0.35)] transition-[filter] hover:brightness-110 lg:mt-[13px] lg:w-[195px] lg:justify-center lg:px-0"
                 >
                   {t('band.cta')}
                   <ChevronRight className="h-4 w-4" strokeWidth={2.5} />
