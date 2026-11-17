@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import {
   Dialog,
   DialogContent,
@@ -69,6 +69,7 @@ interface QuoteItem {
 
 export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFormProps) {
   const t = useTranslations('rfp.quoteForm');
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -107,7 +108,7 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
   }, [product]);
 
   // Helper function to get product name
-  const getProductName = (product: Product, locale: string = 'fr') => {
+  const getProductName = (product: Product) => {
     // For public API, name is already a string
     if (typeof product.name === 'string') {
       return product.name || product.referenceFournisseur;
@@ -117,31 +118,37 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
     return translation?.nom || product.referenceFournisseur;
   };
 
-  // Load all products for selection
-  const loadAllProducts = async () => {
-    if (allProducts.length > 0) return; // Don't reload if already loaded
-
+  // Search the whole active catalogue on the server (the old version only loaded the first
+  // 100 products and filtered them in the browser, so most products could never be found).
+  const searchProducts = async (q: string) => {
     setLoadingProducts(true);
     try {
-      const response = await fetch(`/api/products?pageSize=100&status=active`);
+      const params = new URLSearchParams({ pageSize: '50', status: 'active', locale });
+      if (q.trim()) {
+        params.set('query', q.trim());
+      }
+      const response = await fetch(`/api/products?${params.toString()}`);
       if (response.ok) {
         const data = await response.json();
-        setAllProducts(data.data.items || []);
+        setAllProducts(data.data?.items || []);
       }
-    } catch (error) {
-      console.error('Failed to load products:', error);
+    } catch {
+      setAllProducts([]);
     } finally {
       setLoadingProducts(false);
     }
   };
 
-  // Filter products based on search query
-  const filteredProducts = allProducts.filter(prod => {
-    const productName = getProductName(prod).toLowerCase();
-    const productRef = prod.referenceFournisseur.toLowerCase();
-    const query = productSearchQuery.toLowerCase();
-    return productName.includes(query) || productRef.includes(query);
-  });
+  useEffect(() => {
+    if (!showProductSelector) {
+      return;
+    }
+    const timer = setTimeout(() => searchProducts(productSearchQuery), productSearchQuery ? 300 : 0);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showProductSelector, productSearchQuery, locale]);
+
+  const filteredProducts = allProducts;
 
   const addProductToQuote = (selectedProduct: Product) => {
     const existingItem = quoteItems.find(item => item.productId === selectedProduct.id);
@@ -174,7 +181,9 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
   };
 
   const updateItemQuantity = (productId: string, quantity: number) => {
-    if (quantity < 1) return;
+    if (quantity < 1) {
+      return;
+    }
     setQuoteItems(items =>
       items.map(item =>
         item.productId === productId
@@ -311,14 +320,13 @@ export function QuoteRequestForm({ product, trigger, onSuccess }: QuoteRequestFo
             {/* Products in Quote */}
             <div className="bg-gray-50 p-4 rounded-lg mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h4 className="font-semibold text-gray-900">Produits ({quoteItems.length})</h4>
+                <h4 className="font-semibold text-gray-900">{t('productsCount', { count: quoteItems.length })}</h4>
                 <Button
                   type="button"
                   size="sm"
                   variant="outline"
                   onClick={() => {
                     setShowProductSelector(true);
-                    loadAllProducts();
                   }}
                   className="flex items-center gap-2"
                 >

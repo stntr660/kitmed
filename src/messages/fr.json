@@ -323,7 +323,7 @@
   },
   "search": {
     "title": "Résultats de Recherche",
-    "noResults": "Aucun produit trouvé",
+    "noResults": "Aucun résultat trouvé",
     "filters": "Filtres",
     "clearFilters": "Effacer les Filtres",
     "showingResults": "Affichage de {start} à {end} sur {total} résultats",
@@ -362,6 +362,7 @@
     "success": "Demande de devis soumise avec succès",
     "requestNumber": "Numéro de Demande",
     "quoteForm": {
+      "productsCount": "Produits ({count})",
       "title": "Demande de Devis",
       "description": "Remplissez les informations essentielles pour recevoir un devis personnalisé.",
       "requestQuote": "Demander un Devis",
@@ -394,6 +395,51 @@
       "successTitle": "Demande Envoyée !",
       "successMessage": "Votre demande de devis a été transmise avec succès.",
       "successFollowUp": "Nous vous recontacterons dans les plus brefs délais."
+    },
+    "hero": {
+      "badge": "Demande de Devis",
+      "title": "Demandez Votre Devis Personnalisé",
+      "description": "Obtenez rapidement un devis adapté à vos besoins spécifiques en équipements médicaux. Notre équipe d'experts vous accompagne pour trouver la solution parfaite.",
+      "cta": {
+        "browseProducts": "Parcourir les Produits",
+        "getHelp": "Obtenir de l'Aide"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça Marche",
+      "description": "Un processus simple en 3 étapes pour obtenir votre devis personnalisé",
+      "step1": {
+        "title": "1. Décrivez vos Besoins",
+        "description": "Remplissez notre formulaire avec les détails de vos besoins en équipements médicaux"
+      },
+      "step2": {
+        "title": "2. Analyse et Étude",
+        "description": "Nos experts analysent votre demande et préparent une proposition adaptée"
+      },
+      "step3": {
+        "title": "3. Recevez votre Devis",
+        "description": "Vous recevez un devis détaillé avec nos recommandations personnalisées"
+      }
+    },
+    "form": {
+      "title": "Formulaire de Demande",
+      "description": "Remplissez le formulaire ci-dessous pour recevoir votre devis personnalisé"
+    },
+    "whyKitmed": {
+      "title": "Pourquoi Choisir KITMED",
+      "description": "Des décennies d'expérience au service de l'excellence médicale",
+      "expertise": {
+        "title": "Expertise Technique",
+        "description": "Nos experts vous conseillent pour choisir les équipements adaptés à vos besoins"
+      },
+      "support": {
+        "title": "Accompagnement Complet",
+        "description": "De l'installation à la maintenance, nous vous accompagnons tout au long"
+      },
+      "experience": {
+        "title": "Expérience Reconnue",
+        "description": "Plus de 500 établissements nous font confiance pour leurs équipements"
+      }
     }
   },
   "form": {
@@ -2386,75 +2432,6 @@
       "sendAnother": "Envoyer un Autre Message"
     }
   },
-  "rfp": {
-    "title": "Demande de Proposition",
-    "cart": "Panier de devis",
-    "emptyCart": "Votre panier de devis est vide",
-    "addProducts": "Ajoutez des produits pour commencer à construire votre demande",
-    "browseProducts": "Parcourir les Produits",
-    "item": "article",
-    "items": "articles",
-    "quantity": "Quantité",
-    "notes": "Notes",
-    "removeItem": "Retirer l'article",
-    "continueRequest": "Continuer la Demande",
-    "companyInfo": "Informations de l'Entreprise",
-    "contactInfo": "Informations de Contact",
-    "requirements": "Exigences",
-    "urgency": "Urgence",
-    "budget": "Budget",
-    "deliveryRequirements": "Exigences de Livraison",
-    "message": "Message Supplémentaire",
-    "submit": "Soumettre la demande",
-    "submitting": "Soumission...",
-    "success": "Demande de devis soumise avec succès",
-    "requestNumber": "Numéro de Demande",
-    "hero": {
-      "badge": "Demande de Devis",
-      "title": "Demandez Votre Devis Personnalisé",
-      "description": "Obtenez rapidement un devis adapté à vos besoins spécifiques en équipements médicaux. Notre équipe d'experts vous accompagne pour trouver la solution parfaite.",
-      "cta": {
-        "browseProducts": "Parcourir les Produits",
-        "getHelp": "Obtenir de l'Aide"
-      }
-    },
-    "howItWorks": {
-      "title": "Comment ça Marche",
-      "description": "Un processus simple en 3 étapes pour obtenir votre devis personnalisé",
-      "step1": {
-        "title": "1. Décrivez vos Besoins",
-        "description": "Remplissez notre formulaire avec les détails de vos besoins en équipements médicaux"
-      },
-      "step2": {
-        "title": "2. Analyse et Étude",
-        "description": "Nos experts analysent votre demande et préparent une proposition adaptée"
-      },
-      "step3": {
-        "title": "3. Recevez votre Devis",
-        "description": "Vous recevez un devis détaillé avec nos recommandations personnalisées"
-      }
-    },
-    "form": {
-      "title": "Formulaire de Demande",
-      "description": "Remplissez le formulaire ci-dessous pour recevoir votre devis personnalisé"
-    },
-    "whyKitmed": {
-      "title": "Pourquoi Choisir KITMED",
-      "description": "Des décennies d'expérience au service de l'excellence médicale",
-      "expertise": {
-        "title": "Expertise Technique",
-        "description": "Nos experts vous conseillent pour choisir les équipements adaptés à vos besoins"
-      },
-      "support": {
-        "title": "Accompagnement Complet",
-        "description": "De l'installation à la maintenance, nous vous accompagnons tout au long"
-      },
-      "experience": {
-        "title": "Expérience Reconnue",
-        "description": "Plus de 500 établissements nous font confiance pour leurs équipements"
-      }
-    }
-  },
   "errors": {
     "notFound": "Page non trouvée",
     "serverError": "Erreur serveur",
@@ -2466,10 +2443,6 @@
     "loadFailed": "Échec du chargement des paramètres",
     "saveFailed": "Échec de l'enregistrement des paramètres",
     "retry": "Réessayer"
-  },
-  "search": {
-    "noResults": "Aucun résultat trouvé",
-    "showingResults": "Affichage de {start} à {end} sur {total} résultats"
   },
   "partnerDetail": {
     "loading": "Chargement du partenaire...",

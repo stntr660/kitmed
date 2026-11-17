@@ -305,7 +305,7 @@
   },
   "search": {
     "title": "Search Results",
-    "noResults": "No products found",
+    "noResults": "No results found",
     "filters": "Filters",
     "clearFilters": "Clear Filters",
     "showingResults": "Showing {start} to {end} of {total} results",
@@ -323,7 +323,7 @@
   "rfp": {
     "title": "Request for Proposal",
     "cart": "RFP Cart",
-    "emptyCart": "Your RFP cart is empty", 
+    "emptyCart": "Your RFP cart is empty",
     "addProducts": "Add products to start building your request",
     "browseProducts": "Browse Products",
     "item": "item",
@@ -344,6 +344,7 @@
     "success": "RFP submitted successfully",
     "requestNumber": "Request Number",
     "quoteForm": {
+      "productsCount": "Products ({count})",
       "title": "Quote Request",
       "description": "Fill in the essential information to receive a personalized quote.",
       "requestQuote": "Request a Quote",
@@ -376,6 +377,51 @@
       "successTitle": "Request Sent!",
       "successMessage": "Your quote request has been successfully submitted.",
       "successFollowUp": "We will get back to you as soon as possible."
+    },
+    "hero": {
+      "badge": "Request for Quote",
+      "title": "Request Your Personalized Quote",
+      "description": "Get a quote quickly adapted to your specific needs for medical equipment. Our team of experts supports you to find the perfect solution.",
+      "cta": {
+        "browseProducts": "Browse Products",
+        "getHelp": "Get Help"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "A simple 3-step process to get your personalized quote",
+      "step1": {
+        "title": "1. Describe Your Needs",
+        "description": "Fill out our form with the details of your medical equipment needs"
+      },
+      "step2": {
+        "title": "2. Analysis and Study",
+        "description": "Our experts analyze your request and prepare a suitable proposal"
+      },
+      "step3": {
+        "title": "3. Receive Your Quote",
+        "description": "You receive a detailed quote with our personalized recommendations"
+      }
+    },
+    "form": {
+      "title": "Request Form",
+      "description": "Fill out the form below to receive your personalized quote"
+    },
+    "whyKitmed": {
+      "title": "Why Choose KITMED",
+      "description": "Decades of experience serving medical excellence",
+      "expertise": {
+        "title": "Technical Expertise",
+        "description": "Our experts advise you to choose equipment suited to your needs"
+      },
+      "support": {
+        "title": "Complete Support",
+        "description": "From installation to maintenance, we support you throughout"
+      },
+      "experience": {
+        "title": "Recognized Experience",
+        "description": "Over 500 facilities trust us for their equipment"
+      }
     }
   },
   "form": {
@@ -2414,53 +2460,6 @@
       "sendAnother": "Send Another Message"
     }
   },
-  "rfp": {
-    "hero": {
-      "badge": "Request for Quote",
-      "title": "Request Your Personalized Quote",
-      "description": "Get a quote quickly adapted to your specific needs for medical equipment. Our team of experts supports you to find the perfect solution.",
-      "cta": {
-        "browseProducts": "Browse Products",
-        "getHelp": "Get Help"
-      }
-    },
-    "howItWorks": {
-      "title": "How It Works",
-      "description": "A simple 3-step process to get your personalized quote",
-      "step1": {
-        "title": "1. Describe Your Needs",
-        "description": "Fill out our form with the details of your medical equipment needs"
-      },
-      "step2": {
-        "title": "2. Analysis and Study",
-        "description": "Our experts analyze your request and prepare a suitable proposal"
-      },
-      "step3": {
-        "title": "3. Receive Your Quote",
-        "description": "You receive a detailed quote with our personalized recommendations"
-      }
-    },
-    "form": {
-      "title": "Request Form",
-      "description": "Fill out the form below to receive your personalized quote"
-    },
-    "whyKitmed": {
-      "title": "Why Choose KITMED",
-      "description": "Decades of experience serving medical excellence",
-      "expertise": {
-        "title": "Technical Expertise",
-        "description": "Our experts advise you to choose equipment suited to your needs"
-      },
-      "support": {
-        "title": "Complete Support",
-        "description": "From installation to maintenance, we support you throughout"
-      },
-      "experience": {
-        "title": "Recognized Experience",
-        "description": "Over 500 facilities trust us for their equipment"
-      }
-    }
-  },
   "errors": {
     "notFound": "Page not found",
     "serverError": "Server error",
@@ -2472,10 +2471,6 @@
     "loadFailed": "Failed to load settings",
     "saveFailed": "Failed to save settings",
     "retry": "Retry"
-  },
-  "search": {
-    "noResults": "No results found",
-    "showingResults": "Showing {start} to {end} of {total} results"
   },
   "partnerDetail": {
     "loading": "Loading partner...",
