@@ -1,11 +1,13 @@
 /**
- * The 7 domains of the owner's « Solutions médicales complètes » mockup (2026-11-17), in its
+ * The domains of the owner's « Solutions médicales complètes » mockup (2026-11-17), in its
  * order, shown as photo tiles on the Partenaires page. Photos cropped from the mockup
- * (Orthoptie = the owner's own photo, child with occluder).
+ * (Orthoptie = the owner's own photo, child with occluder). Contactologie became a top-level
+ * category on 2026-11-18 (script 104); its photo is the homepage expertise tile.
  */
 export const PRODUCT_DOMAINS = [
   { key: 'ophtalmologie', slug: 'ophtalmologie' },
   { key: 'orthoptie', slug: 'orthoptie' },
+  { key: 'contactologie', slug: 'oph-contactology' },
   { key: 'orl', slug: 'orl-oto-rhino-laryngologie' },
   { key: 'literie', slug: 'mobilier-et-literie-hospitaliers' },
   { key: 'orthopedie', slug: 'orthopedics' },

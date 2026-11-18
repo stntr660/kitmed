@@ -30,6 +30,7 @@ interface CatalogueDomain {
 // Anything not listed keeps its own translated name.
 const DOMAIN_LABELS: Record<string, Localized> = {
   'ophtalmologie': { fr: 'Ophtalmologie', en: 'Ophthalmology' },
+  'oph-contactology': { fr: 'Contactologie', en: 'Contactology' },
   'orl-oto-rhino-laryngologie': { fr: 'ORL', en: 'ENT' },
   'mobilier-et-literie-hospitaliers': { fr: 'Literie & mobilier médical', en: 'Medical beds & furniture' },
   'orthopedics': { fr: 'Orthopédie', en: 'Orthopaedics' },

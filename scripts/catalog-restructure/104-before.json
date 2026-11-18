@@ -1,0 +1,190 @@
+{
+ "taken_at": "2026-11-18T09:24:33.055Z",
+ "products": {
+  "3d1d1339-5099-4492-82a4-806448bf3de5": {
+   "id": "3d1d1339-5099-4492-82a4-806448bf3de5",
+   "reference_fournisseur": "RS-1",
+   "category_id": "307aae15-440d-4903-a4b6-6fb6b52552a8",
+   "constructeur": "nidek",
+   "slug": "rs-1-rs-1",
+   "status": "active",
+   "is_featured": true,
+   "is_new_arrival": true,
+   "sort_order": 0,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-10-rs-1-brochure.pdf",
+   "created_at": "2026-04-14T14:57:55.132Z",
+   "updated_at": "2026-11-16T19:14:29.722Z",
+   "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+  },
+  "683027a2-f527-485c-86dc-44cfe93f2d70": {
+   "id": "683027a2-f527-485c-86dc-44cfe93f2d70",
+   "reference_fournisseur": "2414-P-2032 / 2414-P-2042",
+   "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+   "constructeur": "KEELER",
+   "slug": "keeler-d-kat-tonometre-aplanation-numerique",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 3,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": null,
+   "created_at": "2025-11-26T10:41:12.439Z",
+   "updated_at": "2026-11-16T19:14:29.764Z",
+   "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+  },
+  "4aa63549-d0a0-41f5-9b64-605a18bd00e1": {
+   "id": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+   "reference_fournisseur": "2414-P-2030 / 2414-P-2040",
+   "category_id": "cc6de94a-75b5-4c2e-ad47-e7fc183642c0",
+   "constructeur": "KEELER",
+   "slug": "keeler-kat-tonometre-aplanation",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 4,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": null,
+   "created_at": "2025-11-26T10:41:07.608Z",
+   "updated_at": "2026-11-16T19:14:29.776Z",
+   "partner_id": "a7ed36de-b687-4c74-a499-f6c817815355"
+  },
+  "70f6f49b-e132-4dbb-bd22-560b7545d149": {
+   "id": "70f6f49b-e132-4dbb-bd22-560b7545d149",
+   "reference_fournisseur": "US-4000",
+   "category_id": "89dc93e3-17ca-4323-8fa2-5a230d0b0059",
+   "constructeur": "nidek",
+   "slug": "biometre-oculaire-et-accessoires-associes",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 1,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": null,
+   "created_at": "2025-12-09T12:11:55.829Z",
+   "updated_at": "2026-08-23T11:31:37.325Z",
+   "partner_id": "3b9ab70b-80d7-4130-a4db-f1196ce8e1d1"
+  },
+  "nitro-1768234616120-rx0dm6zl3": {
+   "id": "nitro-1768234616120-rx0dm6zl3",
+   "reference_fournisseur": "BST 01",
+   "category_id": "cb5d28cf-41e4-4124-b414-6933c02c3f66",
+   "constructeur": "nitrocare",
+   "slug": "bst-01-compact-table-de-lit",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 99,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": null,
+   "created_at": "2026-01-12T16:16:56.121Z",
+   "updated_at": "2026-04-02T16:49:55.873Z",
+   "partner_id": "c3f28667-b7f2-496b-9ff6-967d179cd47b"
+  },
+  "prim-1768238719081-dn8tkvbgn": {
+   "id": "prim-1768238719081-dn8tkvbgn",
+   "reference_fournisseur": "SC7065",
+   "category_id": "2dd4eb8a-5d87-4693-a6aa-d4bc40c1cfee",
+   "constructeur": "prim",
+   "slug": "urinal-pour-incontinence-sc7065",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 99,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": "/uploads/pdfs/prim-catalogue-orthopedie.pdf",
+   "created_at": "2026-01-12T17:25:19.081Z",
+   "updated_at": "2026-11-16T19:11:17.829Z",
+   "partner_id": "f1731aed-ede2-4bf8-aa60-e071e4fc0404"
+  },
+  "c79544bd-54fa-4005-bee1-64ae2716c440": {
+   "id": "c79544bd-54fa-4005-bee1-64ae2716c440",
+   "reference_fournisseur": "ACUVUEVI",
+   "category_id": "oph-contactology",
+   "constructeur": "johnson-johnson-vision",
+   "slug": "acuvue-vita",
+   "status": "active",
+   "is_featured": false,
+   "is_new_arrival": false,
+   "sort_order": 99,
+   "meta_title": null,
+   "meta_description": null,
+   "pdf_brochure_url": null,
+   "created_at": "2025-12-09T16:35:29.688Z",
+   "updated_at": "2025-12-09T17:08:53.473Z",
+   "partner_id": "4f9c451d-9287-4e32-a04c-ff9b788d090b"
+  }
+ },
+ "contactology": {
+  "id": "oph-contactology",
+  "name": "Contactologie",
+  "slug": "oph-contactology",
+  "description": null,
+  "parent_id": "672bb7ce-18f6-44fa-96a2-17419def3203",
+  "sort_order": 7,
+  "is_active": true,
+  "meta_title": null,
+  "meta_description": null,
+  "image_url": "/uploads/categories/q96-contactologie.jpg",
+  "created_at": "2026-01-13T14:55:04.475Z",
+  "updated_at": "2026-11-17T10:22:28.672Z",
+  "type": "category"
+ },
+ "top_level": [
+  {
+   "id": "ophthalmology",
+   "slug": "ophtalmologie",
+   "sort_order": 1,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000000",
+   "slug": "orthoptie",
+   "sort_order": 2,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "ent",
+   "slug": "orl-oto-rhino-laryngologie",
+   "sort_order": 3,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "hospital-furniture",
+   "slug": "mobilier-et-literie-hospitaliers",
+   "sort_order": 4,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "orthopedics",
+   "slug": "orthopedics",
+   "sort_order": 5,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "oph-pharmaceutics",
+   "slug": "dispositifs-medicaux",
+   "sort_order": 6,
+   "parent_id": null,
+   "type": "discipline"
+  },
+  {
+   "id": "c79a0001-0000-4000-8000-000000000001",
+   "slug": "drapage",
+   "sort_order": 7,
+   "parent_id": null,
+   "type": "discipline"
+  }
+ ]
+}

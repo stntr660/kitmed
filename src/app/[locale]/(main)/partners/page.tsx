@@ -39,7 +39,7 @@ interface Category {
 // (public/images/products/domaine-<slug>.jpg); other categories fall back to their own image.
 const photoFor = (category: Category) => DOMAIN_PHOTOS[category.slug] ?? category.imageUrl ?? null;
 
-// The 7 mockup domains first, in the mockup's order; any other category after them.
+// The mockup domains first, in the mockup's order; any other category after them.
 const DOMAIN_ORDER: string[] = PRODUCT_DOMAINS.map((d) => d.slug);
 const orderedCategories = (list: Category[]) =>
   [...list].sort((a, b) => {
