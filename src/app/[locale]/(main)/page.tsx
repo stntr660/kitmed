@@ -16,6 +16,7 @@ import { HydrationErrorBoundary } from '@/components/ui/hydration-error-boundary
 
 interface Partner {
   id: string;
+  slug?: string;
   name: string;
   logo: string;
   description: string;
@@ -100,6 +101,7 @@ export default function HomePage() {
         setPartners(
           result.data.map((partner: any) => ({
             id: partner.id,
+            slug: partner.slug,
             name: localized(partner.name, locale) || 'Partner',
             logo: partner.logoUrl || '',
             description: localized(partner.description, locale),

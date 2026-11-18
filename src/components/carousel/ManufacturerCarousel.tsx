@@ -92,7 +92,7 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
               {group.map((partner, i) => (
                 <div key={partner.id} className="relative flex h-[100px] flex-1 items-center justify-center px-4">
                   {i > 0 && <span aria-hidden="true" className="absolute left-0 top-1/2 h-[62px] w-[1.5px] -translate-y-1/2 bg-[#86A3C0]" />}
-                  <Link href={`/${locale}/partners`} title={partner.name}>
+                  <Link href={partner.slug ? `/${locale}/partners/${partner.slug}` : `/${locale}/partners`} title={partner.name}>
                     <img
                       src={partner.logo}
                       alt={partner.name}
