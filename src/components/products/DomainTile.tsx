@@ -7,7 +7,7 @@ export interface DomainTileProps {
   title: string;
   imageUrl?: string | null;
   linkLabel: string;
-  /** Photo ratio: 3/2 for photos (homepage domains, disciplines), 3/1 for the category collages. */
+  /** Photo ratio: 3/2 for photos (homepage domains, disciplines), 3/1 for the category collages (shown 5:2 so the devices are less cropped; owner 2026-11-18). */
   ratio?: '3/2' | '3/1';
 }
 
@@ -22,7 +22,7 @@ export function DomainTile({ href, title, imageUrl, linkLabel, ratio = '3/2' }: 
       <div
         className={cn(
           'relative overflow-hidden rounded-xl bg-gray-100 shadow-sm',
-          ratio === '3/1' ? 'aspect-[3/1]' : 'aspect-[3/2]'
+          ratio === '3/1' ? 'aspect-[5/2]' : 'aspect-[3/2]'
         )}
       >
         {imageUrl ? (
