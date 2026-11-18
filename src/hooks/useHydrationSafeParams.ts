@@ -20,9 +20,14 @@ export function useHydrationSafeParams() {
 }
 
 /**
- * Hook to get locale safely during SSR
+ * Locale of the current [locale] route segment.
+ * The segment is known on the server and on the client, so it is read directly
+ * (same value during SSR and hydration -> no mismatch). It used to go through
+ * useHydrationSafeParams, which returned the fallback ('fr') on the first render:
+ * pages fetched their data twice (fr, then en) and the French response could land
+ * last, so /en listing pages showed French category and product names.
  */
 export function useHydrationSafeLocale(fallback: string = 'fr'): string {
-  const params = useHydrationSafeParams();
+  const params = useParams();
   return (params?.locale as string) || fallback;
 }
