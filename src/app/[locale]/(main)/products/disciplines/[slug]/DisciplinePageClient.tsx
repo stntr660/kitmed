@@ -1,5 +1,6 @@
 'use client';
 
+import { brochureHref } from '@/lib/brochure';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -393,7 +394,7 @@ export default function DisciplineCategoriesPage({ params, initialDiscipline = n
                                 className="px-3"
                                 asChild
                               >
-                                <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
+                                <a href={brochureHref(product.pdfBrochureUrl, locale, product.name)} target="_blank" rel="noopener noreferrer">
                                   {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
                                 </a>
                               </Button>

@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { isWebPageLink } from '@/lib/utils';
+import { brochureHref, isViewerPdfPath } from '@/lib/brochure';
 import Image from 'next/image';
 
 interface Product {
@@ -304,7 +305,17 @@ export default function ProductPageClient({ slug, locale, initialProduct = null 
 
                   {product.pdfBrochureUrl && (
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>
-                      <a href={isWebPageLink(product.pdfBrochureUrl) ? product.pdfBrochureUrl : `${product.pdfBrochureUrl}#toolbar=0&navpanes=0`} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={
+                          isWebPageLink(product.pdfBrochureUrl)
+                            ? product.pdfBrochureUrl
+                            : isViewerPdfPath(product.pdfBrochureUrl)
+                              ? brochureHref(product.pdfBrochureUrl, locale, getProductName(product), `/${locale}/products/${product.slug || slug}`)
+                              : `${product.pdfBrochureUrl}#toolbar=0&navpanes=0`
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-5 w-5 mr-2" /> : <FileText className="h-5 w-5 mr-2" />}
                         {isWebPageLink(product.pdfBrochureUrl) ? tCommon('officialSite') : t('viewBrochure')}
                         {product.pdfSource === 'manufacturer' && (

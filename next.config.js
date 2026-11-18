@@ -119,15 +119,20 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle size
     if (!dev && !isServer) {
+      // Brochure viewer libraries (pdf.js, page-flip) stay in their own lazy chunk,
+      // loaded only by /brochure, never in the shared vendors/common chunks.
+      const brochureOnly = /[\\/]node_modules[\\/](pdfjs-dist|page-flip)[\\/]/;
+      const notBrochureOnly = (module) => !brochureOnly.test(module.nameForCondition?.() || '');
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
+            test: (module) => /[\\/]node_modules[\\/]/.test(module.nameForCondition?.() || '') && notBrochureOnly(module),
             name: 'vendors',
             chunks: 'all',
           },
           common: {
+            test: notBrochureOnly,
             name: 'common',
             minChunks: 2,
             chunks: 'all',

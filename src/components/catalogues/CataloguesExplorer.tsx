@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { ArrowRight, Building2, ChevronDown, ExternalLink, FileText, Loader2, Search, X } from 'lucide-react';
 import { SoftWaveBackground } from '@/components/layout/SoftWaveBackground';
+import { brochureHref, isViewerPdfPath } from '@/lib/brochure';
 
 type Localized = { fr: string; en: string };
 
@@ -53,6 +54,13 @@ interface Manufacturer {
 }
 
 const DRAWER_FILTER_MIN = 8;
+
+/** Same-site PDFs open in the page-flip viewer; external links stay as they are. */
+function documentHref(url: string, locale: string, title: string, returnPath: string) {
+  if (/^https?:/.test(url)) return url;
+  if (isViewerPdfPath(url)) return brochureHref(url, locale, title, returnPath);
+  return `${url}#toolbar=0&navpanes=0`;
+}
 
 function localized(value: Localized | null | undefined, locale: string) {
   if (!value) return '';
@@ -112,6 +120,11 @@ function DocumentsDrawer({
   const t = useTranslations('catalogues');
   const closeRef = useRef<HTMLButtonElement>(null);
   const name = localized(manufacturer.name, locale);
+  // Back link of the brochure viewer: this page with its current filters.
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const query = searchParams.toString();
+  const returnPath = query ? `${pathname}?${query}` : pathname;
   const [filter, setFilter] = useState(() => {
     // Keep the page search only if it actually narrows this manufacturer's brochures.
     const q = normalize(initialQuery);
@@ -186,7 +199,7 @@ function DocumentsDrawer({
             <section>
               <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{t('drawer.catalogue')}</h3>
               <a
-                href={/^https?:/.test(manufacturer.catalogueUrl) ? manufacturer.catalogueUrl : `${manufacturer.catalogueUrl}#toolbar=0&navpanes=0`}
+                href={documentHref(manufacturer.catalogueUrl, locale, `${t('drawer.catalogue')} ${name}`, returnPath)}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={t('drawer.open')}
@@ -231,7 +244,7 @@ function DocumentsDrawer({
                   {brochures.map((b) => (
                     <li key={b.url}>
                       <a
-                        href={/^https?:/.test(b.url) ? b.url : `${b.url}#toolbar=0&navpanes=0`}
+                        href={documentHref(b.url, locale, localized(b.name, locale) || name, returnPath)}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={t('drawer.open')}

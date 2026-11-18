@@ -149,8 +149,8 @@ export const config = {
     '/api/:path*',
     // Uploaded files: hot-link protection only.
     '/uploads/:path*',
-    // Pages. robots.txt, sitemap*.xml and llms*.txt are left out so they are
-    // served as-is (no locale redirect, no rate limit).
-    '/((?!api|_next/static|_next/image|favicon.ico|uploads|images|robots\\.txt|sitemap.*\\.xml|llms.*\\.txt).*)',
+    // Pages. robots.txt, sitemap*.xml, llms*.txt and the pdf.js worker (/pdfjs/,
+    // brochure viewer) are left out so they are served as-is (no locale redirect, no rate limit).
+    '/((?!api|_next/static|_next/image|favicon.ico|uploads|images|pdfjs/|robots\\.txt|sitemap.*\\.xml|llms.*\\.txt).*)',
   ],
 };

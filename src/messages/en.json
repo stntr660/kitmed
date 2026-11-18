@@ -3143,5 +3143,24 @@
     "seeProducts": "See the products",
     "ctaTitle": "Need advice for your project?",
     "ctaButton": "Contact us"
+  },
+  "brochureViewer": {
+    "metaTitle": "Brochure — KITMED",
+    "title": "Brochure",
+    "eyebrow": "Online brochure",
+    "backToProduct": "Back to the product",
+    "backToCatalogues": "Back to catalogues",
+    "back": "Back",
+    "loading": "Loading the brochure…",
+    "loadingPage": "Loading page…",
+    "pageCounter": "{current} / {total}",
+    "prev": "Previous page",
+    "next": "Next page",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "hint": "Swipe or use the arrows to turn the pages.",
+    "errorTitle": "Unable to display the brochure",
+    "errorText": "Your browser cannot display this brochure. Our team can present it to you or send you the information you need.",
+    "contactUs": "Contact us"
   }
 }
