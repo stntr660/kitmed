@@ -55,10 +55,10 @@ export default function AboutPage() {
             <figure>
               <div className="overflow-hidden rounded-lg shadow-sm">
                 <Image
-                  src="/images/about/accompagnement-technique.jpg"
+                  src="/images/about/accueil-kitmed.jpg"
                   alt={t('who.imageAlt')}
-                  width={580}
-                  height={280}
+                  width={1600}
+                  height={900}
                   className="h-auto w-full object-cover"
                   priority
                 />
