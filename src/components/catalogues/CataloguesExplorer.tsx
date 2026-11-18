@@ -157,7 +157,7 @@ function DocumentsDrawer({
           <div className="flex h-16 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-50 px-2">
             {manufacturer.logoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={manufacturer.logoUrl} alt="" className="max-h-12 max-w-full object-contain mix-blend-multiply" />
+              <img src={manufacturer.logoUrl} alt="" className="max-h-12 max-w-full object-contain" />
             ) : (
               <Building2 className="h-8 w-8 text-slate-400" aria-hidden="true" />
             )}
@@ -313,7 +313,7 @@ function ManufacturerCard({
             src={manufacturer.logoUrl}
             alt={name}
             loading="lazy"
-            className="max-h-16 max-w-[75%] object-contain mix-blend-multiply sm:max-h-20"
+            className="max-h-16 max-w-[75%] object-contain sm:max-h-20"
           />
         ) : (
           <span className="text-2xl font-bold text-[#10146B]">{name}</span>

@@ -98,7 +98,7 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
                       alt={partner.name}
                       loading="eager"
                       decoding="async"
-                      className="max-h-[72px] max-w-[200px] object-contain mix-blend-multiply lg:max-h-[86px] lg:max-w-[250px]"
+                      className="h-[72px] w-[200px] object-contain lg:h-[86px] lg:w-[250px]"
                     />
                   </Link>
                 </div>
