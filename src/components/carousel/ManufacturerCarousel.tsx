@@ -96,7 +96,8 @@ export function ManufacturerCarousel({ partners, isLoading, className, locale = 
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      loading="lazy"
+                      loading="eager"
+                      decoding="async"
                       className="max-h-[72px] max-w-[200px] object-contain mix-blend-multiply lg:max-h-[86px] lg:max-w-[250px]"
                     />
                   </Link>

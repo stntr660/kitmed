@@ -364,7 +364,7 @@ function CategoryMenu({ categories, locale, pathname }: { categories: CategoryNo
                   )}
                 >
                   {cat.name}
-                  {cat.subcategories && cat.subcategories.length > 0 && <ChevronRight className="h-4 w-4 opacity-60" />}
+                  <ChevronRight className="h-4 w-4 opacity-60" />
                 </Link>
               </li>
             ))}

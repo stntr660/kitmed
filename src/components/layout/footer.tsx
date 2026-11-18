@@ -159,7 +159,7 @@ export function Footer({ locale, className }: FooterProps) {
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 text-medical-text-muted flex-shrink-0 mt-0.5" />
                 <span className="text-medical-text-secondary">
-                  33, rue Lahcen El Aarjounen<br />
+                  33, rue Lahcen El Arjoune<br />
                   Quartier des Hôpitaux<br />
                   Casablanca - Maroc
                 </span>
