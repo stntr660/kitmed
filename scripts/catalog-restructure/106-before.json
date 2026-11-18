@@ -1,0 +1,39 @@
+{
+ "taken_at": "2026-11-18T09:27:39.089Z",
+ "partner": {
+  "id": "4f9c451d-9287-4e32-a04c-ff9b788d090b",
+  "default_pdf_url": null
+ },
+ "products": {
+  "16789046-edae-49ba-8829-573847a436ba": {
+   "ref": "1DAYACUV",
+   "slug": "1-day-acuvue-moist-avec-lacreon-pour-astigmatisme",
+   "nom": "ACUVUE OASYS 1-DAY pour Astigmatisme avec HydraLuxe",
+   "status": "active"
+  },
+  "900b2822-7816-4658-a1ac-9c15a6093c0a": {
+   "ref": "ACUVUE2",
+   "slug": "acuvue-2",
+   "nom": "Lentilles de Contact Bi-Hebdomadaires ACUVUE 2",
+   "status": "active"
+  },
+  "91e37d05-e76d-4dae-8d0b-7f6dc4f8c23c": {
+   "ref": "ACUVUEOA",
+   "slug": "acuvue-oasys-1-day-avec-hydraluxe",
+   "nom": "ACUVUE OASYS 1-DAY avec HydraLuxe",
+   "status": "active"
+  },
+  "ea773c86-d453-44d7-aba2-abacd44c2535": {
+   "ref": "1DAYMOIS",
+   "slug": "1-day-moist-multifocal",
+   "nom": "1-DAY ACUVUE MOIST pour Astigmatisme avec LACREON",
+   "status": "active"
+  },
+  "c79544bd-54fa-4005-bee1-64ae2716c440": {
+   "ref": "ACUVUEVI",
+   "slug": "acuvue-vita",
+   "nom": "Lentilles de Contact Mensuelles ACUVUE VITA",
+   "status": "archived"
+  }
+ }
+}
