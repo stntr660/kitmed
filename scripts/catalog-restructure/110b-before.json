@@ -1,0 +1,2693 @@
+{
+ "taken_at": "2026-11-18T12:09:23.415Z",
+ "fields": [
+  {
+   "table": "product_translations",
+   "rowId": "2d4a7fd4-6289-4493-bf10-cb30e67883eb",
+   "field": "fiche_technique",
+   "label": "58fb64d6-6358-4887-a130-9359920e1216 fr.fiche_technique (foshan FS932)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2f8755c6-4f04-4391-8b12-398544856c37",
+   "field": "fiche_technique",
+   "label": "58fb64d6-6358-4887-a130-9359920e1216 en.fiche_technique (foshan FS932)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "58fb64d6-6358-4887-a130-9359920e1216",
+   "field": "pdf_brochure_url",
+   "label": "58fb64d6-6358-4887-a130-9359920e1216 pdf_brochure_url (foshan FS932)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1c585d44-e4dd-4c00-a7ac-865b93b38b5d",
+   "field": "fiche_technique",
+   "label": "91048c47-0bfd-4ff8-b27d-d148f6d3245c fr.fiche_technique (foshan FS9361L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "024b8e99-2a0c-4a31-a0be-698edde159bb",
+   "field": "fiche_technique",
+   "label": "91048c47-0bfd-4ff8-b27d-d148f6d3245c en.fiche_technique (foshan FS9361L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "91048c47-0bfd-4ff8-b27d-d148f6d3245c",
+   "field": "pdf_brochure_url",
+   "label": "91048c47-0bfd-4ff8-b27d-d148f6d3245c pdf_brochure_url (foshan FS9361L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9166c0e1-4755-46fc-be28-facc91d06573",
+   "field": "fiche_technique",
+   "label": "f6fee349-3d4e-4169-97ed-393dd1eb29ca fr.fiche_technique (foshan FS923L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3bf6b598-67e9-427c-8675-88d060bb91aa",
+   "field": "fiche_technique",
+   "label": "f6fee349-3d4e-4169-97ed-393dd1eb29ca en.fiche_technique (foshan FS923L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "f6fee349-3d4e-4169-97ed-393dd1eb29ca",
+   "field": "pdf_brochure_url",
+   "label": "f6fee349-3d4e-4169-97ed-393dd1eb29ca pdf_brochure_url (foshan FS923L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "839fcdc9-eb11-4f86-a1d2-4dcf3e486aff",
+   "field": "fiche_technique",
+   "label": "c3d8322f-4fd5-4b2a-b135-e4226125790e fr.fiche_technique (foshan FS928L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "38614fcf-bcbd-403e-b92b-47d92f0e14a2",
+   "field": "fiche_technique",
+   "label": "c3d8322f-4fd5-4b2a-b135-e4226125790e en.fiche_technique (foshan FS928L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "c3d8322f-4fd5-4b2a-b135-e4226125790e",
+   "field": "pdf_brochure_url",
+   "label": "c3d8322f-4fd5-4b2a-b135-e4226125790e pdf_brochure_url (foshan FS928L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f56bbeaf-9049-4780-9a6b-3f0e36600171",
+   "field": "fiche_technique",
+   "label": "8b37bd9a-4f04-4b6a-b81a-879982480850 fr.fiche_technique (foshan FS9280L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "deadff89-7aa0-4990-8fbe-454fd409b88f",
+   "field": "fiche_technique",
+   "label": "8b37bd9a-4f04-4b6a-b81a-879982480850 en.fiche_technique (foshan FS9280L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "8b37bd9a-4f04-4b6a-b81a-879982480850",
+   "field": "pdf_brochure_url",
+   "label": "8b37bd9a-4f04-4b6a-b81a-879982480850 pdf_brochure_url (foshan FS9280L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d44bfaf4-87fb-4b3b-b832-7155d327a06d",
+   "field": "fiche_technique",
+   "label": "8871a37b-f31c-4ce5-8f31-2d2fa32049a1 fr.fiche_technique (foshan FS9301L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8b618dd8-f21a-4400-a2e0-47caa32d497d",
+   "field": "fiche_technique",
+   "label": "8871a37b-f31c-4ce5-8f31-2d2fa32049a1 en.fiche_technique (foshan FS9301L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "8871a37b-f31c-4ce5-8f31-2d2fa32049a1",
+   "field": "pdf_brochure_url",
+   "label": "8871a37b-f31c-4ce5-8f31-2d2fa32049a1 pdf_brochure_url (foshan FS9301L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9afe8bfa-04f7-4526-a6cf-29a0104c876a",
+   "field": "fiche_technique",
+   "label": "59e09ea3-df47-40d7-bd2b-92e7bcd9774d fr.fiche_technique (foshan FS9251L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9042880d-146c-4978-9d35-ad53576bc0ba",
+   "field": "fiche_technique",
+   "label": "59e09ea3-df47-40d7-bd2b-92e7bcd9774d en.fiche_technique (foshan FS9251L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "59e09ea3-df47-40d7-bd2b-92e7bcd9774d",
+   "field": "pdf_brochure_url",
+   "label": "59e09ea3-df47-40d7-bd2b-92e7bcd9774d pdf_brochure_url (foshan FS9251L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b9b7d7d1-8c64-44d1-8ce5-a018a6ff8fa2",
+   "field": "fiche_technique",
+   "label": "de7a6873-5e47-4656-8d7b-fd5ad3b0e11c fr.fiche_technique (foshan FS9207LW-2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "464bd3fb-df0c-4b86-95f4-265befd4c741",
+   "field": "fiche_technique",
+   "label": "de7a6873-5e47-4656-8d7b-fd5ad3b0e11c en.fiche_technique (foshan FS9207LW-2)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "de7a6873-5e47-4656-8d7b-fd5ad3b0e11c",
+   "field": "pdf_brochure_url",
+   "label": "de7a6873-5e47-4656-8d7b-fd5ad3b0e11c pdf_brochure_url (foshan FS9207LW-2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bb51d392-876b-4232-958a-2dea133a4f89",
+   "field": "fiche_technique",
+   "label": "8e6c31bd-40f0-4bc0-8811-fde3d43b6f4e fr.fiche_technique (foshan FS936L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6fa6f446-fd87-4e5b-a119-54fd119030a4",
+   "field": "fiche_technique",
+   "label": "8e6c31bd-40f0-4bc0-8811-fde3d43b6f4e en.fiche_technique (foshan FS936L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "8e6c31bd-40f0-4bc0-8811-fde3d43b6f4e",
+   "field": "pdf_brochure_url",
+   "label": "8e6c31bd-40f0-4bc0-8811-fde3d43b6f4e pdf_brochure_url (foshan FS936L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "58854ca9-0976-4db1-8c8d-0ea11251a153",
+   "field": "fiche_technique",
+   "label": "d7cdb5e2-21bc-460a-acee-142219e901d7 fr.fiche_technique (foshan FS924L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "50e074d3-a687-467c-a74e-4166787d3e5b",
+   "field": "fiche_technique",
+   "label": "d7cdb5e2-21bc-460a-acee-142219e901d7 en.fiche_technique (foshan FS924L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "d7cdb5e2-21bc-460a-acee-142219e901d7",
+   "field": "pdf_brochure_url",
+   "label": "d7cdb5e2-21bc-460a-acee-142219e901d7 pdf_brochure_url (foshan FS924L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "64f959f8-1a01-4f76-8da2-1c194363fda3",
+   "field": "fiche_technique",
+   "label": "ef919a6d-a9ef-40f6-86ff-1f136262cff9 fr.fiche_technique (foshan FS937L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "31f503b4-b613-4109-a619-6392835d8733",
+   "field": "fiche_technique",
+   "label": "ef919a6d-a9ef-40f6-86ff-1f136262cff9 en.fiche_technique (foshan FS937L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "ef919a6d-a9ef-40f6-86ff-1f136262cff9",
+   "field": "pdf_brochure_url",
+   "label": "ef919a6d-a9ef-40f6-86ff-1f136262cff9 pdf_brochure_url (foshan FS937L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e8ac43a3-5050-4e80-b5ad-260ab59390d2",
+   "field": "fiche_technique",
+   "label": "d0d6145d-65aa-40af-8fa2-dae00aed35f5 fr.fiche_technique (foshan FS9634L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1b7e7e2c-3035-4eae-bb02-d36dd9b2a8c0",
+   "field": "fiche_technique",
+   "label": "d0d6145d-65aa-40af-8fa2-dae00aed35f5 en.fiche_technique (foshan FS9634L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "d0d6145d-65aa-40af-8fa2-dae00aed35f5",
+   "field": "pdf_brochure_url",
+   "label": "d0d6145d-65aa-40af-8fa2-dae00aed35f5 pdf_brochure_url (foshan FS9634L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "561bf2c2-a359-4880-ae09-d22b25adb675",
+   "field": "fiche_technique",
+   "label": "992d2f63-aa44-449d-8f5f-bfc5783bdaee fr.fiche_technique (foshan FS912L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "68a2b8b4-b732-4eb8-a2d2-3abda91ba169",
+   "field": "fiche_technique",
+   "label": "992d2f63-aa44-449d-8f5f-bfc5783bdaee en.fiche_technique (foshan FS912L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "992d2f63-aa44-449d-8f5f-bfc5783bdaee",
+   "field": "pdf_brochure_url",
+   "label": "992d2f63-aa44-449d-8f5f-bfc5783bdaee pdf_brochure_url (foshan FS912L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3233e0fd-460c-4db8-94e7-0b7ace4b5a4a",
+   "field": "fiche_technique",
+   "label": "28c8671b-6491-4903-ab3e-2756ffcdd183 fr.fiche_technique (foshan FS961L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3d1bce5c-a19c-4d14-8d19-0b9baacae1fb",
+   "field": "fiche_technique",
+   "label": "28c8671b-6491-4903-ab3e-2756ffcdd183 en.fiche_technique (foshan FS961L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "28c8671b-6491-4903-ab3e-2756ffcdd183",
+   "field": "pdf_brochure_url",
+   "label": "28c8671b-6491-4903-ab3e-2756ffcdd183 pdf_brochure_url (foshan FS961L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cfb14b06-f2eb-4a61-9697-de43adce2d96",
+   "field": "fiche_technique",
+   "label": "76d5845b-824b-4360-abe9-2ab7c15c14aa fr.fiche_technique (foshan FS913L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5f0990a4-2988-4427-a8b3-f68564ae33a8",
+   "field": "fiche_technique",
+   "label": "76d5845b-824b-4360-abe9-2ab7c15c14aa en.fiche_technique (foshan FS913L)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "76d5845b-824b-4360-abe9-2ab7c15c14aa",
+   "field": "pdf_brochure_url",
+   "label": "76d5845b-824b-4360-abe9-2ab7c15c14aa pdf_brochure_url (foshan FS913L)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f4b014d5-6c02-4dfe-a252-fd51abf768fd",
+   "field": "fiche_technique",
+   "label": "73e8a904-70bf-4502-89e7-32f1af6ec00a fr.fiche_technique (foshan FS965LH)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0f4d2993-4127-4509-9ddc-c26745d8a56f",
+   "field": "fiche_technique",
+   "label": "73e8a904-70bf-4502-89e7-32f1af6ec00a en.fiche_technique (foshan FS965LH)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "73e8a904-70bf-4502-89e7-32f1af6ec00a",
+   "field": "pdf_brochure_url",
+   "label": "73e8a904-70bf-4502-89e7-32f1af6ec00a pdf_brochure_url (foshan FS965LH)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0a691786-caab-4164-8b77-ca8e70fc14aa",
+   "field": "fiche_technique",
+   "label": "d6bbfc9c-efdc-44a4-a260-cb2e5bdc5311 fr.fiche_technique (foshan FS899)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0939c220-f323-41b1-a8e7-ffb5a8b50c52",
+   "field": "fiche_technique",
+   "label": "d6bbfc9c-efdc-44a4-a260-cb2e5bdc5311 en.fiche_technique (foshan FS899)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e2ec6fb0-8b96-4cd6-a9ff-f2090e77422f",
+   "field": "fiche_technique",
+   "label": "590a4739-6bf5-4526-a71b-2da3a50a572e fr.fiche_technique (foshan FS609U)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3614c1d6-d9a1-441b-9459-1f3de54325bf",
+   "field": "fiche_technique",
+   "label": "590a4739-6bf5-4526-a71b-2da3a50a572e en.fiche_technique (foshan FS609U)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "590a4739-6bf5-4526-a71b-2da3a50a572e",
+   "field": "pdf_brochure_url",
+   "label": "590a4739-6bf5-4526-a71b-2da3a50a572e pdf_brochure_url (foshan FS609U)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cd09b78d-a629-4b4e-9fcd-92027048e662",
+   "field": "fiche_technique",
+   "label": "b2697472-5af3-4469-9c84-d76c6ad7e045 fr.fiche_technique (foshan FS696)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3807836e-4e6a-4fd5-8602-2bbb420e39e1",
+   "field": "fiche_technique",
+   "label": "b2697472-5af3-4469-9c84-d76c6ad7e045 en.fiche_technique (foshan FS696)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7ee92bb0-7ff5-47a2-9c53-8d530f5f8af4",
+   "field": "fiche_technique",
+   "label": "a45ddd82-5b84-4e9b-8159-3edb94b787f5 fr.fiche_technique (foshan FS894)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "fab223d0-5b75-4f91-9b64-e36a16977d4a",
+   "field": "fiche_technique",
+   "label": "a45ddd82-5b84-4e9b-8159-3edb94b787f5 en.fiche_technique (foshan FS894)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "a45ddd82-5b84-4e9b-8159-3edb94b787f5",
+   "field": "pdf_brochure_url",
+   "label": "a45ddd82-5b84-4e9b-8159-3edb94b787f5 pdf_brochure_url (foshan FS894)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "61dc2625-f95e-4278-af3d-31b838172db1",
+   "field": "fiche_technique",
+   "label": "8bd47f52-7cf8-48ed-8c14-1c56b477c63c fr.fiche_technique (foshan FS980LA-35)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "335dabbb-4cd9-4d9c-b727-e5b358ddd76a",
+   "field": "fiche_technique",
+   "label": "8bd47f52-7cf8-48ed-8c14-1c56b477c63c en.fiche_technique (foshan FS980LA-35)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "8bd47f52-7cf8-48ed-8c14-1c56b477c63c",
+   "field": "pdf_brochure_url",
+   "label": "8bd47f52-7cf8-48ed-8c14-1c56b477c63c pdf_brochure_url (foshan FS980LA-35)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "182f7e1d-38fb-4d5a-a086-ec4c61ff208a",
+   "field": "fiche_technique",
+   "label": "025c20e7-cd01-4072-b345-07ee5cee57b9 fr.fiche_technique (foshan FS958LBCGPY)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "69494e71-53f2-449f-bb31-950808d99de2",
+   "field": "fiche_technique",
+   "label": "025c20e7-cd01-4072-b345-07ee5cee57b9 en.fiche_technique (foshan FS958LBCGPY)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "46549d18-84ed-4476-845e-10e235579e4e",
+   "field": "fiche_technique",
+   "label": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a fr.fiche_technique (foshan FS952LCQ)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "13b3beaa-c677-44d1-99b2-28e6c304d193",
+   "field": "fiche_technique",
+   "label": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a en.fiche_technique (foshan FS952LCQ)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a",
+   "field": "pdf_brochure_url",
+   "label": "302d97f6-f6fb-4b3e-962d-eab0d9cd3b5a pdf_brochure_url (foshan FS952LCQ)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ee823a57-4920-4914-b39c-162ac3a3f6e2",
+   "field": "fiche_technique",
+   "label": "9b9663c8-7760-42ad-b8a2-cebe01003ef0 fr.fiche_technique (foshan FS903LAJPQF9)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0a78c79f-e233-4e7d-a31a-c63a84c7fa4c",
+   "field": "fiche_technique",
+   "label": "9b9663c8-7760-42ad-b8a2-cebe01003ef0 en.fiche_technique (foshan FS903LAJPQF9)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "9b9663c8-7760-42ad-b8a2-cebe01003ef0",
+   "field": "pdf_brochure_url",
+   "label": "9b9663c8-7760-42ad-b8a2-cebe01003ef0 pdf_brochure_url (foshan FS903LAJPQF9)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a2d52af9-7451-4865-aa8b-02ab0d7f42eb",
+   "field": "fiche_technique",
+   "label": "f651c0fe-3c7d-4467-ae0a-8782f82619d3 fr.fiche_technique (foshan FS958LBPYF8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b1afa23d-e0c9-44ff-bb87-51915c6face8",
+   "field": "fiche_technique",
+   "label": "f651c0fe-3c7d-4467-ae0a-8782f82619d3 en.fiche_technique (foshan FS958LBPYF8)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "f651c0fe-3c7d-4467-ae0a-8782f82619d3",
+   "field": "pdf_brochure_url",
+   "label": "f651c0fe-3c7d-4467-ae0a-8782f82619d3 pdf_brochure_url (foshan FS958LBPYF8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ac542026-f06c-4452-af70-cd9de74a6548",
+   "field": "fiche_technique",
+   "label": "d0fd05bc-0925-4f41-aa4c-d187c146cf90 fr.fiche_technique (foshan FS908LAJPF21)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "726396f6-12da-49fb-ad8c-306de6b04974",
+   "field": "fiche_technique",
+   "label": "d0fd05bc-0925-4f41-aa4c-d187c146cf90 en.fiche_technique (foshan FS908LAJPF21)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "d0fd05bc-0925-4f41-aa4c-d187c146cf90",
+   "field": "pdf_brochure_url",
+   "label": "d0fd05bc-0925-4f41-aa4c-d187c146cf90 pdf_brochure_url (foshan FS908LAJPF21)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c4974ea5-953f-4ad2-a784-bd3eaee17ea3",
+   "field": "fiche_technique",
+   "label": "64b79d69-e981-4144-99e7-d47f6db6f38d fr.fiche_technique (foshan FS980LQF8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "112b2dd3-0d0a-4847-8774-643fdb62056c",
+   "field": "fiche_technique",
+   "label": "64b79d69-e981-4144-99e7-d47f6db6f38d en.fiche_technique (foshan FS980LQF8)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "64b79d69-e981-4144-99e7-d47f6db6f38d",
+   "field": "pdf_brochure_url",
+   "label": "64b79d69-e981-4144-99e7-d47f6db6f38d pdf_brochure_url (foshan FS980LQF8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "09160eb2-e9d5-4a11-8af7-b46f1da6c11f",
+   "field": "fiche_technique",
+   "label": "e4402b49-3318-413f-b9b2-4172e8e417b8 fr.fiche_technique (foshan FS875)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "64f192ad-8064-4ac7-83e4-42ea7aef55e5",
+   "field": "fiche_technique",
+   "label": "e4402b49-3318-413f-b9b2-4172e8e417b8 en.fiche_technique (foshan FS875)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "e4402b49-3318-413f-b9b2-4172e8e417b8",
+   "field": "pdf_brochure_url",
+   "label": "e4402b49-3318-413f-b9b2-4172e8e417b8 pdf_brochure_url (foshan FS875)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "afa24e06-51d3-4bd3-a175-188fba4c4783",
+   "field": "fiche_technique",
+   "label": "36cba98a-688f-4cca-aa80-98cc6a9edd71 fr.fiche_technique (foshan FS809B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b24e3002-e85d-45cb-91ad-c080ee89823f",
+   "field": "fiche_technique",
+   "label": "36cba98a-688f-4cca-aa80-98cc6a9edd71 en.fiche_technique (foshan FS809B)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "36cba98a-688f-4cca-aa80-98cc6a9edd71",
+   "field": "pdf_brochure_url",
+   "label": "36cba98a-688f-4cca-aa80-98cc6a9edd71 pdf_brochure_url (foshan FS809B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "dfb2bf39-b328-463a-9591-48e6ed3f5c2e",
+   "field": "fiche_technique",
+   "label": "5c59d58f-fc44-40fc-90b4-b6b66d1ce6e5 fr.fiche_technique (foshan FS951B-56)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8507a87c-8dee-499d-af4c-ece29080bf0d",
+   "field": "fiche_technique",
+   "label": "5c59d58f-fc44-40fc-90b4-b6b66d1ce6e5 en.fiche_technique (foshan FS951B-56)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "5c59d58f-fc44-40fc-90b4-b6b66d1ce6e5",
+   "field": "pdf_brochure_url",
+   "label": "5c59d58f-fc44-40fc-90b4-b6b66d1ce6e5 pdf_brochure_url (foshan FS951B-56)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "641fe302-420c-4fb9-aea1-52b2179c94b8",
+   "field": "fiche_technique",
+   "label": "31f09883-b092-4a65-87cf-e8e4f89bb9a1 fr.fiche_technique (foshan FS123)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "239d10d0-9278-4da6-8da0-4450ed571e8f",
+   "field": "fiche_technique",
+   "label": "31f09883-b092-4a65-87cf-e8e4f89bb9a1 en.fiche_technique (foshan FS123)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "31f09883-b092-4a65-87cf-e8e4f89bb9a1",
+   "field": "pdf_brochure_url",
+   "label": "31f09883-b092-4a65-87cf-e8e4f89bb9a1 pdf_brochure_url (foshan FS123)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a2d88b8a-fcce-4da7-8d31-c2df4fada8ef",
+   "field": "fiche_technique",
+   "label": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef fr.fiche_technique (foshan FS123GC)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "df464bed-50f4-4f7c-96b6-211196cb904c",
+   "field": "fiche_technique",
+   "label": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef en.fiche_technique (foshan FS123GC)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef",
+   "field": "pdf_brochure_url",
+   "label": "b4fa6f6c-2a32-47e9-aa87-238fd505d0ef pdf_brochure_url (foshan FS123GC)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "52ff98b6-94af-4041-8655-7887f347cd11",
+   "field": "fiche_technique",
+   "label": "bd527f1f-1d78-47d0-b68d-a3aa951072ac fr.fiche_technique (foshan FS141)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5fc6d22c-6513-4f8f-8de1-0974cb806c36",
+   "field": "fiche_technique",
+   "label": "bd527f1f-1d78-47d0-b68d-a3aa951072ac en.fiche_technique (foshan FS141)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "bd527f1f-1d78-47d0-b68d-a3aa951072ac",
+   "field": "pdf_brochure_url",
+   "label": "bd527f1f-1d78-47d0-b68d-a3aa951072ac pdf_brochure_url (foshan FS141)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ab67cf34-699d-4f59-9f60-bd6484320a59",
+   "field": "fiche_technique",
+   "label": "1f9c7036-1dd7-4f92-baae-4fab8b7a4e3a fr.fiche_technique (foshan FS3239WZF4)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0654e7f6-04f8-46e6-9061-4e06c9a0b280",
+   "field": "fiche_technique",
+   "label": "1f9c7036-1dd7-4f92-baae-4fab8b7a4e3a en.fiche_technique (foshan FS3239WZF4)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "1f9c7036-1dd7-4f92-baae-4fab8b7a4e3a",
+   "field": "pdf_brochure_url",
+   "label": "1f9c7036-1dd7-4f92-baae-4fab8b7a4e3a pdf_brochure_url (foshan FS3239WZF4)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7db31f7a-4762-4acc-a940-2f4664239e39",
+   "field": "fiche_technique",
+   "label": "a6a46dd7-2070-4466-ac45-d3afb287e3cc fr.fiche_technique (foshan FS3020W)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "626dfa26-7adb-44b7-bb45-f5825348741c",
+   "field": "fiche_technique",
+   "label": "a6a46dd7-2070-4466-ac45-d3afb287e3cc en.fiche_technique (foshan FS3020W)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "a6a46dd7-2070-4466-ac45-d3afb287e3cc",
+   "field": "pdf_brochure_url",
+   "label": "a6a46dd7-2070-4466-ac45-d3afb287e3cc pdf_brochure_url (foshan FS3020W)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "580e647e-215e-482e-98ae-0d28e1b191bd",
+   "field": "fiche_technique",
+   "label": "e7f7ac93-fc0e-4912-87f0-e4cf9ea939a0 fr.fiche_technique (foshan FS3230WZ)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ea8008ca-0920-4d2a-a880-49516e83ac35",
+   "field": "fiche_technique",
+   "label": "e7f7ac93-fc0e-4912-87f0-e4cf9ea939a0 en.fiche_technique (foshan FS3230WZ)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "e7f7ac93-fc0e-4912-87f0-e4cf9ea939a0",
+   "field": "pdf_brochure_url",
+   "label": "e7f7ac93-fc0e-4912-87f0-e4cf9ea939a0 pdf_brochure_url (foshan FS3230WZ)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6f9f5ce0-15ff-42c9-930a-f7d8539725d9",
+   "field": "fiche_technique",
+   "label": "a3e2d935-c5bb-4630-afb0-43b6a2874d83 fr.fiche_technique (heine C-011.28.388, C-010.28.388, C-261.28.388, C-144.28.388)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "fa3ae2d5-f101-41a8-afe4-86ebff8ea94a",
+   "field": "fiche_technique",
+   "label": "a3e2d935-c5bb-4630-afb0-43b6a2874d83 en.fiche_technique (heine C-011.28.388, C-010.28.388, C-261.28.388, C-144.28.388)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "a3e2d935-c5bb-4630-afb0-43b6a2874d83",
+   "field": "pdf_brochure_url",
+   "label": "a3e2d935-c5bb-4630-afb0-43b6a2874d83 pdf_brochure_url (heine C-011.28.388, C-010.28.388, C-261.28.388, C-144.28.388)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7ffc6753-9d40-4ff4-a2ee-a3baf8df4925",
+   "field": "fiche_technique",
+   "label": "17a11d68-2725-4c4d-acf1-6fc5abbe0d57 fr.fiche_technique (heine C-001.30.100, C-008.30.100, C-011.10.118, C-011.28.388, C-144.10.118, C-144.24.420, C-144.28.388, C-008.30.120, C-010.28.388, C-261.10.118, C-261.24.420, C-261.28.388)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "574ca53d-2323-442b-992c-6cc9155b000d",
+   "field": "fiche_technique",
+   "label": "17a11d68-2725-4c4d-acf1-6fc5abbe0d57 en.fiche_technique (heine C-001.30.100, C-008.30.100, C-011.10.118, C-011.28.388, C-144.10.118, C-144.24.420, C-144.28.388, C-008.30.120, C-010.28.388, C-261.10.118, C-261.24.420, C-261.28.388)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "17a11d68-2725-4c4d-acf1-6fc5abbe0d57",
+   "field": "pdf_brochure_url",
+   "label": "17a11d68-2725-4c4d-acf1-6fc5abbe0d57 pdf_brochure_url (heine C-001.30.100, C-008.30.100, C-011.10.118, C-011.28.388, C-144.10.118, C-144.24.420, C-144.28.388, C-008.30.120, C-010.28.388, C-261.10.118, C-261.24.420, C-261.28.388)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bd0639bf-51ab-44f8-a870-6a0556d53588",
+   "field": "fiche_technique",
+   "label": "custom-1776447208289-eb3bef0a fr.fiche_technique (heine HEINE-BETA-200S-LED)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9c939d94-884b-44a6-bfba-8b4b4bd99031",
+   "field": "fiche_technique",
+   "label": "custom-1776447208289-eb3bef0a en.fiche_technique (heine HEINE-BETA-200S-LED)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "custom-1776447208289-eb3bef0a",
+   "field": "pdf_brochure_url",
+   "label": "custom-1776447208289-eb3bef0a pdf_brochure_url (heine HEINE-BETA-200S-LED)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3449969b-cc66-47ca-959a-9d22cfbb7593",
+   "field": "fiche_technique",
+   "label": "ad0edaa4-cfb9-4b54-84c9-ff8d4545f29e fr.fiche_technique (heine D-001.71.120, D-002.71.120, D-008.71.120, D-008.71.220, D-886.11.021, D-886.11.022)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5dd6be9c-cd31-47c9-862c-3eacbadf723d",
+   "field": "fiche_technique",
+   "label": "ad0edaa4-cfb9-4b54-84c9-ff8d4545f29e en.fiche_technique (heine D-001.71.120, D-002.71.120, D-008.71.120, D-008.71.220, D-886.11.021, D-886.11.022)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "ad0edaa4-cfb9-4b54-84c9-ff8d4545f29e",
+   "field": "pdf_brochure_url",
+   "label": "ad0edaa4-cfb9-4b54-84c9-ff8d4545f29e pdf_brochure_url (heine D-001.71.120, D-002.71.120, D-008.71.120, D-008.71.220, D-886.11.021, D-886.11.022)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "83e074ec-0507-4981-b584-459c666e9a05",
+   "field": "fiche_technique",
+   "label": "9f59a846-94a2-4841-b03e-20847d57b575 fr.fiche_technique (heine C-283.10.330, C-283.10.335, C-284.10.330, C-284.10.335, C-008.33.530, C-008.33.535)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a2ab9f53-579f-4284-9562-b1ccd7a2b86b",
+   "field": "fiche_technique",
+   "label": "9f59a846-94a2-4841-b03e-20847d57b575 en.fiche_technique (heine C-283.10.330, C-283.10.335, C-284.10.330, C-284.10.335, C-008.33.530, C-008.33.535)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "9f59a846-94a2-4841-b03e-20847d57b575",
+   "field": "pdf_brochure_url",
+   "label": "9f59a846-94a2-4841-b03e-20847d57b575 pdf_brochure_url (heine C-283.10.330, C-283.10.335, C-284.10.330, C-284.10.335, C-008.33.530, C-008.33.535)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "59d3d69f-2700-4f61-9a96-d95c170e60b1",
+   "field": "fiche_technique",
+   "label": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835 fr.fiche_technique (keeler 24-3000/24-3000-V)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "64fb4359-b73b-4a61-a477-4840e1870c26",
+   "field": "fiche_technique",
+   "label": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835 en.fiche_technique (keeler 24-3000/24-3000-V)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835",
+   "field": "pdf_brochure_url",
+   "label": "5a8aba58-c1b9-4ec0-9edd-d58f32f28835 pdf_brochure_url (keeler 24-3000/24-3000-V)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d4aae128-5fb5-40bc-92ba-5eca57a74157",
+   "field": "fiche_technique",
+   "label": "4aa63549-d0a0-41f5-9b64-605a18bd00e1 fr.fiche_technique (KEELER 2414-P-2030 / 2414-P-2040)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a6cb8104-e021-47ab-b022-1eb6b5ddb3ba",
+   "field": "fiche_technique",
+   "label": "4aa63549-d0a0-41f5-9b64-605a18bd00e1 en.fiche_technique (KEELER 2414-P-2030 / 2414-P-2040)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "4aa63549-d0a0-41f5-9b64-605a18bd00e1",
+   "field": "pdf_brochure_url",
+   "label": "4aa63549-d0a0-41f5-9b64-605a18bd00e1 pdf_brochure_url (KEELER 2414-P-2030 / 2414-P-2040)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "645e538f-c751-44ac-a111-769d44172f2a",
+   "field": "fiche_technique",
+   "label": "683027a2-f527-485c-86dc-44cfe93f2d70 fr.fiche_technique (KEELER 2414-P-2032 / 2414-P-2042)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b2d33dc0-b78e-48de-b497-c7df6b8f2681",
+   "field": "fiche_technique",
+   "label": "683027a2-f527-485c-86dc-44cfe93f2d70 en.fiche_technique (KEELER 2414-P-2032 / 2414-P-2042)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "683027a2-f527-485c-86dc-44cfe93f2d70",
+   "field": "pdf_brochure_url",
+   "label": "683027a2-f527-485c-86dc-44cfe93f2d70 pdf_brochure_url (KEELER 2414-P-2032 / 2414-P-2042)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "96d2ffc6-649d-4661-b491-73f65ad57264",
+   "field": "fiche_technique",
+   "label": "e3e31895-9be0-47cf-a96d-4ae1e70bf183 fr.fiche_technique (KEELER 2418-P-2000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8734dfcf-eff6-4934-baf2-87882d0fba6c",
+   "field": "fiche_technique",
+   "label": "e3e31895-9be0-47cf-a96d-4ae1e70bf183 en.fiche_technique (KEELER 2418-P-2000)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "e3e31895-9be0-47cf-a96d-4ae1e70bf183",
+   "field": "pdf_brochure_url",
+   "label": "e3e31895-9be0-47cf-a96d-4ae1e70bf183 pdf_brochure_url (KEELER 2418-P-2000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b4a8ab27-0316-47d9-8373-8a805e565bcd",
+   "field": "fiche_technique",
+   "label": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9 fr.fiche_technique (KEELER 2417-P-2000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bb58750c-8f2a-4258-984f-58edf677ed09",
+   "field": "fiche_technique",
+   "label": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9 en.fiche_technique (KEELER 2417-P-2000)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9",
+   "field": "pdf_brochure_url",
+   "label": "d68162c8-76f4-4a54-b3bb-62fb894ec1d9 pdf_brochure_url (KEELER 2417-P-2000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "63da4097-c80b-41cf-87e8-386523f8d5ba",
+   "field": "fiche_technique",
+   "label": "67cc4c48-1d9d-4842-9d8c-8370417f5141 fr.fiche_technique (CARE GROUP ACRIOL-PRELOADED)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c4d0c524-d7e4-4dcd-bc0c-678961818d71",
+   "field": "fiche_technique",
+   "label": "67cc4c48-1d9d-4842-9d8c-8370417f5141 en.fiche_technique (CARE GROUP ACRIOL-PRELOADED)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "337bcdae-d17b-408f-9a15-7db383636692",
+   "field": "fiche_technique",
+   "label": "08db48bc-1358-4287-9bcf-1a9554fa5a45 fr.fiche_technique (CARE GROUP OCUFLEX-2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "490ae495-7cfa-4bab-94db-eb87d87e1605",
+   "field": "fiche_technique",
+   "label": "08db48bc-1358-4287-9bcf-1a9554fa5a45 en.fiche_technique (CARE GROUP OCUFLEX-2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4c62bca6-11b5-4e9a-9dfe-43e679a5cd45",
+   "field": "fiche_technique",
+   "label": "066a53f1-2aa7-4e5b-90c9-0587c616fa4d fr.fiche_technique (INAMI L-2510B/HB)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e90a4638-4b2d-4463-9c47-aa1903916226",
+   "field": "fiche_technique",
+   "label": "066a53f1-2aa7-4e5b-90c9-0587c616fa4d en.fiche_technique (INAMI L-2510B/HB)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "066a53f1-2aa7-4e5b-90c9-0587c616fa4d",
+   "field": "pdf_brochure_url",
+   "label": "066a53f1-2aa7-4e5b-90c9-0587c616fa4d pdf_brochure_url (INAMI L-2510B/HB)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f377a062-69ea-439d-8063-6d5d8af30fbf",
+   "field": "fiche_technique",
+   "label": "prod-1768073447109-1f7025qtp fr.fiche_technique (isomax ISO-ISS-16X5)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "de8273d2-9ec4-4616-894c-2e926becf12a",
+   "field": "fiche_technique",
+   "label": "prod-1768073447109-1f7025qtp en.fiche_technique (isomax ISO-ISS-16X5)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "prod-1768073447109-1f7025qtp",
+   "field": "pdf_brochure_url",
+   "label": "prod-1768073447109-1f7025qtp pdf_brochure_url (isomax ISO-ISS-16X5)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c3ba990c-ffde-46ee-8895-c71a3275ea0d",
+   "field": "fiche_technique",
+   "label": "omni-1768245275641-mcac2r5g2 fr.fiche_technique (omni OMNI-BLUE)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e01e7371-8dd4-45a1-84ee-a3d071f2055b",
+   "field": "fiche_technique",
+   "label": "omni-1768245275641-mcac2r5g2 en.fiche_technique (omni OMNI-BLUE)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "omni-1768245275641-mcac2r5g2",
+   "field": "pdf_brochure_url",
+   "label": "omni-1768245275641-mcac2r5g2 pdf_brochure_url (omni OMNI-BLUE)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3dc81764-5fc6-4057-9ccb-9b03185cc18b",
+   "field": "fiche_technique",
+   "label": "omni-1768245275610-ozjjmhwc7 fr.fiche_technique (omni OMNI-FLUORO)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c28c4f94-f1be-44b0-85b8-72be831d36ae",
+   "field": "fiche_technique",
+   "label": "omni-1768245275610-ozjjmhwc7 en.fiche_technique (omni OMNI-FLUORO)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "omni-1768245275610-ozjjmhwc7",
+   "field": "pdf_brochure_url",
+   "label": "omni-1768245275610-ozjjmhwc7 pdf_brochure_url (omni OMNI-FLUORO)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "54de95f8-8602-4aaf-89ce-00274ec1f8ac",
+   "field": "fiche_technique",
+   "label": "omni-1768245275619-1fd5kczer fr.fiche_technique (omni OMNI-SCHIRMER)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3fe12c03-cf5a-41b8-adaf-975a1413f0bb",
+   "field": "fiche_technique",
+   "label": "omni-1768245275619-1fd5kczer en.fiche_technique (omni OMNI-SCHIRMER)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "omni-1768245275619-1fd5kczer",
+   "field": "pdf_brochure_url",
+   "label": "omni-1768245275619-1fd5kczer pdf_brochure_url (omni OMNI-SCHIRMER)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "39eafdc3-2b02-4598-9957-e645dce0fb72",
+   "field": "fiche_technique",
+   "label": "53317b26-7693-40c9-bc5f-5ec7f55407ce fr.fiche_technique (ophtec OD125)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6581657a-b071-4d6e-a03c-56202297512d",
+   "field": "fiche_technique",
+   "label": "53317b26-7693-40c9-bc5f-5ec7f55407ce en.fiche_technique (ophtec OD125)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b3d6060e-4101-4f0b-aca3-82e33f747c88",
+   "field": "fiche_technique",
+   "label": "34e454ea-1227-44d5-bd69-ed10f3c02957 fr.fiche_technique (pukang G-18)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "013dd145-4497-4128-a1ce-53a1a9bb8c00",
+   "field": "fiche_technique",
+   "label": "34e454ea-1227-44d5-bd69-ed10f3c02957 en.fiche_technique (pukang G-18)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "455ac9ca-2e99-4c85-8925-13a19cb09928",
+   "field": "fiche_technique",
+   "label": "2ca231ba-3acf-4a00-9695-599b0b777409 fr.fiche_technique (pukang G-19)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "67fb4f37-37fa-436c-bb31-e076950c724b",
+   "field": "fiche_technique",
+   "label": "2ca231ba-3acf-4a00-9695-599b0b777409 en.fiche_technique (pukang G-19)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "49daa21a-b123-41bd-8762-17a3e34bbafc",
+   "field": "fiche_technique",
+   "label": "e84aba0c-cfc3-465f-97e7-f906fc71355b fr.fiche_technique (pukang G-20)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "264ed00d-f6f3-4a56-b400-2da760ab844c",
+   "field": "fiche_technique",
+   "label": "e84aba0c-cfc3-465f-97e7-f906fc71355b en.fiche_technique (pukang G-20)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845530-qych9qrej-fr",
+   "field": "fiche_technique",
+   "label": "prod-1768072845530-qych9qrej fr.fiche_technique (rheon 2P2, 2P2s, 3P2, 3P2s)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845530-qych9qrej-en",
+   "field": "fiche_technique",
+   "label": "prod-1768072845530-qych9qrej en.fiche_technique (rheon 2P2, 2P2s, 3P2, 3P2s)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "prod-1768072845530-qych9qrej",
+   "field": "pdf_brochure_url",
+   "label": "prod-1768072845530-qych9qrej pdf_brochure_url (rheon 2P2, 2P2s, 3P2, 3P2s)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845501-dpld7x7xw-fr",
+   "field": "fiche_technique",
+   "label": "prod-1768072845501-dpld7x7xw fr.fiche_technique (rheon M4)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845501-dpld7x7xw-en",
+   "field": "fiche_technique",
+   "label": "prod-1768072845501-dpld7x7xw en.fiche_technique (rheon M4)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "prod-1768072845501-dpld7x7xw",
+   "field": "pdf_brochure_url",
+   "label": "prod-1768072845501-dpld7x7xw pdf_brochure_url (rheon M4)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845549-mozq2jje1-fr",
+   "field": "fiche_technique",
+   "label": "prod-1768072845549-mozq2jje1 fr.fiche_technique (rheon C4, sC1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845549-mozq2jje1-en",
+   "field": "fiche_technique",
+   "label": "prod-1768072845549-mozq2jje1 en.fiche_technique (rheon C4, sC1)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "prod-1768072845549-mozq2jje1",
+   "field": "pdf_brochure_url",
+   "label": "prod-1768072845549-mozq2jje1 pdf_brochure_url (rheon C4, sC1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845376-agu7wjcny-fr",
+   "field": "fiche_technique",
+   "label": "prod-1768072845376-agu7wjcny fr.fiche_technique (rheon aW-syst-2Q0-01, eW-syst-300-01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845376-agu7wjcny-en",
+   "field": "fiche_technique",
+   "label": "prod-1768072845376-agu7wjcny en.fiche_technique (rheon aW-syst-2Q0-01, eW-syst-300-01)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "prod-1768072845376-agu7wjcny",
+   "field": "pdf_brochure_url",
+   "label": "prod-1768072845376-agu7wjcny pdf_brochure_url (rheon aW-syst-2Q0-01, eW-syst-300-01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c8ad64f5-82ce-4d74-b507-cd3b553833e2",
+   "field": "fiche_technique",
+   "label": "cb364d27-335e-4b40-b3a1-7a5f21982001 fr.fiche_technique (ursapharmm HYLO DUAL INTENSE)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "20e9a5bb-ad56-415d-bdfa-725d4e1a1aa5",
+   "field": "fiche_technique",
+   "label": "cb364d27-335e-4b40-b3a1-7a5f21982001 en.fiche_technique (ursapharmm HYLO DUAL INTENSE)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "cb364d27-335e-4b40-b3a1-7a5f21982001",
+   "field": "pdf_brochure_url",
+   "label": "cb364d27-335e-4b40-b3a1-7a5f21982001 pdf_brochure_url (ursapharmm HYLO DUAL INTENSE)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7c4a86d7-01bc-4ae1-8013-25841bb3a72f",
+   "field": "fiche_technique",
+   "label": "efcbb66f-2660-4323-ad08-946e6e2f07eb fr.fiche_technique (nidek OPD-Scan)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "52fc3e3d-70bc-43cd-8edf-c0cbcff765f2",
+   "field": "fiche_technique",
+   "label": "efcbb66f-2660-4323-ad08-946e6e2f07eb en.fiche_technique (nidek OPD-Scan)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "efcbb66f-2660-4323-ad08-946e6e2f07eb",
+   "field": "pdf_brochure_url",
+   "label": "efcbb66f-2660-4323-ad08-946e6e2f07eb pdf_brochure_url (nidek OPD-Scan)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "edefd51d-a791-474a-a71a-7df32c5c6b78",
+   "field": "fiche_technique",
+   "label": "c033cf79-22de-4260-ad89-e16efae1393a fr.fiche_technique (nidek ARK-1s)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "01bbc0d7-3e07-42d1-9744-90350b479afd",
+   "field": "fiche_technique",
+   "label": "c033cf79-22de-4260-ad89-e16efae1393a en.fiche_technique (nidek ARK-1s)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "c033cf79-22de-4260-ad89-e16efae1393a",
+   "field": "pdf_brochure_url",
+   "label": "c033cf79-22de-4260-ad89-e16efae1393a pdf_brochure_url (nidek ARK-1s)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4ed745e5-802a-4185-b52a-a04a1012463f",
+   "field": "fiche_technique",
+   "label": "5dd75ed5-ef9c-4cfb-b471-aee6625ee09c fr.fiche_technique (nidek AR-1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7843d323-5fe4-4440-a5c8-f690f45494f4",
+   "field": "fiche_technique",
+   "label": "5dd75ed5-ef9c-4cfb-b471-aee6625ee09c en.fiche_technique (nidek AR-1)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "5dd75ed5-ef9c-4cfb-b471-aee6625ee09c",
+   "field": "pdf_brochure_url",
+   "label": "5dd75ed5-ef9c-4cfb-b471-aee6625ee09c pdf_brochure_url (nidek AR-1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8e860efa-52da-474f-a649-bdf8a4e098b2",
+   "field": "fiche_technique",
+   "label": "c9810af0-736c-45a1-8dc3-b2f9f59bf5c2 fr.fiche_technique (nidek AL-SCAN)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "18bd272b-d7cb-4d64-aa9f-bd8c005b52d9",
+   "field": "fiche_technique",
+   "label": "c9810af0-736c-45a1-8dc3-b2f9f59bf5c2 en.fiche_technique (nidek AL-SCAN)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "c9810af0-736c-45a1-8dc3-b2f9f59bf5c2",
+   "field": "pdf_brochure_url",
+   "label": "c9810af0-736c-45a1-8dc3-b2f9f59bf5c2 pdf_brochure_url (nidek AL-SCAN)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "608b58d4-c4a4-4f1f-ba5e-1269d81f5349",
+   "field": "fiche_technique",
+   "label": "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab fr.fiche_technique (nidek ICE-1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "75df9a8c-8dae-417a-8e72-778fec86f480",
+   "field": "fiche_technique",
+   "label": "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab en.fiche_technique (nidek ICE-1)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab",
+   "field": "pdf_brochure_url",
+   "label": "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab pdf_brochure_url (nidek ICE-1)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "56f37e43-8a4a-4546-b26d-003f95113b6d",
+   "field": "fiche_technique",
+   "label": "c632cb82-b68c-439c-a615-ab0fe070cdb8 fr.fiche_technique (nidek ICE-1500)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "01d9612e-c39a-4d08-bb64-5b9cd135aa4a",
+   "field": "fiche_technique",
+   "label": "c632cb82-b68c-439c-a615-ab0fe070cdb8 en.fiche_technique (nidek ICE-1500)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "c632cb82-b68c-439c-a615-ab0fe070cdb8",
+   "field": "pdf_brochure_url",
+   "label": "c632cb82-b68c-439c-a615-ab0fe070cdb8 pdf_brochure_url (nidek ICE-1500)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7e1f343d-466b-493e-9ecf-617036334cd3",
+   "field": "fiche_technique",
+   "label": "87dc43e2-6b64-4bce-86ed-41a18ccebf49 fr.fiche_technique (nidek FE-2010)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4403f963-89cd-45a1-9f93-14ad79b1c159",
+   "field": "fiche_technique",
+   "label": "87dc43e2-6b64-4bce-86ed-41a18ccebf49 en.fiche_technique (nidek FE-2010)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "87dc43e2-6b64-4bce-86ed-41a18ccebf49",
+   "field": "pdf_brochure_url",
+   "label": "87dc43e2-6b64-4bce-86ed-41a18ccebf49 pdf_brochure_url (nidek FE-2010)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3e54aa3d-cad7-4c8a-8636-e1151ad607e9",
+   "field": "fiche_technique",
+   "label": "697b4ff5-b694-442b-8aca-392305174fea fr.fiche_technique (nidek GS-1-EXPLO)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e69291cc-3289-4782-83ab-ee4415ec98eb",
+   "field": "fiche_technique",
+   "label": "697b4ff5-b694-442b-8aca-392305174fea en.fiche_technique (nidek GS-1-EXPLO)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "697b4ff5-b694-442b-8aca-392305174fea",
+   "field": "pdf_brochure_url",
+   "label": "697b4ff5-b694-442b-8aca-392305174fea pdf_brochure_url (nidek GS-1-EXPLO)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "df2c8a73-1fe8-4378-a3e5-093780f1b415",
+   "field": "fiche_technique",
+   "label": "6ebc6388-acd9-479a-bc76-c23610170176 fr.fiche_technique (nidek GYC-500)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "19db76bd-4935-4bd1-b631-24235af16863",
+   "field": "fiche_technique",
+   "label": "6ebc6388-acd9-479a-bc76-c23610170176 en.fiche_technique (nidek GYC-500)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "6ebc6388-acd9-479a-bc76-c23610170176",
+   "field": "pdf_brochure_url",
+   "label": "6ebc6388-acd9-479a-bc76-c23610170176 pdf_brochure_url (nidek GYC-500)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "804298b2-1b34-46e4-bb95-1c2a4c3a11d8",
+   "field": "fiche_technique",
+   "label": "7571ecad-f25e-45d4-92a3-505da95cdb1f fr.fiche_technique (nidek PM-700)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "03a45b46-5cad-4816-8952-ab0836ab9717",
+   "field": "fiche_technique",
+   "label": "7571ecad-f25e-45d4-92a3-505da95cdb1f en.fiche_technique (nidek PM-700)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "7571ecad-f25e-45d4-92a3-505da95cdb1f",
+   "field": "pdf_brochure_url",
+   "label": "7571ecad-f25e-45d4-92a3-505da95cdb1f pdf_brochure_url (nidek PM-700)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "41340538-068b-498c-8e5e-a11bb6807587",
+   "field": "fiche_technique",
+   "label": "21198d6f-a2aa-4468-bfda-b6c66d2d480b fr.fiche_technique (nidek RT-3100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3b91adfe-f17a-4a40-9797-651fb0538fdb",
+   "field": "fiche_technique",
+   "label": "21198d6f-a2aa-4468-bfda-b6c66d2d480b en.fiche_technique (nidek RT-3100)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "21198d6f-a2aa-4468-bfda-b6c66d2d480b",
+   "field": "pdf_brochure_url",
+   "label": "21198d6f-a2aa-4468-bfda-b6c66d2d480b pdf_brochure_url (nidek RT-3100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b48f24b9-b259-4991-be16-ded6cb5a6068",
+   "field": "fiche_technique",
+   "label": "b9a1e926-0f95-4f68-859f-f351b62f5401 fr.fiche_technique (nidek RT-6100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "16d7e239-4ac8-4c56-b95b-05768d033235",
+   "field": "fiche_technique",
+   "label": "b9a1e926-0f95-4f68-859f-f351b62f5401 en.fiche_technique (nidek RT-6100)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "b9a1e926-0f95-4f68-859f-f351b62f5401",
+   "field": "pdf_brochure_url",
+   "label": "b9a1e926-0f95-4f68-859f-f351b62f5401 pdf_brochure_url (nidek RT-6100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5158e7b1-12d2-4d60-88c2-a36a261d9907",
+   "field": "fiche_technique",
+   "label": "b63b26fa-0716-4370-879a-0340bf573a7f fr.fiche_technique (nidek OT-4200)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "58ba828e-2c94-4f47-8048-577045c7d5c4",
+   "field": "fiche_technique",
+   "label": "b63b26fa-0716-4370-879a-0340bf573a7f en.fiche_technique (nidek OT-4200)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "b63b26fa-0716-4370-879a-0340bf573a7f",
+   "field": "pdf_brochure_url",
+   "label": "b63b26fa-0716-4370-879a-0340bf573a7f pdf_brochure_url (nidek OT-4200)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "17e98c7b-f695-4eaa-bf35-93aac2c4254d",
+   "field": "fiche_technique",
+   "label": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0 fr.fiche_technique (nidek OT-6400)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8e9255fc-f0a5-461c-ba1c-131f6a996131",
+   "field": "fiche_technique",
+   "label": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0 en.fiche_technique (nidek OT-6400)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0",
+   "field": "pdf_brochure_url",
+   "label": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0 pdf_brochure_url (nidek OT-6400)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615532-i023jv6xk-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615532-i023jv6xk fr.fiche_technique (nitrocare HB 8000 T)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615532-i023jv6xk-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615532-i023jv6xk en.fiche_technique (nitrocare HB 8000 T)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615232-o2cm2wqhh-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615232-o2cm2wqhh fr.fiche_technique (nitrocare HB 8000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615232-o2cm2wqhh-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615232-o2cm2wqhh en.fiche_technique (nitrocare HB 8000)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615524-hryhlhzqe-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615524-hryhlhzqe fr.fiche_technique (nitrocare HB 8000 B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615524-hryhlhzqe-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615524-hryhlhzqe en.fiche_technique (nitrocare HB 8000 B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615792-j418nj55x-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615792-j418nj55x fr.fiche_technique (nitrocare HB 5130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615792-j418nj55x-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615792-j418nj55x en.fiche_technique (nitrocare HB 5130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615799-qy0rjiwjd-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615799-qy0rjiwjd fr.fiche_technique (nitrocare HB 5220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615799-qy0rjiwjd-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615799-qy0rjiwjd en.fiche_technique (nitrocare HB 5220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615805-xafncoiku-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615805-xafncoiku fr.fiche_technique (nitrocare HB 5230)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615805-xafncoiku-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615805-xafncoiku en.fiche_technique (nitrocare HB 5230)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615759-2tjj9f4l8-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615759-2tjj9f4l8 fr.fiche_technique (nitrocare HB 5110)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615759-2tjj9f4l8-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615759-2tjj9f4l8 en.fiche_technique (nitrocare HB 5110)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615753-7xdpp0llc-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615753-7xdpp0llc fr.fiche_technique (nitrocare HB 6240)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615753-7xdpp0llc-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615753-7xdpp0llc en.fiche_technique (nitrocare HB 6240)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615809-1b0nljmq3-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615809-1b0nljmq3 fr.fiche_technique (nitrocare HB 4220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615809-1b0nljmq3-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615809-1b0nljmq3 en.fiche_technique (nitrocare HB 4220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615814-61ynri9tz-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615814-61ynri9tz fr.fiche_technique (nitrocare HB 4310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615814-61ynri9tz-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615814-61ynri9tz en.fiche_technique (nitrocare HB 4310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615820-wyetrnn6d-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615820-wyetrnn6d fr.fiche_technique (nitrocare HB 4410)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615820-wyetrnn6d-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615820-wyetrnn6d en.fiche_technique (nitrocare HB 4410)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615748-10kpa46dv-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615748-10kpa46dv fr.fiche_technique (nitrocare HB 6220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615748-10kpa46dv-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615748-10kpa46dv en.fiche_technique (nitrocare HB 6220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615824-bwha8ldg8-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615824-bwha8ldg8 fr.fiche_technique (nitrocare HB 4430 P)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615824-bwha8ldg8-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615824-bwha8ldg8 en.fiche_technique (nitrocare HB 4430 P)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615733-hpmofa1ho-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615733-hpmofa1ho fr.fiche_technique (nitrocare HB 7250)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615733-hpmofa1ho-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615733-hpmofa1ho en.fiche_technique (nitrocare HB 7250)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615743-ir7egark0-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615743-ir7egark0 fr.fiche_technique (nitrocare HB 7260 F)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615743-ir7egark0-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615743-ir7egark0 en.fiche_technique (nitrocare HB 7260 F)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615738-kz931hoxf-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615738-kz931hoxf fr.fiche_technique (nitrocare HB 7260)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615738-kz931hoxf-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615738-kz931hoxf en.fiche_technique (nitrocare HB 7260)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615565-qre9zazb5-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615565-qre9zazb5 fr.fiche_technique (nitrocare HB 7240)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615565-qre9zazb5-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615565-qre9zazb5 en.fiche_technique (nitrocare HB 7240)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615558-5wqf9o1c6-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615558-5wqf9o1c6 fr.fiche_technique (nitrocare HB 7000 W)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615558-5wqf9o1c6-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615558-5wqf9o1c6 en.fiche_technique (nitrocare HB 7000 W)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615543-zpe2htjtt-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615543-zpe2htjtt fr.fiche_technique (nitrocare HB 8130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615543-zpe2htjtt-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615543-zpe2htjtt en.fiche_technique (nitrocare HB 8130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615862-fbkjvouje-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615862-fbkjvouje fr.fiche_technique (nitrocare HB 1310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615862-fbkjvouje-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615862-fbkjvouje en.fiche_technique (nitrocare HB 1310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615847-4husrqyc0-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615847-4husrqyc0 fr.fiche_technique (nitrocare HB 2220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615847-4husrqyc0-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615847-4husrqyc0 en.fiche_technique (nitrocare HB 2220)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615853-sdujvm3qm-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615853-sdujvm3qm fr.fiche_technique (nitrocare HB 2310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615853-sdujvm3qm-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615853-sdujvm3qm en.fiche_technique (nitrocare HB 2310)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615829-hjj4og5y6-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615829-hjj4og5y6 fr.fiche_technique (nitrocare HB 3110)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615829-hjj4og5y6-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615829-hjj4og5y6 en.fiche_technique (nitrocare HB 3110)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615834-6z9hhyuao-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615834-6z9hhyuao fr.fiche_technique (nitrocare HB 3130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615834-6z9hhyuao-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615834-6z9hhyuao en.fiche_technique (nitrocare HB 3130)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615842-rxwq9wjd0-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615842-rxwq9wjd0 fr.fiche_technique (nitrocare HB 3320)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615842-rxwq9wjd0-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615842-rxwq9wjd0 en.fiche_technique (nitrocare HB 3320)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615866-sagd4xikn-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615866-sagd4xikn fr.fiche_technique (nitrocare SD 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615866-sagd4xikn-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615866-sagd4xikn en.fiche_technique (nitrocare SD 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615873-zss2imcaf-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615873-zss2imcaf fr.fiche_technique (nitrocare SD 01 P)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615873-zss2imcaf-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615873-zss2imcaf en.fiche_technique (nitrocare SD 01 P)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615878-fjf6lbqcn-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615878-fjf6lbqcn fr.fiche_technique (nitrocare SD 04)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615878-fjf6lbqcn-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615878-fjf6lbqcn en.fiche_technique (nitrocare SD 04)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615884-79fnoahxh-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615884-79fnoahxh fr.fiche_technique (nitrocare SD 05)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615884-79fnoahxh-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615884-79fnoahxh en.fiche_technique (nitrocare SD 05)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615889-m8gnet1h5-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615889-m8gnet1h5 fr.fiche_technique (nitrocare SD 06)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615889-m8gnet1h5-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615889-m8gnet1h5 en.fiche_technique (nitrocare SD 06)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615893-h0etcgbtv-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615893-h0etcgbtv fr.fiche_technique (nitrocare SD 15)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615893-h0etcgbtv-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615893-h0etcgbtv en.fiche_technique (nitrocare SD 15)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615897-4uuoxusv4-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615897-4uuoxusv4 fr.fiche_technique (nitrocare SIGMA)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615897-4uuoxusv4-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615897-4uuoxusv4 en.fiche_technique (nitrocare SIGMA)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a0de7604-588c-4e9d-b4e3-defdf0121b9c",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615936-r058tcgsf fr.fiche_technique (nitrocare NHS 870)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b55c699a-2a6c-4881-948e-e003b881d7af",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615936-r058tcgsf en.fiche_technique (nitrocare NHS 870)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cf390a83-971b-4955-a9cb-bf78254c68f5",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615941-rfibwth2b fr.fiche_technique (nitrocare NHS 900)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "dd89cb69-3164-4c1f-a100-862ded0f9c20",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615941-rfibwth2b en.fiche_technique (nitrocare NHS 900)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615903-vng13tat7-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615903-vng13tat7 fr.fiche_technique (nitrocare NTS X5)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615903-vng13tat7-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615903-vng13tat7 en.fiche_technique (nitrocare NTS X5)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1ac038fb-8681-42f5-ac06-9c87d13776b6",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615923-5xqwsopds fr.fiche_technique (nitrocare NTS X10)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "60461e6f-4a03-469b-ab7b-07fcd8631004",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615923-5xqwsopds en.fiche_technique (nitrocare NTS X10)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615909-r6a8zl8w5-fr",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615909-r6a8zl8w5 fr.fiche_technique (nitrocare NTS X6)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615909-r6a8zl8w5-en",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615909-r6a8zl8w5 en.fiche_technique (nitrocare NTS X6)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "fbd8fbac-257b-4bf4-ba47-c9020d84bc45",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615918-mta9bwbvs fr.fiche_technique (nitrocare NTS X8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ade947e4-7968-45af-b028-f760cb908367",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615918-mta9bwbvs en.fiche_technique (nitrocare NTS X8)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9ce88117-d082-444a-a46e-5a1dac16be3b",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615931-7v1cpf0qt fr.fiche_technique (nitrocare NTS X12)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bb9035e4-446a-4418-8cfa-ccdacdf37bac",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615931-7v1cpf0qt en.fiche_technique (nitrocare NTS X12)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2f958cef-9216-47df-8cfb-ce7f5e9ff425",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615913-b7h5nruvy fr.fiche_technique (nitrocare NTS X7)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9af8460d-96ab-4177-8030-e96349591d31",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615913-b7h5nruvy en.fiche_technique (nitrocare NTS X7)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a809b1c2-2ee2-4676-be44-72a5bb2e4b37",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615927-yhgpkxbz6 fr.fiche_technique (nitrocare NTS X11)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b880a6db-c898-46a3-82aa-4a7d4bfbd819",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615927-yhgpkxbz6 en.fiche_technique (nitrocare NTS X11)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5197293e-9746-4a9a-b3fb-2e64787b8711",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616072-991l6ui9j fr.fiche_technique (nitrocare JMM 02)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "42d30fe0-3b19-4256-98fc-a058b8ce1913",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616072-991l6ui9j en.fiche_technique (nitrocare JMM 02)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "25df7ea8-64a2-405c-8dcb-d86b69fe7a7a",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616085-bnqhg4rfl fr.fiche_technique (nitrocare EVA JMM 04)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "86a8e291-23f2-4f46-9a14-c68f621a65d6",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616085-bnqhg4rfl en.fiche_technique (nitrocare EVA JMM 04)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b002d242-e7a9-4602-8c52-d0b9073b27c1",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616080-lmpcq0kvt fr.fiche_technique (nitrocare JMM 03)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9494b85a-3b37-4777-ad07-4d5d09a2e171",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616080-lmpcq0kvt en.fiche_technique (nitrocare JMM 03)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "230a3f00-e004-4b87-9591-f06dbc811778",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616026-k7619rsyl fr.fiche_technique (nitrocare JMM 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d6af5aaf-35aa-4cac-97fe-a8678a497acc",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616026-k7619rsyl en.fiche_technique (nitrocare JMM 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ba73c8c0-c673-4e90-88de-20812252c539",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616013-5lk0n8grq fr.fiche_technique (nitrocare CARET 502)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "34515a24-7122-419a-be77-d37773a57a9d",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616013-5lk0n8grq en.fiche_technique (nitrocare CARET 502)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "86343434-c653-441c-b26d-e8745ff73a81",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616018-3bo7cj3fj fr.fiche_technique (nitrocare CARET 502 v2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cbdafd39-ffc6-4a00-9d32-c62b9f501b66",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616018-3bo7cj3fj en.fiche_technique (nitrocare CARET 502 v2)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d9266960-a33b-4766-ae4b-3547a1067516",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615999-6lwt8h1yu fr.fiche_technique (nitrocare SDY 10)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "442c8b80-96f3-4b4f-a7a7-60a856288a6f",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615999-6lwt8h1yu en.fiche_technique (nitrocare SDY 10)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "dc735c68-12a3-4bac-ba70-389369ae2f6f",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616008-5tmqla023 fr.fiche_technique (nitrocare SDY 11)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b771541f-18b3-4d09-bd00-afdce46a366e",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616008-5tmqla023 en.fiche_technique (nitrocare SDY 11)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7f4c83a2-f819-43be-acd3-069e3ca104e2",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615963-zh49vtmtp fr.fiche_technique (nitrocare NTHM 112)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "470a2a41-0614-4a57-8574-8243b9b5f1cf",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615963-zh49vtmtp en.fiche_technique (nitrocare NTHM 112)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f6bb21c9-061a-418f-8870-de66669f5746",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615967-g08h2gyj9 fr.fiche_technique (nitrocare NTHM 113)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bce9b7f5-7434-48bf-96c8-cd05ffc52aef",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615967-g08h2gyj9 en.fiche_technique (nitrocare NTHM 113)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8b9da073-f7c4-46af-829e-af7ae8f32910",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615971-3p4cwlinf fr.fiche_technique (nitrocare NTHM 114)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "347de808-230c-4560-93b7-f86ec8fd7235",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615971-3p4cwlinf en.fiche_technique (nitrocare NTHM 114)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "992a2e40-48b5-4b59-8349-f4140972bee4",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615976-v9pj81akj fr.fiche_technique (nitrocare NTHM 115)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e04d075d-dfcb-4606-9d35-3bd804b41e25",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615976-v9pj81akj en.fiche_technique (nitrocare NTHM 115)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7b2e942b-f1a7-4fd4-8499-ac05464d710f",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615980-qf6jvb4ps fr.fiche_technique (nitrocare NTHM 116)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c3527fee-0c42-4a04-bf45-640ae4055f59",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615980-qf6jvb4ps en.fiche_technique (nitrocare NTHM 116)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "158e5371-b5e0-442b-b073-a862231649c5",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615984-aqtmv2mmk fr.fiche_technique (nitrocare NTHM 117)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7f0237d1-b74b-4651-ae7f-bfd6ffdbb96a",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615984-aqtmv2mmk en.fiche_technique (nitrocare NTHM 117)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7824055a-40f7-4ccb-9c22-4181b4dcd714",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615994-tmu3gzio2 fr.fiche_technique (nitrocare NTHM 118 B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "880c33c4-9c92-4198-af74-3728b659e4df",
+   "field": "fiche_technique",
+   "label": "nitro-1768234615994-tmu3gzio2 en.fiche_technique (nitrocare NTHM 118 B)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e1ee783b-e1a1-4e5b-ac56-91a5144d7e7e",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616089-c935o7eml fr.fiche_technique (nitrocare BK 02)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "65ae8f26-4504-4553-86e3-4989eda01b2f",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616089-c935o7eml en.fiche_technique (nitrocare BK 02)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "85f7ff4a-3adf-4e85-ad5d-56e85408f069",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616097-st3wr3bp1 fr.fiche_technique (nitrocare OLHD 1006)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cfa8e0cc-c3dd-4e72-a5ec-bc2471690248",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616097-st3wr3bp1 en.fiche_technique (nitrocare OLHD 1006)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bc581dfa-ca85-4904-b205-ea40b75aa4b4",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616101-7tij06h9k fr.fiche_technique (nitrocare OLHD 1007)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "92728c64-4cbb-4013-9979-7cdbe34dae1c",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616101-7tij06h9k en.fiche_technique (nitrocare OLHD 1007)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4f17db7d-3f6b-423a-9c6c-151f5f35b7b5",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616120-rx0dm6zl3 fr.fiche_technique (nitrocare BST 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7bee8940-b242-402a-9173-cf1aec5677db",
+   "field": "fiche_technique",
+   "label": "nitro-1768234616120-rx0dm6zl3 en.fiche_technique (nitrocare BST 01)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4654c6ac-1f76-42f4-b053-a4fb96655d10",
+   "field": "fiche_technique",
+   "label": "8d919400-9fcd-467a-ad72-80a145f3b973 fr.fiche_technique (ray-vision TL-G40)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "74776ddd-c7f7-464e-a3b8-122aa6104147",
+   "field": "fiche_technique",
+   "label": "8d919400-9fcd-467a-ad72-80a145f3b973 en.fiche_technique (ray-vision TL-G40)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "8d919400-9fcd-467a-ad72-80a145f3b973",
+   "field": "pdf_brochure_url",
+   "label": "8d919400-9fcd-467a-ad72-80a145f3b973 pdf_brochure_url (ray-vision TL-G40)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1463f75d-a5c0-457a-b30d-4530a4e95f98",
+   "field": "fiche_technique",
+   "label": "a1033956-d016-42d6-9c46-35e89ce5ff77 fr.fiche_technique (ray-vision TL-L15)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "397832b9-b4df-4f90-88e6-8f1575523321",
+   "field": "fiche_technique",
+   "label": "a1033956-d016-42d6-9c46-35e89ce5ff77 en.fiche_technique (ray-vision TL-L15)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "a1033956-d016-42d6-9c46-35e89ce5ff77",
+   "field": "pdf_brochure_url",
+   "label": "a1033956-d016-42d6-9c46-35e89ce5ff77 pdf_brochure_url (ray-vision TL-L15)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "980153b4-0189-4b0a-869d-c315f4a0019a",
+   "field": "fiche_technique",
+   "label": "522caa8c-2bf6-400d-ae35-65fa9f08cb69 fr.fiche_technique (ray-vision TL-S30)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "98fb17b1-b774-49d6-a198-ef3697ad3a00",
+   "field": "fiche_technique",
+   "label": "522caa8c-2bf6-400d-ae35-65fa9f08cb69 en.fiche_technique (ray-vision TL-S30)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "522caa8c-2bf6-400d-ae35-65fa9f08cb69",
+   "field": "pdf_brochure_url",
+   "label": "522caa8c-2bf6-400d-ae35-65fa9f08cb69 pdf_brochure_url (ray-vision TL-S30)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "763083ee-d28d-4742-9e68-0f55a63e4016",
+   "field": "fiche_technique",
+   "label": "b6eb72dc-a45a-4689-b08a-b282b4a43174 fr.fiche_technique (ray-vision TL-V20)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "45a66335-43cc-42a6-81ac-762ae129bd12",
+   "field": "fiche_technique",
+   "label": "b6eb72dc-a45a-4689-b08a-b282b4a43174 en.fiche_technique (ray-vision TL-V20)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "b6eb72dc-a45a-4689-b08a-b282b4a43174",
+   "field": "pdf_brochure_url",
+   "label": "b6eb72dc-a45a-4689-b08a-b282b4a43174 pdf_brochure_url (ray-vision TL-V20)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0d9b08d3-a0fe-4c1a-b7ad-7d87237a29c5",
+   "field": "fiche_technique",
+   "label": "e352f02a-6200-446c-b4ba-07d631216de0 fr.fiche_technique (ray-vision TL-E80)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b7cb2ecf-fd5c-42a8-8f8c-f903a0d006f9",
+   "field": "fiche_technique",
+   "label": "e352f02a-6200-446c-b4ba-07d631216de0 en.fiche_technique (ray-vision TL-E80)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "e352f02a-6200-446c-b4ba-07d631216de0",
+   "field": "pdf_brochure_url",
+   "label": "e352f02a-6200-446c-b4ba-07d631216de0 pdf_brochure_url (ray-vision TL-E80)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "60a7287e-0f70-47e3-b8f2-624673dd6e86",
+   "field": "fiche_technique",
+   "label": "641873cf-f8cf-4609-a830-874f589ca4ea fr.fiche_technique (ray-vision TF-E40)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5e879d77-cf1d-4786-a9bc-ffc2c4d892b2",
+   "field": "fiche_technique",
+   "label": "641873cf-f8cf-4609-a830-874f589ca4ea en.fiche_technique (ray-vision TF-E40)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7ddb3ee3-55a8-4d7e-a929-bdd2ff1e9e4e",
+   "field": "fiche_technique",
+   "label": "a7b7fee1-ff03-49eb-88d5-831998e7ef16 fr.fiche_technique (ray-vision TF-K30)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0f021870-a292-4c30-9591-bcec2c1ac0ae",
+   "field": "fiche_technique",
+   "label": "a7b7fee1-ff03-49eb-88d5-831998e7ef16 en.fiche_technique (ray-vision TF-K30)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e3935b48-1f2f-4a16-a1ca-8fe8e508d0c9",
+   "field": "fiche_technique",
+   "label": "75690617-aeca-43a2-9cec-e15bbef5be56 fr.fiche_technique (ray-vision TF-K65)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e920dbd8-7247-4d70-921e-f4883efc24bd",
+   "field": "fiche_technique",
+   "label": "75690617-aeca-43a2-9cec-e15bbef5be56 en.fiche_technique (ray-vision TF-K65)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e9382735-de40-45c5-a25f-76a6d2244f78",
+   "field": "fiche_technique",
+   "label": "668f9ff1-8bd5-46ab-9e78-2fda4390a03d fr.fiche_technique (ray-vision TF-P50)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "af7f46e0-3cd0-4f11-a842-3c9260d2f524",
+   "field": "fiche_technique",
+   "label": "668f9ff1-8bd5-46ab-9e78-2fda4390a03d en.fiche_technique (ray-vision TF-P50)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "66458c07-2c47-46c7-b797-e4c193443aa9",
+   "field": "fiche_technique",
+   "label": "06a787a1-f9ce-4976-ba86-f2b31b213536 fr.fiche_technique (ray-vision OM-V50)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "543cc601-d4dc-44d2-94b2-6671d7562068",
+   "field": "fiche_technique",
+   "label": "06a787a1-f9ce-4976-ba86-f2b31b213536 en.fiche_technique (ray-vision OM-V50)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "06a787a1-f9ce-4976-ba86-f2b31b213536",
+   "field": "pdf_brochure_url",
+   "label": "06a787a1-f9ce-4976-ba86-f2b31b213536 pdf_brochure_url (ray-vision OM-V50)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d7fbbc10-1a4b-4d0c-84df-c6db1f9a1231",
+   "field": "fiche_technique",
+   "label": "28418216-e284-4edb-a012-5c2fef04ec81 fr.fiche_technique (ray-vision TB-S100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f97c0a47-3ac0-4086-9a87-38fef9985d77",
+   "field": "fiche_technique",
+   "label": "28418216-e284-4edb-a012-5c2fef04ec81 en.fiche_technique (ray-vision TB-S100)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "28418216-e284-4edb-a012-5c2fef04ec81",
+   "field": "pdf_brochure_url",
+   "label": "28418216-e284-4edb-a012-5c2fef04ec81 pdf_brochure_url (ray-vision TB-S100)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "723f5572-b94a-40b9-9deb-35564356734a",
+   "field": "fiche_technique",
+   "label": "38d9869e-5121-4db2-90d9-8220eb6fcfdc fr.fiche_technique (ray-vision TB-S430)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bb183e34-de8a-478f-a9e9-3976efd03a70",
+   "field": "fiche_technique",
+   "label": "38d9869e-5121-4db2-90d9-8220eb6fcfdc en.fiche_technique (ray-vision TB-S430)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "38d9869e-5121-4db2-90d9-8220eb6fcfdc",
+   "field": "pdf_brochure_url",
+   "label": "38d9869e-5121-4db2-90d9-8220eb6fcfdc pdf_brochure_url (ray-vision TB-S430)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2e29b720-2924-48dd-a9a1-651ae05293f8",
+   "field": "fiche_technique",
+   "label": "f881f276-3778-4fcc-9295-bd5f8281d33a fr.fiche_technique (ray-vision TB-S560)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "68c15b80-9ddd-4bfb-974b-c7b12a177c34",
+   "field": "fiche_technique",
+   "label": "f881f276-3778-4fcc-9295-bd5f8281d33a en.fiche_technique (ray-vision TB-S560)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "f881f276-3778-4fcc-9295-bd5f8281d33a",
+   "field": "pdf_brochure_url",
+   "label": "f881f276-3778-4fcc-9295-bd5f8281d33a pdf_brochure_url (ray-vision TB-S560)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b4911f2f-93ef-46e1-82f6-e9d01d604020",
+   "field": "fiche_technique",
+   "label": "16a4797d-a944-4265-8769-5524a88ea46b fr.fiche_technique (ray-vision TB-S700)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4a4bd58a-5604-4006-b239-a2d3a716d0d8",
+   "field": "fiche_technique",
+   "label": "16a4797d-a944-4265-8769-5524a88ea46b en.fiche_technique (ray-vision TB-S700)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "16a4797d-a944-4265-8769-5524a88ea46b",
+   "field": "pdf_brochure_url",
+   "label": "16a4797d-a944-4265-8769-5524a88ea46b pdf_brochure_url (ray-vision TB-S700)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "94d0cf48-dad4-42ee-843e-33e7e3373b34",
+   "field": "fiche_technique",
+   "label": "3850e5ef-c868-4249-8812-ad6dee8b057b fr.fiche_technique (ray-vision TB-V300)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b3e8b52a-0cc2-45fb-a661-0b66cbf9448e",
+   "field": "fiche_technique",
+   "label": "3850e5ef-c868-4249-8812-ad6dee8b057b en.fiche_technique (ray-vision TB-V300)",
+   "value": null
+  },
+  {
+   "table": "products",
+   "rowId": "3850e5ef-c868-4249-8812-ad6dee8b057b",
+   "field": "pdf_brochure_url",
+   "label": "3850e5ef-c868-4249-8812-ad6dee8b057b pdf_brochure_url (ray-vision TB-V300)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "22d01ec6-27ca-4e6c-a838-94db95d0ee54",
+   "field": "fiche_technique",
+   "label": "2d592657-5aee-4265-9ee5-1463a82ae84d fr.fiche_technique (ray-vision TB-S330)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "489f0e82-783b-4f07-9954-074948222c7d",
+   "field": "fiche_technique",
+   "label": "2d592657-5aee-4265-9ee5-1463a82ae84d en.fiche_technique (ray-vision TB-S330)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cc8ef388-36d9-497a-90c2-3a2e077bbc69",
+   "field": "fiche_technique",
+   "label": "7439598c-3b4e-48ef-8a31-bee36bd47e86 fr.fiche_technique (ray-vision TB-S580)",
+   "value": null
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8994a3d3-0926-4f92-b13a-feb4987bb9d0",
+   "field": "fiche_technique",
+   "label": "7439598c-3b4e-48ef-8a31-bee36bd47e86 en.fiche_technique (ray-vision TB-S580)",
+   "value": null
+  }
+ ]
+}
