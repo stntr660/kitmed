@@ -1,0 +1,1132 @@
+{
+ "taken_at": "2026-11-18T09:58:28.612Z",
+ "fields": [
+  {
+   "table": "product_translations",
+   "rowId": "56760d19-7415-424e-b271-d13b928bbfa3",
+   "field": "nom",
+   "label": "f95430b0-1881-435d-96c0-44b85c822695 fr.nom",
+   "value": "Eyesi Surgical Simulator"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d98014f4-c1ef-4d64-8ea6-5610f024845d",
+   "field": "nom",
+   "label": "6b60008e-c95e-4111-9164-a5e1c5ff2c24 fr.nom",
+   "value": "Kitaro Kit"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2294bdf0-37a6-4fec-ae1f-4a8f0a4d11fe",
+   "field": "nom",
+   "label": "94c24822-9375-45e9-87e8-600905e56eca fr.nom",
+   "value": "Scansys TA-517"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "337bcdae-d17b-408f-9a15-7db383636692",
+   "field": "nom",
+   "label": "08db48bc-1358-4287-9bcf-1a9554fa5a45 fr.nom",
+   "value": "Ocuflex 2 - Monofocal Asphérique Hydrophile"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "63da4097-c80b-41cf-87e8-386523f8d5ba",
+   "field": "nom",
+   "label": "67cc4c48-1d9d-4842-9d8c-8370417f5141 fr.nom",
+   "value": "Acriol Pre-loaded - Monofocal Hydrophobe Precharge"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a8e1105b-8a7c-4610-b9e6-7981928188cc",
+   "field": "nom",
+   "label": "0edd91be-7111-4bcf-8a0f-992bb6db40b8 fr.nom",
+   "value": "Tonoref III"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3d82b24b-b0a8-4055-9015-6b585cd20556",
+   "field": "nom",
+   "label": "bb456ebd-2fb6-457e-a635-50a2d87c9a63 fr.nom",
+   "value": "877PA / 877PAY Implant Hydrophobe Precharge"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1334630d-ee8e-4e80-ae0e-7992b0c7e9fe",
+   "field": "nom",
+   "label": "70c7e7e7-5ea5-4cb2-81ef-4e5535a3580a fr.nom",
+   "value": "TS-310"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "af3e2139-1688-44fe-a7d3-1eb460d0710f",
+   "field": "nom",
+   "label": "5c4d6a28-60fb-4eb3-ab7e-351cab61cd39 fr.nom",
+   "value": "TS-610"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c11ddd02-501c-4e77-adbb-9965aa3e2f76",
+   "field": "nom",
+   "label": "dd937278-52fe-4ab3-abfe-333b9e33f1ce fr.nom",
+   "value": "Symphony Q Series"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "380279d8-7f3a-4a6d-a68c-44321d8f1b3a",
+   "field": "nom",
+   "label": "3afe2546-bbe9-4b4b-8885-36d52ff36537 fr.nom",
+   "value": "BI 900 Lampe a Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6c9cadef-6530-44e3-9114-9402a32ea831",
+   "field": "nom",
+   "label": "dcb45e18-26c4-43fd-b37e-beb867aae20a fr.nom",
+   "value": "Lampe à Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1463f75d-a5c0-457a-b30d-4530a4e95f98",
+   "field": "nom",
+   "label": "a1033956-d016-42d6-9c46-35e89ce5ff77 fr.nom",
+   "value": "TL-L15 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e3935b48-1f2f-4a16-a1ca-8fe8e508d0c9",
+   "field": "nom",
+   "label": "75690617-aeca-43a2-9cec-e15bbef5be56 fr.nom",
+   "value": "TF-K65 Monture D'essai"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615820-wyetrnn6d-fr",
+   "field": "nom",
+   "label": "nitro-1768234615820-wyetrnn6d fr.nom",
+   "value": "NITRO HB 4410 Quatre Moteurs Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "60a7287e-0f70-47e3-b8f2-624673dd6e86",
+   "field": "nom",
+   "label": "641873cf-f8cf-4609-a830-874f589ca4ea fr.nom",
+   "value": "TF-E40 Monture D'essai"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4e9e0c5e-a32f-4a0c-abef-3e17b363f1d2",
+   "field": "nom",
+   "label": "nitro-1768234615956-c27v6du3y fr.nom",
+   "value": "Happy Fauteuil de Dialyse"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615857-k8gdo8twa-fr",
+   "field": "nom",
+   "label": "nitro-1768234615857-k8gdo8twa fr.nom",
+   "value": "NITRO HB 1120 Manuel Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615847-4husrqyc0-fr",
+   "field": "nom",
+   "label": "nitro-1768234615847-4husrqyc0 fr.nom",
+   "value": "NITRO HB 2220 Deux Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615853-sdujvm3qm-fr",
+   "field": "nom",
+   "label": "nitro-1768234615853-sdujvm3qm fr.nom",
+   "value": "NITRO HB 2310 Deux Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615829-hjj4og5y6-fr",
+   "field": "nom",
+   "label": "nitro-1768234615829-hjj4og5y6 fr.nom",
+   "value": "NITRO HB 3110 Trois Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7b2e942b-f1a7-4fd4-8499-ac05464d710f",
+   "field": "nom",
+   "label": "nitro-1768234615980-qf6jvb4ps fr.nom",
+   "value": "NTHM 116 Medicine Storage Chariot"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "5b64b882-1147-4054-b4a2-fe701c673a70",
+   "field": "nom",
+   "label": "nitro-1768234615991-mtnppiqk3 fr.nom",
+   "value": "NTHM 118 Chariot de Pansement"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f6bb21c9-061a-418f-8870-de66669f5746",
+   "field": "nom",
+   "label": "nitro-1768234615967-g08h2gyj9 fr.nom",
+   "value": "NTHM 113 Medicine Et Treatment Chariot"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7f4c83a2-f819-43be-acd3-069e3ca104e2",
+   "field": "nom",
+   "label": "nitro-1768234615963-zh49vtmtp fr.nom",
+   "value": "NTHM 112 Chariot Urgence"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615824-bwha8ldg8-fr",
+   "field": "nom",
+   "label": "nitro-1768234615824-bwha8ldg8 fr.nom",
+   "value": "NITRO HB 4430 P Quatre Moteurs Pediatric Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "66458c07-2c47-46c7-b797-e4c193443aa9",
+   "field": "nom",
+   "label": "06a787a1-f9ce-4976-ba86-f2b31b213536 fr.nom",
+   "value": "OM-V50 Opération Microscope"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "763083ee-d28d-4742-9e68-0f55a63e4016",
+   "field": "nom",
+   "label": "b6eb72dc-a45a-4689-b08a-b282b4a43174 fr.nom",
+   "value": "TL-V20 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d106a001-0000-4000-8000-000000000002-fr",
+   "field": "nom",
+   "label": "d106a001-0000-4000-8000-000000000002 fr.nom",
+   "value": "1-DAY ACUVUE® MOIST for ASTIGMATISM"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d106a001-0000-4000-8000-000000000004-fr",
+   "field": "nom",
+   "label": "d106a001-0000-4000-8000-000000000004 fr.nom",
+   "value": "ACUVUE® OASYS for ASTIGMATISM"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615834-6z9hhyuao-fr",
+   "field": "nom",
+   "label": "nitro-1768234615834-6z9hhyuao fr.nom",
+   "value": "NITRO HB 3130 Trois Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615842-rxwq9wjd0-fr",
+   "field": "nom",
+   "label": "nitro-1768234615842-rxwq9wjd0 fr.nom",
+   "value": "NITRO HB 3320 Trois Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615809-1b0nljmq3-fr",
+   "field": "nom",
+   "label": "nitro-1768234615809-1b0nljmq3 fr.nom",
+   "value": "NITRO HB 4220 Quatre Moteurs Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615814-61ynri9tz-fr",
+   "field": "nom",
+   "label": "nitro-1768234615814-61ynri9tz fr.nom",
+   "value": "NITRO HB 4310 Quatre Moteurs Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b002d242-e7a9-4602-8c52-d0b9073b27c1",
+   "field": "nom",
+   "label": "nitro-1768234616080-lmpcq0kvt fr.nom",
+   "value": "JMM 03 Gynaecological Table Examen"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "230a3f00-e004-4b87-9591-f06dbc811778",
+   "field": "nom",
+   "label": "nitro-1768234616026-k7619rsyl fr.nom",
+   "value": "JMM 01 Gynaecological Table Examen"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "cf390a83-971b-4955-a9cb-bf78254c68f5",
+   "field": "nom",
+   "label": "nitro-1768234615941-rfibwth2b fr.nom",
+   "value": "NHS 900 Fauteuil de Dialyse"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615759-2tjj9f4l8-fr",
+   "field": "nom",
+   "label": "nitro-1768234615759-2tjj9f4l8 fr.nom",
+   "value": "NITRO HB 5110 Cinq Moteurs Lateral Modele Colonne Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615792-j418nj55x-fr",
+   "field": "nom",
+   "label": "nitro-1768234615792-j418nj55x fr.nom",
+   "value": "NITRO HB 5130 Quatre Moteurs Balance Modele Colonne Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615799-qy0rjiwjd-fr",
+   "field": "nom",
+   "label": "nitro-1768234615799-qy0rjiwjd fr.nom",
+   "value": "NITRO HB 5220 Quatre Moteurs Modele Colonne Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615805-xafncoiku-fr",
+   "field": "nom",
+   "label": "nitro-1768234615805-xafncoiku fr.nom",
+   "value": "NITRO HB 5230 Quatre Moteurs Modele Colonne Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615748-10kpa46dv-fr",
+   "field": "nom",
+   "label": "nitro-1768234615748-10kpa46dv fr.nom",
+   "value": "NITRO HB 6220 Lit Hopital Bariatrique"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615753-7xdpp0llc-fr",
+   "field": "nom",
+   "label": "nitro-1768234615753-7xdpp0llc fr.nom",
+   "value": "NITRO HB 6240 Quatre Moteurs Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615558-5wqf9o1c6-fr",
+   "field": "nom",
+   "label": "nitro-1768234615558-5wqf9o1c6 fr.nom",
+   "value": "NITRO HB 7000 W Quatre Moteurs Lit de Soins a Domicile"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615565-qre9zazb5-fr",
+   "field": "nom",
+   "label": "nitro-1768234615565-qre9zazb5 fr.nom",
+   "value": "NITRO HB 7240 Serra Quatre Moteurs Lit de Soins a Domicile"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615733-hpmofa1ho-fr",
+   "field": "nom",
+   "label": "nitro-1768234615733-hpmofa1ho fr.nom",
+   "value": "NITRO HB 7250 Trois Moteurs Lit de Soins Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615738-kz931hoxf-fr",
+   "field": "nom",
+   "label": "nitro-1768234615738-kz931hoxf fr.nom",
+   "value": "NITRO HB 7260 Serra Quatre Moteurs Lit de Soins a Domicile"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615743-ir7egark0-fr",
+   "field": "nom",
+   "label": "nitro-1768234615743-ir7egark0 fr.nom",
+   "value": "NITRO HB 7260 F Serra Quatre Moteurs Lit de Soins a Domicile"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615232-o2cm2wqhh-fr",
+   "field": "nom",
+   "label": "nitro-1768234615232-o2cm2wqhh fr.nom",
+   "value": "NITRO HB 8000 Sante Quatre Moteurs Lit de Soins Intensifs"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615524-hryhlhzqe-fr",
+   "field": "nom",
+   "label": "nitro-1768234615524-hryhlhzqe fr.nom",
+   "value": "NITRO HB 8000 B Quatre Moteurs Lit de Soins Intensifs Bariatrique"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615532-i023jv6xk-fr",
+   "field": "nom",
+   "label": "nitro-1768234615532-i023jv6xk fr.nom",
+   "value": "NITRO HB 8000 T Quatre Moteurs Lit de Soins Intensifs avec Balance"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615543-zpe2htjtt-fr",
+   "field": "nom",
+   "label": "nitro-1768234615543-zpe2htjtt fr.nom",
+   "value": "NITRO HB 8130 Sante Trois Moteurs Lit Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615550-cykifae9z-fr",
+   "field": "nom",
+   "label": "nitro-1768234615550-cykifae9z fr.nom",
+   "value": "NITRO HB 8140 ELC Quatre Moteurs Lit de Soins Intensifs Lit Bas"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a0de7604-588c-4e9d-b4e3-defdf0121b9c",
+   "field": "nom",
+   "label": "nitro-1768234615936-r058tcgsf fr.nom",
+   "value": "NHS 870 Dialysis Brancard"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "992a2e40-48b5-4b59-8349-f4140972bee4",
+   "field": "nom",
+   "label": "nitro-1768234615976-v9pj81akj fr.nom",
+   "value": "NTHM 115 Medicine Et Treatment Chariot"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "bc581dfa-ca85-4904-b205-ea40b75aa4b4",
+   "field": "nom",
+   "label": "nitro-1768234616101-7tij06h9k fr.nom",
+   "value": "OLHD 1007 Compact Table de Chevet"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "08130f64-f206-4b80-a7da-79ab6ee61b36",
+   "field": "nom",
+   "label": "nitro-1768234616108-mk0xz4ac3 fr.nom",
+   "value": "OLHD 1009 Table de Chevet"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "09c5ee6b-288e-48aa-a35f-a3e1d0113688",
+   "field": "nom",
+   "label": "nitro-1768234616113-pfx33huor fr.nom",
+   "value": "OLHD 1011 Full Compact Table de Chevet"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "ab6a9007-1d22-4309-aff0-1609a7137487",
+   "field": "nom",
+   "label": "nitro-1768234616105-a91ht2k4j fr.nom",
+   "value": "OLHD 1008 Full Compact Table de Chevet"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "9ce88117-d082-444a-a46e-5a1dac16be3b",
+   "field": "nom",
+   "label": "nitro-1768234615931-7v1cpf0qt fr.nom",
+   "value": "NTS X12 Bariatric Chaise de Transport"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2f958cef-9216-47df-8cfb-ce7f5e9ff425",
+   "field": "nom",
+   "label": "nitro-1768234615913-b7h5nruvy fr.nom",
+   "value": "NTS X7 Fauteuil Donneur de Sang"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "a809b1c2-2ee2-4676-be44-72a5bb2e4b37",
+   "field": "nom",
+   "label": "nitro-1768234615927-yhgpkxbz6 fr.nom",
+   "value": "NTS X11 Deux Moteurs Fauteuil Donneur de Sang"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615909-r6a8zl8w5-fr",
+   "field": "nom",
+   "label": "nitro-1768234615909-r6a8zl8w5 fr.nom",
+   "value": "NTS X6 Patient Chaise de Transport"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615903-vng13tat7-fr",
+   "field": "nom",
+   "label": "nitro-1768234615903-vng13tat7 fr.nom",
+   "value": "NTS X5 Patient Chaise de Transport"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1ac038fb-8681-42f5-ac06-9c87d13776b6",
+   "field": "nom",
+   "label": "nitro-1768234615923-5xqwsopds fr.nom",
+   "value": "NTS X10 Patient Chaise de Transport"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "fbd8fbac-257b-4bf4-ba47-c9020d84bc45",
+   "field": "nom",
+   "label": "nitro-1768234615918-mta9bwbvs fr.nom",
+   "value": "NTS X8 Patient Chaise de Transport Height Adjustable"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615897-4uuoxusv4-fr",
+   "field": "nom",
+   "label": "nitro-1768234615897-4uuoxusv4 fr.nom",
+   "value": "NTCR SIGMA C-Arm Brancard"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615893-h0etcgbtv-fr",
+   "field": "nom",
+   "label": "nitro-1768234615893-h0etcgbtv fr.nom",
+   "value": "NTCR SD 15 Hydraulique Brancard Urgence"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615878-fjf6lbqcn-fr",
+   "field": "nom",
+   "label": "nitro-1768234615878-fjf6lbqcn fr.nom",
+   "value": "NTCR SD 04 Brancard Urgence"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615889-m8gnet1h5-fr",
+   "field": "nom",
+   "label": "nitro-1768234615889-m8gnet1h5 fr.nom",
+   "value": "NTCR SD 06 Patient Brancard de Transfert"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "980153b4-0189-4b0a-869d-c315f4a0019a",
+   "field": "nom",
+   "label": "522caa8c-2bf6-400d-ae35-65fa9f08cb69 fr.nom",
+   "value": "TL-S30 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b48f24b9-b259-4991-be16-ded6cb5a6068",
+   "field": "nom",
+   "label": "b9a1e926-0f95-4f68-859f-f351b62f5401 fr.nom",
+   "value": "Réfracteur Intelligent RT-6100"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "26eda74a-1e03-4cef-862e-1565516f6fdf",
+   "field": "nom",
+   "label": "4f3d44ac-9571-417e-b68f-6706893e9c76 fr.nom",
+   "value": "TL-R60 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "56f37e43-8a4a-4546-b26d-003f95113b6d",
+   "field": "nom",
+   "label": "c632cb82-b68c-439c-a615-ab0fe070cdb8 fr.nom",
+   "value": "Meuleuse Intelligente ICE-1500"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "3e84de25-3eea-45be-989e-83283225b1e9",
+   "field": "nom",
+   "label": "346ead44-916f-4005-8f99-b419ec4cb2e6 fr.nom",
+   "value": "BM 900 Lampe a Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "edefd51d-a791-474a-a71a-7df32c5c6b78",
+   "field": "nom",
+   "label": "c033cf79-22de-4260-ad89-e16efae1393a fr.nom",
+   "value": "Auto-Refracto-Keratometre ARK-1s / 1a / 1"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "41340538-068b-498c-8e5e-a11bb6807587",
+   "field": "nom",
+   "label": "21198d6f-a2aa-4468-bfda-b6c66d2d480b fr.nom",
+   "value": "Réfracteur Intelligent RT-3100"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e5e8299b-cf17-4535-b3e2-597d2e21a599",
+   "field": "nom",
+   "label": "607649aa-053d-43e1-9da5-6e135b4556bf fr.nom",
+   "value": "S390I Lampe a Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "608b58d4-c4a4-4f1f-ba5e-1269d81f5349",
+   "field": "nom",
+   "label": "6c4b7a2f-8bd7-418d-98d9-0f050156f4ab fr.nom",
+   "value": "Meuleuse Intelligente ICE-1"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "c396dc40-85b4-4805-8047-687c93116b2e",
+   "field": "nom",
+   "label": "cbfb450b-f463-4751-a9eb-e10301932291 fr.nom",
+   "value": "BQ 900 Lampe a Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "2ffa0d23-6d2d-4b2f-9544-63bb9e04a578",
+   "field": "nom",
+   "label": "ca934681-323e-4c15-86ce-47ee54712178 fr.nom",
+   "value": "Biometre Optique Lenstar LS 900"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "dabbfe42-4098-4bb2-a6d3-533b5f0fc679",
+   "field": "nom",
+   "label": "84765f90-4465-4174-b14a-fc06918b0832 fr.nom",
+   "value": "ELARA 900 / BA 904 Lampe a Fente"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f06395d2-1b2e-40f3-84a9-a510b5fc5d13",
+   "field": "nom",
+   "label": "646bf4cb-d334-4975-9623-7e6a3d1788a4 fr.nom",
+   "value": "METIS 900 Centre de Contrôle Chirurgical"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "prod-1768072845770-jupcx6p0x-fr",
+   "field": "nom",
+   "label": "prod-1768072845770-jupcx6p0x fr.nom",
+   "value": "Sophi A"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "fe2f7191-d5ea-4c97-a96e-4cefaa8b783c",
+   "field": "nom",
+   "label": "nitro-1768234616093-g9vxasoyr fr.nom",
+   "value": "BK 04 Neo Berceau Bebe"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e1ee783b-e1a1-4e5b-ac56-91a5144d7e7e",
+   "field": "nom",
+   "label": "nitro-1768234616089-c935o7eml fr.nom",
+   "value": "BK 02 Berceau Bebe"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "86343434-c653-441c-b26d-e8745ff73a81",
+   "field": "nom",
+   "label": "nitro-1768234616018-3bo7cj3fj fr.nom",
+   "value": "CARET 502 Patient Table Examen"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4f17db7d-3f6b-423a-9c6c-151f5f35b7b5",
+   "field": "nom",
+   "label": "nitro-1768234616120-rx0dm6zl3 fr.nom",
+   "value": "BST 01 Compact Table de Lit"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "158e5371-b5e0-442b-b073-a862231649c5",
+   "field": "nom",
+   "label": "nitro-1768234615984-aqtmv2mmk fr.nom",
+   "value": "NTHM 117 Medicine Storage Chariot"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7824055a-40f7-4ccb-9c22-4181b4dcd714",
+   "field": "nom",
+   "label": "nitro-1768234615994-tmu3gzio2 fr.nom",
+   "value": "NTHM 118 B Medicine Chariot Avec Barcode"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "85f7ff4a-3adf-4e85-ad5d-56e85408f069",
+   "field": "nom",
+   "label": "nitro-1768234616097-st3wr3bp1 fr.nom",
+   "value": "OLHD 1006 Compact Table de Chevet"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615866-sagd4xikn-fr",
+   "field": "nom",
+   "label": "nitro-1768234615866-sagd4xikn fr.nom",
+   "value": "NTCR SD 01 Brancard de Traitement Patient"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615873-zss2imcaf-fr",
+   "field": "nom",
+   "label": "nitro-1768234615873-zss2imcaf fr.nom",
+   "value": "NTCR SD 01 P Pediatric Transport Brancard"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "nitro-1768234615884-79fnoahxh-fr",
+   "field": "nom",
+   "label": "nitro-1768234615884-79fnoahxh fr.nom",
+   "value": "NTCR SD 05 Brancard Urgence"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4654c6ac-1f76-42f4-b053-a4fb96655d10",
+   "field": "nom",
+   "label": "8d919400-9fcd-467a-ad72-80a145f3b973 fr.nom",
+   "value": "TL-G40 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "0d9b08d3-a0fe-4c1a-b7ad-7d87237a29c5",
+   "field": "nom",
+   "label": "e352f02a-6200-446c-b4ba-07d631216de0 fr.nom",
+   "value": "TL-E80 Verre D'essai Ensemble"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "e9382735-de40-45c5-a25f-76a6d2244f78",
+   "field": "nom",
+   "label": "668f9ff1-8bd5-46ab-9e78-2fda4390a03d fr.nom",
+   "value": "TF-P50 Monture D'essai"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "7ddb3ee3-55a8-4d7e-a929-bdd2ff1e9e4e",
+   "field": "nom",
+   "label": "a7b7fee1-ff03-49eb-88d5-831998e7ef16 fr.nom",
+   "value": "TF-K30 Monture D'essai"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "8b9da073-f7c4-46af-829e-af7ae8f32910",
+   "field": "nom",
+   "label": "nitro-1768234615971-3p4cwlinf fr.nom",
+   "value": "NTHM 114 Medicine Et Treatment Chariot"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "277a0c5b-dd1f-4b8d-b623-10cb70befadc",
+   "field": "nom",
+   "label": "prim-1768238723181-46y25lggp fr.nom",
+   "value": "Bande Ceinture PRS607"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d3d2c928-2a70-42cd-a0d4-6aec667040c4",
+   "field": "nom",
+   "label": "prim-1768238723184-1xs5hlbxu fr.nom",
+   "value": "Bande Ceinture PRS602BG"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "77a9712f-7563-4928-aecd-153fbf3d8f8e",
+   "field": "nom",
+   "label": "prim-1768238723145-y6mpncp5a fr.nom",
+   "value": "Bande Ceinture PRS600"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1c534207-a398-4f14-9dd7-d2808ae6c383",
+   "field": "nom",
+   "label": "prim-1768238723190-2uf6f4pm5 fr.nom",
+   "value": "Bande Ceinture PRS604BG"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "52781c3c-d6b4-44a1-aedc-0190b7ce289e",
+   "field": "nom",
+   "label": "prim-1768238723148-y9v3ff17t fr.nom",
+   "value": "Bande Ceinture PRS601"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "05c03d65-e541-4074-9b51-d269fde7f41f",
+   "field": "nom",
+   "label": "prim-1768238723150-hswbx14i6 fr.nom",
+   "value": "Bande Ceinture PRS606"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "42d710f1-1575-4380-bb5c-66e91baf451e",
+   "field": "nom",
+   "label": "prim-1768238723187-k9wd0icce fr.nom",
+   "value": "Bande Ceinture PRS603BG"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f2a74ee2-a15c-4811-915d-fa0167d43ccb",
+   "field": "nom",
+   "label": "f5b84c2a-9ed1-420b-be63-5527aa65f6ab fr.nom",
+   "value": "Instruments vitreoretinal Rumex"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1f7c28ab-1656-4f17-8b3c-a41c86875c13",
+   "field": "nom",
+   "label": "cbb895e0-b314-48fc-bfd1-80f980129c7a fr.nom",
+   "value": "Lampe a Fente Portable PSL Classic"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "618e7b0a-5427-4c4d-9d84-6111f7cb9088",
+   "field": "nom",
+   "label": "ed939d0c-c518-42ca-9b5f-7f5a3922adb5 fr.nom",
+   "value": "Console Cryochirurgicale Cryomatic MK II"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "4b816650-9621-4d15-be48-0440c876ba3c",
+   "field": "nom",
+   "label": "509127fd-2898-4e84-a897-b596bbd59526 fr.nom",
+   "value": "Unite Synetic 2/3 instruments"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "504d2c0d-7c03-42e5-8e97-33341606e5e9",
+   "field": "nom",
+   "label": "medi-1768239951881-ihcv9ruq2 fr.nom",
+   "value": "1stQ AddOn - Implant Supplementaire Sulcus"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "39eafdc3-2b02-4598-9957-e645dce0fb72",
+   "field": "nom",
+   "label": "53317b26-7693-40c9-bc5f-5ec7f55407ce fr.nom",
+   "value": "Enclavation Aiguille"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6c9cadef-6530-44e3-9114-9402a32ea831",
+   "field": "description",
+   "label": "dcb45e18-26c4-43fd-b37e-beb867aae20a fr.description",
+   "value": "Lampe a fente  Keeler KSL (ref. 3020-P-2139). Lampe a fente  offrant un grossissement multi-etapes, un eclairage LED avec temperature de couleur de 3800K et une duree de vie de plus de 10 000 heures. Jeu de filtres installes en permanence comprenant densite neutre, aneyrthre, diffuseur, bleu cobalt, jaune et filtre absorbant la chaleur infrarouge. Construction de precision en aluminium concue pour une utilisation clinique quotidienne exigeante. L'optique Keeler de classe mondiale offre une imagerie claire et a contraste eleve des structures du segment anterieur."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "6c9cadef-6530-44e3-9114-9402a32ea831",
+   "field": "fiche_technique",
+   "label": "dcb45e18-26c4-43fd-b37e-beb867aae20a fr.fiche_technique",
+   "value": "Image Magnification: Manage your patient’s records with Keeler Konnect software featuring image measurement and editing tools.; Install Programme USB: Install Programme USB"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1f7c28ab-1656-4f17-8b3c-a41c86875c13",
+   "field": "description",
+   "label": "cbb895e0-b314-48fc-bfd1-80f980129c7a fr.description",
+   "value": "Lampe a fente portable Keeler PSL Classic (ref. 3010-P-2000). Biomicroscope portable combinant l'optique de precision Keeler avec une construction robuste pour une utilisation fiable en conditions mobiles. Dispose d'un controle de largeur de fente variable et d'un eclairage reglable pour un examen complet du segment anterieur. La conception compacte et ergonomique facilite une utilisation confortable lors des sessions d'examen prolongees. Adaptee aux visites a domicile, aux tournees en service hospitalier, aux evaluations d'urgence et aux situations ou une lampe a fente sur table n'est pas disponible."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "1f7c28ab-1656-4f17-8b3c-a41c86875c13",
+   "field": "fiche_technique",
+   "label": "cbb895e0-b314-48fc-bfd1-80f980129c7a fr.fiche_technique",
+   "value": "Óptica avanzada, aumentos: Óptica avanzada, aumentos 10x y 16x; Iluminación controlable de: Iluminación controlable de máxima a cero; Apertura cuadrada de: Apertura cuadrada de 1 mm para la evaluación de la uveítis; Experiencia y calidad: Experiencia y calidad de fabricación británicas que ofrecen un gran valor"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "f3005e9e-14ce-4ee1-944e-99a9becacb0d",
+   "field": "fiche_technique",
+   "label": "cbb895e0-b314-48fc-bfd1-80f980129c7a en.fiche_technique",
+   "value": "Óptica avanzada, aumentos: Óptica avanzada, aumentos 10x y 16x; Iluminación controlable de: Iluminación controlable de máxima a cero; Apertura cuadrada de: Apertura cuadrada de 1 mm para la evaluación de la uveítis; Experiencia y calidad: Experiencia y calidad de fabricación británicas que ofrecen un gran valor"
+  },
+  {
+   "table": "product_translations",
+   "rowId": "618e7b0a-5427-4c4d-9d84-6111f7cb9088",
+   "field": "description",
+   "label": "ed939d0c-c518-42ca-9b5f-7f5a3922adb5 fr.description",
+   "value": "Console de cryochirurgie Keeler Cryomatic MK II (ref. 2509-P-1010). Systeme de cryochirurgie ophtalmique polyvalent equipe d'un ecran numerique retroeclaire de 3,5 pouces avec commandes intuitives. Detecte automatiquement le type de sonde (a usage unique ou reutilisable) et ajuste les parametres de pression de gaz internes en consequence, sans necessiter d'adaptateur. Compatible avec le CO2 et le N2O, s'adaptant a diverses preferences cliniques. Haut-parleurs integres fournissant des signaux sonores pour le temps de congelation et l'etat de la bouteille de gaz. Operationnel en quelques minutes. Conforme aux normes de securite EN60601-1 et UL60601-1."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "618e7b0a-5427-4c4d-9d84-6111f7cb9088",
+   "field": "fiche_technique",
+   "label": "ed939d0c-c518-42ca-9b5f-7f5a3922adb5 fr.fiche_technique",
+   "value": "Exhaust hose with: Exhaust hose with silencer; 13mm spanner: 13mm spanner; 2x spare mains: 2x spare mains fuses; One-step procedure for: One-step procedure for retinal detachments. Laser retinopexy on the other hand, must be performed 24-48 hours after gas injection."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d106a001-0000-4000-8000-000000000002-fr",
+   "field": "description",
+   "label": "d106a001-0000-4000-8000-000000000002 fr.description",
+   "value": "Lentille de contact torique journalière jetable (etafilcon A) pour les patients astigmates. L'EYELID STABILISED DESIGN utilise les mouvements naturels des paupières : la lentille s'oriente en quelques minutes, se réaligne à chaque clignement et garde une vision claire et stable toute la journée, même lors des mouvements de tête et des yeux. Pas de prisme vertical dans la zone optique, aussi simple à adapter qu'une lentille sphérique. Technologie LACREON®, filtre UV classe 2."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d106a001-0000-4000-8000-000000000004-fr",
+   "field": "description",
+   "label": "d106a001-0000-4000-8000-000000000004 fr.description",
+   "value": "Lentille de contact torique en silicone hydrogel (senofilcon A) à remplacement toutes les 2 semaines, pour les patients astigmates qui veulent une vision claire et stable. L'EYELID STABILISED DESIGN s'oriente en quelques minutes et se réaligne à chaque clignement, même lors des mouvements de tête et des yeux, sans prisme vertical dans la zone optique. Technologie HYDRACLEAR® PLUS, jamais battue en confort sur 27 études cliniques, filtre UV classe 1."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "b48f24b9-b259-4991-be16-ded6cb5a6068",
+   "field": "description",
+   "label": "b9a1e926-0f95-4f68-859f-f351b62f5401 fr.description",
+   "value": "Le réfracteur intelligent NIDEK RT-6100 est un système de phoropter automatique piloté par console avec des capacités de réfraction avancées. La console à écran tactile et les boutons physiques permettent un contrôle précis du défilement des lentilles et de la projection des tests visuels, rationalisant le processus de réfraction subjective pour un confort patient et une efficacité clinique améliorés."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "41340538-068b-498c-8e5e-a11bb6807587",
+   "field": "description",
+   "label": "21198d6f-a2aa-4468-bfda-b6c66d2d480b fr.description",
+   "value": "Le NIDEK RT-3100 Intelligent Refractor est un système de phoropter automatisé conçu pour améliorer le flux de travail de réfraction subjective. Il combine une optique de précision avec des commandes intuitives pour une détermination précise de la prescription et une meilleure expérience d'examen du patient."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "17e98c7b-f695-4eaa-bf35-93aac2c4254d",
+   "field": "description",
+   "label": "d6427d02-d53a-48b6-b5c9-f09ffefd19d0 fr.description",
+   "value": "Le NIDEK OT-6400 est l'unité de réfraction motorisée la plus avancée de la gamme NIDEK. Cette unité rotative haut de gamme accueille 3 ou 4 instruments avec un bras phoropter translatable et inclinable, entièrement automatisé et motorisé. Mouvements fluides et design élégant pour des consultations ophtalmiques de premier plan."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "94d0cf48-dad4-42ee-843e-33e7e3373b34",
+   "field": "description",
+   "label": "3850e5ef-c868-4249-8812-ad6dee8b057b fr.description",
+   "value": "Table a instruments ophtalmique TB-V300 de Ray-Vision avec construction robuste et nouveau design ergonomique. Deplacement fluide grace au systeme de roulettes de precision. Ideale pour supporter les instruments optiques lourds tels que les phoropters, les lampes a fente et les autorefractometres. Plateau superieur spacieux et stable. Structure renforcee pour une duree de vie prolongee en utilisation clinique intensive. Design ergonomique favorisant le confort du praticien et du patient. Adaptee aux centres hospitaliers et cliniques ophtalmiques a fort volume d'activite."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d82a0001-0000-4000-8000-000000000011-fr",
+   "field": "description",
+   "label": "d82a0001-0000-4000-8000-000000000011 fr.description",
+   "value": "Couteaux de ponction Stylus™ trempés à chaud pour une pointe solide et droite, qui pénètre facilement lors des incisions de ponction initiales. Manche complet ou lame et embout (blade and tip), angles de 15° à 45°, versions à profondeur de lame limitée. Couteaux ophtalmiques Stylus™ (Surgical Specialties, aujourd'hui Corza), qui remplacent la gamme Uniquetech. 14 références : 52-1501 (15°, manche complet) ; 52-2201 (22,5°, manche complet) ; 52-3001 (30°, manche complet) ; 52-4501 (45°, manche complet) ; 52-1502 (15°, lame et embout) ; 52-2202 (22,5°, lame et embout) ; 52-4502 (45°, lame et embout) ; 52-1531 (15°, manche complet, profondeur de lame limitée à 3,0 mm) ; 52-1551 (15°, manche complet, profondeur de lame limitée à 5,0 mm) ; 52-3036 (30°, manche complet, profondeur de lame limitée à 3,5 mm) ; 52-1512 (15°, lame et embout, profondeur de lame limitée à 1,5 mm) ; 52-1532 (15°, lame et embout, profondeur de lame limitée à 3,0 mm) ; 52-1552 (15°, lame et embout, profondeur de lame limitée à 5,0 mm) ; 52-1591 (15°, coudé à droite, manche complet)."
+  },
+  {
+   "table": "product_translations",
+   "rowId": "d82a0001-0000-4000-8000-000000000026-fr",
+   "field": "description",
+   "label": "d82a0001-0000-4000-8000-000000000026 fr.description",
+   "value": "Manche Stylus™ pour lames à embout fileté (blade and tip). Le filetage intérieur est standardisé et accepte aussi les mandrins et les lames à embout fileté d'autres fabricants. Couteaux ophtalmiques Stylus™ (Surgical Specialties, aujourd'hui Corza), qui remplacent la gamme Uniquetech. Référence : 52-9003 (Longueur 16,5 cm)."
+  },
+  {
+   "table": "category_translations",
+   "rowId": "hospital-furniture-fr",
+   "field": "description",
+   "label": "category mobilier-et-literie-hospitaliers fr.description",
+   "value": "Mobilier medical, literie et equipements hospitaliers"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "ophthalmology-fr",
+   "field": "description",
+   "label": "category ophtalmologie fr.description",
+   "value": "Equipements et dispositifs pour le diagnostic, le traitement et la chirurgie ophtalmologique"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "ent-fr",
+   "field": "description",
+   "label": "category orl-oto-rhino-laryngologie fr.description",
+   "value": "Equipements pour l'oto-rhino-laryngologie"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "orthopedics-fr",
+   "field": "description",
+   "label": "category orthopedics fr.description",
+   "value": "Equipements et dispositifs orthopediques"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "6dfe5644-6086-4c8b-aa9e-356d73d2018b",
+   "field": "description",
+   "label": "category implant-et-visco fr.description",
+   "value": "Implants intraoculaires et solutions viscoelastiques"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "81d57bb1-0fb2-4c23-ada9-75279611e04f",
+   "field": "description",
+   "label": "category ceintures-lombaires fr.description",
+   "value": "Ceintures lombaires, bandes et ortheses lombo-sacrees"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "9e25041f-c7ea-4fa2-88df-4b04ac97ba49",
+   "field": "description",
+   "label": "category microscopie-speculaire fr.description",
+   "value": "Microscopes speculaires pour l'analyse endotheliale corneenne"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "1ef04b8c-881d-4f90-9c40-80f9c9bde0b6",
+   "field": "description",
+   "label": "category table-motorisee fr.description",
+   "value": "Tables de refraction motorisees"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "4458a669-1608-4c59-9dfd-2fd3bae1f3d0",
+   "field": "description",
+   "label": "category phaco fr.description",
+   "value": "Systemes de phacoemulsification pour la chirurgie de la cataracte"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "9b2ad729-4ddf-4363-a052-aae9485100f7",
+   "field": "description",
+   "label": "category tonometres-pachymetres fr.description",
+   "value": "Tonometres et pachymetres pour la mesure de la pression intraoculaire et de l'epaisseur corneenne"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "a58bbc88-fe78-4dad-8bfa-e98bde660fd6",
+   "field": "description",
+   "label": "category lampe-a-fente fr.description",
+   "value": "Lampes a fente pour l'examen biomicroscopique"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "d610b73b-e2dd-4dec-a259-82c13aab0abe",
+   "field": "description",
+   "label": "category microscope-operatoire fr.description",
+   "value": "Microscopes operatoires pour la chirurgie ophtalmique"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "91db638d-5c3f-405b-8c60-987898d455de",
+   "field": "description",
+   "label": "category frontofocometre fr.description",
+   "value": "Frontofocometre pour la mesure des verres correcteurs"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "dc322aa3-2647-4472-a7a1-8c061674ab1d",
+   "field": "description",
+   "label": "category table-de-consultation fr.description",
+   "value": "Unites et tables de consultation ophtalmologique"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "oph-contactology-fr",
+   "field": "description",
+   "label": "category oph-contactology fr.description",
+   "value": "Lentilles de contact et equipements de contactologie"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "76a267a1-4a69-4e2d-a0a1-669e248d5414",
+   "field": "description",
+   "label": "category traitement-et-diagnostique-secheresse-oculaire fr.description",
+   "value": "Dispositifs IPL et LLLT pour le traitement de la secheresse oculaire"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "11f807fa-3478-4481-817a-40f7d22e4a28",
+   "field": "description",
+   "label": "category oct-et-imagerie fr.description",
+   "value": "OCT, retinographes et systemes d'imagerie retinienne"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "dcb52a26-f9bb-440c-aa2c-f2a80ea7bda7",
+   "field": "description",
+   "label": "category laser-photocoagulateurs fr.description",
+   "value": "Lasers photocoagulateurs pour le traitement retinien"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "2e96c4a5-f629-4ff1-befb-2b7e6152553c",
+   "field": "description",
+   "label": "category genouilleres-chevillieres fr.description",
+   "value": "Genouilleres, chevillieres et coudieres elastiques"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "7744a111-f97d-493b-89ef-4375f916e284",
+   "field": "description",
+   "label": "category ecran-optotype fr.description",
+   "value": "Ecrans et projecteurs d'optotypes pour tests d'acuite visuelle"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "a56f4511-feb5-4a5a-854f-a4740afdceeb",
+   "field": "description",
+   "label": "category biometrie-contact-sans-contact-et-echographie fr.description",
+   "value": "Biometres optiques et ultrasonores, echographes ophtalmiques"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "2bc2967f-9b5a-4aba-943c-20c4bb39a099",
+   "field": "description",
+   "label": "category schirmer-fluorescein-et-bleu-vision fr.description",
+   "value": "Bandelettes diagnostiques Schirmer et fluoresceine"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "8d36bac6-8e15-4d8b-a42e-25b5b823276c",
+   "field": "description",
+   "label": "category topographie fr.description",
+   "value": "Topographes et analyseurs du segment anterieur"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "11b4e9f6-0bf7-44d2-9957-633b14f538d3",
+   "field": "description",
+   "label": "category simulateur fr.description",
+   "value": "Simulateurs de chirurgie et kits d'entrainement"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "6651b68d-d732-4753-a8d7-279e53d6aa9a",
+   "field": "description",
+   "label": "category literie-hospitaliere fr.description",
+   "value": "Lits d'hopital, lits de soins intensifs, lits bariatriques"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "ffbf7689-278c-4ee7-ba50-6941f1dc37f7",
+   "field": "description",
+   "label": "category ortheses-cervicales fr.description",
+   "value": "Colliers cervicaux et ortheses de cou"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "cb52fb07-53aa-4bff-8cae-209d44d237ea",
+   "field": "description",
+   "label": "category chariots fr.description",
+   "value": "Chariots d'urgence, de pansement, a medicaments et instruments"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "6bd9881e-f185-40b8-9320-fad4010912fa",
+   "field": "description",
+   "label": "category mobilite-et-soutien fr.description",
+   "value": "Fauteuils roulants, deambulateurs, bequilles"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "770d8570-1fcf-426e-a174-0e24470da6a4",
+   "field": "description",
+   "label": "category fauteuils-patients fr.description",
+   "value": "Fauteuils de dialyse, chimiotherapie, prelevement et geriatrie"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "d305536a-ca1b-4d65-98a9-7ef98d725f1b",
+   "field": "description",
+   "label": "category coussins-anti-escarres fr.description",
+   "value": "Coussins de prevention des escarres"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "c20cc4e4-29fb-4b86-a3c9-dcc985a47d90",
+   "field": "description",
+   "label": "category equipement-pediatrique fr.description",
+   "value": "Berceaux, tables chauffantes, phototherapie neonatale"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "436bc5c8-ff1b-4da4-ac98-4606fa009e35",
+   "field": "description",
+   "label": "category chaussures-protections fr.description",
+   "value": "Chaussures post-operatoires, protecteurs plantaires et hallux valgus"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "ac69717b-b4d6-49e0-be5c-1a6d34ab06d0",
+   "field": "description",
+   "label": "category tables-medicales fr.description",
+   "value": "Tables d'examen, d'operation, gynecologiques et autopsie"
+  },
+  {
+   "table": "category_translations",
+   "rowId": "da551731-65e8-45fc-9ba1-ee26bf9b7e94",
+   "field": "description",
+   "label": "category armoires-et-rangement fr.description",
+   "value": "Armoires a instruments, pharmacie, tables de chevet et casiers"
+  }
+ ]
+}
