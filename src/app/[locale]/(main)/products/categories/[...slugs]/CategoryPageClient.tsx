@@ -269,9 +269,9 @@ export default function CategoryHierarchyPage({ params, initialCategory = null }
       {hasProducts && (
         <section className="py-16 lg:py-24 bg-white">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-12">
+            <div className="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">
+                <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
                   {tCategories('availableProducts')}
                 </h2>
                 <p className="text-slate-600">
@@ -279,7 +279,7 @@ export default function CategoryHierarchyPage({ params, initialCategory = null }
                 </p>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3">
                 <Button variant="outline" size="sm">
                   {tCategories('sortByPrice')}
                   <ArrowRight className="ml-2 h-4 w-4" />

@@ -135,26 +135,26 @@ export function PartnerLogosCarousel({
       {partners.length > 4 && (
         <>
           <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-primary-600 transition-colors duration-200"
+            className="absolute left-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition-colors duration-200 hover:text-primary-600 sm:flex"
             onClick={goToPrevious}
             aria-label="Previous partners"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
 
           <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-primary-600 transition-colors duration-200"
+            className="absolute right-0 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition-colors duration-200 hover:text-primary-600 sm:flex"
             onClick={goToNext}
             aria-label="Next partners"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </>
       )}
 
       {/* Scrolling logos */}
       <div
-        className="overflow-hidden py-6 px-8"
+        className="overflow-hidden py-6 sm:mx-11"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         role="region"
