@@ -8,9 +8,9 @@ export async function GET() {
 
     // Get basic table counts
     const [products, categories, partners] = await Promise.all([
-      prisma.product.count(),
-      prisma.category.count(),
-      prisma.partner.count(),
+      prisma.products.count({ where: { status: 'active' } }),
+      prisma.categories.count({ where: { is_active: true } }),
+      prisma.partners.count({ where: { status: 'active' } }),
     ]);
 
     return NextResponse.json({
@@ -30,7 +30,6 @@ export async function GET() {
       {
         status: 'unhealthy',
         database: 'disconnected',
-        error: error instanceof Error ? error.message : 'Unknown error',
         timestamp: new Date().toISOString(),
       },
       { status: 500 }
