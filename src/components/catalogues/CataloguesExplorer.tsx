@@ -186,7 +186,7 @@ function DocumentsDrawer({
             <section>
               <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">{t('drawer.catalogue')}</h3>
               <a
-                href={manufacturer.catalogueUrl}
+                href={/^https?:/.test(manufacturer.catalogueUrl) ? manufacturer.catalogueUrl : `${manufacturer.catalogueUrl}#toolbar=0&navpanes=0`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={t('drawer.open')}
@@ -231,7 +231,7 @@ function DocumentsDrawer({
                   {brochures.map((b) => (
                     <li key={b.url}>
                       <a
-                        href={b.url}
+                        href={/^https?:/.test(b.url) ? b.url : `${b.url}#toolbar=0&navpanes=0`}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={t('drawer.open')}

@@ -47,6 +47,8 @@ export async function GET(
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'public, max-age=31536000, immutable',
+        // PDFs open in the browser viewer, never as a forced download (owner 2026-11-18)
+        ...(contentType === 'application/pdf' ? { 'Content-Disposition': 'inline' } : {}),
       },
     });
   } catch (error) {

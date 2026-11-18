@@ -297,9 +297,9 @@ export default function ProductDetailPage() {
 
                   {product.pdfBrochureUrl && (
                     <Button size="lg" variant="outline" className="h-14 relative" asChild>
-                      <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                        {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-5 w-5 mr-2" /> : <Download className="h-5 w-5 mr-2" />}
-                        {isWebPageLink(product.pdfBrochureUrl) ? tCommon('officialSite') : t('downloadBrochure')}
+                      <a href={isWebPageLink(product.pdfBrochureUrl) ? product.pdfBrochureUrl : `${product.pdfBrochureUrl}#toolbar=0&navpanes=0`} target="_blank" rel="noopener noreferrer">
+                        {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-5 w-5 mr-2" /> : <FileText className="h-5 w-5 mr-2" />}
+                        {isWebPageLink(product.pdfBrochureUrl) ? tCommon('officialSite') : t('viewBrochure')}
                         {product.pdfSource === 'manufacturer' && (
                           <span className="ml-2 text-xs text-slate-500">{t('generalBrochure')}</span>
                         )}
