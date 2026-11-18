@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/database';
-import { getRecursiveProductCounts } from '@/lib/catalog/category-counts';
+import { getPublicDiscipline } from '@/lib/catalog/public-catalog';
 
 interface RouteParams {
   params: {
@@ -13,107 +12,30 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get('locale') || 'fr';
 
-    // Find the discipline by slug
-    const discipline = await prisma.categories.findFirst({
-      where: { 
-        slug: params.slug,
-        type: 'discipline',
-        is_active: true
-      },
-      include: {
-        category_translations: {
-          where: { language_code: locale }
-        },
-        other_categories: {
-          where: {
-            is_active: true
-          },
-          include: {
-            category_translations: {
-              where: { language_code: locale }
-            },
-            other_categories: {
-              where: { is_active: true },
-              include: {
-                _count: {
-                  select: { products: { where: { status: 'active' } } }
-                }
-              }
-            },
-            _count: {
-              select: {
-                products: {
-                  where: { status: 'active' }
-                }
-              }
-            }
-          },
-          orderBy: { sort_order: 'asc' }
-        },
-        _count: {
-          select: { 
-            products: {
-              where: { status: 'active' }
-            }
-          }
-        }
-      }
-    });
+    // Same payload as the server-rendered discipline page (src/lib/catalog/public-catalog.ts)
+    const discipline = await getPublicDiscipline(params.slug, locale);
 
     if (!discipline) {
       return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Discipline not found' 
+        {
+          success: false,
+          error: 'Discipline not found'
         },
         { status: 404 }
       );
     }
 
-    const counts = await getRecursiveProductCounts();
-
-    // Transform the discipline data
-    const translation = discipline.category_translations?.[0];
-    const transformedDiscipline = {
-      id: discipline.id,
-      name: translation?.name || discipline.name,
-      slug: discipline.slug,
-      description: translation?.description || discipline.description,
-      imageUrl: discipline.image_url,
-      type: discipline.type,
-      productCount: counts.get(discipline.id) || 0,
-      other_categories: discipline.other_categories
-        .map((category: any) => {
-          const categoryTranslation = category.category_translations?.[0];
-          // Products anywhere below this category, not just one level down
-          const totalProducts = counts.get(category.id) || 0;
-          return {
-            id: category.id,
-            name: categoryTranslation?.name || category.name,
-            slug: category.slug,
-            description: categoryTranslation?.description || category.description,
-            imageUrl: category.image_url,
-            type: category.type,
-            productCount: totalProducts,
-            childCount: (category.other_categories || [])
-              .filter((child: any) => (counts.get(child.id) || 0) > 0).length
-          };
-        })
-        // A category with no product anywhere below it is never shown
-        .filter((cat: any) => cat.productCount > 0)
-    };
-
     return NextResponse.json({
       success: true,
-      data: transformedDiscipline
+      data: discipline
     });
 
   } catch (error) {
     console.error('Discipline fetch error:', error);
     return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Internal server error' 
+      {
+        success: false,
+        error: 'Internal server error'
       },
       { status: 500 }
     );

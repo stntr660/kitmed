@@ -104,6 +104,15 @@ const nextConfig = {
           },
         ],
       },
+      // Staging is never indexed (also noindex meta + robots.txt Disallow: /)
+      {
+        source: '/(.*)',
+        has: [{ type: 'host', value: '.*staging.*' }],
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      ...(process.env.NEXT_PUBLIC_SITE_ENV === 'staging'
+        ? [{ source: '/(.*)', headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }] }]
+        : []),
     ];
   },
   // Webpack optimizations

@@ -2,6 +2,7 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { maintenanceMiddleware } from './middleware/maintenance';
+import { botProtection } from './middleware/bot-protection';
 
 import { hasValidAdminToken } from './lib/edge-jwt';
 
@@ -37,6 +38,24 @@ const intlMiddleware = createIntlMiddleware({
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Uploaded photos and brochures: refuse embedding by other websites. Done
+  // here because files present in public/uploads are served by Next before
+  // the /uploads route handler runs. No locale handling for these files.
+  // Note: Next.js answers /_next/image before the middleware runs, so
+  // /_next/image?url=/uploads/... cannot be filtered here (Cloudflare can).
+  if (pathname.startsWith('/uploads/')) {
+    // Hot-link blocking disabled (owner 2026-11-18: minimal protection, nothing that could
+    // hurt link previews or AI agents). src/middleware/hotlink.ts is kept for later.
+    return NextResponse.next();
+  }
+
+  // Anti-scraping: scraper user-agents (403) and per-IP rate limits (429)
+  // on the public API and pages. Search/AI crawlers are allowed.
+  const refused = botProtection(request);
+  if (refused) {
+    return refused;
+  }
 
   // Admin API: the JWT signature and expiry are verified here (Edge runtime),
   // then again in each route handler by withAuth (role checks).
@@ -126,7 +145,12 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/api/admin/:path*',
-    '/((?!api|_next/static|_next/image|favicon.ico|uploads|images).*)',
+    // All API routes: admin auth + anti-scraping on the public ones.
+    '/api/:path*',
+    // Uploaded files: hot-link protection only.
+    '/uploads/:path*',
+    // Pages. robots.txt, sitemap*.xml and llms*.txt are left out so they are
+    // served as-is (no locale redirect, no rate limit).
+    '/((?!api|_next/static|_next/image|favicon.ico|uploads|images|robots\\.txt|sitemap.*\\.xml|llms.*\\.txt).*)',
   ],
 };

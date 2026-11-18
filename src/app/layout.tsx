@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 export const metadata = {
   title: 'KITMED - Medical Equipment Platform',
   description: 'Professional medical equipment and solutions for healthcare providers',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://kitmed.ma'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_BASE_URL || 'https://kitmed.ma'),
 };
 
 export default function RootLayout({

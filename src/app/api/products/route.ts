@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/database';
 
+// Anti-scraping (2026-11-18): the public list is for browsing, not for bulk
+// export. Max 50 per page (the biggest caller, the featured page and the quote
+// form, ask for 50), and only a short excerpt of the description; the full
+// description and the technical sheet stay on /api/products/[slug].
+const MAX_PAGE_SIZE = 50;
+const LIST_DESCRIPTION_LENGTH = 200;
+
+function excerpt(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
+
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
@@ -11,9 +25,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const partner = searchParams.get('partner');
     const featured = searchParams.get('featured');
     const newArrival = searchParams.get('newArrival');
-    const page = parseInt(searchParams.get('page') || '1');
-    const pageSize = parseInt(searchParams.get('pageSize') || '12');
-    const status = searchParams.getAll('status');
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10) || 1);
+    const pageSize = Math.min(
+      MAX_PAGE_SIZE,
+      Math.max(1, parseInt(searchParams.get('pageSize') || '12', 10) || 12)
+    );
 
     const skip = (page - 1) * pageSize;
     const take = pageSize;
@@ -146,10 +162,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       where.is_new_arrival = true;
     }
 
-    // Status filter (for potential future use)
-    if (status && status.length > 0) {
-      where.status = { in: status };
-    }
+    // No status filter: the public API only ever serves active products. The
+    // `status` query param (callers send status=active) used to be accepted as
+    // is, so ?status=draft exposed unpublished products; it is ignored now.
 
     // Ophthalmology-specific brand ordering
     const OPHTHALMOLOGY_PRIORITY_SLUGS = [
@@ -189,7 +204,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       prisma.products.findMany({
         where,
         include: {
-          product_translations: true,
+          // No fiche_technique here: it is only served by /api/products/[slug].
+          product_translations: {
+            select: { language_code: true, nom: true, description: true },
+          },
           categories: {
             select: {
               id: true,
@@ -276,6 +294,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
                        mediaPdfUrl ? 'product' : 
                        manufacturerPdfUrl ? 'manufacturer' : null;
 
+      const fullDescription = translation?.description || fallbackTranslation?.description || '';
+
       return {
         id: product.id,
         slug: product.slug,
@@ -290,8 +310,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         updatedAt: product.updated_at,
         // Return localized strings, not objects
         name: translation?.nom || fallbackTranslation?.nom || 'Unnamed Product',
-        description: translation?.description || fallbackTranslation?.description || '',
-        shortDescription: (translation?.description || fallbackTranslation?.description || '').substring(0, 150),
+        // Excerpt only (cards show 2 lines); the full text is on the product page.
+        description: excerpt(fullDescription, LIST_DESCRIPTION_LENGTH),
+        shortDescription: fullDescription.substring(0, 150),
         category: product.categories ? {
           id: product.categories.id,
           name: categoryTranslation?.name || categoryFallback?.name || 'Uncategorized',

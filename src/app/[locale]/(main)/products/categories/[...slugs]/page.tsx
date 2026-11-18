@@ -1,408 +1,89 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { ExternalLink, ArrowRight, ArrowLeft, Building2, Package, Sparkles, Award, Download, MessageSquare } from 'lucide-react';
-import Link from 'next/link';
-import { isWebPageLink } from '@/lib/utils';
-import Image from 'next/image';
-import { useHydrationSafeLocale } from '@/hooks/useHydrationSafeParams';
-import { useScrollRestore } from '@/hooks/useScrollRestore';
-import { PartnerLogosCarousel } from '@/components/carousel/PartnerLogosCarousel';
-import { PageHeader } from '@/components/layout/PageHeader';
-import { CtaBand } from '@/components/layout/CtaBand';
-import { CategoryCards, PILLAR_MAX } from '@/components/products/CategoryCards';
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  imageUrl: string | null;
-  productCount: number;
-  type: string;
-  children?: Category[];
-  parentId?: string;
-  parent?: Category;
-}
-
-interface Product {
-  id: string;
-  referenceFournisseur: string;
-  constructeur: string;
-  slug: string;
-  status: string;
-  isFeatured: boolean;
-  isNewArrival?: boolean;
-  pdfBrochureUrl?: string;
-  primaryImage?: string;
-  translations: Array<{
-    languageCode: string;
-    nom: string;
-    description: string;
-  }>;
-}
+import type { Metadata } from 'next';
+import { cache } from 'react';
+import CategoryHierarchyPage from './CategoryPageClient';
+import { getPublicCategory } from '@/lib/catalog/public-catalog';
+import { JsonLd, breadcrumbJsonLd, itemListJsonLd } from '@/components/seo/JsonLd';
+import { STATIC_PAGES, buildPageMetadata, categoryUrl, localeUrl, seoLocale, summarize } from '@/lib/seo/site';
 
 interface PageProps {
-  params: {
-    slugs: string[];
-    locale: string;
-  };
+  params: { slugs: string[]; locale: string };
 }
 
-export default function CategoryHierarchyPage({ params }: PageProps) {
-  const t = useTranslations('common');
-  const tCategories = useTranslations('categories.hierarchy');
-  const tCards = useTranslations('categoryCards');
-  const [category, setCategory] = useState<Category | null>(null);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [breadcrumbs, setBreadcrumbs] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const locale = useHydrationSafeLocale('fr');
+// Same request as the client (/api/categories/[slug]?includeChildren=true&includeProducts=true)
+const loadCategory = cache((slug: string, locale: string) =>
+  getPublicCategory(slug, locale, { includeChildren: true, includeProducts: true })
+);
 
-  const currentSlug = params.slugs[params.slugs.length - 1];
-
-  // Link clicks start at the top; Back returns to the card the user clicked
-  useScrollRestore(!loading);
-
-  useEffect(() => {
-    loadCategoryData();
-  }, [params.slugs, locale]);
-
-  const loadCategoryData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      // Load category with children and products
-      const response = await fetch(`/api/categories/${currentSlug}?includeChildren=true&includeProducts=true&locale=${locale}`);
-      
-      if (!response.ok) {
-        throw new Error('Category not found');
-      }
-
-      const data = await response.json();
-      const categoryData = data.data;
-      
-      setCategory(categoryData);
-
-      // Build breadcrumbs from parent hierarchy
-      const breadcrumbPath: Category[] = [];
-      let currentCategory = categoryData;
-      
-      while (currentCategory) {
-        breadcrumbPath.unshift(currentCategory);
-        currentCategory = currentCategory.parent;
-      }
-      setBreadcrumbs(breadcrumbPath);
-
-      // Set products if available
-      if (categoryData.products) {
-        setProducts(categoryData.products);
-      }
-
-    } catch (error) {
-      console.error('Failed to load category:', error);
-      setError(tCategories('notFound'));
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const hasSubcategories = category?.children && category.children.length > 0;
-  const hasProducts = products && products.length > 0;
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <LoadingSpinner size="lg" text={tCategories('loading')} />
-      </div>
-    );
+function trail(category: any): any[] {
+  const path: any[] = [];
+  let current = category;
+  while (current) {
+    path.unshift(current);
+    current = current.parent;
   }
+  return path;
+}
 
-  if (error || !category) {
-    return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <Building2 className="h-12 w-12 text-slate-400" />
-            </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              {error || tCategories('notFound')}
-            </h3>
-            <p className="text-slate-600 mb-8 max-w-md mx-auto">
-              {tCategories('notFoundDescription')}
-            </p>
-            <Button asChild>
-              <Link href={`/${locale}/products/disciplines`}>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {tCategories('backToProducts')}
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const locale = seoLocale(params.locale);
+  const slug = params.slugs[params.slugs.length - 1];
+  const category = await loadCategory(slug, locale);
+  if (!category) {
+    return { title: { absolute: 'KITMED' }, robots: { index: false } };
   }
+  const path = trail(category);
+  const parentName = path.length > 1 ? path[0].name : null;
+  const title =
+    category.metaTitle ||
+    `${category.name}${parentName && parentName !== category.name ? ` — ${parentName}` : ''} | KITMED`;
+  const fallback =
+    locale === 'en'
+      ? `${category.name}: ${category.productCount} medical products and equipment available from KITMED, Casablanca, Morocco. Ask for a quote.`
+      : `${category.name} : ${category.productCount} produits et équipements médicaux disponibles chez KITMED, Casablanca, Maroc. Demandez un devis.`;
+  return buildPageMetadata({
+    locale,
+    // Leaf slug = one canonical URL whatever the path used to reach it
+    path: `/products/categories/${category.slug}`,
+    title,
+    description: summarize(category.metaDescription || category.description || fallback, 155),
+    images: category.imageUrl ? [{ url: category.imageUrl, alt: category.name }] : undefined,
+  });
+}
 
-  const items = (category.children || []).map((subCategory) => ({
-    id: subCategory.id,
-    name: subCategory.name,
-    description: subCategory.description,
-    imageUrl: subCategory.imageUrl,
-    href: `/${locale}/products/categories/${[...params.slugs, subCategory.slug].join('/')}`,
-  }));
-  const pillars = items.length <= PILLAR_MAX;
-  // Parents first; a discipline parent links to its discipline page
-  const parentCrumbs = breadcrumbs.slice(0, -1).map((c) => ({
-    label: c.name,
-    href: c.type === 'discipline'
-      ? `/${locale}/products/disciplines/${c.slug}`
-      : `/${locale}/products/categories/${c.slug}`,
-  }));
-  const cardsView = hasSubcategories ? (
-    <>
-      <PageHeader
-        title={category.name}
-        breadcrumb={[
-          { label: tCards('home'), href: `/${locale}` },
-          { label: tCards('ourProducts'), href: `/${locale}/products` },
-          ...parentCrumbs,
-          { label: category.name },
-        ]}
-      />
-      <section className="py-8 lg:py-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {pillars && (
-            <div className="text-center mb-8 lg:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-900">
-                {tCards('solutionsTitle', { name: category.name.toLowerCase() })}
-              </h2>
-              <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-accent-500" />
-              <p className="mt-4 text-lg text-slate-700">{tCards('chooseCategory')}</p>
-            </div>
-          )}
-          <CategoryCards items={items} buttonLabel={tCards('discoverProducts')} linkLabel={tCards('seeProducts')} />
-        </div>
-      </section>
-    </>
-  ) : null;
-  const cardsFooter = hasSubcategories ? (
-    <>
-      <CtaBand title={tCards('ctaTitle')} buttonLabel={tCards('ctaButton')} href={`/${locale}/contact`} />
-      <section className="bg-white border-t py-2">
-        <div className="container mx-auto px-6 lg:px-8">
-          <PartnerLogosCarousel locale={locale} />
-        </div>
-      </section>
-    </>
-  ) : null;
+export default async function CategoryPage({ params }: PageProps) {
+  const locale = seoLocale(params.locale);
+  const slug = params.slugs[params.slugs.length - 1];
+  const category = await loadCategory(slug, locale).catch(() => null);
+
+  const jsonLd = category
+    ? [
+        breadcrumbJsonLd([
+          { name: 'KITMED', url: localeUrl(locale) },
+          { name: locale === 'en' ? 'Products' : 'Produits', url: localeUrl(locale, STATIC_PAGES.disciplines.path) },
+          ...trail(category).map((c: any, i: number, all: any[]) => ({
+            name: c.name,
+            url: categoryUrl(locale, { slug: c.slug, type: c.type, parentId: i === 0 ? null : all[i - 1].id }),
+          })),
+        ]),
+        itemListJsonLd(
+          category.name,
+          localeUrl(locale, `/products/categories/${category.slug}`),
+          category.children?.length
+            ? category.children.map((c: any) => ({ name: c.name, url: localeUrl(locale, `/products/categories/${c.slug}`) }))
+            : (category.products || []).map((p: any) => ({
+                name: p.translations?.[0]?.nom || p.referenceFournisseur,
+                url: localeUrl(locale, `/products/${p.slug}`),
+              }))
+        ),
+      ]
+    : [];
 
   return (
-    <div className={hasSubcategories ? 'min-h-screen bg-white' : 'min-h-screen bg-slate-50'}>
-      {cardsView}
-
-      {!hasSubcategories && (<>
-      {/* Hero Section */}
-      <section className="bg-white border-b py-4 lg:py-6">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
-              {category.name}
-            </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              {category.description ||
-               tCategories('exploreFallback', { categoryName: category.name.toLowerCase() })}
-            </p>
-
-            <div className="flex items-center justify-center space-x-6 text-slate-500 mt-4">
-              {hasSubcategories && (
-                <div className="flex items-center">
-                  <Building2 className="h-5 w-5 mr-2" />
-                  {category.children.length} {category.children.length > 1 ? tCategories('subcategoryPlural') : tCategories('subcategorySingular')}
-                </div>
-              )}
-              {hasProducts && (
-                <div className="flex items-center">
-                  <Package className="h-5 w-5 mr-2" />
-                  {products.length} {products.length > 1 ? tCategories('productPlural') : tCategories('productSingular')}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Partner Logos Carousel */}
-      <section className="bg-white border-b">
-        <div className="container mx-auto px-6 lg:px-8">
-          <PartnerLogosCarousel locale={locale} />
-        </div>
-      </section>
-      </>)}
-
-      {/* Products Section */}
-      {hasProducts && (
-        <section className="py-16 lg:py-24 bg-white">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">
-                  {tCategories('availableProducts')}
-                </h2>
-                <p className="text-slate-600">
-                  {tCategories('availableProductsCount', { count: products.length, plural: products.length > 1 ? 's' : '' })}
-                </p>
-              </div>
-
-              <div className="flex gap-4">
-                <Button variant="outline" size="sm">
-                  {tCategories('sortByPrice')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm">
-                  {tCategories('sortByPopularity')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {products.map((product) => {
-                const productTranslation = product.translations[0];
-                const productName = productTranslation?.nom || `Product ${product.referenceFournisseur}`;
-                const primaryImage = product.primaryImage;
-
-                return (
-                  <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
-                    {/* Product Image -- the whole photo opens the product, not only the button */}
-                    <Link
-                      href={`/${locale}/products/${product.slug || product.id}`}
-                      aria-label={productName}
-                      className="relative block h-64 bg-white overflow-hidden p-4"
-                    >
-                      {primaryImage ? (
-                        <Image
-                          src={primaryImage}
-                          alt={productName}
-                          fill
-                          className="object-contain group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-white flex items-center justify-center">
-                          <Building2 className="h-16 w-16 text-gray-400" />
-                        </div>
-                      )}
-
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-
-                      {/* Status Badges */}
-                      <div className="absolute top-4 left-4 space-y-2">
-                        {product.isNewArrival && (
-                          <Badge className="rounded-full border-0 bg-accent-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm">
-                            <Sparkles className="h-3 w-3 mr-1" />
-                            {t('newArrival')}
-                          </Badge>
-                        )}
-                      </div>
-                    </Link>
-
-                    <CardHeader className="p-4 pb-2">
-                      <div className="text-xs text-slate-500 font-medium mb-1">
-                        {product.constructeur}
-                      </div>
-                      <CardTitle className="text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-gray-600 transition-colors h-10">
-                        {productName}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="p-4 pt-0 mt-auto">
-                      <div className="mb-3">
-                        <div className="text-xs text-slate-500 font-mono truncate" title={product.referenceFournisseur}>
-                          {tCategories('reference')}: {product.referenceFournisseur}
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Button
-                          size="sm"
-                          className="w-full bg-primary text-white hover:bg-primary-600"
-                          asChild
-                        >
-                          <Link href={`/${locale}/products/${product.slug || product.id}`}>
-                            {tCategories('viewProduct')}
-                          </Link>
-                        </Button>
-
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="flex-1"
-                            asChild
-                          >
-                            <Link href={`/${locale}/contact`}>
-                              <MessageSquare className="h-4 w-4 mr-1" />
-                              {tCategories('moreDetails')}
-                            </Link>
-                          </Button>
-
-                          {product.pdfBrochureUrl && (
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="px-3"
-                              asChild
-                            >
-                              <a href={product.pdfBrochureUrl} target="_blank" rel="noopener noreferrer">
-                                {isWebPageLink(product.pdfBrochureUrl) ? <ExternalLink className="h-4 w-4" /> : <Download className="h-4 w-4" />}
-                              </a>
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Empty State */}
-      {!hasSubcategories && !hasProducts && (
-        <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center py-20">
-              <div className="h-24 w-24 bg-slate-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Package className="h-12 w-12 text-slate-400" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                {tCategories('emptyCategory')}
-              </h3>
-              <p className="text-slate-600 mb-8 max-w-md mx-auto">
-                {tCategories('emptyCategoryDescription')}
-              </p>
-              <Button asChild>
-                <Link href={`/${locale}/products/disciplines`}>
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {tCategories('backToProducts')}
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {cardsFooter}
-    </div>
+    <>
+      {jsonLd.map((data, i) => (
+        <JsonLd key={i} data={data} />
+      ))}
+      <CategoryHierarchyPage params={params} initialCategory={category} />
+    </>
   );
 }
