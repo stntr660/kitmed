@@ -63,7 +63,6 @@ export default function AboutPage() {
                   priority
                 />
               </div>
-              <figcaption className="mt-2 text-center text-xs italic text-gray-600">{t('who.caption')}</figcaption>
             </figure>
           </div>
         </div>
