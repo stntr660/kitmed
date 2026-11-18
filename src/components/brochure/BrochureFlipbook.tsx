@@ -48,11 +48,6 @@ interface RenderedPage {
   width: number;
 }
 
-/** Touch-first device (phones, tablets): no hover and a coarse pointer. */
-function isTouchDevice(): boolean {
-  return typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-}
-
 function isMobileViewport() {
   return typeof window !== 'undefined' && window.innerWidth <= MOBILE_MAX;
 }
@@ -284,11 +279,7 @@ export default function BrochureFlipbook({ file, locale }: Props) {
         maxShadowOpacity: 0.45,
         flippingTime: 750,
         mobileScrollSupport: true,
-        // Touch screens: page-flip's own drag handling fights the page scroll (owner 2026-11-18),
-        // so on touch devices we handle gestures ourselves below (axis lock: vertical = scroll,
-        // horizontal swipe = flip). Mouse users keep the drag-the-corner effect.
-        useMouseEvents: !isTouchDevice(),
-        showPageCorners: !isTouchDevice(),
+        showPageCorners: true,
         startPage: Math.min(currentRef.current, numPages - 1),
       });
       flip.loadFromHTML(pages);
@@ -297,42 +288,6 @@ export default function BrochureFlipbook({ file, locale }: Props) {
       book.style.minHeight = '0';
       flipRef.current = flip;
       flip.update();
-
-      // Touch gestures with an axis lock: the browser keeps vertical scrolling (touch-action: pan-y),
-      // a clear horizontal swipe turns the page, a quick tap on the left/right half turns it too.
-      if (isTouchDevice()) {
-        book.style.touchAction = 'pan-y pinch-zoom';
-        let sx = 0, sy = 0, st = 0, axis: 'x' | 'y' | null = null, multi = false;
-        const onStart = (e: TouchEvent) => {
-          multi = e.touches.length > 1;
-          const t = e.touches[0];
-          sx = t.clientX; sy = t.clientY; st = Date.now(); axis = null;
-        };
-        const onMove = (e: TouchEvent) => {
-          if (multi || e.touches.length > 1) { multi = true; return; }
-          const t = e.touches[0];
-          const dx = t.clientX - sx, dy = t.clientY - sy;
-          if (!axis && Math.abs(dx) + Math.abs(dy) > 10) axis = Math.abs(dx) > Math.abs(dy) * 1.2 ? 'x' : 'y';
-          if (axis === 'x' && e.cancelable) e.preventDefault();
-        };
-        const onEnd = (e: TouchEvent) => {
-          if (multi) return;
-          const t = e.changedTouches[0];
-          const dx = t.clientX - sx, dy = t.clientY - sy;
-          const f = flipRef.current;
-          if (!f) return;
-          if (axis === 'x' && Math.abs(dx) > 40) {
-            if (dx < 0) f.flipNext('bottom'); else f.flipPrev('bottom');
-          } else if (!axis && Math.abs(dx) < 10 && Math.abs(dy) < 10 && Date.now() - st < 300) {
-            const r = book.getBoundingClientRect();
-            if (t.clientX > r.left + r.width / 2) f.flipNext('bottom'); else f.flipPrev('bottom');
-          }
-          axis = null;
-        };
-        book.addEventListener('touchstart', onStart, { passive: true });
-        book.addEventListener('touchmove', onMove, { passive: false });
-        book.addEventListener('touchend', onEnd, { passive: true });
-      }
 
       const sync = (index: number) => {
         currentRef.current = index;
