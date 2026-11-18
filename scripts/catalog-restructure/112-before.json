@@ -1,0 +1,57 @@
+[
+  {
+    "id": "b56328d1-e1d1-4b37-8dd6-cf9425de398c",
+    "product_id": "c9810af0-736c-45a1-8dc3-b2f9f59bf5c2",
+    "type": "image",
+    "url": "/uploads/products/al-scan-gallery-2.pdf",
+    "alt_text": "Optical Biometer Al-Scan - Image 2",
+    "title": "Optical Biometer Al-Scan - Image 2",
+    "sort_order": 1,
+    "is_primary": false,
+    "created_at": "2025-12-09T11:42:21.625Z"
+  },
+  {
+    "id": "525c20ee-77ed-489c-9ddc-20d71b27f50b",
+    "product_id": "6ebc6388-acd9-479a-bc76-c23610170176",
+    "type": "image",
+    "url": "/uploads/products/gyc-500-gallery-2.pdf",
+    "alt_text": "Laser Vert Photocoagulation - Image 2",
+    "title": "Laser Vert Photocoagulation - Image 2",
+    "sort_order": 1,
+    "is_primary": false,
+    "created_at": "2025-12-09T11:43:15.560Z"
+  },
+  {
+    "id": "444a900a-cf48-48d7-9365-f9930461e297",
+    "product_id": "5dd75ed5-ef9c-4cfb-b471-aee6625ee09c",
+    "type": "image",
+    "url": "/uploads/products/ar-1-gallery-2.pdf",
+    "alt_text": "Auto-refracto/keratometre - Image 2",
+    "title": "Auto-refracto/keratometre - Image 2",
+    "sort_order": 1,
+    "is_primary": false,
+    "created_at": "2025-12-09T11:42:25.633Z"
+  },
+  {
+    "id": "e0dc6f0e-27be-46af-9c4f-e19289d7c426",
+    "product_id": "f31350ae-e07e-4db0-bd18-e6514abe8e51",
+    "type": "image",
+    "url": "/uploads/products/cp-9-gallery-2.pdf",
+    "alt_text": "Chart Projector Cp-9 - Image 2",
+    "title": "Chart Projector Cp-9 - Image 2",
+    "sort_order": 1,
+    "is_primary": false,
+    "created_at": "2025-12-09T11:42:46.842Z"
+  },
+  {
+    "id": "1fc92c45-f78d-4fdd-a4ba-f26e25f58794",
+    "product_id": "f31350ae-e07e-4db0-bd18-e6514abe8e51",
+    "type": "image",
+    "url": "/uploads/products/cp-9-gallery-4.pdf",
+    "alt_text": "Chart Projector Cp-9 - Image 4",
+    "title": "Chart Projector Cp-9 - Image 4",
+    "sort_order": 3,
+    "is_primary": false,
+    "created_at": "2025-12-09T11:42:46.844Z"
+  }
+]
