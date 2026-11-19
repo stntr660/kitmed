@@ -96,20 +96,17 @@ export default function FeaturedProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <section className="bg-white border-b py-4 lg:py-6">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight break-words">
-              {tFeatured('title')}
-              <span className="text-primary-600 block mt-1">{tFeatured('subtitle')}</span>
-            </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              {tFeatured('description')}
-            </p>
-          </div>
+    <div className="min-h-screen bg-white">
+      {/* Page title, same style as « Produits par Discipline » (owner 2026-11-19) */}
+      <section className="bg-white pb-6 pt-10 lg:pt-14">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <h1 className="text-[28px] font-bold leading-tight tracking-[-0.01em] text-[#0A0EA4] sm:text-[36px] lg:text-[46px]">
+            {tFeatured('subtitle')}
+          </h1>
+          <span aria-hidden="true" className="mx-auto mt-3 block h-[4px] w-20 rounded-full bg-[#D7191A] lg:h-[5px] lg:w-[112px]" />
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#10146B] lg:text-[19px]">
+            {tFeatured('description')}
+          </p>
         </div>
       </section>
 
@@ -134,7 +131,6 @@ export default function FeaturedProductsPage() {
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product) => {
                   const primaryImage = getPrimaryImage(product);
-                  const categoryInfo = product.category;
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -165,11 +161,6 @@ export default function FeaturedProductsPage() {
                             <Sparkles className="h-3 w-3 mr-1" />
                             {t('featured')}
                           </Badge>
-                          {categoryInfo && (
-                            <Badge variant="secondary" className="bg-primary-100 text-primary-600 border-0 text-xs">
-                              {categoryInfo.name || 'Category'}
-                            </Badge>
-                          )}
                         </div>
                       </Link>
 
