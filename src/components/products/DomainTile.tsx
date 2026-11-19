@@ -18,7 +18,7 @@ export interface DomainTileProps {
  */
 export function DomainTile({ href, title, imageUrl, linkLabel, ratio = '3/2' }: DomainTileProps) {
   return (
-    <Link href={href} className="group text-center">
+    <Link href={href} className="group w-full text-center sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]">
       <div
         className={cn(
           'relative overflow-hidden rounded-xl bg-gray-100 shadow-sm',
@@ -47,5 +47,5 @@ export function DomainTile({ href, title, imageUrl, linkLabel, ratio = '3/2' }: 
   );
 }
 
-/** Grid used with DomainTile everywhere: 1 column on phones, 2 on tablets, 3 on desktop. */
-export const DOMAIN_GRID = 'grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3';
+/** Layout used with DomainTile everywhere: 1 per row on phones, 2 on tablets, 3 on desktop; an incomplete last row is centred (owner 2026-11-19). */
+export const DOMAIN_GRID = 'flex flex-wrap justify-center gap-x-6 gap-y-8';
