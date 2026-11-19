@@ -180,7 +180,6 @@ function SearchPageContent() {
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.items.map((product) => {
                   const primaryImage = getPrimaryImage(product);
-                  const categoryInfo = product.category;
 
                   return (
                     <Card key={product.id} className="group h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white overflow-hidden">
@@ -216,14 +215,6 @@ function SearchPageContent() {
                             <Badge className="bg-accent-500 text-white border-0 text-xs">
                               <Sparkles className="h-3 w-3 mr-1" />
                               {tProducts('listing.featured')}
-                            </Badge>
-                          )}
-                          {categoryInfo && (
-                            <Badge
-                              variant="secondary"
-                              className="text-xs border-0 bg-primary-100 text-primary-600"
-                            >
-                              {categoryInfo.name || 'Category'}
                             </Badge>
                           )}
                           {product.pdfBrochureUrl && (
