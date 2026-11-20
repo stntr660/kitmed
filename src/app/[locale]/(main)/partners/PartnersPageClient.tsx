@@ -165,10 +165,10 @@ export default function PartnersPage() {
           </div>
           <div className="relative -mx-4 sm:mx-0 lg:-ml-24 lg:-mr-[34px]">
             <img
-              src="/images/products/produits-hero.jpg"
+              src="/images/products/partenaires-hero-2026-11-20.jpg"
               alt={t('solutionsHero.imageAlt')}
-              width={1314}
-              height={940}
+              width={1483}
+              height={1061}
               className="block h-auto w-full"
               style={HERO_PHOTO_FADE}
             />
