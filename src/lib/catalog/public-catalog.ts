@@ -73,7 +73,7 @@ export async function getPublicProduct(slug: string, locale: string) {
   const partnerTranslation = product.partners?.partner_translations?.find(t => t.language_code === locale);
   const partnerFallback = product.partners?.partner_translations?.find(t => t.language_code === 'fr');
   const manufacturerName =
-    partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || 'Unknown Manufacturer';
+    partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || '';
 
   // Effective PDF URL: product, then product media, then manufacturer default
   const productPdfUrl = product.pdf_brochure_url;

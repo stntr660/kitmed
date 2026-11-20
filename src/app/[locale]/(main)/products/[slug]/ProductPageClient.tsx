@@ -262,6 +262,8 @@ export default function ProductPageClient({ slug, locale, initialProduct = null 
             <div className="space-y-8">
               {/* Header */}
               <div>
+                {/* No manufacturer chip for unbranded products (e.g. the former MC2 orthoptics range, script 121) */}
+                {(product.partner?.name || product.constructeur) && (
                 <div className="flex items-center gap-3 mb-4">
                   <Link
                     href={product.partner?.slug ? `/${locale}/partners/${product.partner.slug}` : `/${locale}/partners`}
@@ -279,6 +281,7 @@ export default function ProductPageClient({ slug, locale, initialProduct = null 
                     {product.partner?.name || product.constructeur}
                   </Link>
                 </div>
+                )}
 
                 <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">
                   {getProductName(product)}

@@ -1,0 +1,1289 @@
+{
+ "products": [
+  {
+   "id": "d93a0001-0000-4000-8000-000000000001",
+   "slug": "mc2-synoptophore",
+   "reference_fournisseur": "MC2-SYNOPTOPHORE",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000001-fr",
+     "nom": "Synoptophore",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nProjection dans l'espace libre\nPost-image / flashing automatique\nRéglage de l'intensité lumineuse\nCyclophorie / hyperphorie\nDiaphragme à iris\nLivré avec 9 paires de mires\nOption : houppes de Haidinger"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000001-en",
+     "nom": "Synoptophore",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nFree-space projection\nAfter-image / automatic flashing\nAdjustable light intensity\nCyclophoria / hyperphoria\nIris diaphragm\nSupplied with 9 pairs of slides\nOption: Haidinger brushes"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000002",
+   "slug": "mc2-tables-electriques",
+   "reference_fournisseur": "MC2-TABLES-ELECTRIQUES",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000002-fr",
+     "nom": "Tables électriques d'orthoptie",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nColonne centrale ou latérale\nAvec ou sans roulettes\nChoix de dimensions de plateaux"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000002-en",
+     "nom": "Electric orthoptics tables",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nCentral or side column\nWith or without castors\nChoice of top sizes"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000003",
+   "slug": "mc2-echelles-plastique",
+   "reference_fournisseur": "MC2-T1/T2/T5/T6/T7/T8/T9/T10",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000003-fr",
+     "nom": "Échelles d'acuité visuelle sur plastique (T1 à T10)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nT1 : Monoyer directe, lecture à 5 m\nT2 : Monoyer inversée, lecture à 2,5 m\nT5 : Monoyer directe, lecture à 3 m\nT6 : Armaignac, lecture à 5 m ou 2,5 m\nT7 : Landolt, lecture à 5 m ou 2,5 m\nT8 : enfants, lecture à 5 m ou 2,5 m\nT9 : chiffres, lecture à 5 m\nT10 : chiffres inversée, lecture à 2,5 m\nDimensions : 3 panneaux de 180 x 241 mm (H x l)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000003-en",
+     "nom": "Plastic visual acuity charts (T1 to T10)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nT1: Monoyer direct, read at 5 m\nT2: Monoyer reversed, read at 2.5 m\nT5: Monoyer direct, read at 3 m\nT6: Armaignac, read at 5 m or 2.5 m\nT7: Landolt, read at 5 m or 2.5 m\nT8: children, read at 5 m or 2.5 m\nT9: numbers, read at 5 m\nT10: numbers reversed, read at 2.5 m\nSize: 3 panels of 180 x 241 mm (H x W)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000004",
+   "slug": "mc2-echelle-parinaud",
+   "reference_fournisseur": "MC2-EL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000004-fr",
+     "nom": "Échelle à main de Parinaud (EL)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000004-en",
+     "nom": "Parinaud hand-held chart (EL)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000005",
+   "slug": "mc2-echelle-enfants-illettres",
+   "reference_fournisseur": "MC2-EI",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000005-fr",
+     "nom": "Échelle à main pour enfants illettrés (EI)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000005-en",
+     "nom": "Hand-held chart for non-reading children (EI)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000006",
+   "slug": "mc2-echelle-ddass",
+   "reference_fournisseur": "MC2-T15",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000006-fr",
+     "nom": "Échelle pour enfants DDASS (T15)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000006-en",
+     "nom": "DDASS children's chart (T15)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000007",
+   "slug": "mc2-echelle-pigassou",
+   "reference_fournisseur": "MC2-T20",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000007-fr",
+     "nom": "Échelle de Pigassou (T20)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000007-en",
+     "nom": "Pigassou chart (T20)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000008",
+   "slug": "mc2-cadran-parent",
+   "reference_fournisseur": "MC2-CP1/CP2",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000008-fr",
+     "nom": "Cadran fixe de Parent (CP1 / CP2 inversé)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000008-en",
+     "nom": "Parent fixed astigmatic dial (CP1 / CP2 reversed)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000009",
+   "slug": "mc2-echelles-rossano",
+   "reference_fournisseur": "MC2-ROSSANO",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000009-fr",
+     "nom": "Échelles de Rossano (Weiss VP, VL, 3 échelles VL)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nRossano Weiss VP : recto verso, lignes de dessins et de E\nRossano VL : recto verso, utilisation à 5 m, acuités 1 ; 1,25 ; 1,5 ; 2 ; 3 ; 4 ; 5 ; 6 ; 8 et 10/10\n3 échelles Rossano VL : recto verso, utilisation à 5 m, mêmes acuités"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000009-en",
+     "nom": "Rossano charts (Weiss near, distance, set of 3 distance)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nRossano Weiss near: double-sided, rows of pictures and E\nRossano distance: double-sided, used at 5 m, acuities 1, 1.25, 1.5, 2, 3, 4, 5, 6, 8 and 10/10\nSet of 3 Rossano distance charts: double-sided, used at 5 m, same acuities"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000010",
+   "slug": "mc2-echelle-hrw",
+   "reference_fournisseur": "MC2-HRW",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000010-fr",
+     "nom": "Échelle de HRW",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nDistance d'examen : 33 cm\n4 dessins par acuité visuelle en VP"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000010-en",
+     "nom": "HRW chart",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nTest distance: 33 cm\n4 pictures per near visual acuity"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000011",
+   "slug": "mc2-echelle-gracis",
+   "reference_fournisseur": "MC2-GRACIS-ECHELLE",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000011-fr",
+     "nom": "Échelle transparente de Gracis",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nDimensions : 18 x 25 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000011-en",
+     "nom": "Gracis transparent chart",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nSize: 18 x 25 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000012",
+   "slug": "mc2-echelle-contrastes",
+   "reference_fournisseur": "MC2-CONTRASTES-VP-VL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000012-fr",
+     "nom": "Échelle vision des contrastes VP et VL",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nSupport cartonné, quadri au recto et une couleur au verso, plastifié\nDimensions : 30 x 21 cm ouvert, 15 x 21 cm fermé"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000012-en",
+     "nom": "Near and distance contrast vision chart",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nCard, four colours on the front and one colour on the back, laminated\nSize: 30 x 21 cm open, 15 x 21 cm closed"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000013",
+   "slug": "mc2-echelle-galinet",
+   "reference_fournisseur": "MC2-GALINET",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000013-fr",
+     "nom": "Échelle Galinet (haute vision, basse vision, VP)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nHaute vision (recto, 46 x 63 cm) : acuités de 5/10 à 20/10 à 5 m\nBasse vision (recto verso, 46 x 63 cm) : acuités de 1/10 à 4/10 à 5 m, lecture possible à 1 et 2 m\nVP (recto verso, 33,8 x 21 cm) : acuités de 1/10 à 20/10 à 40 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000013-en",
+     "nom": "Galinet chart (high vision, low vision, near)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nHigh vision (front, 46 x 63 cm): acuities 5/10 to 20/10 at 5 m\nLow vision (double-sided, 46 x 63 cm): acuities 1/10 to 4/10 at 5 m, can be read at 1 and 2 m\nNear (double-sided, 33.8 x 21 cm): acuities 1/10 to 20/10 at 40 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000014",
+   "slug": "mc2-echelle-theophane-1",
+   "reference_fournisseur": "MC2-THEOPHANE-1",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000014-fr",
+     "nom": "Échelle Théophane 1",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nBasse vision : 5 m ou 2,5 m\nClinique courante ou haute performance : 5 m\nDimensions : 80 x 115 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000014-en",
+     "nom": "Théophane 1 chart",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nLow vision: 5 m or 2.5 m\nRoutine or high performance use: 5 m\nSize: 80 x 115 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000015",
+   "slug": "mc2-echelle-theophane-2",
+   "reference_fournisseur": "MC2-THEOPHANE-2",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000015-fr",
+     "nom": "Échelle Théophane 2",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nUtilisation classique à 5 m, possible à 5 ; 2,5 et 1,25 m\nDimensions : 70 x 70 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000015-en",
+     "nom": "Théophane 2 chart",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nStandard use at 5 m, also at 5, 2.5 and 1.25 m\nSize: 70 x 70 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000016",
+   "slug": "mc2-bilan-vp",
+   "reference_fournisseur": "MC2-BILAN-VP",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000016-fr",
+     "nom": "Bilan VP",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000016-en",
+     "nom": "Near vision assessment chart (Bilan VP)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000017",
+   "slug": "mc2-test-mouche",
+   "reference_fournisseur": "MC2-TEST-MOUCHE",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000017-fr",
+     "nom": "Test de la Mouche (Papillon)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000017-en",
+     "nom": "Fly (Butterfly) stereo test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000018",
+   "slug": "mc2-test-tno",
+   "reference_fournisseur": "MC2-TEST-TNO",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000018-fr",
+     "nom": "Test TNO",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000018-en",
+     "nom": "TNO test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000019",
+   "slug": "mc2-test-lang",
+   "reference_fournisseur": "MC2-TEST-LANG",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000019-en",
+     "nom": "Lang I and II test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000019-fr",
+     "nom": "Test de Lang I et II",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000020",
+   "slug": "mc2-test-randot",
+   "reference_fournisseur": "MC2-TEST-RANDOT",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000020-fr",
+     "nom": "Test de Randot",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000020-en",
+     "nom": "Randot test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000021",
+   "slug": "mc2-test-random-dot",
+   "reference_fournisseur": "MC2-TEST-RANDOM-DOT",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000021-fr",
+     "nom": "Test Random Dot",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000021-en",
+     "nom": "Random Dot test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000022",
+   "slug": "mc2-test-chat",
+   "reference_fournisseur": "MC2-TEST-CHAT",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000022-fr",
+     "nom": "Test du Chat",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nDimensions : 38 x 27 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000022-en",
+     "nom": "Cat test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nSize: 38 x 27 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000023",
+   "slug": "mc2-test-worth-vp",
+   "reference_fournisseur": "MC2-TEST-WORTH-VP",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000023-fr",
+     "nom": "Test de Worth VP",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000023-en",
+     "nom": "Worth near test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000024",
+   "slug": "mc2-test-worth-vl",
+   "reference_fournisseur": "MC2-TEST-WORTH-VL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000024-fr",
+     "nom": "Test de Worth VL",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000024-en",
+     "nom": "Worth distance test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000025",
+   "slug": "mc2-test-malett-vp",
+   "reference_fournisseur": "MC2-MALETT-VP",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000025-fr",
+     "nom": "Test de Malett VP",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000025-en",
+     "nom": "Mallett near unit",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000026",
+   "slug": "mc2-test-malett-vl",
+   "reference_fournisseur": "MC2-MALETT-VL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000026-fr",
+     "nom": "Test de Malett VL",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000026-en",
+     "nom": "Mallett distance unit",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000027",
+   "slug": "mc2-vectogram",
+   "reference_fournisseur": "MC2-VECTOGRAM",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000027-fr",
+     "nom": "Vectogram (entraînement visuel)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000027-en",
+     "nom": "Vectogram (vision training)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000028",
+   "slug": "mc2-test-ishihara",
+   "reference_fournisseur": "MC2-ISHIHARA",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000028-fr",
+     "nom": "Test d'Ishihara",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nExiste en 10, 14, 24 et 38 planches"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000028-en",
+     "nom": "Ishihara test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nAvailable in 10, 14, 24 and 38 plates"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000029",
+   "slug": "mc2-test-farnsworth",
+   "reference_fournisseur": "MC2-FARNSWORTH",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000029-fr",
+     "nom": "Test de Farnsworth",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000029-en",
+     "nom": "Farnsworth test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000030",
+   "slug": "mc2-amsler",
+   "reference_fournisseur": "MC2-AMSLER",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000030-fr",
+     "nom": "Test et grille d'Amsler",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000030-en",
+     "nom": "Amsler test and grid",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000031",
+   "slug": "mc2-coordimetre-weiss",
+   "reference_fournisseur": "MC2-COORDIMETRE-WEISS",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000031-fr",
+     "nom": "Coordimètre de Weiss",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nDimensions : H x l = 77 x 74 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000031-en",
+     "nom": "Weiss coordimeter",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nSize: H x W = 77 x 74 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000032",
+   "slug": "mc2-torche-kratz",
+   "reference_fournisseur": "MC2-TORCHE-KRATZ",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000032-fr",
+     "nom": "Torche de Kratz",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000032-en",
+     "nom": "Kratz torch",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000033",
+   "slug": "mc2-face-monoculaire",
+   "reference_fournisseur": "MC2-FACE-MONO",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000033-fr",
+     "nom": "Face monoculaire",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000033-en",
+     "nom": "Monocular flipper",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000034",
+   "slug": "mc2-face-binoculaire",
+   "reference_fournisseur": "MC2-FACE-BINO",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000034-fr",
+     "nom": "Face binoculaire",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000034-en",
+     "nom": "Binocular flipper",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000035",
+   "slug": "mc2-face-polarisee-rouge-vert",
+   "reference_fournisseur": "MC2-FACE-POL-RV",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000035-fr",
+     "nom": "Face polarisée / Face rouge-vert",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000035-en",
+     "nom": "Polarised / red-green flipper",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000036",
+   "slug": "mc2-face-bagolini",
+   "reference_fournisseur": "MC2-BAGOLINI",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000036-fr",
+     "nom": "Face à main de Bagolini",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000036-en",
+     "nom": "Bagolini hand-held lenses",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000037",
+   "slug": "mc2-flipper-test",
+   "reference_fournisseur": "MC2-FLIPPER",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000037-fr",
+     "nom": "Flipper test",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000037-en",
+     "nom": "Flipper test",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000038",
+   "slug": "mc2-face-nue-4-verres",
+   "reference_fournisseur": "MC2-FACE-NUE-4V",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000038-fr",
+     "nom": "Face nue / Face 4 verres (0,25 à 2,00)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000038-en",
+     "nom": "Empty flipper / 4-lens flipper (0.25 to 2.00)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000039",
+   "slug": "mc2-maddox-sur-manche",
+   "reference_fournisseur": "MC2-MADDOX-MANCHE",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000039-fr",
+     "nom": "Maddox et filtres sur manche",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000039-en",
+     "nom": "Maddox rod and filters on handle",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000040",
+   "slug": "mc2-croix-aile-maddox",
+   "reference_fournisseur": "MC2-CROIX-AILE-MADDOX",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000040-fr",
+     "nom": "Croix et aile de Maddox",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000040-en",
+     "nom": "Maddox cross and wing",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000041",
+   "slug": "mc2-biprisme-gracis",
+   "reference_fournisseur": "MC2-BIPRISME-GRACIS",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000041-fr",
+     "nom": "Biprisme et lunette de Gracis",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000041-en",
+     "nom": "Gracis biprism and spectacle",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000042",
+   "slug": "mc2-coffret-prismes",
+   "reference_fournisseur": "MC2-COFFRET-PRISMES",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000042-fr",
+     "nom": "Coffret de prismes (16 ou 22 prismes)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\n16 prismes : 1/2, 1, 2, 4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45 et 50 D\n22 prismes : 1/2, 1 à 10, 12, 14, 16, 18, 20, 25, 30, 35, 40, 45 et 50 D"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000042-en",
+     "nom": "Prism set (16 or 22 prisms)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\n16 prisms: 1/2, 1, 2, 4, 6, 8, 10, 12, 15, 20, 25, 30, 35, 40, 45 and 50 PD\n22 prisms: 1/2, 1 to 10, 12, 14, 16, 18, 20, 25, 30, 35, 40, 45 and 50 PD"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000043",
+   "slug": "mc2-regles-prisme",
+   "reference_fournisseur": "MC2-REGLES-PRISME",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000043-fr",
+     "nom": "Règles à prisme",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nVerticale : 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 25 D\nHorizontale : 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 25, 30, 35, 40 D"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000043-en",
+     "nom": "Prism bars",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nVertical: 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 25 PD\nHorizontal: 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 25, 30, 35, 40 PD"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000044",
+   "slug": "mc2-coffret-cylindres-croises",
+   "reference_fournisseur": "MC2-CYLINDRES-CROISES",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000044-fr",
+     "nom": "Coffret cylindres croisés",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000044-en",
+     "nom": "Cross cylinder set",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000045",
+   "slug": "mc2-plaquettes-mawas",
+   "reference_fournisseur": "MC2-MAWAS",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000045-fr",
+     "nom": "Plaquettes de Mawas",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000045-en",
+     "nom": "Mawas plates",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000046",
+   "slug": "mc2-cube-lang",
+   "reference_fournisseur": "MC2-CUBE-LANG",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000046-fr",
+     "nom": "Cube de Lang",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000046-en",
+     "nom": "Lang fixation cube",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000047",
+   "slug": "mc2-filmo",
+   "reference_fournisseur": "MC2-FILMO",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000047-fr",
+     "nom": "Filmo Lux Cristal et Filmo Matt",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nFeuilles au format 15 x 20 cm"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000047-en",
+     "nom": "Filmo Lux Cristal and Filmo Matt",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nSheets 15 x 20 cm"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000048",
+   "slug": "mc2-cache-oeil",
+   "reference_fournisseur": "MC2-CACHE-OEIL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000048-fr",
+     "nom": "Cache-œil (blanc, noir, élastique noir)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000048-en",
+     "nom": "Occluders (white, black, black elastic)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000049",
+   "slug": "mc2-lunette-depistage",
+   "reference_fournisseur": "MC2-LUNETTE-DEPISTAGE",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000049-fr",
+     "nom": "Lunette de dépistage",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000049-en",
+     "nom": "Screening spectacles",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000050",
+   "slug": "mc2-clips-deux-gorges",
+   "reference_fournisseur": "MC2-CLIPS-DEUX-GORGES",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000050-fr",
+     "nom": "Clips deux gorges",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000050-en",
+     "nom": "Two-groove clips",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000051",
+   "slug": "mc2-palette-bernell",
+   "reference_fournisseur": "MC2-PALETTE-BERNELL",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000051-fr",
+     "nom": "Palette de Bernell",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000051-en",
+     "nom": "Bernell paddle",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000052",
+   "slug": "mc2-ecran-spielmann",
+   "reference_fournisseur": "MC2-ECRAN-SPIELMANN",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000052-fr",
+     "nom": "Écran translucide de Spielmann",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000052-en",
+     "nom": "Spielmann translucent occluder",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000053",
+   "slug": "mc2-feuilles-bangerter",
+   "reference_fournisseur": "MC2-BANGERTER",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000053-fr",
+     "nom": "Feuilles d'occlusion selon Bangerter",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nDe 1/10 à 4/10 par pas de 1\nDe 4/10 à 10/10 par pas de 2\nInférieure à 1/10, opaque et perception lumineuse"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000053-en",
+     "nom": "Bangerter occlusion foils",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\n1/10 to 4/10 in steps of 1\n4/10 to 10/10 in steps of 2\nBelow 1/10, opaque and light perception"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000054",
+   "slug": "mc2-press-on-prismes",
+   "reference_fournisseur": "MC2-PRESS-ON-3M",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000054-fr",
+     "nom": "Press-on prismes 3M",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nValeurs : de 1 à 10 D par pas de 1 ; 12, 15, 20, 25, 30 et 35 D"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000054-en",
+     "nom": "3M Press-on prisms",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nPowers: 1 to 10 PD in steps of 1; 12, 15, 20, 25, 30 and 35 PD"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000055",
+   "slug": "mc2-opticlude",
+   "reference_fournisseur": "MC2-EC200/EC201",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000055-fr",
+     "nom": "Pansements oculaires Opticlude (EC 200 / EC 201)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nEC 200 : taille adulte, boîte de 20\nEC 201 : taille junior, boîte de 20"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000055-en",
+     "nom": "Opticlude eye patches (EC 200 / EC 201)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nEC 200: adult size, box of 20\nEC 201: junior size, box of 20"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000056",
+   "slug": "mc2-orthopads",
+   "reference_fournisseur": "MC2-ORTHOPADS",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000056-fr",
+     "nom": "Orthopads",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nBoîte de 20 : adulte et junior, chair\nBoîte de 40 : adulte et junior, blanc et coloré\nBoîte de 50 : garçons et filles, dessins"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000056-en",
+     "nom": "Ortopad eye patches",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nBox of 20: adult and junior, skin colour\nBox of 40: adult and junior, white and coloured\nBox of 50: boys and girls, designs"
+    }
+   ]
+  },
+  {
+   "id": "d93a0001-0000-4000-8000-000000000057",
+   "slug": "mc2-obturateur-ventouse",
+   "reference_fournisseur": "MC2-OB100/OB105",
+   "constructeur": "mc2",
+   "partner_id": "a93a0001-0000-4000-8000-000000000001",
+   "pdf_brochure_url": "/uploads/pdfs/mc2-catalogue-produits.pdf",
+   "translations": [
+    {
+     "id": "d93a0001-0000-4000-8000-000000000057-fr",
+     "nom": "Obturateur à ventouse (OB 100 / OB 105)",
+     "fiche_technique": "Fabricant : MC2 - Le Matériel Professionnel (France)\nOB 100 : avec aération, enfant\nOB 105 : grand modèle, adulte"
+    },
+    {
+     "id": "d93a0001-0000-4000-8000-000000000057-en",
+     "nom": "Suction-cup occluder (OB 100 / OB 105)",
+     "fiche_technique": "Manufacturer: MC2 - Le Matériel Professionnel (France)\nOB 100: ventilated, child\nOB 105: large model, adult"
+    }
+   ]
+  },
+  {
+   "id": "d70a0001-0000-4000-8000-000000000002",
+   "slug": "toul-meditech-operio-steristay",
+   "reference_fournisseur": "TOUL-OPERIO-STERISTAY",
+   "constructeur": "toul-meditech",
+   "partner_id": "a70a0001-0000-4000-8000-000000000002",
+   "pdf_brochure_url": "/uploads/pdfs/kitmed-2026-11-toul-meditech-brochure.pdf",
+   "translations": [
+    {
+     "id": "d70a0001-0000-4000-8000-000000000002-fr",
+     "nom": "Toul Meditech Opério® / SteriStay® — Générateurs de flux d'air laminaire",
+     "fiche_technique": "Opério® Mobile : 230 V, 290 W (veille 23 W) ; 45 x 60 x 170 cm ; 42 kg ; plateau en option 45 x 60 ou 40 x 50 cm, réglable de 80 à 120 cm, 5 kg max ; profondeur du champ de travail 120 cm\nOpério® Ceiling : 230 V, 160 W (veille 23 W) ; longueur 60 cm, portée 180 à 200 cm, largeur 25 cm, hauteur 90 cm ; 35 kg ; profondeur du champ de travail 100 cm\nSteriStay® : 230 V, 160 W (veille 23 W) ; 170 x 60 x 170 cm ; 60 kg ; table 133 x 60 cm (version S 173 x 60 cm), réglable de 80 à 120 cm, 50 kg max ; profondeur du champ de travail 133 cm\nFiltre HEPA classe H14 : 99,995 % MPPS ; durée de vie 1 an ou 2 000 heures ; préfiltre en treillis nylon\nDébit d'air : 0,4 à 0,5 m/s, 400 m³/h ; zone de propreté < 5 UFC/m³\nPointeur de zone stérile : laser classe 3R (5 mW, vert 520 nm) ; lecteur de code-barres laser classe 2 (1 mW, rouge 650 nm)\nConditions : 0 à 30 °C, 5 à 80 % d'humidité sans condensation, 500 à 1 000 hPa\nConformité : CE, directive 93/42/CEE relative aux dispositifs médicaux"
+    },
+    {
+     "id": "d70a0001-0000-4000-8000-000000000002-en",
+     "nom": "Toul Meditech Opério® / SteriStay® — Laminar airflow generators",
+     "fiche_technique": "Opério® Mobile: 230 V, 290 W (standby 23 W); 45 x 60 x 170 cm; 42 kg; optional tray 45 x 60 or 40 x 50 cm, adjustable from 80 to 120 cm, 5 kg max; working field depth 120 cm\nOpério® Ceiling: 230 V, 160 W (standby 23 W); length 60 cm, reach 180 to 200 cm, width 25 cm, height 90 cm; 35 kg; working field depth 100 cm\nSteriStay®: 230 V, 160 W (standby 23 W); 170 x 60 x 170 cm; 60 kg; table 133 x 60 cm (S version 173 x 60 cm), adjustable from 80 to 120 cm, 50 kg max; working field depth 133 cm\nHEPA class H14 filter: 99.995% MPPS; lifetime 1 year or 2,000 hours; nylon mesh pre-filter\nAirflow: 0.4 to 0.5 m/s, 400 m³/h; clean zone < 5 CFU/m³\nSterile zone pointer: class 3R laser (5 mW, green 520 nm); class 2 laser barcode reader (1 mW, red 650 nm)\nConditions: 0 to 30 °C, 5 to 80% humidity non-condensing, 500 to 1,000 hPa\nCompliance: CE, Medical Devices Directive 93/42/EEC"
+    }
+   ]
+  }
+ ],
+ "categories": [
+  {
+   "id": "c93a0001-0000-4000-8000-000000000001",
+   "slug": "mc2-synoptophore-tables",
+   "description": "Synoptophore MC2 pour l'analyse des déviations et de la vision binoculaire, et tables électriques d'orthoptie.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000001-fr",
+     "description": "Synoptophore MC2 pour l'analyse des déviations et de la vision binoculaire, et tables électriques d'orthoptie."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000001-en",
+     "description": "MC2 synoptophore for the analysis of deviations and binocular vision, and electric orthoptics tables."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000002",
+   "slug": "mc2-echelles-acuite-visuelle",
+   "description": "Échelles d'acuité visuelle de loin (VL) et de près (VP) : Monoyer, Parinaud, Rossano, Pigassou, Galinet, Théophane, contrastes.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000002-fr",
+     "description": "Échelles d'acuité visuelle de loin (VL) et de près (VP) : Monoyer, Parinaud, Rossano, Pigassou, Galinet, Théophane, contrastes."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000002-en",
+     "description": "Distance and near visual acuity charts: Monoyer, Parinaud, Rossano, Pigassou, Galinet, Théophane, contrast."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000003",
+   "slug": "mc2-tests-vision-binoculaire",
+   "description": "Tests de vision du relief et de vision binoculaire (Mouche, TNO, Lang, Randot, Worth), disparité de fixation (Malett) et entraînement visuel.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000003-fr",
+     "description": "Tests de vision du relief et de vision binoculaire (Mouche, TNO, Lang, Randot, Worth), disparité de fixation (Malett) et entraînement visuel."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000003-en",
+     "description": "Stereo and binocular vision tests (Fly, TNO, Lang, Randot, Worth), fixation disparity (Mallett) and vision training."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000006",
+   "slug": "mc2-occlusion-amblyopie",
+   "description": "Caches, pansements oculaires, filtres Bangerter, Filmo, Press-on et lunettes de dépistage pour le traitement de l'amblyopie.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000006-fr",
+     "description": "Caches, pansements oculaires, filtres Bangerter, Filmo, Press-on et lunettes de dépistage pour le traitement de l'amblyopie."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000006-en",
+     "description": "Eye patches, occluders, Bangerter foils, Filmo, Press-on prisms and screening glasses for amblyopia treatment."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000005",
+   "slug": "mc2-faces-maddox-prismes",
+   "description": "Petit matériel d'examen : faces de verres, Bagolini, Maddox, coffrets et règles de prismes, cylindres croisés, Mawas, cube de Lang.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000005-fr",
+     "description": "Petit matériel d'examen : faces de verres, Bagolini, Maddox, coffrets et règles de prismes, cylindres croisés, Mawas, cube de Lang."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000005-en",
+     "description": "Small examination equipment: lens flippers, Bagolini, Maddox, prism sets and bars, cross cylinders, Mawas, Lang cube."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000004",
+   "slug": "mc2-couleurs-amsler-coordimetre",
+   "description": "Tests de vision des couleurs (Ishihara, Farnsworth), grille d'Amsler, coordimètre de Weiss et torche de Kratz.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000004-fr",
+     "description": "Tests de vision des couleurs (Ishihara, Farnsworth), grille d'Amsler, coordimètre de Weiss et torche de Kratz."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000004-en",
+     "description": "Colour vision tests (Ishihara, Farnsworth), Amsler grid, Weiss coordimeter and Kratz torch."
+    }
+   ]
+  },
+  {
+   "id": "c93a0001-0000-4000-8000-000000000000",
+   "slug": "orthoptie",
+   "description": "Matériel d'orthoptie MC2 : échelles d'acuité, tests de vision binoculaire et des couleurs, synoptophore, prismes, Maddox et occlusion.",
+   "translations": [
+    {
+     "id": "c93a0001-0000-4000-8000-000000000000-fr",
+     "description": "Matériel d'orthoptie MC2 : échelles d'acuité, tests de vision binoculaire et des couleurs, synoptophore, prismes, Maddox et occlusion."
+    },
+    {
+     "id": "c93a0001-0000-4000-8000-000000000000-en",
+     "description": "MC2 orthoptics equipment: acuity charts, binocular and colour vision tests, synoptophore, prisms, Maddox and occlusion."
+    }
+   ]
+  }
+ ],
+ "partners": [
+  {
+   "id": "a93a0001-0000-4000-8000-000000000001",
+   "slug": "mc2",
+   "status": "active"
+  },
+  {
+   "id": "a70a0001-0000-4000-8000-000000000002",
+   "slug": "toul-meditech",
+   "status": "active"
+  }
+ ],
+ "banners": [
+  {
+   "id": "b74a0001-0000-4000-8000-000000000002",
+   "cta_url": "/fr/products/toul-meditech-operio-steristay"
+  }
+ ]
+}

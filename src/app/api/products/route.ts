@@ -282,7 +282,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       // Get manufacturer name from partner translations or fallback to partner name
       const partnerTranslation = product.partners?.partner_translations?.find(t => t.language_code === locale);
       const partnerFallback = product.partners?.partner_translations?.find(t => t.language_code === 'fr');
-      const manufacturerName = partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || 'Unknown Manufacturer';
+      const manufacturerName = partnerTranslation?.name || partnerFallback?.name || product.partners?.name || product.constructeur || '';
 
       // Determine effective PDF URL - check multiple sources
       const productPdfUrl = product.pdf_brochure_url;

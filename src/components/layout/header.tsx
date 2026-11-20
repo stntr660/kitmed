@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, Search, ChevronDown, ChevronRight, MapPin, FileText, Instagram, Facebook, Linkedin } from 'lucide-react';
 
-import { HeaderLogo } from '@/components/ui/logo';
 import {
   Sheet,
   SheetContent,
@@ -131,7 +130,7 @@ export function Header({ locale, className }: HeaderProps) {
   );
 
   return (
-    <header className={cn('sticky -top-9 lg:-top-[132px] z-50 w-full bg-white shadow-sm', className)}>
+    <header className={cn('sticky -top-9 lg:-top-[148px] z-50 w-full bg-white shadow-sm', className)}>
       {/* Top bar: tagline | Instagram, Facebook | Casablanca (mockup) */}
       <div className="h-9 bg-[#DCEEFD]">
         <div className="container mx-auto flex h-full items-center justify-between gap-4 px-4 lg:px-8">
@@ -165,14 +164,20 @@ export function Header({ locale, className }: HeaderProps) {
 
       {/* Logo, search, quote */}
       <div className="border-b border-gray-100">
-        <div className="container mx-auto flex h-20 items-center justify-between gap-3 px-4 md:gap-6 lg:h-24 lg:px-8">
-          <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-shrink-0 items-center gap-3">
-            <HeaderLogo className="py-0 [&_img]:!max-h-[44px] lg:[&_img]:!max-h-[56px]" />
-            <span className="hidden h-10 w-px bg-[#10146B]/30 sm:block" />
-            <span className="hidden text-xs font-bold leading-tight text-gray-900 sm:block">
+        <div className="container mx-auto flex h-20 items-center justify-between gap-3 px-4 md:gap-6 lg:h-28 lg:px-8">
+          {/* Logo enlarged (owner 2026-11-20: « pas valorisé »): trimmed hi-res file, ~1.8x the old visible size */}
+          <Link href={`/${locale}`} aria-label={tCommon('goToHomepage')} className="flex flex-shrink-0 items-center gap-3 lg:gap-4">
+            <Image
+              src="/images/logos/kitmed-logo-header.png"
+              alt="KITMED"
+              width={559}
+              height={270}
+              priority
+              className="h-[54px] w-auto sm:h-[62px] lg:h-[84px]"
+            />
+            <span className="hidden h-12 w-px bg-[#10146B]/30 sm:block lg:h-14" />
+            <span className="hidden whitespace-nowrap text-sm font-bold leading-tight text-[#10146B] sm:block">
               {t('certifiedLine1')}
-              <br />
-              {t('certifiedLine2')}
             </span>
           </Link>
 

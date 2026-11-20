@@ -3,7 +3,7 @@ import { DomainTile, DOMAIN_GRID } from '@/components/products/DomainTile';
 
 /**
  * The 8 domains of the client mockup (2026-11-16), in its order; photos cropped from the mockup.
- * « Orthoptie » opens its own category (MC2 range, scripts/catalog-restructure/93-orthoptie-mc2.js).
+ * « Orthoptie » opens its own category (scripts 93 + 121; sold without a manufacturer brand).
  */
 const DOMAINS = [
   { key: 'ophtalmologie', slug: 'ophtalmologie' },
