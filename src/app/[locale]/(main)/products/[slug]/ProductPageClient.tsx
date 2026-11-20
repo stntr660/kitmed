@@ -291,7 +291,7 @@ export default function ProductPageClient({ slug, locale, initialProduct = null 
                   {t('reference')}: {product.referenceFournisseur}
                 </div>
 
-                <p className="text-lg text-slate-700 leading-relaxed">
+                <p className="whitespace-pre-line text-lg text-slate-700 leading-relaxed">
                   {getProductDescription(product)}
                 </p>
               </div>

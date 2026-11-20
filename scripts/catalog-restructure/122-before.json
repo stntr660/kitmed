@@ -1,0 +1,90 @@
+{
+ "hyloParin": {
+  "id": "89525782-89c0-46cd-927d-e9b83c0d6e17",
+  "reference_fournisseur": "HYLO-PARIN",
+  "category_id": "8bb5e9ba-9c3a-4e0c-973b-bf8996497193",
+  "constructeur": "ursapharmm",
+  "slug": "hylo-parin",
+  "status": "archived",
+  "is_featured": false,
+  "is_new_arrival": false,
+  "sort_order": 99,
+  "meta_title": null,
+  "meta_description": null,
+  "pdf_brochure_url": "https://hylo.ma/produits/hylo-parinr/",
+  "created_at": "2025-12-08T14:20:37.046Z",
+  "updated_at": "2026-10-19T10:50:07.827Z",
+  "partner_id": "b9e72a4c-fb4c-4171-968e-2b160284881d",
+  "product_translations": [
+   {
+    "id": "1e12bc33-fadc-47dc-a30d-9cdf8827cb10",
+    "product_id": "89525782-89c0-46cd-927d-e9b83c0d6e17",
+    "language_code": "en",
+    "nom": "HYLO PARIN",
+    "description": "HYLO PARIN eye drops combine 0.1% sodium hyaluronate with heparin for specialized care of dry eyes with recurrent irritation and compromised corneal integrity. The sodium hyaluronate provides stable lubrication and tear film support, while heparin delivers enhanced hydration and actively promotes regeneration of the irritated cornea and conjunctiva. This combination is particularly beneficial following ocular surgery, during extended medication use, or for chronic inflammatory conditions of the ocular surface. The phosphate-free formulation eliminates the risk of corneal calcification. Preservative-free delivery via the patented COMOD multi-dose system. Each bottle provides approximately 300 drops, usable for six months after opening. Not recommended for use with contact lenses.",
+    "fiche_technique": null,
+    "meta_title": null,
+    "meta_description": null
+   },
+   {
+    "id": "fd908b47-fbce-43ab-b517-74602df48962",
+    "product_id": "89525782-89c0-46cd-927d-e9b83c0d6e17",
+    "language_code": "fr",
+    "nom": "HYLO PARIN Collyre",
+    "description": "Les gouttes oculaires HYLO PARIN associent 0,1% d'hyaluronate de sodium et de l'héparine pour un soin spécialisé des yeux secs avec irritation récurrente et intégrité cornéenne compromise. L'hyaluronate de sodium assure une lubrification stable et un soutien du film lacrymal, tandis que l'héparine apporte une hydratation renforcée et favorise activement la régénération de la cornée et de la conjonctive irritées. Cette combinaison est particulièrement bénéfique après une chirurgie oculaire, lors d'une utilisation prolongée de médicaments ou pour les conditions inflammatoires chroniques de la surface oculaire. La formulation sans phosphate élimine le risque de calcification cornéenne. Délivrance sans conservateur via le système multidose breveté COMOD. Chaque flacon fournit environ 300 gouttes, utilisable pendant six mois après ouverture. Non recommandé pour l'utilisation avec des lentilles de contact.",
+    "fiche_technique": null,
+    "meta_title": null,
+    "meta_description": null
+   }
+  ],
+  "product_media": [
+   {
+    "id": "82559c1b-e009-40cc-91a6-0aa1d4fef429",
+    "product_id": "89525782-89c0-46cd-927d-e9b83c0d6e17",
+    "type": "image",
+    "url": "/uploads/products/hylo-parin-primary.png",
+    "alt_text": "Hylo Parin - Image 1",
+    "title": "Hylo Parin - Image 1",
+    "sort_order": 0,
+    "is_primary": true,
+    "created_at": "2025-12-08T14:20:37.053Z"
+   }
+  ]
+ },
+ "isomax": {
+  "id": "prod-1768073447109-1f7025qtp",
+  "partner_id": "isomax-partner-001",
+  "constructeur": "isomax"
+ },
+ "coswel": {
+  "id": "4e3f96da-da99-499f-a44a-32facfaa9c3e",
+  "name": "COSWEL",
+  "slug": "coswel",
+  "description": "Medical equipment manufacturer serving healthcare professionals.",
+  "website_url": "https://www.coswel.com",
+  "logo_url": "/uploads/partners/image-removebg-preview--3--1768474446068-e0f94104.png",
+  "default_pdf_url": null,
+  "type": "manufacturer",
+  "is_featured": false,
+  "sort_order": 50,
+  "status": "active",
+  "created_at": "2025-11-24T21:42:09.865Z",
+  "updated_at": "2026-10-27T16:47:52.843Z",
+  "partner_translations": [
+   {
+    "id": "d75de816-1f1b-493d-8cc4-7bda557094cd",
+    "partner_id": "4e3f96da-da99-499f-a44a-32facfaa9c3e",
+    "language_code": "fr",
+    "name": "COSWEL",
+    "description": "Fabricant d'équipements médicaux au service des professionnels de la santé."
+   },
+   {
+    "id": "31b1ef79-88d0-4094-932d-ad7d5dd2a2e5",
+    "partner_id": "4e3f96da-da99-499f-a44a-32facfaa9c3e",
+    "language_code": "en",
+    "name": "COSWEL",
+    "description": "Medical equipment manufacturer serving healthcare professionals."
+   }
+  ]
+ }
+}
